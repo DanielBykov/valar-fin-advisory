@@ -35,35 +35,35 @@ const faqs = [
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[#C9CED6] last:border-none">
+    <div className="border-b border-valar-concrete last:border-none">
       <button onClick={() => setOpen(!open)} className="w-full text-left py-6 flex items-start justify-between gap-4 group">
-        <span className="font-semibold text-[#061634] text-lg leading-snug group-hover:text-[#E8A23A] transition-colors">{q}</span>
-        <ChevronDown className={`w-5 h-5 text-[#E8A23A] flex-shrink-0 mt-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+        <span className="font-semibold text-valar-navy text-lg leading-snug group-hover:text-valar-amber transition-colors">{q}</span>
+        <ChevronDown className={`w-5 h-5 text-valar-amber flex-shrink-0 mt-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
-      {open && <p className="pb-6 text-[#2E4882] leading-relaxed text-[15px] max-w-3xl">{a}</p>}
+      {open && <p className="pb-6 text-valar-indigo leading-relaxed text-[15px] max-w-3xl">{a}</p>}
     </div>
   );
 }
 
 export default function FinancialPlanningPage() {
   return (
-    <div className="w-full flex flex-col font-sans">
+    <div data-cmp="FinancialPlanningPage" className="w-full flex flex-col font-sans">
       {/* HERO */}
-      <section className="bg-[#061634] text-white pt-28 pb-24 px-4 md:px-6">
+      <section className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
-              <div className="h-[2px] w-6 bg-[#E8A23A]" />
-              <span className="text-[#8F93B5] font-bold tracking-widest text-xs uppercase">Financial Planning</span>
+              <div className="h-[2px] w-6 bg-valar-amber" />
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Financial Planning</span>
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
-              Build a Financial Strategy Around<br className="hidden md:block" /> the Life You Want<span className="text-[#E8A23A]">.</span>
+              Build a Financial Strategy Around<br className="hidden md:block" /> the Life You Want<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl text-[#C8CBE3] max-w-3xl leading-relaxed mb-10 border-l-2 border-[#E8A23A] pl-4 font-light">
+            <motion.p variants={fadeIn} className="text-xl text-valar-lilac max-w-3xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4 font-light">
               Financial planning is about more than numbers. It is about understanding where you are today, where you want to be in the future, and creating a practical plan to help you get there.
             </motion.p>
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] px-8 py-4 rounded-sm font-bold transition-colors">
+              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
               <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
@@ -75,24 +75,24 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* WHY FINANCIAL PLANNING MATTERS */}
-      <section className="py-24 bg-[#F6F7F9]">
+      <section className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <motion.div variants={staggerContainer}>
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Why Financial Planning Matters</span>
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Why Financial Planning Matters</span>
               </motion.div>
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634] mb-6 leading-tight">
-                A clear picture of how everything connects<span className="text-[#E8A23A]">.</span>
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
+                A clear picture of how everything connects<span className="text-valar-amber">.</span>
               </motion.h2>
-              <motion.p variants={fadeIn} className="text-[#2E4882] leading-relaxed mb-8">
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-8">
                 Many people make financial decisions one step at a time without having a clear picture of how everything connects together. Our goal is not to create a complicated report — it is to help you build a practical financial roadmap.
               </motion.p>
-              <motion.p variants={fadeIn} className="text-[#2E4882] font-medium mb-4">Financial planning helps you understand:</motion.p>
+              <motion.p variants={fadeIn} className="text-valar-indigo font-medium mb-4">Financial planning helps you understand:</motion.p>
               <motion.ul variants={staggerContainer} className="space-y-3">
                 {["Where your money goes", "How your financial decisions affect future opportunities", "What goals are realistically achievable", "How to balance lifestyle, property, savings, and investments", "How to build long-term financial confidence"].map((item, i) => (
-                  <motion.li key={i} variants={fadeIn} className="flex items-start gap-3 text-[#061634] text-sm">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#E8A23A] flex-shrink-0 mt-1.5" />
+                  <motion.li key={i} variants={fadeIn} className="flex items-start gap-3 text-valar-navy text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
                     {item}
                   </motion.li>
                 ))}
@@ -105,13 +105,13 @@ export default function FinancialPlanningPage() {
                 { icon: BarChart2, title: "Structure", desc: "Create a financial framework that gives you visibility over cashflow, commitments, and the path toward your goals." },
                 { icon: TrendingUp, title: "Direction", desc: "Make confident decisions aligned with your long-term goals, whether that's property, wealth building, or greater financial freedom." },
               ].map((card, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-white p-6 rounded-lg shadow-sm border border-[#C9CED6] flex items-start gap-5">
-                  <div className="w-10 h-10 rounded-full bg-[#F6F7F9] flex items-center justify-center flex-shrink-0">
-                    <card.icon className="w-5 h-5 text-[#E8A23A]" />
+                <motion.div key={i} variants={fadeIn} className="bg-white p-6 rounded-lg shadow-sm border border-valar-concrete flex items-start gap-5">
+                  <div className="w-10 h-10 rounded-full bg-valar-fog flex items-center justify-center flex-shrink-0">
+                    <card.icon className="w-5 h-5 text-valar-amber" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#061634] mb-1">{card.title}</h3>
-                    <p className="text-[#2E4882] text-sm leading-relaxed">{card.desc}</p>
+                    <h3 className="font-bold text-valar-navy mb-1">{card.title}</h3>
+                    <p className="text-valar-indigo text-sm leading-relaxed">{card.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -121,16 +121,16 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FINANCIAL COACHING */}
-      <section className="py-24 bg-[#061634] text-white">
+      <section className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Financial Coaching</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Financial Coaching</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              A structured process for long-term financial clarity<span className="text-[#E8A23A]">.</span>
+              A structured process for long-term financial clarity<span className="text-valar-amber">.</span>
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-[#C8CBE3] text-lg leading-relaxed max-w-3xl">
+            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed max-w-3xl">
               Financial coaching is designed to help you better understand your financial position, behaviours, and long-term goals. We start by analysing your current situation, then build a practical framework tailored to your circumstances.
             </motion.p>
           </motion.div>
@@ -141,12 +141,12 @@ export default function FinancialPlanningPage() {
               { title: "Your Coaching Framework", items: ["Cashflow and budgeting strategies", "Financial habit improvement", "Debt management", "Mortgage and property planning", "Savings and investment planning", "Goal setting and accountability", "Long-term financial roadmap"] },
               { title: "How It's Delivered", items: ["One-off strategy session", "Structured multi-session programme", "Monthly, quarterly, or annual reviews"] },
             ].map((col, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-[#2E4882] p-8 rounded-sm border-t-2 border-[#E8A23A]">
+              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
                 <h3 className="text-lg font-bold mb-5">{col.title}</h3>
                 <ul className="space-y-2.5">
                   {col.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-[#C8CBE3]">
-                      <div className="w-1 h-1 rounded-full bg-[#E8A23A] flex-shrink-0 mt-2" />
+                    <li key={j} className="flex items-start gap-2 text-sm text-valar-lilac">
+                      <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0 mt-2" />
                       {item}
                     </li>
                   ))}
@@ -155,23 +155,23 @@ export default function FinancialPlanningPage() {
             ))}
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-[#2E4882]/50 border border-[#E8A23A]/30 rounded-sm p-8">
-            <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase block mb-3">Fees</span>
-            <p className="text-white font-semibold text-lg mb-2">Financial coaching sessions are generally charged at <span className="text-[#E8A23A]">$250 per hour</span>.</p>
-            <p className="text-[#C8CBE3] text-sm">Ongoing programmes and review packages can be tailored to individual needs.</p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-valar-indigo/50 border border-valar-amber/30 rounded-sm p-8">
+            <span className="text-valar-amber font-bold tracking-widest text-xs uppercase block mb-3">Fees</span>
+            <p className="text-white font-semibold text-lg mb-2">Financial coaching sessions are generally charged at <span className="text-valar-amber">$250 per hour</span>.</p>
+            <p className="text-valar-lilac text-sm">Ongoing programmes and review packages can be tailored to individual needs.</p>
           </motion.div>
         </div>
       </section>
 
       {/* OTHER SERVICES */}
-      <section className="py-24 bg-[#F6F7F9]">
+      <section className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Other Financial Planning Services</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Other Financial Planning Services</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634]">
-              The full scope of planning support<span className="text-[#E8A23A]">.</span>
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
+              The full scope of planning support<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -181,13 +181,13 @@ export default function FinancialPlanningPage() {
               { title: "Mortgage & Lending Strategy", desc: "Understanding how lending fits into your broader financial future.", items: ["Affordability analysis", "Repayment planning", "Debt management", "Refinancing considerations", "Future borrowing flexibility"] },
               { title: "Goal-Based Financial Planning", desc: "Helping clients make financial decisions aligned with their long-term objectives.", items: ["Home ownership", "Investment property planning", "Family goals", "Business goals", "Retirement preparation", "Financial independence"] },
             ].map((svc, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-[#C9CED6]">
-                <h3 className="text-lg font-bold text-[#061634] mb-3">{svc.title}</h3>
-                <p className="text-[#2E4882] text-sm leading-relaxed mb-5">{svc.desc}</p>
+              <motion.div key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
+                <h3 className="text-lg font-bold text-valar-navy mb-3">{svc.title}</h3>
+                <p className="text-valar-indigo text-sm leading-relaxed mb-5">{svc.desc}</p>
                 <ul className="space-y-2">
                   {svc.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-sm text-[#061634]">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#E8A23A] flex-shrink-0" />
+                    <li key={j} className="flex items-center gap-2 text-sm text-valar-navy">
+                      <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -203,10 +203,10 @@ export default function FinancialPlanningPage() {
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">How the Process Works</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">How the Process Works</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634]">
-              From first conversation to ongoing clarity<span className="text-[#E8A23A]">.</span>
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
+              From first conversation to ongoing clarity<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -217,11 +217,11 @@ export default function FinancialPlanningPage() {
               { num: "03", title: "Strategy Development", body: "We identify opportunities and create practical recommendations tailored to your goals — focused on actionable steps, not complicated reports." },
               { num: "04", title: "Implementation & Support", body: "Depending on your needs, we can continue working together through regular reviews and coaching sessions to keep you on track." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-[#F6F7F9] p-8 rounded-lg border border-[#C9CED6]">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#061634] text-white flex items-center justify-center font-bold text-sm">{step.num}</div>
+              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">{step.num}</div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#061634] mb-2">{step.title}</h3>
-                  <p className="text-[#2E4882] leading-relaxed text-sm">{step.body}</p>
+                  <h3 className="text-lg font-bold text-valar-navy mb-2">{step.title}</h3>
+                  <p className="text-valar-indigo leading-relaxed text-sm">{step.body}</p>
                 </div>
               </motion.div>
             ))}
@@ -230,14 +230,14 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* WHO IS IT FOR */}
-      <section className="py-24 bg-[#2E4882] text-white">
+      <section className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-12">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Who Is Financial Planning For?</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Who Is Financial Planning For?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
-              Financial planning may be valuable for<span className="text-[#E8A23A]">.</span>
+              Financial planning may be valuable for<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -250,9 +250,9 @@ export default function FinancialPlanningPage() {
               { icon: BarChart2, label: "Property investors" },
               { icon: Target, label: "Anyone seeking greater financial clarity" },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-[#061634]/40 border border-white/10 rounded-sm p-5 flex items-center gap-4">
-                <item.icon className="w-5 h-5 text-[#E8A23A] flex-shrink-0" />
-                <span className="text-sm font-medium text-[#C8CBE3]">{item.label}</span>
+              <motion.div key={i} variants={fadeIn} className="bg-valar-navy/40 border border-white/10 rounded-sm p-5 flex items-center gap-4">
+                <item.icon className="w-5 h-5 text-valar-amber flex-shrink-0" />
+                <span className="text-sm font-medium text-valar-lilac">{item.label}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -264,10 +264,10 @@ export default function FinancialPlanningPage() {
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Frequently Asked Questions</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Frequently Asked Questions</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634]">
-              Common questions, clear answers<span className="text-[#E8A23A]">.</span>
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
+              Common questions, clear answers<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
@@ -279,20 +279,20 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-[#061634] text-white text-center">
+      <section className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-4 flex justify-center">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Ready to Build a Clear Financial Plan?</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Build a Clear Financial Plan?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Start with a clear conversation<span className="text-[#E8A23A]">.</span>
+              Start with a clear conversation<span className="text-valar-amber">.</span>
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-[#C8CBE3] text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               Whether you are preparing to buy a home, improve your cashflow, build wealth, or simply gain greater clarity around your finances, we are here to help.
             </motion.p>
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] px-8 py-4 rounded-sm font-bold transition-colors">
+              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
               <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">

@@ -4,12 +4,12 @@ import { CalendarDays } from "lucide-react";
 
 export default function BookPage() {
   return (
-    <div className="w-full flex flex-col bg-[#F6F7F9] min-h-screen">
-      <section className="bg-[#061634] text-white pt-24 pb-32 px-4 md:px-6 relative">
+    <div data-cmp="BookPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
+      <section className="bg-valar-navy text-white pt-24 pb-32 px-4 md:px-6 relative">
         <div className="container mx-auto max-w-3xl text-center relative z-10">
-          <CalendarDays className="w-12 h-12 text-[#E8A23A] mx-auto mb-6" />
+          <CalendarDays className="w-12 h-12 text-valar-amber mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Book a Strategy Call</h1>
-          <p className="text-xl font-light text-[#C8CBE3] leading-relaxed">
+          <p className="text-xl font-light text-valar-lilac leading-relaxed">
             Take the first step toward financial clarity. We offer a structured initial consultation to understand your position and map out potential pathways.
           </p>
         </div>
@@ -21,23 +21,23 @@ export default function BookPage() {
             <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
 
               <div className="space-y-6">
-                <h3 className="text-lg font-bold text-[#061634] border-b pb-2">Your Details</h3>
+                <h3 className="text-lg font-bold text-valar-navy border-b pb-2">Your Details</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="fullName" className="text-sm font-semibold text-gray-700">Full Name</label>
-                    <input id="fullName" className="bg-[#F6F7F9] border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#061634]/20" required />
+                    <input id="fullName" className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20" required />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-semibold text-gray-700">Email Address</label>
-                    <input id="email" type="email" className="bg-[#F6F7F9] border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#061634]/20" required />
+                    <input id="email" type="email" className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20" required />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone Number</label>
-                    <input id="phone" type="tel" className="bg-[#F6F7F9] border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#061634]/20" required />
+                    <input id="phone" type="tel" className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20" required />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="preferredTime" className="text-sm font-semibold text-gray-700">Preferred Time to Call</label>
-                    <select id="preferredTime" defaultValue="" required className="bg-[#F6F7F9] border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#061634]/20">
+                    <select id="preferredTime" defaultValue="" required className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20">
                       <option value="" disabled>Select time preference</option>
                       <option value="morning">Morning (9am - 12pm)</option>
                       <option value="afternoon">Afternoon (1pm - 5pm)</option>
@@ -48,11 +48,11 @@ export default function BookPage() {
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-lg font-bold text-[#061634] border-b pb-2">Your Goals</h3>
+                <h3 className="text-lg font-bold text-valar-navy border-b pb-2">Your Goals</h3>
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <label htmlFor="primaryService" className="text-sm font-semibold text-gray-700">Primary Service Interest</label>
-                    <select id="primaryService" defaultValue="" required className="bg-[#F6F7F9] border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#061634]/20">
+                    <select id="primaryService" defaultValue="" required className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20">
                       <option value="" disabled>What are you looking for?</option>
                       <option value="mortgage">Mortgage Advice</option>
                       <option value="planning">Financial Planning</option>
@@ -69,7 +69,7 @@ export default function BookPage() {
                     <textarea
                       id="situation"
                       placeholder="Tell us about your financial goals, current situation, and any specific questions you have..."
-                      className="bg-[#F6F7F9] border border-gray-200 min-h-[150px] w-full p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#061634]/20"
+                      className="bg-valar-fog border border-gray-200 min-h-[150px] w-full p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20"
                       required
                     />
                   </div>
@@ -77,7 +77,7 @@ export default function BookPage() {
               </div>
 
               <div className="pt-6">
-                <button type="submit" className="w-full bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] font-bold text-lg py-5 rounded-sm transition-colors shadow-sm">
+                <button type="submit" className="w-full bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold text-lg py-5 rounded-sm transition-colors shadow-sm">
                   Submit Inquiry
                 </button>
                 <p className="text-center text-sm text-gray-500 mt-4">

@@ -5,31 +5,31 @@ import { Linkedin, Instagram, Youtube } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[#061634] text-[#C8CBE3] pt-20 pb-8 font-sans">
+    <footer data-cmp="Footer" className="bg-valar-navy text-valar-lilac pt-20 pb-8 font-sans">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           {/* Column 1 — Brand block */}
           <div className="lg:col-span-3">
             <div className="flex flex-col mb-4">
               <span className="font-sans font-bold text-2xl tracking-tight leading-none text-white">VALAR</span>
-              <span className="font-sans text-[0.65rem] uppercase tracking-[0.2em] text-[#C8CBE3] leading-tight">
+              <span className="font-sans text-[0.65rem] uppercase tracking-[0.2em] text-valar-lilac leading-tight">
                 Financial Advisors
               </span>
             </div>
             <p className="text-sm mb-4 leading-relaxed max-w-xs">
               Strategic financial guidance for property, wealth and long-term decisions.
             </p>
-            <p className="text-xs text-[#8F93B5] mb-6 tracking-wide">
+            <p className="text-xs text-valar-steel mb-6 tracking-wide">
               Property · Wealth · Financial Clarity
             </p>
             <div className="flex space-x-4">
-              <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-[#2E4882] flex items-center justify-center hover:bg-[#E8A23A] hover:text-[#061634] transition-colors text-white">
+              <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-[#2E4882] flex items-center justify-center hover:bg-[#E8A23A] hover:text-[#061634] transition-colors text-white">
+              <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-[#2E4882] flex items-center justify-center hover:bg-[#E8A23A] hover:text-[#061634] transition-colors text-white">
+              <a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">
                 <Youtube className="w-4 h-4" />
               </a>
             </div>
@@ -37,7 +37,7 @@ export function Footer() {
 
           {/* Services */}
           <div className="lg:col-span-2 lg:col-start-5">
-            <h4 className="font-bold text-xs uppercase tracking-wider text-[#E8A23A] mb-6">SERVICES</h4>
+            <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">SERVICES</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/services/mortgage-advice" className="hover:text-white transition-colors">Mortgage Advice</Link></li>
               <li><Link href="/services" className="hover:text-white transition-colors">Refinance & Restructuring</Link></li>
@@ -51,7 +51,7 @@ export function Footer() {
 
           {/* Insights & Learning */}
           <div className="lg:col-span-2">
-            <h4 className="font-bold text-xs uppercase tracking-wider text-[#E8A23A] mb-6">INSIGHTS & LEARNING</h4>
+            <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">INSIGHTS & LEARNING</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/insights" className="hover:text-white transition-colors">Market Updates</Link></li>
               <li><Link href="/insights" className="hover:text-white transition-colors">Learning Hub</Link></li>
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* About */}
           <div className="lg:col-span-2">
-            <h4 className="font-bold text-xs uppercase tracking-wider text-[#E8A23A] mb-6">ABOUT VALAR</h4>
+            <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">ABOUT VALAR</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">About Lena</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About Valar</Link></li>
@@ -79,10 +79,10 @@ export function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="border-t border-[#2E4882] pt-12 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="border-t border-valar-indigo pt-12 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
-            <h4 className="font-bold text-lg text-[#E8A23A] mb-2">STAY UPDATED</h4>
-            <p className="text-sm text-[#C8CBE3] max-w-md leading-relaxed">
+            <h4 className="font-bold text-lg text-valar-amber mb-2">STAY UPDATED</h4>
+            <p className="text-sm text-valar-lilac max-w-md leading-relaxed">
               Thoughtful market insights, property strategy and financial guidance — delivered occasionally, not excessively.
             </p>
           </div>
@@ -90,11 +90,11 @@ export function Footer() {
             <input
               type="email"
               placeholder="Your email address"
-              className="bg-[#2E4882] border-none text-white placeholder:text-white/50 h-12 min-w-[280px] rounded-md px-4 outline-none focus:ring-2 focus:ring-[#E8A23A]"
+              className="bg-valar-indigo border-none text-white placeholder:text-white/50 h-12 min-w-[280px] rounded-md px-4 outline-none focus:ring-2 focus:ring-valar-amber"
             />
             <button
               type="submit"
-              className="bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] font-semibold text-sm px-8 h-12 rounded-sm transition-colors whitespace-nowrap"
+              className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-semibold text-sm px-8 h-12 rounded-sm transition-colors whitespace-nowrap"
             >
               Subscribe to Insights
             </button>
@@ -102,7 +102,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-[#2E4882] flex flex-col md:flex-row justify-between items-center text-xs text-[#C8CBE3]/70 gap-4">
+        <div className="pt-8 border-t border-valar-indigo flex flex-col md:flex-row justify-between items-center text-xs text-valar-lilac/70 gap-4">
           <p>© 2026 Valar Financial Advisors. All rights reserved.</p>
           <p className="text-center md:text-right max-w-3xl">
             Lena Bykova trades as Valar Financial Advisors. FSP1010055. FAP: Fundsmart Mortgages and Finance. A disclosure statement is available free of charge on request.

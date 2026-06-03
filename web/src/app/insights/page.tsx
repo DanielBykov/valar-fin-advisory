@@ -18,13 +18,13 @@ const INSIGHTS_DATA = [
 
 export default function InsightsPage() {
   return (
-    <div className="w-full flex flex-col bg-[#F6F7F9] min-h-screen">
+    <div data-cmp="InsightsPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
       {/* Hero */}
-      <section className="bg-[#061634] text-white pt-24 pb-20 px-4 md:px-6">
+      <section className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="h-[1px] w-12 bg-[#E8A23A] mb-6"></div>
+          <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Insights &amp; Perspectives</h1>
-          <p className="text-xl font-light text-[#C8CBE3] max-w-2xl border-l-2 border-[#E8A23A] pl-4">
+          <p className="text-xl font-light text-valar-lilac max-w-2xl border-l-2 border-valar-amber pl-4">
             Analysis, market updates, and strategic guidance from our advisory team.
           </p>
         </div>
@@ -33,11 +33,11 @@ export default function InsightsPage() {
       <div className="container mx-auto px-4 md:px-6 py-16 max-w-6xl">
         <Tabs defaultValue="all" className="mb-12">
           <TabsList className="flex flex-wrap h-auto bg-transparent justify-start gap-2 mb-8">
-            <TabsTrigger value="all" className="data-[state=active]:bg-[#061634] data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">All</TabsTrigger>
-            <TabsTrigger value="market" className="data-[state=active]:bg-[#061634] data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Property Market Updates</TabsTrigger>
-            <TabsTrigger value="scenarios" className="data-[state=active]:bg-[#061634] data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Real Client Scenarios</TabsTrigger>
-            <TabsTrigger value="learning" className="data-[state=active]:bg-[#061634] data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Learning Hub</TabsTrigger>
-            <TabsTrigger value="first-home" className="data-[state=active]:bg-[#061634] data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">First-Home Buyers</TabsTrigger>
+            <TabsTrigger value="all" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">All</TabsTrigger>
+            <TabsTrigger value="market" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Property Market Updates</TabsTrigger>
+            <TabsTrigger value="scenarios" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Real Client Scenarios</TabsTrigger>
+            <TabsTrigger value="learning" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Learning Hub</TabsTrigger>
+            <TabsTrigger value="first-home" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">First-Home Buyers</TabsTrigger>
           </TabsList>
         </Tabs>
 
@@ -45,14 +45,14 @@ export default function InsightsPage() {
           {INSIGHTS_DATA.map((item) => (
             <article key={item.id} className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col group">
               <div className="p-8 flex flex-col h-full">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#E8A23A] mb-4 block">{item.tag}</span>
-                <h3 className="text-xl font-bold text-[#061634] mb-4 leading-snug group-hover:text-[#2E4882] transition-colors">
+                <span className="text-xs font-bold uppercase tracking-wider text-valar-amber mb-4 block">{item.tag}</span>
+                <h3 className="text-xl font-bold text-valar-navy mb-4 leading-snug group-hover:text-valar-indigo transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-1">
                   {item.excerpt}
                 </p>
-                <Link href={`/insights/${item.id}`} className="inline-flex items-center text-[#061634] font-semibold text-sm group-hover:text-[#E8A23A] transition-colors mt-auto">
+                <Link href={`/insights/${item.id}`} className="inline-flex items-center text-valar-navy font-semibold text-sm group-hover:text-valar-amber transition-colors mt-auto">
                   Read More <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </div>

@@ -31,13 +31,13 @@ const staggerContainer = {
 function FAQItem({ question, answer }: { question: string; answer: string | string[] }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[#C9CED6]">
+    <div className="border-b border-valar-concrete">
       <button
         className="w-full flex items-center justify-between py-5 text-left gap-4"
         onClick={() => setOpen(!open)}
       >
-        <span className="font-semibold text-[#061634] text-sm md:text-base">{question}</span>
-        <ChevronDown className={`w-5 h-5 text-[#E8A23A] flex-shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
+        <span className="font-semibold text-valar-navy text-sm md:text-base">{question}</span>
+        <ChevronDown className={`w-5 h-5 text-valar-amber flex-shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -52,14 +52,14 @@ function FAQItem({ question, answer }: { question: string; answer: string | stri
             {Array.isArray(answer) ? (
               <ul className="pb-5 space-y-1.5">
                 {answer.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-[#2E4882]">
-                    <div className="w-1 h-1 rounded-full bg-[#E8A23A] flex-shrink-0 mt-1.5" />
+                  <li key={i} className="flex items-start gap-2 text-sm text-valar-indigo">
+                    <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
                     {item}
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="text-[#2E4882] text-sm leading-relaxed pb-5">{answer}</p>
+              <p className="text-valar-indigo text-sm leading-relaxed pb-5">{answer}</p>
             )}
           </motion.div>
         )}
@@ -70,28 +70,28 @@ function FAQItem({ question, answer }: { question: string; answer: string | stri
 
 export default function FirstHomeBuyersPage() {
   return (
-    <div className="w-full flex flex-col font-sans">
+    <div data-cmp="FirstHomeBuyersPage" className="w-full flex flex-col font-sans">
 
       {/* HERO — full-bleed photo */}
       <section className="relative min-h-[75vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image src="/images/first-home.png" alt="First Home Buyers" fill className="object-cover object-center" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#061634]/95 via-[#061634]/60 to-[#061634]/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-valar-navy/95 via-valar-navy/60 to-valar-navy/20" />
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 pb-20 pt-32 max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
-              <div className="h-[2px] w-6 bg-[#E8A23A]" />
-              <span className="text-[#8F93B5] font-bold tracking-widest text-xs uppercase">First Home Buyers</span>
+              <div className="h-[2px] w-6 bg-valar-amber" />
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">First Home Buyers</span>
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl font-bold text-white mb-4 leading-[1.05]">
-              Your First Home Starts With a Clear Plan<span className="text-[#E8A23A]">.</span>
+              Your First Home Starts With a Clear Plan<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl text-[#C8CBE3] max-w-2xl leading-relaxed border-l-2 border-[#E8A23A] pl-4 font-light mb-10">
+            <motion.p variants={fadeIn} className="text-xl text-valar-lilac max-w-2xl leading-relaxed border-l-2 border-valar-amber pl-4 font-light mb-10">
               Helping first-home buyers understand deposits, lending options, KiwiSaver, and the home-buying process in New Zealand.
             </motion.p>
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] px-8 py-4 rounded-sm font-bold transition-colors">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Download className="w-5 h-5" /> Download Free Guide
               </Link>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
@@ -103,7 +103,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* CAN FEEL OVERWHELMING */}
-      <section className="py-24 bg-[#F6F7F9]">
+      <section className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -114,21 +114,21 @@ export default function FirstHomeBuyersPage() {
           >
             <motion.div variants={staggerContainer}>
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Buying Your First Home</span>
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Buying Your First Home</span>
               </motion.div>
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634] mb-6 leading-tight">
-                It can feel overwhelming<span className="text-[#E8A23A]">.</span>
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
+                It can feel overwhelming<span className="text-valar-amber">.</span>
               </motion.h2>
-              <motion.p variants={fadeIn} className="text-[#2E4882] leading-relaxed mb-4">
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-4">
                 Buying your first home is one of the biggest financial decisions you will ever make. Many first-home buyers come to us with similar questions.
               </motion.p>
-              <motion.p variants={fadeIn} className="text-[#2E4882] leading-relaxed">
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed">
                 The good news is that every situation is different, and there are often more options available than people realise. Understanding the process early can help you make better decisions and avoid costly mistakes.
               </motion.p>
             </motion.div>
 
             <motion.div variants={staggerContainer}>
-              <motion.p variants={fadeIn} className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase mb-5">Common questions we answer</motion.p>
+              <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-5">Common questions we answer</motion.p>
               <motion.ul variants={staggerContainer} className="space-y-3">
                 {[
                   "Can I buy with less than a 20% deposit?",
@@ -139,9 +139,9 @@ export default function FirstHomeBuyersPage() {
                   "What costs should I budget for?",
                   "Should I buy at auction?",
                 ].map((q, i) => (
-                  <motion.li key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-[#C9CED6] shadow-sm">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#E8A23A] flex-shrink-0 mt-1.5" />
-                    <span className="text-[#061634] text-sm leading-relaxed">{q}</span>
+                  <motion.li key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
+                    <span className="text-valar-navy text-sm leading-relaxed">{q}</span>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -151,7 +151,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* DOWNLOAD GUIDE CALLOUT */}
-      <section className="py-16 bg-[#2E4882] text-white">
+      <section className="py-16 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -161,14 +161,14 @@ export default function FirstHomeBuyersPage() {
             className="flex flex-col md:flex-row items-center justify-between gap-8"
           >
             <motion.div variants={staggerContainer}>
-              <motion.p variants={fadeIn} className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase mb-3">Free Resource</motion.p>
-              <motion.h2 variants={fadeIn} className="text-2xl md:text-3xl font-bold mb-2">Download the First Home Buyer Guide<span className="text-[#E8A23A]">.</span></motion.h2>
-              <motion.p variants={fadeIn} className="text-[#C8CBE3] leading-relaxed max-w-xl">
+              <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-3">Free Resource</motion.p>
+              <motion.h2 variants={fadeIn} className="text-2xl md:text-3xl font-bold mb-2">Download the First Home Buyer Guide<span className="text-valar-amber">.</span></motion.h2>
+              <motion.p variants={fadeIn} className="text-valar-lilac leading-relaxed max-w-xl">
                 Covers the home-buying process, lending basics, common questions, and practical tips to help you prepare with confidence.
               </motion.p>
             </motion.div>
             <motion.div variants={fadeIn} className="flex-shrink-0">
-              <Link href="/contact" className="inline-flex items-center gap-2 bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] px-8 py-4 rounded-sm font-bold transition-colors whitespace-nowrap">
+              <Link href="/contact" className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors whitespace-nowrap">
                 <Download className="w-5 h-5" /> Download Guide
               </Link>
             </motion.div>
@@ -177,7 +177,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* 8-STEP ROADMAP */}
-      <section className="py-24 bg-[#061634] text-white">
+      <section className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -187,10 +187,10 @@ export default function FirstHomeBuyersPage() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">The First Home Buyer Roadmap</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">The First Home Buyer Roadmap</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
-              Eight steps from planning to keys<span className="text-[#E8A23A]">.</span>
+              Eight steps from planning to keys<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -211,10 +211,10 @@ export default function FirstHomeBuyersPage() {
               { num: "07", title: "Finance Approval", desc: "Work through lender requirements and final approval conditions." },
               { num: "08", title: "Settlement & Moving In", desc: "Complete settlement and collect the keys to your new home." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-[#2E4882] p-6 rounded-sm border-t-2 border-[#E8A23A]">
-                <div className="text-3xl font-bold text-[#E8A23A]/30 mb-3 leading-none">{step.num}</div>
+              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-6 rounded-sm border-t-2 border-valar-amber">
+                <div className="text-3xl font-bold text-valar-amber/30 mb-3 leading-none">{step.num}</div>
                 <h3 className="font-bold text-white text-sm mb-2">{step.title}</h3>
-                <p className="text-[#C8CBE3] text-xs leading-relaxed">{step.desc}</p>
+                <p className="text-valar-lilac text-xs leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -233,22 +233,22 @@ export default function FirstHomeBuyersPage() {
           >
             <motion.div variants={staggerContainer}>
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">No Pre-Approval?</span>
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">No Pre-Approval?</span>
               </motion.div>
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634] mb-6 leading-tight">
-                You may still be able to buy<span className="text-[#E8A23A]">.</span>
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
+                You may still be able to buy<span className="text-valar-amber">.</span>
               </motion.h2>
-              <motion.p variants={fadeIn} className="text-[#2E4882] leading-relaxed mb-4">
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-4">
                 Many first-home buyers believe they must obtain pre-approval before they can start looking at properties. In reality, this is not always possible.
               </motion.p>
-              <motion.p variants={fadeIn} className="text-[#2E4882] leading-relaxed mb-4">
-                For buyers with smaller deposits, lenders may sometimes prefer to assess a specific property rather than provide a general pre-approval. This means many low-deposit purchases begin as a <span className="font-semibold text-[#061634]">live deal</span> — where a signed Sale &amp; Purchase Agreement is submitted to the lender for assessment.
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-4">
+                For buyers with smaller deposits, lenders may sometimes prefer to assess a specific property rather than provide a general pre-approval. This means many low-deposit purchases begin as a <span className="font-semibold text-valar-navy">live deal</span> — where a signed Sale &amp; Purchase Agreement is submitted to the lender for assessment.
               </motion.p>
-              <motion.p variants={fadeIn} className="text-[#2E4882] leading-relaxed mb-8">
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-8">
                 Speaking with a mortgage adviser early can still be extremely valuable. Even without pre-approval, you can understand your likely borrowing capacity, prepare your documents, identify suitable lenders, and be ready to move quickly when the right property becomes available.
               </motion.p>
               <motion.div variants={fadeIn}>
-                <Link href="/book" className="inline-flex items-center gap-2 bg-[#061634] hover:bg-[#2E4882] text-white px-7 py-3.5 rounded-sm font-bold text-sm transition-colors">
+                <Link href="/book" className="inline-flex items-center gap-2 bg-valar-navy hover:bg-valar-indigo text-white px-7 py-3.5 rounded-sm font-bold text-sm transition-colors">
                   <Phone className="w-4 h-4" /> Talk to a Mortgage Adviser
                 </Link>
               </motion.div>
@@ -262,9 +262,9 @@ export default function FirstHomeBuyersPage() {
                 { label: "Be ready to move quickly", check: true },
                 { label: "Avoid unnecessary delays", check: true },
               ].map((item, i) => (
-                <motion.div key={i} variants={fadeIn} className="flex items-center gap-3 bg-[#F6F7F9] p-5 rounded-lg border border-[#C9CED6]">
-                  <CheckCircle2 className="w-5 h-5 text-[#E8A23A] flex-shrink-0" />
-                  <span className="text-[#061634] font-medium text-sm">{item.label}</span>
+                <motion.div key={i} variants={fadeIn} className="flex items-center gap-3 bg-valar-fog p-5 rounded-lg border border-valar-concrete">
+                  <CheckCircle2 className="w-5 h-5 text-valar-amber flex-shrink-0" />
+                  <span className="text-valar-navy font-medium text-sm">{item.label}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -273,7 +273,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* DEPOSIT TIERS */}
-      <section className="py-24 bg-[#F6F7F9]">
+      <section className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -283,12 +283,12 @@ export default function FirstHomeBuyersPage() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Understanding Your Deposit</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Understanding Your Deposit</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634]">
-              Many buyers assume they need 20%<span className="text-[#E8A23A]">.</span>
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
+              Many buyers assume they need 20%<span className="text-valar-amber">.</span>
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-[#2E4882] mt-4 max-w-2xl leading-relaxed">
+            <motion.p variants={fadeIn} className="text-valar-indigo mt-4 max-w-2xl leading-relaxed">
               Depending on your circumstances and lender criteria, smaller deposits may also be possible.
             </motion.p>
           </motion.div>
@@ -305,10 +305,10 @@ export default function FirstHomeBuyersPage() {
               { pct: "10%", title: "Low-Deposit Option", desc: "Possible for many first-home buyers depending on lender requirements and eligibility.", highlight: true },
               { pct: "5%", title: "Minimum Deposit", desc: "Available in some situations, subject to lender criteria and eligibility. Additional conditions may apply.", highlight: false },
             ].map((tier, i) => (
-              <motion.div key={i} variants={fadeIn} className={`p-8 rounded-lg border ${tier.highlight ? "bg-[#061634] text-white border-[#E8A23A]" : "bg-white border-[#C9CED6]"}`}>
-                <div className={`text-5xl font-bold mb-4 ${tier.highlight ? "text-[#E8A23A]" : "text-[#061634]"}`}>{tier.pct}</div>
-                <h3 className={`font-bold text-lg mb-3 ${tier.highlight ? "text-white" : "text-[#061634]"}`}>{tier.title}</h3>
-                <p className={`text-sm leading-relaxed ${tier.highlight ? "text-[#C8CBE3]" : "text-[#2E4882]"}`}>{tier.desc}</p>
+              <motion.div key={i} variants={fadeIn} className={`p-8 rounded-lg border ${tier.highlight ? "bg-valar-navy text-white border-valar-amber" : "bg-white border-valar-concrete"}`}>
+                <div className={`text-5xl font-bold mb-4 ${tier.highlight ? "text-valar-amber" : "text-valar-navy"}`}>{tier.pct}</div>
+                <h3 className={`font-bold text-lg mb-3 ${tier.highlight ? "text-white" : "text-valar-navy"}`}>{tier.title}</h3>
+                <p className={`text-sm leading-relaxed ${tier.highlight ? "text-valar-lilac" : "text-valar-indigo"}`}>{tier.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -318,7 +318,7 @@ export default function FirstHomeBuyersPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="text-[#2E4882] text-xs mt-6 italic"
+            className="text-valar-indigo text-xs mt-6 italic"
           >
             Low-deposit lending may involve additional conditions, restrictions, or low-equity premiums.
           </motion.p>
@@ -326,7 +326,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* HOW CAN YOU BUY */}
-      <section className="py-24 bg-[#061634] text-white">
+      <section className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -336,10 +336,10 @@ export default function FirstHomeBuyersPage() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">How Can You Buy a Property?</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">How Can You Buy a Property?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
-              Three ways properties are sold in New Zealand<span className="text-[#E8A23A]">.</span>
+              Three ways properties are sold in New Zealand<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -373,19 +373,19 @@ export default function FirstHomeBuyersPage() {
                 note: "The vendor reviews all offers before making a decision.",
               },
             ].map((method, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-[#2E4882] p-8 rounded-sm border-t-2 border-[#E8A23A]">
-                <method.icon className="w-6 h-6 text-[#E8A23A] mb-4" />
+              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
+                <method.icon className="w-6 h-6 text-valar-amber mb-4" />
                 <h3 className="font-bold text-lg mb-3">{method.title}</h3>
-                <p className="text-[#C8CBE3] text-sm mb-4 leading-relaxed">{method.desc}</p>
+                <p className="text-valar-lilac text-sm mb-4 leading-relaxed">{method.desc}</p>
                 <ul className="space-y-1.5 mb-4">
                   {method.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-[#C8CBE3]">
-                      <div className="w-1 h-1 rounded-full bg-[#E8A23A] flex-shrink-0 mt-1.5" />
+                    <li key={j} className="flex items-start gap-2 text-sm text-valar-lilac">
+                      <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
                       {item}
                     </li>
                   ))}
                 </ul>
-                <p className="text-[#8F93B5] text-xs italic leading-relaxed">{method.note}</p>
+                <p className="text-valar-steel text-xs italic leading-relaxed">{method.note}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -403,10 +403,10 @@ export default function FirstHomeBuyersPage() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Build Your Team Early</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Build Your Team Early</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634]">
-              The right professionals make all the difference<span className="text-[#E8A23A]">.</span>
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
+              The right professionals make all the difference<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -434,12 +434,12 @@ export default function FirstHomeBuyersPage() {
                 desc: "Provides an independent assessment of the property's condition and helps identify potential issues before you commit. A good inspection can help you avoid unexpected costs.",
               },
             ].map((pro, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-[#F6F7F9] p-8 rounded-lg border border-[#C9CED6]">
-                <div className="w-10 h-10 rounded-full bg-[#061634] flex items-center justify-center mb-5">
-                  <pro.icon className="w-4 h-4 text-[#E8A23A]" />
+              <motion.div key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+                <div className="w-10 h-10 rounded-full bg-valar-navy flex items-center justify-center mb-5">
+                  <pro.icon className="w-4 h-4 text-valar-amber" />
                 </div>
-                <h3 className="font-bold text-[#061634] text-lg mb-3">{pro.title}</h3>
-                <p className="text-[#2E4882] text-sm leading-relaxed">{pro.desc}</p>
+                <h3 className="font-bold text-valar-navy text-lg mb-3">{pro.title}</h3>
+                <p className="text-valar-indigo text-sm leading-relaxed">{pro.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -447,7 +447,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* WHY WORK WITH VALAR — comparison table */}
-      <section className="py-24 bg-[#F6F7F9]">
+      <section className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -457,12 +457,12 @@ export default function FirstHomeBuyersPage() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Why Work With Valar?</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Why Work With Valar?</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634]">
-              Beyond getting a loan approved<span className="text-[#E8A23A]">.</span>
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
+              Beyond getting a loan approved<span className="text-valar-amber">.</span>
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-[#2E4882] mt-4 max-w-2xl leading-relaxed">
+            <motion.p variants={fadeIn} className="text-valar-indigo mt-4 max-w-2xl leading-relaxed">
               Buying your first home is about understanding your options, preparing properly, and making confident financial decisions.
             </motion.p>
           </motion.div>
@@ -477,8 +477,8 @@ export default function FirstHomeBuyersPage() {
             <table className="w-full border-collapse min-w-[500px]">
               <thead>
                 <tr>
-                  <th className="text-left py-4 px-6 bg-[#C9CED6] text-[#061634] font-bold rounded-tl-lg">Working Directly With a Bank</th>
-                  <th className="text-left py-4 px-6 bg-[#061634] text-white font-bold rounded-tr-lg">Working With Valar</th>
+                  <th className="text-left py-4 px-6 bg-valar-concrete text-valar-navy font-bold rounded-tl-lg">Working Directly With a Bank</th>
+                  <th className="text-left py-4 px-6 bg-valar-navy text-white font-bold rounded-tr-lg">Working With Valar</th>
                 </tr>
               </thead>
               <tbody>
@@ -490,11 +490,11 @@ export default function FirstHomeBuyersPage() {
                   ["Less support with preparation", "Support with documents"],
                   ["Transaction-focused", "Guidance from planning to settlement"],
                 ].map((row, i) => (
-                  <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#F6F7F9]"}>
-                    <td className="py-4 px-6 text-[#2E4882] text-sm border-b border-[#C9CED6]">{row[0]}</td>
-                    <td className="py-4 px-6 text-[#061634] text-sm font-medium border-b border-[#C9CED6] bg-[#061634]/5">
+                  <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-valar-fog"}>
+                    <td className="py-4 px-6 text-valar-indigo text-sm border-b border-valar-concrete">{row[0]}</td>
+                    <td className="py-4 px-6 text-valar-navy text-sm font-medium border-b border-valar-concrete bg-valar-navy/5">
                       <span className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#E8A23A] flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-valar-amber flex-shrink-0" />
                         {row[1]}
                       </span>
                     </td>
@@ -517,10 +517,10 @@ export default function FirstHomeBuyersPage() {
             className="mb-12"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Frequently Asked Questions</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Frequently Asked Questions</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-[#061634]">
-              Common questions<span className="text-[#E8A23A]">.</span>
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
+              Common questions<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -555,7 +555,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* NOT READY YET */}
-      <section className="py-24 bg-[#2E4882] text-white">
+      <section className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -566,16 +566,16 @@ export default function FirstHomeBuyersPage() {
           >
             <motion.div variants={staggerContainer}>
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Not Ready to Buy Yet?</span>
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Not Ready to Buy Yet?</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold mb-6">
-                Many clients speak with us 6–24 months before buying<span className="text-[#E8A23A]">.</span>
+                Many clients speak with us 6–24 months before buying<span className="text-valar-amber">.</span>
               </motion.h2>
-              <motion.p variants={fadeIn} className="text-[#C8CBE3] leading-relaxed mb-8">
+              <motion.p variants={fadeIn} className="text-valar-lilac leading-relaxed mb-8">
                 Starting early often creates more options later. We can help you understand what you may need and how to get there.
               </motion.p>
               <motion.div variants={fadeIn}>
-                <Link href="/book" className="inline-flex items-center gap-2 bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] px-7 py-3.5 rounded-sm font-bold text-sm transition-colors">
+                <Link href="/book" className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-7 py-3.5 rounded-sm font-bold text-sm transition-colors">
                   <Calendar className="w-4 h-4" /> Start Planning Early
                 </Link>
               </motion.div>
@@ -588,9 +588,9 @@ export default function FirstHomeBuyersPage() {
                 "What steps may improve your position",
                 "How to prepare for home ownership",
               ].map((item, i) => (
-                <motion.div key={i} variants={fadeIn} className="flex items-center gap-3 bg-[#061634]/30 border border-white/10 p-4 rounded-sm">
-                  <CheckCircle2 className="w-4 h-4 text-[#E8A23A] flex-shrink-0" />
-                  <span className="text-[#C8CBE3] text-sm">{item}</span>
+                <motion.div key={i} variants={fadeIn} className="flex items-center gap-3 bg-valar-navy/30 border border-white/10 p-4 rounded-sm">
+                  <CheckCircle2 className="w-4 h-4 text-valar-amber flex-shrink-0" />
+                  <span className="text-valar-lilac text-sm">{item}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -599,7 +599,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-[#061634] text-white text-center">
+      <section className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"
@@ -608,16 +608,16 @@ export default function FirstHomeBuyersPage() {
             variants={staggerContainer}
           >
             <motion.div variants={fadeIn} className="mb-4 flex justify-center">
-              <span className="text-[#E8A23A] font-bold tracking-widest text-xs uppercase">Ready to Take the First Step?</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Take the First Step?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Whether you&apos;re buying next month or just exploring<span className="text-[#E8A23A]">.</span>
+              Whether you&apos;re buying next month or just exploring<span className="text-valar-amber">.</span>
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-[#C8CBE3] text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               We&apos;re here to help you understand your options and take the next step with confidence.
             </motion.p>
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-[#E8A23A] hover:bg-[#d4922e] text-[#061634] px-8 py-4 rounded-sm font-bold transition-colors">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Download className="w-5 h-5" /> Download Free Guide
               </Link>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
