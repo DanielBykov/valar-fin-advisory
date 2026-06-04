@@ -99,7 +99,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-4 mt-auto items-center">
                 <Link href="/book" className="bg-valar-navy text-white px-6 py-3 rounded-sm font-semibold text-sm hover:bg-valar-indigo transition-colors">Book Strategy Call</Link>
                 <Link href="/contact" className="border border-gray-200 text-valar-navy px-6 py-3 rounded-sm font-semibold text-sm hover:border-valar-navy transition-colors">Enquire</Link>
-                <Link href="/services/wealth-management" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
+                <Link href="/services/wealth-management-plan" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
             </div>
             <div data-cmp="ServicesPage.WealthSection.Card" className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">

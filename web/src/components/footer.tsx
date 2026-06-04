@@ -43,7 +43,7 @@ export function Footer() {
               <li><Link href="/services" className="hover:text-white transition-colors">Refinance & Restructuring</Link></li>
               <li><Link href="/services/financial-planning" className="hover:text-white transition-colors">Financial Planning</Link></li>
               <li><Link href="/services/investment-property-analysis" className="hover:text-white transition-colors">Investment Property Advice</Link></li>
-              <li><Link href="/services/wealth-management" className="hover:text-white transition-colors">Wealth Management Planning</Link></li>
+              <li><Link href="/services/wealth-management-plan" className="hover:text-white transition-colors">Wealth Management Planning</Link></li>
               <li><Link href="/services/small-business-loans" className="hover:text-white transition-colors">Business Lending</Link></li>
               <li><Link href="/services/business-advisory" className="hover:text-white transition-colors">Advisory Services</Link></li>
             </ul>

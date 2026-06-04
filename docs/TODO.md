@@ -3,8 +3,8 @@
 ## Now — Build (no blockers)
 
 - [ ] Logo update — from Replit
-- [ ] Hide Insights — remove Insights nav menu, footer column, home Section 10, `/insights` page (not in Phase 1 launch)
-- [ ] Wealth Management slug — rename `/services/wealth-management` to `/services/wealth-management-plan` per handoff
+- [x] Hide Insights — remove Insights nav menu, footer column, home Section 10, `/insights` page (not in Phase 1 launch)
+- [x] Wealth Management slug — rename `/services/wealth-management` to `/services/wealth-management-plan` per handoff
 - [ ] Typography decision — CSS uses Playfair Display, handoff says Lora or Source Serif. Pick one and align
 - [ ] Amber-period signature — display headings (H1 hero, key H2s) end with an amber `.` — verify/implement across all pages
 - [ ] Footer disclosure line — "Lena Bykova trades as Valar Financial Advisors. FSP1010055. FAP: Fundsmart Mortgages and Finance." linked to `/disclosure`, on every page

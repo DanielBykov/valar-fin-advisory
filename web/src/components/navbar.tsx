@@ -79,7 +79,7 @@ export function Navbar() {
                   </h3>
                   <ul className="space-y-4">
                     <li>
-                      <Link href="/services/wealth-management" className="block hover:text-valar-amber">
+                      <Link href="/services/wealth-management-plan" className="block hover:text-valar-amber">
                         <div className="font-semibold text-[15px]">Wealth Management Plan</div>
                         <div className="text-xs text-gray-500 mt-1 leading-snug">
                           Long-term roadmap for wealth building
