@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div data-cmp="HomePage" className="w-full flex flex-col font-sans">
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section data-cmp="HomePage.Hero" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-bg.png"
@@ -57,7 +57,7 @@ export default function Home() {
             <motion.p variants={fadeIn} className="text-lg lg:text-xl text-white/80 mb-10 max-w-md leading-relaxed font-light border-l-2 border-valar-amber pl-4">
               Structured mortgage advice beyond today&apos;s rates.
             </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col md:flex-row gap-4">
+            <motion.div data-cmp="HomePage.Hero.Cta" variants={fadeIn} className="flex flex-col md:flex-row gap-4">
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                 <Calendar className="w-5 h-5" /> Book Strategy Call <ArrowRight className="w-5 h-5" />
               </Link>
@@ -70,7 +70,7 @@ export default function Home() {
       </section>
 
       {/* WHO WE HELP */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="HomePage.WhoWeHelp" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="text-center mb-16">
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-4">How can we help?</motion.h2>
@@ -84,7 +84,7 @@ export default function Home() {
               { icon: TrendingUp, title: "Investing in Property", desc: "Property decisions structured around long-term opportunities.", link: "/services" },
               { icon: Briefcase, title: "Business & Self-Employed", desc: "Strategic lending support for business owners and more complex financial structures.", link: "/services" },
             ].map((path, i) => (
-              <motion.div key={i} variants={fadeIn}>
+              <motion.div data-cmp="HomePage.WhoWeHelp.PathCard" key={i} variants={fadeIn}>
                 <Link href={path.link} className="block bg-white p-8 rounded-lg shadow-sm border-l-4 border-transparent hover:border-valar-amber hover:shadow-md transition-all group h-full">
                   <div className="w-10 h-10 bg-valar-concrete rounded-full flex items-center justify-center text-valar-navy mb-6 group-hover:bg-valar-amber transition-colors">
                     <path.icon className="w-5 h-5" />
@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* MORE THAN A MORTGAGE */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="HomePage.MoreThanAMortgage" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -119,7 +119,7 @@ export default function Home() {
               { title: "Strategic Structure", desc: "Mortgage decisions built around flexibility, future plans and long-term financial goals." },
               { title: "Long-Term Planning", desc: "Property decisions connected with future opportunities, equity and wider financial strategy." },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber hover:shadow-[0_0_20px_rgba(232,162,58,0.15)] transition-shadow">
+              <motion.div data-cmp="HomePage.MoreThanAMortgage.ValueCard" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber hover:shadow-[0_0_20px_rgba(232,162,58,0.15)] transition-shadow">
                 <h3 className="text-xl font-bold mb-4">{card.title}</h3>
                 <p className="text-valar-lilac text-sm leading-relaxed">{card.desc}</p>
               </motion.div>
@@ -129,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* HOW WE WORK */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="HomePage.HowWeWork" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -151,7 +151,7 @@ export default function Home() {
               { num: "03", title: "Application, Approval & Settlement", desc: "We prepare and submit your application, work directly with lenders and manage the approval process from strategy and bank negotiations through to settlement." },
               { num: "04", title: "Ongoing Guidance", desc: "Property decisions continue long after settlement. As life, rates and future opportunities evolve, we continue helping clients review and adapt their mortgage and financial strategy over time." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="relative z-10 flex flex-col pt-2">
+              <motion.div data-cmp="HomePage.HowWeWork.Step" key={i} variants={fadeIn} className="relative z-10 flex flex-col pt-2">
                 <div className="w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-lg mb-6 border-4 border-valar-fog">
                   {step.num}
                 </div>
@@ -167,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-24 bg-white">
+      <section data-cmp="HomePage.Testimonials" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -188,7 +188,7 @@ export default function Home() {
               { quote: "The structure made a huge difference.", body: "Instead of simply fixing the mortgage, we looked at future flexibility, investment plans and long-term affordability.", attr: "Refinance client" },
               { quote: "The process felt significantly less stressful.", body: "Having guidance through the application, negotiations and settlement made complex decisions feel far clearer and easier to manage.", attr: "Investment property client" },
             ].map((test, i) => (
-              <motion.div key={i} variants={fadeIn} className="p-8 rounded-lg border border-valar-concrete shadow-sm flex flex-col relative bg-white">
+              <motion.div data-cmp="HomePage.Testimonials.Card" key={i} variants={fadeIn} className="p-8 rounded-lg border border-valar-concrete shadow-sm flex flex-col relative bg-white">
                 <div className="absolute top-6 left-6 text-6xl text-valar-amber font-serif leading-none opacity-20">&ldquo;</div>
                 <div className="relative z-10 flex-1 flex flex-col">
                   <p className="text-xl font-medium italic text-valar-navy mb-4 pt-4">&ldquo;{test.quote}&rdquo;</p>
@@ -202,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* BEHIND VALAR */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="HomePage.BehindValar" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="w-full md:w-1/2">
@@ -230,7 +230,7 @@ export default function Home() {
                 <p className="text-valar-indigo text-base">Alongside mortgage advice, Valar integrates modern analytical tools, wealth-planning frameworks and financial psychology to help clients make more informed and confident financial decisions over time.</p>
               </motion.div>
 
-              <motion.div variants={fadeIn} className="bg-white p-6 rounded-sm border border-valar-lilac mb-8">
+              <motion.div data-cmp="HomePage.BehindValar.Credentials" variants={fadeIn} className="bg-white p-6 rounded-sm border border-valar-lilac mb-8">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-valar-navy font-medium">
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Certified Mortgage & Investment Adviser</li>
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> 20+ years in finance, analytics & investments</li>
@@ -251,7 +251,7 @@ export default function Home() {
       </section>
 
       {/* WHY WORK WITH AN ADVISER */}
-      <section className="py-24 bg-white">
+      <section data-cmp="HomePage.WhyAdviser" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -269,7 +269,7 @@ export default function Home() {
               { title: "Bank & Lender Access", desc: "We work directly with lenders, helping clients compare options and navigate the application process more efficiently." },
               { title: "No Direct Cost for Most Clients", desc: "Mortgage advisers are generally paid by the lender, meaning advice is usually provided at no direct cost to clients." },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+              <motion.div data-cmp="HomePage.WhyAdviser.Card" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                 <h3 className="text-lg font-bold text-valar-navy mb-3">{card.title}</h3>
                 <p className="text-valar-indigo text-sm leading-relaxed">{card.desc}</p>
               </motion.div>
@@ -283,7 +283,7 @@ export default function Home() {
       </section>
 
       {/* WHAT WE OFFER */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="HomePage.WhatWeOffer" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-20">
             <motion.div variants={fadeIn} className="mb-4">
@@ -295,21 +295,21 @@ export default function Home() {
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <motion.div variants={fadeIn} className="space-y-8">
+            <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
               <h3 className="text-xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Borrowing</h3>
               <div className="space-y-6">
                 <div><h4 className="font-bold text-valar-navy mb-2">Mortgage Advice</h4><p className="text-sm text-valar-indigo leading-relaxed">Support with buying, refinancing and structuring lending more strategically.</p></div>
                 <div><h4 className="font-bold text-valar-navy mb-2">Refinance & Restructuring</h4><p className="text-sm text-valar-indigo leading-relaxed">Review your current lending structure, flexibility and future opportunities.</p></div>
               </div>
             </motion.div>
-            <motion.div variants={fadeIn} className="space-y-8">
+            <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
               <h3 className="text-xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Wealth Building</h3>
               <div className="space-y-6">
                 <div><h4 className="font-bold text-valar-navy mb-2">Financial Planning</h4><p className="text-sm text-valar-indigo leading-relaxed">Build clearer financial direction around lifestyle, property and long-term goals.</p></div>
                 <div><h4 className="font-bold text-valar-navy mb-2">Investment Property Advice</h4><p className="text-sm text-valar-indigo leading-relaxed">Guidance around investment property decisions, equity and future opportunities.</p></div>
               </div>
             </motion.div>
-            <motion.div variants={fadeIn} className="space-y-8">
+            <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
               <h3 className="text-xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Business</h3>
               <div className="space-y-6">
                 <div><h4 className="font-bold text-valar-navy mb-2">Business Lending</h4><p className="text-sm text-valar-indigo leading-relaxed">Funding solutions and structure for small businesses and commercial property.</p></div>
@@ -327,7 +327,7 @@ export default function Home() {
       </section>
 
       {/* FIRST-HOME BUYER GUIDE */}
-      <section className="py-24 bg-white">
+      <section data-cmp="HomePage.FirstHomeGuide" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="w-full md:w-[55%]">
@@ -382,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* INSIGHTS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="HomePage.Insights" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -399,7 +399,7 @@ export default function Home() {
               { icon: BookOpen, title: "Learning Hub", desc: "Guides and educational content designed to make complex financial decisions easier to understand." },
               { icon: Calculator, title: "Tools & Calculators", desc: "Practical calculators, planning tools and financial resources." },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete flex flex-col h-full hover:border-valar-amber transition-colors">
+              <motion.div data-cmp="HomePage.Insights.Card" key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete flex flex-col h-full hover:border-valar-amber transition-colors">
                 <div className="w-12 h-12 bg-valar-fog rounded-full flex items-center justify-center text-valar-amber mb-6">
                   <card.icon className="w-6 h-6" />
                 </div>
@@ -418,7 +418,7 @@ export default function Home() {
       </section>
 
       {/* BEFORE BUYING PROPERTY - TABS */}
-      <section className="py-24 bg-gradient-to-b from-valar-indigo to-valar-navy text-white">
+      <section data-cmp="HomePage.BeforeBuying" className="py-24 bg-gradient-to-b from-valar-indigo to-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -437,7 +437,7 @@ export default function Home() {
                 <TabsTrigger value="impact" className="flex-1 py-3 px-4 text-sm md:text-base text-valar-lilac data-[state=active]:text-valar-amber data-[state=active]:border-b-2 data-[state=active]:border-valar-amber data-[state=active]:font-bold transition-all bg-transparent rounded-none">IMPACT</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="clarity" className="space-y-8">
+              <TabsContent data-cmp="HomePage.BeforeBuying.TabPanel" value="clarity" className="space-y-8">
                 <p className="text-lg md:text-xl text-valar-lilac leading-relaxed mb-8 max-w-3xl">
                   True clarity means understanding your position completely before you approach the market. It&apos;s about knowing your boundaries — not simply what a bank calculator suggests.
                 </p>
@@ -455,7 +455,7 @@ export default function Home() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="structure" className="space-y-8">
+              <TabsContent data-cmp="HomePage.BeforeBuying.TabPanel" value="structure" className="space-y-8">
                 <p className="text-lg md:text-xl text-valar-lilac leading-relaxed mb-8 max-w-3xl">
                   The right mortgage structure can improve flexibility, reduce long-term costs and create better future opportunities.
                 </p>
@@ -473,7 +473,7 @@ export default function Home() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="impact" className="space-y-8">
+              <TabsContent data-cmp="HomePage.BeforeBuying.TabPanel" value="impact" className="space-y-8">
                 <p className="text-lg md:text-xl text-valar-lilac leading-relaxed mb-8 max-w-3xl">
                   Property decisions affect far more than monthly repayments. They shape future flexibility, investment potential and long-term financial freedom.
                 </p>
@@ -502,7 +502,7 @@ export default function Home() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy border-t border-white/10 relative overflow-hidden">
+      <section data-cmp="HomePage.FinalCta" className="py-24 bg-valar-navy border-t border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-valar-indigo/30 via-transparent to-transparent"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center">

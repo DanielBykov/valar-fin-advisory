@@ -9,7 +9,7 @@ export default function ServicesPage() {
   return (
     <div data-cmp="ServicesPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
       {/* Hero */}
-      <section className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
+      <section data-cmp="ServicesPage.Hero" className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Our Services</h1>
@@ -21,13 +21,13 @@ export default function ServicesPage() {
 
       <div className="container mx-auto px-4 md:px-6 py-20 max-w-6xl space-y-32">
         {/* Private Section */}
-        <section>
+        <section data-cmp="ServicesPage.PrivateSection">
           <div className="flex items-center gap-4 mb-12">
             <LayoutGrid className="w-8 h-8 text-valar-amber" />
             <h2 className="text-3xl font-bold text-valar-navy">Private Advisory</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+            <div data-cmp="ServicesPage.PrivateSection.Card" className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
               <h3 className="text-2xl font-bold text-valar-navy mb-4">Mortgage Advice</h3>
               <p className="text-gray-600 mb-8 leading-relaxed flex-1">
                 We handle the entire lending process, from initial strategy and bank negotiation to structuring the debt for optimal flexibility. Whether you are a first-home buyer, upgrading, or refinancing, we secure the right terms aligned with your life stage.
@@ -38,7 +38,7 @@ export default function ServicesPage() {
                 <Link href="/services/mortgage-advice" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
             </div>
-            <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+            <div data-cmp="ServicesPage.PrivateSection.Card" className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
               <h3 className="text-2xl font-bold text-valar-navy mb-4">Financial Planning</h3>
               <p className="text-gray-600 mb-8 leading-relaxed flex-1">
                 Clear, actionable financial direction. We assess your current position, map out your long-term goals, and implement structured strategies covering KiwiSaver, investments, risk management, and retirement planning.
@@ -85,13 +85,13 @@ export default function ServicesPage() {
         </section>
 
         {/* Wealth Section */}
-        <section>
+        <section data-cmp="ServicesPage.WealthSection">
           <div className="flex items-center gap-4 mb-12">
             <TrendingUp className="w-8 h-8 text-valar-amber" />
             <h2 className="text-3xl font-bold text-valar-navy">Wealth Building</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+            <div data-cmp="ServicesPage.WealthSection.Card" className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
               <h3 className="text-2xl font-bold text-valar-navy mb-4">Wealth Management Plan</h3>
               <p className="text-gray-600 mb-8 leading-relaxed flex-1">
                 A highly structured, long-term roadmap designed to build and preserve wealth. We construct diversified strategies that compound over time, adjusting the framework as market conditions and personal circumstances evolve.
@@ -102,7 +102,7 @@ export default function ServicesPage() {
                 <Link href="/services/wealth-management" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
             </div>
-            <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+            <div data-cmp="ServicesPage.WealthSection.Card" className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
               <h3 className="text-2xl font-bold text-valar-navy mb-4">Investment Property Analysis</h3>
               <p className="text-gray-600 mb-8 leading-relaxed flex-1">
                 Data-driven analysis for property investors. We advise on leveraging equity, portfolio structuring, yield versus capital growth decisions, and the optimal debt frameworks to minimize risk while scaling your holdings.
@@ -117,13 +117,13 @@ export default function ServicesPage() {
         </section>
 
         {/* Business Section */}
-        <section>
+        <section data-cmp="ServicesPage.BusinessSection">
           <div className="flex items-center gap-4 mb-12">
             <Briefcase className="w-8 h-8 text-valar-amber" />
             <h2 className="text-3xl font-bold text-valar-navy">Business Support</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+            <div data-cmp="ServicesPage.BusinessSection.Card" className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
               <h3 className="text-2xl font-bold text-valar-navy mb-4">Small Business Loans</h3>
               <p className="text-gray-600 mb-8 leading-relaxed flex-1">
                 Strategic funding solutions for business expansion, equipment finance, or working capital. We prepare robust business cases for lenders and secure commercial terms that protect your personal assets where possible.
@@ -134,7 +134,7 @@ export default function ServicesPage() {
                 <Link href="/services/small-business-loans" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
             </div>
-            <div className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
+            <div data-cmp="ServicesPage.BusinessSection.Card" className="bg-white p-10 rounded-xl border border-gray-100 shadow-sm flex flex-col">
               <h3 className="text-2xl font-bold text-valar-navy mb-4">Business Advisory Services</h3>
               <p className="text-gray-600 mb-8 leading-relaxed flex-1">
                 Growth-focused advisory for established enterprises. We assist with cashflow forecasting, risk management, succession planning, and ensuring your business structure supports your overarching personal wealth goals.
@@ -150,7 +150,7 @@ export default function ServicesPage() {
       </div>
 
       {/* Bottom CTA */}
-      <section className="bg-valar-amber py-20 mt-10">
+      <section data-cmp="ServicesPage.BottomCta" className="bg-valar-amber py-20 mt-10">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-valar-navy mb-6">Ready to discuss your strategy?</h2>
           <Link href="/book" className="inline-flex items-center justify-center bg-valar-navy text-white px-8 py-4 rounded-sm font-bold hover:bg-valar-indigo transition-colors">

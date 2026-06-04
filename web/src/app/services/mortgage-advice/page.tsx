@@ -79,7 +79,7 @@ export default function MortgageAdvicePage() {
   return (
     <div data-cmp="MortgageAdvicePage" className="w-full flex flex-col font-sans">
       {/* HERO */}
-      <section className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
+      <section data-cmp="MortgageAdvicePage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
@@ -92,7 +92,7 @@ export default function MortgageAdvicePage() {
             <motion.p variants={fadeIn} className="text-xl text-valar-lilac max-w-3xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4 font-light">
               Strategic mortgage guidance for first home buyers, homeowners, investors, and growing families across New Zealand. At Valar, we help clients structure lending with clarity, flexibility, and long-term financial goals in mind.
             </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+            <motion.div data-cmp="MortgageAdvicePage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
@@ -105,7 +105,7 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* WHY WORK WITH A MORTGAGE ADVISER */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="MortgageAdvicePage.WhyAdviser" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -173,7 +173,7 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* MORTGAGE SOLUTIONS */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="MortgageAdvicePage.MortgageSolutions" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -193,7 +193,7 @@ export default function MortgageAdvicePage() {
               { icon: CreditCard, title: "Debt Consolidation", desc: "Helping simplify finances and improve cashflow by restructuring existing debt — to improve financial clarity and long-term stability.", items: ["Personal loans", "Credit cards", "Vehicle finance", "Short-term debt"] },
               { icon: Layers, title: "Top-Up Loans & Equity Release", desc: "Using existing equity strategically for future goals.", items: ["Renovations and home improvements", "Green loans and energy-efficient upgrades", "Investment opportunities", "Lifestyle projects", "Emergency funding"] },
             ].map((sol, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.SolutionCard" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
                 <div className="flex items-center gap-3 mb-4">
                   <sol.icon className="w-5 h-5 text-valar-amber" />
                   <h3 className="text-xl font-bold">{sol.title}</h3>
@@ -212,7 +212,7 @@ export default function MortgageAdvicePage() {
           </motion.div>
 
           {/* FEATURED — First Home Buyers */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-8">
+          <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.FeaturedFirstHome" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-8">
             <Link href="/services/first-home-buyers" className="group block overflow-hidden rounded-sm border-t-4 border-valar-amber relative">
               <div className="relative h-72 md:h-96 overflow-hidden">
                 <Image src="/images/first-home.png" alt="First Home Buyers" fill className="object-cover object-center group-hover:scale-105 transition-transform duration-700" />
@@ -236,7 +236,7 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="MortgageAdvicePage.HowItWorks" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -255,7 +255,7 @@ export default function MortgageAdvicePage() {
               { num: "04", title: "Application & Approval", body: "Once the strategy is confirmed, we prepare and submit the application to the lender or lenders best suited to your goals and circumstances. We help guide you through valuations, inspections, legal services, and supporting documents throughout the process." },
               { num: "05", title: "Settlement & Ongoing Support", body: "Once approval is received, we continue supporting you through settlement and onboarding with the lender. Your mortgage adviser remains your main point of contact throughout the process." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
+              <motion.div data-cmp="MortgageAdvicePage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
                   {step.num}
                 </div>
@@ -270,7 +270,7 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-white">
+      <section data-cmp="MortgageAdvicePage.Faq" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -290,7 +290,7 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy text-white text-center">
+      <section data-cmp="MortgageAdvicePage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-4 flex justify-center">

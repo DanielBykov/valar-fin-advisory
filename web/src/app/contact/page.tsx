@@ -7,7 +7,7 @@ export default function ContactPage() {
   return (
     <div data-cmp="ContactPage" className="w-full flex flex-col bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
+      <section data-cmp="ContactPage.Hero" className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Contact Us</h1>
@@ -17,7 +17,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      {/* Contact */}
+      <section data-cmp="ContactPage.Contact" className="py-20">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-16">
 

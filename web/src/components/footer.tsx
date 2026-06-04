@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           {/* Column 1 — Brand block */}
-          <div className="lg:col-span-3">
+          <div data-cmp="Footer.Brand" className="lg:col-span-3">
             <div className="flex flex-col mb-4">
               <span className="font-sans font-bold text-2xl tracking-tight leading-none text-white">VALAR</span>
               <span className="font-sans text-[0.65rem] uppercase tracking-[0.2em] text-valar-lilac leading-tight">
@@ -36,7 +36,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="lg:col-span-2 lg:col-start-5">
+          <div data-cmp="Footer.ServicesLinks" className="lg:col-span-2 lg:col-start-5">
             <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">SERVICES</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/services/mortgage-advice" className="hover:text-white transition-colors">Mortgage Advice</Link></li>
@@ -50,7 +50,7 @@ export function Footer() {
           </div>
 
           {/* Insights & Learning */}
-          <div className="lg:col-span-2">
+          <div data-cmp="Footer.InsightsLinks" className="lg:col-span-2">
             <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">INSIGHTS & LEARNING</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/insights" className="hover:text-white transition-colors">Market Updates</Link></li>
@@ -64,7 +64,7 @@ export function Footer() {
           </div>
 
           {/* About */}
-          <div className="lg:col-span-2">
+          <div data-cmp="Footer.AboutLinks" className="lg:col-span-2">
             <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">ABOUT VALAR</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">About Lena</Link></li>
@@ -79,7 +79,7 @@ export function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="border-t border-valar-indigo pt-12 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div data-cmp="Footer.Newsletter" className="border-t border-valar-indigo pt-12 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div>
             <h4 className="font-bold text-lg text-valar-amber mb-2">STAY UPDATED</h4>
             <p className="text-sm text-valar-lilac max-w-md leading-relaxed">
@@ -102,7 +102,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-valar-indigo flex flex-col md:flex-row justify-between items-center text-xs text-valar-lilac/70 gap-4">
+        <div data-cmp="Footer.BottomBar" className="pt-8 border-t border-valar-indigo flex flex-col md:flex-row justify-between items-center text-xs text-valar-lilac/70 gap-4">
           <p>© 2026 Valar Financial Advisors. All rights reserved.</p>
           <p className="text-center md:text-right max-w-3xl">
             Lena Bykova trades as Valar Financial Advisors. FSP1010055. FAP: Fundsmart Mortgages and Finance. A disclosure statement is available free of charge on request.

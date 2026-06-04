@@ -5,7 +5,7 @@ import { CalendarDays } from "lucide-react";
 export default function BookPage() {
   return (
     <div data-cmp="BookPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
-      <section className="bg-valar-navy text-white pt-24 pb-32 px-4 md:px-6 relative">
+      <section data-cmp="BookPage.Hero" className="bg-valar-navy text-white pt-24 pb-32 px-4 md:px-6 relative">
         <div className="container mx-auto max-w-3xl text-center relative z-10">
           <CalendarDays className="w-12 h-12 text-valar-amber mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Book a Strategy Call</h1>
@@ -15,7 +15,7 @@ export default function BookPage() {
         </div>
       </section>
 
-      <section className="-mt-20 pb-24 px-4 md:px-6 relative z-20">
+      <section data-cmp="BookPage.BookingForm" className="-mt-20 pb-24 px-4 md:px-6 relative z-20">
         <div className="container mx-auto max-w-3xl">
           <div className="bg-white p-8 md:p-12 rounded-xl shadow-xl border border-gray-100">
             <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>

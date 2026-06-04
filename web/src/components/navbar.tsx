@@ -38,7 +38,7 @@ export function Navbar() {
           <span className="text-white/20 select-none text-xs">|</span>
 
           {/* Services Mega Menu */}
-          <div className="group relative h-20 flex items-center">
+          <div data-cmp="Navbar.ServicesMegaMenu" className="group relative h-20 flex items-center">
             <Link
               href="/services"
               className={cn(
@@ -142,7 +142,7 @@ export function Navbar() {
           <span className="text-white/20 select-none text-xs">|</span>
 
           {/* Insights Mega Menu */}
-          <div className="group relative h-16 flex items-center">
+          <div data-cmp="Navbar.InsightsMegaMenu" className="group relative h-16 flex items-center">
             <Link
               href="/insights"
               className={cn(
@@ -268,7 +268,7 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden bg-valar-indigo border-t border-valar-navy/20">
+        <div data-cmp="Navbar.MobileNav" className="md:hidden bg-valar-indigo border-t border-valar-navy/20">
           <div className="px-4 pt-2 pb-6 space-y-2">
             <Link href="/" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Home</Link>
             <Link href="/services" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Services</Link>

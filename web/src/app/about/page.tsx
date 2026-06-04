@@ -38,7 +38,7 @@ export default function AboutPage() {
     <div data-cmp="AboutPage" className="w-full flex flex-col font-sans">
 
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
-      <section className="relative min-h-[80vh] flex items-end overflow-hidden bg-valar-navy">
+      <section data-cmp="AboutPage.Hero" className="relative min-h-[80vh] flex items-end overflow-hidden bg-valar-navy">
         <div className="absolute inset-0 z-0">
           <Image src="/images/lena-portrait.png" alt="Lena Bykova" fill className="object-cover object-top opacity-40" />
           <div className="absolute inset-0 bg-gradient-to-r from-valar-navy/95 via-valar-navy/70 to-valar-navy/30" />
@@ -66,7 +66,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 2. INTRODUCTION ─────────────────────────────────────── */}
-      <section className="py-24 bg-white">
+      <section data-cmp="AboutPage.Introduction" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -115,7 +115,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 3. BEYOND MORTGAGE APPROVAL ─────────────────────────── */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="AboutPage.BeyondMortgage" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -146,7 +146,7 @@ export default function AboutPage() {
               { icon: Briefcase, title: "Business & Personal Finance", desc: "How do your business decisions and personal property goals work together?" },
               { icon: Target, title: "Clear Starting Point", desc: "What is the smartest first step from where you are today?" },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-white p-7 rounded-lg border border-valar-concrete shadow-sm">
+              <motion.div key={i} variants={fadeIn} data-cmp="AboutPage.BeyondMortgage.Card" className="bg-white p-7 rounded-lg border border-valar-concrete shadow-sm">
                 <div className="w-10 h-10 rounded-full bg-valar-navy flex items-center justify-center mb-4">
                   <card.icon className="w-4 h-4 text-valar-amber" />
                 </div>
@@ -159,7 +159,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 4. THE VALAR FORMULA ────────────────────────────────── */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="AboutPage.ValarFormula" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -201,7 +201,7 @@ export default function AboutPage() {
               { word: "Discipline", desc: "Turn good intentions into consistent action." },
               { word: "Time", desc: "Use compounding, planning, and patience to your advantage." },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-6 rounded-sm border-t-2 border-valar-amber">
+              <motion.div key={i} variants={fadeIn} data-cmp="AboutPage.ValarFormula.Pillar" className="bg-valar-indigo p-6 rounded-sm border-t-2 border-valar-amber">
                 <h3 className="font-bold text-valar-amber mb-3">{card.word}</h3>
                 <p className="text-valar-lilac text-sm leading-relaxed">{card.desc}</p>
               </motion.div>
@@ -221,7 +221,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 5. REAL EXPERIENCE ──────────────────────────────────── */}
-      <section className="py-24 bg-white">
+      <section data-cmp="AboutPage.RealExperience" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -269,7 +269,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 6. EXPERIENCE SNAPSHOT ──────────────────────────────── */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="AboutPage.ExperienceSnapshot" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -299,7 +299,7 @@ export default function AboutPage() {
               { icon: HomeIcon, label: "Property Investment" },
               { icon: Compass, label: "Strategic Planning" },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-white p-5 rounded-lg border border-valar-concrete shadow-sm flex flex-col items-center text-center gap-3">
+              <motion.div key={i} variants={fadeIn} data-cmp="AboutPage.ExperienceSnapshot.Badge" className="bg-white p-5 rounded-lg border border-valar-concrete shadow-sm flex flex-col items-center text-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-valar-navy flex items-center justify-center">
                   <item.icon className="w-4 h-4 text-valar-amber" />
                 </div>
@@ -319,7 +319,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 7. HOW VALAR IS DIFFERENT ───────────────────────────── */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="AboutPage.HowValarsIsDifferent" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -339,7 +339,7 @@ export default function AboutPage() {
             variants={stagger}
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            <motion.div variants={fadeIn} className="bg-valar-indigo/50 border border-white/10 p-8 rounded-lg">
+            <motion.div variants={fadeIn} data-cmp="AboutPage.HowValarIsDifferent.ComparePanel" className="bg-valar-indigo/50 border border-white/10 p-8 rounded-lg">
               <h3 className="font-bold text-valar-steel mb-6 uppercase tracking-wider text-sm">Typical Mortgage Advice</h3>
               <ul className="space-y-4">
                 {[
@@ -356,7 +356,7 @@ export default function AboutPage() {
               </ul>
             </motion.div>
 
-            <motion.div variants={fadeIn} className="bg-valar-indigo border border-valar-amber/30 p-8 rounded-lg">
+            <motion.div variants={fadeIn} data-cmp="AboutPage.HowValarIsDifferent.ComparePanel" className="bg-valar-indigo border border-valar-amber/30 p-8 rounded-lg">
               <h3 className="font-bold text-valar-amber mb-6 uppercase tracking-wider text-sm">The Valar Approach</h3>
               <ul className="space-y-4">
                 {[
@@ -378,7 +378,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 8. QUALIFICATIONS ───────────────────────────────────── */}
-      <section className="py-24 bg-white">
+      <section data-cmp="AboutPage.Qualifications" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -407,7 +407,7 @@ export default function AboutPage() {
               "CFA Program Candidate",
               "Ongoing Professional Development",
             ].map((qual, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex items-start gap-3 bg-valar-fog border border-valar-concrete p-5 rounded-lg">
+              <motion.div key={i} variants={fadeIn} data-cmp="AboutPage.Qualifications.Item" className="flex items-start gap-3 bg-valar-fog border border-valar-concrete p-5 rounded-lg">
                 <Award className="w-4 h-4 text-valar-amber flex-shrink-0 mt-0.5" />
                 <span className="text-valar-navy text-sm font-medium leading-snug">{qual}</span>
               </motion.div>
@@ -417,7 +417,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 9. PROCESS ──────────────────────────────────────────── */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="AboutPage.Process" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -447,7 +447,7 @@ export default function AboutPage() {
                 { num: "04", title: "Implementation", desc: "We work with lenders and guide you through the process." },
                 { num: "05", title: "Ongoing Support", desc: "We stay connected as your life, property goals, and financial needs evolve." },
               ].map((step, i) => (
-                <motion.div key={i} variants={fadeIn} className="flex items-start gap-6">
+                <motion.div key={i} variants={fadeIn} data-cmp="AboutPage.Process.Step" className="flex items-start gap-6">
                   <div className="w-14 h-14 rounded-full bg-valar-navy text-valar-amber font-bold text-sm flex items-center justify-center flex-shrink-0 border-2 border-valar-amber relative z-10">
                     {step.num}
                   </div>
@@ -463,7 +463,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 10. PERSONAL NOTE ───────────────────────────────────── */}
-      <section className="py-24 bg-valar-indigo text-white">
+      <section data-cmp="AboutPage.PersonalNote" className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -505,7 +505,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 11. LICENSING ───────────────────────────────────────── */}
-      <section className="py-16 bg-valar-navy border-t border-white/10">
+      <section data-cmp="AboutPage.Licensing" className="py-16 bg-valar-navy border-t border-white/10">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -543,7 +543,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 12. FINAL CTA ───────────────────────────────────────── */}
-      <section className="py-24 bg-valar-navy text-white text-center border-t border-white/10">
+      <section data-cmp="AboutPage.FinalCta" className="py-24 bg-valar-navy text-white text-center border-t border-white/10">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }}

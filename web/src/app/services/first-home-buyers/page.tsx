@@ -73,7 +73,7 @@ export default function FirstHomeBuyersPage() {
     <div data-cmp="FirstHomeBuyersPage" className="w-full flex flex-col font-sans">
 
       {/* HERO — full-bleed photo */}
-      <section className="relative min-h-[75vh] flex items-end overflow-hidden">
+      <section data-cmp="FirstHomeBuyersPage.Hero" className="relative min-h-[75vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image src="/images/first-home.png" alt="First Home Buyers" fill className="object-cover object-center" />
           <div className="absolute inset-0 bg-gradient-to-t from-valar-navy/95 via-valar-navy/60 to-valar-navy/20" />
@@ -90,7 +90,7 @@ export default function FirstHomeBuyersPage() {
             <motion.p variants={fadeIn} className="text-xl text-valar-lilac max-w-2xl leading-relaxed border-l-2 border-valar-amber pl-4 font-light mb-10">
               Helping first-home buyers understand deposits, lending options, KiwiSaver, and the home-buying process in New Zealand.
             </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+            <motion.div data-cmp="FirstHomeBuyersPage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Download className="w-5 h-5" /> Download Free Guide
               </Link>
@@ -103,7 +103,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* CAN FEEL OVERWHELMING */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="FirstHomeBuyersPage.Overwhelming" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -139,7 +139,7 @@ export default function FirstHomeBuyersPage() {
                   "What costs should I budget for?",
                   "Should I buy at auction?",
                 ].map((q, i) => (
-                  <motion.li key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
+                  <motion.li data-cmp="FirstHomeBuyersPage.Overwhelming.QuestionItem" key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
                     <span className="text-valar-navy text-sm leading-relaxed">{q}</span>
                   </motion.li>
@@ -151,7 +151,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* DOWNLOAD GUIDE CALLOUT */}
-      <section className="py-16 bg-valar-indigo text-white">
+      <section data-cmp="FirstHomeBuyersPage.DownloadGuide" className="py-16 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -177,7 +177,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* 8-STEP ROADMAP */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="FirstHomeBuyersPage.Roadmap" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -211,7 +211,7 @@ export default function FirstHomeBuyersPage() {
               { num: "07", title: "Finance Approval", desc: "Work through lender requirements and final approval conditions." },
               { num: "08", title: "Settlement & Moving In", desc: "Complete settlement and collect the keys to your new home." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-6 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="FirstHomeBuyersPage.Roadmap.Step" key={i} variants={fadeIn} className="bg-valar-indigo p-6 rounded-sm border-t-2 border-valar-amber">
                 <div className="text-3xl font-bold text-valar-amber/30 mb-3 leading-none">{step.num}</div>
                 <h3 className="font-bold text-white text-sm mb-2">{step.title}</h3>
                 <p className="text-valar-lilac text-xs leading-relaxed">{step.desc}</p>
@@ -222,7 +222,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* NO PRE-APPROVAL */}
-      <section className="py-24 bg-white">
+      <section data-cmp="FirstHomeBuyersPage.NoPreApproval" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -262,7 +262,7 @@ export default function FirstHomeBuyersPage() {
                 { label: "Be ready to move quickly", check: true },
                 { label: "Avoid unnecessary delays", check: true },
               ].map((item, i) => (
-                <motion.div key={i} variants={fadeIn} className="flex items-center gap-3 bg-valar-fog p-5 rounded-lg border border-valar-concrete">
+                <motion.div data-cmp="FirstHomeBuyersPage.NoPreApproval.CheckItem" key={i} variants={fadeIn} className="flex items-center gap-3 bg-valar-fog p-5 rounded-lg border border-valar-concrete">
                   <CheckCircle2 className="w-5 h-5 text-valar-amber flex-shrink-0" />
                   <span className="text-valar-navy font-medium text-sm">{item.label}</span>
                 </motion.div>
@@ -273,7 +273,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* DEPOSIT TIERS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="FirstHomeBuyersPage.DepositTiers" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -305,7 +305,7 @@ export default function FirstHomeBuyersPage() {
               { pct: "10%", title: "Low-Deposit Option", desc: "Possible for many first-home buyers depending on lender requirements and eligibility.", highlight: true },
               { pct: "5%", title: "Minimum Deposit", desc: "Available in some situations, subject to lender criteria and eligibility. Additional conditions may apply.", highlight: false },
             ].map((tier, i) => (
-              <motion.div key={i} variants={fadeIn} className={`p-8 rounded-lg border ${tier.highlight ? "bg-valar-navy text-white border-valar-amber" : "bg-white border-valar-concrete"}`}>
+              <motion.div data-cmp="FirstHomeBuyersPage.DepositTiers.Tier" key={i} variants={fadeIn} className={`p-8 rounded-lg border ${tier.highlight ? "bg-valar-navy text-white border-valar-amber" : "bg-white border-valar-concrete"}`}>
                 <div className={`text-5xl font-bold mb-4 ${tier.highlight ? "text-valar-amber" : "text-valar-navy"}`}>{tier.pct}</div>
                 <h3 className={`font-bold text-lg mb-3 ${tier.highlight ? "text-white" : "text-valar-navy"}`}>{tier.title}</h3>
                 <p className={`text-sm leading-relaxed ${tier.highlight ? "text-valar-lilac" : "text-valar-indigo"}`}>{tier.desc}</p>
@@ -326,7 +326,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* HOW CAN YOU BUY */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="FirstHomeBuyersPage.HowToBuy" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -373,7 +373,7 @@ export default function FirstHomeBuyersPage() {
                 note: "The vendor reviews all offers before making a decision.",
               },
             ].map((method, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="FirstHomeBuyersPage.HowToBuy.MethodCard" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
                 <method.icon className="w-6 h-6 text-valar-amber mb-4" />
                 <h3 className="font-bold text-lg mb-3">{method.title}</h3>
                 <p className="text-valar-lilac text-sm mb-4 leading-relaxed">{method.desc}</p>
@@ -393,7 +393,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* BUILD YOUR TEAM */}
-      <section className="py-24 bg-white">
+      <section data-cmp="FirstHomeBuyersPage.BuildYourTeam" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -434,7 +434,7 @@ export default function FirstHomeBuyersPage() {
                 desc: "Provides an independent assessment of the property's condition and helps identify potential issues before you commit. A good inspection can help you avoid unexpected costs.",
               },
             ].map((pro, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+              <motion.div data-cmp="FirstHomeBuyersPage.BuildYourTeam.ProCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                 <div className="w-10 h-10 rounded-full bg-valar-navy flex items-center justify-center mb-5">
                   <pro.icon className="w-4 h-4 text-valar-amber" />
                 </div>
@@ -447,7 +447,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* WHY WORK WITH VALAR — comparison table */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="FirstHomeBuyersPage.WhyValar" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -507,7 +507,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-white">
+      <section data-cmp="FirstHomeBuyersPage.Faq" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"
@@ -555,7 +555,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* NOT READY YET */}
-      <section className="py-24 bg-valar-indigo text-white">
+      <section data-cmp="FirstHomeBuyersPage.NotReadyYet" className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -588,7 +588,7 @@ export default function FirstHomeBuyersPage() {
                 "What steps may improve your position",
                 "How to prepare for home ownership",
               ].map((item, i) => (
-                <motion.div key={i} variants={fadeIn} className="flex items-center gap-3 bg-valar-navy/30 border border-white/10 p-4 rounded-sm">
+                <motion.div data-cmp="FirstHomeBuyersPage.NotReadyYet.CheckItem" key={i} variants={fadeIn} className="flex items-center gap-3 bg-valar-navy/30 border border-white/10 p-4 rounded-sm">
                   <CheckCircle2 className="w-4 h-4 text-valar-amber flex-shrink-0" />
                   <span className="text-valar-lilac text-sm">{item}</span>
                 </motion.div>
@@ -599,7 +599,7 @@ export default function FirstHomeBuyersPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy text-white text-center">
+      <section data-cmp="FirstHomeBuyersPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"

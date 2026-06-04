@@ -33,7 +33,7 @@ export default function BusinessAdvisoryPage() {
     <div data-cmp="BusinessAdvisoryPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
+      <section data-cmp="BusinessAdvisoryPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
@@ -62,7 +62,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* WHY BUSINESS ADVISORY */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="BusinessAdvisoryPage.WhyBusinessAdvisory" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -96,7 +96,7 @@ export default function BusinessAdvisoryPage() {
                   "Can my business support additional borrowing?",
                   "How can I make better decisions using data?",
                 ].map((q, i) => (
-                  <motion.li key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
+                  <motion.li data-cmp="BusinessAdvisoryPage.WhyBusinessAdvisory.QuestionItem" key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
                     <span className="text-valar-navy text-sm leading-relaxed">{q}</span>
                   </motion.li>
@@ -108,7 +108,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* WHAT MAKES VALAR DIFFERENT */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="BusinessAdvisoryPage.WhyValar" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -144,7 +144,7 @@ export default function BusinessAdvisoryPage() {
                 { icon: Layers, label: "Business intelligence" },
                 { icon: Cpu, label: "AI & technology tools" },
               ].map((item, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-valar-indigo border border-white/10 rounded-sm p-4 flex items-center gap-3">
+                <motion.div data-cmp="BusinessAdvisoryPage.WhyValar.CapabilityCard" key={i} variants={fadeIn} className="bg-valar-indigo border border-white/10 rounded-sm p-4 flex items-center gap-3">
                   <item.icon className="w-4 h-4 text-valar-amber flex-shrink-0" />
                   <span className="text-sm text-valar-lilac font-medium">{item.label}</span>
                 </motion.div>
@@ -155,7 +155,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* WHAT WE CAN HELP WITH */}
-      <section className="py-24 bg-white">
+      <section data-cmp="BusinessAdvisoryPage.WhatWeOffer" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -201,7 +201,7 @@ export default function BusinessAdvisoryPage() {
                   items: ["Revenue analysis", "Cost analysis", "Margin analysis", "Profitability by service, project, or customer", "Identifying improvement opportunities"],
                 },
               ].map((card, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+                <motion.div data-cmp="BusinessAdvisoryPage.WhatWeOffer.ServiceCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm flex-shrink-0">
                       <card.icon className="w-4 h-4 text-valar-amber" />
@@ -243,7 +243,7 @@ export default function BusinessAdvisoryPage() {
                   items: ["AI-assisted reporting", "Automated dashboards", "Financial data integration", "Workflow improvements", "Business intelligence tools"],
                 },
               ].map((card, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+                <motion.div data-cmp="BusinessAdvisoryPage.WhatWeOffer.ServiceCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm flex-shrink-0">
                       <card.icon className="w-4 h-4 text-valar-amber" />
@@ -267,7 +267,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* WHAT YOU RECEIVE */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="BusinessAdvisoryPage.WhatYouReceive" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -298,7 +298,7 @@ export default function BusinessAdvisoryPage() {
               { num: "04", title: "Investment Analysis", desc: "Evaluation of future projects and investment opportunities." },
               { num: "05", title: "Strategic Recommendations", desc: "Practical actions designed to improve performance and support growth." },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeIn} className={`bg-white p-8 rounded-lg shadow-sm border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="BusinessAdvisoryPage.WhatYouReceive.OutputCard" key={i} variants={fadeIn} className={`bg-white p-8 rounded-lg shadow-sm border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
                 <div className="text-4xl font-bold text-valar-concrete mb-4 leading-none">{item.num}</div>
                 <h3 className="text-base font-bold text-valar-navy mb-3">{item.title}</h3>
                 <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
@@ -309,7 +309,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* WHO IS THIS FOR */}
-      <section className="py-24 bg-valar-indigo text-white">
+      <section data-cmp="BusinessAdvisoryPage.WhoIsFor" className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -340,7 +340,7 @@ export default function BusinessAdvisoryPage() {
               { icon: Lightbulb, title: "Start-Ups", desc: "Founders seeking financial structure, reporting, and growth planning." },
               { icon: TrendingUp, title: "Growing Businesses", desc: "Business owners wanting better information to support decision-making." },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className={`bg-valar-navy/40 border border-white/10 rounded-sm p-6 flex items-start gap-4 ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="BusinessAdvisoryPage.WhoIsFor.AudienceCard" key={i} variants={fadeIn} className={`bg-valar-navy/40 border border-white/10 rounded-sm p-6 flex items-start gap-4 ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
                 <div className="w-9 h-9 rounded-full bg-valar-amber/20 flex items-center justify-center flex-shrink-0">
                   <card.icon className="w-4 h-4 text-valar-amber" />
                 </div>
@@ -355,7 +355,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section className="py-24 bg-white">
+      <section data-cmp="BusinessAdvisoryPage.HowItWorks" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -385,7 +385,7 @@ export default function BusinessAdvisoryPage() {
               { num: "03", title: "Analysis & Recommendations", body: "We identify opportunities, risks, and practical improvements." },
               { num: "04", title: "Implementation Support", body: "Where appropriate, we help build dashboards, forecasting tools, reporting systems, and financial frameworks." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+              <motion.div data-cmp="BusinessAdvisoryPage.HowItWorks.StepCard" key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
                   {step.num}
                 </div>
@@ -400,7 +400,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy text-white text-center">
+      <section data-cmp="BusinessAdvisoryPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"

@@ -65,7 +65,7 @@ export default function InvestmentPropertyAnalysisPage() {
     <div data-cmp="InvestmentPropertyAnalysisPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
+      <section data-cmp="InvestmentPropertyAnalysisPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
@@ -81,7 +81,7 @@ export default function InvestmentPropertyAnalysisPage() {
             <motion.div variants={fadeIn} className="text-base text-valar-lilac max-w-2xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4">
               Financial modelling and strategic analysis designed to support better investment decisions.
             </motion.div>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+            <motion.div data-cmp="InvestmentPropertyAnalysisPage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
@@ -94,7 +94,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* WHY PROPERTY INVESTMENT ANALYSIS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="InvestmentPropertyAnalysisPage.WhyAnalysis" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -129,7 +129,7 @@ export default function InvestmentPropertyAnalysisPage() {
                   "What impact will it have on future borrowing capacity?",
                   "Is it better to focus on yield, growth, or a balanced strategy?",
                 ].map((q, i) => (
-                  <motion.li key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
+                  <motion.li data-cmp="InvestmentPropertyAnalysisPage.WhyAnalysis.QuestionItem" key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
                     <span className="text-valar-navy text-sm leading-relaxed">{q}</span>
                   </motion.li>
@@ -141,7 +141,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* WHAT MAKES VALAR DIFFERENT */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="InvestmentPropertyAnalysisPage.WhatMakesDifferent" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -175,7 +175,7 @@ export default function InvestmentPropertyAnalysisPage() {
                 { icon: HomeIcon, label: "Lending optimisation" },
                 { icon: Target, label: "Long-term wealth creation" },
               ].map((item, i) => (
-                <motion.div key={i} variants={fadeIn} className={`bg-valar-indigo border border-white/10 rounded-sm p-4 flex items-center gap-3 ${i === 6 ? "col-span-2" : ""}`}>
+                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatMakesDifferent.FeatureBadge" key={i} variants={fadeIn} className={`bg-valar-indigo border border-white/10 rounded-sm p-4 flex items-center gap-3 ${i === 6 ? "col-span-2" : ""}`}>
                   <item.icon className="w-4 h-4 text-valar-amber flex-shrink-0" />
                   <span className="text-sm text-valar-lilac font-medium">{item.label}</span>
                 </motion.div>
@@ -186,7 +186,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* WHAT WE ANALYSE */}
-      <section className="py-24 bg-white">
+      <section data-cmp="InvestmentPropertyAnalysisPage.WhatWeAnalyse" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -232,7 +232,7 @@ export default function InvestmentPropertyAnalysisPage() {
                   items: ["Current equity position", "Future equity growth", "Loan-to-value ratios (LVR)", "Future borrowing capacity", "Leverage opportunities"],
                 },
               ].map((card, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatWeAnalyse.AnalysisCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm flex-shrink-0">
                       <card.icon className="w-4 h-4 text-valar-amber" />
@@ -268,7 +268,7 @@ export default function InvestmentPropertyAnalysisPage() {
                   items: ["Interest rate scenarios", "Rental market fluctuations", "Vacancy risk", "Capital growth assumptions", "Downside stress testing"],
                 },
               ].map((card, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatWeAnalyse.AnalysisCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm flex-shrink-0">
                       <card.icon className="w-4 h-4 text-valar-amber" />
@@ -292,7 +292,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* SCENARIO MODELLING */}
-      <section className="py-24 bg-valar-indigo text-white">
+      <section data-cmp="InvestmentPropertyAnalysisPage.ScenarioModelling" className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -339,7 +339,7 @@ export default function InvestmentPropertyAnalysisPage() {
                 desc: "Lower growth, higher interest rates, reduced rental performance, or other downside scenarios — essential for understanding risk before committing.",
               },
             ].map((s, i) => (
-              <motion.div key={i} variants={fadeIn} className={`bg-valar-navy/40 border-t-2 ${s.colour} rounded-sm p-8`}>
+              <motion.div data-cmp="InvestmentPropertyAnalysisPage.ScenarioModelling.ScenarioCard" key={i} variants={fadeIn} className={`bg-valar-navy/40 border-t-2 ${s.colour} rounded-sm p-8`}>
                 <div className="flex items-center gap-2 mb-4">
                   <div className={`w-2 h-2 rounded-full ${s.dot}`} />
                   <h3 className="font-bold text-lg">{s.label}</h3>
@@ -352,7 +352,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* WHAT YOU RECEIVE */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="InvestmentPropertyAnalysisPage.WhatYouReceive" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -384,7 +384,7 @@ export default function InvestmentPropertyAnalysisPage() {
               { num: "05", title: "Investment Strategy Recommendations", desc: "Guidance on how the property may fit into your broader wealth-building objectives." },
               { num: "06", title: "Action Plan & Next Steps", desc: "Practical recommendations to support future decision-making." },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
+              <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatYouReceive.DeliverableCard" key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
                 <div className="text-4xl font-bold text-valar-concrete mb-4 leading-none">{item.num}</div>
                 <h3 className="text-base font-bold text-valar-navy mb-3">{item.title}</h3>
                 <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
@@ -395,7 +395,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* WHO IS THIS FOR */}
-      <section className="py-24 bg-white">
+      <section data-cmp="InvestmentPropertyAnalysisPage.WhoIsThisFor" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -426,7 +426,7 @@ export default function InvestmentPropertyAnalysisPage() {
               { icon: Wrench, title: "Builders & Renovators", desc: "Evaluating project feasibility, expected returns, and risk before starting a project." },
               { icon: Clock, title: "Long-Term Investors", desc: "Creating a structured and disciplined approach to building wealth through property." },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className={`bg-valar-fog p-8 rounded-lg border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhoIsThisFor.AudienceCard" key={i} variants={fadeIn} className={`bg-valar-fog p-8 rounded-lg border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
                 <div className="w-10 h-10 rounded-full bg-valar-navy flex items-center justify-center mb-5">
                   <card.icon className="w-4 h-4 text-valar-amber" />
                 </div>
@@ -439,7 +439,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="InvestmentPropertyAnalysisPage.HowItWorks" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -485,7 +485,7 @@ export default function InvestmentPropertyAnalysisPage() {
                 body: "We review the findings together and discuss practical recommendations and next steps.",
               },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-white p-8 rounded-lg border border-valar-concrete shadow-sm">
+              <motion.div data-cmp="InvestmentPropertyAnalysisPage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-white p-8 rounded-lg border border-valar-concrete shadow-sm">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
                   {step.num}
                 </div>
@@ -500,7 +500,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-white">
+      <section data-cmp="InvestmentPropertyAnalysisPage.Faq" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"
@@ -543,7 +543,7 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy text-white text-center">
+      <section data-cmp="InvestmentPropertyAnalysisPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"

@@ -49,7 +49,7 @@ export default function FinancialPlanningPage() {
   return (
     <div data-cmp="FinancialPlanningPage" className="w-full flex flex-col font-sans">
       {/* HERO */}
-      <section className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
+      <section data-cmp="FinancialPlanningPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
@@ -75,7 +75,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* WHY FINANCIAL PLANNING MATTERS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="FinancialPlanningPage.WhyFinancialPlanning" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <motion.div variants={staggerContainer}>
@@ -105,7 +105,7 @@ export default function FinancialPlanningPage() {
                 { icon: BarChart2, title: "Structure", desc: "Create a financial framework that gives you visibility over cashflow, commitments, and the path toward your goals." },
                 { icon: TrendingUp, title: "Direction", desc: "Make confident decisions aligned with your long-term goals, whether that's property, wealth building, or greater financial freedom." },
               ].map((card, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-white p-6 rounded-lg shadow-sm border border-valar-concrete flex items-start gap-5">
+                <motion.div data-cmp="FinancialPlanningPage.WhyFinancialPlanning.Card" key={i} variants={fadeIn} className="bg-white p-6 rounded-lg shadow-sm border border-valar-concrete flex items-start gap-5">
                   <div className="w-10 h-10 rounded-full bg-valar-fog flex items-center justify-center flex-shrink-0">
                     <card.icon className="w-5 h-5 text-valar-amber" />
                   </div>
@@ -121,7 +121,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FINANCIAL COACHING */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="FinancialPlanningPage.FinancialCoaching" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -141,7 +141,7 @@ export default function FinancialPlanningPage() {
               { title: "Your Coaching Framework", items: ["Cashflow and budgeting strategies", "Financial habit improvement", "Debt management", "Mortgage and property planning", "Savings and investment planning", "Goal setting and accountability", "Long-term financial roadmap"] },
               { title: "How It's Delivered", items: ["One-off strategy session", "Structured multi-session programme", "Monthly, quarterly, or annual reviews"] },
             ].map((col, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="FinancialPlanningPage.FinancialCoaching.Column" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
                 <h3 className="text-lg font-bold mb-5">{col.title}</h3>
                 <ul className="space-y-2.5">
                   {col.items.map((item, j) => (
@@ -164,7 +164,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* OTHER SERVICES */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="FinancialPlanningPage.OtherServices" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -181,7 +181,7 @@ export default function FinancialPlanningPage() {
               { title: "Mortgage & Lending Strategy", desc: "Understanding how lending fits into your broader financial future.", items: ["Affordability analysis", "Repayment planning", "Debt management", "Refinancing considerations", "Future borrowing flexibility"] },
               { title: "Goal-Based Financial Planning", desc: "Helping clients make financial decisions aligned with their long-term objectives.", items: ["Home ownership", "Investment property planning", "Family goals", "Business goals", "Retirement preparation", "Financial independence"] },
             ].map((svc, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
+              <motion.div data-cmp="FinancialPlanningPage.OtherServices.ServiceCard" key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
                 <h3 className="text-lg font-bold text-valar-navy mb-3">{svc.title}</h3>
                 <p className="text-valar-indigo text-sm leading-relaxed mb-5">{svc.desc}</p>
                 <ul className="space-y-2">
@@ -199,7 +199,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section className="py-24 bg-white">
+      <section data-cmp="FinancialPlanningPage.HowItWorks" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -217,7 +217,7 @@ export default function FinancialPlanningPage() {
               { num: "03", title: "Strategy Development", body: "We identify opportunities and create practical recommendations tailored to your goals — focused on actionable steps, not complicated reports." },
               { num: "04", title: "Implementation & Support", body: "Depending on your needs, we can continue working together through regular reviews and coaching sessions to keep you on track." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+              <motion.div data-cmp="FinancialPlanningPage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">{step.num}</div>
                 <div>
                   <h3 className="text-lg font-bold text-valar-navy mb-2">{step.title}</h3>
@@ -230,7 +230,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* WHO IS IT FOR */}
-      <section className="py-24 bg-valar-indigo text-white">
+      <section data-cmp="FinancialPlanningPage.WhoItIsFor" className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-12">
             <motion.div variants={fadeIn} className="mb-4">
@@ -250,7 +250,7 @@ export default function FinancialPlanningPage() {
               { icon: BarChart2, label: "Property investors" },
               { icon: Target, label: "Anyone seeking greater financial clarity" },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-navy/40 border border-white/10 rounded-sm p-5 flex items-center gap-4">
+              <motion.div data-cmp="FinancialPlanningPage.WhoItIsFor.AudienceItem" key={i} variants={fadeIn} className="bg-valar-navy/40 border border-white/10 rounded-sm p-5 flex items-center gap-4">
                 <item.icon className="w-5 h-5 text-valar-amber flex-shrink-0" />
                 <span className="text-sm font-medium text-valar-lilac">{item.label}</span>
               </motion.div>
@@ -260,7 +260,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-white">
+      <section data-cmp="FinancialPlanningPage.Faq" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -279,7 +279,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy text-white text-center">
+      <section data-cmp="FinancialPlanningPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-4 flex justify-center">

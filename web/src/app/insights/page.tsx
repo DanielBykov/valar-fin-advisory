@@ -20,7 +20,7 @@ export default function InsightsPage() {
   return (
     <div data-cmp="InsightsPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
       {/* Hero */}
-      <section className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
+      <section data-cmp="InsightsPage.Hero" className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Insights &amp; Perspectives</h1>
@@ -30,20 +30,21 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 md:px-6 py-16 max-w-6xl">
+      {/* Articles */}
+      <section data-cmp="InsightsPage.Articles" className="container mx-auto px-4 md:px-6 py-16 max-w-6xl">
         <Tabs defaultValue="all" className="mb-12">
           <TabsList className="flex flex-wrap h-auto bg-transparent justify-start gap-2 mb-8">
-            <TabsTrigger value="all" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">All</TabsTrigger>
-            <TabsTrigger value="market" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Property Market Updates</TabsTrigger>
-            <TabsTrigger value="scenarios" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Real Client Scenarios</TabsTrigger>
-            <TabsTrigger value="learning" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Learning Hub</TabsTrigger>
-            <TabsTrigger value="first-home" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">First-Home Buyers</TabsTrigger>
+            <TabsTrigger data-cmp="InsightsPage.Articles.TabTrigger" value="all" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">All</TabsTrigger>
+            <TabsTrigger data-cmp="InsightsPage.Articles.TabTrigger" value="market" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Property Market Updates</TabsTrigger>
+            <TabsTrigger data-cmp="InsightsPage.Articles.TabTrigger" value="scenarios" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Real Client Scenarios</TabsTrigger>
+            <TabsTrigger data-cmp="InsightsPage.Articles.TabTrigger" value="learning" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">Learning Hub</TabsTrigger>
+            <TabsTrigger data-cmp="InsightsPage.Articles.TabTrigger" value="first-home" className="data-[state=active]:bg-valar-navy data-[state=active]:text-white bg-white border border-gray-200 px-6 py-2 rounded-full text-sm font-medium">First-Home Buyers</TabsTrigger>
           </TabsList>
         </Tabs>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {INSIGHTS_DATA.map((item) => (
-            <article key={item.id} className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col group">
+            <article data-cmp="InsightsPage.Articles.ArticleCard" key={item.id} className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col group">
               <div className="p-8 flex flex-col h-full">
                 <span className="text-xs font-bold uppercase tracking-wider text-valar-amber mb-4 block">{item.tag}</span>
                 <h3 className="text-xl font-bold text-valar-navy mb-4 leading-snug group-hover:text-valar-indigo transition-colors">
@@ -59,7 +60,7 @@ export default function InsightsPage() {
             </article>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

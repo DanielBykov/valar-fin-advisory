@@ -32,7 +32,7 @@ export default function WealthManagementPage() {
     <div data-cmp="WealthManagementPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
+      <section data-cmp="WealthManagementPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
@@ -60,7 +60,7 @@ export default function WealthManagementPage() {
       </section>
 
       {/* WHAT IS A WEALTH MANAGEMENT PLAN */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="WealthManagementPage.WhatIsThePlan" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -109,7 +109,7 @@ export default function WealthManagementPage() {
                 { icon: Clock, title: "Time", desc: "The length of time your capital has to grow." },
                 { icon: ShieldCheck, title: "Discipline", desc: "Your ability to stay consistent with your strategy." },
               ].map((card, i) => (
-                <motion.div key={i} variants={fadeIn} className="bg-white p-5 rounded-lg shadow-sm border border-valar-concrete flex items-start gap-4">
+                <motion.div data-cmp="WealthManagementPage.WhatIsThePlan.WealthFactorCard" key={i} variants={fadeIn} className="bg-white p-5 rounded-lg shadow-sm border border-valar-concrete flex items-start gap-4">
                   <div className="w-9 h-9 rounded-full bg-valar-fog flex items-center justify-center flex-shrink-0">
                     <card.icon className="w-4 h-4 text-valar-amber" />
                   </div>
@@ -125,7 +125,7 @@ export default function WealthManagementPage() {
       </section>
 
       {/* WHAT WE ANALYSE */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="WealthManagementPage.WhatWeAnalyse" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -171,7 +171,7 @@ export default function WealthManagementPage() {
                 items: ["Lifestyle goals", "Financial independence", "Family priorities", "Retirement planning", "Future projects"]
               },
             ].map((area, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="WealthManagementPage.WhatWeAnalyse.AnalysisArea" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
                 <div className="flex items-center gap-3 mb-5">
                   <area.icon className="w-5 h-5 text-valar-amber" />
                   <h3 className="text-lg font-bold">{area.title}</h3>
@@ -191,7 +191,7 @@ export default function WealthManagementPage() {
       </section>
 
       {/* WHAT YOU RECEIVE */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="WealthManagementPage.WhatYouReceive" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -222,7 +222,7 @@ export default function WealthManagementPage() {
               { num: "04", title: "Wealth Roadmap", desc: "A practical pathway showing key milestones, priorities, and decision points toward your goals." },
               { num: "05", title: "Financial Freedom Strategy", desc: "A structured approach designed to help align your financial decisions with your long-term vision." },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeIn} className={`bg-white p-8 rounded-lg shadow-sm border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="WealthManagementPage.WhatYouReceive.DeliverableCard" key={i} variants={fadeIn} className={`bg-white p-8 rounded-lg shadow-sm border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
                 <div className="text-4xl font-bold text-valar-concrete mb-4 leading-none">{item.num}</div>
                 <h3 className="text-lg font-bold text-valar-navy mb-3">{item.title}</h3>
                 <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
@@ -233,7 +233,7 @@ export default function WealthManagementPage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section className="py-24 bg-white">
+      <section data-cmp="WealthManagementPage.HowItWorks" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -279,7 +279,7 @@ export default function WealthManagementPage() {
                 body: "We meet again to review the completed plan together, walk through the scenarios, and answer any questions."
               },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
+              <motion.div data-cmp="WealthManagementPage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
                   {step.num}
                 </div>
@@ -293,6 +293,7 @@ export default function WealthManagementPage() {
 
           {/* Ongoing reviews note */}
           <motion.div
+            data-cmp="WealthManagementPage.HowItWorks.OngoingNote"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -308,7 +309,7 @@ export default function WealthManagementPage() {
       </section>
 
       {/* WHO IS THIS FOR */}
-      <section className="py-24 bg-valar-indigo text-white">
+      <section data-cmp="WealthManagementPage.WhoIsThisFor" className="py-24 bg-valar-indigo text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -340,7 +341,7 @@ export default function WealthManagementPage() {
               { icon: Target, label: "Clients preparing for major life decisions" },
               { icon: BarChart2, label: "Anyone seeking long-term financial clarity" },
             ].map((item, i) => (
-              <motion.div key={i} variants={fadeIn} className="bg-valar-navy/40 border border-white/10 rounded-sm p-5 flex items-center gap-4">
+              <motion.div data-cmp="WealthManagementPage.WhoIsThisFor.AudienceItem" key={i} variants={fadeIn} className="bg-valar-navy/40 border border-white/10 rounded-sm p-5 flex items-center gap-4">
                 <item.icon className="w-5 h-5 text-valar-amber flex-shrink-0" />
                 <span className="text-sm font-medium text-valar-lilac">{item.label}</span>
               </motion.div>
@@ -350,7 +351,7 @@ export default function WealthManagementPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy text-white text-center">
+      <section data-cmp="WealthManagementPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"

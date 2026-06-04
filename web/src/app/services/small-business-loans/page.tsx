@@ -74,7 +74,7 @@ export default function SmallBusinessLoansPage() {
     <div data-cmp="SmallBusinessLoansPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
+      <section data-cmp="SmallBusinessLoansPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
@@ -90,7 +90,7 @@ export default function SmallBusinessLoansPage() {
             <motion.div variants={fadeIn} className="text-base text-valar-lilac max-w-2xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4">
               Helping small business owners, self-employed professionals, tradespeople, and property developers access funding for growth, equipment, vehicles, and working capital.
             </motion.div>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+            <motion.div data-cmp="SmallBusinessLoansPage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
@@ -103,7 +103,7 @@ export default function SmallBusinessLoansPage() {
       </section>
 
       {/* WHY SMALL BUSINESS LOANS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="SmallBusinessLoansPage.WhyBusinessLoans" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -153,7 +153,7 @@ export default function SmallBusinessLoansPage() {
       </section>
 
       {/* WHAT WE CAN HELP WITH */}
-      <section className="py-24 bg-valar-navy text-white">
+      <section data-cmp="SmallBusinessLoansPage.WhatWeHelpWith" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -204,7 +204,7 @@ export default function SmallBusinessLoansPage() {
                 desc: "Reviewing existing lending arrangements and exploring funding structures that may better support your business goals.",
               },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className={`bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="SmallBusinessLoansPage.WhatWeHelpWith.FundingCard" key={i} variants={fadeIn} className={`bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
                 <div className="flex items-center gap-3 mb-4">
                   <card.icon className="w-5 h-5 text-valar-amber" />
                   <h3 className="font-bold text-lg">{card.title}</h3>
@@ -217,7 +217,7 @@ export default function SmallBusinessLoansPage() {
       </section>
 
       {/* WHO IS THIS FOR */}
-      <section className="py-24 bg-white">
+      <section data-cmp="SmallBusinessLoansPage.WhoIsThisFor" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -248,7 +248,7 @@ export default function SmallBusinessLoansPage() {
               { icon: Users, title: "Property Developers & Renovators", desc: "Projects requiring finance support and lending guidance." },
               { icon: Lightbulb, title: "Start-Ups", desc: "Businesses seeking funding opportunities and assistance preparing their business case." },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeIn} className={`bg-valar-fog p-8 rounded-lg border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="SmallBusinessLoansPage.WhoIsThisFor.AudienceCard" key={i} variants={fadeIn} className={`bg-valar-fog p-8 rounded-lg border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
                 <div className="w-10 h-10 rounded-full bg-valar-navy flex items-center justify-center mb-5">
                   <card.icon className="w-4 h-4 text-valar-amber" />
                 </div>
@@ -261,7 +261,7 @@ export default function SmallBusinessLoansPage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section className="py-24 bg-valar-fog">
+      <section data-cmp="SmallBusinessLoansPage.HowItWorks" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -292,7 +292,7 @@ export default function SmallBusinessLoansPage() {
               { num: "04", title: "Application Support", body: "We assist with preparing and presenting the application to the lender." },
               { num: "05", title: "Approval & Settlement", body: "We guide you through the approval process and help coordinate next steps once funding is approved." },
             ].map((step, i) => (
-              <motion.div key={i} variants={fadeIn} className="flex gap-6 bg-white p-7 rounded-lg border border-valar-concrete shadow-sm">
+              <motion.div data-cmp="SmallBusinessLoansPage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-white p-7 rounded-lg border border-valar-concrete shadow-sm">
                 <div className="flex-shrink-0 w-11 h-11 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
                   {step.num}
                 </div>
@@ -309,7 +309,7 @@ export default function SmallBusinessLoansPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-white">
+      <section data-cmp="SmallBusinessLoansPage.Faq" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"
@@ -352,7 +352,7 @@ export default function SmallBusinessLoansPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-valar-navy text-white text-center">
+      <section data-cmp="SmallBusinessLoansPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"
