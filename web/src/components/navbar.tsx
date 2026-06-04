@@ -139,9 +139,10 @@ export function Navbar() {
             </div>
           </div>
 
-          <span className="text-white/20 select-none text-xs">|</span>
+          {/* Insights Mega Menu — hidden */}
+          {false && (
+          <><span className="text-white/20 select-none text-xs">|</span>
 
-          {/* Insights Mega Menu */}
           <div data-cmp="Navbar.InsightsMegaMenu" className="group relative h-16 flex items-center">
             <Link
               href="/insights"
@@ -221,7 +222,8 @@ export function Navbar() {
                 </div>
               </div>
             </div>
-          </div>
+          </div></>
+          )}
 
           <span className="text-white/20 select-none text-xs">|</span>
           <Link
@@ -272,7 +274,8 @@ export function Navbar() {
           <div className="px-4 pt-2 pb-6 space-y-2">
             <Link href="/" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Home</Link>
             <Link href="/services" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Services</Link>
-            <Link href="/insights" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Insights</Link>
+            {/* Insights mobile link — hidden */}
+            {false && <Link href="/insights" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Insights</Link>}
             <Link href="/about" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>About</Link>
             <Link href="/contact" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Contact</Link>
             <div className="pt-4">

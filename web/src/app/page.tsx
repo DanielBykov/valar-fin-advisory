@@ -381,7 +381,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INSIGHTS */}
+      {/* INSIGHTS — hidden */}
+      {false && (
       <section data-cmp="HomePage.Insights" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
@@ -416,6 +417,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      )}
 
       {/* BEFORE BUYING PROPERTY - TABS */}
       <section data-cmp="HomePage.BeforeBuying" className="py-24 bg-gradient-to-b from-valar-indigo to-valar-navy text-white">

@@ -49,7 +49,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Insights & Learning */}
+          {/* Insights & Learning — hidden */}
+          {false && (
           <div data-cmp="Footer.InsightsLinks" className="lg:col-span-2">
             <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">INSIGHTS & LEARNING</h4>
             <ul className="space-y-3 text-sm">
@@ -62,6 +63,7 @@ export function Footer() {
               <li><Link href="/insights" className="hover:text-white transition-colors">Real Client Scenarios</Link></li>
             </ul>
           </div>
+          )}
 
           {/* About */}
           <div data-cmp="Footer.AboutLinks" className="lg:col-span-2">

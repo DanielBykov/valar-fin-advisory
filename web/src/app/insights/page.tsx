@@ -1,5 +1,6 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowRight } from "lucide-react";
@@ -17,6 +18,7 @@ const INSIGHTS_DATA = [
 ];
 
 export default function InsightsPage() {
+  notFound(); // hidden — remove this line to re-enable
   return (
     <div data-cmp="InsightsPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
       {/* Hero */}
