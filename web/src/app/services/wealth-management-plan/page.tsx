@@ -74,7 +74,7 @@ export default function WealthManagementPage() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What Is a Wealth Management Plan?</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
-                A financial map for the next 10–20 years<span className="text-valar-amber">.</span>
+                A financial map for the next 10–20 years.
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-6">
                 Just as a map helps guide a journey, a Wealth Management Plan helps guide financial decisions over time. It provides a framework you can return to regularly and use to measure your progress toward your goals.
@@ -138,7 +138,7 @@ export default function WealthManagementPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What We Analyse</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
-              A complete picture of your financial architecture<span className="text-valar-amber">.</span>
+              A complete picture of your financial architecture.
             </motion.h2>
           </motion.div>
 
@@ -204,7 +204,7 @@ export default function WealthManagementPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What You Receive</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              A personalised plan you can act on<span className="text-valar-amber">.</span>
+              A personalised plan you can act on.
             </motion.h2>
           </motion.div>
 
@@ -246,7 +246,7 @@ export default function WealthManagementPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">How the Process Works</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              From discovery to a clear plan<span className="text-valar-amber">.</span>
+              From discovery to a clear plan.
             </motion.h2>
           </motion.div>
 
@@ -322,7 +322,7 @@ export default function WealthManagementPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Who Is This For?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
-              This service may be valuable for<span className="text-valar-amber">.</span>
+              This service may be valuable for.
             </motion.h2>
           </motion.div>
 
@@ -363,7 +363,7 @@ export default function WealthManagementPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Build Your Financial Roadmap?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Your future is shaped by the decisions you make today<span className="text-valar-amber">.</span>
+              Your future is shaped by the decisions you make today.
             </motion.h2>
             <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               The Wealth Management Plan helps you understand what may be possible and create a strategy to move toward it with confidence.

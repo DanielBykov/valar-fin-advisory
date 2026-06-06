@@ -12,7 +12,7 @@ export default function ServicesPage() {
       <section data-cmp="ServicesPage.Hero" className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
         <div className="container mx-auto max-w-5xl">
           <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Our Services</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Our Services<span className="text-valar-amber">.</span></h1>
           <p className="text-xl md:text-2xl font-light text-valar-lilac max-w-3xl leading-relaxed border-l-2 border-valar-amber pl-4">
             Strategic financial advisory tailored to your personal goals, property ambitions, and business growth.
           </p>

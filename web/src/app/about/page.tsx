@@ -91,7 +91,7 @@ export default function AboutPage() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Meet Lena</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-2">
-                Hi, I&apos;m Lena<span className="text-valar-amber">.</span>
+                Hi, I&apos;m Lena.
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo font-medium text-sm mb-6">
                 Mortgage Adviser · Financial Strategist · Finance Professional
@@ -126,7 +126,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What I Help Clients Think Through</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-4">
-              Beyond Mortgage Approval<span className="text-valar-amber">.</span>
+              Beyond Mortgage Approval.
             </motion.h2>
             <motion.p variants={fadeIn} className="text-valar-indigo text-lg max-w-xl">
               A mortgage is not just a loan. It is often one of the biggest financial decisions in life.
@@ -170,7 +170,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">The Valar Formula</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold mb-3">
-              Wealth is not built from money alone<span className="text-valar-amber">.</span>
+              Wealth is not built from money alone.
             </motion.h2>
           </motion.div>
 
@@ -233,7 +233,7 @@ export default function AboutPage() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Real Experience, Not Just Theory</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
-                I Build Wealth Differently Too<span className="text-valar-amber">.</span>
+                I Build Wealth Differently Too.
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-4">
                 My approach is both analytical and practical.
@@ -280,7 +280,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Experience Snapshot</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              Experience You Can Trust<span className="text-valar-amber">.</span>
+              Experience You Can Trust.
             </motion.h2>
           </motion.div>
 
@@ -330,7 +330,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">How Valar Is Different</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
-              A Different Kind of Mortgage Adviser<span className="text-valar-amber">.</span>
+              A Different Kind of Mortgage Adviser.
             </motion.h2>
           </motion.div>
 
@@ -389,7 +389,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Qualifications</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              Qualifications &amp; Professional Development<span className="text-valar-amber">.</span>
+              Qualifications &amp; Professional Development.
             </motion.h2>
           </motion.div>
 
@@ -428,7 +428,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">How We Work</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              Our Process<span className="text-valar-amber">.</span>
+              Our Process.
             </motion.h2>
           </motion.div>
 
@@ -475,7 +475,7 @@ export default function AboutPage() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Beyond Finance</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold mb-6">
-                Beyond Finance<span className="text-valar-amber">.</span>
+                Beyond Finance.
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-lilac leading-relaxed mb-4">
                 Outside of work, I enjoy life with my husband on our lifestyle property near Auckland and the ocean. I love investments, numbers, AI, technology, strategy, and building systems that help people make better decisions.
@@ -515,7 +515,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Licensing &amp; Disclosure</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-xl font-bold text-white mb-5">
-              Licensing &amp; Disclosure<span className="text-valar-amber">.</span>
+              Licensing &amp; Disclosure.
             </motion.h2>
             <motion.p variants={fadeIn} className="text-valar-steel text-sm leading-relaxed mb-4 max-w-2xl">
               Lena Bykova trades as Valar Financial Advisors. Mortgage advice is provided through FundSmart Mortgages and Finance, a licensed Financial Advice Provider.
@@ -553,7 +553,7 @@ export default function AboutPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Take the First Step</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-              Ready to Make Your Next Financial Step With Clarity<span className="text-valar-amber">?</span>
+              Ready to Make Your Next Financial Step With Clarity?
             </motion.h2>
             <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
               Whether you are buying your first home, refinancing, investing in property, or planning your future, Valar can help you build a strategy around your goals.

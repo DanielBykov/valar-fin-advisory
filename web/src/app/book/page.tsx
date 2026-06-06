@@ -8,7 +8,7 @@ export default function BookPage() {
       <section data-cmp="BookPage.Hero" className="bg-valar-navy text-white pt-24 pb-32 px-4 md:px-6 relative">
         <div className="container mx-auto max-w-3xl text-center relative z-10">
           <CalendarDays className="w-12 h-12 text-valar-amber mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Book a Strategy Call</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Book a Strategy Call<span className="text-valar-amber">.</span></h1>
           <p className="text-xl font-light text-valar-lilac leading-relaxed">
             Take the first step toward financial clarity. We offer a structured initial consultation to understand your position and map out potential pathways.
           </p>

@@ -10,7 +10,7 @@ export default function ContactPage() {
       <section data-cmp="ContactPage.Hero" className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Contact Us</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Contact Us<span className="text-valar-amber">.</span></h1>
           <p className="text-xl font-light text-valar-lilac max-w-2xl border-l-2 border-valar-amber pl-4">
             Reach out for general inquiries, media requests, or to begin a conversation about your financial future.
           </p>

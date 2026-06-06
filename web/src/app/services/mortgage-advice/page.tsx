@@ -112,7 +112,7 @@ export default function MortgageAdvicePage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Why Work With a Mortgage Adviser?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6">
-              We don&apos;t focus only on what you can borrow today.
+              We don&apos;t focus only on what you can borrow today
             </motion.h2>
             <motion.p variants={fadeIn} className="text-lg text-valar-indigo max-w-3xl leading-relaxed">
               Buying property is one of the biggest financial decisions most people will make. At Valar, we help you structure lending around your long-term goals, future flexibility, and overall financial strategy.

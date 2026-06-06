@@ -220,7 +220,7 @@ export default function Home() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Behind Valar</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-8">
-                Founded by Lena Bykova<span className="text-valar-amber">.</span>
+                Founded by Lena Bykova.
               </motion.h2>
 
               <motion.div variants={fadeIn} className="space-y-6 text-valar-indigo text-lg leading-relaxed mb-8">

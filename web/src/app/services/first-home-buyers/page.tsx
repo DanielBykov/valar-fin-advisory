@@ -162,7 +162,7 @@ export default function FirstHomeBuyersPage() {
           >
             <motion.div variants={staggerContainer}>
               <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-3">Free Resource</motion.p>
-              <motion.h2 variants={fadeIn} className="text-2xl md:text-3xl font-bold mb-2">Download the First Home Buyer Guide<span className="text-valar-amber">.</span></motion.h2>
+              <motion.h2 variants={fadeIn} className="text-2xl md:text-3xl font-bold mb-2">Download the First Home Buyer Guide.</motion.h2>
               <motion.p variants={fadeIn} className="text-valar-lilac leading-relaxed max-w-xl">
                 Covers the home-buying process, lending basics, common questions, and practical tips to help you prepare with confidence.
               </motion.p>
