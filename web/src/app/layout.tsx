@@ -43,7 +43,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${lora.variable} ${sourceSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
         <Navbar />
         <main data-cmp="Main" className="flex-1">{children}</main>
         <Footer />
