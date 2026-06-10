@@ -40,7 +40,7 @@ export default function WealthManagementPage() {
               <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Strategic Advisory</span>
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-[1.05]">
-              Wealth Management Plan<span className="text-valar-amber">.</span>
+              Wealth Planning<span className="text-valar-amber">.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-xl md:text-2xl text-valar-steel font-light mb-8">
               A Roadmap for Building Long-Term Wealth
