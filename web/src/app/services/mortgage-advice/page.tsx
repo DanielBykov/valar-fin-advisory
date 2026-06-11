@@ -90,7 +90,7 @@ export default function MortgageAdvicePage() {
               Mortgage Advice Built Around<br className="hidden md:block" /> Your Financial Future<span className="text-valar-amber">.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-xl text-valar-lilac max-w-3xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4 font-light">
-              Strategic mortgage guidance for first home buyers, homeowners, investors, and growing families across New Zealand. At Valar, we help clients structure lending with clarity, flexibility, and long-term financial goals in mind.
+              Strategic mortgage guidance for first home buyers, homeowners, investors, and growing families across New Zealand. Clients-first.
             </motion.p>
             <motion.div data-cmp="MortgageAdvicePage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
