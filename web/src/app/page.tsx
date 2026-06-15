@@ -48,9 +48,9 @@ export default function Home() {
 
         <div className="container mx-auto px-6 md:px-12 relative z-10 pt-40 pb-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-xl lg:max-w-2xl">
-            <motion.h1 variants={fadeIn} className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-6 leading-[1.15] text-white">
-              <span>Strategic Mortgage Advice Built Around Your Future</span>
-              <span className="text-valar-amber">.</span>
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-medium tracking-tight mb-6 leading-[1.15] text-white">
+              <span className="block">Strategic Mortgage Advice</span>
+              <span className="block">Built Around Your Future<span className="text-valar-amber">.</span></span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-lg lg:text-xl text-white/80 mb-10 max-w-md leading-relaxed font-light border-l-2 border-valar-amber pl-4">
               Beyond approvals and interest rates.<br />
@@ -72,8 +72,8 @@ export default function Home() {
       <section data-cmp="HomePage.WhoWeHelp" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="text-center mb-16">
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-4">How can we help?</motion.h2>
-            <motion.p variants={fadeIn} className="text-lg text-valar-indigo max-w-2xl mx-auto">Find the pathway that best fits your current goals.</motion.p>
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-4">How can we help?</motion.h2>
+            <motion.p variants={fadeIn} className="text-xl text-valar-indigo max-w-2xl mx-auto">Find the pathway that best fits your current goals.</motion.p>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -88,8 +88,8 @@ export default function Home() {
                   <div className="w-10 h-10 bg-valar-concrete rounded-full flex items-center justify-center text-valar-navy mb-6 group-hover:bg-valar-amber transition-colors">
                     <path.icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-valar-navy mb-3">{path.title}</h3>
-                  <p className="text-valar-indigo text-sm leading-relaxed">{path.desc}</p>
+                  <h3 className="text-2xl font-bold text-valar-navy mb-3">{path.title}</h3>
+                  <p className="text-valar-indigo text-lg leading-relaxed">{path.desc}</p>
                 </Link>
               </motion.div>
             ))}
@@ -102,12 +102,12 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">More Than A Mortgage</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">More Than A Mortgage</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
               We help build financial architecture around property decisions.
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-lg text-valar-lilac leading-relaxed">
+            <motion.p variants={fadeIn} className="text-xl text-valar-lilac leading-relaxed">
               Most mortgage advice focuses on approval and rates. Valar helps clients understand how property decisions connect with lifestyle, cashflow, future flexibility and long-term financial goals.
             </motion.p>
           </motion.div>
@@ -119,8 +119,8 @@ export default function Home() {
               { title: "Long-Term Planning", desc: "Property decisions connected with future opportunities, equity and wider financial strategy." },
             ].map((card, i) => (
               <motion.div data-cmp="HomePage.MoreThanAMortgage.ValueCard" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber hover:shadow-[0_0_20px_rgba(232,162,58,0.15)] transition-shadow">
-                <h3 className="text-xl font-bold mb-4">{card.title}</h3>
-                <p className="text-valar-lilac text-sm leading-relaxed">{card.desc}</p>
+                <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
+                <p className="text-valar-lilac text-lg leading-relaxed">{card.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -132,12 +132,12 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">How We Work</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">How We Work</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-6 leading-tight">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6 leading-tight">
               A more structured approach to mortgage and financial decisions.
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-lg text-valar-indigo leading-relaxed">
+            <motion.p variants={fadeIn} className="text-xl text-valar-indigo leading-relaxed">
               Valar supports clients from the moment property becomes part of their thinking — helping structure decisions with greater clarity, long-term perspective and practical guidance throughout the process.
             </motion.p>
           </motion.div>
@@ -156,8 +156,8 @@ export default function Home() {
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-valar-concrete flex-1 relative overflow-hidden">
                   <div className="absolute -right-4 -bottom-8 text-8xl font-bold text-valar-concrete/50 pointer-events-none">{step.num}</div>
-                  <h3 className="text-lg font-bold text-valar-navy mb-3 relative z-10">{step.title}</h3>
-                  <p className="text-valar-indigo text-sm leading-relaxed relative z-10">{step.desc}</p>
+                  <h3 className="text-2xl font-bold text-valar-navy mb-3 relative z-10">{step.title}</h3>
+                  <p className="text-valar-indigo text-lg leading-relaxed relative z-10">{step.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -170,9 +170,9 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Client Experiences</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Client Experiences</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-6">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">
               Structured guidance through major financial decisions.
             </motion.h2>
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 bg-valar-amber/10 text-valar-amber-hover px-4 py-2 rounded-full text-xs font-medium border border-valar-amber/30 mt-2">
@@ -190,9 +190,9 @@ export default function Home() {
               <motion.div data-cmp="HomePage.Testimonials.Card" key={i} variants={fadeIn} className="p-8 rounded-lg border border-valar-concrete shadow-sm flex flex-col relative bg-white">
                 <div className="absolute top-6 left-6 text-6xl text-valar-amber font-serif leading-none opacity-20">&ldquo;</div>
                 <div className="relative z-10 flex-1 flex flex-col">
-                  <p className="text-xl font-medium italic text-valar-navy mb-4 pt-4">&ldquo;{test.quote}&rdquo;</p>
-                  <p className="text-valar-indigo text-sm leading-relaxed mb-8 flex-1">{test.body}</p>
-                  <p className="text-xs font-bold text-valar-navy uppercase tracking-wider">— {test.attr}</p>
+                  <p className="text-2xl font-medium italic text-valar-navy mb-4 pt-4">&ldquo;{test.quote}&rdquo;</p>
+                  <p className="text-valar-indigo text-lg leading-relaxed mb-8 flex-1">{test.body}</p>
+                  <p className="text-sm font-bold text-valar-navy uppercase tracking-wider">— {test.attr}</p>
                 </div>
               </motion.div>
             ))}
@@ -216,21 +216,21 @@ export default function Home() {
 
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="w-full md:w-1/2">
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Behind Valar</span>
+                <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Behind Valar</span>
               </motion.div>
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-8">
+              <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-8">
                 Founded by Lena Bykova.
               </motion.h2>
 
-              <motion.div variants={fadeIn} className="space-y-6 text-valar-indigo text-lg leading-relaxed mb-8">
+              <motion.div variants={fadeIn} className="space-y-6 text-valar-indigo text-xl leading-relaxed mb-8">
                 <p>I created Valar to help people better understand how property, investments and smart financial decisions shape long-term wealth, freedom and future opportunities.</p>
                 <p>After working across finance, audit, financial analytics, business valuation and investments for more than 20 years, I saw how often major financial decisions were made without a bigger long-term vision or strategy behind them.</p>
                 <p>Valar was built around a different approach — helping clients structure property and financial decisions with greater clarity, flexibility and long-term perspective.</p>
-                <p className="text-valar-indigo text-base">Alongside mortgage advice, Valar integrates modern analytical tools, wealth-planning frameworks and financial psychology to help clients make more informed and confident financial decisions over time.</p>
+                <p className="text-valar-indigo text-xl">Alongside mortgage advice, Valar integrates modern analytical tools, wealth-planning frameworks and financial psychology to help clients make more informed and confident financial decisions over time.</p>
               </motion.div>
 
               <motion.div data-cmp="HomePage.BehindValar.Credentials" variants={fadeIn} className="bg-white p-6 rounded-sm border border-valar-lilac mb-8">
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-valar-navy font-medium">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-base text-valar-navy font-medium">
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Certified Mortgage & Investment Adviser</li>
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> 20+ years in finance, analytics & investments</li>
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Business valuation & strategic analysis background</li>
@@ -254,10 +254,10 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Why Work With A Mortgage Adviser?</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Why Work With A Mortgage Adviser?</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-6">Guidance beyond the application itself.</motion.h2>
-            <motion.p variants={fadeIn} className="text-lg text-valar-indigo leading-relaxed">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">Guidance beyond the application itself.</motion.h2>
+            <motion.p variants={fadeIn} className="text-xl text-valar-indigo leading-relaxed">
               Mortgage advice is not only about comparing interest rates. A good adviser helps structure lending decisions, navigate the approval process and provide guidance around long-term financial flexibility and future opportunities.
             </motion.p>
           </motion.div>
@@ -269,8 +269,8 @@ export default function Home() {
               { title: "No Direct Cost for Most Clients", desc: "Mortgage advisers are generally paid by the lender, meaning advice is usually provided at no direct cost to clients." },
             ].map((card, i) => (
               <motion.div data-cmp="HomePage.WhyAdviser.Card" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
-                <h3 className="text-lg font-bold text-valar-navy mb-3">{card.title}</h3>
-                <p className="text-valar-indigo text-sm leading-relaxed">{card.desc}</p>
+                <h3 className="text-2xl font-bold text-valar-navy mb-3">{card.title}</h3>
+                <p className="text-valar-indigo text-lg leading-relaxed">{card.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -286,33 +286,33 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-20">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What We Offer</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">What We Offer</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-6 max-w-4xl mx-auto">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6 max-w-4xl mx-auto">
               Financial guidance structured around property, lending and long-term decisions.
             </motion.h2>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
-              <h3 className="text-xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Borrowing</h3>
+              <h3 className="text-2xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Borrowing</h3>
               <div className="space-y-6">
-                <div><h4 className="font-bold text-valar-navy mb-2">Mortgage Advice</h4><p className="text-sm text-valar-indigo leading-relaxed">Support with buying, refinancing and structuring lending more strategically.</p></div>
-                <div><h4 className="font-bold text-valar-navy mb-2">Refinance & Restructuring</h4><p className="text-sm text-valar-indigo leading-relaxed">Review your current lending structure, flexibility and future opportunities.</p></div>
+                <div><h4 className="font-bold text-valar-navy mb-2">Mortgage Advice</h4><p className="text-lg text-valar-indigo leading-relaxed">Support with buying, refinancing and structuring lending more strategically.</p></div>
+                <div><h4 className="font-bold text-valar-navy mb-2">Refinance & Restructuring</h4><p className="text-lg text-valar-indigo leading-relaxed">Review your current lending structure, flexibility and future opportunities.</p></div>
               </div>
             </motion.div>
             <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
-              <h3 className="text-xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Wealth Building</h3>
+              <h3 className="text-2xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Wealth Building</h3>
               <div className="space-y-6">
-                <div><h4 className="font-bold text-valar-navy mb-2">Financial Planning</h4><p className="text-sm text-valar-indigo leading-relaxed">Build clearer financial direction around lifestyle, property and long-term goals.</p></div>
-                <div><h4 className="font-bold text-valar-navy mb-2">Investment Property Advice</h4><p className="text-sm text-valar-indigo leading-relaxed">Guidance around investment property decisions, equity and future opportunities.</p></div>
+                <div><h4 className="font-bold text-valar-navy mb-2">Financial Planning</h4><p className="text-lg text-valar-indigo leading-relaxed">Build clearer financial direction around lifestyle, property and long-term goals.</p></div>
+                <div><h4 className="font-bold text-valar-navy mb-2">Investment Property Advice</h4><p className="text-lg text-valar-indigo leading-relaxed">Guidance around investment property decisions, equity and future opportunities.</p></div>
               </div>
             </motion.div>
             <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
-              <h3 className="text-xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Business</h3>
+              <h3 className="text-2xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Business</h3>
               <div className="space-y-6">
-                <div><h4 className="font-bold text-valar-navy mb-2">Business Lending</h4><p className="text-sm text-valar-indigo leading-relaxed">Funding solutions and structure for small businesses and commercial property.</p></div>
-                <div><h4 className="font-bold text-valar-navy mb-2">Advisory Services</h4><p className="text-sm text-valar-indigo leading-relaxed">Strategic planning, forecasting and financial structure for established businesses.</p></div>
+                <div><h4 className="font-bold text-valar-navy mb-2">Business Lending</h4><p className="text-lg text-valar-indigo leading-relaxed">Funding solutions and structure for small businesses and commercial property.</p></div>
+                <div><h4 className="font-bold text-valar-navy mb-2">Advisory Services</h4><p className="text-lg text-valar-indigo leading-relaxed">Strategic planning, forecasting and financial structure for established businesses.</p></div>
               </div>
             </motion.div>
           </motion.div>
@@ -331,12 +331,12 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="w-full md:w-[55%]">
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">First-Home Buyer Guide</span>
+                <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">First-Home Buyer Guide</span>
               </motion.div>
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-6">
+              <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">
                 Buying your first home can feel overwhelming. Understanding the process shouldn&apos;t be.
               </motion.h2>
-              <motion.p variants={fadeIn} className="text-valar-indigo text-lg leading-relaxed mb-6">
+              <motion.p variants={fadeIn} className="text-valar-indigo text-xl leading-relaxed mb-6">
                 Our First-Home Buyer Guide was created to help clients better understand:
               </motion.p>
 
@@ -349,7 +349,7 @@ export default function Home() {
                 ))}
               </motion.ul>
 
-              <motion.p variants={fadeIn} className="text-valar-indigo text-lg leading-relaxed mb-10 italic">
+              <motion.p variants={fadeIn} className="text-valar-indigo text-xl leading-relaxed mb-10 italic">
                 Designed to make the process clearer, calmer and easier to navigate.
               </motion.p>
 
@@ -386,9 +386,9 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Insights & Learning</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Insights & Learning</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-valar-navy mb-6">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">
               Financial insights, market thinking and practical guidance.
             </motion.h2>
           </motion.div>
@@ -403,8 +403,8 @@ export default function Home() {
                 <div className="w-12 h-12 bg-valar-fog rounded-full flex items-center justify-center text-valar-amber mb-6">
                   <card.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-valar-navy mb-4">{card.title}</h3>
-                <p className="text-valar-indigo text-sm leading-relaxed mb-6 flex-1">{card.desc}</p>
+                <h3 className="text-2xl font-bold text-valar-navy mb-4">{card.title}</h3>
+                <p className="text-valar-indigo text-lg leading-relaxed mb-6 flex-1">{card.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -423,9 +423,9 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Before Buying Property</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Before Buying Property</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               The strategic questions worth answering before committing to property decisions.
             </motion.h2>
           </motion.div>
