@@ -35,27 +35,26 @@ export default function Home() {
       <section data-cmp="HomePage.Hero" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-bg.png"
+            src="/images/hero-nz.png"
             alt="New Zealand landscape"
             fill
             priority
+            unoptimized
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/55 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent z-10" />
         </div>
 
-        <div className="container mx-auto px-6 md:px-12 relative z-10 py-24">
+        <div className="container mx-auto px-6 md:px-12 relative z-10 pt-40 pb-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-xl lg:max-w-2xl">
-            <motion.div variants={fadeIn} className="mb-6 flex flex-col space-y-3">
-              <div className="h-[2px] w-6 bg-valar-amber"></div>
-              <span className="text-valar-steel font-bold tracking-tight text-xs uppercase">Strategic Mortgage & Financial Advice</span>
-            </motion.div>
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.1] text-white">
-              <span>Clarity for your financial future</span>
+            <motion.h1 variants={fadeIn} className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mb-6 leading-[1.15] text-white">
+              <span>Strategic Mortgage Advice Built Around Your Future</span>
               <span className="text-valar-amber">.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-lg lg:text-xl text-white/80 mb-10 max-w-md leading-relaxed font-light border-l-2 border-valar-amber pl-4">
-              Structured mortgage advice beyond today&apos;s rates.
+              Beyond approvals and interest rates.<br />
+              <span className="whitespace-nowrap">Bringing clarity to your lending and financial decisions.</span>
             </motion.p>
             <motion.div data-cmp="HomePage.Hero.Cta" variants={fadeIn} className="flex flex-col md:flex-row gap-4">
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">

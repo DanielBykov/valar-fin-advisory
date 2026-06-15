@@ -1,295 +1,272 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, ChevronDown, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+function navLink(isActive: boolean) {
+  return cn(
+    "text-base font-medium px-4 py-1.5 transition-colors relative",
+    "after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-valar-amber after:rounded-full after:transition-opacity after:duration-200",
+    isActive
+      ? "text-valar-amber after:opacity-100"
+      : "text-white hover:text-valar-amber after:opacity-0 hover:after:opacity-100"
+  );
+}
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
-    <nav data-cmp="Navbar" className="sticky top-0 z-50 w-full bg-valar-navy text-white font-sans">
-      <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        {/* Wordmark */}
-        <Link href="/" className="flex items-center">
-          <span className="bg-white text-valar-navy rounded px-3 py-1 flex flex-col leading-none">
-            <span className="font-sans font-bold text-lg tracking-tight">VALAR</span>
-            <span className="font-sans text-[0.55rem] uppercase tracking-[0.2em] text-valar-navy/70">
-              Financial Advisors
-            </span>
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1">
-          <Link
-            href="/"
-            className={cn(
-              "text-sm font-medium px-4 py-1.5 hover:text-valar-amber transition-colors relative",
-              pathname === "/" &&
-                "text-valar-amber after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-valar-amber after:rounded-full"
-            )}
-          >
-            Home
+    <>
+      <nav
+        data-cmp="Navbar"
+        className={cn(
+          "fixed top-0 z-50 w-full font-sans transition-colors duration-300",
+          "bg-valar-navy text-white"
+        )}
+      >
+        <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+          {/* Wordmark */}
+          <Link href="/" className="flex items-center ml-6">
+            <Image
+              src="/images/valar-logo.png"
+              alt="Valar Financial Advisors"
+              width={180}
+              height={48}
+              className="h-7 w-auto object-contain"
+              unoptimized
+            />
           </Link>
-          <span className="text-white/20 select-none text-xs">|</span>
 
-          {/* Services Mega Menu */}
-          <div data-cmp="Navbar.ServicesMegaMenu" className="group relative h-20 flex items-center">
-            <Link
-              href="/services"
-              className={cn(
-                "text-sm font-medium hover:text-valar-amber transition-colors flex items-center gap-1",
-                pathname?.startsWith("/services") && "text-valar-amber"
-              )}
-            >
-              Services <ChevronDown className="w-4 h-4 opacity-50 group-hover:rotate-180 transition-transform" />
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1 text-white">
+            <Link href="/" className={navLink(pathname === "/")}>
+              Home
             </Link>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-max max-w-[900px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
-              <div className="bg-white text-valar-navy shadow-xl rounded-b-xl border border-gray-100 p-8 grid grid-cols-4 gap-8">
-                <div>
-                  <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                    Private
-                  </h3>
-                  <ul className="space-y-4">
-                    <li>
-                      <Link href="/services/mortgage-advice" className="block hover:text-valar-amber">
-                        <div className="font-semibold text-[15px]">Mortgage Advice</div>
-                        <div className="text-xs text-gray-500 mt-1 leading-snug">
-                          Strategic mortgage structuring and lending support
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/financial-planning" className="block hover:text-valar-amber">
-                        <div className="font-semibold text-[15px]">Financial Planning</div>
-                        <div className="text-xs text-gray-500 mt-1 leading-snug">
-                          Clear financial direction aligned with long-term goals
-                        </div>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                    Wealth Building
-                  </h3>
-                  <ul className="space-y-4">
-                    <li>
-                      <Link href="/services/wealth-management-plan" className="block hover:text-valar-amber">
-                        <div className="font-semibold text-[15px]">Wealth Management Plan</div>
-                        <div className="text-xs text-gray-500 mt-1 leading-snug">
-                          Long-term roadmap for wealth building
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/services/investment-property-analysis"
-                        className="block hover:text-valar-amber"
-                      >
-                        <div className="font-semibold text-[15px]">Investment Property Analysis</div>
-                        <div className="text-xs text-gray-500 mt-1 leading-snug">
-                          Data-driven property analysis
-                        </div>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                    Business
-                  </h3>
-                  <ul className="space-y-4">
-                    <li>
-                      <Link href="/services/small-business-loans" className="block hover:text-valar-amber">
-                        <div className="font-semibold text-[15px]">Small Business Loans</div>
-                        <div className="text-xs text-gray-500 mt-1 leading-snug">
-                          Funding solutions for small businesses
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/business-advisory" className="block hover:text-valar-amber">
-                        <div className="font-semibold text-[15px]">Business Advisory Services</div>
-                        <div className="text-xs text-gray-500 mt-1 leading-snug">
-                          Business forecasting and growth support
-                        </div>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-valar-fog -m-8 ml-0 p-8 flex flex-col rounded-br-xl border-l border-gray-100">
-                  <div className="w-full h-32 bg-valar-concrete rounded mb-4" />
-                  <h4 className="font-bold text-lg leading-tight mb-2">Buying Your First Home?</h4>
-                  <p className="text-sm text-gray-600 mb-4 flex-1">
-                    Understand the process and key decisions before you speak to the bank.
-                  </p>
-                  <Link
-                    href="/services/first-home-buyers"
-                    className="text-valar-navy font-semibold text-sm hover:text-valar-amber flex items-center"
-                  >
-                    Explore the Roadmap <span className="ml-1">→</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+            <span className="text-white/20 select-none text-xs">|</span>
 
-          {/* Insights Mega Menu — hidden */}
-          {false && (
-          <><span className="text-white/20 select-none text-xs">|</span>
-
-          <div data-cmp="Navbar.InsightsMegaMenu" className="group relative h-16 flex items-center">
-            <Link
-              href="/insights"
-              className={cn(
-                "text-sm font-medium px-4 hover:text-valar-amber transition-colors flex items-center gap-1",
-                pathname === "/insights" && "text-valar-amber"
-              )}
-            >
-              Insights <ChevronDown className="w-4 h-4 opacity-50 group-hover:rotate-180 transition-transform" />
-            </Link>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-max max-w-[800px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
-              <div className="bg-white text-valar-navy shadow-xl rounded-b-xl border border-gray-100 p-8 grid grid-cols-4 gap-8">
-                <div>
-                  <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                    Market & Analysis
-                  </h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <Link href="/insights" className="text-[15px] hover:text-valar-amber block">
-                        Property Market Updates
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/insights" className="text-[15px] hover:text-valar-amber block">
-                        Real Client Scenarios
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                    Education & Guidance
-                  </h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <Link href="/insights" className="text-[15px] hover:text-valar-amber block">
-                        Learning Hub
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/insights" className="text-[15px] hover:text-valar-amber block">
-                        First-Home Buyers
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                    Tools & Support
-                  </h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <Link href="/insights" className="text-[15px] hover:text-valar-amber block">
-                        Calculators
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/insights" className="text-[15px] hover:text-valar-amber block">
-                        FAQs
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-valar-indigo text-white -m-8 ml-0 p-8 flex flex-col rounded-br-xl">
-                  <h4 className="font-bold text-lg leading-tight mb-2 mt-auto">
-                    Understanding the NZ Property Market
-                  </h4>
-                  <p className="text-sm text-valar-lilac mb-4">
-                    Latest perspectives from our advisory team.
-                  </p>
-                  <Link
-                    href="/insights"
-                    className="text-valar-amber font-semibold text-sm hover:text-white flex items-center"
-                  >
-                    Explore Insights <span className="ml-1">→</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div></>
-          )}
-
-          <span className="text-white/20 select-none text-xs">|</span>
-          <Link
-            href="/about"
-            className={cn(
-              "text-sm font-medium px-4 py-1.5 hover:text-valar-amber transition-colors",
-              pathname === "/about" && "text-valar-amber"
-            )}
-          >
-            About
-          </Link>
-          <span className="text-white/20 select-none text-xs">|</span>
-          <Link
-            href="/contact"
-            className={cn(
-              "text-sm font-medium px-4 py-1.5 hover:text-valar-amber transition-colors",
-              pathname === "/contact" && "text-valar-amber"
-            )}
-          >
-            Contact
-          </Link>
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
-          <Link
-            href="/contact"
-            className="flex items-center gap-2 border border-white/60 hover:border-white hover:bg-white/10 text-white font-medium text-sm px-5 py-2 rounded-sm transition-colors"
-          >
-            <Mail className="w-3.5 h-3.5" />
-            Get Updates
-          </Link>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
-      {isOpen && (
-        <div data-cmp="Navbar.MobileNav" className="md:hidden bg-valar-indigo border-t border-valar-navy/20">
-          <div className="px-4 pt-2 pb-6 space-y-2">
-            <Link href="/" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Home</Link>
-            <Link href="/services" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Services</Link>
-            {/* Insights mobile link — hidden */}
-            {false && <Link href="/insights" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Insights</Link>}
-            <Link href="/about" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>About</Link>
-            <Link href="/contact" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Contact</Link>
-            <div className="pt-4">
+            {/* Services Mega Menu */}
+            <div data-cmp="Navbar.ServicesMegaMenu" className="group relative h-20 flex items-center">
               <Link
-                href="/contact"
-                className="block w-full text-center border border-white text-white font-bold py-3 rounded-sm hover:bg-white hover:text-valar-navy transition-colors"
-                onClick={() => setIsOpen(false)}
+                href="/services"
+                className={cn(
+                  "text-base font-medium px-4 py-1.5 transition-colors flex items-center gap-1 relative",
+                  "after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-valar-amber after:rounded-full after:transition-opacity after:duration-200",
+                  pathname?.startsWith("/services")
+                    ? "text-valar-amber after:opacity-100"
+                    : "text-white hover:text-valar-amber after:opacity-0 hover:after:opacity-100"
+                )}
               >
-                Get Updates
+                Services <ChevronDown className="w-4 h-4 opacity-50 group-hover:rotate-180 transition-transform" />
               </Link>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-max max-w-[900px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
+                <div className="bg-white text-valar-navy shadow-xl rounded-b-xl border border-gray-100 p-8 grid grid-cols-4 gap-8">
+                  <div>
+                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
+                      Private
+                    </h3>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link href="/services/mortgage-advice" className="block hover:text-valar-amber">
+                          <div className="font-semibold text-[15px]">Mortgage Advice</div>
+                          <div className="text-xs text-gray-500 mt-1 leading-snug">
+                            Strategic mortgage structuring and lending support
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/services/financial-planning" className="block hover:text-valar-amber">
+                          <div className="font-semibold text-[15px]">Financial Planning</div>
+                          <div className="text-xs text-gray-500 mt-1 leading-snug">
+                            Clear financial direction aligned with long-term goals
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
+                      Wealth Building
+                    </h3>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link href="/services/wealth-management-plan" className="block hover:text-valar-amber">
+                          <div className="font-semibold text-[15px]">Wealth Management Plan</div>
+                          <div className="text-xs text-gray-500 mt-1 leading-snug">
+                            Long-term roadmap for wealth building
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/services/investment-property-analysis"
+                          className="block hover:text-valar-amber"
+                        >
+                          <div className="font-semibold text-[15px]">Investment Property Analysis</div>
+                          <div className="text-xs text-gray-500 mt-1 leading-snug">
+                            Data-driven property analysis
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
+                      Business
+                    </h3>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link href="/services/small-business-loans" className="block hover:text-valar-amber">
+                          <div className="font-semibold text-[15px]">Small Business Loans</div>
+                          <div className="text-xs text-gray-500 mt-1 leading-snug">
+                            Funding solutions for small businesses
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/services/business-advisory" className="block hover:text-valar-amber">
+                          <div className="font-semibold text-[15px]">Business Advisory Services</div>
+                          <div className="text-xs text-gray-500 mt-1 leading-snug">
+                            Business forecasting and growth support
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-valar-fog -m-8 ml-0 p-8 flex flex-col rounded-br-xl border-l border-gray-100">
+                    <div className="w-full h-32 bg-valar-concrete rounded mb-4" />
+                    <h4 className="font-bold text-lg leading-tight mb-2">Buying Your First Home?</h4>
+                    <p className="text-sm text-gray-600 mb-4 flex-1">
+                      Understand the process and key decisions before you speak to the bank.
+                    </p>
+                    <Link
+                      href="/services/first-home-buyers"
+                      className="text-valar-navy font-semibold text-sm hover:text-valar-amber flex items-center"
+                    >
+                      Explore the Roadmap <span className="ml-1">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Insights Mega Menu — hidden */}
+            {false && (
+            <><span className="text-white/20 select-none text-xs">|</span>
+
+            <div data-cmp="Navbar.InsightsMegaMenu" className="group relative h-16 flex items-center">
+              <Link
+                href="/insights"
+                className={cn(
+                  "text-sm font-medium px-4 hover:text-valar-amber transition-colors flex items-center gap-1",
+                  pathname === "/insights" && "text-valar-amber"
+                )}
+              >
+                Insights <ChevronDown className="w-4 h-4 opacity-50 group-hover:rotate-180 transition-transform" />
+              </Link>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-max max-w-[800px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
+                <div className="bg-white text-valar-navy shadow-xl rounded-b-xl border border-gray-100 p-8 grid grid-cols-4 gap-8">
+                  <div>
+                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
+                      Market & Analysis
+                    </h3>
+                    <ul className="space-y-3">
+                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Property Market Updates</Link></li>
+                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Real Client Scenarios</Link></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
+                      Education & Guidance
+                    </h3>
+                    <ul className="space-y-3">
+                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Learning Hub</Link></li>
+                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">First-Home Buyers</Link></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
+                      Tools & Support
+                    </h3>
+                    <ul className="space-y-3">
+                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Calculators</Link></li>
+                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">FAQs</Link></li>
+                    </ul>
+                  </div>
+                  <div className="bg-valar-indigo text-white -m-8 ml-0 p-8 flex flex-col rounded-br-xl">
+                    <h4 className="font-bold text-lg leading-tight mb-2 mt-auto">Understanding the NZ Property Market</h4>
+                    <p className="text-sm text-valar-lilac mb-4">Latest perspectives from our advisory team.</p>
+                    <Link href="/insights" className="text-valar-amber font-semibold text-sm hover:text-white flex items-center">
+                      Explore Insights <span className="ml-1">→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div></>
+            )}
+
+            <span className="text-white/20 select-none text-xs">|</span>
+            <Link href="/about" className={navLink(pathname === "/about")}>
+              About
+            </Link>
+            <span className="text-white/20 select-none text-xs">|</span>
+            <Link href="/contact" className={navLink(pathname === "/contact")}>
+              Contact
+            </Link>
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:block">
+            <Link
+              href="/contact"
+              className="flex items-center gap-2 border border-white/60 hover:border-white hover:bg-white/10 text-white font-medium text-sm px-5 py-2 rounded-sm transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              Get Updates
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden text-white"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {/* Mobile Nav */}
+        {isOpen && (
+          <div data-cmp="Navbar.MobileNav" className="md:hidden bg-valar-indigo border-t border-valar-navy/20">
+            <div className="px-4 pt-2 pb-6 space-y-2">
+              <Link href="/" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Home</Link>
+              <Link href="/services" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Services</Link>
+              {false && <Link href="/insights" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Insights</Link>}
+              <Link href="/about" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>About</Link>
+              <Link href="/contact" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Contact</Link>
+              <div className="pt-4">
+                <Link
+                  href="/contact"
+                  className="block w-full text-center border border-white text-white font-bold py-3 rounded-sm hover:bg-white hover:text-valar-navy transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Get Updates
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </nav>
+        )}
+      </nav>
+
+      {/* Spacer for pages without a full-bleed hero — keeps content below the fixed navbar */}
+      {!isHome && <div className="h-16" />}
+    </>
   );
 }
