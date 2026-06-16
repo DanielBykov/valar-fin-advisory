@@ -40,6 +40,7 @@ export function Navbar() {
               width={180}
               height={48}
               className="h-7 w-auto object-contain"
+              priority
               unoptimized
             />
           </Link>

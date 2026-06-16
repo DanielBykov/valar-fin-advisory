@@ -12,7 +12,7 @@ export function Footer() {
           {/* Column 1 — Brand block */}
           <div data-cmp="Footer.Brand">
             <div className="mb-4">
-              <Image src="/images/logo-white.png" alt="Valar Financial Advisors" width={180} height={60} className="object-contain -mt-2 -ml-3" />
+              <Image src="/images/logo-white.png" alt="Valar Financial Advisors" width={180} height={60} className="object-contain -mt-2 -ml-3" style={{ height: "auto" }} />
             </div>
             <p className="text-sm mb-4 leading-relaxed">
               Clarity as a path to freedom.

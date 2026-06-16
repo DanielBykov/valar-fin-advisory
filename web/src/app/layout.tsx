@@ -24,6 +24,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://valar.co.nz"),
   title: "Valar Financial Advisors",
   description:
     "Strategic mortgage and financial advice in New Zealand — clarity for your financial future.",
