@@ -497,10 +497,10 @@ export default function Home() {
                 <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">First-Home Buyer Guide</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">
-                Buying your first home can feel overwhelming. Understanding the process shouldn&apos;t be.
+                Buying your first home can feel overwhelming.
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo text-xl leading-relaxed mb-6">
-                Our First-Home Buyer Guide was created to help clients better understand:
+                Our First-Home Buyer Guide helps you better understand:
               </motion.p>
 
               <motion.ul variants={fadeIn} className="space-y-3 text-valar-navy font-medium mb-8">
@@ -526,17 +526,17 @@ export default function Home() {
               </motion.div>
 
               <motion.p variants={fadeIn} className="text-xs text-valar-indigo leading-relaxed max-w-lg">
-                Created by Valar Financial Advisors using practical mortgage experience, financial strategy and real client scenarios.
+                Created by Valar FA using practical mortgage experience and real client scenarios.
               </motion.p>
             </motion.div>
 
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="w-full md:w-[45%]">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="w-full md:w-[38%]">
               <Image
-                src="/images/first-home.png"
+                src="/images/first-home-2.png"
                 alt="First-Home Buyer Guide"
                 width={800}
-                height={600}
-                className="w-full rounded-lg shadow-xl object-cover aspect-[4/3]"
+                height={1000}
+                className="w-full rounded-lg shadow-xl object-cover aspect-[3/4] max-h-[520px]"
               />
             </motion.div>
           </div>
