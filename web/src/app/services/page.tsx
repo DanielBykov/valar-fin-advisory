@@ -9,12 +9,20 @@ export default function ServicesPage() {
   return (
     <div data-cmp="ServicesPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
       {/* Hero */}
-      <section data-cmp="ServicesPage.Hero" className="bg-valar-navy text-white pt-24 pb-20 px-4 md:px-6">
-        <div className="container mx-auto max-w-5xl">
+      <section data-cmp="ServicesPage.Hero" className="relative text-white pt-24 pb-20 px-4 md:px-6 overflow-hidden">
+        <Image
+          src="/images/services-hero.png"
+          alt="Services hero"
+          fill
+          className="object-cover object-right"
+          priority
+        />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,22,52,0.95) 0%, rgba(6,22,52,0.95) 50%, rgba(6,22,52,0.1) 100%)' }} />
+        <div className="relative z-10 container mx-auto max-w-5xl">
           <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Our Services<span className="text-valar-amber">.</span></h1>
           <p className="text-xl md:text-2xl font-light text-valar-lilac max-w-3xl leading-relaxed border-l-2 border-valar-amber pl-4">
-            Strategic financial advisory tailored to your personal goals, property ambitions, and business growth.
+            Strategic financial advisory<br />tailored to your property ambitions and wealth growth.
           </p>
         </div>
       </section>
@@ -33,7 +41,6 @@ export default function ServicesPage() {
                 We handle the entire lending process, from initial strategy and bank negotiation to structuring the debt for optimal flexibility. Whether you are a first-home buyer, upgrading, or refinancing, we secure the right terms aligned with your life stage.
               </p>
               <div className="flex flex-wrap gap-4 mt-auto items-center">
-                <Link href="/book" className="bg-valar-navy text-white px-6 py-3 rounded-sm font-semibold text-sm hover:bg-valar-indigo transition-colors">Book Strategy Call</Link>
                 <Link href="/contact" className="border border-gray-200 text-valar-navy px-6 py-3 rounded-sm font-semibold text-sm hover:border-valar-navy transition-colors">Enquire</Link>
                 <Link href="/services/mortgage-advice" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
@@ -44,7 +51,6 @@ export default function ServicesPage() {
                 Clear, actionable financial direction. We assess your current position, map out your long-term goals, and implement structured strategies covering KiwiSaver, investments, risk management, and retirement planning.
               </p>
               <div className="flex flex-wrap gap-4 mt-auto items-center">
-                <Link href="/book" className="bg-valar-navy text-white px-6 py-3 rounded-sm font-semibold text-sm hover:bg-valar-indigo transition-colors">Book Strategy Call</Link>
                 <Link href="/contact" className="border border-gray-200 text-valar-navy px-6 py-3 rounded-sm font-semibold text-sm hover:border-valar-navy transition-colors">Enquire</Link>
                 <Link href="/services/financial-planning" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
@@ -61,11 +67,12 @@ export default function ServicesPage() {
           >
             <Link href="/services/first-home-buyers" className="group block relative overflow-hidden rounded-xl bg-valar-navy">
               <Image
-                src="/images/first-home.png"
-                alt="First home"
+                src="/images/first-home-buyers-banner.png"
+                alt="First home buyers"
                 fill
-                className="object-cover object-center opacity-30 group-hover:opacity-40 transition-opacity duration-300"
+                className="object-cover object-center"
               />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,22,52,0.92) 0%, rgba(6,22,52,0.92) 45%, rgba(6,22,52,0.3) 100%)' }} />
               <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-8 md:p-10">
                 <div>
                   <span className="text-valar-amber font-bold tracking-widest text-xs uppercase block mb-3">First Home Buyers</span>
@@ -97,7 +104,6 @@ export default function ServicesPage() {
                 A highly structured, long-term roadmap designed to build and preserve wealth. We construct diversified strategies that compound over time, adjusting the framework as market conditions and personal circumstances evolve.
               </p>
               <div className="flex flex-wrap gap-4 mt-auto items-center">
-                <Link href="/book" className="bg-valar-navy text-white px-6 py-3 rounded-sm font-semibold text-sm hover:bg-valar-indigo transition-colors">Book Strategy Call</Link>
                 <Link href="/contact" className="border border-gray-200 text-valar-navy px-6 py-3 rounded-sm font-semibold text-sm hover:border-valar-navy transition-colors">Enquire</Link>
                 <Link href="/services/wealth-management-plan" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
@@ -108,7 +114,6 @@ export default function ServicesPage() {
                 Data-driven analysis for property investors. We advise on leveraging equity, portfolio structuring, yield versus capital growth decisions, and the optimal debt frameworks to minimize risk while scaling your holdings.
               </p>
               <div className="flex flex-wrap gap-4 mt-auto items-center">
-                <Link href="/book" className="bg-valar-navy text-white px-6 py-3 rounded-sm font-semibold text-sm hover:bg-valar-indigo transition-colors">Book Strategy Call</Link>
                 <Link href="/contact" className="border border-gray-200 text-valar-navy px-6 py-3 rounded-sm font-semibold text-sm hover:border-valar-navy transition-colors">Enquire</Link>
                 <Link href="/services/investment-property-analysis" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
@@ -129,7 +134,6 @@ export default function ServicesPage() {
                 Strategic funding solutions for business expansion, equipment finance, or working capital. We prepare robust business cases for lenders and secure commercial terms that protect your personal assets where possible.
               </p>
               <div className="flex flex-wrap gap-4 mt-auto items-center">
-                <Link href="/book" className="bg-valar-navy text-white px-6 py-3 rounded-sm font-semibold text-sm hover:bg-valar-indigo transition-colors">Book Strategy Call</Link>
                 <Link href="/contact" className="border border-gray-200 text-valar-navy px-6 py-3 rounded-sm font-semibold text-sm hover:border-valar-navy transition-colors">Enquire</Link>
                 <Link href="/services/small-business-loans" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
@@ -140,7 +144,6 @@ export default function ServicesPage() {
                 Growth-focused advisory for established enterprises. We assist with cashflow forecasting, risk management, succession planning, and ensuring your business structure supports your overarching personal wealth goals.
               </p>
               <div className="flex flex-wrap gap-4 mt-auto items-center">
-                <Link href="/book" className="bg-valar-navy text-white px-6 py-3 rounded-sm font-semibold text-sm hover:bg-valar-indigo transition-colors">Book Strategy Call</Link>
                 <Link href="/contact" className="border border-gray-200 text-valar-navy px-6 py-3 rounded-sm font-semibold text-sm hover:border-valar-navy transition-colors">Enquire</Link>
                 <Link href="/services/business-advisory" className="text-valar-amber font-semibold text-sm hover:underline flex items-center gap-1">Learn More <ArrowRight className="w-4 h-4" /></Link>
               </div>
@@ -150,7 +153,7 @@ export default function ServicesPage() {
       </div>
 
       {/* Bottom CTA */}
-      <section data-cmp="ServicesPage.BottomCta" className="bg-valar-amber py-20 mt-10">
+      <section data-cmp="ServicesPage.BottomCta" className="bg-valar-fog pt-10 pb-20 mt-10">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-valar-navy mb-6">Ready to discuss your strategy?</h2>
           <Link href="/book" className="inline-flex items-center justify-center bg-valar-navy text-white px-8 py-4 rounded-sm font-bold hover:bg-valar-indigo transition-colors">
