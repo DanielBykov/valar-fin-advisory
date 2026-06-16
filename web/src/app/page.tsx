@@ -148,14 +148,14 @@ export default function Home() {
             {/* Vertical connecting line — desktop only */}
             <div className="hidden md:block absolute top-12 bottom-12 w-px bg-valar-concrete/50 left-28" />
 
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="divide-y divide-valar-concrete/30">
+            <div className="divide-y divide-valar-concrete/30">
               {[
                 { num: "01", icon: Users,      title: "Bigger Picture View",    desc: "We look at your position, priorities and what the property decision needs to support — without turning the conversation into unnecessary lifestyle coaching." },
                 { num: "02", icon: BarChart2,  title: "Financial Strategy & Structure",      desc: "We analyse affordability, cashflow, lending options, flexibility and risks to build a structure that works now and can adapt later." },
                 { num: "03", icon: FileCheck,  title: "Application & Settlement",  desc: "Once the strategy is clear, we manage the application, lender communication, approval process and settlement steps." },
                 { num: "04", icon: RefreshCw,  title: "Ongoing Guidance",                    desc: "As rates, opportunities and life circumstances change, we help review and adjust the strategy over time." },
               ].map((step, i) => (
-                <motion.div data-cmp="HomePage.HowWeWork.Step" key={i} variants={fadeIn}>
+                <motion.div data-cmp="HomePage.HowWeWork.Step" key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.55, delay: i * 0.12, ease: "easeOut" }}>
                   {/* Desktop */}
                   <div className="hidden md:flex items-center py-10">
                     <span className="w-24 flex-shrink-0 text-5xl font-bold text-valar-navy tabular-nums">{step.num}</span>
@@ -182,7 +182,7 @@ export default function Home() {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
