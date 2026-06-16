@@ -15,6 +15,8 @@ import {
   Calendar,
   FileText,
   AlertTriangle,
+  Users,
+  FileCheck,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
@@ -81,7 +83,7 @@ export default function Home() {
               { icon: HomeIcon, title: "Buying a Home", desc: "Support for first-home buyers and future homeowners.", link: "/services" },
               { icon: RefreshCw, title: "Refinancing & Restructuring", desc: "Review your current lending structure and future flexibility.", link: "/services" },
               { icon: TrendingUp, title: "Investing in Property", desc: "Property decisions structured around long-term opportunities.", link: "/services" },
-              { icon: Briefcase, title: "Business & Self-Employed", desc: "Strategic lending support for business owners and more complex financial structures.", link: "/services" },
+              { icon: Briefcase, title: "Business & Self-Employed", desc: "Lending support for business owners. Complex financial structures.", link: "/services" },
             ].map((path, i) => (
               <motion.div data-cmp="HomePage.WhoWeHelp.PathCard" key={i} variants={fadeIn}>
                 <Link href={path.link} className="block bg-white p-8 rounded-lg shadow-sm border-l-4 border-transparent hover:border-valar-amber hover:shadow-md transition-all group h-full">
@@ -105,18 +107,18 @@ export default function Home() {
               <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">More Than A Mortgage</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              We help build financial architecture around property decisions.
+              <span className="block">Property decisions support</span><span className="block">the future you&apos;re building.</span>
             </motion.h2>
             <motion.p variants={fadeIn} className="text-xl text-valar-lilac leading-relaxed">
-              Most mortgage advice focuses on approval and rates. Valar helps clients understand how property decisions connect with lifestyle, cashflow, future flexibility and long-term financial goals.
+              Most advisers help you secure a property. We help you understand how that decision fits into the bigger picture — your cashflow, future plans and long-term financial goals.
             </motion.p>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: "Financial Clarity", desc: "Understand what is realistically comfortable — not simply what the bank may approve." },
-              { title: "Strategic Structure", desc: "Mortgage decisions built around flexibility, future plans and long-term financial goals." },
-              { title: "Long-Term Planning", desc: "Property decisions connected with future opportunities, equity and wider financial strategy." },
+              { title: "Financial Clarity", desc: "Know where you stand and what matters the most." },
+              { title: "Strategic Structure", desc: "Create flexibility for future plans and opportunities." },
+              { title: "Long-Term Planning", desc: "Align property decisions with your wealth goals." },
             ].map((card, i) => (
               <motion.div data-cmp="HomePage.MoreThanAMortgage.ValueCard" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber hover:shadow-[0_0_20px_rgba(232,162,58,0.15)] transition-shadow">
                 <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
@@ -132,36 +134,56 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mb-16">
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">How We Work</span>
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Our Framework</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6 leading-tight">
-              A more structured approach to mortgage and financial decisions.
+              Structured financial approach.
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-xl text-valar-indigo leading-relaxed">
-              Valar supports clients from the moment property becomes part of their thinking — helping structure decisions with greater clarity, long-term perspective and practical guidance throughout the process.
+            <motion.p variants={fadeIn} className="text-xl text-valar-indigo leading-relaxed whitespace-nowrap">
+              We support clients from the first property conversation through to settlement and beyond.
             </motion.p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-4 relative">
-            <div className="hidden md:block absolute top-[28px] left-0 right-0 h-[2px] bg-valar-concrete z-0"></div>
-            {[
-              { num: "01", title: "Understanding the Bigger Picture", desc: "We begin by understanding your lifestyle, future plans, financial priorities and what you want the property to help you achieve — not simply how much the bank may approve." },
-              { num: "02", title: "Financial Strategy & Structure", desc: "We analyse affordability, cashflow, lending structure, future flexibility and potential risks to help build a mortgage strategy that supports both current comfort and long-term goals." },
-              { num: "03", title: "Application, Approval & Settlement", desc: "We prepare and submit your application, work directly with lenders and manage the approval process from strategy and bank negotiations through to settlement." },
-              { num: "04", title: "Ongoing Guidance", desc: "Property decisions continue long after settlement. As life, rates and future opportunities evolve, we continue helping clients review and adapt their mortgage and financial strategy over time." },
-            ].map((step, i) => (
-              <motion.div data-cmp="HomePage.HowWeWork.Step" key={i} variants={fadeIn} className="relative z-10 flex flex-col pt-2">
-                <div className="w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-lg mb-6 border-4 border-valar-fog">
-                  {step.num}
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border border-valar-concrete flex-1 relative overflow-hidden">
-                  <div className="absolute -right-4 -bottom-8 text-8xl font-bold text-valar-concrete/50 pointer-events-none">{step.num}</div>
-                  <h3 className="text-2xl font-bold text-valar-navy mb-3 relative z-10">{step.title}</h3>
-                  <p className="text-valar-indigo text-lg leading-relaxed relative z-10">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="relative">
+            {/* Vertical connecting line — desktop only */}
+            <div className="hidden md:block absolute top-12 bottom-12 w-px bg-valar-concrete/50 left-28" />
+
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="divide-y divide-valar-concrete/30">
+              {[
+                { num: "01", icon: Users,      title: "Bigger Picture View",    desc: "We look at your position, priorities and what the property decision needs to support — without turning the conversation into unnecessary lifestyle coaching." },
+                { num: "02", icon: BarChart2,  title: "Financial Strategy & Structure",      desc: "We analyse affordability, cashflow, lending options, flexibility and risks to build a structure that works now and can adapt later." },
+                { num: "03", icon: FileCheck,  title: "Application & Settlement",  desc: "Once the strategy is clear, we manage the application, lender communication, approval process and settlement steps." },
+                { num: "04", icon: RefreshCw,  title: "Ongoing Guidance",                    desc: "As rates, opportunities and life circumstances change, we help review and adjust the strategy over time." },
+              ].map((step, i) => (
+                <motion.div data-cmp="HomePage.HowWeWork.Step" key={i} variants={fadeIn}>
+                  {/* Desktop */}
+                  <div className="hidden md:flex items-center py-10">
+                    <span className="w-24 flex-shrink-0 text-5xl font-bold text-valar-navy tabular-nums">{step.num}</span>
+                    <div className="w-8 flex-shrink-0 flex justify-center relative z-10">
+                      <div className="w-4 h-4 rounded-full border-2 border-valar-amber bg-valar-fog" />
+                    </div>
+                    <div className="w-6 flex-shrink-0" />
+                    <div className="w-[4.5rem] h-[4.5rem] flex-shrink-0 rounded-full bg-valar-concrete/30 flex items-center justify-center">
+                      <step.icon className="w-6 h-6 text-valar-indigo" />
+                    </div>
+                    <div className="self-stretch border-l border-valar-concrete/50 mx-6" />
+                    <div className="w-[20rem] flex-shrink-0">
+                      <h3 className="text-xl font-bold text-valar-navy whitespace-nowrap">{step.title}</h3>
+                    </div>
+                    <p className="max-w-[650px] text-base text-valar-indigo leading-relaxed pl-10">{step.desc}</p>
+                  </div>
+                  {/* Mobile */}
+                  <div className="flex md:hidden items-start gap-5 py-8">
+                    <span className="text-4xl font-bold text-valar-navy w-14 flex-shrink-0 tabular-nums">{step.num}</span>
+                    <div>
+                      <h3 className="text-xl font-bold text-valar-navy mb-2 leading-snug">{step.title}</h3>
+                      <p className="text-lg text-valar-indigo leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
