@@ -666,32 +666,26 @@ export default function Home() {
       </section>
 
       {/* FINAL CTA */}
-      <section data-cmp="HomePage.FinalCta" className="py-24 bg-valar-navy border-t border-white/10 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-valar-indigo/30 via-transparent to-transparent"></div>
+      <section data-cmp="HomePage.FinalCta" className="py-24 bg-white border-t border-valar-concrete relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center">
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 tracking-tight">
               START WITH CLARITY
             </motion.h2>
-            <motion.div variants={fadeIn} className="space-y-4 mb-10">
-              <p className="text-lg md:text-xl text-valar-lilac leading-relaxed">
-                Whether you&apos;re buying, restructuring or planning ahead, the first step is understanding the bigger financial picture.
-              </p>
-              <p className="text-lg md:text-xl text-valar-lilac leading-relaxed">
-                Valar helps clients approach property and financial decisions with greater clarity, structure and long-term perspective.
-              </p>
-            </motion.div>
+            <motion.p variants={fadeIn} className="text-lg md:text-xl text-valar-indigo leading-relaxed mb-10">
+              Property decisions are easier when you understand the bigger picture.
+            </motion.p>
 
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-auto">
+              <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-56">
                 Book Strategy Call
               </Link>
-              <Link href="/insights" className="bg-transparent border border-white/50 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-auto">
-                Explore Insights & Learning
+              <Link href="/insights" className="bg-transparent border-2 border-valar-navy hover:bg-valar-navy hover:text-white text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-56">
+                Explore Insights
               </Link>
             </motion.div>
 
-            <motion.p variants={fadeIn} className="text-xs text-valar-steel max-w-sm mx-auto">
+            <motion.p variants={fadeIn} className="text-xs text-valar-indigo max-w-sm mx-auto">
               No pressure, no obligation — simply a clearer conversation around your next financial decision.
             </motion.p>
           </motion.div>
