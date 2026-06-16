@@ -22,6 +22,10 @@ import {
   ChevronRight,
   MapPin,
   Star,
+  Compass,
+  Landmark,
+  ShieldCheck,
+  Check,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
@@ -360,32 +364,65 @@ export default function Home() {
       {/* WHY WORK WITH AN ADVISER */}
       <section data-cmp="HomePage.WhyAdviser" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
+
+          {/* Header */}
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center mb-16">
-            <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Why Work With A Mortgage Adviser?</span>
+            <motion.div variants={fadeIn} className="mb-6">
+              <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Financial Guidance</span>
+              <div className="w-10 h-0.5 bg-valar-amber mx-auto mt-3" />
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">Guidance beyond the application itself.</motion.h2>
+            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">Why Work With a Mortgage Adviser?</motion.h2>
             <motion.p variants={fadeIn} className="text-xl text-valar-indigo leading-relaxed">
-              Mortgage advice is not only about comparing interest rates. A good adviser helps structure lending decisions, navigate the approval process and provide guidance around long-term financial flexibility and future opportunities.
+              Good advice can help you navigate the process, understand your options, and make lending decisions that support your longer-term goals.
             </motion.p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {/* Three columns */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-valar-concrete mb-12">
             {[
-              { title: "Strategic Guidance", desc: "Advice around structure, flexibility and long-term financial decisions — not only loan approval." },
-              { title: "Bank & Lender Access", desc: "We work directly with lenders, helping clients compare options and navigate the application process more efficiently." },
-              { title: "No Direct Cost for Most Clients", desc: "Mortgage advisers are generally paid by the lender, meaning advice is usually provided at no direct cost to clients." },
-            ].map((card, i) => (
-              <motion.div data-cmp="HomePage.WhyAdviser.Card" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
-                <h3 className="text-2xl font-bold text-valar-navy mb-3">{card.title}</h3>
-                <p className="text-valar-indigo text-lg leading-relaxed">{card.desc}</p>
+              {
+                icon: <Compass className="w-8 h-8 text-valar-navy" />,
+                title: "Strategic Guidance",
+                items: ["Mortgage structure aligned with your goals", "Understanding future flexibility and options", "Support with major property decisions"],
+              },
+              {
+                icon: <Landmark className="w-8 h-8 text-valar-navy" />,
+                title: "Bank & Lender Access",
+                items: ["Access to multiple lenders and options", "Guidance through the application process", "Support negotiating terms and conditions"],
+              },
+              {
+                icon: <Users className="w-8 h-8 text-valar-navy" />,
+                title: "Ongoing Support",
+                items: ["Refixing and restructuring guidance", "Support as circumstances change", "Future property and lending discussions"],
+              },
+            ].map((col, i) => (
+              <motion.div data-cmp="HomePage.WhyAdviser.Column" key={i} variants={fadeIn} className="flex flex-col items-center text-center px-8 py-8">
+                <div className="w-20 h-20 rounded-full bg-valar-fog flex items-center justify-center mb-6">
+                  {col.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-valar-navy mb-3">{col.title}</h3>
+                <div className="w-10 h-0.5 bg-valar-amber mb-6" />
+                <ul className="space-y-3 text-left w-full">
+                  {col.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-3">
+                      <Check className="w-4 h-4 text-valar-amber flex-shrink-0 mt-1" />
+                      <span className="text-valar-indigo">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </motion.div>
 
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center text-valar-indigo font-medium max-w-2xl mx-auto">
-            Clients often tell us that having structured guidance throughout the process made complex financial decisions feel far clearer and less overwhelming.
-          </motion.p>
+          {/* Bottom banner */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-valar-fog rounded-lg p-6 flex items-center gap-6">
+            <ShieldCheck className="w-10 h-10 text-valar-amber flex-shrink-0" />
+            <div className="w-px h-10 bg-valar-concrete flex-shrink-0" />
+            <p className="text-valar-indigo text-lg">
+              Professional financial guidance throughout the process — typically at <strong className="text-valar-navy">no direct cost</strong> to most clients.
+            </p>
+          </motion.div>
+
         </div>
       </section>
 
