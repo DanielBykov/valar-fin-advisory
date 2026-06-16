@@ -434,30 +434,48 @@ export default function Home() {
               <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">What We Offer</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6 max-w-4xl mx-auto">
-              Financial guidance structured around property, lending and long-term decisions.
+              Our Services & Solutions.
             </motion.h2>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
-              <h3 className="text-2xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Borrowing</h3>
+              <h3 className="text-2xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Private</h3>
               <div className="space-y-6">
-                <div><h4 className="font-bold text-valar-navy mb-2">Mortgage Advice</h4><p className="text-lg text-valar-indigo leading-relaxed">Support with buying, refinancing and structuring lending more strategically.</p></div>
-                <div><h4 className="font-bold text-valar-navy mb-2">Refinance & Restructuring</h4><p className="text-lg text-valar-indigo leading-relaxed">Review your current lending structure, flexibility and future opportunities.</p></div>
+                <Link href="/services/mortgage-advice" className="block group border-b border-transparent hover:border-valar-amber transition-colors pb-3">
+                  <div className="flex items-center justify-between mb-2"><h4 className="font-bold text-valar-navy group-hover:text-valar-amber transition-colors">Mortgage Advice</h4><ArrowRight className="w-4 h-4 text-valar-amber opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                  <p className="text-lg text-valar-indigo leading-relaxed">Strategic mortgage and lending support.</p>
+                </Link>
+                <Link href="/services/financial-planning" className="block group border-b border-transparent hover:border-valar-amber transition-colors pb-3">
+                  <div className="flex items-center justify-between mb-2"><h4 className="font-bold text-valar-navy group-hover:text-valar-amber transition-colors">Financial Planning</h4><ArrowRight className="w-4 h-4 text-valar-amber opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                  <p className="text-lg text-valar-indigo leading-relaxed">Clear financials aligned with long-term goals.</p>
+                </Link>
               </div>
             </motion.div>
             <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
               <h3 className="text-2xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Wealth Building</h3>
               <div className="space-y-6">
-                <div><h4 className="font-bold text-valar-navy mb-2">Financial Planning</h4><p className="text-lg text-valar-indigo leading-relaxed">Build clearer financial direction around lifestyle, property and long-term goals.</p></div>
-                <div><h4 className="font-bold text-valar-navy mb-2">Investment Property Advice</h4><p className="text-lg text-valar-indigo leading-relaxed">Guidance around investment property decisions, equity and future opportunities.</p></div>
+                <Link href="/services/wealth-management-plan" className="block group border-b border-transparent hover:border-valar-amber transition-colors pb-3">
+                  <div className="flex items-center justify-between mb-2"><h4 className="font-bold text-valar-navy group-hover:text-valar-amber transition-colors">Wealth Management Plan</h4><ArrowRight className="w-4 h-4 text-valar-amber opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                  <p className="text-lg text-valar-indigo leading-relaxed">Long-term roadmap for wealth building.</p>
+                </Link>
+                <Link href="/services/investment-property-analysis" className="block group border-b border-transparent hover:border-valar-amber transition-colors pb-3">
+                  <div className="flex items-center justify-between mb-2"><h4 className="font-bold text-valar-navy group-hover:text-valar-amber transition-colors">Investment Property Analysis</h4><ArrowRight className="w-4 h-4 text-valar-amber opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                  <p className="text-lg text-valar-indigo leading-relaxed">Data-driven property analysis.</p>
+                </Link>
               </div>
             </motion.div>
             <motion.div data-cmp="HomePage.WhatWeOffer.Column" variants={fadeIn} className="space-y-8">
               <h3 className="text-2xl font-bold text-valar-navy border-b-2 border-valar-amber pb-4 inline-block pr-8 uppercase tracking-wider">Business</h3>
               <div className="space-y-6">
-                <div><h4 className="font-bold text-valar-navy mb-2">Business Lending</h4><p className="text-lg text-valar-indigo leading-relaxed">Funding solutions and structure for small businesses and commercial property.</p></div>
-                <div><h4 className="font-bold text-valar-navy mb-2">Advisory Services</h4><p className="text-lg text-valar-indigo leading-relaxed">Strategic planning, forecasting and financial structure for established businesses.</p></div>
+                <Link href="/services/small-business-loans" className="block group border-b border-transparent hover:border-valar-amber transition-colors pb-3">
+                  <div className="flex items-center justify-between mb-2"><h4 className="font-bold text-valar-navy group-hover:text-valar-amber transition-colors">Small Business Loans</h4><ArrowRight className="w-4 h-4 text-valar-amber opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                  <p className="text-lg text-valar-indigo leading-relaxed">Funding solutions for small businesses.</p>
+                </Link>
+                <Link href="/services/business-advisory" className="block group border-b border-transparent hover:border-valar-amber transition-colors pb-3">
+                  <div className="flex items-center justify-between mb-2"><h4 className="font-bold text-valar-navy group-hover:text-valar-amber transition-colors">Business Advisory Services</h4><ArrowRight className="w-4 h-4 text-valar-amber opacity-0 group-hover:opacity-100 transition-opacity" /></div>
+                  <p className="text-lg text-valar-indigo leading-relaxed">Business forecasting and growth support.</p>
+                </Link>
               </div>
             </motion.div>
           </motion.div>
