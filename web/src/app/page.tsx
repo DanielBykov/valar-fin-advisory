@@ -36,11 +36,11 @@ const staggerContainer = {
 };
 
 const TESTIMONIALS = [
-  { initials: "J&S", name: "Jane & Scott",    type: "First Home Buyers",         location: "Auckland",     quote: "Half a year ago we even can't imagine that today we will be the owners of our first home.",          body: "Lena encouraged us to analyze our opportunities, and we understand that we can do this. Really appreciate the support during all the process." },
-  { initials: "M",   name: "Marina",          type: "Refinance Client",           location: "Auckland",     quote: "I worked through a difficult situation in my life, and I thought that I will lose my house.",        body: "Lena helped me to refinance it with another bank and build up some security for me and my son. I have a variable income and the border in my home, but most importantly, I'm the owner." },
-  { initials: "A&M", name: "Alex & Max",      type: "First Home Buyers",         location: "Christchurch", quote: "It was a long run, but finally we settled, and Lena helped us.",                                    body: "Really appreciate the support during all the process, from the beginning of the application and settlement, and now we are more confident in our future." },
-  { initials: "O",   name: "Olga",            type: "Investment Property Client", location: "Wellington",   quote: "Lena looked at the whole picture, not just the mortgage.",                                        body: "Her guidance helped us make decisions that aligned with our long-term plans, not just what worked today. We feel much more in control of our future." },
-  { initials: "E&D", name: "Emily & David",   type: "Refinance Client",           location: "Auckland",     quote: "The process felt so much less stressful with Lena guiding us.",                                   body: "Everything was explained clearly, and we always knew what was happening next. It made a huge difference." },
+  { image: "/images/avatars/avatar1.png", name: "Jane & Scott",  type: "First Home Buyers",         location: "Auckland",     quote: "Half a year ago we even can't imagine that today we will be the owners of our first home.",          body: "Lena encouraged us to look at our opportunities, and we understand that we can do this. Really appreciate the support during all the process." },
+  { image: "/images/avatars/avatar2.png", name: "Marie",         type: "Refinance Client",           location: "Auckland",     quote: "I thought that I will lose my house.",        body: "Lena helped me to refinance it with another bank and build up some security for me and my son. I have a variable income and the border in my home, but most importantly, I'm the owner." },
+  { image: "/images/avatars/avatar3.png", name: "Alex & Max",    type: "First Home Buyers",         location: "Christchurch", quote: "It was a long run, but finally we settled, and Lena helped us.",                                    body: "Really appreciate the support during all the process, from the beginning of the application and settlement, and now we are more confident in our future." },
+  { image: "/images/avatars/avatar4.png", name: "P&K",           type: "Investment Property Client", location: "Wellington",   quote: "Lena looked at the whole picture, not just the mortgage.",                                        body: "Her guidance helped us make decisions that aligned with our long-term plans, not just what worked today. We feel much more in control of our future." },
+  { image: "/images/avatars/avatar5.png", name: "Emily & David", type: "Refinance Client",           location: "Auckland",     quote: "The process felt so much less stressful with Lena guiding us.",                                   body: "Everything was explained clearly, and we always knew what was happening next. It made a huge difference." },
 ];
 
 const MINI_REVIEWS = [
@@ -61,7 +61,11 @@ export default function Home() {
     const newIndex = Math.max(0, Math.min(testimonialMax, testimonialIndex + dir));
     setTestimonialIndex(newIndex);
     const track = testimonialTrackRef.current;
-    if (track) track.scrollTo({ left: newIndex * (track.offsetWidth + 24) / 3, behavior: "smooth" });
+    if (track) {
+      const firstCard = track.firstElementChild as HTMLElement;
+      const cardWidth = firstCard ? firstCard.offsetWidth : track.offsetWidth / 3;
+      track.scrollTo({ left: newIndex * (cardWidth + 24), behavior: "smooth" });
+    }
   };
   return (
     <div data-cmp="HomePage" className="w-full flex flex-col font-sans">
@@ -252,20 +256,19 @@ export default function Home() {
             <div className="overflow-hidden">
               <div ref={testimonialTrackRef} className="flex gap-6 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
                 {TESTIMONIALS.map((t, i) => (
-                  <div data-cmp="HomePage.Testimonials.Card" key={i} className="flex-shrink-0 w-[calc(33.333%-16px)] bg-white rounded-xl border border-valar-concrete/60 p-6 shadow-sm flex flex-col">
-                    {/* Avatar */}
-                    <div className="w-20 h-20 rounded-full bg-valar-fog border border-valar-concrete/50 flex items-center justify-center mb-5 flex-shrink-0">
-                      <span className="text-base font-bold text-valar-indigo">{t.initials}</span>
+                  <div data-cmp="HomePage.Testimonials.Card" key={i} className="flex-shrink-0 w-[calc(100vw-9rem)] md:w-[calc(33.333%-16px)] bg-white rounded-xl border border-valar-concrete/60 p-5 shadow-sm flex flex-col">
+                    {/* Top row: avatar left, quote right (stacks on mobile) */}
+                    <div className="flex flex-col gap-3 mb-4 md:flex-row md:items-center md:gap-4">
+                      <div className="w-14 h-14 rounded-full overflow-hidden border border-valar-concrete/50 flex-shrink-0">
+                        <Image src={t.image} alt={t.name} width={56} height={56} className="w-full h-full object-cover" />
+                      </div>
+                      <p className="font-bold italic text-valar-navy text-base leading-snug">&ldquo;{t.quote}&rdquo;</p>
                     </div>
-                    {/* Quote mark */}
-                    <div className="text-3xl text-valar-amber leading-none mb-3 font-serif opacity-70">&ldquo;&ldquo;</div>
-                    {/* Bold italic quote */}
-                    <p className="font-bold italic text-valar-navy mb-3 leading-snug">&ldquo;{t.quote}&rdquo;</p>
                     {/* Body */}
-                    <p className="text-sm text-valar-indigo leading-relaxed flex-1 mb-6">{t.body}</p>
+                    <p className="text-base text-valar-indigo leading-relaxed flex-1 mb-4">{t.body}</p>
                     {/* Footer */}
-                    <div className="border-t border-valar-concrete/50 pt-4">
-                      <p className="font-bold text-valar-navy">{t.name}</p>
+                    <div className="border-t border-valar-concrete/50 pt-3">
+                      <p className="font-bold text-valar-navy text-base">{t.name}</p>
                       <p className="text-valar-amber text-sm font-medium">{t.type}</p>
                       <p className="text-sm text-valar-indigo flex items-center gap-1 mt-1">
                         <MapPin className="w-3 h-3 flex-shrink-0" />{t.location}
@@ -280,7 +283,7 @@ export default function Home() {
             {/* Dots */}
             <div className="flex justify-center gap-2 mt-6">
               {Array.from({ length: testimonialMax + 1 }).map((_, i) => (
-                <button key={i} onClick={() => { setTestimonialIndex(i); const track = testimonialTrackRef.current; if (track) track.scrollTo({ left: i * (track.offsetWidth + 24) / 3, behavior: "smooth" }); }} className={`w-2 h-2 rounded-full transition-colors ${i === testimonialIndex ? "bg-valar-amber" : "bg-valar-concrete"}`} />
+                <button key={i} onClick={() => { setTestimonialIndex(i); const track = testimonialTrackRef.current; if (track) { const firstCard = track.firstElementChild as HTMLElement; const cardWidth = firstCard ? firstCard.offsetWidth : track.offsetWidth / 3; track.scrollTo({ left: i * (cardWidth + 24), behavior: "smooth" }); } }} className={`w-2 h-2 rounded-full transition-colors ${i === testimonialIndex ? "bg-valar-amber" : "bg-valar-concrete"}`} />
               ))}
             </div>
           </div>
@@ -294,9 +297,9 @@ export default function Home() {
               {MINI_REVIEWS.map((r, i) => (
                 <div key={i}>
                   <div className="flex gap-0.5 mb-1">
-                    {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-valar-amber text-valar-amber" />)}
+                    {[...Array(5)].map((_, j) => <Star key={j} className="w-4 h-4 fill-valar-amber text-valar-amber" />)}
                   </div>
-                  <p className="text-xs text-valar-indigo leading-relaxed">&ldquo;{r}&rdquo;</p>
+                  <p className="text-sm text-valar-indigo leading-relaxed">&ldquo;{r}&rdquo;</p>
                 </div>
               ))}
             </div>
