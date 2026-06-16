@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -17,6 +18,10 @@ import {
   AlertTriangle,
   Users,
   FileCheck,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Star,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
@@ -30,7 +35,34 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
+const TESTIMONIALS = [
+  { initials: "J&S", name: "Jane & Scott",    type: "First Home Buyers",         location: "Auckland",     quote: "Half a year ago we even can't imagine that today we will be the owners of our first home.",          body: "Lena encouraged us to analyze our opportunities, and we understand that we can do this. Really appreciate the support during all the process." },
+  { initials: "M",   name: "Marina",          type: "Refinance Client",           location: "Auckland",     quote: "I worked through a difficult situation in my life, and I thought that I will lose my house.",        body: "Lena helped me to refinance it with another bank and build up some security for me and my son. I have a variable income and the border in my home, but most importantly, I'm the owner." },
+  { initials: "A&M", name: "Alex & Max",      type: "First Home Buyers",         location: "Christchurch", quote: "It was a long run, but finally we settled, and Lena helped us.",                                    body: "Really appreciate the support during all the process, from the beginning of the application and settlement, and now we are more confident in our future." },
+  { initials: "O",   name: "Olga",            type: "Investment Property Client", location: "Wellington",   quote: "Lena looked at the whole picture, not just the mortgage.",                                        body: "Her guidance helped us make decisions that aligned with our long-term plans, not just what worked today. We feel much more in control of our future." },
+  { initials: "E&D", name: "Emily & David",   type: "Refinance Client",           location: "Auckland",     quote: "The process felt so much less stressful with Lena guiding us.",                                   body: "Everything was explained clearly, and we always knew what was happening next. It made a huge difference." },
+];
+
+const MINI_REVIEWS = [
+  "Clear communication through every step.",
+  "Highly professional and approachable.",
+  "Explained everything in a way we understood.",
+  "Made the whole process so much easier.",
+  "Great structure and advice.",
+  "Always available when we needed.",
+];
+
 export default function Home() {
+  const testimonialTrackRef = useRef<HTMLDivElement>(null);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const testimonialMax = TESTIMONIALS.length - 3;
+
+  const scrollTestimonials = (dir: number) => {
+    const newIndex = Math.max(0, Math.min(testimonialMax, testimonialIndex + dir));
+    setTestimonialIndex(newIndex);
+    const track = testimonialTrackRef.current;
+    if (track) track.scrollTo({ left: newIndex * (track.offsetWidth + 24) / 3, behavior: "smooth" });
+  };
   return (
     <div data-cmp="HomePage" className="w-full flex flex-col font-sans">
       {/* HERO */}
@@ -190,35 +222,85 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section data-cmp="HomePage.Testimonials" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
+          {/* Header */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-12">
             <motion.div variants={fadeIn} className="mb-4">
               <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Client Experiences</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6">
-              Structured guidance through major financial decisions.
+              What our clients say
             </motion.h2>
-            <motion.div variants={fadeIn} className="inline-flex items-center gap-2 bg-valar-amber/10 text-valar-amber-hover px-4 py-2 rounded-full text-xs font-medium border border-valar-amber/30 mt-2">
-              <AlertTriangle className="w-4 h-4" />
-              <span>Placeholder testimonials — real client quotes pending sign-off.</span>
-            </motion.div>
+            <motion.p variants={fadeIn} className="text-xl text-valar-indigo max-w-2xl mx-auto">
+              Real stories from people we have helped make confident, well-structured decisions for their future.
+            </motion.p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { quote: "We felt far more confident making decisions.", body: "We understood not only what the bank would approve, but what would realistically work for our lifestyle and long-term plans.", attr: "First-home buyers, Auckland" },
-              { quote: "The structure made a huge difference.", body: "Instead of simply fixing the mortgage, we looked at future flexibility, investment plans and long-term affordability.", attr: "Refinance client" },
-              { quote: "The process felt significantly less stressful.", body: "Having guidance through the application, negotiations and settlement made complex decisions feel far clearer and easier to manage.", attr: "Investment property client" },
-            ].map((test, i) => (
-              <motion.div data-cmp="HomePage.Testimonials.Card" key={i} variants={fadeIn} className="p-8 rounded-lg border border-valar-concrete shadow-sm flex flex-col relative bg-white">
-                <div className="absolute top-6 left-6 text-6xl text-valar-amber font-serif leading-none opacity-20">&ldquo;</div>
-                <div className="relative z-10 flex-1 flex flex-col">
-                  <p className="text-2xl font-medium italic text-valar-navy mb-4 pt-4">&ldquo;{test.quote}&rdquo;</p>
-                  <p className="text-valar-indigo text-lg leading-relaxed mb-8 flex-1">{test.body}</p>
-                  <p className="text-sm font-bold text-valar-navy uppercase tracking-wider">— {test.attr}</p>
+          {/* Carousel */}
+          <div className="relative">
+            {/* Track with side arrows */}
+            <div className="relative px-14">
+              {/* Left arrow */}
+              <button onClick={() => scrollTestimonials(-1)} disabled={testimonialIndex === 0} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full border border-valar-concrete bg-white shadow-sm flex items-center justify-center hover:border-valar-amber disabled:opacity-30 transition-colors">
+                <ChevronLeft className="w-5 h-5 text-valar-navy" />
+              </button>
+              {/* Right arrow */}
+              <button onClick={() => scrollTestimonials(1)} disabled={testimonialIndex >= testimonialMax} className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full border border-valar-concrete bg-white shadow-sm flex items-center justify-center hover:border-valar-amber disabled:opacity-30 transition-colors">
+                <ChevronRight className="w-5 h-5 text-valar-navy" />
+              </button>
+
+            {/* Track */}
+            <div className="overflow-hidden">
+              <div ref={testimonialTrackRef} className="flex gap-6 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
+                {TESTIMONIALS.map((t, i) => (
+                  <div data-cmp="HomePage.Testimonials.Card" key={i} className="flex-shrink-0 w-[calc(33.333%-16px)] bg-white rounded-xl border border-valar-concrete/60 p-6 shadow-sm flex flex-col">
+                    {/* Avatar */}
+                    <div className="w-20 h-20 rounded-full bg-valar-fog border border-valar-concrete/50 flex items-center justify-center mb-5 flex-shrink-0">
+                      <span className="text-base font-bold text-valar-indigo">{t.initials}</span>
+                    </div>
+                    {/* Quote mark */}
+                    <div className="text-3xl text-valar-amber leading-none mb-3 font-serif opacity-70">&ldquo;&ldquo;</div>
+                    {/* Bold italic quote */}
+                    <p className="font-bold italic text-valar-navy mb-3 leading-snug">&ldquo;{t.quote}&rdquo;</p>
+                    {/* Body */}
+                    <p className="text-sm text-valar-indigo leading-relaxed flex-1 mb-6">{t.body}</p>
+                    {/* Footer */}
+                    <div className="border-t border-valar-concrete/50 pt-4">
+                      <p className="font-bold text-valar-navy">{t.name}</p>
+                      <p className="text-valar-amber text-sm font-medium">{t.type}</p>
+                      <p className="text-sm text-valar-indigo flex items-center gap-1 mt-1">
+                        <MapPin className="w-3 h-3 flex-shrink-0" />{t.location}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            </div>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {Array.from({ length: testimonialMax + 1 }).map((_, i) => (
+                <button key={i} onClick={() => { setTestimonialIndex(i); const track = testimonialTrackRef.current; if (track) track.scrollTo({ left: i * (track.offsetWidth + 24) / 3, behavior: "smooth" }); }} className={`w-2 h-2 rounded-full transition-colors ${i === testimonialIndex ? "bg-valar-amber" : "bg-valar-concrete"}`} />
+              ))}
+            </div>
+          </div>
+
+          {/* Mini reviews */}
+          <div className="mt-16 pt-10 border-t border-valar-concrete/50 flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex-shrink-0 md:w-44">
+              <p className="font-bold text-valar-navy text-lg leading-snug">More feedback from our clients</p>
+            </div>
+            <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {MINI_REVIEWS.map((r, i) => (
+                <div key={i}>
+                  <div className="flex gap-0.5 mb-1">
+                    {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-valar-amber text-valar-amber" />)}
+                  </div>
+                  <p className="text-xs text-valar-indigo leading-relaxed">&ldquo;{r}&rdquo;</p>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
