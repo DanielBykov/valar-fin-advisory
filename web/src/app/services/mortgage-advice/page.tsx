@@ -79,25 +79,34 @@ export default function MortgageAdvicePage() {
   return (
     <div data-cmp="MortgageAdvicePage" className="w-full flex flex-col font-sans">
       {/* HERO */}
-      <section data-cmp="MortgageAdvicePage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-5xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+      <section data-cmp="MortgageAdvicePage.Hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/mortgage-hero.png"
+            alt="New Zealand coastal home"
+            fill
+            priority
+            unoptimized
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/65 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent z-10" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 relative z-10 pt-36 pb-20">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
             <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Mortgage Advice</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Foundations</span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
-              Mortgage Advice Built Around<br className="hidden md:block" /> Your Financial Future<span className="text-valar-amber">.</span>
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
+              Strategic Mortgage Advice<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl text-valar-lilac max-w-3xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4 font-light">
-              Strategic mortgage guidance for first home buyers, homeowners, investors, and growing families across New Zealand. Clients-first.
+            <motion.p variants={fadeIn} className="text-lg text-white/80 leading-relaxed mb-8 border-l-2 border-valar-amber pl-4 font-light">
+              Clear guidance for first home buyers, homeowners, investors and business owners.
             </motion.p>
             <motion.div data-cmp="MortgageAdvicePage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
               </Link>
             </motion.div>
           </motion.div>
