@@ -545,7 +545,7 @@ export default function Home() {
 
       {/* INSIGHTS — hidden */}
       {false && (
-      <section data-cmp="HomePage.Insights" className="py-24 bg-valar-fog">
+      <section data-cmp="HomePage.Insights" className="pt-24 pb-16 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -582,28 +582,28 @@ export default function Home() {
       )}
 
       {/* BEFORE BUYING PROPERTY - TABS */}
-      <section data-cmp="HomePage.BeforeBuying" className="py-24 bg-gradient-to-b from-valar-indigo to-valar-navy text-white">
+      <section data-cmp="HomePage.BeforeBuying" className="pt-16 pb-16 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center mb-16">
             <motion.div variants={fadeIn} className="mb-4">
               <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Before Buying Property</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
               The strategic questions worth answering before committing to property decisions.
             </motion.h2>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="max-w-4xl mx-auto mb-16">
             <Tabs defaultValue="clarity" className="w-full">
-              <TabsList className="bg-valar-navy/40 border border-white/10 w-full flex rounded-lg p-1 mb-10 h-auto">
-                <TabsTrigger value="clarity" className="flex-1 py-3 px-4 text-sm md:text-base text-valar-lilac data-[state=active]:text-valar-amber data-[state=active]:border-b-2 data-[state=active]:border-valar-amber data-[state=active]:font-bold transition-all bg-transparent rounded-none">CLARITY</TabsTrigger>
-                <TabsTrigger value="structure" className="flex-1 py-3 px-4 text-sm md:text-base text-valar-lilac data-[state=active]:text-valar-amber data-[state=active]:border-b-2 data-[state=active]:border-valar-amber data-[state=active]:font-bold transition-all bg-transparent rounded-none">STRUCTURE</TabsTrigger>
-                <TabsTrigger value="impact" className="flex-1 py-3 px-4 text-sm md:text-base text-valar-lilac data-[state=active]:text-valar-amber data-[state=active]:border-b-2 data-[state=active]:border-valar-amber data-[state=active]:font-bold transition-all bg-transparent rounded-none">IMPACT</TabsTrigger>
+              <TabsList className="flex gap-3 mb-10 h-auto bg-transparent p-0 w-full">
+                <TabsTrigger value="clarity" className="flex-1 py-3 px-4 text-sm md:text-base font-bold rounded-sm border border-white/30 text-white/70 bg-transparent transition-all data-[state=active]:bg-valar-amber data-[state=active]:text-valar-navy data-[state=active]:border-valar-amber data-[state=active]:text-opacity-100 hover:border-white/60 hover:text-white">CLARITY</TabsTrigger>
+                <TabsTrigger value="structure" className="flex-1 py-3 px-4 text-sm md:text-base font-bold rounded-sm border border-white/30 text-white/70 bg-transparent transition-all data-[state=active]:bg-valar-amber data-[state=active]:text-valar-navy data-[state=active]:border-valar-amber data-[state=active]:text-opacity-100 hover:border-white/60 hover:text-white">STRUCTURE</TabsTrigger>
+                <TabsTrigger value="impact" className="flex-1 py-3 px-4 text-sm md:text-base font-bold rounded-sm border border-white/30 text-white/70 bg-transparent transition-all data-[state=active]:bg-valar-amber data-[state=active]:text-valar-navy data-[state=active]:border-valar-amber data-[state=active]:text-opacity-100 hover:border-white/60 hover:text-white">IMPACT</TabsTrigger>
               </TabsList>
 
               <TabsContent data-cmp="HomePage.BeforeBuying.TabPanel" value="clarity" className="space-y-8">
                 <p className="text-lg md:text-xl text-valar-lilac leading-relaxed mb-8 max-w-3xl">
-                  True clarity means understanding your position completely before you approach the market. It&apos;s about knowing your boundaries — not simply what a bank calculator suggests.
+                  True clarity means fully understanding your position before approaching the market.
                 </p>
                 <div className="space-y-6">
                   {[
@@ -621,7 +621,7 @@ export default function Home() {
 
               <TabsContent data-cmp="HomePage.BeforeBuying.TabPanel" value="structure" className="space-y-8">
                 <p className="text-lg md:text-xl text-valar-lilac leading-relaxed mb-8 max-w-3xl">
-                  The right mortgage structure can improve flexibility, reduce long-term costs and create better future opportunities.
+                  The right mortgage structure should support your goals, not limit your options.
                 </p>
                 <div className="space-y-6">
                   {[
@@ -639,7 +639,7 @@ export default function Home() {
 
               <TabsContent data-cmp="HomePage.BeforeBuying.TabPanel" value="impact" className="space-y-8">
                 <p className="text-lg md:text-xl text-valar-lilac leading-relaxed mb-8 max-w-3xl">
-                  Property decisions affect far more than monthly repayments. They shape future flexibility, investment potential and long-term financial freedom.
+                  Property decisions can shape your financial future for years to come.
                 </p>
                 <div className="space-y-6">
                   {[
