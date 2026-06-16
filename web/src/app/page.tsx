@@ -224,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section data-cmp="HomePage.Testimonials" className="py-24 bg-white">
+      <section data-cmp="HomePage.Testimonials" className="pt-16 pb-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           {/* Header */}
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center mb-12">
@@ -308,12 +308,12 @@ export default function Home() {
       </section>
 
       {/* BEHIND VALAR */}
-      <section data-cmp="HomePage.BehindValar" className="py-24 bg-valar-fog">
+      <section data-cmp="HomePage.BehindValar" className="pt-16 pb-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="w-full md:w-1/2">
               <Image
-                src="/images/lena-portrait.png"
+                src="/images/lena-portrait.jpg"
                 alt="Lena Bykova - Valar Financial Advisors"
                 width={600}
                 height={800}
@@ -326,29 +326,30 @@ export default function Home() {
                 <span className="text-valar-amber font-bold tracking-widest text-sm uppercase">Behind Valar</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-8">
-                Founded by Lena Bykova.
+                About Lena Bykova.
               </motion.h2>
 
               <motion.div variants={fadeIn} className="space-y-6 text-valar-indigo text-xl leading-relaxed mb-8">
-                <p>I created Valar to help people better understand how property, investments and smart financial decisions shape long-term wealth, freedom and future opportunities.</p>
-                <p>After working across finance, audit, financial analytics, business valuation and investments for more than 20 years, I saw how often major financial decisions were made without a bigger long-term vision or strategy behind them.</p>
-                <p>Valar was built around a different approach — helping clients structure property and financial decisions with greater clarity, flexibility and long-term perspective.</p>
-                <p className="text-valar-indigo text-xl">Alongside mortgage advice, Valar integrates modern analytical tools, wealth-planning frameworks and financial psychology to help clients make more informed and confident financial decisions over time.</p>
+                <p>I created Valar because I noticed that many important financial decisions are made without enough time to step back and look at the bigger picture.</p>
+                <p>People often focus on the immediate question — buying a property, arranging a mortgage, refinancing, or making an investment decision. Those decisions matter, but they rarely exist in isolation.</p>
+                <p>Over the years, I found myself asking a different question: how does this decision fit into the client's overall financial position and future plans?</p>
+                <p>That is the approach behind Valar. My role is not simply to help clients make a decision, but to help them understand the options, the trade-offs, and how today's choices may affect tomorrow's opportunities.</p>
               </motion.div>
 
               <motion.div data-cmp="HomePage.BehindValar.Credentials" variants={fadeIn} className="bg-white p-6 rounded-sm border border-valar-lilac mb-8">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-base text-valar-navy font-medium">
-                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Certified Mortgage & Investment Adviser</li>
-                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> 20+ years in finance, analytics & investments</li>
-                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Business valuation & strategic analysis background</li>
-                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Modern AI & analytical tools</li>
-                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Based in New Zealand</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Certified Financial Adviser</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Mortgage & Investment Advice</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Business & Strategic Perspective</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> 20+ Years Lived in Finance</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> AI-Enhanced Analysis</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Human Behaviour & Finance</li>
                 </ul>
               </motion.div>
 
               <motion.div variants={fadeIn}>
-                <Link href="/about" className="inline-flex items-center font-bold text-valar-navy hover:text-valar-amber transition-colors group">
-                  Learn more about Lena & Valar <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <Link href="/about" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-valar-navy text-valar-navy font-bold rounded-sm hover:bg-valar-navy hover:text-white transition-colors group">
+                  Learn more about Lena & Valar <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
             </motion.div>
