@@ -116,20 +116,20 @@ export default function MortgageAdvicePage() {
       {/* WHY WORK WITH A MORTGAGE ADVISER */}
       <section data-cmp="MortgageAdvicePage.WhyAdviser" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-8">
             <motion.div variants={fadeIn} className="mb-4">
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Why Work With a Mortgage Adviser?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6">
-              We don&apos;t focus only on what you can borrow today
+              We focus on the bigger financial picture
             </motion.h2>
             <motion.p variants={fadeIn} className="text-lg text-valar-indigo max-w-3xl leading-relaxed">
-              Buying property is one of the biggest financial decisions most people will make. At Valar, we help you structure lending around your long-term goals, future flexibility, and overall financial strategy.
+              Because a mortgage is not just about buying a property—it&apos;s about building your future.
             </motion.p>
           </motion.div>
 
           {/* Comparison table */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="overflow-x-auto mb-16">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="overflow-x-auto mb-8">
             <table className="w-full text-sm border-collapse">
               <thead>
                 <tr>
@@ -146,7 +146,6 @@ export default function MortgageAdvicePage() {
                   ["Limited comparison between options", "Comparison of different structures and scenarios"],
                   ["Mostly transactional process", "Ongoing strategic support and guidance"],
                   ["You manage much of the process yourself", "End-to-end support throughout the process"],
-                  ["One lending perspective", "Independent guidance across multiple options"],
                 ].map(([bank, valar], i) => (
                   <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-valar-fog"}>
                     <td className="px-6 py-4 text-valar-indigo border-r border-valar-concrete">{bank}</td>
@@ -161,18 +160,18 @@ export default function MortgageAdvicePage() {
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <p className="text-valar-indigo font-medium mb-4">We help clients understand:</p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <p className="text-xl font-bold text-valar-navy mb-6">We help clients understand:</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {[
                 "Borrowing power and affordability",
                 "Repayment flexibility",
-                "Fixed, floating, offset, and split lending structures",
+                "Future investment and renovations",
                 "Refinancing opportunities",
-                "Future investment and renovation plans",
+                "Fixed, floating, offset and split",
                 "Long-term financial strategy",
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-2 text-valar-navy text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0" />
+                <li key={i} className="flex items-center gap-3 bg-white border border-valar-concrete rounded-sm px-4 py-3 text-valar-navy font-medium text-sm">
+                  <div className="w-2 h-2 rounded-full bg-valar-amber flex-shrink-0" />
                   {item}
                 </li>
               ))}
@@ -195,22 +194,22 @@ export default function MortgageAdvicePage() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: HomeIcon, title: "Property & Home Mortgages", desc: "Helping individuals and families purchase, upgrade, or restructure owner-occupied homes.", items: ["Home purchases", "Upgrading or relocating", "Repayment structuring", "Fixed vs floating strategy", "Offset and flexible lending", "Long-term affordability planning"] },
-              { icon: TrendingUp, title: "Investment Mortgages", desc: "Strategic lending for investment properties and long-term portfolio growth.", items: ["Investment property finance", "Equity structuring", "Cashflow-focused lending", "Interest-only options", "Portfolio strategy", "Future borrowing capacity planning"] },
-              { icon: RefreshCw, title: "Refinancing & Restructuring", desc: "Reviewing your existing lending and exploring better opportunities.", items: ["Lower interest rates", "Improved loan structure", "Reduced repayments", "Greater flexibility", "Debt restructuring", "Potential cashback offers"] },
-              { icon: Building2, title: "Building & Construction Loans", desc: "Support for clients building a new home, renovating, or completing construction projects.", items: ["Construction lending", "Progressive drawdown loans", "Turnkey builds", "Valuation and CCC requirements", "Timeline planning", "Support through the build process"] },
-              { icon: CreditCard, title: "Debt Consolidation", desc: "Helping simplify finances and improve cashflow by restructuring existing debt — to improve financial clarity and long-term stability.", items: ["Personal loans", "Credit cards", "Vehicle finance", "Short-term debt"] },
+              { icon: HomeIcon, title: "Property & Home Mortgages", desc: "Helping individuals and families purchase.", items: ["Home purchases", "Upgrading or relocating", "Repayment structuring", "Fixed vs floating strategy", "Offset and flexible lending"] },
+              { icon: TrendingUp, title: "Investment Mortgages", desc: "Strategic lending for investment properties and long-term portfolio growth.", items: ["Investment property finance", "Equity structuring", "Cashflow-focused lending", "Interest-only options", "Portfolio strategy"] },
+              { icon: RefreshCw, title: "Refinancing & Restructuring", desc: "Reviewing your existing lending and exploring better opportunities.", items: ["Lower interest rates", "Improved loan structure", "Reduced repayments", "Greater flexibility", "Debt restructuring"] },
+              { icon: Building2, title: "Building & Construction Loans", desc: "Support building a new home, renovating or construction projects.", items: ["Construction lending", "Progressive drawdown loans", "Turnkey builds", "Valuation and CCC requirements", "Timeline planning"] },
+              { icon: CreditCard, title: "Debt Consolidation", desc: "Helping simplify and improve cash flow by restructuring existing debt.", items: ["Personal loans", "Credit cards", "Vehicle finance", "Short-term debt", "Financial clarity"] },
               { icon: Layers, title: "Top-Up Loans & Equity Release", desc: "Using existing equity strategically for future goals.", items: ["Renovations and home improvements", "Green loans and energy-efficient upgrades", "Investment opportunities", "Lifestyle projects", "Emergency funding"] },
             ].map((sol, i) => (
-              <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.SolutionCard" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.SolutionCard" key={i} variants={fadeIn} className="bg-valar-concrete p-8 rounded-sm border-t-2 border-valar-amber">
                 <div className="flex items-center gap-3 mb-4">
                   <sol.icon className="w-5 h-5 text-valar-amber" />
-                  <h3 className="text-xl font-bold">{sol.title}</h3>
+                  <h3 className="text-xl font-bold text-valar-navy">{sol.title}</h3>
                 </div>
-                <p className="text-valar-lilac text-sm leading-relaxed mb-5">{sol.desc}</p>
+                <p className="text-valar-indigo text-xs leading-relaxed mb-5">{sol.desc}</p>
                 <ul className="space-y-1.5">
                   {sol.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-sm text-valar-steel">
+                    <li key={j} className="flex items-center gap-2 text-sm text-valar-navy">
                       <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0" />
                       {item}
                     </li>
@@ -223,8 +222,8 @@ export default function MortgageAdvicePage() {
           {/* FEATURED — First Home Buyers */}
           <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.FeaturedFirstHome" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-8">
             <Link href="/services/first-home-buyers" className="group block overflow-hidden rounded-sm border-t-4 border-valar-amber relative">
-              <div className="relative h-72 md:h-96 overflow-hidden">
-                <Image src="/images/first-home.png" alt="First Home Buyers" fill className="object-cover object-center group-hover:scale-105 transition-transform duration-700" />
+              <div className="relative h-56 md:h-72 overflow-hidden">
+                <Image src="/images/first-home-buyers-banner.png" alt="First Home Buyers" fill className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-valar-navy/90 via-valar-navy/40 to-transparent" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
@@ -233,7 +232,7 @@ export default function MortgageAdvicePage() {
                   First Home Buyers<span className="text-valar-amber">.</span>
                 </h3>
                 <p className="text-valar-lilac text-lg leading-relaxed mb-6 max-w-2xl">
-                  Buying your first home is one of the most significant financial decisions you will make. At Valar, we help bring clarity, structure, and confidence throughout the entire process — from understanding your borrowing power to settlement.
+                  We bring clarity, structure and confidence to your financial decision.
                 </p>
                 <div className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-7 py-3.5 rounded-sm font-bold text-sm transition-colors">
                   Explore First Home Buyer Guidance <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
