@@ -31,31 +31,31 @@ const staggerContainer = {
 const faqs = [
   {
     q: "When should I speak with a mortgage adviser?",
-    a: "You can start the process as early as possible — even if you are only beginning to think about buying a home. Speaking with an adviser early can help you understand your borrowing potential, deposit requirements, available lending options, and what steps may improve your position over time.",
+    a: "As early as possible — even before you're ready to buy. Early advice helps you understand borrowing potential, deposit requirements, and what steps to take.",
   },
   {
     q: "Do I need to pay for mortgage advice?",
-    a: "In most cases, mortgage advisory services are free for the client. Usually, the bank pays the adviser after settlement once the loan is completed. Your adviser will explain clearly how the process works and whether any conditions may apply.",
+    a: "In most cases, no. The bank pays the adviser after settlement. Your adviser will explain how the process works and if any conditions apply.",
   },
   {
     q: "How much can I borrow?",
-    a: "Borrowing capacity depends on several factors including income, existing debt, living expenses, deposit size, employment type, interest rates, and financial commitments. We help assess your affordability and explore different lending scenarios based on your goals.",
+    a: "It depends on income, existing debt, living expenses, deposit size, and employment type. We assess your affordability and explore lending scenarios based on your goals.",
   },
   {
     q: "Can I buy a property with less than a 20% deposit?",
-    a: "Yes — in some situations, it may be possible to purchase a property with a smaller deposit depending on your financial position, income, and lender criteria. Currently, some lenders may allow borrowing with deposits as low as 5%. However, lower-deposit lending will often include additional conditions such as higher interest rates or low-equity premiums, stricter servicing requirements, and limitations on certain property types. Available options can differ significantly between lenders, which is why understanding your situation early can be valuable.",
+    a: "Yes — some lenders allow deposits as low as 5%. Lower-deposit lending usually comes with additional conditions, including higher rates and stricter servicing requirements.",
   },
   {
     q: "Can you help if I'm self-employed or have non-standard income?",
-    a: "Yes — many lenders can work with self-employed clients, contractors, or clients with more complex income structures. Usually, lenders require an existing history of income and financial documents. Some banks may prefer two years of financial history, while others may consider shorter periods depending on the situation. Every case is different, which is why it is important to assess your circumstances individually and structure the application appropriately.",
+    a: "Yes — many lenders work with self-employed clients and contractors. Most require two years of financial history, though some consider shorter periods depending on the situation.",
   },
   {
     q: "Do I need a signed offer before applying for a mortgage?",
-    a: "Not always. In many situations, clients first apply for a pre-approval to understand their borrowing range and strengthen their position before searching for a property. However, some lending situations may require a signed Sale & Purchase Agreement before a lender can provide a final decision, depending on deposit size, LVR, lender policy, property type, income structure, or the complexity of the application.",
+    a: "Not always. Many clients apply for pre-approval before finding a property. Some situations require a signed Sale & Purchase Agreement depending on deposit size and lender policy.",
   },
   {
     q: "How long does mortgage approval take?",
-    a: "Timeframes can vary depending on the lender, the complexity of the application, and whether a signed Sale & Purchase Agreement is already in place. In many cases, preliminary assessment may happen within a few days, pre-approvals may take several business days, and live purchase applications are often prioritised by lenders. When preparing a Sale & Purchase Agreement, we commonly suggest allowing approximately 10–15 working days for finance approval conditions, depending on the situation and lender requirements.",
+    a: "Timeframes vary by lender and complexity. Pre-approvals typically take several business days. We recommend allowing 10–15 working days for finance conditions on a Sale & Purchase Agreement.",
   },
 ];
 
