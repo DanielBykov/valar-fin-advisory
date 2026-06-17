@@ -60,8 +60,8 @@ export default function FinancialPlanningPage() {
             unoptimized
             className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/65 to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent z-10" />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/25 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />
         </div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 pt-36 pb-20">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
