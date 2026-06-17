@@ -278,7 +278,7 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* FAQ */}
-      <section data-cmp="MortgageAdvicePage.Faq" className="py-24 bg-white">
+      <section data-cmp="MortgageAdvicePage.Faq" className="pt-24 pb-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -298,29 +298,32 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* FINAL CTA */}
-      <section data-cmp="MortgageAdvicePage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-            <motion.div variants={fadeIn} className="mb-4 flex justify-center">
+      <section data-cmp="MortgageAdvicePage.FinalCta" className="pt-12 pb-24 bg-valar-fog">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* Left — text + CTA */}
+            <motion.div variants={fadeIn}>
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Discuss Your Options?</span>
-            </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Start with a clear conversation<span className="text-valar-amber">.</span>
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Whether you&apos;re buying your first home, refinancing, investing, or planning your next step, we&apos;re here to help you build a lending strategy with confidence.
-            </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-valar-navy mt-4 mb-6">
+                Start with a clear conversation<span className="text-valar-amber">.</span>
+              </h2>
+              <p className="text-valar-indigo text-lg leading-relaxed mb-8">
+                Whether you&apos;re buying your first home, refinancing, investing, or planning your next step — let&apos;s talk.
+              </p>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
-              </Link>
             </motion.div>
-            <motion.p variants={fadeIn} className="mt-8 text-valar-steel text-xs">
-              I agree to allow Valar Financial Advisors to contact me regarding my enquiry and to store and process my personal information.
-            </motion.p>
+            {/* Right — photo */}
+            <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
+              <Image
+                src="/images/lena-client.jpg"
+                alt="Lena Bykova discussing with a client"
+                fill
+                unoptimized
+                className="object-cover object-center"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </section>
