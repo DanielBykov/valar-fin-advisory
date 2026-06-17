@@ -41,8 +41,8 @@ export default function AboutPage() {
       <section data-cmp="AboutPage.Hero" className="relative min-h-[80vh] flex items-end overflow-hidden bg-valar-navy">
         <div className="absolute inset-0 z-0">
           <Image src="/images/lena-portrait.png" alt="Lena Bykova" fill className="object-cover object-top opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-valar-navy/95 via-valar-navy/70 to-valar-navy/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-valar-navy/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/70 to-valar-navy/30" />
+          <div className="absolute inset-0 bg-linear-to-t from-valar-navy/80 via-transparent to-transparent" />
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 pb-20 pt-32 max-w-5xl">
           <motion.div initial="hidden" animate="visible" variants={stagger}>

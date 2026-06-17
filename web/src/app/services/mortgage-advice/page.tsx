@@ -224,7 +224,7 @@ export default function MortgageAdvicePage() {
             <Link href="/services/first-home-buyers" className="group block overflow-hidden rounded-sm border-t-4 border-valar-amber relative">
               <div className="relative h-56 md:h-72 overflow-hidden">
                 <Image src="/images/first-home-buyers-banner.png" alt="First Home Buyers" fill className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-valar-navy/90 via-valar-navy/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-valar-navy/90 via-valar-navy/40 to-transparent" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-3 block">Featured Service</span>
