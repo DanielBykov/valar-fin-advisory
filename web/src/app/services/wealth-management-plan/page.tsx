@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Calendar,
-  Phone,
   TrendingUp,
   Clock,
   Brain,
@@ -32,24 +32,31 @@ export default function WealthManagementPage() {
     <div data-cmp="WealthManagementPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section data-cmp="WealthManagementPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-5xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
+      <section data-cmp="WealthManagementPage.Hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/wealth-management-hero.png"
+            alt="Sailboat on the New Zealand coast at sunset"
+            fill
+            priority
+            unoptimized
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 relative z-10 pt-36 pb-20">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+            <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Strategic Advisory</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Wealth Building</span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-[1.05]">
-              Wealth Planning<span className="text-valar-amber">.</span>
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
+              Wealth Management Plan<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl md:text-2xl text-valar-steel font-light mb-8">
-              A Roadmap for Building Long-Term Wealth
+            <motion.p variants={fadeIn} className="text-lg text-white/80 leading-relaxed mb-8 border-l-2 border-valar-amber pl-4 font-light">
+              A clear roadmap to help you build long-term wealth.
             </motion.p>
-            <motion.div variants={fadeIn} className="text-base text-valar-lilac max-w-3xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4 space-y-3">
-              <p>Most people focus on the next financial decision — a mortgage, an investment, a savings goal.</p>
-              <p className="font-medium text-white">Few people step back and ask the bigger question: what could my financial future look like in 10, 15, or 20 years?</p>
-              <p>The Wealth Management Plan is designed to answer that question.</p>
-            </motion.div>
             <motion.div variants={fadeIn}>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
@@ -77,9 +84,8 @@ export default function WealthManagementPage() {
                 A financial map for the next 10–20 years.
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-6">
-                Just as a map helps guide a journey, a Wealth Management Plan helps guide financial decisions over time. It provides a framework you can return to regularly and use to measure your progress toward your goals.
+                A framework to guide your financial decisions over time — one you can return to and measure your progress against.
               </motion.p>
-              <motion.p variants={fadeIn} className="text-valar-indigo font-medium mb-4">A personalised Wealth Management Plan helps you understand:</motion.p>
               <motion.ul variants={staggerContainer} className="space-y-3">
                 {[
                   "Where you are today",
@@ -100,7 +106,7 @@ export default function WealthManagementPage() {
               <motion.div variants={fadeIn}>
                 <p className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-5">Wealth Is More Than Investments</p>
                 <p className="text-valar-indigo text-sm leading-relaxed mb-6">
-                  Many people believe wealth is built by choosing the right investment. In reality, long-term wealth is often influenced by four key factors working together.
+                  Long-term wealth is shaped by four key factors working together.
                 </p>
               </motion.div>
               {[
@@ -152,13 +158,13 @@ export default function WealthManagementPage() {
             {[
               {
                 icon: DollarSign,
-                title: "Cashflow & Savings",
-                items: ["Income", "Expenses", "Surplus cashflow", "Savings capacity"]
+                title: "Cash Flow",
+                items: ["Income", "Expenses", "Surplus cashflow", "Savings capacity", "Debt repayments"]
               },
               {
                 icon: HomeIcon,
                 title: "Property",
-                items: ["Owner-occupied property", "Investment property", "Equity growth opportunities"]
+                items: ["Owner's property", "Investment property", "RE Development", "Mortgage structure", "Rental income"]
               },
               {
                 icon: BarChart2,
@@ -167,18 +173,18 @@ export default function WealthManagementPage() {
               },
               {
                 icon: Target,
-                title: "Long-Term Goals",
+                title: "Goals",
                 items: ["Lifestyle goals", "Financial independence", "Family priorities", "Retirement planning", "Future projects"]
               },
             ].map((area, i) => (
-              <motion.div data-cmp="WealthManagementPage.WhatWeAnalyse.AnalysisArea" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="WealthManagementPage.WhatWeAnalyse.AnalysisArea" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-sm border-t-2 border-valar-amber">
                 <div className="flex items-center gap-3 mb-5">
                   <area.icon className="w-5 h-5 text-valar-amber" />
-                  <h3 className="text-lg font-bold">{area.title}</h3>
+                  <h3 className="text-lg font-bold text-valar-navy">{area.title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {area.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-sm text-valar-lilac">
+                    <li key={j} className="flex items-center gap-2 text-sm text-valar-navy">
                       <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0" />
                       {item}
                     </li>
@@ -216,13 +222,11 @@ export default function WealthManagementPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {[
-              { num: "01", title: "Current Position", desc: "A snapshot of where you are today — your assets, liabilities, cashflow, and overall financial position." },
-              { num: "02", title: "Future Scenarios", desc: "Potential outcomes over a 10–20 year timeframe based on your goals and current trajectory." },
-              { num: "03", title: "Asset Allocation Framework", desc: "General guidance on how different asset classes may fit into your long-term strategy." },
-              { num: "04", title: "Wealth Roadmap", desc: "A practical pathway showing key milestones, priorities, and decision points toward your goals." },
-              { num: "05", title: "Financial Freedom Strategy", desc: "A structured approach designed to help align your financial decisions with your long-term vision." },
+              { num: "01", title: "Current Position", desc: "A clear picture of your assets, liabilities, cashflow, and savings — your starting point." },
+              { num: "02", title: "Future Scenarios", desc: "Achievable financial goals and lifestyle vision for the next 10–20 years." },
+              { num: "03", title: "Pathway & Roadmap", desc: "Potential pathways across different asset classes and cashflow projections, with key milestones and decision points." },
             ].map((item, i) => (
-              <motion.div data-cmp="WealthManagementPage.WhatYouReceive.DeliverableCard" key={i} variants={fadeIn} className={`bg-white p-8 rounded-lg shadow-sm border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="WealthManagementPage.WhatYouReceive.DeliverableCard" key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
                 <div className="text-4xl font-bold text-valar-concrete mb-4 leading-none">{item.num}</div>
                 <h3 className="text-lg font-bold text-valar-navy mb-3">{item.title}</h3>
                 <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
@@ -261,22 +265,22 @@ export default function WealthManagementPage() {
               {
                 num: "01",
                 title: "Discovery",
-                body: "You complete a questionnaire and provide information about your finances, goals, priorities, and future vision."
+                body: "You share information about your finances, goals, priorities, and future vision."
               },
               {
                 num: "02",
-                title: "Strategy Session",
-                body: "We meet for approximately 60–90 minutes to discuss your goals, financial behaviour, opportunities, concerns, and possible future pathways."
+                title: "Strategy Meeting",
+                body: "We meet to discuss your goals, financial behaviour, opportunities, and possible pathways forward."
               },
               {
                 num: "03",
                 title: "Plan Development",
-                body: "We analyse the information and prepare your personalised Wealth Management Plan."
+                body: "We analyse your situation and prepare your personalised Wealth Management Plan."
               },
               {
                 num: "04",
-                title: "Presentation Session",
-                body: "We meet again to review the completed plan together, walk through the scenarios, and answer any questions."
+                title: "Plan Review",
+                body: "We walk through the completed plan together, review scenarios, and answer your questions."
               },
             ].map((step, i) => (
               <motion.div data-cmp="WealthManagementPage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
@@ -322,7 +326,7 @@ export default function WealthManagementPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Who Is This For?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
-              This service may be valuable for.
+              Who Can Benefit From a Wealth Management Plan<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -338,8 +342,8 @@ export default function WealthManagementPage() {
               { icon: TrendingUp, label: "Business owners" },
               { icon: HomeIcon, label: "Property investors" },
               { icon: Users, label: "Growing families" },
-              { icon: Target, label: "Clients preparing for major life decisions" },
-              { icon: BarChart2, label: "Anyone seeking long-term financial clarity" },
+              { icon: Target, label: "Major life decisions" },
+              { icon: BarChart2, label: "Anyone seeking long-term clarity" },
             ].map((item, i) => (
               <motion.div data-cmp="WealthManagementPage.WhoIsThisFor.AudienceItem" key={i} variants={fadeIn} className="bg-valar-navy/40 border border-white/10 rounded-sm p-5 flex items-center gap-4">
                 <item.icon className="w-5 h-5 text-valar-amber flex-shrink-0" />
@@ -351,30 +355,23 @@ export default function WealthManagementPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section data-cmp="WealthManagementPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn} className="mb-4 flex justify-center">
+      <section data-cmp="WealthManagementPage.FinalCta" className="pt-12 pb-24 bg-valar-fog">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <motion.div variants={fadeIn}>
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Build Your Financial Roadmap?</span>
-            </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Your future is shaped by the decisions you make today.
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              The Wealth Management Plan helps you understand what may be possible and create a strategy to move toward it with confidence.
-            </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-valar-navy mt-4 mb-6">
+                Start with a clear conversation<span className="text-valar-amber">.</span>
+              </h2>
+              <p className="text-valar-indigo text-lg leading-relaxed mb-8">
+                Whether you are building wealth, planning for the future, or simply want to understand your options — let&apos;s talk.
+              </p>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
-              </Link>
+            </motion.div>
+            <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
+              <img src="/images/lena-client.jpg" alt="Lena Bykova discussing with a client" className="object-cover object-center w-full h-full" />
             </motion.div>
           </motion.div>
         </div>
