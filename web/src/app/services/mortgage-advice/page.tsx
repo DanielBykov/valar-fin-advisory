@@ -201,7 +201,7 @@ export default function MortgageAdvicePage() {
               { icon: CreditCard, title: "Debt Consolidation", desc: "Helping simplify and improve cash flow by restructuring existing debt.", items: ["Personal loans", "Credit cards", "Vehicle finance", "Short-term debt", "Financial clarity"] },
               { icon: Layers, title: "Top-Up Loans & Equity Release", desc: "Using existing equity strategically for future goals.", items: ["Renovations and home improvements", "Green loans and energy-efficient upgrades", "Investment opportunities", "Lifestyle projects", "Emergency funding"] },
             ].map((sol, i) => (
-              <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.SolutionCard" key={i} variants={fadeIn} className="bg-valar-concrete p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.SolutionCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-sm border-t-2 border-valar-amber">
                 <div className="flex items-center gap-3 mb-4">
                   <sol.icon className="w-5 h-5 text-valar-amber" />
                   <h3 className="text-xl font-bold text-valar-navy">{sol.title}</h3>
