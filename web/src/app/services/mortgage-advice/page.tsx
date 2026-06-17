@@ -244,7 +244,7 @@ export default function MortgageAdvicePage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section data-cmp="MortgageAdvicePage.HowItWorks" className="py-24 bg-valar-fog">
+      <section data-cmp="MortgageAdvicePage.HowItWorks" className="pt-24 pb-12 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -257,11 +257,11 @@ export default function MortgageAdvicePage() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-6">
             {[
-              { num: "01", title: "Initial Conversation", body: "We begin with a short 20–30 minute discussion to understand your goals, plans, and financial situation." },
-              { num: "02", title: "Documents & Assessment", body: "You receive a secure link where you can upload documents and provide information about income and employment, assets and savings, existing lending, deposit, property goals, and ownership structure." },
-              { num: "03", title: "Strategy & Structure", body: "Your adviser reviews your situation, assesses affordability, and explores suitable lending structures and scenarios. In many cases, we can provide an estimated borrowing range even before a formal pre-approval is submitted." },
-              { num: "04", title: "Application & Approval", body: "Once the strategy is confirmed, we prepare and submit the application to the lender or lenders best suited to your goals and circumstances. We help guide you through valuations, inspections, legal services, and supporting documents throughout the process." },
-              { num: "05", title: "Settlement & Ongoing Support", body: "Once approval is received, we continue supporting you through settlement and onboarding with the lender. Your mortgage adviser remains your main point of contact throughout the process." },
+              { num: "01", title: "Initial Conversation", body: "A short discussion to understand your goals, plans, and financial situation." },
+              { num: "02", title: "Documents & Assessment", body: "You upload documents covering income, savings, existing lending, deposit, and property goals via a secure link." },
+              { num: "03", title: "Strategy & Structure", body: "We review your situation, assess affordability, and explore suitable lending structures — often with an early borrowing estimate." },
+              { num: "04", title: "Application & Approval", body: "We prepare and submit your application to the most suitable lender, supporting you through every requirement." },
+              { num: "05", title: "Settlement & Ongoing Support", body: "We support you through settlement and remain your main point of contact with the lender." },
             ].map((step, i) => (
               <motion.div data-cmp="MortgageAdvicePage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
