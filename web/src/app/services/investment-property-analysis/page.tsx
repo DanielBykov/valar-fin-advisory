@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
-  Phone,
   ChevronDown,
+  ChevronRight,
   TrendingUp,
   BarChart2,
   Home as HomeIcon,
@@ -65,28 +66,34 @@ export default function InvestmentPropertyAnalysisPage() {
     <div data-cmp="InvestmentPropertyAnalysisPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section data-cmp="InvestmentPropertyAnalysisPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-5xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
+      <section data-cmp="InvestmentPropertyAnalysisPage.Hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/investment-property-hero.png"
+            alt="Investment property in New Zealand"
+            fill
+            priority
+            unoptimized
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 relative z-10 pt-36 pb-20">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+            <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Property Investment</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Wealth Building</span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-[1.05]">
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
               Investment Property Analysis<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl md:text-2xl text-valar-steel font-light mb-8">
-              Is This Property Helping You Build Wealth?
+            <motion.p variants={fadeIn} className="text-lg text-white/80 leading-relaxed mb-8 border-l-2 border-valar-amber pl-4 font-light">
+              Financial modelling and strategic analysis to support better investment decisions.
             </motion.p>
-            <motion.div variants={fadeIn} className="text-base text-valar-lilac max-w-2xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4">
-              Financial modelling and strategic analysis designed to support better investment decisions.
-            </motion.div>
-            <motion.div data-cmp="InvestmentPropertyAnalysisPage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+            <motion.div variants={fadeIn}>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
               </Link>
             </motion.div>
           </motion.div>
@@ -108,13 +115,11 @@ export default function InvestmentPropertyAnalysisPage() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Why Property Investment Analysis?</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
-                Good investment decisions start with good analysis<span className="text-valar-amber">.</span>
+                Good investment decisions start with<br />good analysis<span className="text-valar-amber">.</span>
               </motion.h2>
-              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-6">
-                Many investment decisions are made based on emotions, headlines, assumptions, or advice from people whose goal is to sell a property. At Valar, we take a different approach.
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed">
+                Most investment decisions are driven by emotions or advice from people with something to sell. Our role is to help you make informed decisions — based on numbers, not sales pitches.
               </motion.p>
-              <motion.p variants={fadeIn} className="text-valar-indigo font-semibold mb-2">Our role is not to sell property.</motion.p>
-              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed">Our role is to help you make informed investment decisions.</motion.p>
             </motion.div>
 
             <motion.div variants={staggerContainer}>
@@ -123,11 +128,9 @@ export default function InvestmentPropertyAnalysisPage() {
                 {[
                   "Will this property support my wealth-building goals?",
                   "How will it affect my cashflow?",
-                  "What are the risks?",
                   "What happens if interest rates change?",
                   "How much equity could I build over time?",
-                  "What impact will it have on future borrowing capacity?",
-                  "Is it better to focus on yield, growth, or a balanced strategy?",
+                  "Yield, growth, or balanced — which strategy is right for me?",
                 ].map((q, i) => (
                   <motion.li data-cmp="InvestmentPropertyAnalysisPage.WhyAnalysis.QuestionItem" key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
@@ -155,14 +158,14 @@ export default function InvestmentPropertyAnalysisPage() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What Makes Valar Different?</span>
               </motion.div>
               <motion.p variants={fadeIn} className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                Real estate agents sell property<span className="text-valar-amber">.</span>
+                We don't sell anything<span className="text-valar-amber">.</span>
               </motion.p>
               <motion.p variants={fadeIn} className="text-2xl font-light text-valar-steel mb-8">
-                We analyse investments.
+                We analyse your current or potential investment.
               </motion.p>
-              <motion.p variants={fadeIn} className="text-valar-lilac leading-relaxed">
-                Every recommendation is built around financial outcomes, scenario modelling, and long-term strategy — with no incentive to sell you anything.
-              </motion.p>
+              <motion.div variants={fadeIn} className="border-l-2 border-valar-amber pl-4">
+                <p className="text-white/90 leading-relaxed italic">&ldquo;Property can create wealth, or it can also become a nightmare. The difference is in small nuances behind the numbers.&rdquo;</p>
+              </motion.div>
             </motion.div>
 
             <motion.div variants={staggerContainer} className="grid grid-cols-2 gap-4">
@@ -173,11 +176,10 @@ export default function InvestmentPropertyAnalysisPage() {
                 { icon: ShieldCheck, label: "Risk management" },
                 { icon: BarChart2, label: "Portfolio structure" },
                 { icon: HomeIcon, label: "Lending optimisation" },
-                { icon: Target, label: "Long-term wealth creation" },
               ].map((item, i) => (
-                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatMakesDifferent.FeatureBadge" key={i} variants={fadeIn} className={`bg-valar-indigo border border-white/10 rounded-sm p-4 flex items-center gap-3 ${i === 6 ? "col-span-2" : ""}`}>
+                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatMakesDifferent.FeatureBadge" key={i} variants={fadeIn} className="bg-valar-fog rounded-sm p-4 flex items-center gap-3">
                   <item.icon className="w-4 h-4 text-valar-amber flex-shrink-0" />
-                  <span className="text-sm text-valar-lilac font-medium">{item.label}</span>
+                  <span className="text-sm text-valar-navy font-medium">{item.label}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -208,85 +210,44 @@ export default function InvestmentPropertyAnalysisPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="space-y-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            {/* Row 1 — 3 cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: DollarSign,
-                  title: "Property Cashflow",
-                  desc: "Understanding the true financial performance of an investment property.",
-                  items: ["Rental income", "Operating expenses", "Mortgage costs", "Net cashflow", "Holding costs"],
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Yield vs Growth",
-                  desc: "Different investment strategies produce different outcomes.",
-                  items: ["Cashflow strategy — stronger rental returns", "Growth strategy — long-term capital appreciation", "Balanced strategy — combining both objectives"],
-                },
-                {
-                  icon: Layers,
-                  title: "Equity & Borrowing Capacity",
-                  desc: "Property investing often relies on effective use of leverage.",
-                  items: ["Current equity position", "Future equity growth", "Loan-to-value ratios (LVR)", "Future borrowing capacity", "Leverage opportunities"],
-                },
-              ].map((card, i) => (
-                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatWeAnalyse.AnalysisCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm flex-shrink-0">
-                      <card.icon className="w-4 h-4 text-valar-amber" />
-                    </div>
-                    <h3 className="font-bold text-valar-navy">{card.title}</h3>
-                  </div>
-                  <p className="text-valar-indigo text-sm mb-4 leading-relaxed">{card.desc}</p>
-                  <ul className="space-y-2">
-                    {card.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-valar-navy">
-                        <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Row 2 — 2 cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  icon: BarChart2,
-                  title: "Portfolio Structure",
-                  desc: "For investors with existing properties, we can review your full portfolio.",
-                  items: ["Portfolio performance", "Lending structures", "Portfolio cashflow", "Future expansion opportunities", "Concentration risk", "Long-term sustainability"],
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Sensitivity & Risk Analysis",
-                  desc: "Markets change. Interest rates move. Rental markets fluctuate. We test different assumptions to help investors understand potential outcomes before making decisions.",
-                  items: ["Interest rate scenarios", "Rental market fluctuations", "Vacancy risk", "Capital growth assumptions", "Downside stress testing"],
-                },
-              ].map((card, i) => (
-                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatWeAnalyse.AnalysisCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm flex-shrink-0">
-                      <card.icon className="w-4 h-4 text-valar-amber" />
-                    </div>
-                    <h3 className="font-bold text-valar-navy">{card.title}</h3>
-                  </div>
-                  <p className="text-valar-indigo text-sm mb-4 leading-relaxed">{card.desc}</p>
-                  <ul className="space-y-2">
-                    {card.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-valar-navy">
-                        <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </div>
+            {[
+              {
+                icon: HomeIcon,
+                title: "Property Portfolio",
+                desc: "Understand before you commit.",
+                items: ["Yield vs growth strategy", "Capital appreciation potential", "Interest rate sensitivity", "Downside risk scenarios", "Market assumptions"],
+              },
+              {
+                icon: DollarSign,
+                title: "Cashflow & Performance",
+                desc: "Know your profit and yield.",
+                items: ["Rental income", "Operating expenses", "Mortgage costs", "Net cashflow", "Net yield and profitability"],
+              },
+              {
+                icon: BarChart2,
+                title: "Borrowing Capacity",
+                desc: "Explore your opportunities.",
+                items: ["Lending structure", "Current equity position", "Future borrowing capacity", "Leverage", "Expansion"],
+              },
+            ].map((card, i) => (
+              <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatWeAnalyse.AnalysisCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-sm border-t-2 border-valar-amber">
+                <div className="flex items-center gap-3 mb-4">
+                  <card.icon className="w-5 h-5 text-valar-amber" />
+                  <h3 className="font-bold text-valar-navy">{card.title}</h3>
+                </div>
+                <p className="text-valar-indigo text-sm mb-4 leading-relaxed">{card.desc}</p>
+                <ul className="space-y-2">
+                  {card.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-valar-navy">
+                      <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -307,9 +268,6 @@ export default function InvestmentPropertyAnalysisPage() {
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
               Every analysis includes multiple scenarios<span className="text-valar-amber">.</span>
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac mt-4 max-w-2xl leading-relaxed">
-              Understanding multiple outcomes helps investors make more informed decisions and avoid unexpected surprises.
-            </motion.p>
           </motion.div>
 
           <motion.div
@@ -324,19 +282,19 @@ export default function InvestmentPropertyAnalysisPage() {
                 label: "Base Case",
                 colour: "border-valar-steel",
                 dot: "bg-valar-steel",
-                desc: "Expected performance under normal market conditions — the most likely outcome based on current data and reasonable assumptions.",
+                desc: "The most likely outcome based on current data and reasonable assumptions.",
               },
               {
                 label: "Best Case",
                 colour: "border-valar-amber",
                 dot: "bg-valar-amber",
-                desc: "Stronger growth and favourable market conditions — helps you understand the upside potential of the investment.",
+                desc: "Stronger growth and favourable conditions — the upside potential.",
               },
               {
                 label: "Worst Case",
                 colour: "border-red-400",
                 dot: "bg-red-400",
-                desc: "Lower growth, higher interest rates, reduced rental performance, or other downside scenarios — essential for understanding risk before committing.",
+                desc: "Lower growth, higher rates, reduced rental performance — understanding the downside before committing.",
               },
             ].map((s, i) => (
               <motion.div data-cmp="InvestmentPropertyAnalysisPage.ScenarioModelling.ScenarioCard" key={i} variants={fadeIn} className={`bg-valar-navy/40 border-t-2 ${s.colour} rounded-sm p-8`}>
@@ -365,7 +323,7 @@ export default function InvestmentPropertyAnalysisPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What You Receive</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              A complete analysis you can act on<span className="text-valar-amber">.</span>
+              A clear roadmap you can act on<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -374,22 +332,38 @@ export default function InvestmentPropertyAnalysisPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="flex flex-col md:flex-row gap-0"
           >
-            {[
-              { num: "01", title: "Property Investment Analysis Report", desc: "A written summary outlining opportunities, risks, assumptions, and recommendations." },
-              { num: "02", title: "Custom Financial Model", desc: "An Excel-based model that allows you to review assumptions and explore future scenarios." },
-              { num: "03", title: "Cashflow & Yield Analysis", desc: "Clear analysis of expected returns and investment performance." },
-              { num: "04", title: "Equity & Borrowing Capacity Review", desc: "Understanding how the investment may influence future borrowing opportunities." },
-              { num: "05", title: "Investment Strategy Recommendations", desc: "Guidance on how the property may fit into your broader wealth-building objectives." },
-              { num: "06", title: "Action Plan & Next Steps", desc: "Practical recommendations to support future decision-making." },
-            ].map((item, i) => (
-              <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatYouReceive.DeliverableCard" key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete">
-                <div className="text-4xl font-bold text-valar-concrete mb-4 leading-none">{item.num}</div>
-                <h3 className="text-base font-bold text-valar-navy mb-3">{item.title}</h3>
-                <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
+            {/* Left column */}
+            <div className="flex-1 flex flex-col divide-y divide-valar-concrete">
+              {[
+                { title: "Property Investment Analysis", desc: "Opportunities, risks, assumptions in one written summary." },
+                { title: "Custom Financial Model", desc: "Review assumptions and model multiple future scenarios." },
+                { title: "Cashflow & Yield Analysis", desc: "Clear analysis of expected returns and investment performance." },
+              ].map((item, i) => (
+                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatYouReceive.DeliverableItem" key={i} variants={fadeIn} className="py-8 pr-10">
+                  <h3 className="text-base font-bold text-valar-navy mb-2">{item.title}</h3>
+                  <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Amber divider */}
+            <div className="hidden md:block w-px bg-valar-amber mx-2" />
+
+            {/* Right column */}
+            <div className="flex-1 flex flex-col divide-y divide-valar-concrete">
+              {[
+                { title: "Borrowing Capacity Review", desc: "How the investment may influence your future borrowing opportunities." },
+                { title: "Investment Strategy", desc: "How the property fits into your broader wealth-building objectives." },
+                { title: "Action Plan", desc: "Practical next steps to support your investment decisions." },
+              ].map((item, i) => (
+                <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhatYouReceive.DeliverableItem" key={i} variants={fadeIn} className="py-8 pl-10">
+                  <h3 className="text-base font-bold text-valar-navy mb-2">{item.title}</h3>
+                  <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
@@ -408,7 +382,7 @@ export default function InvestmentPropertyAnalysisPage() {
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Who Is This For?</span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              This service may be suitable for<span className="text-valar-amber">.</span>
+              This service may be suitable for you<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
@@ -417,21 +391,22 @@ export default function InvestmentPropertyAnalysisPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-16 gap-y-5 max-w-4xl"
           >
             {[
-              { icon: HomeIcon, title: "First-Time Property Investors", desc: "Understanding whether a property aligns with your financial goals before you commit." },
-              { icon: Layers, title: "Existing Portfolio Owners", desc: "Reviewing portfolio performance, lending structures, and future expansion opportunities." },
-              { icon: Briefcase, title: "High-Income Professionals", desc: "Exploring property as part of a broader wealth strategy with a structured approach." },
-              { icon: Wrench, title: "Builders & Renovators", desc: "Evaluating project feasibility, expected returns, and risk before starting a project." },
-              { icon: Clock, title: "Long-Term Investors", desc: "Creating a structured and disciplined approach to building wealth through property." },
-            ].map((card, i) => (
-              <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhoIsThisFor.AudienceCard" key={i} variants={fadeIn} className={`bg-valar-fog p-8 rounded-lg border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
-                <div className="w-10 h-10 rounded-full bg-valar-navy flex items-center justify-center mb-5">
-                  <card.icon className="w-4 h-4 text-valar-amber" />
-                </div>
-                <h3 className="font-bold text-valar-navy mb-3">{card.title}</h3>
-                <p className="text-valar-indigo text-sm leading-relaxed">{card.desc}</p>
+              "First-home buyers",
+              "Current home owners",
+              "Mum and dad investors",
+              "Existing portfolio owners",
+              "High-income professionals",
+              "Builders and renovators",
+              "Property developers",
+              "Long-term investors",
+              "Investors diversifying into property",
+            ].map((item, i) => (
+              <motion.div data-cmp="InvestmentPropertyAnalysisPage.WhoIsThisFor.Item" key={i} variants={fadeIn} className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0" />
+                <span className="text-valar-navy font-medium">{item}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -461,46 +436,39 @@ export default function InvestmentPropertyAnalysisPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="flex flex-col md:flex-row items-start md:items-center gap-0"
           >
             {[
-              {
-                num: "01",
-                title: "Discovery Session",
-                body: "We discuss your goals, investment strategy, and current financial position.",
-              },
-              {
-                num: "02",
-                title: "Information Gathering",
-                body: "You provide information about the property or portfolio being analysed — purchase price, rental estimates, lending information, existing portfolio details, and future plans.",
-              },
-              {
-                num: "03",
-                title: "Financial Modelling & Analysis",
-                body: "We build financial models, assess risks, and evaluate multiple future scenarios.",
-              },
-              {
-                num: "04",
-                title: "Presentation & Recommendations",
-                body: "We review the findings together and discuss practical recommendations and next steps.",
-              },
-            ].map((step, i) => (
-              <motion.div data-cmp="InvestmentPropertyAnalysisPage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-white p-8 rounded-lg border border-valar-concrete shadow-sm">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
-                  {step.num}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-valar-navy mb-2">{step.title}</h3>
-                  <p className="text-valar-indigo leading-relaxed text-sm">{step.body}</p>
-                </div>
-              </motion.div>
+              { num: "01", title: "Discovery" },
+              { num: "02", title: "Information Gathering" },
+              { num: "03", title: "Financial Modelling & Analysis" },
+              { num: "04", title: "Final Meetup & Discussion" },
+              { num: "05", title: "Investment Analysis Report", highlight: true },
+            ].map((step, i, arr) => (
+              <div key={i} className="flex flex-col md:flex-row items-center md:items-start flex-1 min-w-0">
+                <motion.div
+                  data-cmp="InvestmentPropertyAnalysisPage.HowItWorks.Step"
+                  variants={fadeIn}
+                  className={`flex flex-col items-center text-center px-4 py-6 flex-1 min-w-0 ${step.highlight ? "bg-valar-amber/10 rounded-lg border border-valar-amber" : ""}`}
+                >
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm mb-3 flex-shrink-0 ${step.highlight ? "bg-valar-amber text-white" : "bg-valar-navy text-white"}`}>
+                    {step.num}
+                  </div>
+                  <h3 className={`text-sm font-bold leading-snug ${step.highlight ? "text-valar-amber" : "text-valar-navy"}`}>{step.title}</h3>
+                </motion.div>
+                {i < arr.length - 1 && (
+                  <div className="hidden md:flex items-center self-center flex-shrink-0 px-1 mt-[-18px]">
+                    <ChevronRight className="w-5 h-5 text-valar-concrete" />
+                  </div>
+                )}
+              </div>
             ))}
           </motion.div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section data-cmp="InvestmentPropertyAnalysisPage.Faq" className="py-24 bg-white">
+      <section data-cmp="InvestmentPropertyAnalysisPage.Faq" className="pt-12 pb-24 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div
             initial="hidden"
@@ -543,32 +511,40 @@ export default function InvestmentPropertyAnalysisPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section data-cmp="InvestmentPropertyAnalysisPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn} className="mb-4 flex justify-center">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Analyse Your Next Investment?</span>
+      <section data-cmp="InvestmentPropertyAnalysisPage.FinalCta" className="py-24 bg-valar-fog">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div variants={fadeIn} className="mb-4">
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Analyse Your Next Investment?</span>
+              </motion.div>
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6">
+                Good investment decisions start with good analysis<span className="text-valar-amber">.</span>
+              </motion.h2>
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-8">
+                Understand the numbers before you commit — whether it's your first investment or your next one.
+              </motion.p>
+              <motion.div variants={fadeIn}>
+                <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
+                  <Calendar className="w-5 h-5" /> Book a Consultation
+                </Link>
+              </motion.div>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Good investment decisions start with good analysis<span className="text-valar-amber">.</span>
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Whether you are considering your first investment property, reviewing an existing portfolio, or planning your next acquisition — we can help you understand the numbers before making the decision.
-            </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
-                <Calendar className="w-5 h-5" /> Book a Consultation
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
-              </Link>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              className="relative h-80 rounded-sm overflow-hidden"
+            >
+              <Image src="/images/lena-client.jpg" fill unoptimized className="object-cover object-center" alt="Lena with client" />
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
