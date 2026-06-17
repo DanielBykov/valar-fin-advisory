@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Calendar,
-  Phone,
   ChevronDown,
   Target,
   TrendingUp,
@@ -26,10 +26,10 @@ const staggerContainer = {
 };
 
 const faqs = [
-  { q: "Is financial planning separate from mortgage advice?", a: "Yes, although many clients choose to combine both services. Financial planning helps provide a broader view of your financial position and future goals, while mortgage advice focuses specifically on lending structure and strategy." },
+  { q: "Is financial planning separate from mortgage advice?", a: "Yes — many clients combine both. Financial planning gives a broader view of your goals; mortgage advice focuses on lending structure." },
   { q: "Do I need a large income or investments?", a: "No. Financial planning can be valuable regardless of your income level. The purpose is to help you make better decisions with the resources you have today." },
   { q: "How many coaching sessions do I need?", a: "Some clients benefit from a single strategy session, while others prefer ongoing support and accountability through regular reviews. We tailor the approach to your situation and goals." },
-  { q: "Can financial planning help me prepare to buy a home?", a: "Absolutely. Many clients start financial planning before purchasing a property to better understand borrowing capacity, deposit goals, budgeting, and future affordability." },
+  { q: "Can financial planning help me prepare to buy a home?", a: "Yes — many clients start planning before buying a property to clarify borrowing capacity, deposit goals, and future affordability." },
 ];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
@@ -49,25 +49,34 @@ export default function FinancialPlanningPage() {
   return (
     <div data-cmp="FinancialPlanningPage" className="w-full flex flex-col font-sans">
       {/* HERO */}
-      <section data-cmp="FinancialPlanningPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-5xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+      <section data-cmp="FinancialPlanningPage.Hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/financial-planning-hero.png"
+            alt="Couple planning their financial future on the New Zealand coast"
+            fill
+            priority
+            unoptimized
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/65 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent z-10" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 relative z-10 pt-36 pb-20">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
             <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Financial Planning</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Strategy</span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
-              Build a Financial Strategy Around<br className="hidden md:block" /> the Life You Want<span className="text-valar-amber">.</span>
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
+              Build a Financial Strategy Around the Life You Want<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl text-valar-lilac max-w-3xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4 font-light">
-              Financial planning is about more than numbers. It is about understanding where you are today, where you want to be in the future, and creating a practical plan to help you get there.
+            <motion.p variants={fadeIn} className="text-lg text-white/80 leading-relaxed mb-8 border-l-2 border-valar-amber pl-4 font-light">
+              Clear financial direction for where you are today and where you want to be.
             </motion.p>
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
               </Link>
             </motion.div>
           </motion.div>
@@ -121,16 +130,16 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FINANCIAL COACHING */}
-      <section data-cmp="FinancialPlanningPage.FinancialCoaching" className="py-24 bg-valar-navy text-white">
+      <section data-cmp="FinancialPlanningPage.FinancialCoaching" className="py-24 bg-valar-fog">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Financial Coaching</span>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
               A structured process for long-term financial clarity<span className="text-valar-amber">.</span>
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed max-w-3xl">
+            <motion.p variants={fadeIn} className="text-valar-indigo text-lg leading-relaxed max-w-3xl">
               Financial coaching is designed to help you better understand your financial position, behaviours, and long-term goals. We start by analysing your current situation, then build a practical framework tailored to your circumstances.
             </motion.p>
           </motion.div>
@@ -139,13 +148,13 @@ export default function FinancialPlanningPage() {
             {[
               { title: "What We Analyse", items: ["Income and expenses", "Spending habits", "Existing lending and commitments", "Assets and savings", "Financial priorities and future goals"] },
               { title: "Your Coaching Framework", items: ["Cashflow and budgeting strategies", "Financial habit improvement", "Debt management", "Mortgage and property planning", "Savings and investment planning", "Goal setting and accountability", "Long-term financial roadmap"] },
-              { title: "How It's Delivered", items: ["One-off strategy session", "Structured multi-session programme", "Monthly, quarterly, or annual reviews"] },
+              { title: "How It’s Delivered", items: ["One-off strategy session", "Structured multi-session programme", "Monthly, quarterly, or annual reviews"] },
             ].map((col, i) => (
-              <motion.div data-cmp="FinancialPlanningPage.FinancialCoaching.Column" key={i} variants={fadeIn} className="bg-valar-indigo p-8 rounded-sm border-t-2 border-valar-amber">
-                <h3 className="text-lg font-bold mb-5">{col.title}</h3>
+              <motion.div data-cmp="FinancialPlanningPage.FinancialCoaching.Column" key={i} variants={fadeIn} className="bg-white p-8 rounded-sm border-t-2 border-valar-amber">
+                <h3 className="text-lg font-bold text-valar-navy mb-5">{col.title}</h3>
                 <ul className="space-y-2.5">
                   {col.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-valar-lilac">
+                    <li key={j} className="flex items-start gap-2 text-sm text-valar-navy">
                       <div className="w-1 h-1 rounded-full bg-valar-amber flex-shrink-0 mt-2" />
                       {item}
                     </li>
@@ -155,10 +164,10 @@ export default function FinancialPlanningPage() {
             ))}
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-valar-indigo/50 border border-valar-amber/30 rounded-sm p-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="bg-white border border-valar-concrete rounded-sm p-8">
             <span className="text-valar-amber font-bold tracking-widest text-xs uppercase block mb-3">Fees</span>
-            <p className="text-white font-semibold text-lg mb-2">Financial coaching sessions are generally charged at <span className="text-valar-amber">$250 per hour</span>.</p>
-            <p className="text-valar-lilac text-sm">Ongoing programmes and review packages can be tailored to individual needs.</p>
+            <p className="text-valar-navy font-semibold text-lg mb-2">Financial coaching sessions are generally charged at <span className="text-valar-amber">$250 per hour</span>.</p>
+            <p className="text-valar-indigo text-sm">Ongoing programmes and review packages can be tailored to individual needs.</p>
           </motion.div>
         </div>
       </section>
@@ -199,7 +208,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section data-cmp="FinancialPlanningPage.HowItWorks" className="py-24 bg-white">
+      <section data-cmp="FinancialPlanningPage.HowItWorks" className="pt-24 pb-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -214,8 +223,8 @@ export default function FinancialPlanningPage() {
             {[
               { num: "01", title: "Discovery Session", body: "We discuss your current situation, challenges, goals, and priorities to understand what you want to achieve." },
               { num: "02", title: "Financial Review", body: "We review your income, expenses, assets, liabilities, and existing financial structure to establish a clear baseline." },
-              { num: "03", title: "Strategy Development", body: "We identify opportunities and create practical recommendations tailored to your goals — focused on actionable steps, not complicated reports." },
-              { num: "04", title: "Implementation & Support", body: "Depending on your needs, we can continue working together through regular reviews and coaching sessions to keep you on track." },
+              { num: "03", title: "Strategy Development", body: "We identify opportunities and create practical recommendations tailored to your goals — actionable steps, not complicated reports." },
+              { num: "04", title: "Implementation & Support", body: "We continue with regular reviews and coaching sessions to keep you on track." },
             ].map((step, i) => (
               <motion.div data-cmp="FinancialPlanningPage.HowItWorks.Step" key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
                 <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">{step.num}</div>
@@ -260,7 +269,7 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FAQ */}
-      <section data-cmp="FinancialPlanningPage.Faq" className="py-24 bg-white">
+      <section data-cmp="FinancialPlanningPage.Faq" className="pt-24 pb-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mb-16">
             <motion.div variants={fadeIn} className="mb-4">
@@ -279,25 +288,31 @@ export default function FinancialPlanningPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section data-cmp="FinancialPlanningPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-            <motion.div variants={fadeIn} className="mb-4 flex justify-center">
+      <section data-cmp="FinancialPlanningPage.FinalCta" className="pt-12 pb-24 bg-valar-fog">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            {/* Left — text + CTA */}
+            <motion.div variants={fadeIn}>
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Build a Clear Financial Plan?</span>
-            </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Start with a clear conversation<span className="text-valar-amber">.</span>
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Whether you are preparing to buy a home, improve your cashflow, build wealth, or simply gain greater clarity around your finances, we are here to help.
-            </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-valar-navy mt-4 mb-6">
+                Start with a clear conversation<span className="text-valar-amber">.</span>
+              </h2>
+              <p className="text-valar-indigo text-lg leading-relaxed mb-8">
+                Whether you are preparing to buy a home, improve your cashflow, or simply gain greater clarity around your finances — let&apos;s talk.
+              </p>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
-              </Link>
+            </motion.div>
+            {/* Right — photo */}
+            <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
+              <Image
+                src="/images/lena-client.jpg"
+                alt="Lena Bykova discussing with a client"
+                fill
+                unoptimized
+                className="object-cover object-center"
+              />
             </motion.div>
           </motion.div>
         </div>
