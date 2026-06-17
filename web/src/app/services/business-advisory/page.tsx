@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Calendar,
-  Phone,
+  ChevronDown,
   BarChart2,
   TrendingUp,
   DollarSign,
@@ -33,28 +34,25 @@ export default function BusinessAdvisoryPage() {
     <div data-cmp="BusinessAdvisoryPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section data-cmp="BusinessAdvisoryPage.Hero" className="bg-valar-navy text-white pt-28 pb-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-5xl">
+      <section data-cmp="BusinessAdvisoryPage.Hero" className="relative overflow-hidden text-white pt-28 pb-24 px-4 md:px-6">
+        <Image src="/images/business-advisory-hero.png" fill priority unoptimized className="object-cover object-center" alt="Business advisory hero" />
+        <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />
+        <div className="container mx-auto max-w-5xl relative z-20">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Business Advisory</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Business</span>
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-[1.05]">
-              Business Advisory<span className="text-valar-amber">.</span>
+              AI-Driven Business Advisory<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl md:text-2xl text-valar-steel font-light mb-8">
-              Better Business Decisions Through Financial Insight
-            </motion.p>
             <motion.div variants={fadeIn} className="text-base text-valar-lilac max-w-2xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4">
-              Helping business owners understand cashflow, profitability, growth opportunities, and business performance through financial analysis, forecasting, business intelligence, and AI-powered tools.
+              Helping business owners build up a finance system with AI-powered tools.
             </motion.div>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+            <motion.div variants={fadeIn}>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
               </Link>
             </motion.div>
           </motion.div>
@@ -79,7 +77,7 @@ export default function BusinessAdvisoryPage() {
                 Many business owners are experts in their trade — but struggle with the numbers<span className="text-valar-amber">.</span>
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed">
-                Business Advisory helps answer the important financial questions through analysis and strategic planning.
+                Valar helps business owners gain clarity on performance, profitability, and future opportunities through business intelligence and AI-powered insights.
               </motion.p>
             </motion.div>
 
@@ -87,14 +85,12 @@ export default function BusinessAdvisoryPage() {
               <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-5">Questions we help answer</motion.p>
               <motion.ul variants={staggerContainer} className="space-y-3">
                 {[
-                  "Where is my business making money?",
-                  "Where am I losing money?",
-                  "What products or clients are most profitable?",
-                  "Can I afford to hire another employee?",
-                  "Can I invest in new equipment?",
-                  "Is my cashflow healthy?",
-                  "Can my business support additional borrowing?",
-                  "How can I make better decisions using data?",
+                  "Where are the hidden opportunities to improve profitability?",
+                  "Which customers create the most value for the business?",
+                  "What trends are emerging in my financial data?",
+                  "How will today's decisions affect future cash flow and profit?",
+                  "Which projects are worth pursuing — and which should be avoided?",
+                  "What are the biggest financial risks facing my business?",
                 ].map((q, i) => (
                   <motion.li data-cmp="BusinessAdvisoryPage.WhyBusinessAdvisory.QuestionItem" key={i} variants={fadeIn} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-valar-concrete shadow-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0 mt-1.5" />
@@ -122,16 +118,13 @@ export default function BusinessAdvisoryPage() {
                 <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What Makes Valar Different?</span>
               </motion.div>
               <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-                Your accountant focuses on compliance<span className="text-valar-amber">.</span>
+                Clarity Behind Every Business Decision<span className="text-valar-amber">.</span>
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-lilac leading-relaxed mb-4">
-                Your accountant focuses on tax compliance, annual financial statements, and meeting reporting obligations.
-              </motion.p>
-              <motion.p variants={fadeIn} className="text-valar-lilac leading-relaxed mb-4">
-                Our role is different. We focus on helping business owners understand what the numbers mean and how they can use them to make better decisions.
+                Every business generates data. The challenge is turning that information into meaningful insight.
               </motion.p>
               <motion.p variants={fadeIn} className="text-white font-medium">
-                We help transform financial information into practical business insights.
+                Valar helps business owners make better decisions through business intelligence, AI-driven analysis, and strategic planning.
               </motion.p>
             </motion.div>
 
@@ -185,20 +178,20 @@ export default function BusinessAdvisoryPage() {
                 {
                   icon: DollarSign,
                   title: "Cashflow Forecasting",
-                  desc: "Understanding where cash is coming from, where it is going, and how future decisions may affect business performance.",
-                  items: ["Cashflow forecasting", "Funding requirements", "Scenario planning", "Working capital analysis"],
+                  desc: "Cash visibility and forward planning.",
+                  items: ["Cashflow forecasting", "Scenario planning", "Working capital analysis"],
                 },
                 {
                   icon: BarChart2,
-                  title: "Financial Dashboards & Business Intelligence",
-                  desc: "Helping business owners access important information quickly and clearly.",
-                  items: ["KPI dashboards", "Management reporting", "Business intelligence systems", "Operational reporting", "Performance tracking"],
+                  title: "Financial Dashboards & BI",
+                  desc: "Clear metrics, always accessible.",
+                  items: ["KPI dashboards", "Management reporting", "Performance tracking"],
                 },
                 {
                   icon: LineChart,
                   title: "Business Performance Analysis",
-                  desc: "Understanding what drives profitability and growth.",
-                  items: ["Revenue analysis", "Cost analysis", "Margin analysis", "Profitability by service, project, or customer", "Identifying improvement opportunities"],
+                  desc: "What drives profitability and growth.",
+                  items: ["Revenue analysis", "Margin analysis", "Profitability by service or project"],
                 },
               ].map((card, i) => (
                 <motion.div data-cmp="BusinessAdvisoryPage.WhatWeOffer.ServiceCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
@@ -227,20 +220,20 @@ export default function BusinessAdvisoryPage() {
                 {
                   icon: TrendingUp,
                   title: "Investment & Growth Analysis",
-                  desc: "Helping evaluate future opportunities before committing capital.",
-                  items: ["Investment analysis", "Return on investment (ROI)", "Project feasibility", "Equipment purchases", "Expansion opportunities", "Growth scenarios"],
+                  desc: "Evaluate opportunities before committing.",
+                  items: ["Investment analysis", "Project feasibility", "Growth scenarios"],
                 },
                 {
                   icon: Layers,
                   title: "Lending & Funding Support",
-                  desc: "Helping businesses understand funding options and borrowing capacity.",
-                  items: ["Business lending analysis", "Loan structure review", "Funding requirements", "Lender support and application preparation"],
+                  desc: "Funding options and borrowing capacity.",
+                  items: ["Business lending analysis", "Loan structure review", "Funding requirements"],
                 },
                 {
                   icon: Cpu,
                   title: "AI & Technology Solutions",
-                  desc: "Helping businesses use modern tools to improve visibility, reporting, and decision-making.",
-                  items: ["AI-assisted reporting", "Automated dashboards", "Financial data integration", "Workflow improvements", "Business intelligence tools"],
+                  desc: "Better visibility and smarter decisions.",
+                  items: ["AI-assisted reporting", "Automated dashboards", "Financial data integration"],
                 },
               ].map((card, i) => (
                 <motion.div data-cmp="BusinessAdvisoryPage.WhatWeOffer.ServiceCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-lg border border-valar-concrete">
@@ -266,50 +259,8 @@ export default function BusinessAdvisoryPage() {
         </div>
       </section>
 
-      {/* WHAT YOU RECEIVE */}
-      <section data-cmp="BusinessAdvisoryPage.WhatYouReceive" className="py-24 bg-valar-fog">
-        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="mb-16"
-          >
-            <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What You Receive</span>
-            </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
-              Practical outputs tailored to your business<span className="text-valar-amber">.</span>
-            </motion.h2>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {[
-              { num: "01", title: "Business Health Review", desc: "A structured review of business performance and financial position." },
-              { num: "02", title: "Cashflow Forecast", desc: "A forecast showing future cashflow under different scenarios." },
-              { num: "03", title: "Financial Dashboard", desc: "A customised dashboard to monitor key business metrics." },
-              { num: "04", title: "Investment Analysis", desc: "Evaluation of future projects and investment opportunities." },
-              { num: "05", title: "Strategic Recommendations", desc: "Practical actions designed to improve performance and support growth." },
-            ].map((item, i) => (
-              <motion.div data-cmp="BusinessAdvisoryPage.WhatYouReceive.OutputCard" key={i} variants={fadeIn} className={`bg-white p-8 rounded-lg shadow-sm border border-valar-concrete ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}>
-                <div className="text-4xl font-bold text-valar-concrete mb-4 leading-none">{item.num}</div>
-                <h3 className="text-base font-bold text-valar-navy mb-3">{item.title}</h3>
-                <p className="text-valar-indigo text-sm leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* WHO IS THIS FOR */}
-      <section data-cmp="BusinessAdvisoryPage.WhoIsFor" className="py-24 bg-valar-indigo text-white">
+      <section data-cmp="BusinessAdvisoryPage.WhoIsFor" className="py-24 bg-valar-navy text-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -335,18 +286,19 @@ export default function BusinessAdvisoryPage() {
           >
             {[
               { icon: Building2, title: "Trades & Construction", desc: "Businesses managing projects, staff, vehicles, and equipment." },
-              { icon: Briefcase, title: "Professional Service Firms", desc: "Consultants, agencies, and service-based businesses." },
-              { icon: Store, title: "Retail Businesses", desc: "Businesses seeking better visibility over profitability and cashflow." },
-              { icon: Lightbulb, title: "Start-Ups", desc: "Founders seeking financial structure, reporting, and growth planning." },
-              { icon: TrendingUp, title: "Growing Businesses", desc: "Business owners wanting better information to support decision-making." },
+              { icon: Briefcase, title: "Professional Services", desc: "Consultants, agencies, and service-based businesses." },
+              { icon: Store, title: "Retail Businesses", desc: "Businesses seeking visibility over profitability and cashflow." },
+              { icon: Lightbulb, title: "Start-Ups", desc: "Founders building financial structure for growth." },
+              { icon: TrendingUp, title: "Growing Businesses", desc: "Business owners wanting better information to support decisions." },
+              { icon: Building2, title: "Property Developers", desc: "Managing projects and cashflow across multiple developments." },
             ].map((card, i) => (
-              <motion.div data-cmp="BusinessAdvisoryPage.WhoIsFor.AudienceCard" key={i} variants={fadeIn} className={`bg-valar-navy/40 border border-white/10 rounded-sm p-6 flex items-start gap-4 ${i === 4 ? "sm:col-span-2 lg:col-span-1" : ""}`}>
+              <motion.div data-cmp="BusinessAdvisoryPage.WhoIsFor.AudienceCard" key={i} variants={fadeIn} className="bg-valar-fog border border-valar-concrete rounded-sm p-6 flex items-start gap-4">
                 <div className="w-9 h-9 rounded-full bg-valar-amber/20 flex items-center justify-center flex-shrink-0">
                   <card.icon className="w-4 h-4 text-valar-amber" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white mb-1">{card.title}</h3>
-                  <p className="text-valar-lilac text-sm leading-relaxed">{card.desc}</p>
+                  <h3 className="font-bold text-valar-navy mb-1">{card.title}</h3>
+                  <p className="text-valar-indigo text-sm leading-relaxed">{card.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -355,7 +307,7 @@ export default function BusinessAdvisoryPage() {
       </section>
 
       {/* HOW THE PROCESS WORKS */}
-      <section data-cmp="BusinessAdvisoryPage.HowItWorks" className="py-24 bg-white">
+      <section data-cmp="BusinessAdvisoryPage.HowItWorks" className="py-14 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -377,55 +329,68 @@ export default function BusinessAdvisoryPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="max-w-3xl"
           >
             {[
-              { num: "01", title: "Discovery Session", body: "We discuss your business, goals, challenges, and priorities." },
-              { num: "02", title: "Information Review", body: "We review available financial information, systems, and reporting processes." },
-              { num: "03", title: "Analysis & Recommendations", body: "We identify opportunities, risks, and practical improvements." },
-              { num: "04", title: "Implementation Support", body: "Where appropriate, we help build dashboards, forecasting tools, reporting systems, and financial frameworks." },
-            ].map((step, i) => (
-              <motion.div data-cmp="BusinessAdvisoryPage.HowItWorks.StepCard" key={i} variants={fadeIn} className="flex gap-6 bg-valar-fog p-8 rounded-lg border border-valar-concrete">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-valar-navy text-white flex items-center justify-center font-bold text-sm">
-                  {step.num}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-valar-navy mb-2">{step.title}</h3>
-                  <p className="text-valar-indigo leading-relaxed text-sm">{step.body}</p>
-                </div>
-              </motion.div>
+              { num: "01", title: "Discovery Session", body: "Your business, goals, challenges, and priorities." },
+              { num: "02", title: "Information Review", body: "Financial information, systems, and reporting processes." },
+              { num: "03", title: "Analysis & Recommendations", body: "Opportunities, risks, and practical improvements." },
+              { num: "04", title: "Implementation Support", body: "Dashboards, forecasting tools, and financial frameworks." },
+            ].map((step, i, arr) => (
+              <div key={i}>
+                <motion.div data-cmp="BusinessAdvisoryPage.HowItWorks.Step" variants={fadeIn} className="grid grid-cols-[1fr_2fr] gap-8 items-start py-5">
+                  <div className="flex items-center gap-4">
+                    <span className="text-xs font-bold text-valar-amber">{step.num}</span>
+                    <h3 className="text-base font-bold text-valar-navy">{step.title}</h3>
+                  </div>
+                  <p className="text-valar-indigo text-sm leading-relaxed">{step.body}</p>
+                </motion.div>
+                {i < arr.length - 1 && (
+                  <div className="flex justify-start pl-6">
+                    <ChevronDown className="w-4 h-4 text-valar-amber" />
+                  </div>
+                )}
+              </div>
             ))}
           </motion.div>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section data-cmp="BusinessAdvisoryPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn} className="mb-4 flex justify-center">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Better Understand Your Business?</span>
+      <section data-cmp="BusinessAdvisoryPage.FinalCta" className="py-24 bg-valar-fog">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div variants={fadeIn} className="mb-4">
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Better Understand Your Business?</span>
+              </motion.div>
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6">
+                Good decisions start with good information<span className="text-valar-amber">.</span>
+              </motion.h2>
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-8">
+                Build a stronger financial foundation with better visibility, reporting, and AI-driven insights.
+              </motion.p>
+              <motion.div variants={fadeIn}>
+                <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
+                  <Calendar className="w-5 h-5" /> Book a Consultation
+                </Link>
+              </motion.div>
             </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6">
-              Good decisions start with good information<span className="text-valar-amber">.</span>
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Whether you need clearer cashflow visibility, better reporting, investment analysis, or business intelligence tools, we can help you build a stronger financial foundation for growth.
-            </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
-                <Calendar className="w-5 h-5" /> Book a Consultation
-              </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Request a Call Back
-              </Link>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              className="relative h-80 rounded-sm overflow-hidden"
+            >
+              <Image src="/images/lena-client.jpg" fill unoptimized className="object-cover object-center" alt="Lena with client" />
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
