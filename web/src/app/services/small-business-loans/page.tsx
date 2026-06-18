@@ -74,12 +74,14 @@ export default function SmallBusinessLoansPage() {
     <div data-cmp="SmallBusinessLoansPage" className="w-full flex flex-col font-sans">
 
       {/* HERO */}
-      <section data-cmp="SmallBusinessLoansPage.Hero" className="relative overflow-hidden text-white pt-28 pb-24 px-4 md:px-6">
-        <Image src="/images/small-business-loans-hero.png" fill priority unoptimized className="object-cover object-center" alt="Business loans hero" />
-        <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />
-        <div className="container mx-auto max-w-5xl relative z-20">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+      <section data-cmp="SmallBusinessLoansPage.Hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/small-business-loans-hero.png" fill priority unoptimized className="object-cover object-center" alt="Business loans hero" />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/20 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/30 to-transparent z-10" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 relative z-10 pt-36 pb-20 text-white">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
               <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Business</span>

@@ -74,7 +74,7 @@ export default function InvestmentPropertyAnalysisPage() {
             fill
             priority
             unoptimized
-            className="object-cover object-center"
+            className="object-cover object-[center_70%]"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />

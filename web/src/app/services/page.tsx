@@ -3,27 +3,52 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, LayoutGrid, TrendingUp, Briefcase, ChevronRight, BookOpen } from "lucide-react";
+import { ArrowRight, LayoutGrid, TrendingUp, Briefcase, ChevronRight, BookOpen, Calendar } from "lucide-react";
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
 
 export default function ServicesPage() {
   return (
     <div data-cmp="ServicesPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
       {/* Hero */}
-      <section data-cmp="ServicesPage.Hero" className="relative text-white pt-24 pb-20 px-4 md:px-6 overflow-hidden">
-        <Image
-          src="/images/services-hero.png"
-          alt="Services hero"
-          fill
-          className="object-cover object-right"
-          priority
-        />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,22,52,0.95) 0%, rgba(6,22,52,0.95) 50%, rgba(6,22,52,0.1) 100%)' }} />
-        <div className="relative z-10 container mx-auto max-w-5xl">
-          <div className="h-[1px] w-12 bg-valar-amber mb-6"></div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Our Services<span className="text-valar-amber">.</span></h1>
-          <p className="text-xl md:text-2xl font-light text-valar-lilac max-w-3xl leading-relaxed border-l-2 border-valar-amber pl-4">
-            Strategic financial advisory<br />tailored to your property ambitions and wealth growth.
-          </p>
+      <section data-cmp="ServicesPage.Hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/services-hero.png"
+            alt="Services hero"
+            fill
+            priority
+            className="object-cover object-right"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/20 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/30 to-transparent z-10" />
+        </div>
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl relative z-10 pt-36 pb-20 text-white">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+            <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
+              <div className="h-[2px] w-6 bg-valar-amber" />
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Strategic Financial Advisory</span>
+            </motion.div>
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
+              Our Services<span className="text-valar-amber">.</span>
+            </motion.h1>
+            <motion.p variants={fadeIn} className="text-lg text-white/80 leading-relaxed mb-8 border-l-2 border-valar-amber pl-4 font-light">
+              Tailored to your property ambitions and wealth growth.
+            </motion.p>
+            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
+              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
+                <Calendar className="w-5 h-5" /> Book a Consultation
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
