@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Calendar,
-  Phone,
   CheckCircle2,
   TrendingUp,
   Home as HomeIcon,
@@ -327,28 +326,29 @@ export default function AboutPage() {
       </section>
 
       {/* ── 12. FINAL CTA ───────────────────────────────────────── */}
-      <section data-cmp="AboutPage.FinalCta" className="py-24 bg-valar-navy text-white text-center">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }}
-            variants={stagger}
-          >
-            <motion.div variants={fadeIn} className="mb-4 flex justify-center">
+      <section data-cmp="AboutPage.FinalCta" className="pt-12 pb-24 bg-valar-fog">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <motion.div variants={fadeIn}>
               <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Take the First Step</span>
-            </motion.div>
-            <motion.h2 variants={fadeIn} className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-              Ready to Make Your Next Financial Step With Clarity<span className="text-valar-amber">.</span>
-            </motion.h2>
-            <motion.p variants={fadeIn} className="text-valar-lilac text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-              Whether you are buying your first home, refinancing, investing in property, or planning your future, Valar can help you build a strategy around your goals.
-            </motion.p>
-            <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-valar-navy mt-4 mb-6">
+                Ready to Make Your Next Financial Step With Clarity<span className="text-valar-amber">.</span>
+              </h2>
+              <p className="text-valar-indigo text-lg leading-relaxed mb-8">
+                Whether you are buying your first home, refinancing, or investing — we can help you build a strategy around your goals.
+              </p>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Strategy Call
               </Link>
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
-                <Phone className="w-5 h-5" /> Contact Valar
-              </Link>
+            </motion.div>
+            <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
+              <Image
+                src="/images/lena-client.jpg"
+                alt="Lena Bykova discussing with a client"
+                fill
+                unoptimized
+                className="object-cover object-center"
+              />
             </motion.div>
           </motion.div>
         </div>
