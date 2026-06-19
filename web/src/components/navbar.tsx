@@ -247,7 +247,7 @@ export function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:block">
             <Link
-              href="/contact"
+              href="/subscribe"
               className="flex items-center gap-2 border border-white/60 hover:border-white hover:bg-white/10 text-white font-medium text-sm px-5 py-2 rounded-sm transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />

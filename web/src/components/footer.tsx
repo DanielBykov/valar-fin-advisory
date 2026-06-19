@@ -1,10 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
 
 export function Footer() {
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  async function handleSubscribe(e: React.FormEvent) {
+    e.preventDefault();
+    const res = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, firstName }),
+    });
+    if (res.ok) setSubscribed(true);
+  }
+
   return (
     <footer data-cmp="Footer" className="bg-valar-navy text-valar-lilac pt-16 pb-8 font-sans">
       <div className="container mx-auto px-4 md:px-6 max-w-5xl">
@@ -72,19 +87,34 @@ export function Footer() {
               Thoughtful market insights — delivered occasionally, not excessively.
             </p>
           </div>
-          <form className="flex flex-col sm:flex-row gap-4 lg:justify-end" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="bg-valar-indigo border-none text-white placeholder:text-white/50 h-12 min-w-[280px] rounded-md px-4 outline-none focus:ring-2 focus:ring-valar-amber"
-            />
-            <button
-              type="submit"
-              className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-semibold text-sm px-8 h-12 rounded-sm transition-colors whitespace-nowrap"
-            >
-              Subscribe to Insights
-            </button>
-          </form>
+          {subscribed ? (
+            <p className="text-valar-amber font-semibold text-sm lg:text-right">You're subscribed. See you in your inbox.</p>
+          ) : (
+            <form className="flex flex-col sm:flex-row gap-4 lg:justify-end" onSubmit={handleSubscribe}>
+              <input
+                type="text"
+                required
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First name"
+                className="bg-valar-indigo border-none text-white placeholder:text-white/50 h-12 w-36 rounded-md px-4 outline-none focus:ring-2 focus:ring-valar-amber"
+              />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email address"
+                className="bg-valar-indigo border-none text-white placeholder:text-white/50 h-12 min-w-[220px] rounded-md px-4 outline-none focus:ring-2 focus:ring-valar-amber"
+              />
+              <button
+                type="submit"
+                className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-semibold text-sm px-8 h-12 rounded-sm transition-colors whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+          )}
         </div>
 
         {/* Bottom bar */}

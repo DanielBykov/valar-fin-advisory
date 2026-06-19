@@ -9,6 +9,19 @@ export default function ContactPage() {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState("");
   const [submittedEmail, setSubmittedEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+
+  async function handleNewsletterSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const res = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: data.email, firstName }),
+    });
+    if (res.ok) setNewsletterSubscribed(true);
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,6 +38,7 @@ export default function ContactPage() {
     if (json.success) {
       setSucceeded(true);
       setSubmittedEmail(data.email as string);
+      setFirstName(data.firstName as string || "");
     } else {
       setError("Something went wrong. Please try again or email me directly.");
     }
@@ -141,16 +155,22 @@ export default function ContactPage() {
                   <p className="text-sm text-valar-lilac leading-relaxed">
                     Once a week — market news, recent property research, useful guides and calculators. No spam.
                   </p>
-                  <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                    <input
-                      type="email"
-                      defaultValue={submittedEmail}
-                      className="bg-valar-indigo border border-valar-indigo rounded-md px-3 h-10 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-valar-amber text-white placeholder:text-white/40"
-                    />
-                    <button type="submit" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold text-sm px-4 h-10 rounded-sm transition-colors whitespace-nowrap">
-                      Subscribe
-                    </button>
-                  </form>
+                  {newsletterSubscribed ? (
+                    <p className="text-valar-amber font-semibold text-sm">You're subscribed. See you in your inbox.</p>
+                  ) : (
+                    <form className="flex gap-2" onSubmit={handleNewsletterSubmit}>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        defaultValue={submittedEmail}
+                        className="bg-valar-indigo border border-valar-indigo rounded-md px-3 h-10 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-valar-amber text-white placeholder:text-white/40"
+                      />
+                      <button type="submit" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold text-sm px-4 h-10 rounded-sm transition-colors whitespace-nowrap">
+                        Subscribe
+                      </button>
+                    </form>
+                  )}
                 </div>
                 <div className="border-t border-valar-concrete pt-6 space-y-3">
                   <p className="text-xs font-semibold text-valar-navy uppercase tracking-wide">In the meantime</p>
