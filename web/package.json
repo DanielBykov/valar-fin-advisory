@@ -10,6 +10,7 @@
     "sync:onedrive": "bash ../docs_local/sync-onedrive.sh"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
     "@radix-ui/react-tabs": "^1.1.13",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
@@ -18,6 +19,7 @@
     "react": "19.2.4",
     "react-calendly": "^4.4.0",
     "react-dom": "19.2.4",
+    "resend": "^6.14.0",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
