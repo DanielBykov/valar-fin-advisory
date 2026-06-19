@@ -165,6 +165,57 @@ export default function FirstHomeBuyersPage() {
         </div>
       </section>
 
+      {/* PERSONAL CHECKLIST */}
+      <section data-cmp="FirstHomeBuyersPage.Checklist" className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          >
+            <motion.div variants={staggerContainer}>
+              <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-3">Inside the Guide</motion.p>
+              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-4 leading-tight">
+                Your personal roadmap<span className="text-valar-amber">.</span>
+              </motion.h2>
+              <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-6">
+                The guide includes a step-by-step checklist you can work through at your own pace — on paper or as a PDF. Each question helps you see exactly where you are in the process and what comes next.
+              </motion.p>
+              <motion.button
+                variants={fadeIn}
+                onClick={() => setGuideOpen(true)}
+                className="inline-flex items-center gap-2 bg-valar-navy hover:bg-valar-indigo text-white px-6 py-3 rounded-sm font-bold transition-colors text-sm"
+              >
+                <Download className="w-4 h-4" /> Get your copy
+              </motion.button>
+            </motion.div>
+
+            <motion.div variants={staggerContainer} className="space-y-3">
+              {[
+                { q: "Do you know your borrowing capacity?", done: false },
+                { q: "Have you compared at least three lenders?", done: false },
+                { q: "Have you arranged a KiwiSaver withdrawal assessment?", done: false },
+                { q: "Is your deposit verified and ready to move?", done: false },
+              ].map(({ q }, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeIn}
+                  className="flex items-start gap-4 bg-valar-fog rounded-lg px-5 py-4 border border-valar-concrete"
+                >
+                  <div className="w-5 h-5 rounded border-2 border-valar-concrete flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-valar-navy leading-relaxed">{q}</span>
+                </motion.div>
+              ))}
+              <motion.p variants={fadeIn} className="text-xs text-valar-indigo/50 pl-1 pt-1">
+                + more inside the guide
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* DOWNLOAD GUIDE CALLOUT */}
       <section data-cmp="FirstHomeBuyersPage.DownloadGuide" className="relative py-24 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
