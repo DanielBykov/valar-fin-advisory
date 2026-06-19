@@ -165,6 +165,36 @@ export default function FirstHomeBuyersPage() {
         </div>
       </section>
 
+      {/* DOWNLOAD GUIDE CALLOUT */}
+      <section data-cmp="FirstHomeBuyersPage.DownloadGuide" className="relative py-24 text-white overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/first-home-guide-bg.png" alt="" fill unoptimized className="object-cover object-center" />
+          <div className="absolute inset-0 bg-valar-navy/25" />
+        </div>
+        <div className="container mx-auto px-6 md:px-12 max-w-5xl relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="flex flex-col md:flex-row items-center justify-between gap-8"
+          >
+            <motion.div variants={staggerContainer}>
+              <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-3">Free Resource</motion.p>
+              <motion.h2 variants={fadeIn} className="text-2xl md:text-3xl font-bold mb-2">Download the First Home Buyer Guide.</motion.h2>
+              <motion.p variants={fadeIn} className="text-white/70 leading-relaxed max-w-xl">
+                Covers the home-buying process, lending basics, common questions, and practical tips to help you prepare with confidence.
+              </motion.p>
+            </motion.div>
+            <motion.div variants={fadeIn} className="flex-shrink-0">
+              <button onClick={() => setGuideOpen(true)} className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors whitespace-nowrap">
+                <Download className="w-5 h-5" /> Download Guide
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* PERSONAL CHECKLIST */}
       <section data-cmp="FirstHomeBuyersPage.Checklist" className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
@@ -194,11 +224,11 @@ export default function FirstHomeBuyersPage() {
 
             <motion.div variants={staggerContainer} className="space-y-3">
               {[
-                { q: "Do you know your borrowing capacity?", done: false },
-                { q: "Have you compared at least three lenders?", done: false },
-                { q: "Have you arranged a KiwiSaver withdrawal assessment?", done: false },
-                { q: "Is your deposit verified and ready to move?", done: false },
-              ].map(({ q }, i) => (
+                "Do you know your borrowing capacity?",
+                "Have you compared at least three lenders?",
+                "Have you arranged a KiwiSaver withdrawal assessment?",
+                "Is your deposit verified and ready to move?",
+              ].map((q, i) => (
                 <motion.div
                   key={i}
                   variants={fadeIn}
@@ -211,36 +241,6 @@ export default function FirstHomeBuyersPage() {
               <motion.p variants={fadeIn} className="text-xs text-valar-indigo/50 pl-1 pt-1">
                 + more inside the guide
               </motion.p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* DOWNLOAD GUIDE CALLOUT */}
-      <section data-cmp="FirstHomeBuyersPage.DownloadGuide" className="relative py-24 text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image src="/images/first-home-guide-bg.png" alt="" fill unoptimized className="object-cover object-center" />
-          <div className="absolute inset-0 bg-valar-navy/25" />
-        </div>
-        <div className="container mx-auto px-6 md:px-12 max-w-5xl relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="flex flex-col md:flex-row items-center justify-between gap-8"
-          >
-            <motion.div variants={staggerContainer}>
-              <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-3">Free Resource</motion.p>
-              <motion.h2 variants={fadeIn} className="text-2xl md:text-3xl font-bold mb-2">Download the First Home Buyer Guide.</motion.h2>
-              <motion.p variants={fadeIn} className="text-white/70 leading-relaxed max-w-xl">
-                Covers the home-buying process, lending basics, common questions, and practical tips to help you prepare with confidence.
-              </motion.p>
-            </motion.div>
-            <motion.div variants={fadeIn} className="flex-shrink-0">
-              <button onClick={() => setGuideOpen(true)} className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors whitespace-nowrap">
-                <Download className="w-5 h-5" /> Download Guide
-              </button>
             </motion.div>
           </motion.div>
         </div>
