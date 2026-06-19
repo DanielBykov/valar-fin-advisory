@@ -28,6 +28,7 @@ import {
   Check,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { GuideDownloadModal } from "@/components/guide-download-modal";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -56,10 +57,17 @@ const MINI_REVIEWS = [
   "Always available when we needed.",
 ];
 
+const FIRST_HOME_GUIDE = {
+  key: "first-home-buyer-guide",
+  title: "First Home Buyer Guide",
+  description: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
+};
+
 export default function Home() {
   const testimonialTrackRef = useRef<HTMLDivElement>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const testimonialMax = TESTIMONIALS.length - 3;
+  const [guideOpen, setGuideOpen] = useState(false);
 
   const scrollTestimonials = (dir: number) => {
     const newIndex = Math.max(0, Math.min(testimonialMax, testimonialIndex + dir));
@@ -73,6 +81,7 @@ export default function Home() {
   };
   return (
     <div data-cmp="HomePage" className="w-full flex flex-col font-sans">
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={FIRST_HOME_GUIDE} />
       {/* HERO */}
       <section data-cmp="HomePage.Hero" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -102,9 +111,9 @@ export default function Home() {
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                 <Calendar className="w-5 h-5" /> Book a Clarity Call <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link href="/book" className="bg-transparent border border-white/50 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
+              <button onClick={() => setGuideOpen(true)} className="bg-transparent border border-white/50 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                 <FileText className="w-5 h-5" /> Download First-Home Buyer Guide
-              </Link>
+              </button>
             </motion.div>
           </motion.div>
         </div>
@@ -517,9 +526,9 @@ export default function Home() {
               </motion.p>
 
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
+                <button onClick={() => setGuideOpen(true)} className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                   <FileText className="w-5 h-5" /> Download the Guide
-                </Link>
+                </button>
                 <Link href="/book" className="bg-transparent border border-valar-navy hover:bg-valar-navy hover:text-white text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                   <Calendar className="w-5 h-5" /> Book a Clarity Call
                 </Link>
