@@ -1,91 +1,43 @@
 "use client";
 
-import { CalendarDays } from "lucide-react";
+import Image from "next/image";
+import { InlineWidget } from "react-calendly";
 
 export default function BookPage() {
   return (
     <div data-cmp="BookPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
-      <section data-cmp="BookPage.Hero" className="bg-valar-navy text-white pt-24 pb-32 px-4 md:px-6 relative">
-        <div className="container mx-auto max-w-3xl text-center relative z-10">
-          <CalendarDays className="w-12 h-12 text-valar-amber mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Book a Strategy Call<span className="text-valar-amber">.</span></h1>
-          <p className="text-xl font-light text-valar-lilac leading-relaxed">
-            Take the first step toward financial clarity. We offer a structured initial consultation to understand your position and map out potential pathways.
+      <section data-cmp="BookPage.Hero" className="relative text-white px-4 md:px-6 overflow-hidden min-h-[120px] flex items-center">
+        <div className="absolute inset-0 z-0">
+          <Image src="/images/book-hero.png" alt="Book a clarity call" fill priority className="object-cover object-[center_30%]" />
+          <div className="absolute inset-0 bg-valar-navy/50" />
+        </div>
+        <div className="container mx-auto max-w-3xl text-center relative z-10 pt-8">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+            Book a Clarity Call<span className="text-valar-amber">.</span>
+          </h1>
+          <p className="text-valar-lilac font-light text-sm mt-1">
+            Free 15–20 minute call — pick a time that works for you.
           </p>
         </div>
       </section>
 
-      <section data-cmp="BookPage.BookingForm" className="-mt-20 pb-24 px-4 md:px-6 relative z-20">
+      <section data-cmp="BookPage.Calendly" className="py-0 px-4 pb-2">
+        <p className="text-center text-xs text-valar-indigo/60 pt-3">
+          By booking, you agree to our{" "}
+          <a href="/privacy-policy" className="underline hover:text-valar-navy">Privacy Policy</a>.
+        </p>
         <div className="container mx-auto max-w-3xl">
-          <div className="bg-white p-8 md:p-12 rounded-xl shadow-xl border border-gray-100">
-            <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
-
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-valar-navy border-b pb-2">Your Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="fullName" className="text-sm font-semibold text-gray-700">Full Name</label>
-                    <input id="fullName" className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-semibold text-gray-700">Email Address</label>
-                    <input id="email" type="email" className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone Number</label>
-                    <input id="phone" type="tel" className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20" required />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="preferredTime" className="text-sm font-semibold text-gray-700">Preferred Time to Call</label>
-                    <select id="preferredTime" defaultValue="" required className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20">
-                      <option value="" disabled>Select time preference</option>
-                      <option value="morning">Morning (9am - 12pm)</option>
-                      <option value="afternoon">Afternoon (1pm - 5pm)</option>
-                      <option value="flexible">Flexible</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-valar-navy border-b pb-2">Your Goals</h3>
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <label htmlFor="primaryService" className="text-sm font-semibold text-gray-700">Primary Service Interest</label>
-                    <select id="primaryService" defaultValue="" required className="bg-valar-fog border border-gray-200 w-full h-10 px-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20">
-                      <option value="" disabled>What are you looking for?</option>
-                      <option value="mortgage">Mortgage Advice</option>
-                      <option value="planning">Financial Planning</option>
-                      <option value="wealth">Wealth Management Plan</option>
-                      <option value="property">Investment Property Advice</option>
-                      <option value="business_loan">Small Business Loans</option>
-                      <option value="business_advice">Business Advisory Services</option>
-                      <option value="unsure">Not sure yet / General Strategy</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="situation" className="text-sm font-semibold text-gray-700">Current Situation &amp; Goals</label>
-                    <textarea
-                      id="situation"
-                      placeholder="Tell us about your financial goals, current situation, and any specific questions you have..."
-                      className="bg-valar-fog border border-gray-200 min-h-[150px] w-full p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-valar-navy/20"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-6">
-                <button type="submit" className="w-full bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold text-lg py-5 rounded-sm transition-colors shadow-sm">
-                  Submit Inquiry
-                </button>
-                <p className="text-center text-sm text-gray-500 mt-4">
-                  We&apos;ll be in touch within 1 business day to confirm your appointment.
-                </p>
-              </div>
-            </form>
-          </div>
+          <InlineWidget
+            url="https://calendly.com/lena-bykova-valar/new-meeting"
+            styles={{ height: "750px" }}
+            pageSettings={{
+              backgroundColor: "f7f7f5",
+              hideEventTypeDetails: false,
+              hideLandingPageDetails: false,
+              primaryColor: "f0a500",
+              textColor: "061634",
+            }}
+          />
         </div>
       </section>
     </div>
