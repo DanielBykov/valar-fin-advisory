@@ -33,7 +33,7 @@ Subscribers are added from:
 - **Group:** Web Subscription (ID: `190681331668092077`)
 - **API key:** `MAILERLITE_API_KEY` in `.env.local`
 - **Group ID:** `MAILERLITE_GROUP_ID` in `.env.local`
-- **To do:** Set up welcome automation in MailerLite — trigger: subscriber joins "Web Subscription" group
+- **Welcome automation:** active — triggers on joining "Web Subscription" group
 
 ---
 
