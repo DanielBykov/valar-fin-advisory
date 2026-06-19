@@ -100,7 +100,7 @@ export default function Home() {
             </motion.p>
             <motion.div data-cmp="HomePage.Hero.Cta" variants={fadeIn} className="flex flex-col md:flex-row gap-4">
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
-                <Calendar className="w-5 h-5" /> Book Strategy Call <ArrowRight className="w-5 h-5" />
+                <Calendar className="w-5 h-5" /> Book a Clarity Call <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="/book" className="bg-transparent border border-white/50 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                 <FileText className="w-5 h-5" /> Download First-Home Buyer Guide
@@ -521,7 +521,7 @@ export default function Home() {
                   <FileText className="w-5 h-5" /> Download the Guide
                 </Link>
                 <Link href="/book" className="bg-transparent border border-valar-navy hover:bg-valar-navy hover:text-white text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
-                  <Calendar className="w-5 h-5" /> Book a Strategy Call
+                  <Calendar className="w-5 h-5" /> Book a Clarity Call
                 </Link>
               </motion.div>
 
@@ -678,7 +678,7 @@ export default function Home() {
 
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-56">
-                Book Strategy Call
+                Book a Clarity Call
               </Link>
               <Link href="/insights" className="bg-transparent border-2 border-valar-navy hover:bg-valar-navy hover:text-white text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-56">
                 Explore Insights

@@ -116,7 +116,7 @@ export default function ContactPage() {
                   If you are looking to discuss mortgages, wealth building, or business loans, please use our dedicated booking platform to schedule a strategy session.
                 </p>
                 <Link href="/book" className="inline-block bg-white text-valar-navy hover:bg-valar-amber px-6 py-3 rounded-sm font-bold text-sm transition-colors">
-                  Book Strategy Call
+                  Book a Clarity Call
                 </Link>
               </div>
             </div>

@@ -57,7 +57,7 @@ export default function AboutPage() {
             </motion.p>
             <motion.div variants={fadeIn}>
               <Link href="/book" className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
-                <Calendar className="w-5 h-5" /> Book a Strategy Call
+                <Calendar className="w-5 h-5" /> Book a Clarity Call
               </Link>
             </motion.div>
           </motion.div>
@@ -338,7 +338,7 @@ export default function AboutPage() {
                 Whether you are buying your first home, refinancing, or investing — we can help you build a strategy around your goals.
               </p>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
-                <Calendar className="w-5 h-5" /> Book a Strategy Call
+                <Calendar className="w-5 h-5" /> Book a Clarity Call
               </Link>
             </motion.div>
             <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">

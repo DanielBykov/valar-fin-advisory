@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
           <div>
             <h2 className="text-xl font-bold text-valar-navy mb-3">Who we are</h2>
             <p>
-              This privacy policy applies to Valar Financial Advisors Limited, operated by Lena Bykova (FSP1010055), trading as Valar Financial Advisors. References to "we", "us", or "Valar" mean Valar Financial Advisors Limited.
+              This privacy policy applies to Valar Financial Advisors Limited, operated by Lyubov (Lena) Bykova (FSP1010055), trading as Valar Financial Advisors. References to "we", "us", or "Valar" mean Valar Financial Advisors Limited.
             </p>
             <p className="mt-3">
               We are committed to protecting your personal information in accordance with the New Zealand Privacy Act 2020.

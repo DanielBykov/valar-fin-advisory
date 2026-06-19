@@ -21,6 +21,24 @@ export default function BookPage() {
         </div>
       </section>
 
+      {/* Disclaimer */}
+      <section data-cmp="BookPage.Disclaimer" className="py-6 px-4 md:px-6 bg-white border-b border-valar-concrete">
+        <div className="container mx-auto max-w-3xl">
+          <div className="flex items-start gap-4">
+            <div className="h-full w-[2px] bg-valar-amber flex-shrink-0 self-stretch min-h-[1.5rem]" />
+            <div className="space-y-2 text-sm text-valar-indigo leading-relaxed">
+              <p className="font-semibold text-valar-navy">What happens on this call</p>
+              <p>
+                A free 15–20 minute conversation about where you are, what you're trying to achieve, and whether Valar is the right fit.
+              </p>
+              <p className="italic text-valar-indigo/70">
+                This call is not a financial advice service. Regulated advice begins only after both parties have signed a scope of engagement. There is no obligation to proceed and no fee for this call.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section data-cmp="BookPage.Calendly" className="py-0 px-4 pb-2">
         <p className="text-center text-xs text-valar-indigo/60 pt-3">
           By booking, you agree to our{" "}
