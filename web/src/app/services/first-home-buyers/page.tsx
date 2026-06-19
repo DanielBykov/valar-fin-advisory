@@ -72,7 +72,7 @@ function FAQItem({ question, answer }: { question: string; answer: string | stri
 const FIRST_HOME_GUIDE = {
   key: "first-home-buyer-guide",
   title: "First Home Buyer Guide",
-  description: "Covers the home-buying process, lending basics, common questions, and practical tips to help you prepare with confidence.",
+  description: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
 };
 
 export default function FirstHomeBuyersPage() {
