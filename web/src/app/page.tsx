@@ -529,8 +529,8 @@ export default function Home() {
                 <button onClick={() => setGuideOpen(true)} className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                   <FileText className="w-5 h-5" /> Download the Guide
                 </button>
-                <Link href="/book" className="bg-transparent border border-valar-navy hover:bg-valar-navy hover:text-white text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
-                  <Calendar className="w-5 h-5" /> Book a Clarity Call
+                <Link href="/services/first-home-buyers" className="bg-transparent border border-valar-navy hover:bg-valar-navy hover:text-white text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
+                  <HomeIcon className="w-5 h-5" /> Learn More About First Home Buyers
                 </Link>
               </motion.div>
 
