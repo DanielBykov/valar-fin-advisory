@@ -18,7 +18,7 @@ export default function ContactPage() {
     const res = await fetch("/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: data.email, firstName }),
+      body: JSON.stringify({ email: data.email, firstName: data.firstName }),
     });
     if (res.ok) setNewsletterSubscribed(true);
   }
@@ -158,15 +158,25 @@ export default function ContactPage() {
                   {newsletterSubscribed ? (
                     <p className="text-valar-amber font-semibold text-sm">You're subscribed. See you in your inbox.</p>
                   ) : (
-                    <form className="flex gap-2" onSubmit={handleNewsletterSubmit}>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        defaultValue={submittedEmail}
-                        className="bg-valar-indigo border border-valar-indigo rounded-md px-3 h-10 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-valar-amber text-white placeholder:text-white/40"
-                      />
-                      <button type="submit" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold text-sm px-4 h-10 rounded-sm transition-colors whitespace-nowrap">
+                    <form className="flex flex-col gap-2" onSubmit={handleNewsletterSubmit}>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          name="firstName"
+                          defaultValue={firstName}
+                          placeholder="First name"
+                          className="bg-valar-indigo border border-valar-indigo rounded-md px-3 h-10 text-sm w-32 focus:outline-none focus:ring-2 focus:ring-valar-amber text-white placeholder:text-white/40"
+                        />
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          defaultValue={submittedEmail}
+                          placeholder="Email address"
+                          className="bg-valar-indigo border border-valar-indigo rounded-md px-3 h-10 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-valar-amber text-white placeholder:text-white/40"
+                        />
+                      </div>
+                      <button type="submit" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold text-sm px-4 h-10 rounded-sm transition-colors w-full">
                         Subscribe
                       </button>
                     </form>

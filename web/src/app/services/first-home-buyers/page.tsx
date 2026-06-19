@@ -17,6 +17,7 @@ import {
   Scale,
   Clipboard,
 } from "lucide-react";
+import { GuideDownloadModal } from "@/components/guide-download-modal";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -68,9 +69,17 @@ function FAQItem({ question, answer }: { question: string; answer: string | stri
   );
 }
 
+const FIRST_HOME_GUIDE = {
+  key: "first-home-buyer-guide",
+  title: "First Home Buyer Guide",
+  description: "Covers the home-buying process, lending basics, common questions, and practical tips to help you prepare with confidence.",
+};
+
 export default function FirstHomeBuyersPage() {
+  const [guideOpen, setGuideOpen] = useState(false);
   return (
     <div data-cmp="FirstHomeBuyersPage" className="w-full flex flex-col font-sans">
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={FIRST_HOME_GUIDE} />
 
       {/* HERO */}
       <section data-cmp="FirstHomeBuyersPage.Hero" className="relative overflow-hidden">
@@ -99,9 +108,9 @@ export default function FirstHomeBuyersPage() {
               From questions and confusion to a clear plan and confident first step.
             </motion.p>
             <motion.div data-cmp="FirstHomeBuyersPage.Hero.Cta" variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
+              <button onClick={() => setGuideOpen(true)} className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
                 <Download className="w-5 h-5" /> Download Free Guide
-              </Link>
+              </button>
               <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-transparent border border-white/40 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold transition-colors">
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
@@ -178,9 +187,9 @@ export default function FirstHomeBuyersPage() {
               </motion.p>
             </motion.div>
             <motion.div variants={fadeIn} className="flex-shrink-0">
-              <Link href="/contact" className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors whitespace-nowrap">
+              <button onClick={() => setGuideOpen(true)} className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors whitespace-nowrap">
                 <Download className="w-5 h-5" /> Download Guide
-              </Link>
+              </button>
             </motion.div>
           </motion.div>
         </div>
