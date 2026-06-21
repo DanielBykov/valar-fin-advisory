@@ -111,7 +111,7 @@ export default function Home() {
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
                 <Calendar className="w-5 h-5" /> Book a Clarity Call <ArrowRight className="w-5 h-5" />
               </Link>
-              <button onClick={() => setGuideOpen(true)} className="bg-transparent border border-white/50 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
+              <button onClick={() => setGuideOpen(true)} className="bg-transparent border border-white/50 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2 cursor-pointer">
                 <FileText className="w-5 h-5" /> Download First-Home Buyer Guide
               </button>
             </motion.div>

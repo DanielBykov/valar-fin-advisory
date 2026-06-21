@@ -46,9 +46,9 @@ export function Footer() {
               <a href="https://www.facebook.com/lena.valarnz" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">
-                <Youtube className="w-4 h-4" />
-              </a>
+              {/*<a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">*/}
+              {/*  <Youtube className="w-4 h-4" />*/}
+              {/*</a>*/}
             </div>
           </div>
 
