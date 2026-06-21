@@ -21,6 +21,12 @@ export const metadata: Metadata = {
   title: "Valar Financial Advisors",
   description:
     "Strategic mortgage and financial advice in New Zealand — clarity for your financial future.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     title: "Valar Financial Advisors",
     description:
