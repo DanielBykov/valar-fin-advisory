@@ -22,6 +22,7 @@
 - [ ] Service card pattern — verify all service pages have: Book Strategy Call (solid navy), Enquire (outline), Learn More (amber link)
 - [ ] Forms — Contact and Book forms need submission handlers (Formspree or Netlify Forms)
 - [ ] SEO / metadata — page titles, descriptions, OG tags for each route
+- [ ] Cookie consent banner — required before GA4 can go live. Simple banner: accept/decline, stores preference. Must appear on first visit
 
 ## Next — Polish & Integration
 
@@ -46,4 +47,5 @@
 - [ ] Domain `valar.co.nz` confirmed + DNS access
 - [ ] About — verified qualifications (mortgage cert, CFA status, other certs)
 - [ ] About — optional personal note (farm/family) include or not
+- [ ] Google Analytics 4 — provide GA4 measurement ID (G-XXXXXXXXXX) so Daniel can add tracking to the site
 - [ ] Financial Planning scope — confirm licensing or soften wording
