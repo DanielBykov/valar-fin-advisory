@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Valar Financial Advisors",
+  description:
+    "Read the privacy policy for Valar Financial Advisors — how we collect, use and protect your personal information.",
+};
 
 export default function PrivacyPolicyPage() {
   return (

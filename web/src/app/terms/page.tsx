@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | Valar Financial Advisors",
+  description:
+    "Read the terms of service for Valar Financial Advisors and the use of our website and services.",
+};
 
 export default function TermsPage() {
   return (

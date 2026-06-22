@@ -70,7 +70,7 @@ export function Footer() {
             <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">About Valar</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">About Valar</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Knowledge Hub</Link></li>
+              {/*<li><Link href="#" className="hover:text-white transition-colors">Knowledge Hub</Link></li>*/}
               <li><Link href="/book" className="hover:text-white transition-colors">Book a Clarity Call</Link></li>
               <li><Link href="#" className="hover:text-white transition-colors">Disclosure Statement</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
