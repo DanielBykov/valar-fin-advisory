@@ -18,6 +18,7 @@ import {
   Users,
   Building2,
 } from "lucide-react";
+import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -357,6 +358,8 @@ export default function BusinessAdvisoryContent() {
           </motion.div>
         </div>
       </section>
+
+      <AdviserCredentialStrip />
 
       {/* FINAL CTA */}
       <section data-cmp="BusinessAdvisoryPage.FinalCta" className="py-24 bg-valar-fog">

@@ -1,49 +1,51 @@
 # Valar Website — TODO
 
-## Now — Build (no blockers)
+## Must-do before go-live
 
-- [ ] Logo update — from Replit
-- [x] Hide Insights — remove Insights nav menu, footer column, home Section 10, `/insights` page (not in Phase 1 launch)
-- [x] Wealth Management slug — rename `/services/wealth-management` to `/services/wealth-management-plan` per handoff
-- [x] Typography decision — CSS uses Playfair Display, handoff says Lora or Source Serif. Pick one and align
-- [?] Amber-period signature — display headings (H1 hero, key H2s) end with an amber `.` — verify/implement across all pages
-  - Q. H1 – amber. H2-6 - no amber, but with periods (dots). Should we remove periods? 
-- [?] Footer disclosure line — "Lena Bykova trades as Valar Financial Advisors. FSP1010055. FAP: Fundsmart Mortgages and Finance." linked to `/disclosure`, on every page
-  - Q. No page. What to create? Content?
-- [B] Testimonials — currently placeholder on home. Hide or clearly mark until real quotes arrive
-  - Blocked. Real testimonials are needed.
-- [Q] About page — handoff specifies 12 sections, current build is partial. Build out full layout from `about.md`
-  - The build is fully aligned with the handoff spec.
-  - Q. Hero image? Lena's photo?
-- [ ] Contact page — build full UI layout from `contact.md` (form fields, info sections). Backend is blocked but UI is not
-- [ ] Book page — build full UI layout from `book-strategy-call.md`. Add Calendly embed placeholder
-- [ ] Disclosure page — create `/disclosure` route and page shell. Content from Ian is pending
-- [ ] Brand / content audit — compare each page's copy against Lena's source `.md` files for drift from Replit migration
-- [ ] Service card pattern — verify all service pages have: Book Strategy Call (solid navy), Enquire (outline), Learn More (amber link)
-- [ ] Forms — Contact and Book forms need submission handlers (Formspree or Netlify Forms)
-- [ ] SEO / metadata — page titles, descriptions, OG tags for each route
+- [x] Logo update — from Replit
+- [x] Amber-period signature — verify H1 hero headings end with amber `.` across all pages
+- [ ] Footer disclosure line — add "Lena Bykova trades as Valar Financial Advisors. FSP1010055. FAP: Fundsmart Mortgages and Finance." linked to `/disclosure` (waiting on Ian's content)
+- [ ] Disclosure page — create `/disclosure` route and page (blocked on Ian's content)
+- [x] Fix footer dead links:
+  - [x] Knowledge Hub → removed (was commented out)
+  - [x] Disclosure Statement → removed until `/disclosure` content is ready
+  - [x] YouTube icon → removed (commented out)
+- [ ] Testimonials — hide or mark as placeholder until real quotes arrive
+- [ ] Brand / content audit — compare each page's copy against Lena's source `.md` files for drift
+- [ ] Service card pattern — verify all service pages have consistent CTAs
+- [x] SEO / metadata — page titles, descriptions, canonical and OG tags for each route
+- [x] SEO / sitemap — `src/app/sitemap.ts` auto-generates `/sitemap.xml`
+- [x] SEO / robots — `src/app/robots.ts` with `Disallow: /api/` and sitemap directive
+- [x] SEO / JSON-LD schema — Organization + WebSite (layout), FinancialService/LocalBusiness (home), Person (About), BreadcrumbList (services)
+- [x] SEO / E-E-A-T — FSP1010055 on home, AdviserCredentialStrip on all service pages
+- [ ] SEO / GA4 — install once Lena provides measurement ID (paired with cookie consent banner)
+- [ ] SEO / cookie consent banner — required before GA4 activates
+- [x] Deployment — Vercel setup with env vars (RESEND_API_KEY, MAILERLITE_API_KEY, MAILERLITE_GROUP_ID)
 
-## Next — Polish & Integration
+## Polish
 
-- [ ] Responsive QA — test all pages on mobile, tablet, desktop
+- [ ] Responsive QA — mobile, tablet, desktop
 - [ ] Accessibility pass — contrast, focus states, aria labels, keyboard nav
 - [ ] Performance — image optimization, lazy loading, Lighthouse audit
-- [ ] Newsletter signup — MailerLite integration for footer form
 - [ ] 404 page — review and align with brand
-- [ ] Animations — verify Framer Motion transitions are consistent and not excessive
+- [ ] Animations — verify Framer Motion transitions are consistent
+
+## Later — when content is ready
+
+- [ ] First Home Buyer Guide PDF — attach to Resend email in `src/app/api/guide-request/route.ts`
+- [ ] Insights / Knowledge Hub — unhide `/insights` (remove `notFound()`) and replace placeholder articles
+- [ ] Individual article pages — build `/insights/[id]` routes
+- [ ] Calculators & FAQs — build pages (listed in navbar but don't exist)
 
 ## Blocked on Lena
 
-- [ ] Portrait photo of Lena (About + Book pages)
+- [ ] Portrait photo (About + Book pages)
 - [ ] Real NZ photography for hero/section images
-- [ ] Calendly account + slot length + availability windows
-- [ ] Contact — public email and/or phone number
-- [ ] Disclosure / Privacy / Terms — approved text from Ian
-- [ ] Testimonials — real client quotes with sign-off
-- [ ] First-Home Buyer guide PDF (linked from home, mortgage, FHB pages)
-- [ ] Bank logo permissions for homepage Section 3
-- [ ] LinkedIn URL + confirm socials
-- [ ] Domain `valar.co.nz` confirmed + DNS access
-- [ ] About — verified qualifications (mortgage cert, CFA status, other certs)
-- [ ] About — optional personal note (farm/family) include or not
+- [ ] Disclosure text from Ian
+- [ ] Testimonials — real client quotes
+- [ ] First-Home Buyer guide PDF
+- [ ] Bank logo permissions for homepage
+- [ ] LinkedIn URL + confirm socials (YouTube currently dead)
+- [ ] About — verified qualifications
+- [ ] About — personal note (farm/family) include or not
 - [ ] Financial Planning scope — confirm licensing or soften wording

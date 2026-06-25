@@ -351,7 +351,7 @@ export default function HomeContent() {
 
               <motion.div data-cmp="HomePage.BehindValar.Credentials" variants={fadeIn} className="bg-white p-6 rounded-sm border border-valar-lilac mb-8">
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-base text-valar-navy font-medium">
-                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Certified Financial Adviser</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Licensed Financial Adviser (FSP1010055)</li>
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Mortgage & Investment Advice</li>
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> Business & Strategic Perspective</li>
                   <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-valar-amber"></div> 20+ Years Lived in Finance</li>

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Subscribe | Valar Financial Advisors Newsletter",
   description:
     "Stay updated with Valar. Once a week — market news, property research, useful guides and calculators for New Zealand homeowners and investors. No spam.",
+  alternates: { canonical: "/subscribe" },
   openGraph: {
     title: "Subscribe | Valar Financial Advisors Newsletter",
     description:

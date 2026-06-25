@@ -1,17 +1,33 @@
 import type { Metadata } from "next";
 import FinancialPlanningContent from "./page-content";
+import { JsonLd } from "@/components/json-ld";
+import { getBreadcrumbSchema, SITE_URL } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Financial Planning Services NZ | Valar Financial Advisors",
+  title: "Personal Financial Planning NZ | Valar Financial Advisors",
   description:
-    "Financial planning built around your goals. Get clear financial direction for where you are today and where you want to be, with Valar Financial Advisors in NZ.",
+    "Personal financial planning for New Zealanders. Clear direction for where you are today and where you want to be, with Valar Financial Advisors.",
+  alternates: { canonical: "/services/financial-planning" },
   openGraph: {
-    title: "Financial Planning Services NZ | Valar Financial Advisors",
+    title: "Personal Financial Planning NZ | Valar Financial Advisors",
     description:
-      "Financial planning built around your goals — clear financial direction for where you are today and where you want to be.",
+      "Financial planning built around your goals — clear direction for today's decisions and tomorrow's outcomes.",
+    url: "/services/financial-planning",
+    type: "website",
   },
 };
 
+const breadcrumbs = getBreadcrumbSchema([
+  { name: "Home", url: `${SITE_URL}/` },
+  { name: "Services", url: `${SITE_URL}/services` },
+  { name: "Financial Planning", url: `${SITE_URL}/services/financial-planning` },
+]);
+
 export default function Page() {
-  return <FinancialPlanningContent />;
+  return (
+    <>
+      <JsonLd data={breadcrumbs} />
+      <FinancialPlanningContent />
+    </>
+  );
 }

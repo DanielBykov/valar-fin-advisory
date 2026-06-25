@@ -19,6 +19,7 @@ import {
   Wrench,
   Clock,
 } from "lucide-react";
+import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -509,6 +510,8 @@ export default function InvestmentPropertyAnalysisContent() {
           </motion.div>
         </div>
       </section>
+
+      <AdviserCredentialStrip />
 
       {/* FINAL CTA */}
       <section data-cmp="InvestmentPropertyAnalysisPage.FinalCta" className="py-24 bg-valar-fog">

@@ -18,6 +18,7 @@ import {
   Clipboard,
 } from "lucide-react";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
+import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -664,6 +665,8 @@ export default function FirstHomeBuyersContent() {
           </motion.div>
         </div>
       </section>
+
+      <AdviserCredentialStrip />
 
       {/* FINAL CTA */}
       <section data-cmp="FirstHomeBuyersPage.FinalCta" className="pt-12 pb-24 bg-valar-fog">

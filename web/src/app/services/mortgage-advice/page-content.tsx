@@ -17,6 +17,7 @@ import {
   Layers,
 } from "lucide-react";
 import { useState } from "react";
+import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -296,6 +297,8 @@ export default function MortgageAdviceContent() {
           </motion.div>
         </div>
       </section>
+
+      <AdviserCredentialStrip />
 
       {/* FINAL CTA */}
       <section data-cmp="MortgageAdvicePage.FinalCta" className="pt-12 pb-24 bg-valar-fog">

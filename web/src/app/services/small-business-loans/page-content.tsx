@@ -18,6 +18,7 @@ import {
   Building2,
   Lightbulb,
 } from "lucide-react";
+import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -335,6 +336,8 @@ export default function SmallBusinessLoansContent() {
           </motion.div>
         </div>
       </section>
+
+      <AdviserCredentialStrip />
 
       {/* FINAL CTA */}
       <section data-cmp="SmallBusinessLoansPage.FinalCta" className="py-24 bg-valar-fog">
