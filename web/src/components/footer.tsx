@@ -46,9 +46,9 @@ export function Footer() {
               <a href="https://www.facebook.com/lena.valarnz" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">
-                <Youtube className="w-4 h-4" />
-              </a>
+              {/*<a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-valar-indigo flex items-center justify-center hover:bg-valar-amber hover:text-valar-navy transition-colors text-white">*/}
+              {/*  <Youtube className="w-4 h-4" />*/}
+              {/*</a>*/}
             </div>
           </div>
 
@@ -70,9 +70,8 @@ export function Footer() {
             <h4 className="font-bold text-xs uppercase tracking-wider text-valar-amber mb-6">About Valar</h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">About Valar</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Knowledge Hub</Link></li>
+              {/*<li><Link href="#" className="hover:text-white transition-colors">Knowledge Hub</Link></li>*/}
               <li><Link href="/book" className="hover:text-white transition-colors">Book a Clarity Call</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Disclosure Statement</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
             </ul>
