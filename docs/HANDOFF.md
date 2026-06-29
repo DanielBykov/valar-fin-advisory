@@ -56,10 +56,13 @@ Commit `30d7968` on `dev/lena`. Most audit items were built directly — **pleas
 - **LinkedIn E-E-A-T** — "verify me" link on `/about` + Lena's personal LinkedIn added to the `Person` schema `sameAs`. Files: `about/page-content.tsx`, `lib/schema.ts`.
 - **Testimonials** — placeholder testimonials hidden behind `SHOW_TESTIMONIALS = false` in `app/page-content.tsx` until real, consented quotes exist.
 
-**Still to build (remaining audit items):**
+**Built in this pass:**
 
-1. **FAQPage schema (D1) — not yet done.** Add `getFaqSchema()` to `lib/schema.ts` and wire `FAQPage` JSON-LD into the 5 service pages that already show visible FAQ Q&A (mortgage-advice, first-home-buyers, financial-planning, small-business-loans, investment-property-analysis). Highest organic + AI-citation value. *(Heads-up: the GEO section below says schema is "done" — `FAQPage` specifically is NOT yet implemented.)*
-2. **Image optimization (D2).** (a) Vercel supports Next.js image optimization (only static export wouldn't); (b) remove `unoptimized` from the 19 `<Image>` instances (10 files); (c) convert the `.png` heroes (`hero-bg`, `hero-nz`) to WebP, sized to slot; (d) re-run Lighthouse → confirm 90+ mobile.
+- **FAQPage schema (D1) — ✅ done.** `getFaqSchema()` in `lib/schema.ts`, wired into all 5 service pages. Each page's FAQ data now lives in a colocated `faqs.ts` imported by both `page.tsx` (schema) and `page-content.tsx` (rendering) — single source, so schema and visible text can't drift. (This also fixes the GEO note below: `FAQPage` is now implemented.)
+
+**Still to build (remaining audit item):**
+
+1. **Image optimization (D2).** (a) Vercel supports Next.js image optimization (only static export wouldn't); (b) remove `unoptimized` from the 19 `<Image>` instances (10 files); (c) convert the `.png` heroes (`hero-bg`, `hero-nz`) to WebP, sized to slot; (d) re-run Lighthouse → confirm 90+ mobile.
 
 Full decision log for this pass: `Valar website\SEO check\SEO update 2026-06-27.md`.
 
