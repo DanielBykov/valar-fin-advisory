@@ -324,7 +324,7 @@ export function Navbar() {
               <Link href="/contact" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Contact</Link>
               <div className="pt-4">
                 <Link
-                  href="/contact"
+                  href="/subscribe"
                   className="block w-full text-center border border-white text-white font-bold py-3 rounded-sm hover:bg-white hover:text-valar-navy transition-colors"
                   onClick={() => setIsOpen(false)}
                 >

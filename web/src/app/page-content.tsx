@@ -672,12 +672,6 @@ export default function HomeContent() {
               </TabsContent>
             </Tabs>
           </motion.div>
-
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="text-center">
-            <Link href="/insights" className="inline-flex items-center justify-center font-bold text-valar-amber hover:text-white transition-colors group">
-              Explore the Learning Hub <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
         </div>
       </section>
 
@@ -695,9 +689,6 @@ export default function HomeContent() {
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-56">
                 Book a Clarity Call
-              </Link>
-              <Link href="/insights" className="bg-transparent border-2 border-valar-navy hover:bg-valar-navy hover:text-white text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center w-full sm:w-56">
-                Explore Insights
               </Link>
             </motion.div>
 
