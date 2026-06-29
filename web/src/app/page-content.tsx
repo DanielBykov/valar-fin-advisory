@@ -40,6 +40,11 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
+// Testimonials below are PLACEHOLDER examples — the whole section is hidden at
+// launch until real, consented, Fundsmart Policy 22-approved quotes replace the
+// TESTIMONIALS / MINI_REVIEWS arrays. Flip to true to show it again (SEO L4).
+const SHOW_TESTIMONIALS: boolean = false;
+
 const TESTIMONIALS = [
   { image: "/images/avatars/avatar1.png", name: "Jane & Scott",  type: "First Home Buyers",         location: "Auckland",     quote: "Half a year ago we even can't imagine that today we will be the owners of our first home.",          body: "Lena encouraged us to look at our opportunities, and we understand that we can do this. Really appreciate the support during all the process." },
   { image: "/images/avatars/avatar2.png", name: "Marie",         type: "Refinance Client",           location: "Auckland",     quote: "I thought that I will lose my house.",        body: "Lena helped me to refinance it with another bank and build up some security for me and my son. I have a variable income and the border in my home, but most importantly, I'm the owner." },
@@ -236,7 +241,8 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS — hidden for launch (placeholder content; see SEO update L4) */}
+      {SHOW_TESTIMONIALS && (
       <section data-cmp="HomePage.Testimonials" className="pt-16 pb-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           {/* Header */}
@@ -319,6 +325,7 @@ export default function HomeContent() {
           </div>
         </div>
       </section>
+      )}
 
       {/* BEHIND VALAR */}
       <section data-cmp="HomePage.BehindValar" className="pt-16 pb-24 bg-valar-fog">

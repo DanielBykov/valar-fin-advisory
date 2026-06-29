@@ -322,6 +322,28 @@ export default function AboutContent() {
               </ul>
             </motion.div>
           </motion.div>
+
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={fadeIn}
+            className="mt-8 max-w-2xl border-l-2 border-valar-amber pl-5 py-1"
+          >
+            <p className="text-valar-indigo text-sm leading-relaxed">
+              If you want the full picture, you&apos;ll find my complete career history and qualifications on{" "}
+              <a
+                href="https://www.linkedin.com/in/lenabykova/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-valar-navy hover:text-valar-amber transition-colors"
+              >
+                LinkedIn <ExternalLink className="w-3 h-3 opacity-60" />
+              </a>
+              .
+            </p>
+            <p className="text-valar-indigo text-sm leading-relaxed mt-2">
+              Let&apos;s connect — feel free to send me a connection request.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -371,7 +393,6 @@ export default function AboutContent() {
               {[
                 { label: "Disclosure Statement", href: "/disclosure" },
                 { label: "Privacy Policy", href: "/privacy-policy" },
-                { label: "Disclosure and Nature of Advice", href: "/about/complaints" },
               ].map((link, i) => (
                 <motion.div key={i} variants={fadeIn}>
                   <Link href={link.href} className="inline-flex items-center gap-1.5 text-valar-indigo hover:text-valar-amber text-sm transition-colors">

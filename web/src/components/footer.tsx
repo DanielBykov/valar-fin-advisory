@@ -74,6 +74,7 @@ export function Footer() {
               <li><Link href="/book" className="hover:text-white transition-colors">Book a Clarity Call</Link></li>
               <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/disclosure" className="hover:text-white transition-colors">Disclosure Statement</Link></li>
             </ul>
           </div>
         </div>

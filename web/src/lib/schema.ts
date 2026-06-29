@@ -96,7 +96,10 @@ export function getPersonSchema() {
     url: `${SITE_URL}/about`,
     image: `${SITE_URL}/images/lena-portrait.jpg`,
     worksFor: { "@id": ORGANIZATION_ID },
-    sameAs: ["https://www.linkedin.com/company/valar-advisors"],
+    sameAs: [
+      "https://www.linkedin.com/in/lenabykova/",
+      "https://www.linkedin.com/company/valar-advisors",
+    ],
     hasCredential: [
       {
         "@type": "EducationalOccupationalCredential",

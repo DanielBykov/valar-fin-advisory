@@ -4,6 +4,9 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
+import { ConsentProvider } from "@/components/consent/consent-provider";
+import { CookieBanner } from "@/components/consent/cookie-banner";
+import { Analytics } from "@/components/consent/analytics";
 import { getOrganizationSchema, getWebsiteSchema } from "@/lib/schema";
 
 const manrope = Manrope({
@@ -46,10 +49,14 @@ export default function RootLayout({
       className={`${manrope.variable} ${lora.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
-        <JsonLd data={[getOrganizationSchema(), getWebsiteSchema()]} />
-        <Navbar />
-        <main data-cmp="Main" className="flex-1">{children}</main>
-        <Footer />
+        <ConsentProvider>
+          <JsonLd data={[getOrganizationSchema(), getWebsiteSchema()]} />
+          <Navbar />
+          <main data-cmp="Main" className="flex-1">{children}</main>
+          <Footer />
+          <CookieBanner />
+          <Analytics />
+        </ConsentProvider>
       </body>
     </html>
   );

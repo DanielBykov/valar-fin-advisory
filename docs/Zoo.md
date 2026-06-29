@@ -16,6 +16,7 @@ All third-party services and tools connected to the Valar Financial Advisors web
 | 6 | **Resend** | Transactional email — contact form, guide download notifications |
 | 7 | **MailerLite** | Newsletter & email marketing — subscriber list, welcome automation |
 | 8 | **Calendly** | Booking — Clarity Call scheduling embedded on `/book` |
+| 9 | **Google Analytics 4** | Website traffic & behaviour analytics — Measurement ID `G-EKZTGV6R58` |
 
 ---
 
@@ -118,6 +119,19 @@ Subscribers are added from:
 - **Embedded via:** `react-calendly` InlineWidget
 - **No API key required** — widget is embedded directly
 - **Colours configured:** amber `#f0a500`, navy `#061634`, background `#f7f7f5`
+
+---
+
+## 9. Google Analytics 4 (GA4) — Website Analytics
+
+**What it does:** Measures website traffic and visitor behaviour — where visitors come from, which pages they read, and conversions (booking clicks, guide downloads).
+
+- **Dashboard:** analytics.google.com
+- **Owned by:** the Valar Google account `lena.bykova@valar.co.nz` (created fresh, **not** Lena's personal Google account). See #4 re Workspace migration.
+- **Structure:** Account *Valar Financial Advisors* → Property *Valar — valar.co.nz* (timezone New Zealand, currency NZD) → Web data stream *Valar Website* (Enhanced measurement ON — auto-tracks scrolls, outbound clicks, site search, file downloads incl. the guide).
+- **Measurement ID:** `G-EKZTGV6R58`
+- **Industry category:** Finance — accepted the "sensitive vertical" note (limits behavioural ad-targeting/data-sharing features Valar doesn't use; core analytics unaffected).
+- **Install status:** ✅ **installed on `dev/lena` (2026-06-29), consent-gated.** Loads via `next/script` in `src/components/consent/analytics.tsx` **only after the visitor clicks Accept** on the cookie banner — no GA cookie or request before consent. Built together with the cookie-consent banner (`src/components/consent/`). Goes live when `dev/lena` merges to `main` and Vercel deploys. See `SEO check/SEO update 2026-06-27.md` (L3).
 
 ---
 
