@@ -96,7 +96,7 @@ export default function AboutContent() {
                 Mortgage Adviser · Financial Professional · Investor
               </motion.p>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-4">
-                For more than 20 years, I have worked across finance, accounting, investment analysis, and advisory. Throughout my career, I have helped businesses, investors, and families navigate important financial decisions and understand their long-term impact.
+                For more than 20 years, I have worked across finance, valuation, investment analysis, and business advisory. Throughout my career, I have helped businesses, investors, and families navigate important financial decisions and understand their long-term impact.
               </motion.p>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-8">
                 Today I bring that experience to mortgage advice, financial planning and wealth-building conversations through Valar Financial Advisors.

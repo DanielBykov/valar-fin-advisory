@@ -90,9 +90,9 @@ export function getPersonSchema() {
     "@type": "Person",
     "@id": PERSON_ID,
     name: "Lena Bykova",
-    jobTitle: "Mortgage & Financial Adviser",
+    jobTitle: "Mortgage & Investment Adviser",
     description:
-      "Licensed financial adviser with 20+ years across finance, accounting, investment analysis and advisory in New Zealand.",
+      "Licensed financial adviser with 20+ years across finance, valuation, investment analysis and business advisory in New Zealand.",
     url: `${SITE_URL}/about`,
     image: `${SITE_URL}/images/lena-portrait.jpg`,
     worksFor: { "@id": ORGANIZATION_ID },
