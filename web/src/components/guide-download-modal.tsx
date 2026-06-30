@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { X, CheckCircle } from "lucide-react";
+import Image from "next/image";
+import { X } from "lucide-react";
 
 interface GuideDownloadModalProps {
   open: boolean;
@@ -55,15 +56,56 @@ export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalP
         </button>
 
         {succeeded ? (
-          <div className="text-center space-y-4 py-4">
-            <CheckCircle className="w-10 h-10 text-valar-amber mx-auto" />
-            <h3 className="text-xl font-bold text-valar-navy">Check your inbox.</h3>
-            <p className="text-sm text-valar-indigo leading-relaxed">
-              I'll send your copy of <span className="font-semibold">{guide.title}</span> shortly.
+          <div className="text-center py-2">
+            {/* Valar logo on navy */}
+            <div className="mx-auto mb-6 inline-flex items-center justify-center bg-valar-navy rounded-md px-5 py-3">
+              <Image
+                src="/images/valar-logo.png"
+                alt="Valar Financial Advisors"
+                width={180}
+                height={48}
+                className="h-5 w-auto object-contain"
+                unoptimized
+              />
+            </div>
+
+            <h3 className="text-xl font-bold text-valar-navy mb-1">
+              Thanks for your request.
+            </h3>
+            <p className="text-base text-valar-navy/80 mb-4">Your guide is ready.</p>
+            <div className="h-[2px] w-8 bg-valar-amber mx-auto mb-5" />
+
+            <a
+              href={`/resources/guides/${guide.key}.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold py-3 px-6 rounded-sm transition-colors text-sm"
+            >
+              Download the guide →
+            </a>
+
+            <p className="text-sm text-valar-indigo leading-relaxed mt-5">
+              We&apos;ve also emailed your copy of the{" "}
+              <span className="font-semibold">First Home Buyer Guide</span>. Keep an eye on your inbox.
             </p>
+            <p className="text-sm font-bold text-valar-navy mt-5">
+              Happy to assist you whenever you&apos;re ready.
+            </p>
+
+            <p className="text-sm text-valar-indigo leading-relaxed mt-5">Want to learn more?</p>
+            <p className="text-sm leading-relaxed mt-1">
+              <a href="/services/first-home-buyers" className="text-valar-navy underline font-semibold hover:text-valar-amber">
+                First Home Buyer page
+              </a>
+              <span className="text-valar-indigo/40 mx-2">·</span>
+              <a href="/book" className="text-valar-navy underline font-semibold hover:text-valar-amber">
+                Book a clarity call
+              </a>
+            </p>
+
             <button
               onClick={onClose}
-              className="mt-4 text-sm text-valar-indigo/60 underline hover:text-valar-navy transition-colors"
+              className="mt-6 text-sm text-valar-indigo/60 underline hover:text-valar-navy transition-colors"
             >
               Close
             </button>
