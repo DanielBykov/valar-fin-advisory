@@ -121,9 +121,10 @@ These are in `web/.env.local` — **gitignored, never committed.** Lena has the 
 RESEND_API_KEY=
 MAILERLITE_API_KEY=
 MAILERLITE_GROUP_ID=
+MAILERLITE_FHB_GROUP_ID=
 ```
 
-**If deploying to Vercel:** add all three in Project Settings → Environment Variables. Without them, the contact form, newsletter, and guide download will fail silently.
+**If deploying to Vercel:** add all four in Project Settings → Environment Variables. Without them, the contact form, newsletter, and guide download will fail silently. `MAILERLITE_FHB_GROUP_ID` (added 30 Jun) routes First Home Buyer guide submitters to the "First home buyers" MailerLite group that triggers the guide-delivery automation — the guide won't send without it.
 
 ---
 
@@ -158,7 +159,7 @@ See `docs/Zoo.md` for the full breakdown. Summary:
 ### Branch / deployment
 - All work is on `dev/lena`
 - When ready to deploy: review, then merge `dev/lena` → `main`
-- **Merge gate cleared (30 Jun):** Lena's final disclosure read done; full dead-link sweep confirms no remaining dead links; image optimization (D2) deferred to post-launch by Lena's decision (no longer a gate). **Only remaining go-live action: deploy to Vercel (add the three env vars above) + merge `dev/lena` → `main`.**
+- **Merge gate cleared (30 Jun):** Lena's final disclosure read done; full dead-link sweep confirms no remaining dead links; image optimization (D2) deferred to post-launch by Lena's decision (no longer a gate). **Only remaining go-live action: deploy to Vercel (add the four env vars above) + merge `dev/lena` → `main`.**
 
 ---
 
