@@ -1,6 +1,6 @@
 # Website Handoff Notes — for Daniel
 
-**Last updated:** 2026-06-29
+**Last updated:** 2026-06-30
 **Branch:** `dev/lena`
 **Repo:** `DanielBykov/valar-fin-advisory` (private GitHub)
 
@@ -36,12 +36,26 @@ valar.co.nz/
 ├── /subscribe                     Newsletter sign-up ✅
 ├── /privacy-policy                ✅
 ├── /terms                         ✅
-└── /disclosure                    ✅ built (mortgage scope; Lena's final read pending)
+└── /disclosure                    ✅ built (mortgage scope; Lena's final read done 30 Jun)
 ```
 
 ---
 
 ## Build log
+
+---
+
+### 30 June 2026 — pre-launch QA + SEO audit
+
+Commits `2e3154d`, `0bfc92a` on `dev/lena`. **Everything is ready to launch** — remaining action is deploy + merge (see below).
+
+- **Dead-link sweep (whole site).** Crawled every route and cross-referenced all internal links. Found and removed the only two live links that hit a 404: the **"Explore the Learning Hub"** text link and the **"Explore Insights"** button (in the final CTA) on the home page — both pointed at `/insights`, which is deferred and returns 404. All other `/insights` references are already inside hidden `{false && …}` blocks. (`2e3154d`)
+- **Mobile nav fix.** The "Get Updates" button pointed to `/contact` on mobile but `/subscribe` on desktop — aligned mobile to `/subscribe`. (`2e3154d`)
+- **Sitemap.** Added `/disclosure` to `src/app/sitemap.ts` (the page was built after the sitemap was written). All 16 live routes now listed; `/insights` stays excluded while deferred. (`0bfc92a`)
+- **Full SEO audit** run and saved (OneDrive): `Valar website\SEO check\SEO audit 2026-06-30.md`. Result: metadata, page titles/descriptions, JSON-LD schema, E-E-A-T, analytics, sitemap, robots, and favicons all ✅. **No SEO item blocks launch.**
+- **Disclosure** — Lena's final read **done**. Mortgage scope under the Fundsmart FAP; the Valar investment/KiwiSaver regime will be added when Lena's own FAP investment licence lands (~Aug 2026).
+
+**Decision — image optimization (D2) is DEFERRED for launch** (Lena, 30 Jun). Leave the `unoptimized` `<Image>` instances and the `.png` heroes as-is for now; revisit post-launch. **It is no longer a merge gate.**
 
 ---
 
@@ -129,7 +143,7 @@ See `docs/Zoo.md` for the full breakdown. Summary:
 
 ### Must-do before go-live
 1. **Deployment** — site is not live. Needs Vercel (or equivalent) setup with the env vars above.
-2. **Disclosure Statement page** — ✅ BUILT (29 Jun, commit `30d7968`) at `/disclosure`, linked from footer + About. Mortgage scope only (under Fundsmart FAP); investment/KiwiSaver to be added when Valar's own licence lands (~Aug 2026). Pending Lena's final read of the legal copy before go-live.
+2. **Disclosure Statement page** — ✅ BUILT at `/disclosure`, linked from footer + About. Mortgage scope only (under Fundsmart FAP); investment/KiwiSaver to be added when Valar's own licence lands (~Aug 2026). Lena's final read **done 30 Jun** — cleared for go-live.
 3. **Footer links:**
    - Disclosure Statement → ✅ now points to `/disclosure` (added 29 Jun)
    - Knowledge Hub → still commented out in footer; wire to `/insights` or `/subscribe` when ready
@@ -144,7 +158,7 @@ See `docs/Zoo.md` for the full breakdown. Summary:
 ### Branch / deployment
 - All work is on `dev/lena`
 - When ready to deploy: review, then merge `dev/lena` → `main`
-- Disclosure Statement is now built (29 Jun). Before merging to `main`: finish image optimization (D2), Lena's final disclosure read, and confirm no remaining dead links.
+- **Merge gate cleared (30 Jun):** Lena's final disclosure read done; full dead-link sweep confirms no remaining dead links; image optimization (D2) deferred to post-launch by Lena's decision (no longer a gate). **Only remaining go-live action: deploy to Vercel (add the three env vars above) + merge `dev/lena` → `main`.**
 
 ---
 
