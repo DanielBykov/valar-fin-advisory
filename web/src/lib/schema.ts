@@ -90,9 +90,9 @@ export function getPersonSchema() {
     "@type": "Person",
     "@id": PERSON_ID,
     name: "Lena Bykova",
-    jobTitle: "Mortgage & Financial Adviser",
+    jobTitle: "Mortgage & Investment Adviser",
     description:
-      "Licensed financial adviser with 20+ years across finance, accounting, investment analysis and advisory in New Zealand.",
+      "Licensed financial adviser with 20+ years across finance, valuation, investment analysis and business advisory in New Zealand.",
     url: `${SITE_URL}/about`,
     image: `${SITE_URL}/images/lena-portrait.jpg`,
     worksFor: { "@id": ORGANIZATION_ID },
@@ -155,5 +155,33 @@ export function getBreadcrumbSchema(items: BreadcrumbItem[]) {
       name: item.name,
       item: item.url,
     })),
+  };
+}
+
+/** Accepts either {question, answer} or {q, a}; answer may be a string or a
+ *  list of strings (joined for the schema text). */
+export type FaqEntry =
+  | { question: string; answer: string | string[] }
+  | { q: string; a: string | string[] };
+
+/**
+ * FAQPage structured data. Pass the SAME array the page renders its visible
+ * FAQ from, so the on-page answers and the schema can never drift — Google
+ * requires FAQ rich-result text to match the visible content.
+ */
+export function getFaqSchema(items: FaqEntry[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => {
+      const question = "question" in item ? item.question : item.q;
+      const rawAnswer = "answer" in item ? item.answer : item.a;
+      const answer = Array.isArray(rawAnswer) ? rawAnswer.join(" ") : rawAnswer;
+      return {
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      };
+    }),
   };
 }

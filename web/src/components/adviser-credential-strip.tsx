@@ -20,7 +20,7 @@ export function AdviserCredentialStrip() {
           <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0 border-2 border-valar-amber">
             <Image
               src="/images/lena-portrait.jpg"
-              alt="Lena Bykova, Mortgage & Financial Adviser"
+              alt="Lena Bykova, Mortgage & Investment Adviser"
               fill
               sizes="96px"
               className="object-cover"
@@ -32,10 +32,10 @@ export function AdviserCredentialStrip() {
               Advice from
             </p>
             <h3 className="text-xl font-bold text-valar-navy mb-1">
-              Lena Bykova — Mortgage & Financial Adviser
+              Lena Bykova — Mortgage & Investment Adviser
             </h3>
             <p className="text-sm text-valar-indigo">
-              Licensed Financial Adviser (FSP1010055) · 20+ years across finance, accounting, investment analysis and advisory in New Zealand.
+              Licensed Financial Adviser (FSP1010055) · 20+ years across finance, valuation, investment analysis and business advisory in New Zealand.
             </p>
           </div>
 

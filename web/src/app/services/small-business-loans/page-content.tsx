@@ -19,6 +19,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
+import { faqs } from "./faqs";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -313,26 +314,9 @@ export default function SmallBusinessLoansContent() {
           </motion.div>
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <FAQItem
-              question="Can you help if my bank has declined my application?"
-              answer="Potentially. Different lenders have different lending criteria, and alternative funding options may be available depending on your circumstances."
-            />
-            <FAQItem
-              question="Do I need an established business?"
-              answer="Not necessarily. Funding may be available for both established businesses and newer ventures, depending on the business model and lender requirements."
-            />
-            <FAQItem
-              question="What can business lending be used for?"
-              answer={["Equipment purchases", "Vehicle purchases", "Working capital", "Business growth", "Project funding", "Refinancing existing facilities"]}
-            />
-            <FAQItem
-              question="What information will I need to provide?"
-              answer="Requirements vary depending on the lender and type of funding, but generally include business information, financial statements, and details about how the funds will be used."
-            />
-            <FAQItem
-              question="Do you provide business valuation services?"
-              answer="No. This service focuses on funding solutions, lending structures, and support through the lending process."
-            />
+            {faqs.map((faq, i) => (
+              <FAQItem key={i} question={faq.question} answer={faq.answer} />
+            ))}
           </motion.div>
         </div>
       </section>

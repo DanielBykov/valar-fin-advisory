@@ -1,51 +1,59 @@
 # Valar Website — TODO
 
+**Last updated:** 2026-06-30 (post-SEO-audit — see `Valar website/SEO check/SEO audit 2026-06-30.md`)
+
+> In each section, **open items (`[ ]`) are listed first, done items (`[x]`) below.** The fastest read on what's left for launch is the **Still to do** list under "Must-do before go-live."
+
 ## Must-do before go-live
 
+### Still to do
+- [ ] **Deploy** to Vercel (add env vars: `RESEND_API_KEY`, `MAILERLITE_API_KEY`, `MAILERLITE_GROUP_ID`) and merge `dev/lena` → `main`. This is the go-live step.
+
+### Done
 - [x] Logo update — from Replit
-- [x] Amber-period signature — verify H1 hero headings end with amber `.` across all pages
-- [ ] Footer disclosure line — add "Lena Bykova trades as Valar Financial Advisors. FSP1010055. FAP: Fundsmart Mortgages and Finance." linked to `/disclosure` (waiting on Ian's content)
-- [ ] Disclosure page — create `/disclosure` route and page (blocked on Ian's content)
-- [x] Fix footer dead links:
-  - [x] Knowledge Hub → removed (was commented out)
-  - [x] Disclosure Statement → removed until `/disclosure` content is ready
-  - [x] YouTube icon → removed (commented out)
-- [ ] Testimonials — hide or mark as placeholder until real quotes arrive
-- [ ] Brand / content audit — compare each page's copy against Lena's source `.md` files for drift
-- [ ] Service card pattern — verify all service pages have consistent CTAs
-- [x] SEO / metadata — page titles, descriptions, canonical and OG tags for each route
-- [x] SEO / sitemap — `src/app/sitemap.ts` auto-generates `/sitemap.xml`
-- [x] SEO / robots — `src/app/robots.ts` with `Disallow: /api/` and sitemap directive
-- [x] SEO / JSON-LD schema — Organization + WebSite (layout), FinancialService/LocalBusiness (home), Person (About), BreadcrumbList (services)
+- [x] Amber-period signature — H1 hero headings end with amber `.` across pages
+- [x] Disclosure page — built at `/disclosure` (Lena's own copy, not Ian's). Final read done 2026-06-30. Mortgage scope under Fundsmart FAP; investment regime to be added when Valar's own FAP investment licence lands (~Aug 2026)
+- [x] Footer disclosure line — present (Lena's wording), linked to `/disclosure`
+- [x] Footer dead links fixed — Knowledge Hub removed, Disclosure → `/disclosure`, YouTube icon removed
+- [x] Testimonials — hidden behind `SHOW_TESTIMONIALS = false` until real consented quotes exist
+- [x] Service card pattern — CTAs standardised across service pages
+- [x] No dead links — full sweep 2026-06-30; two dead home `/insights` links removed, mobile "Get Updates" → `/subscribe`
+- [x] SEO / metadata — unique titles, descriptions, canonical + OG per route
+- [x] SEO / sitemap — `sitemap.ts`; `/disclosure` added 2026-06-30 (16 live routes; `/insights` excluded while deferred)
+- [x] SEO / robots — `robots.ts` (Disallow `/api/`, sitemap directive)
+- [x] SEO / JSON-LD schema — Organization + WebSite, FinancialService/LocalBusiness (home), Person (About), BreadcrumbList (services), FAQPage (5 service pages)
 - [x] SEO / E-E-A-T — FSP1010055 on home, AdviserCredentialStrip on all service pages
-- [ ] SEO / GA4 — install once Lena provides measurement ID (paired with cookie consent banner)
-- [ ] SEO / cookie consent banner — required before GA4 activates
-- [x] Deployment — Vercel setup with env vars (RESEND_API_KEY, MAILERLITE_API_KEY, MAILERLITE_GROUP_ID)
+- [x] SEO / GA4 — consent-gated (`G-EKZTGV6R58`), fires only after Accept
+- [x] SEO / cookie consent banner — Accept/Decline, GA gated behind consent
 
 ## Polish
 
 - [ ] Responsive QA — mobile, tablet, desktop
 - [ ] Accessibility pass — contrast, focus states, aria labels, keyboard nav
-- [ ] Performance — image optimization, lazy loading, Lighthouse audit
-- [ ] 404 page — review and align with brand
+- [ ] Performance — image optimization (D2) **DEFERRED for launch by decision 2026-06-30**; leave `unoptimized` Images + PNG heroes as-is, revisit post-launch
 - [ ] Animations — verify Framer Motion transitions are consistent
+- [ ] Brand / content audit — compare each page's copy against Lena's source `.md` files for drift *(separate task, not a launch blocker)*
+- [x] 404 page — built (`not-found.tsx`), links to valid routes
 
 ## Later — when content is ready
 
-- [ ] First Home Buyer Guide PDF — attach to Resend email in `src/app/api/guide-request/route.ts`
-- [ ] Insights / Knowledge Hub — unhide `/insights` (remove `notFound()`) and replace placeholder articles
+- [ ] First Home Buyer Guide PDF — confirmation email flow is set up; Lena to finalise the guide and upload the final PDF to GitHub
+- [ ] Insights / Knowledge Hub — unhide `/insights` (remove `notFound()`) and replace placeholder articles (~2-week project, post-launch)
 - [ ] Individual article pages — build `/insights/[id]` routes
-- [ ] Calculators & FAQs — build pages (listed in navbar but don't exist)
+- [ ] Calculators & FAQs — build pages (currently hidden in navbar)
+- [ ] Bank logo permissions for homepage
+- [ ] Disclosure — add Valar investment/KiwiSaver regime when the FAP investment licence lands (~Aug 2026)
 
 ## Blocked on Lena
 
-- [ ] Portrait photo (About + Book pages)
-- [ ] Real NZ photography for hero/section images
-- [ ] Disclosure text from Ian
-- [ ] Testimonials — real client quotes
-- [ ] First-Home Buyer guide PDF
-- [ ] Bank logo permissions for homepage
-- [ ] LinkedIn URL + confirm socials (YouTube currently dead)
-- [ ] About — verified qualifications
-- [ ] About — personal note (farm/family) include or not
-- [ ] Financial Planning scope — confirm licensing or soften wording
+### Still to do
+- [ ] Testimonials — real client quotes (section stays hidden until these arrive)
+
+### Done
+- [x] Portrait photo (About + Book pages)
+- [x] Real NZ photography for hero/section images
+- [x] Disclosure text — written by Lena (not Ian); built + final read 2026-06-30
+- [x] LinkedIn URL — personal LinkedIn added (About + Person schema)
+- [x] About — verified qualifications
+- [x] About — personal note (farm/family) — decided
+- [x] Investment advice scope — resolved (mortgage adviser via Fundsmart; investment adviser under Valar). Disclosure text update tracked under "Later" (~Aug, when licence lands)

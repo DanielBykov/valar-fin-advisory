@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/book`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/contact`, lastModified, changeFrequency: "yearly", priority: 0.7 },
     { url: `${SITE_URL}/subscribe`, lastModified, changeFrequency: "yearly", priority: 0.5 },
+    { url: `${SITE_URL}/disclosure`, lastModified, changeFrequency: "yearly", priority: 0.5 },
     { url: `${SITE_URL}/privacy-policy`, lastModified, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms`, lastModified, changeFrequency: "yearly", priority: 0.3 },
   ];

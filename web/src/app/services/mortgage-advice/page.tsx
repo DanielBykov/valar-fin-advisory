@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import MortgageAdviceContent from "./page-content";
+import { faqs } from "./faqs";
 import { JsonLd } from "@/components/json-ld";
-import { getBreadcrumbSchema, SITE_URL } from "@/lib/schema";
+import { getBreadcrumbSchema, getFaqSchema, SITE_URL } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Independent Mortgage Adviser NZ | Valar Financial Advisors",
@@ -26,7 +27,7 @@ const breadcrumbs = getBreadcrumbSchema([
 export default function Page() {
   return (
     <>
-      <JsonLd data={breadcrumbs} />
+      <JsonLd data={[breadcrumbs, getFaqSchema(faqs)]} />
       <MortgageAdviceContent />
     </>
   );
