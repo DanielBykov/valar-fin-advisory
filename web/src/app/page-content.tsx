@@ -110,7 +110,7 @@ export default function HomeContent() {
             </motion.h1>
             <motion.p variants={fadeIn} className="text-lg lg:text-xl text-white/80 mb-10 max-w-md leading-relaxed font-light border-l-2 border-valar-amber pl-4">
               Beyond approvals and interest rates.<br />
-              <span className="whitespace-nowrap">Bringing clarity to your lending and financial decisions.</span>
+              <span className="">Bringing clarity to your lending and financial decisions.</span>
             </motion.p>
             <motion.div data-cmp="HomePage.Hero.Cta" variants={fadeIn} className="flex flex-col md:flex-row gap-4">
               <Link href="/book" className="bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold text-center transition-colors flex items-center justify-center gap-2">
@@ -193,7 +193,7 @@ export default function HomeContent() {
             <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-bold text-valar-navy mb-6 leading-tight">
               Structured financial approach.
             </motion.h2>
-            <motion.p variants={fadeIn} className="text-xl text-valar-indigo leading-relaxed whitespace-nowrap">
+            <motion.p variants={fadeIn} className="text-xl text-valar-indigo leading-relaxed">
               We support clients from the first property conversation through to settlement and beyond.
             </motion.p>
           </motion.div>
@@ -222,7 +222,7 @@ export default function HomeContent() {
                     </div>
                     <div className="self-stretch border-l border-valar-concrete/50 mx-6" />
                     <div className="w-[20rem] flex-shrink-0">
-                      <h3 className="text-xl font-bold text-valar-navy whitespace-nowrap">{step.title}</h3>
+                      <h3 className="text-xl font-bold text-valar-navy">{step.title}</h3>
                     </div>
                     <p className="max-w-[650px] text-base text-valar-indigo leading-relaxed pl-10">{step.desc}</p>
                   </div>

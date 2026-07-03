@@ -108,7 +108,7 @@ export default function ServicesContent() {
                     Explore more information about deposits, lending options, KiwiSaver, and the full buying process — or download the free guide.
                   </p>
                 </div>
-                <div className="flex-shrink-0 flex items-center gap-2 bg-valar-amber group-hover:bg-valar-amber-hover text-valar-navy font-bold text-sm px-6 py-3.5 rounded-sm transition-colors whitespace-nowrap">
+                <div className="flex-shrink-0 flex items-center gap-2 bg-valar-amber group-hover:bg-valar-amber-hover text-valar-navy font-bold text-sm px-6 py-3.5 rounded-sm transition-colors">
                   <BookOpen className="w-4 h-4" /> Explore Now <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
