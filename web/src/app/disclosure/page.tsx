@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     "Public disclosure for Valar Financial Advisors — licensing, scope of advice, fees, commissions, conflicts of interest and how to make a complaint.",
   alternates: { canonical: "/disclosure" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Disclosure Statement | Valar Financial Advisors",
     description:
       "Licensing, scope of advice, fees, commissions and complaints information for Valar Financial Advisors.",

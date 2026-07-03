@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "Wealth management advice for New Zealanders. A clear roadmap to build long-term wealth, aligning property, lending and financial decisions with your future.",
   alternates: { canonical: "/services/wealth-management-plan" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Wealth Management Advice NZ | Valar Financial Advisors",
     description:
       "A clear roadmap to help you build long-term wealth, aligning your property, lending and financial decisions with your future.",

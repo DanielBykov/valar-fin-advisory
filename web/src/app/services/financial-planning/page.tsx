@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Personal financial planning for New Zealanders. Clear direction for where you are today and where you want to be, with Valar Financial Advisors.",
   alternates: { canonical: "/services/financial-planning" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Personal Financial Planning NZ | Valar Financial Advisors",
     description:
       "Financial planning built around your goals — clear direction for today's decisions and tomorrow's outcomes.",

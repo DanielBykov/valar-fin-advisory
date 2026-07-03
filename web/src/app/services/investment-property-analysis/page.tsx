@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Investment property mortgage advice in New Zealand. Financial modelling and strategic analysis to support better property investment and financing decisions.",
   alternates: { canonical: "/services/investment-property-analysis" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Investment Property Mortgage Advice NZ | Valar",
     description:
       "Financial modelling and strategic analysis to support better investment property decisions in New Zealand.",

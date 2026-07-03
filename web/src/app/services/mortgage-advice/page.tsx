@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Independent mortgage advice in New Zealand for first home buyers, homeowners, investors and business owners. Strategic guidance — not just the rate.",
   alternates: { canonical: "/services/mortgage-advice" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Independent Mortgage Adviser NZ | Valar Financial Advisors",
     description:
       "Strategic mortgage advice for first home buyers, homeowners, investors and business owners. We focus on the bigger financial picture, not just the rate.",

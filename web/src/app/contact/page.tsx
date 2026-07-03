@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     "Get in touch with Valar Financial Advisors. Pick the option that works best for you to talk through your mortgage and financial advice needs in New Zealand.",
   alternates: { canonical: "/contact" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Contact Valar Financial Advisors | New Zealand",
     description:
       "Get in touch with Valar Financial Advisors. Pick the option that works best for you for mortgage and financial advice in New Zealand.",

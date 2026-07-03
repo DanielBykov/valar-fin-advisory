@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Small business loan advice in New Zealand. Helping owners access funding for growth and working capital, with strategic lending guidance from Valar.",
   alternates: { canonical: "/services/small-business-loans" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Small Business Finance Adviser NZ | Valar Financial Advisors",
     description:
       "Helping small business owners access funding for growth and working capital, with strategic lending advice from Valar.",

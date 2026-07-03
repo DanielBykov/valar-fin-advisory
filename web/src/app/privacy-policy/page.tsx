@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     "Read the privacy policy for Valar Financial Advisors — how we collect, use and protect your personal information.",
   alternates: { canonical: "/privacy-policy" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Privacy Policy | Valar Financial Advisors",
     description:
       "How Valar Financial Advisors collects, uses and protects your personal information.",

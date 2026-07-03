@@ -14,6 +14,7 @@ export const metadata: Metadata = {
       "Independent mortgage and financial advice in New Zealand. Beyond approvals and rates — clarity for your lending and financial decisions.",
     url: "/",
     type: "website",
+    images: ["/opengraph.jpg"],
   },
 };
 

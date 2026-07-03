@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     "Read the terms of service for Valar Financial Advisors and the use of our website and services.",
   alternates: { canonical: "/terms" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Terms of Service | Valar Financial Advisors",
     description:
       "Terms of service for Valar Financial Advisors and the use of our website and services.",

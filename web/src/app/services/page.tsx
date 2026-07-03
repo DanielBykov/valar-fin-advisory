@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "Explore Valar's services — mortgage advice, financial planning, wealth management, investment property analysis and business advisory, tailored to your goals in NZ.",
   alternates: { canonical: "/services" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "Mortgage & Financial Advisory Services NZ | Valar",
     description:
       "Mortgage advice, financial planning, wealth management, investment property analysis and business advisory — tailored to your property ambitions and wealth growth.",

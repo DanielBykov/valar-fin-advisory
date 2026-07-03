@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "First home buyer advice in New Zealand. Independent guidance on KiwiSaver first home withdrawal, deposit, LVR, pre-approval and choosing a lender. Free guide.",
   alternates: { canonical: "/services/first-home-buyers" },
   openGraph: {
+    images: ["/opengraph.jpg"],
     title: "First Home Buyer Advice NZ | KiwiSaver, Deposit, Mortgage | Valar",
     description:
       "Independent first home buyer advice for New Zealanders — KiwiSaver, deposit, pre-approval and lender selection. From questions to a confident first step.",
