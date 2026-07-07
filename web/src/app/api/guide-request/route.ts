@@ -15,7 +15,14 @@ export async function POST(req: Request) {
   const groups = [process.env.MAILERLITE_FHB_GROUP_ID];
   if (subscribe === "yes") groups.push(process.env.MAILERLITE_GROUP_ID);
 
-  await Promise.all([
+  // Guard against a missing/misconfigured group id — otherwise we'd POST groups: [undefined]
+  // to MailerLite, which silently fails to enrol the lead and never fires the welcome automation.
+  if (groups.some((g) => !g)) {
+    console.error("MailerLite group id missing — check MAILERLITE_FHB_GROUP_ID / MAILERLITE_GROUP_ID env vars.");
+    return NextResponse.json({ success: false, error: "Subscription is temporarily unavailable." }, { status: 500 });
+  }
+
+  const [, mailerlite] = await Promise.all([
     // Internal heads-up to Lena that a new lead came in.
     resend.emails.send({
       from: "Valar Website <lena.bykova@valar.co.nz>",
@@ -45,6 +52,14 @@ export async function POST(req: Request) {
       }),
     }),
   ]);
+
+  // fetch() only rejects on network errors, not on 4xx/5xx — check the response
+  // explicitly so a MailerLite validation error doesn't silently report success.
+  if (!mailerlite.ok) {
+    const detail = await mailerlite.text().catch(() => "");
+    console.error(`MailerLite subscribe failed (${mailerlite.status}): ${detail}`);
+    return NextResponse.json({ success: false, error: "Could not complete your request." }, { status: 502 });
+  }
 
   return NextResponse.json({ success: true });
 }

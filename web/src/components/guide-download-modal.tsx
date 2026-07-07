@@ -35,7 +35,7 @@ export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalP
     if (json.success) {
       setSucceeded(true);
     } else {
-      setError("Something went wrong. Please try again.");
+      setError(json.error || "Something went wrong. Please try again.");
     }
     setSubmitting(false);
   }
