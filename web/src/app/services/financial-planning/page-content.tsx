@@ -47,11 +47,11 @@ export default function FinancialPlanningContent() {
       <section data-cmp="FinancialPlanningPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/financial-planning-hero.png"
+            src="/images/financial-planning-hero.webp"
             alt="Couple planning their financial future on the New Zealand coast"
             fill
             priority
-            unoptimized
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/25 to-transparent" />
@@ -124,11 +124,9 @@ export default function FinancialPlanningContent() {
       </section>
 
       {/* FINANCIAL COACHING */}
-      {/* FINANCIAL COACHING */}
-      {/* FINANCIAL COACHING */}
       <section data-cmp="FinancialPlanningPage.FinancialCoaching" className="relative h-[600px]">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/financial-coaching.png" alt="Financial coaching session" fill unoptimized className="object-cover object-[center_30%]" />
+          <Image src="/images/financial-coaching.webp" alt="Financial coaching session" fill sizes="100vw" className="object-cover object-[center_30%]" />
           <div className="absolute inset-0 bg-valar-navy/45" />
         </div>
         {/* Heading — top */}
@@ -286,11 +284,11 @@ export default function FinancialPlanningContent() {
             {/* Right — photo */}
             <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
               <Image
-                src="/images/lena-client.jpg"
+                src="/images/lena-client.webp"
                 alt="Lena Bykova discussing with a client"
                 fill
-                unoptimized
                 className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
           </motion.div>

@@ -39,7 +39,7 @@ export default function AboutContent() {
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
       <section data-cmp="AboutPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/about-hero.png" alt="NZ lighthouse at sunrise" fill priority unoptimized className="object-cover object-center" />
+          <Image src="/images/about-hero.webp" alt="NZ lighthouse at sunrise" fill sizes="100vw" priority className="object-cover object-center" />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />
         </div>
@@ -74,7 +74,7 @@ export default function AboutContent() {
           >
             <motion.div variants={fadeIn} className="relative max-w-md mx-auto">
               <Image
-                src="/images/lena-intro.png"
+                src="/images/lena-intro.webp"
                 alt="Lena Bykova"
                 width={600}
                 height={800}
@@ -188,7 +188,7 @@ export default function AboutContent() {
 
             <motion.div variants={fadeIn} className="relative">
               <Image
-                src="/images/lena-waterfront.jpg"
+                src="/images/lena-waterfront.webp"
                 alt="Lena Bykova, Auckland waterfront"
                 width={800}
                 height={1000}
@@ -365,11 +365,11 @@ export default function AboutContent() {
             </motion.div>
             <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
               <Image
-                src="/images/lena-client.jpg"
+                src="/images/lena-client.webp"
                 alt="Lena Bykova discussing with a client"
                 fill
-                unoptimized
                 className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
           </motion.div>

@@ -34,7 +34,7 @@ export default function SubscribeContent() {
       {/* Hero */}
       <section className="relative text-white overflow-hidden min-h-[200px] flex items-center">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/subscribe-hero.png" alt="Subscribe" fill priority className="object-cover object-[center_40%]" />
+          <Image src="/images/subscribe-hero.webp" alt="Subscribe" fill sizes="100vw" priority className="object-cover object-[center_40%]" />
           <div className="absolute inset-0 bg-valar-navy/70" />
         </div>
         <div className="container mx-auto max-w-2xl px-4 md:px-6 relative z-10 pt-20 pb-10 text-center">

@@ -19,7 +19,7 @@ export function AdviserCredentialStrip() {
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
           <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0 border-2 border-valar-amber">
             <Image
-              src="/images/lena-portrait.jpg"
+              src="/images/lena-portrait.webp"
               alt="Lena Bykova, Mortgage & Investment Adviser"
               fill
               sizes="96px"

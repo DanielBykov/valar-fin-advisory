@@ -22,10 +22,11 @@ export default function ServicesContent() {
       <section data-cmp="ServicesPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/services-hero.png"
+            src="/images/services-hero.webp"
             alt="Services hero"
             fill
             priority
+            sizes="100vw"
             className="object-cover object-right"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/20 to-transparent" />
@@ -92,9 +93,10 @@ export default function ServicesContent() {
           >
             <Link href="/services/first-home-buyers" className="group block relative overflow-hidden rounded-xl bg-valar-navy">
               <Image
-                src="/images/first-home-buyers-banner.png"
+                src="/images/first-home-buyers-banner.webp"
                 alt="First home buyers"
                 fill
+                sizes="100vw"
                 className="object-cover object-center"
               />
               <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(6,22,52,0.92) 0%, rgba(6,22,52,0.92) 45%, rgba(6,22,52,0.3) 100%)' }} />

@@ -54,11 +54,11 @@ export default function MortgageAdviceContent() {
       <section data-cmp="MortgageAdvicePage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/mortgage-hero.png"
+            src="/images/mortgage-hero.webp"
             alt="New Zealand coastal home"
             fill
             priority
-            unoptimized
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/65 to-transparent" />
@@ -195,7 +195,7 @@ export default function MortgageAdviceContent() {
           <motion.div data-cmp="MortgageAdvicePage.MortgageSolutions.FeaturedFirstHome" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-8">
             <Link href="/services/first-home-buyers" className="group block overflow-hidden rounded-sm border-t-4 border-valar-amber relative">
               <div className="relative h-56 md:h-72 overflow-hidden">
-                <Image src="/images/first-home-buyers-banner.png" alt="First Home Buyers" fill className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700" />
+                <Image src="/images/first-home-buyers-banner.webp" alt="First Home Buyers" fill sizes="100vw" className="object-cover object-bottom group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-linear-to-t from-valar-navy/90 via-valar-navy/40 to-transparent" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
@@ -291,11 +291,11 @@ export default function MortgageAdviceContent() {
             {/* Right — photo */}
             <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
               <Image
-                src="/images/lena-client.jpg"
+                src="/images/lena-client.webp"
                 alt="Lena Bykova discussing with a client"
                 fill
-                unoptimized
                 className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
           </motion.div>

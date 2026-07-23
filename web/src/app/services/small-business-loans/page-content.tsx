@@ -78,7 +78,7 @@ export default function SmallBusinessLoansContent() {
       {/* HERO */}
       <section data-cmp="SmallBusinessLoansPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/small-business-loans-hero.png" fill priority unoptimized className="object-cover object-center" alt="Business loans hero" />
+          <Image src="/images/small-business-loans-hero.webp" fill sizes="100vw" priority className="object-cover object-center" alt="Business loans hero" />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/20 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/30 to-transparent z-10" />
         </div>
@@ -355,7 +355,7 @@ export default function SmallBusinessLoansContent() {
               variants={fadeIn}
               className="relative h-80 rounded-sm overflow-hidden"
             >
-              <Image src="/images/lena-client.jpg" fill unoptimized className="object-cover object-center" alt="Lena with client" />
+              <Image src="/images/lena-client.webp" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center" alt="Lena with client" />
             </motion.div>
           </div>
         </div>

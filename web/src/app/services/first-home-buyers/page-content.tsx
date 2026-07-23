@@ -87,11 +87,11 @@ export default function FirstHomeBuyersContent() {
       <section data-cmp="FirstHomeBuyersPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/first-home-hero.png"
+            src="/images/first-home-hero.webp"
             alt="First Home Buyers"
             fill
             priority
-            unoptimized
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
@@ -170,7 +170,7 @@ export default function FirstHomeBuyersContent() {
       {/* DOWNLOAD GUIDE CALLOUT */}
       <section data-cmp="FirstHomeBuyersPage.DownloadGuide" className="relative py-24 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/first-home-guide-bg.png" alt="" fill unoptimized className="object-cover object-center" />
+          <Image src="/images/first-home-guide-bg.webp" alt="" fill sizes="100vw" className="object-cover object-center" />
           <div className="absolute inset-0 bg-valar-navy/25" />
         </div>
         <div className="container mx-auto px-6 md:px-12 max-w-5xl relative z-10">
@@ -669,11 +669,11 @@ export default function FirstHomeBuyersContent() {
             </motion.div>
             <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
               <Image
-                src="/images/lena-client.jpg"
+                src="/images/lena-client.webp"
                 alt="Lena Bykova discussing with a client"
                 fill
-                unoptimized
                 className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </motion.div>
           </motion.div>

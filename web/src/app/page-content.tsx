@@ -46,11 +46,11 @@ const staggerContainer = {
 const SHOW_TESTIMONIALS: boolean = false;
 
 const TESTIMONIALS = [
-  { image: "/images/avatars/avatar1.png", name: "Jane & Scott",  type: "First Home Buyers",         location: "Auckland",     quote: "Half a year ago we even can't imagine that today we will be the owners of our first home.",          body: "Lena encouraged us to look at our opportunities, and we understand that we can do this. Really appreciate the support during all the process." },
-  { image: "/images/avatars/avatar2.png", name: "Marie",         type: "Refinance Client",           location: "Auckland",     quote: "I thought that I will lose my house.",        body: "Lena helped me to refinance it with another bank and build up some security for me and my son. I have a variable income and the border in my home, but most importantly, I'm the owner." },
-  { image: "/images/avatars/avatar3.png", name: "Alex & Max",    type: "First Home Buyers",         location: "Christchurch", quote: "It was a long run, but finally we settled, and Lena helped us.",                                    body: "Really appreciate the support during all the process, from the beginning of the application and settlement, and now we are more confident in our future." },
-  { image: "/images/avatars/avatar4.png", name: "P&K",           type: "Investment Property Client", location: "Wellington",   quote: "Lena looked at the whole picture, not just the mortgage.",                                        body: "Her guidance helped us make decisions that aligned with our long-term plans, not just what worked today. We feel much more in control of our future." },
-  { image: "/images/avatars/avatar5.png", name: "Emily & David", type: "Refinance Client",           location: "Auckland",     quote: "The process felt so much less stressful with Lena guiding us.",                                   body: "Everything was explained clearly, and we always knew what was happening next. It made a huge difference." },
+  { image: "/images/avatars/avatar1.webp", name: "Jane & Scott",  type: "First Home Buyers",         location: "Auckland",     quote: "Half a year ago we even can't imagine that today we will be the owners of our first home.",          body: "Lena encouraged us to look at our opportunities, and we understand that we can do this. Really appreciate the support during all the process." },
+  { image: "/images/avatars/avatar2.webp", name: "Marie",         type: "Refinance Client",           location: "Auckland",     quote: "I thought that I will lose my house.",        body: "Lena helped me to refinance it with another bank and build up some security for me and my son. I have a variable income and the border in my home, but most importantly, I'm the owner." },
+  { image: "/images/avatars/avatar3.webp", name: "Alex & Max",    type: "First Home Buyers",         location: "Christchurch", quote: "It was a long run, but finally we settled, and Lena helped us.",                                    body: "Really appreciate the support during all the process, from the beginning of the application and settlement, and now we are more confident in our future." },
+  { image: "/images/avatars/avatar4.webp", name: "P&K",           type: "Investment Property Client", location: "Wellington",   quote: "Lena looked at the whole picture, not just the mortgage.",                                        body: "Her guidance helped us make decisions that aligned with our long-term plans, not just what worked today. We feel much more in control of our future." },
+  { image: "/images/avatars/avatar5.webp", name: "Emily & David", type: "Refinance Client",           location: "Auckland",     quote: "The process felt so much less stressful with Lena guiding us.",                                   body: "Everything was explained clearly, and we always knew what was happening next. It made a huge difference." },
 ];
 
 const MINI_REVIEWS = [
@@ -91,11 +91,11 @@ export default function HomeContent() {
       <section data-cmp="HomePage.Hero" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-nz.png"
+            src="/images/hero-nz.webp"
             alt="New Zealand landscape"
             fill
             priority
-            unoptimized
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/55 to-transparent" />
@@ -333,7 +333,7 @@ export default function HomeContent() {
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="w-full md:w-1/2">
               <Image
-                src="/images/lena-portrait.jpg"
+                src="/images/lena-portrait.webp"
                 alt="Lena Bykova - Valar Financial Advisors"
                 width={600}
                 height={800}
@@ -548,7 +548,7 @@ export default function HomeContent() {
 
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="w-full md:w-[38%]">
               <Image
-                src="/images/first-home-2.png"
+                src="/images/first-home-2.webp"
                 alt="First-Home Buyer Guide"
                 width={800}
                 height={1000}

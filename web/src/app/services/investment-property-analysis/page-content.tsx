@@ -71,11 +71,11 @@ export default function InvestmentPropertyAnalysisContent() {
       <section data-cmp="InvestmentPropertyAnalysisPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/investment-property-hero.png"
+            src="/images/investment-property-hero.webp"
             alt="Investment property in New Zealand"
             fill
             priority
-            unoptimized
+            sizes="100vw"
             className="object-cover object-[center_70%]"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
@@ -529,7 +529,7 @@ export default function InvestmentPropertyAnalysisContent() {
               variants={fadeIn}
               className="relative h-80 rounded-sm overflow-hidden"
             >
-              <Image src="/images/lena-client.jpg" fill unoptimized className="object-cover object-center" alt="Lena with client" />
+              <Image src="/images/lena-client.webp" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center" alt="Lena with client" />
             </motion.div>
           </div>
         </div>

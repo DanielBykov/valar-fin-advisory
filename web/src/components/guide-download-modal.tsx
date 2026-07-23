@@ -60,12 +60,11 @@ export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalP
             {/* Valar logo on navy */}
             <div className="mx-auto mb-6 inline-flex items-center justify-center bg-valar-navy rounded-md px-5 py-3">
               <Image
-                src="/images/valar-logo.png"
+                src="/images/valar-logo.webp"
                 alt="Valar Financial Advisors"
                 width={180}
                 height={48}
                 className="h-5 w-auto object-contain"
-                unoptimized
               />
             </div>
 

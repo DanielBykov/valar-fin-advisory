@@ -26,7 +26,7 @@ export function getOrganizationSchema() {
     name: "Valar Financial Advisors",
     legalName: "Valar Financial Advisor Ltd.",
     url: SITE_URL,
-    logo: `${SITE_URL}/images/valar-logo.png`,
+    logo: `${SITE_URL}/images/valar-logo.webp`,
     email: "lena.bykova@valar.co.nz",
     sameAs: SOCIAL_PROFILES,
     founder: { "@id": PERSON_ID },
@@ -54,7 +54,7 @@ export function getLocalBusinessSchema() {
     "@id": `${SITE_URL}/#localbusiness`,
     name: "Valar Financial Advisors",
     url: SITE_URL,
-    logo: `${SITE_URL}/images/valar-logo.png`,
+    logo: `${SITE_URL}/images/valar-logo.webp`,
     image: `${SITE_URL}/opengraph.jpg`,
     description:
       "Independent mortgage and financial advisory in New Zealand. Strategic advice on home loans, KiwiSaver, investment property, wealth planning and small business lending.",
@@ -94,7 +94,7 @@ export function getPersonSchema() {
     description:
       "Licensed financial adviser with 20+ years across finance, valuation, investment analysis and business advisory in New Zealand.",
     url: `${SITE_URL}/about`,
-    image: `${SITE_URL}/images/lena-portrait.jpg`,
+    image: `${SITE_URL}/images/lena-portrait.webp`,
     worksFor: { "@id": ORGANIZATION_ID },
     sameAs: [
       "https://www.linkedin.com/in/lenabykova/",

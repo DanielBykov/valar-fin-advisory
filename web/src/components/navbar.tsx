@@ -43,13 +43,12 @@ export function Navbar() {
           {/* Wordmark */}
           <Link href="/" className="flex items-center ml-6">
             <Image
-              src="/images/valar-logo.png"
+              src="/images/valar-logo.webp"
               alt="Valar Financial Advisors"
               width={180}
               height={48}
               className="h-7 w-auto object-contain"
               priority
-              unoptimized
             />
           </Link>
 
@@ -147,7 +146,7 @@ export function Navbar() {
                   <div className="bg-valar-navy overflow-hidden flex flex-col row-span-2">
                     <div className="w-full h-56 overflow-hidden shrink-0">
                       <Image
-                        src="/images/first-home-hero.png"
+                        src="/images/first-home-hero.webp"
                         alt="First Home Buyers"
                         width={400}
                         height={224}

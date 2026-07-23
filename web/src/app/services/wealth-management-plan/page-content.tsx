@@ -36,11 +36,11 @@ export default function WealthManagementContent() {
       <section data-cmp="WealthManagementPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/wealth-management-hero.png"
+            src="/images/wealth-management-hero.webp"
             alt="Sailboat on the New Zealand coast at sunset"
             fill
             priority
-            unoptimized
+            sizes="100vw"
             className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/20 to-transparent" />
@@ -374,7 +374,7 @@ export default function WealthManagementContent() {
               </Link>
             </motion.div>
             <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
-              <img src="/images/lena-client.jpg" alt="Lena Bykova discussing with a client" className="object-cover object-center w-full h-full" />
+              <img src="/images/lena-client.webp" alt="Lena Bykova discussing with a client" className="object-cover object-center w-full h-full" />
             </motion.div>
           </motion.div>
         </div>
