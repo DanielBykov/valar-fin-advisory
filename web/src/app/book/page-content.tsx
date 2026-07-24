@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import heroImg from "../../../public/images/book-hero.webp";
 import { InlineWidget } from "react-calendly";
 
 export default function BookContent() {
@@ -8,7 +9,7 @@ export default function BookContent() {
     <div data-cmp="BookPage" className="w-full flex flex-col bg-valar-fog min-h-screen">
       <section data-cmp="BookPage.Hero" className="relative text-white px-4 md:px-6 overflow-hidden min-h-[120px] flex items-center">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/book-hero.webp" alt="Book a clarity call" fill sizes="100vw" priority className="object-cover object-[center_30%]" />
+          <Image src={heroImg} alt="Book a clarity call" fill sizes="100vw" priority placeholder="blur" className="object-cover object-[center_30%]" />
           <div className="absolute inset-0 bg-valar-navy/50" />
         </div>
         <div className="container mx-auto max-w-3xl text-center relative z-10 pt-8">

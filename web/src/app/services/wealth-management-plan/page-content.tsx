@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../../../public/images/wealth-management-hero.webp";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -36,10 +37,11 @@ export default function WealthManagementContent() {
       <section data-cmp="WealthManagementPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/wealth-management-hero.webp"
+            src={heroImg}
             alt="Sailboat on the New Zealand coast at sunset"
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover object-center"
           />

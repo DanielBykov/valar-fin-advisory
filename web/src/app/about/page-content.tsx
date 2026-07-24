@@ -2,23 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../../public/images/about-hero.webp";
 import { motion } from "framer-motion";
 import {
   Calendar,
-  CheckCircle2,
-  TrendingUp,
-  Home as HomeIcon,
-  BarChart2,
-  DollarSign,
-  Briefcase,
-  Compass,
-  Award,
-  Clock,
   FileText,
-  Cpu,
-  Target,
-  Zap,
-  Layers,
   ExternalLink,
 } from "lucide-react";
 
@@ -39,7 +27,7 @@ export default function AboutContent() {
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
       <section data-cmp="AboutPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/about-hero.webp" alt="NZ lighthouse at sunrise" fill sizes="100vw" priority className="object-cover object-center" />
+          <Image src={heroImg} alt="NZ lighthouse at sunrise" fill sizes="100vw" priority placeholder="blur" className="object-cover object-center" />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/50 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/40 to-transparent z-10" />
         </div>

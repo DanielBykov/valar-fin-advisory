@@ -3,20 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../../../public/images/small-business-loans-hero.webp";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
   ChevronDown,
-  Briefcase,
-  Truck,
   Wrench,
-  TrendingUp,
   RefreshCw,
   DollarSign,
-  Users,
-  HardHat,
-  Building2,
-  Lightbulb,
 } from "lucide-react";
 import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 import { faqs } from "./faqs";
@@ -78,7 +72,7 @@ export default function SmallBusinessLoansContent() {
       {/* HERO */}
       <section data-cmp="SmallBusinessLoansPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/small-business-loans-hero.webp" fill sizes="100vw" priority className="object-cover object-center" alt="Business loans hero" />
+          <Image src={heroImg} fill sizes="100vw" priority placeholder="blur" className="object-cover object-center" alt="Business loans hero" />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/20 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/30 to-transparent z-10" />
         </div>

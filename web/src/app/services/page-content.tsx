@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../../public/images/services-hero.webp";
 import { motion } from "framer-motion";
 import { ArrowRight, LayoutGrid, TrendingUp, Briefcase, ChevronRight, BookOpen, Calendar } from "lucide-react";
 
@@ -22,10 +23,11 @@ export default function ServicesContent() {
       <section data-cmp="ServicesPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/services-hero.webp"
+            src={heroImg}
             alt="Services hero"
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover object-right"
           />

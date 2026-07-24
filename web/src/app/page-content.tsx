@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../public/images/hero-nz.webp";
 import { motion } from "framer-motion";
 import {
   Home as HomeIcon,
@@ -15,7 +16,6 @@ import {
   BarChart2,
   Calendar,
   FileText,
-  AlertTriangle,
   Users,
   FileCheck,
   ChevronLeft,
@@ -91,10 +91,11 @@ export default function HomeContent() {
       <section data-cmp="HomePage.Hero" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-nz.webp"
+            src={heroImg}
             alt="New Zealand landscape"
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover object-center"
           />

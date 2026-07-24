@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../../../public/images/financial-planning-hero.webp";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -47,10 +48,11 @@ export default function FinancialPlanningContent() {
       <section data-cmp="FinancialPlanningPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/financial-planning-hero.webp"
+            src={heroImg}
             alt="Couple planning their financial future on the New Zealand coast"
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover object-center"
           />

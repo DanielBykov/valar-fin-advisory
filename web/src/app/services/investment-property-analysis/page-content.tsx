@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../../../public/images/investment-property-hero.webp";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
@@ -14,10 +15,6 @@ import {
   ShieldCheck,
   Layers,
   DollarSign,
-  Target,
-  Briefcase,
-  Wrench,
-  Clock,
 } from "lucide-react";
 import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 import { faqs } from "./faqs";
@@ -71,10 +68,11 @@ export default function InvestmentPropertyAnalysisContent() {
       <section data-cmp="InvestmentPropertyAnalysisPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/investment-property-hero.webp"
+            src={heroImg}
             alt="Investment property in New Zealand"
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover object-[center_70%]"
           />

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import heroImg from "../../../../public/images/mortgage-hero.webp";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -54,10 +55,11 @@ export default function MortgageAdviceContent() {
       <section data-cmp="MortgageAdvicePage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/mortgage-hero.webp"
+            src={heroImg}
             alt="New Zealand coastal home"
             fill
             priority
+            placeholder="blur"
             sizes="100vw"
             className="object-cover object-center"
           />
