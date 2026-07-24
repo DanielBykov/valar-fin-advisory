@@ -376,7 +376,7 @@ export default function WealthManagementContent() {
               </Link>
             </motion.div>
             <motion.div variants={fadeIn} className="relative h-80 md:h-96 rounded-sm overflow-hidden">
-              <img src="/images/lena-client.webp" alt="Lena Bykova discussing with a client" className="object-cover object-center w-full h-full" />
+              <Image src="/images/lena-client.webp" alt="Lena Bykova discussing with a client" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center" />
             </motion.div>
           </motion.div>
         </div>
