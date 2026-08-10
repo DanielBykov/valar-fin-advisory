@@ -119,7 +119,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div data-cmp="Footer.BottomBar" className="pt-8 border-t border-valar-indigo flex flex-col md:flex-row justify-between items-center text-xs text-valar-lilac/70 gap-4">
-          <p>© 2026 Valar Financial Advisor Ltd.<br />All rights reserved.</p>
+          <p>© 2026 Valar Financial Advisors Ltd.<br />All rights reserved.</p>
           <p className="text-center md:text-right max-w-3xl">
             Lena Bykova (FSP1010055) trades as Valar Financial Advisors.<br />A disclosure statement is available free of charge on request.
           </p>

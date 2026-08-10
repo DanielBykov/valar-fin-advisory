@@ -24,7 +24,7 @@ export function getOrganizationSchema() {
     "@type": "Organization",
     "@id": ORGANIZATION_ID,
     name: "Valar Financial Advisors",
-    legalName: "Valar Financial Advisor Ltd.",
+    legalName: "Valar Financial Advisors Ltd.",
     url: SITE_URL,
     logo: `${SITE_URL}/images/valar-logo.webp`,
     email: "lena.bykova@valar.co.nz",
