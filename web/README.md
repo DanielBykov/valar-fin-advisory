@@ -1,38 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Valar Financial Advisors — Website
 
-## Getting Started
+Marketing and lead-generation website for a New Zealand mortgage & investment advisory practice.
+Built with the Next.js App Router, server-rendered for SEO, with contact, newsletter, and
+lead-magnet flows wired to transactional email and marketing automation.
 
-First, run the development server:
+**Live:** [valar.co.nz](https://www.valar.co.nz)
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router) + React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Animation:** Framer Motion
+- **Email:** [Resend](https://resend.com) (transactional) + [MailerLite](https://mailerlite.com) (marketing automation)
+- **Booking:** Calendly embed
+- **Analytics:** Google Analytics 4 (consent-gated)
+- **Hosting:** Vercel
+
+## Highlights
+
+- **Server-first architecture** — every route splits into `page.tsx` (server component: metadata,
+  JSON-LD, SSR) and `page-content.tsx` (client component: interactivity), keeping the client bundle small.
+- **SEO** — per-route metadata and canonical/OG tags, `sitemap.ts` and `robots.ts`, and structured
+  data (`Organization`, `WebSite`, `FinancialService`, `Person`, `BreadcrumbList`, `FAQPage`).
+- **Privacy-aware analytics** — GA4 fires only after explicit cookie consent via a custom banner.
+- **Lead flows** — contact form, newsletter subscribe, and a gated PDF guide (lead magnet) whose
+  delivery is handled by a MailerLite welcome automation.
+- **Performance** — AVIF/WebP image pipeline with blur placeholders and responsive `sizes`.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm build   # production build
+pnpm start   # serve the production build
+pnpm lint    # ESLint
+```
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+Create `web/.env.local`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+RESEND_API_KEY=          # Resend — transactional email (contact + lead notifications)
+MAILERLITE_API_KEY=      # MailerLite — subscriber API
+MAILERLITE_GROUP_ID=     # General newsletter group
+MAILERLITE_FHB_GROUP_ID= # First Home Buyers group (triggers the guide-delivery automation)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Without these, the contact form, newsletter, and guide-download flows will fail.
 
-## Deploy on Vercel
+## Project structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+web/
+├── src/
+│   ├── app/
+│   │   ├── api/            # Route handlers: contact, subscribe, guide-request
+│   │   ├── services/       # One folder per service page
+│   │   ├── layout.tsx      # Root layout, global JSON-LD, GA consent
+│   │   ├── sitemap.ts      # Auto-generated /sitemap.xml
+│   │   └── robots.ts       # /robots.txt (disallows /api)
+│   └── components/         # Navbar, footer, consent banner, guide modal, UI primitives
+└── public/                 # Images (WebP), guide PDF, favicons, OG image
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Routes
 
-..
+`/` · `/about` · `/services` (+ 7 service pages) · `/book` · `/contact` · `/subscribe`
+· `/insights` · `/disclosure` · `/privacy-policy` · `/terms`
