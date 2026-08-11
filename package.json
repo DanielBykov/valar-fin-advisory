@@ -10,7 +10,6 @@
     "sync:onedrive": "bash ../docs_local/sync-onedrive.sh"
   },
   "dependencies": {
-    "@formspree/react": "^3.0.0",
     "@radix-ui/react-tabs": "^1.1.13",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
