@@ -4,8 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users } from "lucide-react";
+import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users, Newspaper, TrendingUp, Calculator, Download, HelpCircle, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { INSIGHTS_LIVE } from "@/lib/insights";
 
 function navLink(isActive: boolean) {
   return cn(
@@ -21,13 +22,21 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isInsightsOpen, setIsInsightsOpen] = useState(false);
+  const [isMobileInsightsOpen, setIsMobileInsightsOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+
+  // Insights shows in the menu once INSIGHTS_LIVE is on — and always when
+  // running the site locally, so the menu can be reviewed before it goes public.
+  const showInsights = INSIGHTS_LIVE || process.env.NODE_ENV === "development";
 
   useEffect(() => {
     setIsServicesOpen(false);
     setIsOpen(false);
     setIsMobileServicesOpen(false);
+    setIsInsightsOpen(false);
+    setIsMobileInsightsOpen(false);
   }, [pathname]);
 
   return (
@@ -178,56 +187,124 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* Insights Mega Menu — hidden */}
-            {false && (
+            {/* Insights Mega Menu — same component shape as Services. Visibility: INSIGHTS_LIVE in src/lib/insights.ts */}
+            {showInsights && (
             <><span className="text-white/20 select-none text-xs">|</span>
 
-            <div data-cmp="Navbar.InsightsMegaMenu" className="group relative h-16 flex items-center">
+            <div data-cmp="Navbar.InsightsMegaMenu" className="relative h-16 flex items-center" onMouseEnter={() => setIsInsightsOpen(true)} onMouseLeave={() => setIsInsightsOpen(false)}>
               <Link
                 href="/insights"
                 className={cn(
-                  "text-sm font-medium px-4 hover:text-valar-amber transition-colors flex items-center gap-1",
-                  pathname === "/insights" && "text-valar-amber"
+                  "text-base font-medium px-4 py-1.5 transition-colors flex items-center gap-1 relative",
+                  "after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-valar-amber after:rounded-full after:transition-opacity after:duration-200",
+                  pathname?.startsWith("/insights")
+                    ? "text-valar-amber after:opacity-100"
+                    : "text-white hover:text-valar-amber after:opacity-0 hover:after:opacity-100"
                 )}
               >
-                Insights <ChevronDown className="w-4 h-4 opacity-50 group-hover:rotate-180 transition-transform" />
+                Insights <ChevronDown className={cn("w-4 h-4 opacity-50 transition-transform", isInsightsOpen && "rotate-180")} />
               </Link>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-max max-w-[800px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
-                <div className="bg-white text-valar-navy shadow-xl rounded-b-xl border border-gray-100 p-8 grid grid-cols-4 gap-8">
-                  <div>
-                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                      Market & Analysis
-                    </h3>
-                    <ul className="space-y-3">
-                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Property Market Updates</Link></li>
-                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Real Client Scenarios</Link></li>
-                    </ul>
+              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 w-[1160px] max-w-[95vw] transition-all duration-200 z-50", isInsightsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
+                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 grid gap-0 overflow-hidden" style={{gridTemplateColumns: "1fr 1fr 1fr 1.3fr"}}>
+
+                  {/* Read */}
+                  <div className="p-10 ">
+                    <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Read</h3>
+                    <div className="border-t border-valar-concrete mb-7" />
+                    <div className="space-y-7">
+                      <Link href="/insights" className="flex items-start gap-3 group/item">
+                        <Newspaper className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                        <div>
+                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Articles</div>
+                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Guides, commentary and real client scenarios</div>
+                        </div>
+                      </Link>
+                      <Link href="/insights?tag=market" className="flex items-start gap-3 group/item">
+                        <TrendingUp className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                        <div>
+                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Market Updates</div>
+                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Where NZ lending and rates sit right now</div>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                      Education & Guidance
-                    </h3>
-                    <ul className="space-y-3">
-                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Learning Hub</Link></li>
-                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">First-Home Buyers</Link></li>
-                    </ul>
+
+                  {/* Tools */}
+                  <div className="p-10 ">
+                    <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Tools</h3>
+                    <div className="border-t border-valar-concrete mb-7" />
+                    <div className="space-y-7">
+                      <Link href="/insights/calculators" className="flex items-start gap-3 group/item">
+                        <Calculator className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                        <div>
+                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Calculators</div>
+                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Repayments, borrowing power and cashflow</div>
+                        </div>
+                      </Link>
+                      <Link href="/services/first-home-buyers" className="flex items-start gap-3 group/item">
+                        <Download className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                        <div>
+                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Guides &amp; Downloads</div>
+                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Free guides to keep and work through</div>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-sm uppercase tracking-wider text-gray-400 mb-4 border-b pb-2">
-                      Tools & Support
-                    </h3>
-                    <ul className="space-y-3">
-                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">Calculators</Link></li>
-                      <li><Link href="/insights" className="text-[15px] hover:text-valar-amber block">FAQs</Link></li>
-                    </ul>
+
+                  {/* Answers */}
+                  <div className="p-10 ">
+                    <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Answers</h3>
+                    <div className="border-t border-valar-concrete mb-7" />
+                    <div className="space-y-7">
+                      <Link href="/insights#faq" className="flex items-start gap-3 group/item">
+                        <HelpCircle className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                        <div>
+                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">FAQ</div>
+                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Straight answers to the questions we get most</div>
+                        </div>
+                      </Link>
+                      <Link href="/insights?tag=case-studies" className="flex items-start gap-3 group/item">
+                        <Layers className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                        <div>
+                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Case Studies</div>
+                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Real structures, real numbers, names removed</div>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
-                  <div className="bg-valar-indigo text-white -m-8 ml-0 p-8 flex flex-col rounded-br-xl">
-                    <h4 className="font-bold text-lg leading-tight mb-2 mt-auto">Understanding the NZ Property Market</h4>
-                    <p className="text-sm text-valar-lilac mb-4">Latest perspectives from our advisory team.</p>
-                    <Link href="/insights" className="text-valar-amber font-semibold text-sm hover:text-white flex items-center">
-                      Explore Insights <span className="ml-1">→</span>
+
+                  {/* Academy card — row-span-2 so it covers the All Insights row below */}
+                  <div className="bg-valar-navy overflow-hidden flex flex-col row-span-2">
+                    <div className="w-full h-56 overflow-hidden shrink-0">
+                      <Image
+                        src="/images/first-home-2.webp"
+                        alt="First Home Buyers Academy"
+                        width={400}
+                        height={224}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-8 flex flex-col flex-1">
+                      <h4 className="font-bold text-xl leading-tight mb-3 text-white">First Home Buyers Academy</h4>
+                      <p className="text-sm text-valar-lilac mb-6 leading-relaxed flex-1">
+                        A step-by-step path from &ldquo;can I even buy?&rdquo; to settlement day.
+                      </p>
+                      <Link
+                        href="/services/first-home-buyers"
+                        className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-semibold text-sm px-5 py-2.5 rounded-sm transition-colors self-start"
+                      >
+                        Start the Academy →
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* All Insights — spans cols 1-3 in row 2, Academy card covers col 4 */}
+                  <div className="col-span-3 px-10 py-4 border-t border-valar-concrete">
+                    <Link href="/insights" className="text-sm font-semibold text-valar-horizon hover:text-valar-navy transition-colors flex items-center gap-1.5">
+                      View all insights <span>→</span>
                     </Link>
                   </div>
+
                 </div>
               </div>
             </div></>
@@ -318,7 +395,54 @@ export function Navbar() {
                   </div>
                 )}
               </div>
-              {false && <Link href="/insights" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Insights</Link>}
+              {/* Insights accordion — mirrors the Services accordion above */}
+              {showInsights && (
+              <div className="border-b border-white/10">
+                <button
+                  className="w-full flex items-center justify-between py-3 text-white font-medium"
+                  onClick={() => setIsMobileInsightsOpen(!isMobileInsightsOpen)}
+                >
+                  Insights
+                  <ChevronDown className={cn("w-4 h-4 opacity-50 transition-transform", isMobileInsightsOpen && "rotate-180")} />
+                </button>
+                {isMobileInsightsOpen && (
+                  <div className="bg-valar-navy/40 rounded-lg mb-3 overflow-hidden">
+                    <div className="px-5 pt-4 pb-3 border-b border-white/10">
+                      <Link href="/insights" className="flex items-center justify-between py-2 text-base font-semibold text-valar-amber hover:text-white transition-colors" onClick={() => setIsOpen(false)}>
+                        All Insights <span>→</span>
+                      </Link>
+                    </div>
+                    <div className="px-5 pt-5 pb-3">
+                      <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Read</p>
+                      <Link href="/insights" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                        <Newspaper className="w-5 h-5 text-valar-steel shrink-0" /> Articles
+                      </Link>
+                      <Link href="/insights?tag=market" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                        <TrendingUp className="w-5 h-5 text-valar-steel shrink-0" /> Market Updates
+                      </Link>
+                    </div>
+                    <div className="px-5 pt-2 pb-3">
+                      <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Tools</p>
+                      <Link href="/insights/calculators" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                        <Calculator className="w-5 h-5 text-valar-steel shrink-0" /> Calculators
+                      </Link>
+                      <Link href="/services/first-home-buyers" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                        <Download className="w-5 h-5 text-valar-steel shrink-0" /> Guides &amp; Downloads
+                      </Link>
+                    </div>
+                    <div className="px-5 pt-2 pb-4">
+                      <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Answers</p>
+                      <Link href="/insights#faq" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                        <HelpCircle className="w-5 h-5 text-valar-steel shrink-0" /> FAQ
+                      </Link>
+                      <Link href="/insights?tag=case-studies" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                        <Layers className="w-5 h-5 text-valar-steel shrink-0" /> Case Studies
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+              )}
               <Link href="/about" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>About</Link>
               <Link href="/contact" className="block py-3 border-b border-white/10 text-white font-medium" onClick={() => setIsOpen(false)}>Contact</Link>
               <div className="pt-4">
