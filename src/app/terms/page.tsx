@@ -60,6 +60,13 @@ export default function TermsPage() {
           </div>
 
           <div>
+            <h2 className="text-xl font-bold text-valar-navy mb-3">Photography and illustrations</h2>
+            <p>
+              Photography and illustrations on this website are for illustration only and do not depict actual clients. Any people shown are models or generated images, and no client relationship, transaction, or outcome should be inferred from them.
+            </p>
+          </div>
+
+          <div>
             <h2 className="text-xl font-bold text-valar-navy mb-3">Limitation of liability</h2>
             <p>
               To the extent permitted by law, Valar Financial Advisors Limited is not liable for any loss or damage arising from your use of, or reliance on, the content of this website.
