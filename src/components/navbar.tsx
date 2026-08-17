@@ -256,7 +256,7 @@ export function Navbar() {
                     <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Answers</h3>
                     <div className="border-t border-valar-concrete mb-7" />
                     <div className="space-y-7">
-                      <Link href="/insights#faq" className="flex items-start gap-3 group/item">
+                      <Link href="/insights/faq" className="flex items-start gap-3 group/item">
                         <HelpCircle className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
                         <div>
                           <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">FAQ</div>
@@ -432,7 +432,7 @@ export function Navbar() {
                     </div>
                     <div className="px-5 pt-2 pb-4">
                       <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Answers</p>
-                      <Link href="/insights#faq" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                      <Link href="/insights/faq" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
                         <HelpCircle className="w-5 h-5 text-valar-steel shrink-0" /> FAQ
                       </Link>
                       <Link href="/insights?tag=case-studies" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>

@@ -2,11 +2,25 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import heroImg from "../../../public/images/insights-hero.jpg";
+import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Calculator, LineChart, Wallet } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
 import FaqAccordion from "@/components/insights/faq-accordion";
 import NewsletterSignup from "@/components/insights/newsletter-signup";
-import { FAQS, TAG_LABELS, TAG_ORDER, visibleArticles, type InsightTag } from "@/lib/insights";
+import { TAG_LABELS, TAG_ORDER, visibleArticles, type InsightTag } from "@/lib/insights";
+import type { FaqItem } from "@/lib/faqs";
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
 
 const TOOLS = [
   {
@@ -32,14 +46,18 @@ const TOOLS = [
   },
 ];
 
-export default function InsightsContent() {
+export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
   const articles = useMemo(() => visibleArticles(), []);
   const [filter, setFilter] = useState<InsightTag | "all">("all");
 
-  // Menu links like /insights?tag=market land on the page with that filter applied.
+  // Menu links like /insights?tag=market land on the page with that filter
+  // applied. Deferred a frame: the query string is state owned by the browser,
+  // so applying it is a sync step rather than part of the first render.
   useEffect(() => {
     const tag = new URLSearchParams(window.location.search).get("tag");
-    if (tag && (TAG_ORDER as string[]).includes(tag)) setFilter(tag as InsightTag);
+    if (!tag || !(TAG_ORDER as string[]).includes(tag)) return;
+    const frame = requestAnimationFrame(() => setFilter(tag as InsightTag));
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const shown = filter === "all" ? articles : articles.filter((a) => a.tag === filter);
@@ -48,23 +66,41 @@ export default function InsightsContent() {
   return (
     <div data-cmp="InsightsPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
       {/* ── A · Hero ─────────────────────────────────────────── */}
+      {/* Layout mirrors the site-wide hero pattern (Services / About / service
+          sub-pages): kicker rule + eyebrow, h1, amber-ruled standfirst. */}
       <section
         data-cmp="InsightsPage.Hero"
-        className="relative overflow-hidden bg-valar-navy px-4 pt-24 pb-20 text-white md:px-6"
+        className="relative overflow-hidden bg-valar-navy text-white"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-24 -right-32 h-[420px] w-[420px] rounded-full bg-valar-indigo/40 blur-3xl"
-        />
-        <div className="container relative mx-auto max-w-6xl">
-          <div className="mb-6 h-[1px] w-12 bg-valar-amber" />
-          <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl">
-            Insights<span className="text-valar-amber">.</span>
-          </h1>
-          <p className="max-w-2xl border-l-2 border-valar-amber pl-4 text-xl font-light text-valar-lilac">
-            Property market commentary, financial education and practical tools — so the numbers behind
-            your decisions are visible before you make them.
-          </p>
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={heroImg}
+            alt="Reviewing the New Zealand market outlook over a Marlborough Sounds view"
+            fill
+            priority
+            placeholder="blur"
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          {/* Left-to-right navy wash: the copy sits over the pale wall on the
+              left, so this runs heavier than the Services hero to hold contrast. */}
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/70 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent z-10" />
+        </div>
+        <div className="container relative z-10 mx-auto max-w-6xl px-4 pt-36 pb-20 md:px-6">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+            <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
+              <div className="h-[2px] w-6 bg-valar-amber" />
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Market Commentary &amp; Tools</span>
+            </motion.div>
+            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
+              Insights<span className="text-valar-amber">.</span>
+            </motion.h1>
+            <motion.p variants={fadeIn} className="max-w-2xl text-lg text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light">
+              Property market commentary, financial education and practical tools — so the numbers behind
+              your decisions are visible before you make them.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -217,7 +253,13 @@ export default function InsightsContent() {
             </p>
             <h2 className="text-3xl font-bold text-valar-navy">Asked most often</h2>
           </div>
-          <FaqAccordion items={FAQS} />
+          <FaqAccordion items={faqs} />
+          <Link
+            href="/insights/faq"
+            className="mt-7 inline-flex items-center gap-1 font-semibold text-valar-amber hover:underline"
+          >
+            All questions, by topic <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

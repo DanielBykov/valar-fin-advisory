@@ -277,10 +277,6 @@ export const ARTICLES: Article[] = [
         type: "p",
         text: "But if you want a partner who thinks about your loan the way you'd think about any long-term financial decision, with several structures, risk laid out in real numbers, and a plan for what comes after settlement, that's the work Valar is built for. Twenty years in finance, accounting, business valuation and investment analysis came before the mortgage advice, and that's the lens I bring to your loan. You leave with more than a mortgage: a clear picture of your numbers, your risk, and your options for what's next.",
       },
-      {
-        type: "p",
-        text: "This article is general information only and does not take your personal circumstances into account. It is not personalised financial advice.",
-      },
     ],
     takeaways: [
       "The work that changes your outcome is comparison, current lending policy, and a loan structured for the long view. The document handling is the smallest part of it.",
@@ -291,26 +287,154 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "kiwisaver-for-your-deposit",
-    title: "Using KiwiSaver for your deposit: what counts and what doesn't",
+    title: "Using your KiwiSaver for a first home deposit",
     excerpt:
-      "The withdrawal rules in plain terms, plus the parts people find out about too late.",
+      "What KiwiSaver is, how the first-home withdrawal works, the rules that catch people out, and the one thing worth checking well before you buy.",
     tag: "first-home",
-    published: "2026-09-03",
-    readingMinutes: 7,
-    draft: true,
+    published: "2026-08-01",
+    topics: ["First home", "KiwiSaver", "Deposit", "Settlement timing"],
+    image: {
+      src: "/images/kiwisaver-deposit.png",
+      alt: "A couple at a table looking at a first home deposit breakdown on a laptop, with KiwiSaver shown as part of the total",
+    },
+    readingMinutes: 6,
+    draft: false,
     body: [
-      { type: "lede", text: "Draft outline — body still to be written." },
-      { type: "h2", text: "What you can actually withdraw" },
-      { type: "p", text: "The rules, stated plainly, with the parts that trip people up." },
-      { type: "h2", text: "Timing — the part people get wrong" },
-      { type: "p", text: "When to start the process relative to making an offer." },
-      { type: "h2", text: "How the bank sees it" },
-      { type: "p", text: "How a KiwiSaver withdrawal is treated inside a deposit." },
+      {
+        type: "lede",
+        text: "For most first home buyers in New Zealand, KiwiSaver is the largest single piece of the deposit. It is also the piece people understand least well, and the one most likely to hold up a settlement.",
+      },
+
+      { type: "h2", text: "What KiwiSaver actually is" },
+      {
+        type: "p",
+        text: "A voluntary retirement savings scheme. You contribute a percentage of your pay, your employer contributes alongside you, and the government adds a smaller annual amount. The money sits in a fund chosen by you and managed by a provider, and it is invested rather than held as cash.",
+      },
+      {
+        type: "p",
+        text: "It is locked away until you turn 65. Buying your first home is one of the few exceptions, and it is the reason KiwiSaver matters long before retirement does.",
+      },
+
+      { type: "h2", text: "How it works for a first home" },
+      {
+        type: "p",
+        text: "The first-home withdrawal is not government money. It is early access to your own KiwiSaver balance, released early so you can put it toward the deposit on a house you are going to live in.",
+      },
+      {
+        type: "p",
+        text: "What you can take out includes your own contributions, your employer's, the government contributions you've received over the years, and the investment returns on all of it.",
+      },
+
+      { type: "h2", text: "The rules that decide it" },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "Three years in the scheme",
+            text: "Counted from the date you joined KiwiSaver, not from your first contribution. If you enrolled and then had years with nothing going in, the clock was still running the whole time.",
+          },
+          {
+            term: "$1,000 has to stay behind",
+            text: "You can withdraw everything except a thousand dollars. That balance keeps the account open, so buying a house doesn't end your KiwiSaver membership.",
+          },
+          {
+            term: "You don't currently own property",
+            text: "That covers land and a share in a property, not only a house.",
+          },
+          {
+            term: "It has to be your home, and you have to live in it",
+            text: "The property must be your main residence in New Zealand, and you sign a statutory declaration, witnessed by a JP or a lawyer, that you intend to live in it for at least six months from settlement. Renting out a room while you live there is fine. Renting out the whole house inside those six months is a breach, and it does get noticed: bond registrations, rental income visible to Inland Revenue, and lenders who ask.",
+          },
+        ],
+      },
+
+      { type: "h2", text: "How and when the money moves" },
+      {
+        type: "p",
+        text: "You apply through your KiwiSaver provider, not through a government agency, and you need a signed sale and purchase agreement before they will process anything. Your solicitor usually runs the application and certifies the details, and the money goes into their trust account rather than to you.",
+      },
+      {
+        type: "p",
+        text: "Here is the part that catches people hardest: the deposit and the settlement are two different payments. When your offer goes unconditional you normally have to pay a deposit, often around 10%, within a few days. Settlement, when the rest of the money changes hands and the house becomes yours, is usually weeks later.",
+      },
+      {
+        type: "p",
+        text: "KiwiSaver can reach either one, but they need different paperwork from your solicitor. A letter of undertaking on a conditional agreement sends the money toward the deposit. A letter of undertaking on an unconditional agreement puts it toward the purchase price at settlement.",
+      },
+      {
+        type: "p",
+        text: "In practice most people receive it at settlement, and the reason is timing. The deposit route needs the application lodged roughly fifteen business days before the deposit falls due, and a deposit is usually payable within a few days of going unconditional. If you want KiwiSaver to cover the deposit, that has to be arranged before you make the offer, not after it is accepted.",
+      },
+      {
+        type: "p",
+        text: "Otherwise the first payment comes from your own cash, or from a smaller deposit written into the agreement. Deposit amounts aren't fixed by law, they're negotiated, and where a purchase is being funded largely by KiwiSaver a reduced deposit can sometimes be agreed with the vendor. At auction none of this applies: the deposit falls due on the day, on the auction's terms, and there is no going back.",
+      },
+      {
+        type: "p",
+        text: "Providers generally take five to ten business days from a complete application, and incomplete paperwork is the usual reason that stretches. If two of you are buying together, that is two separate applications through two providers, and the slower one sets the pace. You can each withdraw as much or as little as you want, so the two amounts don't have to match.",
+      },
+      {
+        type: "callout",
+        label: "Three ways this goes wrong",
+        text: "Leaving it too late, which is the costly one. Once settlement happens you are the owner, and the withdrawal can no longer be paid out at all — there is no catching up afterwards. Providers work to around ten business days from a complete application, so start the paperwork when the agreement is signed rather than counting backwards from settlement day. Then: submitting an incomplete application, which is the usual reason a straightforward one stretches. And checking the three-year clock only once you're already negotiating, when there is nothing left to do about it.",
+      },
+
+      {
+        type: "pull",
+        text: "Your KiwiSaver isn't a lump sum waiting for you. It's a moving part of the settlement timeline.",
+      },
+
+      { type: "h2", text: "Before you buy, check what your money is invested in" },
+      {
+        type: "p",
+        text: "Start with the number itself, because what your app shows is not what lands in your solicitor's account. Take off the $1,000, and remember that the balance keeps moving with the market right up until the day it is paid out.",
+      },
+      {
+        type: "p",
+        text: "That last part is the one worth planning around. KiwiSaver funds are not interchangeable. Growth and aggressive funds hold more shares, which is why they tend to do better over long periods and why they fall further when markets drop. Conservative funds hold more cash and bonds, and move less in both directions.",
+      },
+      {
+        type: "p",
+        text: "That difference barely matters when the money has decades to recover. It matters a great deal when you are about to spend it.",
+      },
+      {
+        type: "case",
+        label: "Buying within a year",
+        question:
+          "What happens to a $50,000 balance if markets fall and your fund drops 15% before settlement?",
+        text: "It becomes $42,500. The deposit is $7,500 short and there is no time to wait for a recovery, so the realistic outcomes are a smaller house, a larger loan, or a purchase that doesn't happen this year. How far your own fund would move is not the same as how far the market moves — some funds fall further, some barely at all — which is exactly why the fund you are in matters. Illustrative figures only.",
+      },
+      {
+        type: "p",
+        text: "So the general principle for a purchase inside a year is not complicated: money you are about to spend does not sit comfortably in a fund that can move 15% while you wait. A more conservative fund gives up some potential return in exchange for a balance that holds still, and when the spending date is close that is usually the trade worth making.",
+      },
+      {
+        type: "p",
+        text: "Two things make it worth acting early rather than late. Switching after a fall locks the loss in, so the decision is better made while the choice is still open than in reaction to a bad month. And your own circumstances may point somewhere else entirely — whether your current fund suits your timeframe is a question for your provider, or for an adviser who has your full situation in front of them.",
+      },
+      {
+        type: "figure",
+        src: "/images/kiwisaver-deposit.png",
+        alt: "A couple at a table looking at a first home deposit breakdown on a laptop, with KiwiSaver shown as part of the total",
+      },
+      { type: "h2", text: "Before you apply, check these" },
+      {
+        type: "list",
+        items: [
+          "Your join date, not your first contribution — that is what starts the three-year clock.",
+          "What your provider actually needs: certified ID, proof of address, a copy of the agreement, your solicitor's undertaking, and a statutory declaration witnessed by a JP or lawyer.",
+          "Whether KiwiSaver is going toward the deposit or toward settlement, because your solicitor writes a different undertaking for each.",
+          "What fund you are in, and whether that still fits how soon you plan to buy.",
+          "Your real number: the balance in the app, less the $1,000 that stays behind, and knowing it will still move with the market until the day it is paid.",
+        ],
+      },
+
     ],
     takeaways: [
-      "Start the withdrawal process before you need the money, not when.",
-      "Not every dollar in the account is withdrawable.",
-      "Your KiwiSaver provider's timeline is not the same as your settlement timeline.",
+      "The first-home withdrawal is early access to your own KiwiSaver balance, not government money.",
+      "Three rules catch people out: three years of membership, counted from when you joined rather than your first contribution; $1,000 has to stay in the account; and you have to live in the home yourself for at least six months.",
+      "KiwiSaver can go toward the deposit as well as the settlement, but the deposit route needs about fifteen business days' notice, so it has to be set up before you make the offer. Otherwise that first payment comes from your own cash or from a smaller deposit negotiated into the agreement.",
+      "Check what your KiwiSaver is invested in well before you buy. How far a balance can fall in the short term depends on the fund it sits in, and the closer your purchase, the less time there is to recover.",
     ],
   },
 ];

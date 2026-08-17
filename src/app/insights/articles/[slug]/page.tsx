@@ -31,7 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       title: article.title,
       description: article.excerpt,
-      images: ["/opengraph.jpg"],
+      // The article's own image when it has one, so a shared link previews the
+      // article rather than the generic site card.
+      images: [article.image?.src ?? "/opengraph.jpg"],
       publishedTime: article.published,
     },
   };
@@ -89,11 +91,11 @@ export default async function Page({ params }: Props) {
             <span className="leading-tight">
               <span className="block font-semibold text-valar-navy">Lena Bykova</span>
               Financial Adviser, Valar
+              <span aria-hidden="true"> · </span>
+              <time dateTime={article.published}>{formatDate(article.published)}</time>
+              <span aria-hidden="true"> · </span>
+              {article.readingMinutes} min read
             </span>
-            <span aria-hidden="true">·</span>
-            <time dateTime={article.published}>{formatDate(article.published)}</time>
-            <span aria-hidden="true">·</span>
-            <span>{article.readingMinutes} min read</span>
           </div>
 
           {article.topics && article.topics.length > 0 && (
@@ -204,7 +206,7 @@ export default async function Page({ params }: Props) {
               <p
                 key={i}
                 data-cmp="ArticlePage.Pull"
-                className="my-9 border-y border-valar-concrete py-8 text-center text-2xl leading-[1.35] font-medium text-balance text-valar-navy md:text-[1.9rem]"
+                className="my-9 border-t border-valar-concrete pt-8 text-center text-2xl leading-[1.35] font-medium text-balance text-valar-navy md:text-[1.9rem]"
               >
                 {block.text}
               </p>
@@ -255,6 +257,21 @@ export default async function Page({ params }: Props) {
             </p>
           );
         })}
+
+        {/* Standing disclosure. Lives in the template so every article carries it
+            automatically and the wording can never drift between articles. */}
+        <aside
+          data-cmp="ArticlePage.Disclaimer"
+          className="my-9 border-t border-valar-concrete pt-5 text-[13px] leading-[1.65] text-valar-steel"
+        >
+          <span className="font-semibold text-valar-navy">General information.</span> This article
+          does not take your personal circumstances into account and is not personalised financial
+          advice. For advice on your own situation,{" "}
+          <Link href="/book" className="text-valar-horizon underline underline-offset-2">
+            book a strategy call
+          </Link>{" "}
+          or speak to a licensed financial adviser.
+        </aside>
 
         <div
           data-cmp="ArticlePage.Cta"
