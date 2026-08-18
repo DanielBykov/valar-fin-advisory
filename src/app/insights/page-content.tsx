@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import heroImg from "../../../public/images/insights-hero.jpg";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Calculator, LineChart, Wallet } from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, Calendar, LineChart, Wallet } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
 import FaqAccordion from "@/components/insights/faq-accordion";
 import NewsletterSignup from "@/components/insights/newsletter-signup";
@@ -21,6 +21,9 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
+
+/** Latest shows this many cards; the rest sit behind the More button. */
+const INITIAL_ARTICLES = 3;
 
 const TOOLS = [
   {
@@ -49,6 +52,7 @@ const TOOLS = [
 export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
   const articles = useMemo(() => visibleArticles(), []);
   const [filter, setFilter] = useState<InsightTag | "all">("all");
+  const [expanded, setExpanded] = useState(false);
 
   // Menu links like /insights?tag=market land on the page with that filter
   // applied. Deferred a frame: the query string is state owned by the browser,
@@ -62,6 +66,8 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
 
   const shown = filter === "all" ? articles : articles.filter((a) => a.tag === filter);
   const availableTags = TAG_ORDER.filter((tag) => articles.some((a) => a.tag === tag));
+  const visible = expanded ? shown : shown.slice(0, INITIAL_ARTICLES);
+  const hidden = shown.length - INITIAL_ARTICLES;
 
   return (
     <div data-cmp="InsightsPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
@@ -112,6 +118,16 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
         >
           <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
             <h2 className="text-3xl font-bold text-valar-navy">Latest</h2>
+            {hidden > 0 && (
+              <button
+                type="button"
+                onClick={() => setExpanded((open) => !open)}
+                aria-expanded={expanded}
+                className="text-sm font-semibold text-valar-indigo hover:text-valar-navy"
+              >
+                {expanded ? "← Show fewer" : "See all articles →"}
+              </button>
+            )}
           </div>
 
           <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter articles by topic">
@@ -121,7 +137,10 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
                 <button
                   key={tag}
                   type="button"
-                  onClick={() => setFilter(tag as InsightTag | "all")}
+                  onClick={() => {
+                    setFilter(tag as InsightTag | "all");
+                    setExpanded(false);
+                  }}
                   aria-pressed={active}
                   className={[
                     "rounded-full border px-6 py-2 text-sm font-medium transition-colors",
@@ -138,7 +157,7 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
 
           {shown.length > 0 ? (
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {shown.map((article) => (
+              {visible.map((article) => (
                 <ArticleCard key={article.slug} article={article} />
               ))}
             </div>
@@ -212,33 +231,40 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
         </div>
       </section>
 
-      {/* ── D · First Home Buyers Academy ────────────────────── */}
+      {/* ── D · First Home Buyers Hub ────────────────────── */}
       <section
-        data-cmp="InsightsPage.Academy"
+        data-cmp="InsightsPage.Hub"
         className="relative overflow-hidden bg-valar-navy px-4 py-16 md:px-6"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-valar-navy via-valar-navy to-valar-indigo/50"
-        />
-        <div className="container relative mx-auto max-w-6xl">
+        <div aria-hidden="true" className="absolute inset-0 z-0">
+          <Image
+            src="/images/first-home-buyers-banner.webp"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          {/* Copy sits left over a bright sky, so the wash runs heavy on that side. */}
+          <div className="absolute inset-0 bg-linear-to-r from-valar-navy/95 via-valar-navy/80 to-valar-navy/40" />
+        </div>
+        <div className="container relative z-10 mx-auto max-w-6xl">
           <div className="max-w-2xl">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-              First Home Buyers Academy
+              First Home Buyers Hub
             </p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
               Everything you need before your first offer<span className="text-valar-amber">.</span>
             </h2>
             <p className="text-base leading-relaxed text-valar-lilac">
-              A step-by-step path through deposits, KiwiSaver, borrowing power and the buying process —
-              free, and in the order you actually need it.
+              The First Home Buyer Guide walks through deposits, KiwiSaver, borrowing power and the
+              buying process — free, and in the order you actually need it.
             </p>
             <Link
               href="/services/first-home-buyers"
               className="mt-7 inline-flex items-center gap-2.5 rounded-lg bg-valar-amber px-6 py-3.5 text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
             >
               <BookOpen className="h-[18px] w-[18px]" />
-              Start the Academy
+              Get the First Home Buyer Guide
             </Link>
           </div>
         </div>
@@ -266,36 +292,71 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
       {/* ── F · Newsletter ───────────────────────────────────── */}
       <section data-cmp="InsightsPage.Newsletter" className="bg-white px-4 py-16 md:px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-wrap items-center gap-8 rounded-xl border border-gray-100 bg-valar-fog p-8 md:p-10">
+          <div className="flex flex-wrap items-center gap-8 rounded-xl bg-valar-navy p-8 md:p-10">
             <div className="min-w-[260px] flex-1">
-              <h3 className="mb-2 text-2xl font-bold text-valar-navy">Stay updated</h3>
-              <p className="text-[15px] leading-relaxed text-gray-600">
+              <h3 className="mb-2 text-2xl font-bold text-white">Stay updated</h3>
+              <p className="text-[15px] leading-relaxed text-valar-lilac">
                 Market commentary and practical lending guidance — when there&apos;s something worth
                 saying, not on a schedule.
               </p>
             </div>
             <div className="min-w-[280px] flex-1">
-              <NewsletterSignup />
+              <NewsletterSignup tone="dark" />
             </div>
           </div>
         </div>
       </section>
 
       {/* ── G · Final CTA ────────────────────────────────────── */}
-      <section data-cmp="InsightsPage.FinalCta" className="px-4 py-20 text-center md:px-6">
-        <div className="container mx-auto max-w-2xl">
-          <h2 className="mb-3 text-3xl font-bold text-valar-navy md:text-4xl">
-            Talk it through with someone<span className="text-valar-amber">.</span>
-          </h2>
-          <p className="mb-7 text-gray-600">
-            Thirty minutes, no obligation — bring the question you have been circling.
-          </p>
-          <Link
-            href="/book"
-            className="inline-flex items-center rounded-lg bg-valar-amber px-7 py-3.5 text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
-          >
-            Book Strategy Call
-          </Link>
+      <section data-cmp="InsightsPage.FinalCta" className="bg-valar-fog px-4 py-24 md:px-6">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div variants={fadeIn} className="mb-4">
+                <span className="text-xs font-bold uppercase tracking-widest text-valar-amber">
+                  Thirty minutes, no obligation
+                </span>
+              </motion.div>
+              <motion.h2
+                variants={fadeIn}
+                className="mb-6 text-3xl font-bold text-valar-navy md:text-4xl"
+              >
+                Want to talk through your situation<span className="text-valar-amber">?</span>
+              </motion.h2>
+              <motion.p variants={fadeIn} className="mb-8 leading-relaxed text-valar-indigo">
+                Understand your options and navigate the process — bring the question you have been
+                circling.
+              </motion.p>
+              <motion.div variants={fadeIn}>
+                <Link
+                  href="/book"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm bg-valar-amber px-8 py-4 font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
+                >
+                  <Calendar className="h-5 w-5" /> Book Strategy Call
+                </Link>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              className="relative h-80 overflow-hidden rounded-sm"
+            >
+              <Image
+                src="/images/lena-client.webp"
+                alt="Lena Bykova talking a client through their numbers"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>

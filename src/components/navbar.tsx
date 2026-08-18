@@ -276,32 +276,32 @@ export function Navbar() {
                     </div>
                   </div>
 
-                  {/* Academy card — row-span-2 so it covers the All Insights row below */}
+                  {/* Hub card — row-span-2 so it covers the All Insights row below */}
                   <div className="bg-valar-navy overflow-hidden flex flex-col row-span-2">
                     <div className="w-full h-56 overflow-hidden shrink-0">
                       <Image
                         src="/images/first-home-2.webp"
-                        alt="First Home Buyers Academy"
+                        alt="First Home Buyers Hub"
                         width={400}
                         height={224}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="p-8 flex flex-col flex-1">
-                      <h4 className="font-bold text-xl leading-tight mb-3 text-white">First Home Buyers Academy</h4>
+                      <h4 className="font-bold text-xl leading-tight mb-3 text-white">First Home Buyers Hub</h4>
                       <p className="text-sm text-valar-lilac mb-6 leading-relaxed flex-1">
-                        A step-by-step path from &ldquo;can I even buy?&rdquo; to settlement day.
+                        The free First Home Buyer Guide — from &ldquo;can I even buy?&rdquo; to settlement day.
                       </p>
                       <Link
                         href="/services/first-home-buyers"
                         className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-semibold text-sm px-5 py-2.5 rounded-sm transition-colors self-start"
                       >
-                        Start the Academy →
+                        Get the Guide →
                       </Link>
                     </div>
                   </div>
 
-                  {/* All Insights — spans cols 1-3 in row 2, Academy card covers col 4 */}
+                  {/* All Insights — spans cols 1-3 in row 2, Hub card covers col 4 */}
                   <div className="col-span-3 px-10 py-4 border-t border-valar-concrete">
                     <Link href="/insights" className="text-sm font-semibold text-valar-horizon hover:text-valar-navy transition-colors flex items-center gap-1.5">
                       View all insights <span>→</span>
