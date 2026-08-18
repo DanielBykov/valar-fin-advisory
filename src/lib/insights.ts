@@ -17,7 +17,7 @@
  *         Insights menu stays out of the header.
  * Flip to true when there are at least 3 published articles.
  */
-export const INSIGHTS_LIVE = false;
+export const INSIGHTS_LIVE = true;
 
 export type InsightTag = "guides" | "market" | "case-studies" | "first-home";
 
@@ -136,156 +136,202 @@ export type Article = {
  */
 export const ARTICLES: Article[] = [
   {
-    slug: "rent-vs-buy-what-youre-actually-deciding",
-    title: "Rent vs buy: what you're actually deciding",
+    slug: "rent-vs-buy-eight-doubts",
+    title: "Rent vs buy: eight doubts, answered straight",
     excerpt:
-      "Renting is cheaper. That part is usually true, and it settles nothing. The comparison that matters isn't this month against this month, and it isn't really about the money at all.",
+      "Nobody decides this in one go. It arrives as a string of doubts, one after another. Here is each one, granted honestly first, then answered.",
     tag: "first-home",
     published: "2026-08-18",
-    topics: ["First home", "Rent vs buy", "Long-term planning", "How to decide"],
+    topics: ["First home", "Rent vs buy", "Deposit", "How to decide"],
     image: {
       src: "/images/first-home-2.webp",
       alt: "A couple carrying moving boxes through the front door of their first home",
     },
-    readingMinutes: 5,
-    // Rewritten 2026-08-18: no worked figures anywhere in the body. Every number
-    // in this decision is case-by-case, so the article carries the principle and
-    // the numbers belong in a calculator and in a conversation, not in the copy.
+    readingMinutes: 6,
+    // Structure is the point here: eight identically-shaped objection blocks, so
+    // the page can be skimmed by reading only the quotes. No worked figures
+    // anywhere — every number in this decision is case-by-case.
     draft: true,
     body: [
       {
         type: "lede",
-        text: "Renting is cheaper than buying. That part isn't really in dispute, and I'm not going to try to talk you out of it. What I want to argue with is the idea that it settles anything.",
+        text: "Nobody weighs this up in one sitting. It arrives as a string of doubts, one after another, usually at night. So here they are in the order they normally turn up, each one granted honestly before it gets an answer.",
       },
       {
         type: "p",
-        text: "Right now, this month, renting almost certainly costs you less than owning the same house. Lower outgoings, more cash in your pocket, and someone else's problem when the hot water cylinder gives up. All true. And none of it tells you anything about where either path leaves you, which is the decision you're actually making.",
-      },
-
-      { type: "h2", text: "The comparison everyone runs, and why it settles nothing" },
-      {
-        type: "p",
-        text: "Rent this month against mortgage repayments this month. One number is smaller, so that's that. The trouble is that this comparison answers a question about one month, and then gets used to decide something that plays out over decades.",
-      },
-      {
-        type: "p",
-        text: "It also quietly compares two things that aren't the same kind of thing. Rent is a price: you pay it, it's gone, and you've bought a month of living somewhere. A mortgage repayment is a price plus a transfer. Part of it is the cost of borrowing, and part of it moves from one pocket of yours into another. Put the two totals side by side and that distinction disappears, which is exactly why the comparison flatters renting.",
+        text: "If you only read the quotes, you will still get the argument. That is deliberate.",
       },
 
-      { type: "h2", text: "The strongest argument for renting, taken seriously" },
+      { type: "h2", text: "First, the money objections" },
       {
-        type: "p",
-        text: "The best case against buying isn't “rent is cheaper”. It's sharper than that: rent for less, invest the difference every month, and let compounding do the work a mortgage does, without the maintenance, the rates, or the commitment.",
+        type: "objection",
+        quote: "Rent is cheaper. Why would I pay more to buy?",
+        fair: "You are right, and in the narrowest sense it is not close. This month, renting almost always costs less than owning the same house.",
+        points: [
+          "It answers a question about this month, then gets used to decide something that runs for decades.",
+          "It compares two different kinds of payment. Rent is a pure cost. A repayment is part cost, part transfer from one of your pockets into another.",
+          "Line up the two totals and that second half disappears from view, which is exactly why the comparison flatters renting.",
+        ],
+        bottom: "Cheaper this month and better in ten years are not the same question.",
       },
       {
-        type: "p",
-        text: "That's a real argument. Run properly, it can beat buying, and anyone in my industry who waves it away is selling you something. So let me be straight about where it actually breaks, because it isn't where people expect.",
+        type: "objection",
+        quote: "I don't have a deposit anywhere near saved up.",
+        fair: "This is the single biggest real barrier, and far more people are stopped by it than by anything else on this page. It is not a mindset problem.",
+        points: [
+          "“Not yet” and “not possible” are different answers, and most people never find out which one they are actually in.",
+          "It is a problem with a timeline attached: a number, a rate of saving, and a date. All three can be worked out in an afternoon.",
+          "KiwiSaver, the deposit percentage you actually need, and what counts as a deposit are the three things people guess wrong about most often.",
+        ],
+        bottom: "Guessing it is out of reach is not the same as checking.",
+      },
+      {
+        type: "objection",
+        quote: "Rates are too high right now. It's a bad time.",
+        fair: "Rates move, repayments move with them, and right now that hurts. Planning for it properly matters more than most people realise.",
+        points: [
+          "A rate cycle is temporary. A rent trajectory is not: rent resets to the market for as long as you rent.",
+          "The debt itself never grows because life got more expensive. Inflation quietly shrinks what you owe in real terms.",
+          "Rates are a reason to structure the loan carefully and stress-test it. They are not, on their own, a reason to rule buying out.",
+        ],
+      },
+
+      { type: "h2", text: "Then the freedom objections" },
+      {
+        type: "objection",
+        quote: "What if I need to move? Job, relationship, whatever. I'd be stuck.",
+        fair: "This is the most honest objection on the list, and renting genuinely wins on it. Mobility has real value and people underprice it.",
+        points: [
+          "Buying costs real money to enter and real money to exit, so a short horizon is where owning does the most damage.",
+          "A mortgage is friction, not a cage. Loans can move with you, be refinanced, or be structured up front with exactly this risk in mind.",
+          "The question is not whether you might move. It is how long you would realistically stay if nothing forced your hand.",
+        ],
+        bottom: "If the honest answer is a couple of years, rent. That is not a consolation prize.",
       },
 
       {
         type: "pull",
-        text: "The plan doesn't fail on the arithmetic. It fails because the difference it depends on doesn't stay the same size.",
+        text: "The strongest argument against buying isn't that renting is cheaper. It's the next one — and it doesn't fail on the arithmetic.",
       },
 
-      { type: "h2", text: "The asymmetry almost nobody prices in" },
+      { type: "h2", text: "The one that deserves a serious answer" },
       {
-        type: "p",
-        text: "Rent resets. It's a price set by the market, renegotiated for as long as you rent, and it climbs with wages and the cost of living. That's not a landlord being difficult. It's what a market price does.",
-      },
-      {
-        type: "p",
-        text: "A principal-and-interest mortgage behaves the opposite way. The debt is fixed in dollars from the day you sign. Rates move your repayment around inside that, sometimes uncomfortably, and that's worth planning for properly. But the debt itself never grows because life got more expensive, and inflation quietly eats away at what those dollars are really worth. You end up repaying a shrinking real amount with a growing nominal income.",
-      },
-      {
-        type: "p",
-        text: "Follow that through and you get the part that changes the decision. The gap between rent and repayments, the surplus that the whole “invest the difference” plan runs on, is not a constant. It narrows every time the rent resets upward. Eventually it closes. After that there is no difference left to invest, and the renter is the one finding extra money every year just to stay exactly where they are.",
-      },
-      {
-        type: "p",
-        text: "That point arrives earlier than most people assume, and it arrives quietly. Nobody sends you a letter the year your strategy stops working.",
+        type: "objection",
+        quote: "I'd rather invest the difference myself. More flexible, and probably more profitable.",
+        fair: "Run properly, this can beat buying. The maths is sound, and anyone in my industry who waves it away is selling you something.",
+        points: [
+          "It depends on a surplus that does not stay the same size. Rent resets upward; a principal-and-interest repayment is fixed in dollars.",
+          "So the gap the whole plan runs on narrows every year, and eventually closes. After that there is nothing left over to invest.",
+          "It also assumes a person who never skips a contribution, through a bad year, a broken car and a better holiday. Most people are not that person, and everybody thinks they are.",
+          "Investment returns are taxed as they are earned. The gain on the home you live in generally is not. That gap sits under every comparison you will read online.",
+        ],
+        bottom: "A mortgage doesn't ask permission. That's the whole reason it works for most people.",
       },
 
-      { type: "h2", text: "What each side actually carries" },
+      { type: "h2", text: "The risk objections" },
       {
-        type: "p",
-        text: "Both paths have costs people leave out of the story they tell themselves. Here they are, honestly.",
-      },
-      {
-        type: "tracks",
-        items: [
-          {
-            title: "What renting really carries",
-            text: "A price that resets for as long as you rent, and no claim on anything at the end of it. In exchange you get genuine mobility, no maintenance risk, no exposure if the market falls, and your deposit stays liquid and invested rather than locked in a house. That flexibility is worth real money, and it's a legitimate thing to choose.",
-          },
-          {
-            title: "What owning really carries",
-            text: "Rates, insurance, maintenance and sometimes body corporate fees, none of which a renter pays directly. Real money to get in and real money to get out, which is punishing over a short horizon. And genuine risk: values can fall, and a forced sale in a bad year is how people actually get hurt. In exchange you get a base that stops resetting, and a debt that shrinks in real terms whether you pay attention or not.",
-          },
+        type: "objection",
+        quote: "Owning means rates, insurance, maintenance. It's a money pit.",
+        fair: "All real, all ongoing, and renters genuinely do not pay them directly. Anyone who leaves these out of the comparison is rigging it.",
+        points: [
+          "You are not comparing cost against no cost. You are comparing paying for someone else's asset against paying, in part, for your own.",
+          "Renters cover these costs too, just indirectly, through what the landlord needs the rent to cover.",
+          "They belong in your numbers as a real line item, not as a reason to stop the conversation.",
         ],
       },
       {
-        type: "callout",
-        label: "The part that rarely gets mentioned",
-        text: "Investment returns get taxed as they're earned, so the return you see quoted isn't the return that reaches you. The gain on the home you actually live in generally isn't taxed at all in New Zealand. That asymmetry sits quietly underneath every rent-versus-buy comparison you'll read online, and almost none of them account for it.",
+        type: "objection",
+        quote: "Prices could fall. I could end up owing more than it's worth.",
+        fair: "This is the honest reason property is not risk-free, and it is sharpest with a small deposit over a short timeframe. It does happen to people.",
+        points: [
+          "It only becomes a real loss if you are forced to sell while it is true. Timeframe and loan structure are what protect you there.",
+          "The loan balance keeps shrinking regardless of what the market does in any particular year.",
+          "This is an argument for a deliberate structure and a buffer, not for waiting indefinitely.",
+        ],
       },
 
-      { type: "h2", text: "So what actually decides it" },
+      { type: "h2", text: "And the one that isn't really an objection" },
       {
-        type: "p",
-        text: "Not the asset. Four things about you, and you already know most of your own answers.",
+        type: "objection",
+        quote: "I'll just wait for a better time.",
+        fair: "Sometimes this is exactly right, and I will tell you when I think it is. A better time does exist.",
+        points: [
+          "It is only ever obvious in hindsight. Nobody rings a bell.",
+          "Waiting is not free. The rent gets paid either way, and none of it becomes yours.",
+          "“Wait” with a date, a target and a trigger is a plan. “Wait” on its own is just the decision you keep not making.",
+        ],
+        bottom: "Waiting doesn't send you a bill. That's what makes it so easy to keep doing.",
       },
+
+      { type: "h2", text: "Both sides, honestly" },
       {
-        type: "deflist",
-        items: [
+        type: "proscons",
+        caption: "What each path actually carries",
+        columns: [
           {
-            term: "Your timeframe",
-            text: "Buying costs real money to enter and to exit. Over a short horizon that drag dominates everything else and renting usually wins outright. Stretch the horizon and the same costs become almost irrelevant. This is the single biggest factor, and it's the one people skip.",
+            title: "Renting",
+            pros: [
+              "Real mobility, at short notice",
+              "No maintenance risk and no surprise repairs",
+              "No exposure if the market falls",
+              "Your deposit stays liquid and can be invested",
+            ],
+            cons: [
+              "A price that resets upward for as long as you rent",
+              "Nothing owned at the end of it",
+              "Less control over how and where you live",
+              "The investing plan only works if you actually keep it up",
+            ],
           },
           {
-            term: "Your discipline",
-            text: "The renting case depends on investing a shrinking surplus, every month, for years, through a bad patch and a broken car and a better holiday. A mortgage doesn't ask permission. That's precisely what makes it a reliable wealth-builder for most people rather than a worse one, and it's the variable people overestimate about themselves.",
-          },
-          {
-            term: "Your stability",
-            text: "If a job or a relationship could move you in the next couple of years, flexibility has real value and a mortgage fits it badly. Loans can be moved, refinanced and structured with that risk in mind, so it's friction rather than a cage. But it's friction you'd be taking on deliberately.",
-          },
-          {
-            term: "What you believe about the future",
-            text: "Every version of this comparison rests on assumptions about property values, returns and rents. Nobody knows those. Anyone who tells you otherwise is guessing with confidence. The useful move is knowing which assumptions your plan depends on, so you notice when they stop being true.",
+            title: "Owning",
+            pros: [
+              "A base that stops resetting every year",
+              "Forced saving that doesn't rely on willpower",
+              "A debt inflation quietly erodes in real terms",
+              "Control over the place you live in",
+            ],
+            cons: [
+              "Rates, insurance, maintenance, sometimes body corporate",
+              "Real money to get in and real money to get out",
+              "Genuine loss if you sell too soon or in a bad year",
+              "Less mobility, unless the loan is structured for it",
+            ],
           },
         ],
       },
 
-      { type: "h2", text: "What are you building?" },
+      { type: "h2", text: "The four questions that actually decide it" },
       {
         type: "p",
-        text: "The question was never which is cheaper this month. It's what you want to be holding at the end of the next stretch of your life, and which path you'll actually stay on when it gets boring.",
+        text: "Not which asset is better in the abstract. These, about you:",
       },
       {
-        type: "p",
-        text: "For some people, right now, the honest answer is flexibility, and renting is exactly how you get it. For others it's a base that stops moving, and a mortgage is the most reliable forced-savings plan ever invented, precisely because it isn't optional. For plenty of people it's both, at different points. The useful thing is working out which season you're actually in, rather than defaulting to whichever answer is loudest online.",
-      },
-      {
-        type: "p",
-        text: "What I'd push back on is drifting. “I'll wait for a better time” is sometimes exactly right, and it's only ever obvious in hindsight. Meanwhile the rent gets paid either way. Waiting isn't free. It just never sends you a bill you notice.",
+        type: "list",
+        items: [
+          "How long would you realistically stay put if nothing forced you to move? This one matters more than all the others combined.",
+          "Would you genuinely invest the difference every month for years, or do you just like the idea of the person who would?",
+          "How secure is your income, and what happens to the plan if it stops for a few months?",
+          "What are you quietly assuming about prices, rents and returns — and would you still be fine if you were wrong?",
+        ],
       },
 
       { type: "h2", text: "Where the numbers come in" },
       {
         type: "p",
-        text: "You'll have noticed there are no figures in this article. That's deliberate. Every number that matters here is yours: your deposit, your rate, your rent, your income and how secure it is, how long you'd realistically stay put, and what your local market does rather than the national average. Published comparisons run on medians, and a median describes nobody in particular. Plug your own numbers into the same argument and the answer can land the other way.",
+        text: "You will have noticed there are no figures anywhere above. That is deliberate. Every number that matters here is yours: your deposit, your rate, your rent, your income, your timeframe, and your local market rather than a national average. Published comparisons run on medians, and a median describes nobody in particular.",
       },
       {
         type: "p",
-        text: "That's the part worth doing properly, and it isn't complicated once someone lays it out. If you want to see your version, with the assumptions written down where you can push back on them, that's the conversation I like having. No pre-decided answer, no pressure. Just a clear view of where you'd stand either way.",
+        text: "Which of these eight doubts is actually yours changes the answer completely. If you want to see your version, with the assumptions written down where you can push back on them, that is the conversation I like having. No pre-decided answer, no pressure.",
       },
     ],
     takeaways: [
-      "Renting is cheaper than owning right now. That's usually true, and on its own it decides nothing: it compares one month to one month, and it compares a pure cost to a cost plus a transfer into something you own.",
-      "The “rent and invest the difference” strategy is a serious argument, and its weak point isn't the maths. Rent resets upward with the market while a principal-and-interest debt stays fixed in dollars, so the surplus the plan runs on shrinks every year and eventually disappears.",
-      "Both sides carry costs people leave out: for renting, a price that never stops resetting and nothing owned at the end; for owning, rates, insurance, maintenance, real entry and exit costs, and genuine risk if you sell too soon or in a bad year.",
-      "What decides it is your timeframe, your discipline, your stability and what you assume about the future. Not which asset is better in the abstract.",
-      "The numbers that matter are yours, not the national median. Run your own before you conclude anything.",
+      "Renting is cheaper this month. That is usually true and it decides nothing: it answers a question about one month and compares a pure cost to a cost that is partly a transfer into something you own.",
+      "The deposit is the real barrier for most people, and “not yet” is a different answer from “not possible”. It is a problem with a timeline, and most people never actually check which one they are in.",
+      "The strongest case for renting is investing the difference. Its weak point is not the maths: rent resets upward while a principal-and-interest debt stays fixed, so the surplus shrinks and eventually disappears.",
+      "Mobility is the one thing renting genuinely wins on. If you would realistically move within a couple of years, rent, and don't treat that as second best.",
+      "The numbers that matter are yours, not the national median. Which doubt is actually yours changes the answer.",
     ],
   },
   {
@@ -635,7 +681,7 @@ export const ARTICLES: Article[] = [
       alt: "A woman looking at property listings in a real estate agency window on a New Zealand city street",
     },
     readingMinutes: 7,
-    draft: true,
+    draft: false,
     body: [
       {
         type: "lede",
@@ -649,7 +695,7 @@ export const ARTICLES: Article[] = [
           {
             label: "OCR now",
             value: "2.50%",
-            delta: "0.25 on 9 July",
+            delta: "0.25 on 8 July",
             direction: "up",
             note: "First increase in three years",
           },
@@ -670,7 +716,7 @@ export const ARTICLES: Article[] = [
       },
       {
         type: "p",
-        text: "The Reserve Bank raised the OCR by 25 basis points on 9 July, after holds in February and April. The Committee described the previous 2.25% setting as below neutral — stimulating an economy that no longer needed it — and signalled further increases were likely, without committing to when.",
+        text: "The Reserve Bank raised the OCR by 25 basis points on 8 July, after holds in February and April. The Committee described the previous 2.25% setting as below neutral — stimulating an economy that no longer needed it — and signalled further increases were likely, without committing to when.",
       },
       { type: "h2", text: "Where mortgage rates sit" },
       {
@@ -768,7 +814,7 @@ export const ARTICLES: Article[] = [
       },
       {
         type: "p",
-        text: "July was the fifth-slowest July on record by volume. Values are drifting down rather than falling sharply, stock is taking longer to clear, and the gap between what sellers will accept and what buyers will pay is what most of that delay actually is.",
+        text: "July was the fifth-slowest July on record for days to sell, while the number of sales sat near the middle of REINZ's 35-year range for the month. Values are drifting down rather than falling sharply, stock is taking longer to clear, and the gap between what sellers will accept and what buyers will pay is what most of that delay actually is.",
       },
       {
         type: "p",
@@ -781,7 +827,7 @@ export const ARTICLES: Article[] = [
         items: [
           {
             term: "Conditions favour buyers, but affordability does not",
-            text: "Volumes at a multi-year low, 50 days to sell and values easing all mean less competition and more room to negotiate than at any point in recent years. Working against that is borrowing power, which is shrinking as test rates climb. The constraint has moved: it is no longer finding a property or saving the deposit, it is the size of the loan the bank will approve.",
+            text: "Fifty days to sell, values easing and sales running 10% below last year all mean less competition and more room to negotiate than at any point in recent years. Working against that is borrowing power, which is shrinking as test rates climb. The constraint has moved: it is no longer finding a property or saving the deposit, it is the size of the loan the bank will approve.",
           },
           {
             term: "The curve is flat past two years, not before",
