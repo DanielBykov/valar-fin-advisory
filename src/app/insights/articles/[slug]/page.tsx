@@ -169,6 +169,95 @@ export default async function Page({ params }: Props) {
                 ))}
               </dl>
             );
+          if (block.type === "stats")
+            return (
+              <figure key={i} data-cmp="ArticlePage.Stats" className="my-8">
+                {block.caption && (
+                  <figcaption className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-indigo">
+                    {block.caption}
+                  </figcaption>
+                )}
+                <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {block.items.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-xl border border-valar-concrete bg-valar-fog px-4 py-4"
+                    >
+                      {/* Two lines reserved so the big numbers align across the row
+                          even when one label wraps and its neighbours don't. */}
+                      <dt className="min-h-[2.6em] text-[11px] font-bold uppercase leading-[1.3] tracking-[0.1em] text-valar-steel">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-2 text-[28px] font-bold leading-none tabular-nums text-valar-navy">
+                        {item.value}
+                      </dd>
+                      {item.delta && (
+                        <p className="mt-1.5 text-[13px] font-semibold tabular-nums text-valar-amber">
+                          <span aria-hidden="true">
+                            {item.direction === "down" ? "▼" : item.direction === "flat" ? "→" : "▲"}
+                          </span>{" "}
+                          {item.delta}
+                        </p>
+                      )}
+                      {item.note && (
+                        <p className="mt-1.5 text-[12px] leading-[1.5] text-valar-steel">{item.note}</p>
+                      )}
+                    </div>
+                  ))}
+                </dl>
+              </figure>
+            );
+          if (block.type === "table")
+            return (
+              <figure key={i} data-cmp="ArticlePage.Table" className="my-8">
+                {block.caption && (
+                  <figcaption className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-indigo">
+                    {block.caption}
+                  </figcaption>
+                )}
+                {/* Scrolls rather than squashing: a squashed number column is unreadable. */}
+                <div className="overflow-x-auto rounded-xl border border-valar-concrete">
+                  <table className="w-full min-w-[26rem] border-collapse text-[15px]">
+                    <thead>
+                      <tr className="bg-valar-fog">
+                        {block.headers.map((h, c) => (
+                          <th
+                            key={h}
+                            scope="col"
+                            className={`border-b border-valar-concrete px-4 py-3 font-bold text-valar-navy ${
+                              c === 0 ? "text-left" : "text-right"
+                            }`}
+                          >
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {block.rows.map((row, r) => (
+                        <tr key={r} className="border-b border-valar-concrete last:border-b-0">
+                          {row.map((cell, c) => (
+                            <td
+                              key={c}
+                              className={`px-4 py-3 leading-[1.5] ${
+                                c === 0
+                                  ? "text-left font-medium text-valar-navy"
+                                  : "text-right tabular-nums text-gray-700"
+                              }`}
+                            >
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {block.note && (
+                  <p className="mt-2.5 text-[13px] leading-[1.6] text-valar-steel">{block.note}</p>
+                )}
+              </figure>
+            );
           if (block.type === "figure")
             return (
               <figure key={i} data-cmp="ArticlePage.Figure" className="my-10">
@@ -251,11 +340,16 @@ export default async function Page({ params }: Props) {
                 ))}
               </div>
             );
-          return (
-            <p key={i} className="mb-6 text-[18px] leading-[1.75] text-gray-700">
-              {block.text}
-            </p>
-          );
+          if (block.type === "p")
+            return (
+              <p key={i} className="mb-6 text-[18px] leading-[1.75] text-gray-700">
+                {block.text}
+              </p>
+            );
+          // A block type with no renderer yet draws nothing rather than
+          // breaking the build. It shows up as a visible gap in dev, which is
+          // the intended signal to come back and write the renderer.
+          return null;
         })}
 
         {/* Standing disclosure. Lives in the template so every article carries it
