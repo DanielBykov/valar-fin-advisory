@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users, Newspaper, TrendingUp, Calculator, Download, HelpCircle, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { INSIGHTS_LIVE } from "@/lib/insights";
+import { isStandaloneRoute } from "@/lib/standalone-routes";
 
 function navLink(isActive: boolean) {
   return cn(
@@ -38,6 +39,8 @@ export function Navbar() {
     setIsInsightsOpen(false);
     setIsMobileInsightsOpen(false);
   }, [pathname]);
+
+  if (isStandaloneRoute(pathname)) return null;
 
   return (
     <>

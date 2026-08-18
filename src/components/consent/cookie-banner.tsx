@@ -2,13 +2,17 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { useConsent } from "./consent-provider";
+import { isStandaloneRoute } from "@/lib/standalone-routes";
 
 export function CookieBanner() {
   const { consent, ready, accept, decline } = useConsent();
+  const pathname = usePathname();
 
-  // Show only after we've checked storage and no choice has been made yet.
-  const show = ready && consent === null;
+  // Show only after we've checked storage and no choice has been made yet —
+  // and never on a standalone route, where the banner would cover the page.
+  const show = ready && consent === null && !isStandaloneRoute(pathname);
 
   return (
     <AnimatePresence>

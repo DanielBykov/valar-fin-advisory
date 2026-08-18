@@ -3,12 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
+import { isStandaloneRoute } from "@/lib/standalone-routes";
 
 export function Footer() {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const pathname = usePathname();
 
   async function handleSubscribe(e: React.FormEvent) {
     e.preventDefault();
@@ -19,6 +22,8 @@ export function Footer() {
     });
     if (res.ok) setSubscribed(true);
   }
+
+  if (isStandaloneRoute(pathname)) return null;
 
   return (
     <footer data-cmp="Footer" className="bg-valar-navy text-valar-lilac pt-16 pb-8 font-sans">

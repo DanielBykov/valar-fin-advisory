@@ -17,6 +17,8 @@ node_modules/
 # next.js
 /.next/
 /out/
+# Corrupted build caches moved aside rather than deleted. Safe to bin.
+/.next_broken_*/
 
 # production
 /build
