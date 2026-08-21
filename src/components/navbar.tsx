@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users, Newspaper, TrendingUp, Calculator, Download, HelpCircle, Layers } from "lucide-react";
+import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users, Newspaper, TrendingUp, Calculator, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { INSIGHTS_LIVE } from "@/lib/insights";
+import { CALCULATORS_LIVE, INSIGHTS_LIVE } from "@/lib/insights";
 import { isStandaloneRoute } from "@/lib/standalone-routes";
 
 function navLink(isActive: boolean) {
@@ -207,8 +207,8 @@ export function Navbar() {
               >
                 Insights <ChevronDown className={cn("w-4 h-4 opacity-50 transition-transform", isInsightsOpen && "rotate-180")} />
               </Link>
-              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 w-[1160px] max-w-[95vw] transition-all duration-200 z-50", isInsightsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
-                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 grid gap-0 overflow-hidden" style={{gridTemplateColumns: "1fr 1fr 1fr 1.3fr"}}>
+              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 max-w-[95vw] transition-all duration-200 z-50", CALCULATORS_LIVE ? "w-[1160px]" : "w-[900px]", isInsightsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
+                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 grid gap-0 overflow-hidden" style={{gridTemplateColumns: CALCULATORS_LIVE ? "1fr 1fr 1fr 1.3fr" : "1fr 1fr 1.3fr"}}>
 
                   {/* Read */}
                   <div className="p-10 ">
@@ -232,7 +232,8 @@ export function Navbar() {
                     </div>
                   </div>
 
-                  {/* Tools */}
+                  {/* Tools - hidden until the calculators are ready to publish */}
+                  {CALCULATORS_LIVE && (
                   <div className="p-10 ">
                     <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Tools</h3>
                     <div className="border-t border-valar-concrete mb-7" />
@@ -244,15 +245,9 @@ export function Navbar() {
                           <div className="text-sm text-valar-indigo mt-1 leading-snug">Repayments, borrowing power and cashflow</div>
                         </div>
                       </Link>
-                      <Link href="/services/first-home-buyers" className="flex items-start gap-3 group/item">
-                        <Download className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
-                        <div>
-                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Guides &amp; Downloads</div>
-                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Free guides to keep and work through</div>
-                        </div>
-                      </Link>
                     </div>
                   </div>
+                  )}
 
                   {/* Answers */}
                   <div className="p-10 ">
@@ -264,13 +259,6 @@ export function Navbar() {
                         <div>
                           <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">FAQ</div>
                           <div className="text-sm text-valar-indigo mt-1 leading-snug">Straight answers to the questions we get most</div>
-                        </div>
-                      </Link>
-                      <Link href="/insights?tag=case-studies" className="flex items-start gap-3 group/item">
-                        <Layers className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
-                        <div>
-                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Case Studies</div>
-                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Real structures, real numbers, names removed</div>
                         </div>
                       </Link>
                     </div>
@@ -301,8 +289,8 @@ export function Navbar() {
                     </div>
                   </div>
 
-                  {/* All Insights — spans cols 1-3 in row 2, Hub card covers col 4 */}
-                  <div className="col-span-3 px-10 py-4 border-t border-valar-concrete">
+                  {/* All Insights — spans every text column in row 2, Hub card covers the last one */}
+                  <div className={cn("px-10 py-4 border-t border-valar-concrete", CALCULATORS_LIVE ? "col-span-3" : "col-span-2")}>
                     <Link href="/insights" className="text-sm font-semibold text-valar-horizon hover:text-valar-navy transition-colors flex items-center gap-1.5">
                       View all insights <span>→</span>
                     </Link>
@@ -424,22 +412,18 @@ export function Navbar() {
                         <TrendingUp className="w-5 h-5 text-valar-steel shrink-0" /> Market Updates
                       </Link>
                     </div>
+                    {CALCULATORS_LIVE && (
                     <div className="px-5 pt-2 pb-3">
                       <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Tools</p>
                       <Link href="/insights/calculators" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
                         <Calculator className="w-5 h-5 text-valar-steel shrink-0" /> Calculators
                       </Link>
-                      <Link href="/services/first-home-buyers" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
-                        <Download className="w-5 h-5 text-valar-steel shrink-0" /> Guides &amp; Downloads
-                      </Link>
                     </div>
+                    )}
                     <div className="px-5 pt-2 pb-4">
                       <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Answers</p>
                       <Link href="/insights/faq" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
                         <HelpCircle className="w-5 h-5 text-valar-steel shrink-0" /> FAQ
-                      </Link>
-                      <Link href="/insights?tag=case-studies" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
-                        <Layers className="w-5 h-5 text-valar-steel shrink-0" /> Case Studies
                       </Link>
                     </div>
                   </div>

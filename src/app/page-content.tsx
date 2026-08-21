@@ -12,7 +12,7 @@ import {
   Briefcase,
   ArrowRight,
   BookOpen,
-  Calculator,
+  HelpCircle,
   BarChart2,
   Calendar,
   FileText,
@@ -577,7 +577,7 @@ export default function HomeContent() {
             {[
               { icon: BarChart2, title: "Market Updates", desc: "Property, lending and macroeconomic insights shaping financial decisions in New Zealand." },
               { icon: BookOpen, title: "Learning Hub", desc: "Guides and educational content designed to make complex financial decisions easier to understand." },
-              { icon: Calculator, title: "Tools & Calculators", desc: "Practical calculators, planning tools and financial resources." },
+              { icon: HelpCircle, title: "Answers & FAQ", desc: "Straight answers to the questions that come up most — deposits, lending criteria, structure." },
             ].map((card, i) => (
               <motion.div data-cmp="HomePage.Insights.Card" key={i} variants={fadeIn} className="bg-white p-8 rounded-lg shadow-sm border border-valar-concrete flex flex-col h-full hover:border-valar-amber transition-colors">
                 <div className="w-12 h-12 bg-valar-fog rounded-full flex items-center justify-center text-valar-amber mb-6">

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import RepaymentCalculator from "@/components/insights/repayment-calculator";
-import { INSIGHTS_LIVE } from "@/lib/insights";
+import { CALCULATORS_LIVE, INSIGHTS_LIVE } from "@/lib/insights";
 
 export const metadata: Metadata = {
   title: "Mortgage Calculators | Valar",
@@ -18,7 +18,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  if (!INSIGHTS_LIVE && process.env.NODE_ENV !== "development") notFound();
+  // Still reachable by direct URL when running locally, so the calculators
+  // can be built out before they are announced anywhere.
+  if ((!INSIGHTS_LIVE || !CALCULATORS_LIVE) && process.env.NODE_ENV !== "development") notFound();
 
   return (
     <div data-cmp="CalculatorsPage" className="flex min-h-screen w-full flex-col bg-valar-fog">

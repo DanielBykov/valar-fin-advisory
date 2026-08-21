@@ -19,6 +19,15 @@
  */
 export const INSIGHTS_LIVE = true;
 
+/**
+ * Calculators ship on their own timeline, separately from the articles.
+ * false → /insights/calculators 404s in production, and every link to it
+ *         stays out of the header menu and off the Insights page.
+ * Flip to true when the calculators themselves are ready — nothing else
+ * has to be put back by hand.
+ */
+export const CALCULATORS_LIVE: boolean = false;
+
 export type InsightTag = "guides" | "market" | "case-studies" | "first-home";
 
 export const TAG_LABELS: Record<InsightTag, string> = {

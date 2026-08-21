@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { INSIGHTS_LIVE, publishedArticles } from "@/lib/insights";
+import { CALCULATORS_LIVE, INSIGHTS_LIVE, publishedArticles } from "@/lib/insights";
 
 const SITE_URL = "https://valar.co.nz";
 
@@ -12,7 +12,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? [
         { url: `${SITE_URL}/insights`, lastModified, changeFrequency: "weekly", priority: 0.8 },
         { url: `${SITE_URL}/insights/faq`, lastModified, changeFrequency: "monthly", priority: 0.7 },
-        { url: `${SITE_URL}/insights/calculators`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+        ...(CALCULATORS_LIVE
+          ? [
+              {
+                url: `${SITE_URL}/insights/calculators`,
+                lastModified,
+                changeFrequency: "monthly" as const,
+                priority: 0.7,
+              },
+            ]
+          : []),
         ...publishedArticles().map((a) => ({
           url: `${SITE_URL}/insights/articles/${a.slug}`,
           lastModified,

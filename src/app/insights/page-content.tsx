@@ -9,7 +9,7 @@ import { ArrowRight, BookOpen, Calculator, Calendar, LineChart, Wallet } from "l
 import ArticleCard from "@/components/insights/article-card";
 import FaqAccordion from "@/components/insights/faq-accordion";
 import NewsletterSignup from "@/components/insights/newsletter-signup";
-import { TAG_LABELS, TAG_ORDER, visibleArticles, type InsightTag } from "@/lib/insights";
+import { CALCULATORS_LIVE, TAG_LABELS, TAG_ORDER, visibleArticles, type InsightTag } from "@/lib/insights";
 import type { FaqItem } from "@/lib/faqs";
 
 const fadeIn = {
@@ -97,13 +97,13 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
             <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Market Commentary &amp; Tools</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Market Commentary &amp; Guides</span>
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
               Insights<span className="text-valar-amber">.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="max-w-2xl text-lg text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light">
-              Property market commentary, financial education and practical tools — so the numbers behind
+              Property market commentary, financial education and straight answers — so the numbers behind
               your decisions are visible before you make them.
             </motion.p>
           </motion.div>
@@ -168,6 +168,9 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
       )}
 
       {/* ── C · Tools ────────────────────────────────────────── */}
+      {/* Calculators publish separately — CALCULATORS_LIVE in src/lib/insights.ts
+          is the one switch for this block and for the header menu. */}
+      {CALCULATORS_LIVE && (
       <section data-cmp="InsightsPage.Tools" className="bg-white px-4 py-16 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -230,6 +233,7 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* ── D · First Home Buyers Hub ────────────────────── */}
       <section
