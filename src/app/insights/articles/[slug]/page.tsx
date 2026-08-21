@@ -258,6 +258,94 @@ export default async function Page({ params }: Props) {
                 )}
               </figure>
             );
+          if (block.type === "objection")
+            return (
+              <section
+                key={i}
+                data-cmp="ArticlePage.Objection"
+                className="my-6 rounded-xl border border-valar-concrete border-l-[3px] border-l-valar-amber bg-white p-6"
+              >
+                <p className="mb-5 text-[19px] leading-[1.4] font-semibold text-balance text-valar-navy md:text-[21px]">
+                  “{block.quote}”
+                </p>
+
+                <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-steel">
+                  What&rsquo;s true
+                </p>
+                <p className="mb-4 text-[16px] leading-[1.7] text-gray-700">{block.fair}</p>
+
+                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-steel">
+                  What it misses
+                </p>
+                <ul className="flex flex-col gap-2.5">
+                  {block.points.map((pt) => (
+                    <li key={pt} className="flex gap-3 text-[16px] leading-[1.65] text-gray-700">
+                      <span
+                        aria-hidden="true"
+                        className="mt-[0.6em] h-[5px] w-[5px] shrink-0 rounded-full bg-valar-amber"
+                      />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {block.bottom && (
+                  <p className="mt-4 border-t border-valar-concrete pt-4 text-[16px] leading-[1.6] font-semibold text-valar-navy">
+                    {block.bottom}
+                  </p>
+                )}
+              </section>
+            );
+          if (block.type === "proscons")
+            return (
+              <figure key={i} data-cmp="ArticlePage.ProsCons" className="my-8">
+                {block.caption && (
+                  <figcaption className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-indigo">
+                    {block.caption}
+                  </figcaption>
+                )}
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                  {block.columns.map((col) => (
+                    <div
+                      key={col.title}
+                      className="rounded-xl border border-valar-concrete bg-valar-fog p-6"
+                    >
+                      <h3 className="mb-4 text-[17px] font-bold text-valar-navy">{col.title}</h3>
+
+                      {/* Plus and minus rather than green and red: both columns are
+                          legitimate choices, so colour would be taking a side. */}
+                      <ul className="mb-4 flex flex-col gap-2.5">
+                        {col.pros.map((p) => (
+                          <li key={p} className="flex gap-2.5 text-[15px] leading-[1.6] text-gray-700">
+                            <span
+                              aria-hidden="true"
+                              className="mt-[0.15em] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-valar-navy text-[12px] font-bold leading-none text-white"
+                            >
+                              +
+                            </span>
+                            <span>{p}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <ul className="flex flex-col gap-2.5 border-t border-valar-concrete pt-4">
+                        {col.cons.map((c) => (
+                          <li key={c} className="flex gap-2.5 text-[15px] leading-[1.6] text-gray-700">
+                            <span
+                              aria-hidden="true"
+                              className="mt-[0.15em] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-valar-steel text-[12px] font-bold leading-none text-white"
+                            >
+                              −
+                            </span>
+                            <span>{c}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </figure>
+            );
           if (block.type === "figure")
             return (
               <figure key={i} data-cmp="ArticlePage.Figure" className="my-10">
