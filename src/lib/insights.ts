@@ -349,7 +349,7 @@ export const ARTICLES: Article[] = [
     excerpt:
       "The paperwork is the smallest part of it. What comparison, lending policy and loan structure actually change, plus the two questions almost nobody asks.",
     tag: "guides",
-    published: "2026-08-01",
+    published: "2026-08-07",
     topics: ["Mortgage advice", "Choosing an adviser", "Loan structure", "Fees & commission"],
     // Finished and approved by Lena, 2026-08-17.
     image: {
