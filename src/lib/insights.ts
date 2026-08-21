@@ -349,7 +349,7 @@ export const ARTICLES: Article[] = [
     excerpt:
       "The paperwork is the smallest part of it. What comparison, lending policy and loan structure actually change, plus the two questions almost nobody asks.",
     tag: "guides",
-    published: "2026-08-27",
+    published: "2026-08-01",
     topics: ["Mortgage advice", "Choosing an adviser", "Loan structure", "Fees & commission"],
     // Finished and approved by Lena, 2026-08-17.
     image: {
@@ -877,7 +877,8 @@ export const ARTICLES: Article[] = [
 
 // FAQ content now lives in content/faqs.md — see src/lib/faqs.ts.
 
-const byNewest = (a: Article, b: Article) => (a.published < b.published ? 1 : -1);
+const byNewest = (a: Article, b: Article) =>
+  a.published < b.published ? 1 : a.published > b.published ? -1 : 0;
 
 /** Articles that are live on the public site. */
 export function publishedArticles(): Article[] {
