@@ -883,8 +883,8 @@ export const ARTICLES: Article[] = [
     topics: ["AI and the economy", "Scarcity", "Land", "Long-term thinking"],
     readingMinutes: 6,
     // Wealth/thinking piece, not mortgage advice — sits in Lena's own scope, not
-    // the Fundsmart regime. No worked figures anywhere: the only number in it
-    // (the 80% build-cost fall) is explicitly a hypothetical scenario.
+    // the Fundsmart regime. No figures anywhere, and nothing framed as a forecast:
+    // the land block is an illustrative example, deliberately with no number in it.
     draft: true,
     body: [
       {
@@ -948,9 +948,9 @@ export const ARTICLES: Article[] = [
       },
       {
         type: "case",
-        label: "Run the scenario forward",
-        question: "If AI cuts the cost of building a house by 80%, who ends up with the saving?",
-        text: "Mostly not the buyer. If the number of desirable sections stays the same, land prices absorb almost all of it. Cheaper building doesn't create more land — it just means more people bidding on the same plots.",
+        label: "An example",
+        question: "Say building a house becomes far cheaper. Who ends up with the saving?",
+        text: "Mostly not the buyer. If the number of desirable sections stays the same, land prices absorb most of it. Cheaper building doesn't create more land — it just means more people bidding on the same plots.",
       },
       {
         type: "p",
