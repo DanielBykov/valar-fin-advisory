@@ -882,8 +882,9 @@ export const ARTICLES: Article[] = [
     published: "2026-08-27",
     topics: ["AI and the economy", "Scarcity", "Land", "Long-term thinking"],
     image: {
-      src: "/images/ai-abundance-scarcity.png",
-      alt: "A diagram in two halves. On the left, AI abundance: a chip and robotics feeding information, services, clothing, food, transport, automation and construction into a narrow bottleneck labelled scarcity. On the right, four stone pillars AI cannot create more of — land, energy, materials and time.",
+      src: "/images/ai-abundance-nz-farm.png",
+      alt:
+        "A humanoid robot carrying a steel milk churn stands in a New Zealand paddock among grazing dairy cows, while a rocket marked for Mars lifts off over the hills behind.",
     },
     readingMinutes: 6,
     // Wealth/thinking piece, not mortgage advice — sits in Lena's own scope, not
@@ -945,7 +946,7 @@ export const ARTICLES: Article[] = [
         src: "/images/ai-abundance-scarcity.png",
         alt: "A diagram in two halves. On the left, AI abundance: a chip and robotics feeding information, services, clothing, food, transport, automation and construction into a narrow bottleneck labelled scarcity. On the right, four stone pillars AI cannot create more of — land, energy, materials and time.",
         caption:
-          "Abundance flows in from the left and narrows at the only point that matters. AI can amplify output; the four on the right are what it cannot make more of.",
+          "Abundance flows in from the left and narrows at the only point that matters. AI can amplify output; the four on the right are what it cannot make more of. Both images in this article were generated with AI.",
       },
 
       { type: "h2", text: "Land" },
