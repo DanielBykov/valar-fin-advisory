@@ -873,6 +873,192 @@ export const ARTICLES: Article[] = [
       "Investors are waiting on tax rules rather than rates. That resolves on 7 November, though activity has historically turned gradually rather than immediately.",
     ],
   },
+  {
+    slug: "ai-abundance-and-what-stays-scarce",
+    title: "Elon Musk says money is becoming irrelevant. Scarcity isn't.",
+    excerpt:
+      "AI could make almost everything cheap. It still can't make more land, energy, raw materials or hours in a day — and that changes where the next decade of savings should go.",
+    tag: "guides",
+    published: "2026-08-27",
+    topics: ["AI and the economy", "Scarcity", "Land", "Long-term thinking"],
+    readingMinutes: 6,
+    // Wealth/thinking piece, not mortgage advice — sits in Lena's own scope, not
+    // the Fundsmart regime. No worked figures anywhere: the only number in it
+    // (the 80% build-cost fall) is explicitly a hypothetical scenario.
+    draft: true,
+    body: [
+      {
+        type: "lede",
+        text: "Judging by Elon Musk's latest interview, we may not have much longer to use money. In another ten years or so, AI and robotics will apparently create such an abundance of goods and services that money itself could become irrelevant.",
+      },
+      {
+        type: "p",
+        text: "So, happy days. We can probably stop worrying about retirement planning.",
+      },
+      {
+        type: "p",
+        text: "Jokes aside, the idea was interesting enough that I went looking into it, and ended up back at a concept from first-year economics: scarcity. Once you look at Musk's prediction through that lens, it gets a lot more useful for anyone deciding where to put their money over the next decade.",
+      },
+
+      { type: "h2", text: "What economists actually mean by “scarcity”" },
+      {
+        type: "p",
+        text: "Scarcity isn't a temporary shortage you can fix with more production. It means a resource is limited while our wants are not.",
+      },
+      {
+        type: "p",
+        text: "Give people more, and their wants expand to meet it. Cheap flour and cheap flights don't end wanting, they shift it toward a house with a view, a rare vintage, a seat at a table that only fits so many. That is the half of the equation Musk's version of the future leaves out.",
+      },
+
+      { type: "h2", text: "Where AI genuinely delivers abundance" },
+      {
+        type: "p",
+        text: "AI abundance isn't science fiction. We have watched something similar happen twice already.",
+      },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "Clothing",
+            text: "A T-shirt is nearly disposable now, because production got radically cheaper.",
+          },
+          {
+            term: "Information",
+            text: "What once needed a library card is a free search away.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "The same curve could plausibly reach services, basic food, construction labour, transport. A guaranteed comfortable standard of living would be a good outcome. But notice what those examples share: clothing, information, and eventually labour are all things you can make more of.",
+      },
+      {
+        type: "pull",
+        text: "None of that helps with what you can't make more of. And that comes down to four things: land, energy, matter, and time.",
+      },
+
+      { type: "h2", text: "Land" },
+      {
+        type: "p",
+        text: "A house can get dramatically cheaper to build. The land underneath it doesn't, because nobody is making more of it.",
+      },
+      {
+        type: "p",
+        text: "This is already visible today. In most developed housing markets the land component of a property's value has grown faster than the building component for decades. A section in a desirable part of Auckland can be worth several times an identical section further out, with the same house sitting on top of it.",
+      },
+      {
+        type: "case",
+        label: "Run the scenario forward",
+        question: "If AI cuts the cost of building a house by 80%, who ends up with the saving?",
+        text: "Mostly not the buyer. If the number of desirable sections stays the same, land prices absorb almost all of it. Cheaper building doesn't create more land — it just means more people bidding on the same plots.",
+      },
+      {
+        type: "p",
+        text: "New Zealand makes this easy to see. Our land is limited, our coastline more so. AI can't build another country next door to meet the demand. The queue gets longer, and the price of the front of it gets steeper.",
+      },
+
+      { type: "h2", text: "Energy" },
+      {
+        type: "p",
+        text: "Everything AI abundance promises runs on power: compute, data centres, robots, manufacturing. Energy can genuinely get cheaper — solar and battery costs have fallen for years — but cheaper isn't unlimited. Generation still needs land. Moving power to where it's needed still needs grid infrastructure. Using it at the right moment still needs storage.",
+      },
+      {
+        type: "callout",
+        label: "The irony in the abundance story",
+        text: "The systems meant to deliver an abundant future are themselves enormous energy consumers. The more AI does for us, the more electricity it quietly asks for in return.",
+      },
+
+      { type: "h2", text: "Materials and natural resources" },
+      {
+        type: "p",
+        text: "Everything above is physically made of something: copper for the wiring, lithium and cobalt for batteries, iron and timber for construction, water for cooling, rare earth elements for the chips inside every AI system.",
+      },
+      {
+        type: "p",
+        text: "AI can help extract more efficiently, find substitutes, improve recycling. It can't conjure the underlying materials from nothing, or manufacture more of a finite deposit.",
+      },
+
+      { type: "h2", text: "Time" },
+      {
+        type: "p",
+        text: "AI can dramatically increase how much gets produced in an hour. None of it adds a single hour to a human life. As material goods get cheaper, what may become more valuable by comparison is anything that genuinely gives you back your own time.",
+      },
+
+      { type: "h2", text: "AI still has to obey physics" },
+      {
+        type: "p",
+        text: "Intelligence may become abundant. The physical inputs required to turn intelligence into real-world output don't automatically become abundant with it. AI can make intelligence itself almost unlimited and help produce an extraordinary quantity of goods. What it cannot do is cancel out four things.",
+      },
+      {
+        type: "deflist",
+        items: [
+          { term: "Space", text: "In the form of land." },
+          {
+            term: "Energy",
+            text: "Which still has to be generated, stored, and delivered somewhere specific.",
+          },
+          { term: "Matter", text: "The physical materials everything is actually made of." },
+          { term: "Time", text: "The one resource that never gets more abundant." },
+        ],
+      },
+      {
+        type: "p",
+        text: "Land. Energy. Matter. Time. Maybe Musk is right that money will matter much less one day. I'm not convinced those four ever will.",
+      },
+
+      { type: "h2", text: "Why this matters for everyone, not just investors" },
+      {
+        type: "p",
+        text: "A lot of us built our identities around “intelligence work”: the accounting qualification, the IT certificate, the degree, years learning a craft that lived mostly on a screen. A growing number of people doing that kind of work have quietly started wondering whether it's replaceable. Not eventually. Soon.",
+      },
+      {
+        type: "p",
+        text: "Two proposed answers to that get raised more than any others, and they point at the same underlying problem.",
+      },
+      {
+        type: "tracks",
+        items: [
+          {
+            title: "The redistribution answer",
+            text: "A universal basic income hands people money, which stops anyone falling through the floor. But if land, energy and hours in a day stay fixed, that money just becomes another bidding chip for the same limited pool.",
+          },
+          {
+            title: "The career answer",
+            text: "Education converts into a skill, the skill converts into a salary. That is the deal most of us were sold, and it only works while the skill stays scarce enough for someone to pay for it.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Both assume a conversion mechanism. Both get shakier once the thing being converted stops being scarce.",
+      },
+      {
+        type: "p",
+        text: "I'll be honest: that uncertainty scares me a little. Not AI itself — the fact that a chain I always assumed would hold might not. What about you?",
+      },
+      {
+        type: "p",
+        text: "I've sat with that question for a while, and landed somewhere I didn't expect. What actually gives me a sense of security isn't my job title or this year's income. It's my lifestyle here near Auckland and, quite literally, a piece of land. Not because of what either is worth today, but because they're exactly the kind of asset nobody can manufacture more of, regardless of what happens to my particular skill.",
+      },
+
+      { type: "h2", text: "Why this matters for how you invest" },
+      {
+        type: "p",
+        text: "The old logic: invest in your education and your skills, and trust that the payoff arrives later as income. The new logic needs a second track running alongside it — putting some of what that income buys into things that don't depend on your skill, or anyone's skill, staying scarce. Well-located land. Energy infrastructure. Resource-linked assets. Anything that genuinely gives you back your own time.",
+      },
+      {
+        type: "p",
+        text: "That is not a reason to stop investing in yourself. It's a reason to stop treating that as your only investment. Which leaves one question worth sitting with: if the chain from skill to income gets shakier, what else is standing under your future besides that one chain?",
+      },
+    ],
+    takeaways: [
+      "Musk's prediction is that AI abundance makes money largely irrelevant within about a decade. It is worth taking seriously, and it is only half the picture.",
+      "Abundance on the supply side doesn't cancel scarcity, because human wants expand to meet whatever they are given. Cheap goods shift wanting rather than ending it.",
+      "AI can make intelligence and a great many goods cheap. It can't make more land, more energy, more raw material, or more hours in a day — and those four are what the rest gets built out of.",
+      "A guaranteed income redistributes money. It doesn't create more of what is actually scarce, so it ends up as another bidding chip for the same limited pool.",
+      "The practical shift: keep investing in your skills, and stop treating that as your only investment. The second track is assets whose value doesn't depend on any particular skill staying scarce.",
+    ],
+  },
 ];
 
 // FAQ content now lives in content/faqs.md — see src/lib/faqs.ts.
