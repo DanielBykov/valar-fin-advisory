@@ -890,7 +890,8 @@ export const ARTICLES: Article[] = [
     // Wealth/thinking piece, not mortgage advice — sits in Lena's own scope, not
     // the Fundsmart regime. No figures anywhere, and nothing framed as a forecast:
     // the land block is an illustrative example, deliberately with no number in it.
-    draft: true,
+    // Read and approved by Lena, 2026-08-27.
+    draft: false,
     body: [
       {
         type: "lede",
