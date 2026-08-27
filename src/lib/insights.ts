@@ -881,6 +881,10 @@ export const ARTICLES: Article[] = [
     tag: "guides",
     published: "2026-08-27",
     topics: ["AI and the economy", "Scarcity", "Land", "Long-term thinking"],
+    image: {
+      src: "/images/ai-abundance-scarcity.png",
+      alt: "A diagram in two halves. On the left, AI abundance: a chip and robotics feeding information, services, clothing, food, transport, automation and construction into a narrow bottleneck labelled scarcity. On the right, four stone pillars AI cannot create more of — land, energy, materials and time.",
+    },
     readingMinutes: 6,
     // Wealth/thinking piece, not mortgage advice — sits in Lena's own scope, not
     // the Fundsmart regime. No figures anywhere, and nothing framed as a forecast:
@@ -935,6 +939,13 @@ export const ARTICLES: Article[] = [
       {
         type: "pull",
         text: "None of that helps with what you can't make more of. And that comes down to four things: land, energy, matter, and time.",
+      },
+      {
+        type: "figure",
+        src: "/images/ai-abundance-scarcity.png",
+        alt: "A diagram in two halves. On the left, AI abundance: a chip and robotics feeding information, services, clothing, food, transport, automation and construction into a narrow bottleneck labelled scarcity. On the right, four stone pillars AI cannot create more of — land, energy, materials and time.",
+        caption:
+          "Abundance flows in from the left and narrows at the only point that matters. AI can amplify output; the four on the right are what it cannot make more of.",
       },
 
       { type: "h2", text: "Land" },
