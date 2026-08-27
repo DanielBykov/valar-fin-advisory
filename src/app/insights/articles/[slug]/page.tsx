@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
+import { JsonLd } from "@/components/json-ld";
 import {
   INSIGHTS_LIVE,
   TAG_LABELS,
@@ -12,6 +13,12 @@ import {
   relatedArticles,
   visibleArticles,
 } from "@/lib/insights";
+import {
+  SITE_URL,
+  getArticleSchema,
+  getBreadcrumbSchema,
+  getPersonSchema,
+} from "@/lib/schema";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -24,11 +31,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticle(slug);
   if (!article) return { title: "Article not found | Valar" };
 
+  const path = `/insights/articles/${article.slug}`;
+
   return {
     title: `${article.title} | Valar`,
     description: article.excerpt,
+    alternates: { canonical: path },
     openGraph: {
       type: "article",
+      url: path,
       title: article.title,
       description: article.excerpt,
       // The article's own image when it has one, so a shared link previews the
@@ -48,8 +59,30 @@ export default async function Page({ params }: Props) {
 
   const related = relatedArticles(slug);
 
+  // Person is emitted here as well as on /about: the Article's author @id
+  // only resolves if the Person node is on the same page. Organization
+  // comes from the root layout.
+  const structuredData = [
+    getPersonSchema(),
+    getBreadcrumbSchema([
+      { name: "Home", url: `${SITE_URL}/` },
+      { name: "Insights", url: `${SITE_URL}/insights` },
+      { name: article.title, url: `${SITE_URL}/insights/articles/${article.slug}` },
+    ]),
+    getArticleSchema({
+      slug: article.slug,
+      title: article.title,
+      excerpt: article.excerpt,
+      published: article.published,
+      image: article.image?.src,
+      section: TAG_LABELS[article.tag],
+      topics: article.topics,
+    }),
+  ];
+
   return (
     <div data-cmp="ArticlePage" className="flex min-h-screen w-full flex-col bg-white">
+      <JsonLd data={structuredData} />
       {/* Header */}
       <header data-cmp="ArticlePage.Header" className="border-b border-gray-100 px-4 md:px-6">
         <div className="mx-auto w-full max-w-[720px] pt-8">

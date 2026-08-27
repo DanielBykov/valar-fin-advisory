@@ -185,3 +185,49 @@ export function getFaqSchema(items: FaqEntry[]) {
     }),
   };
 }
+
+export interface ArticleSchemaInput {
+  slug: string;
+  title: string;
+  excerpt: string;
+  /** ISO date, e.g. "2026-08-27". */
+  published: string;
+  /** Path under /public, e.g. "/images/market-update.png". Made absolute here. */
+  image?: string;
+  /** Human label for the tag, e.g. "Explained". */
+  section?: string;
+  topics?: string[];
+}
+
+/**
+ * Article structured data — what tells Google the page is a piece of writing
+ * by a named person on a date, rather than an unlabelled page of text. It is
+ * what puts the byline and the date under the search result.
+ *
+ * `author` and `publisher` are @id references. They only resolve if the Person
+ * and Organization nodes are also present on the page: Organization comes from
+ * the root layout, and the article page emits getPersonSchema() alongside this.
+ * Drop either and the byline silently stops working.
+ */
+export function getArticleSchema(article: ArticleSchemaInput) {
+  const url = `${SITE_URL}/insights/articles/${article.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline: article.title,
+    description: article.excerpt,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    datePublished: article.published,
+    // Articles carry no separate revision date yet, so this tracks `published`.
+    // Add an `updated` field to Article in insights.ts if that ever changes.
+    dateModified: article.published,
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORGANIZATION_ID },
+    inLanguage: "en-NZ",
+    ...(article.image ? { image: `${SITE_URL}${article.image}` } : {}),
+    ...(article.section ? { articleSection: article.section } : {}),
+    ...(article.topics?.length ? { keywords: article.topics.join(", ") } : {}),
+  };
+}
