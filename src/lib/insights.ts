@@ -19,14 +19,12 @@
  */
 export const INSIGHTS_LIVE = true;
 
-/**
- * Calculators ship on their own timeline, separately from the articles.
- * false → /insights/calculators 404s in production, and every link to it
- *         stays out of the header menu and off the Insights page.
- * Flip to true when the calculators themselves are ready — nothing else
- * has to be put back by hand.
+/*
+ * Calculators used to be gated from here as well, which meant two constants
+ * called CALCULATORS_LIVE in two files. They now live in their own top-level
+ * section: src/lib/calculators.ts is the single switch, and it gates one
+ * calculator at a time rather than all of them together.
  */
-export const CALCULATORS_LIVE: boolean = false;
 
 export type InsightTag = "guides" | "market" | "case-studies" | "first-home";
 

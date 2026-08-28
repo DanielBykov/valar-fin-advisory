@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { CALCULATORS_LIVE, INSIGHTS_LIVE, publishedArticles } from "@/lib/insights";
+import { INSIGHTS_LIVE, publishedArticles } from "@/lib/insights";
+import { CALCULATORS_LIVE, calculatorHref, liveCalculators } from "@/lib/calculators";
 
 const SITE_URL = "https://valar.co.nz";
 
@@ -12,16 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ? [
         { url: `${SITE_URL}/insights`, lastModified, changeFrequency: "weekly", priority: 0.8 },
         { url: `${SITE_URL}/insights/faq`, lastModified, changeFrequency: "monthly", priority: 0.7 },
-        ...(CALCULATORS_LIVE
-          ? [
-              {
-                url: `${SITE_URL}/insights/calculators`,
-                lastModified,
-                changeFrequency: "monthly" as const,
-                priority: 0.7,
-              },
-            ]
-          : []),
         ...publishedArticles().map((a) => ({
           url: `${SITE_URL}/insights/articles/${a.slug}`,
           lastModified,
@@ -31,8 +22,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ]
     : [];
 
+  // Calculators are a section of their own. A calculator that is built but not
+  // published stays out, so the sitemap can never point Google at a 404.
+  const calculators: MetadataRoute.Sitemap = CALCULATORS_LIVE
+    ? [
+        { url: `${SITE_URL}/calculators`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+        ...liveCalculators().map((c) => ({
+          url: `${SITE_URL}${calculatorHref(c.slug)}`,
+          lastModified,
+          changeFrequency: "monthly" as const,
+          priority: 0.7,
+        })),
+      ]
+    : [];
+
   return [
     ...insights,
+    ...calculators,
     { url: `${SITE_URL}/`, lastModified, changeFrequency: "monthly", priority: 1.0 },
     { url: `${SITE_URL}/about`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/services`, lastModified, changeFrequency: "monthly", priority: 0.8 },

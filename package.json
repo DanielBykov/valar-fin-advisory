@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:onedrive": "bash ../docs_local/sync-onedrive.sh"
+    "sync:onedrive": "bash ../docs_local/sync-onedrive.sh",
+    "check:affordability": "node scripts/build-affordability-check.mjs && node scripts/check-affordability.mjs"
   },
   "dependencies": {
     "@radix-ui/react-tabs": "^1.1.13",

@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import RentVsBuyCalculator from "@/components/calculators/rent-vs-buy-calculator";
+import RepaymentCalculator from "@/components/insights/repayment-calculator";
 import { calculatorVisible } from "@/lib/calculators";
 
 export const metadata: Metadata = {
-  title: "Rent vs Buy Calculator NZ | Valar",
+  title: "Mortgage Repayment Calculator NZ | Valar",
   description:
-    "Compare renting and buying in New Zealand on your own numbers — deposit, rate, rent and time frame — and see where the two actually cross over.",
+    "Work out mortgage repayments on any loan amount, rate and term — weekly, fortnightly or monthly — and see what paying a little extra each time actually saves you.",
   openGraph: {
     images: ["/opengraph.jpg"],
-    title: "Rent vs Buy Calculator NZ | Valar",
+    title: "Mortgage Repayment Calculator NZ | Valar",
     description:
-      "Compare renting and buying on your own numbers and see where the two actually cross over.",
+      "Work out mortgage repayments and see what paying extra each time saves you over the life of the loan.",
   },
 };
 
 export default function Page() {
-  if (!calculatorVisible("rent-vs-buy")) notFound();
+  if (!calculatorVisible("repayments")) notFound();
 
   return (
-    <div data-cmp="RentVsBuyPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
+    <div data-cmp="RepaymentsPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
       <section
-        data-cmp="RentVsBuyPage.Hero"
+        data-cmp="RepaymentsPage.Hero"
         className="bg-valar-navy px-4 pt-36 pb-16 text-white md:px-6"
       >
         <div className="container mx-auto max-w-6xl">
@@ -33,32 +33,32 @@ export default function Page() {
             </span>
           </div>
           <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
-            Rent vs Buy<span className="text-valar-amber">.</span>
+            Mortgage repayments<span className="text-valar-amber">.</span>
           </h1>
           <p className="max-w-2xl border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
-            The honest version of the question is not &ldquo;is renting dead money&rdquo;. It is how
-            long you would have to stay, and what the money would have done instead. Move the numbers
-            and find out.
+            Set the loan, the rate and the term. Then add something to the extra field and watch what
+            it does to the interest — that number is usually the surprise.
           </p>
         </div>
       </section>
 
-      <section data-cmp="RentVsBuyPage.Calculator" className="px-4 py-14 md:px-6">
+      <section data-cmp="RepaymentsPage.Calculator" className="px-4 py-14 md:px-6">
         <div className="container mx-auto max-w-6xl">
-          <RentVsBuyCalculator />
+          <RepaymentCalculator />
         </div>
       </section>
 
-      <section data-cmp="RentVsBuyPage.Cta" className="px-4 pb-20 md:px-6">
+      <section data-cmp="RepaymentsPage.Cta" className="px-4 pb-20 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-valar-navy p-8 md:p-10">
             <div className="max-w-[46ch]">
               <h2 className="mb-2 text-2xl font-bold text-white">
-                A calculator cannot see your file<span className="text-valar-amber">.</span>
+                Knowing the repayment is not the same as knowing the structure
+                <span className="text-valar-amber">.</span>
               </h2>
               <p className="text-[15px] leading-relaxed text-valar-lilac">
-                It does not know your income, your deposit, or which lender will say yes and at what
-                rate. Thirty minutes with someone who does is a different conversation.
+                How the loan is split, what you fix and for how long, and where the extra payment
+                should actually go — that is the conversation this calculator cannot have.
               </p>
             </div>
             <Link

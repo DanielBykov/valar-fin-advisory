@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users, Newspaper, TrendingUp, Calculator, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CALCULATORS_LIVE, INSIGHTS_LIVE } from "@/lib/insights";
+import { INSIGHTS_LIVE } from "@/lib/insights";
+import { CALCULATORS_LIVE, calculatorHref, liveCalculators } from "@/lib/calculators";
 import { isStandaloneRoute } from "@/lib/standalone-routes";
 
 function navLink(isActive: boolean) {
@@ -25,6 +26,8 @@ export function Navbar() {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isInsightsOpen, setIsInsightsOpen] = useState(false);
   const [isMobileInsightsOpen, setIsMobileInsightsOpen] = useState(false);
+  const [isCalculatorsOpen, setIsCalculatorsOpen] = useState(false);
+  const [isMobileCalculatorsOpen, setIsMobileCalculatorsOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -32,12 +35,19 @@ export function Navbar() {
   // running the site locally, so the menu can be reviewed before it goes public.
   const showInsights = INSIGHTS_LIVE || process.env.NODE_ENV === "development";
 
+  // Same rule for the Calculators section, gated by its own switch.
+  const calculators = liveCalculators();
+  const showCalculators =
+    (CALCULATORS_LIVE || process.env.NODE_ENV === "development") && calculators.length > 0;
+
   useEffect(() => {
     setIsServicesOpen(false);
     setIsOpen(false);
     setIsMobileServicesOpen(false);
     setIsInsightsOpen(false);
     setIsMobileInsightsOpen(false);
+    setIsCalculatorsOpen(false);
+    setIsMobileCalculatorsOpen(false);
   }, [pathname]);
 
   if (isStandaloneRoute(pathname)) return null;
@@ -207,8 +217,8 @@ export function Navbar() {
               >
                 Insights <ChevronDown className={cn("w-4 h-4 opacity-50 transition-transform", isInsightsOpen && "rotate-180")} />
               </Link>
-              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 max-w-[95vw] transition-all duration-200 z-50", CALCULATORS_LIVE ? "w-[1160px]" : "w-[900px]", isInsightsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
-                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 grid gap-0 overflow-hidden" style={{gridTemplateColumns: CALCULATORS_LIVE ? "1fr 1fr 1fr 1.3fr" : "1fr 1fr 1.3fr"}}>
+              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 max-w-[95vw] transition-all duration-200 z-50", "w-[900px]", isInsightsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
+                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 grid gap-0 overflow-hidden" style={{gridTemplateColumns: "1fr 1fr 1.3fr"}}>
 
                   {/* Read */}
                   <div className="p-10 ">
@@ -231,23 +241,6 @@ export function Navbar() {
                       </Link>
                     </div>
                   </div>
-
-                  {/* Tools - hidden until the calculators are ready to publish */}
-                  {CALCULATORS_LIVE && (
-                  <div className="p-10 ">
-                    <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Tools</h3>
-                    <div className="border-t border-valar-concrete mb-7" />
-                    <div className="space-y-7">
-                      <Link href="/insights/calculators" className="flex items-start gap-3 group/item">
-                        <Calculator className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
-                        <div>
-                          <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Calculators</div>
-                          <div className="text-sm text-valar-indigo mt-1 leading-snug">Repayments, borrowing power and cashflow</div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                  )}
 
                   {/* Answers */}
                   <div className="p-10 ">
@@ -290,12 +283,55 @@ export function Navbar() {
                   </div>
 
                   {/* All Insights — spans every text column in row 2, Hub card covers the last one */}
-                  <div className={cn("px-10 py-4 border-t border-valar-concrete", CALCULATORS_LIVE ? "col-span-3" : "col-span-2")}>
+                  <div className={"px-10 py-4 border-t border-valar-concrete col-span-2"}>
                     <Link href="/insights" className="text-sm font-semibold text-valar-horizon hover:text-valar-navy transition-colors flex items-center gap-1.5">
                       View all insights <span>→</span>
                     </Link>
                   </div>
 
+                </div>
+              </div>
+            </div></>
+            )}
+
+            {showCalculators && (
+            <><span className="text-white/20 select-none text-xs">|</span>
+
+            <div data-cmp="Navbar.CalculatorsMenu" className="relative h-16 flex items-center" onMouseEnter={() => setIsCalculatorsOpen(true)} onMouseLeave={() => setIsCalculatorsOpen(false)}>
+              <Link
+                href="/calculators"
+                className={cn(
+                  "text-base font-medium px-4 py-1.5 transition-colors flex items-center gap-1 relative",
+                  "after:absolute after:bottom-0 after:left-4 after:right-4 after:h-[2px] after:bg-valar-amber after:rounded-full after:transition-opacity after:duration-200",
+                  pathname?.startsWith("/calculators")
+                    ? "text-valar-amber after:opacity-100"
+                    : "text-white hover:text-valar-amber after:opacity-0 hover:after:opacity-100"
+                )}
+              >
+                Calculators <ChevronDown className={cn("w-4 h-4 opacity-50 transition-transform", isCalculatorsOpen && "rotate-180")} />
+              </Link>
+              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 w-[460px] max-w-[95vw] transition-all duration-200 z-50", isCalculatorsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
+                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 overflow-hidden">
+                  <div className="p-8">
+                    <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Run your own numbers</h3>
+                    <div className="border-t border-valar-concrete mb-6" />
+                    <div className="space-y-6">
+                      {calculators.map((calculator) => (
+                        <Link key={calculator.slug} href={calculatorHref(calculator.slug)} className="flex items-start gap-3 group/item">
+                          <Calculator className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                          <div>
+                            <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">{calculator.title}</div>
+                            <div className="text-sm text-valar-indigo mt-1 leading-snug">{calculator.menuBlurb}</div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="px-8 py-4 border-t border-valar-concrete">
+                    <Link href="/calculators" className="text-sm font-semibold text-valar-horizon hover:text-valar-navy transition-colors flex items-center gap-1.5">
+                      View all calculators <span>&rarr;</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div></>
@@ -412,18 +448,37 @@ export function Navbar() {
                         <TrendingUp className="w-5 h-5 text-valar-steel shrink-0" /> Market Updates
                       </Link>
                     </div>
-                    {CALCULATORS_LIVE && (
-                    <div className="px-5 pt-2 pb-3">
-                      <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Tools</p>
-                      <Link href="/insights/calculators" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
-                        <Calculator className="w-5 h-5 text-valar-steel shrink-0" /> Calculators
-                      </Link>
-                    </div>
-                    )}
                     <div className="px-5 pt-2 pb-4">
                       <p className="text-xs uppercase tracking-widest text-valar-steel mb-3">Answers</p>
                       <Link href="/insights/faq" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
                         <HelpCircle className="w-5 h-5 text-valar-steel shrink-0" /> FAQ
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+              )}
+              {showCalculators && (
+              <div className="border-b border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setIsMobileCalculatorsOpen((open) => !open)}
+                  aria-expanded={isMobileCalculatorsOpen}
+                  className="w-full flex items-center justify-between py-3 text-white font-medium"
+                >
+                  Calculators
+                  <ChevronDown className={cn("w-5 h-5 transition-transform", isMobileCalculatorsOpen && "rotate-180")} />
+                </button>
+                {isMobileCalculatorsOpen && (
+                  <div className="pb-2">
+                    <div className="px-5 pt-1 pb-3">
+                      {calculators.map((calculator) => (
+                        <Link key={calculator.slug} href={calculatorHref(calculator.slug)} className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                          <Calculator className="w-5 h-5 text-valar-steel shrink-0" /> {calculator.title}
+                        </Link>
+                      ))}
+                      <Link href="/calculators" className="flex items-center gap-3 py-3 text-base font-semibold text-valar-amber" onClick={() => setIsOpen(false)}>
+                        View all calculators &rarr;
                       </Link>
                     </div>
                   </div>
