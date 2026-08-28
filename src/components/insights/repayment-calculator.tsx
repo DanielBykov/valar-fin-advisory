@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AlertTriangle } from "lucide-react";
+import { EXTRA_CAP_PERCENT } from "@/lib/split-loan";
 
 const FREQUENCIES = [
   { key: "weekly", label: "Weekly", perYear: 52 },
@@ -60,11 +62,49 @@ type FieldProps = {
   step: number;
   prefix?: string;
   suffix?: string;
+  /** Decimal places to show. 0 also turns on thousands separators. */
+  decimals?: number;
   onChange: (value: number) => void;
 };
 
-function Field({ label, hint, value, min, max, step, prefix, suffix, onChange }: FieldProps) {
+function Field({
+  label,
+  hint,
+  value,
+  min,
+  max,
+  step,
+  prefix,
+  suffix,
+  decimals = 0,
+  onChange,
+}: FieldProps) {
+  /*
+   * While the box is being typed into, the raw keystrokes are held here and the
+   * committed value is left alone.
+   *
+   * The previous version clamped on every keystroke, which made the box
+   * unusable: with a $50,000 minimum, clearing it and typing the first digit of
+   * "650000" snapped the value straight back to 50,000, so the only way to
+   * change the number was the slider. Clamping now happens when the field is
+   * left, not while it is being filled in.
+   */
+  const [draft, setDraft] = useState<string | null>(null);
+
   const clamp = (n: number) => Math.min(max, Math.max(min, n));
+
+  const format = (n: number) =>
+    decimals > 0 ? n.toFixed(decimals) : Math.round(n).toLocaleString("en-NZ");
+
+  const parse = (raw: string) => Number(raw.replace(/[^0-9.]/g, ""));
+
+  const commit = () => {
+    if (draft === null) return;
+    const parsed = parse(draft);
+    onChange(draft.trim() === "" || !Number.isFinite(parsed) ? value : clamp(parsed));
+    setDraft(null);
+  };
+
   return (
     <div data-cmp="RepaymentCalculator.Field" className="flex flex-col gap-2">
       <div className="flex items-baseline justify-between gap-3">
@@ -72,13 +112,30 @@ function Field({ label, hint, value, min, max, step, prefix, suffix, onChange }:
         <div className="flex items-center gap-1 text-valar-navy">
           {prefix && <span className="text-sm text-valar-steel">{prefix}</span>}
           <input
-            type="number"
-            value={value}
-            min={min}
-            max={max}
-            step={step}
-            onChange={(e) => onChange(clamp(Number(e.target.value)))}
-            className="w-28 rounded-lg border border-valar-concrete bg-white px-3 py-1.5 text-right text-sm font-semibold tabular-nums focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
+            type="text"
+            inputMode={decimals > 0 ? "decimal" : "numeric"}
+            value={draft ?? format(value)}
+            onChange={(e) => {
+              const raw = e.target.value;
+              setDraft(raw);
+              const parsed = parse(raw);
+              // Update the results live, but only once what has been typed is
+              // actually a usable number. A half-typed "6" on its way to
+              // "650,000" must not drag the whole calculator down to the floor.
+              if (Number.isFinite(parsed) && parsed >= min && parsed <= max) onChange(parsed);
+            }}
+            onFocus={(e) => {
+              setDraft(format(value));
+              e.currentTarget.select();
+            }}
+            onBlur={commit}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                commit();
+                e.currentTarget.blur();
+              }
+            }}
+            className="w-32 rounded-lg border border-valar-concrete bg-white px-3 py-1.5 text-right text-sm font-semibold tabular-nums focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
             aria-label={label}
           />
           {suffix && <span className="text-sm text-valar-steel">{suffix}</span>}
@@ -90,7 +147,10 @@ function Field({ label, hint, value, min, max, step, prefix, suffix, onChange }:
         min={min}
         max={max}
         step={step}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => {
+          setDraft(null);
+          onChange(Number(e.target.value));
+        }}
         className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-valar-concrete accent-valar-amber"
         aria-label={`${label} slider`}
       />
@@ -138,6 +198,16 @@ export default function RepaymentCalculator() {
     };
   }, [amount, rate, years, frequency, extra]);
 
+  // The usual fixed-rate early-repayment allowance, expressed per payment so it
+  // can be compared with what has actually been entered.
+  const extraAllowancePerPeriod = ((EXTRA_CAP_PERCENT / 100) * amount) / result.perYear;
+  const overAllowance = extra > extraAllowancePerPeriod + 0.01;
+
+  // The slider has to reach past the allowance, or the warning below can never
+  // be triggered and the interesting half of the range is unreachable. A fixed
+  // $1,000 ceiling hid it on any loan above about $520,000.
+  const extraMax = Math.max(1_000, Math.ceil((extraAllowancePerPeriod * 1.5) / 50) * 50);
+
   return (
     <div
       data-cmp="RepaymentCalculator"
@@ -161,6 +231,7 @@ export default function RepaymentCalculator() {
           max={12}
           step={0.05}
           suffix="%"
+          decimals={2}
           hint="Use the rate you have been quoted, not the advertised headline."
           onChange={setRate}
         />
@@ -188,16 +259,30 @@ export default function RepaymentCalculator() {
           </div>
         </div>
 
-        <Field
-          label="Extra per repayment"
-          value={extra}
-          min={0}
-          max={1_000}
-          step={10}
-          prefix="$"
-          hint="Paying a little more, every time — this is where the number moves."
-          onChange={setExtra}
-        />
+        <div className="flex flex-col gap-2">
+          <Field
+            label="Extra per repayment"
+            value={extra}
+            min={0}
+            max={extraMax}
+            step={10}
+            prefix="$"
+            hint={`Paying a little more, every time — this is where the number moves. On a fixed rate most lenders let you pay up to about ${EXTRA_CAP_PERCENT}% of the loan a year, which is ${nzd(extraAllowancePerPeriod, 0)} per payment here.`}
+            onChange={setExtra}
+          />
+          {overAllowance && (
+            <p className="flex items-start gap-2 rounded-lg bg-valar-amber/10 p-3 text-xs leading-relaxed text-valar-navy">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-valar-amber" />
+              <span>
+                That is more than {EXTRA_CAP_PERCENT}% of the loan a year. On a{" "}
+                <b>fixed</b> rate most lenders charge a break cost above roughly that, so the saving
+                below may not be available to you. On a <b>floating</b> loan there is usually no
+                limit at all. The exact allowance is in your loan contract — worth checking before
+                you set up a payment you intend to keep.
+              </span>
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Results */}
