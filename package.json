@@ -9,7 +9,8 @@
     "lint": "eslint",
     "sync:onedrive": "bash ../docs_local/sync-onedrive.sh",
     "check:affordability": "node scripts/build-affordability-check.mjs && node scripts/check-affordability.mjs",
-    "check:split-loan": "node scripts/check-split-loan.mjs"
+    "check:split-loan": "node scripts/check-split-loan.mjs",
+    "check:repayments": "node scripts/check-repayments.mjs"
   },
   "dependencies": {
     "@radix-ui/react-tabs": "^1.1.13",
