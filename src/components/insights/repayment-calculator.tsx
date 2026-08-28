@@ -146,18 +146,18 @@ export default function RepaymentCalculator({
       : Math.max(1_000, Math.ceil((result.allowancePerPeriod * 1.5) / 50) * 50);
 
   const usingExtra = result.extraPerPeriod > 0;
-  const payoffYears = result.periods < result.scheduledPeriods
-    ? Math.ceil(result.periods / result.perYear)
-    : null;
 
   return (
-    <div className="flex flex-col gap-8">
-      <div
-        data-cmp="RepaymentCalculator"
-        className="grid gap-8 rounded-2xl border border-valar-concrete bg-white p-6 md:p-8 lg:grid-cols-[1fr_400px]"
-      >
-        {/* Inputs */}
-        <div data-cmp="RepaymentCalculator.Inputs" className="flex flex-col gap-6">
+    <div
+      data-cmp="RepaymentCalculator"
+      className="grid items-start gap-6 lg:grid-cols-[1fr_400px]"
+    >
+      {/* Left column — the controls, the chart, and the ask. */}
+      <div className="flex flex-col gap-6">
+        <div
+          data-cmp="RepaymentCalculator.Inputs"
+          className="flex flex-col gap-6 rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
+        >
           <Field
             label="Loan amount"
             value={amount}
@@ -268,98 +268,90 @@ export default function RepaymentCalculator({
           </div>
         </div>
 
-        {/* Results */}
-        <div
-          data-cmp="RepaymentCalculator.Results"
-          className="flex flex-col rounded-xl bg-valar-navy p-6 text-white"
-        >
-          <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-            Your {result.frequencyLabel} repayment
-          </p>
-          <p className="text-4xl font-bold tabular-nums">{nzd(result.totalPayment, 2)}</p>
-          {usingExtra && (
-            <p className="mt-1 text-sm text-valar-lilac">
-              {nzd(result.basePayment, 2)} required, plus {nzd(result.extraPerPeriod, 2)} extra
-            </p>
-          )}
-
-          <div className="mt-6 flex flex-col gap-3 border-t border-white/15 pt-5 text-sm">
-            <div className="flex justify-between gap-4">
-              <span className="text-valar-lilac">Total interest</span>
-              <span className="font-semibold tabular-nums">{nzd(result.totalInterest)}</span>
-            </div>
-            <div className="flex justify-between gap-4">
-              <span className="text-valar-lilac">Total repaid</span>
-              <span className="font-semibold tabular-nums">{nzd(result.totalPaid)}</span>
-            </div>
-          </div>
-
-          <div className="mt-5">
-            <div className="flex h-2 overflow-hidden rounded-full">
-              <div
-                className="bg-valar-horizon"
-                style={{ width: `${(1 - result.interestShare) * 100}%` }}
-              />
-              <div className="w-[2px] shrink-0 bg-valar-navy" />
-              <div className="flex-1 bg-valar-amber" />
-            </div>
-            <div className="mt-2 flex justify-between text-xs text-valar-lilac">
-              <span>Amount borrowed</span>
-              <span>Interest · {Math.round(result.interestShare * 100)}%</span>
-            </div>
-          </div>
-
-          {usingExtra && result.periodsSaved > 0 && (
-            <div className="mt-6 rounded-lg bg-white/10 p-4">
-              <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.1em] text-valar-amber">
-                Paying {extraMode === "amount" ? nzd(result.extraPerPeriod) : `${extraValue}%`} extra
-              </p>
-              <p className="text-sm leading-relaxed">
-                Clears the loan{" "}
-                <b>{describeDuration(result.periodsSaved, result.perYear)}</b> early and saves{" "}
-                <b>{nzd(result.interestSaved)}</b> in interest.
-              </p>
-            </div>
-          )}
-
-          <p className="mt-auto pt-6 text-xs leading-relaxed text-valar-lilac">
-            Indicative only. Assumes the rate stays fixed for the full term, which it will not — it
-            is a comparison tool, not a quote.
-          </p>
+        {/* The chart — compact, under the controls, on the left. */}
+        <div className="rounded-2xl border border-valar-concrete bg-white p-6">
+          <BalanceChart series={result.series} showExtra={usingExtra} />
         </div>
-      </div>
 
-      {/* The chart */}
-      <div className="rounded-2xl border border-valar-concrete bg-white p-6 md:p-8">
-        <BalanceChart
-          series={result.series}
-          showExtra={usingExtra}
-          payoffYears={payoffYears}
-          scheduledYears={years}
-        />
-      </div>
-
-      {/* Send it */}
-      {onSendReport && (
-        <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-valar-navy p-8 md:p-10">
-          <div className="max-w-[54ch]">
-            <h2 className="mb-2 text-2xl font-bold text-white">
+        {/* The ask — also on the left, under the chart. */}
+        {onSendReport && (
+          <div className="rounded-2xl bg-valar-navy p-6">
+            <h3 className="mb-2 text-lg font-bold text-white">
               Want this in writing<span className="text-valar-amber">?</span>
-            </h2>
-            <p className="text-[15px] leading-relaxed text-valar-lilac">
-              I&rsquo;ll send you your figures alongside the ten mistakes I see most often before an
+            </h3>
+            <p className="mb-5 text-sm leading-relaxed text-valar-lilac">
+              I&rsquo;ll send your figures alongside the ten mistakes I see most often before an
               application — the ones that quietly cost people either the loan or the rate.
             </p>
+            <button
+              type="button"
+              onClick={onSendReport}
+              className="w-full rounded-lg bg-valar-amber px-6 py-3 text-sm font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover sm:w-auto"
+            >
+              Send me my calculation
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={onSendReport}
-            className="rounded-lg bg-valar-amber px-6 py-3.5 text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
-          >
-            Send me my calculation
-          </button>
+        )}
+      </div>
+
+      {/* Right column — the answer, held in view while the inputs move. */}
+      <div
+        data-cmp="RepaymentCalculator.Results"
+        className="flex flex-col rounded-2xl bg-valar-navy p-6 text-white md:p-8 lg:sticky lg:top-24"
+      >
+        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+          Your {result.frequencyLabel} repayment
+        </p>
+        <p className="text-4xl font-bold tabular-nums">{nzd(result.totalPayment, 2)}</p>
+        {usingExtra && (
+          <p className="mt-1 text-sm text-valar-lilac">
+            {nzd(result.basePayment, 2)} required, plus {nzd(result.extraPerPeriod, 2)} extra
+          </p>
+        )}
+
+        <div className="mt-6 flex flex-col gap-3 border-t border-white/15 pt-5 text-sm">
+          <div className="flex justify-between gap-4">
+            <span className="text-valar-lilac">Total interest</span>
+            <span className="font-semibold tabular-nums">{nzd(result.totalInterest)}</span>
+          </div>
+          <div className="flex justify-between gap-4">
+            <span className="text-valar-lilac">Total repaid</span>
+            <span className="font-semibold tabular-nums">{nzd(result.totalPaid)}</span>
+          </div>
         </div>
-      )}
+
+        <div className="mt-5">
+          <div className="flex h-2 overflow-hidden rounded-full">
+            <div
+              className="bg-valar-horizon"
+              style={{ width: `${(1 - result.interestShare) * 100}%` }}
+            />
+            <div className="w-[2px] shrink-0 bg-valar-navy" />
+            <div className="flex-1 bg-valar-amber" />
+          </div>
+          <div className="mt-2 flex justify-between text-xs text-valar-lilac">
+            <span>Amount borrowed</span>
+            <span>Interest · {Math.round(result.interestShare * 100)}%</span>
+          </div>
+        </div>
+
+        {usingExtra && result.periodsSaved > 0 && (
+          <div className="mt-6 rounded-lg bg-white/10 p-4">
+            <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.1em] text-valar-amber">
+              Paying {extraMode === "amount" ? nzd(result.extraPerPeriod) : `${extraValue}%`} extra
+            </p>
+            <p className="text-sm leading-relaxed">
+              Clears the loan <b>{describeDuration(result.periodsSaved, result.perYear)}</b> early
+              and saves <b>{nzd(result.interestSaved)}</b> in interest.
+            </p>
+          </div>
+        )}
+
+        <p className="mt-6 pt-5 text-xs leading-relaxed text-valar-lilac">
+          Indicative only. Assumes the rate stays fixed for the full term, which it will not — it is
+          a comparison tool, not a quote.
+        </p>
+      </div>
     </div>
   );
 }
