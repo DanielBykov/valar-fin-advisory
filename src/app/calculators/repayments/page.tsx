@@ -48,6 +48,29 @@ export default function Page() {
         </div>
       </section>
 
+      <section data-cmp="RepaymentsPage.Split" className="px-4 pb-4 md:px-6">
+        <div className="container mx-auto max-w-6xl">
+          <Link
+            href="/calculators/split-loan"
+            className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-valar-concrete bg-white p-6 transition-colors hover:border-valar-amber"
+          >
+            <div className="max-w-[60ch]">
+              <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+                Is your loan split?
+              </p>
+              <h2 className="mb-1 text-lg font-bold text-valar-navy">
+                Most loans are not one rate on one term
+              </h2>
+              <p className="text-sm leading-relaxed text-gray-600">
+                If yours is split across parts on different rates and terms, this calculator only
+                describes one of them. The split calculator does the whole structure.
+              </p>
+            </div>
+            <span className="text-sm font-semibold text-valar-navy">Open the split calculator &rarr;</span>
+          </Link>
+        </div>
+      </section>
+
       <section data-cmp="RepaymentsPage.Cta" className="px-4 pb-20 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-valar-navy p-8 md:p-10">

@@ -17,7 +17,7 @@
  * with them.
  */
 
-export type CalculatorSlug = "what-can-i-buy" | "repayments" | "rent-vs-buy";
+export type CalculatorSlug = "what-can-i-buy" | "repayments" | "split-loan" | "rent-vs-buy";
 
 export type Calculator = {
   slug: CalculatorSlug;
@@ -47,6 +47,14 @@ export const CALCULATORS: Calculator[] = [
     blurb:
       "Weekly, fortnightly or monthly — and what paying a little extra each time actually takes off the term and the interest.",
     menuBlurb: "What it costs, and what extra payments save",
+    live: true,
+  },
+  {
+    slug: "split-loan",
+    title: "Split home loan",
+    blurb:
+      "Split a loan into three parts, each with its own rate, term and extra repayment, and see the combined cost and the weighted average rate across the whole structure.",
+    menuBlurb: "Three parts, three rates, one real cost",
     live: true,
   },
   {
