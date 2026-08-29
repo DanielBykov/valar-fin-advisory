@@ -84,7 +84,7 @@ export default function SendCalculationForm({
   return (
     <div
       data-cmp="SendCalculationForm"
-      className="rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
+      className="flex h-full flex-col rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
     >
       <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
         Want this in writing?
@@ -98,7 +98,7 @@ export default function SendCalculationForm({
         the order worth doing them.
       </p>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-3">
         <div className="grid grid-cols-2 gap-3">
           <label className="flex flex-col gap-1.5">
             <span className="text-[11px] font-bold uppercase tracking-wider text-valar-steel">
@@ -165,7 +165,7 @@ export default function SendCalculationForm({
         <button
           type="submit"
           disabled={submitting}
-          className="mt-2 w-full rounded-lg bg-valar-amber px-6 py-3 text-sm font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover disabled:opacity-60"
+          className="mt-auto w-full rounded-lg bg-valar-amber px-6 py-3 text-sm font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover disabled:opacity-60"
         >
           {submitting ? "Sending…" : "Send me my calculation"}
         </button>

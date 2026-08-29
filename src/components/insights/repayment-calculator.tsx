@@ -157,7 +157,7 @@ export default function RepaymentCalculator({
   return (
     <div
       data-cmp="RepaymentCalculator"
-      className="grid items-start gap-6 lg:grid-cols-[1fr_400px]"
+      className="grid gap-6 lg:grid-cols-[1fr_400px]"
     >
       {/* Row 1, left — the controls. */}
       <div
@@ -327,7 +327,7 @@ export default function RepaymentCalculator({
           </div>
         )}
 
-        <p className="mt-6 pt-5 text-xs leading-relaxed text-valar-lilac">
+        <p className="mt-auto pt-6 text-xs leading-relaxed text-valar-lilac">
           Indicative only. Assumes the rate stays fixed for the full term, which it will not — it is
           a comparison tool, not a quote.
         </p>
