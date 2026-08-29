@@ -11,6 +11,12 @@ interface GuideDownloadModalProps {
     title: string;
     description?: string;
     key: string;
+    /**
+     * Set while the PDF is still being written. The lead is still captured and
+     * Lena is still notified — the success screen just does not offer a
+     * download link that would 404.
+     */
+    comingSoon?: boolean;
   };
 }
 
@@ -71,21 +77,35 @@ export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalP
             <h3 className="text-xl font-bold text-valar-navy mb-1">
               Thanks for your request.
             </h3>
-            <p className="text-base text-valar-navy/80 mb-4">Your guide is ready.</p>
+            <p className="text-base text-valar-navy/80 mb-4">
+              {guide.comingSoon ? "It is on its way to you." : "Your guide is ready."}
+            </p>
             <div className="h-[2px] w-8 bg-valar-amber mx-auto mb-5" />
 
-            <a
-              href={`/resources/guides/${guide.key}.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold py-3 px-6 rounded-sm transition-colors text-sm"
-            >
-              Download the guide →
-            </a>
+            {!guide.comingSoon && (
+              <a
+                href={`/resources/guides/${guide.key}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold py-3 px-6 rounded-sm transition-colors text-sm"
+              >
+                Download the guide →
+              </a>
+            )}
 
             <p className="text-sm text-valar-indigo leading-relaxed mt-5">
-              We&apos;ve also emailed your copy of the{" "}
-              <span className="font-semibold">First Home Buyer Guide</span>. Keep an eye on your inbox.
+              {guide.comingSoon ? (
+                <>
+                  <span className="font-semibold">{guide.title}</span> is being finished right now.
+                  It will land in your inbox the moment it is done — along with anything you asked
+                  for above.
+                </>
+              ) : (
+                <>
+                  We&apos;ve also emailed your copy of the{" "}
+                  <span className="font-semibold">{guide.title}</span>. Keep an eye on your inbox.
+                </>
+              )}
             </p>
             <p className="text-sm font-bold text-valar-navy mt-5">
               Happy to assist you whenever you&apos;re ready.

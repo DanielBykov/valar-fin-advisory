@@ -10,10 +10,13 @@ import { GuideDownloadModal } from "@/components/guide-download-modal";
  * title is what lands in Lena's inbox, so it names what the person was doing.
  */
 const REPAYMENT_REPORT = {
-  key: "first-home-buyer-guide",
-  title: "Repayment calculation + 10 mistakes",
-  description:
-    "Your figures, and the ten mistakes that most often cost people the loan or the rate before they apply.",
+  key: "pay-off-faster",
+  title: "Ten Ways to Pay Your Mortgage Off Faster",
+  description: "Your figures, and the ten things that actually move the number.",
+  // The PDF is not written yet. Until it is dropped into
+  // public/resources/guides/pay-off-faster.pdf the modal captures the lead and
+  // says the guide is coming, rather than offering a link that would 404.
+  comingSoon: true,
 };
 
 export default function RepaymentsContent() {

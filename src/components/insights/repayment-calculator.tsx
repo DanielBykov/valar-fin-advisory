@@ -146,6 +146,11 @@ export default function RepaymentCalculator({
       : Math.max(1_000, Math.ceil((result.allowancePerPeriod * 1.5) / 50) * 50);
 
   const usingExtra = result.extraPerPeriod > 0;
+  const clearsEarly = usingExtra && result.periods < result.scheduledPeriods;
+  const payoffAtYears = clearsEarly ? result.periods / result.perYear : null;
+  const payoffLabel = clearsEarly
+    ? describeDuration(result.periods, result.perYear)
+    : null;
 
   return (
     <div
@@ -270,34 +275,21 @@ export default function RepaymentCalculator({
 
         {/* The chart — compact, under the controls, on the left. */}
         <div className="rounded-2xl border border-valar-concrete bg-white p-6">
-          <BalanceChart series={result.series} showExtra={usingExtra} />
+          <BalanceChart
+            series={result.series}
+            showExtra={usingExtra}
+            payoffAtYears={payoffAtYears}
+            payoffLabel={payoffLabel}
+          />
         </div>
 
-        {/* The ask — also on the left, under the chart. */}
-        {onSendReport && (
-          <div className="rounded-2xl bg-valar-navy p-6">
-            <h3 className="mb-2 text-lg font-bold text-white">
-              Want this in writing<span className="text-valar-amber">?</span>
-            </h3>
-            <p className="mb-5 text-sm leading-relaxed text-valar-lilac">
-              I&rsquo;ll send your figures alongside the ten mistakes I see most often before an
-              application — the ones that quietly cost people either the loan or the rate.
-            </p>
-            <button
-              type="button"
-              onClick={onSendReport}
-              className="w-full rounded-lg bg-valar-amber px-6 py-3 text-sm font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover sm:w-auto"
-            >
-              Send me my calculation
-            </button>
-          </div>
-        )}
       </div>
 
-      {/* Right column — the answer, held in view while the inputs move. */}
+      {/* Right column — the answer, then the ask, which lands opposite the chart. */}
+      <div className="flex flex-col gap-6">
       <div
         data-cmp="RepaymentCalculator.Results"
-        className="flex flex-col rounded-2xl bg-valar-navy p-6 text-white md:p-8 lg:sticky lg:top-24"
+        className="flex flex-col rounded-2xl bg-valar-navy p-6 text-white md:p-8"
       >
         <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
           Your {result.frequencyLabel} repayment
@@ -351,6 +343,33 @@ export default function RepaymentCalculator({
           Indicative only. Assumes the rate stays fixed for the full term, which it will not — it is
           a comparison tool, not a quote.
         </p>
+      </div>
+
+      {onSendReport && (
+        <div
+          data-cmp="RepaymentCalculator.Send"
+          className="rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
+        >
+          <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+            Want this in writing?
+          </p>
+          <h3 className="mb-3 text-xl font-bold text-valar-navy">
+            I can send you these figures<span className="text-valar-amber">.</span>
+          </h3>
+          <p className="mb-6 text-sm leading-relaxed text-gray-600">
+            Your numbers, and a short guide with them —{" "}
+            <b className="text-valar-navy">Ten Ways to Pay Your Mortgage Off Faster</b>. The things
+            that actually move the number, in the order worth doing them.
+          </p>
+          <button
+            type="button"
+            onClick={onSendReport}
+            className="w-full rounded-lg bg-valar-amber px-6 py-3 text-sm font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
+          >
+            Send me my calculation
+          </button>
+        </div>
+      )}
       </div>
     </div>
   );
