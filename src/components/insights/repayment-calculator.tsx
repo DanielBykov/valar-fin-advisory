@@ -120,9 +120,10 @@ function Field({
 }
 
 export default function RepaymentCalculator({
-  onSendReport,
+  sendForm,
 }: {
-  onSendReport?: () => void;
+  /** The capture card that sits in row 2, opposite the chart. */
+  sendForm?: React.ReactNode;
 }) {
   const [amount, setAmount] = useState(650_000);
   // 5.00% is roughly where the one-year fixed rate sits. It is a placeholder
@@ -148,8 +149,9 @@ export default function RepaymentCalculator({
   const usingExtra = result.extraPerPeriod > 0;
   const clearsEarly = usingExtra && result.periods < result.scheduledPeriods;
   const payoffAtYears = clearsEarly ? result.periods / result.perYear : null;
-  const payoffLabel = clearsEarly
-    ? describeDuration(result.periods, result.perYear)
+  const payoffLabel = clearsEarly ? describeDuration(result.periods, result.perYear) : null;
+  const earlyLabel = clearsEarly
+    ? describeDuration(result.periodsSaved, result.perYear)
     : null;
 
   return (
@@ -157,9 +159,8 @@ export default function RepaymentCalculator({
       data-cmp="RepaymentCalculator"
       className="grid items-start gap-6 lg:grid-cols-[1fr_400px]"
     >
-      {/* Left column — the controls, the chart, and the ask. */}
-      <div className="flex flex-col gap-6">
-        <div
+      {/* Row 1, left — the controls. */}
+      <div
           data-cmp="RepaymentCalculator.Inputs"
           className="flex flex-col gap-6 rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
         >
@@ -271,22 +272,9 @@ export default function RepaymentCalculator({
               </p>
             )}
           </div>
-        </div>
-
-        {/* The chart — compact, under the controls, on the left. */}
-        <div className="rounded-2xl border border-valar-concrete bg-white p-6">
-          <BalanceChart
-            series={result.series}
-            showExtra={usingExtra}
-            payoffAtYears={payoffAtYears}
-            payoffLabel={payoffLabel}
-          />
-        </div>
-
       </div>
 
-      {/* Right column — the answer, then the ask, which lands opposite the chart. */}
-      <div className="flex flex-col gap-6">
+      {/* Row 1, right — the answer. */}
       <div
         data-cmp="RepaymentCalculator.Results"
         className="flex flex-col rounded-2xl bg-valar-navy p-6 text-white md:p-8"
@@ -345,32 +333,21 @@ export default function RepaymentCalculator({
         </p>
       </div>
 
-      {onSendReport && (
-        <div
-          data-cmp="RepaymentCalculator.Send"
-          className="rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
-        >
-          <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-            Want this in writing?
-          </p>
-          <h3 className="mb-3 text-xl font-bold text-valar-navy">
-            I can send you these figures<span className="text-valar-amber">.</span>
-          </h3>
-          <p className="mb-6 text-sm leading-relaxed text-gray-600">
-            Your numbers, and a short guide with them —{" "}
-            <b className="text-valar-navy">Ten Ways to Pay Your Mortgage Off Faster</b>. The things
-            that actually move the number, in the order worth doing them.
-          </p>
-          <button
-            type="button"
-            onClick={onSendReport}
-            className="w-full rounded-lg bg-valar-amber px-6 py-3 text-sm font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
-          >
-            Send me my calculation
-          </button>
-        </div>
-      )}
+      {/* Row 2, left — the chart. Sharing the grid's row line with the form
+          beside it is the whole point: nesting each column in its own flex
+          stack let the results panel grow and push the form out of line. */}
+      <div className="rounded-2xl bg-valar-navy p-6">
+        <BalanceChart
+          series={result.series}
+          showExtra={usingExtra}
+          payoffAtYears={payoffAtYears}
+          payoffLabel={payoffLabel}
+          earlyLabel={earlyLabel}
+        />
       </div>
+
+      {/* Row 2, right — the ask, level with the chart. */}
+      {sendForm}
     </div>
   );
 }

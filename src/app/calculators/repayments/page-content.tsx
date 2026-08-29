@@ -1,35 +1,23 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import RepaymentCalculator from "@/components/insights/repayment-calculator";
-import { GuideDownloadModal } from "@/components/guide-download-modal";
+import SendCalculationForm from "@/components/calculators/send-calculation-form";
 
 /*
- * Capture reuses the guide route rather than adding a second consent path. The
- * title is what lands in Lena's inbox, so it names what the person was doing.
+ * Capture posts to the same /api/guide-request as the guide modal — one path,
+ * one consent flow, one MailerLite group. The title is what lands in Lena's
+ * inbox, so it names what the person was doing.
  */
-const REPAYMENT_REPORT = {
-  key: "pay-off-faster",
-  title: "Ten Ways to Pay Your Mortgage Off Faster",
-  description: "Your figures, and the ten things that actually move the number.",
-  // The PDF is not written yet. Until it is dropped into
-  // public/resources/guides/pay-off-faster.pdf the modal captures the lead and
-  // says the guide is coming, rather than offering a link that would 404.
-  comingSoon: true,
-};
+const GUIDE_TITLE = "Ten Ways to Pay Your Mortgage Off Faster";
+
+/*
+ * The PDF is not written yet. Until it exists the thank-you says the guide is
+ * being finished rather than promising something already sent.
+ */
+const GUIDE_READY = false;
 
 export default function RepaymentsContent() {
-  const [sendOpen, setSendOpen] = useState(false);
-
   return (
     <div data-cmp="RepaymentsPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
-      <GuideDownloadModal
-        open={sendOpen}
-        onClose={() => setSendOpen(false)}
-        guide={REPAYMENT_REPORT}
-      />
-
       <section
         data-cmp="RepaymentsPage.Hero"
         className="bg-valar-navy px-4 pt-36 pb-16 text-white md:px-6"
@@ -53,7 +41,11 @@ export default function RepaymentsContent() {
 
       <section data-cmp="RepaymentsPage.Calculator" className="px-4 py-14 md:px-6">
         <div className="container mx-auto max-w-6xl">
-          <RepaymentCalculator onSendReport={() => setSendOpen(true)} />
+          <RepaymentCalculator
+            sendForm={
+              <SendCalculationForm guideTitle={GUIDE_TITLE} guideReady={GUIDE_READY} />
+            }
+          />
         </div>
       </section>
 

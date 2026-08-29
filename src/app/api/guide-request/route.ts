@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
-  const { firstName, email, phone, guideTitle, subscribe } = await req.json();
+  const { firstName, lastName, email, phone, guideTitle, subscribe } = await req.json();
   if (!firstName || !email) {
     return NextResponse.json({ success: false, error: "Name and email required." }, { status: 400 });
   }
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       subject: `Guide request: ${guideTitle}`,
       html: `
         <p><strong>Guide:</strong> ${guideTitle}</p>
-        <p><strong>Name:</strong> ${firstName}</p>
+        <p><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ""}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone || "—"}</p>
         <p><strong>News opt-in:</strong> ${subscribe === "yes" ? "Yes" : "No"}</p>
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         email,
-        fields: { name: firstName },
+        fields: { name: firstName, ...(lastName ? { last_name: lastName } : {}) },
         groups,
       }),
     }),
