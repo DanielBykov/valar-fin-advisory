@@ -22,8 +22,13 @@ type FieldProps = {
   min: number;
   max: number;
   step: number;
-  prefix?: string;
-  suffix?: string;
+  /**
+   * The unit, shown in a fixed-width slot to the LEFT of the box. It sits in
+   * front rather than behind so that every input in the column starts and ends
+   * on the same line — a trailing "%" or "yrs" pushed its box out of step with
+   * the one above it.
+   */
+  unit?: string;
   /** Decimal places to show. 0 also turns on thousands separators. */
   decimals?: number;
   onChange: (value: number) => void;
@@ -36,8 +41,7 @@ function Field({
   min,
   max,
   step,
-  prefix,
-  suffix,
+  unit,
   decimals = 0,
   onChange,
 }: FieldProps) {
@@ -70,7 +74,7 @@ function Field({
       <div className="flex items-baseline justify-between gap-3">
         <label className="text-sm font-semibold text-valar-navy">{label}</label>
         <div className="flex items-center gap-1 text-valar-navy">
-          {prefix && <span className="text-sm text-valar-steel">{prefix}</span>}
+          <span className="w-7 shrink-0 text-right text-sm text-valar-steel">{unit}</span>
           <input
             type="text"
             inputMode={decimals > 0 ? "decimal" : "numeric"}
@@ -98,7 +102,6 @@ function Field({
             className="w-32 rounded-lg border border-valar-concrete bg-white px-3 py-1.5 text-right text-sm font-semibold tabular-nums focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
             aria-label={label}
           />
-          {suffix && <span className="text-sm text-valar-steel">{suffix}</span>}
         </div>
       </div>
       <input
@@ -170,7 +173,7 @@ export default function RepaymentCalculator({
             min={50_000}
             max={2_000_000}
             step={5_000}
-            prefix="$"
+            unit="$"
             onChange={setAmount}
           />
           <Field
@@ -179,7 +182,7 @@ export default function RepaymentCalculator({
             min={1}
             max={12}
             step={0.05}
-            suffix="%"
+            unit="%"
             decimals={2}
             hint="Use the rate you have been quoted, not the advertised headline."
             onChange={setRate}
@@ -190,7 +193,7 @@ export default function RepaymentCalculator({
             min={5}
             max={30}
             step={1}
-            suffix="yrs"
+            unit="yrs"
             onChange={setYears}
           />
 
@@ -249,8 +252,7 @@ export default function RepaymentCalculator({
               min={0}
               max={extraMax}
               step={extraMode === "amount" ? 10 : 0.25}
-              prefix={extraMode === "amount" ? "$" : undefined}
-              suffix={extraMode === "percent" ? "%" : undefined}
+              unit={extraMode === "amount" ? "$" : "%"}
               decimals={extraMode === "percent" ? 2 : 0}
               hint={
                 extraMode === "amount"
@@ -290,6 +292,22 @@ export default function RepaymentCalculator({
         )}
 
         <div className="mt-6 flex flex-col gap-3 border-t border-white/15 pt-5 text-sm">
+          {/* What it costs across a year — the figure people actually budget
+              against, and the one the per-payment number hides. */}
+          <div className="flex justify-between gap-4">
+            <span className="text-valar-lilac">Paid per year</span>
+            <span className="font-semibold tabular-nums">
+              {nzd(result.totalPayment * result.perYear)}
+            </span>
+          </div>
+          {usingExtra && (
+            <div className="flex justify-between gap-4 text-xs text-valar-lilac">
+              <span>{nzd(result.basePayment * result.perYear)} required</span>
+              <span className="tabular-nums text-valar-amber">
+                + {nzd(result.extraPerPeriod * result.perYear)} extra
+              </span>
+            </div>
+          )}
           <div className="flex justify-between gap-4">
             <span className="text-valar-lilac">Total interest</span>
             <span className="font-semibold tabular-nums">{nzd(result.totalInterest)}</span>

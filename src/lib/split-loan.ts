@@ -120,13 +120,32 @@ export function amortise(
   };
 }
 
+/**
+ * "19 years 6 months" — spelled out, not "19 yr 6 mo".
+ *
+ * The abbreviated form read as a typo at a glance: two-letter units next to
+ * two-digit numbers give "19 yr 6 mo", which scans as four numbers rather than
+ * a duration. Singulars are handled, so a plan can clear in "1 year 1 month".
+ */
 export function describeDuration(periods: number, perYear: number) {
   if (!Number.isFinite(periods) || periods <= 0) return "—";
-  const years = Math.floor(periods / perYear);
-  const months = Math.round(((periods % perYear) / perYear) * 12);
-  if (years <= 0) return `${months} month${months === 1 ? "" : "s"}`;
-  if (months <= 0) return `${years} year${years === 1 ? "" : "s"}`;
-  return `${years} yr ${months} mo`;
+
+  let years = Math.floor(periods / perYear);
+  let months = Math.round(((periods % perYear) / perYear) * 12);
+
+  // Rounding can push the remainder to a full year — carry it rather than
+  // printing "19 years 12 months".
+  if (months >= 12) {
+    years += 1;
+    months = 0;
+  }
+
+  const y = `${years} year${years === 1 ? "" : "s"}`;
+  const m = `${months} month${months === 1 ? "" : "s"}`;
+
+  if (years <= 0) return m;
+  if (months <= 0) return y;
+  return `${y} ${m}`;
 }
 
 
