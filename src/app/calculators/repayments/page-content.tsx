@@ -1,18 +1,13 @@
 import Link from "next/link";
 import RepaymentCalculator from "@/components/insights/repayment-calculator";
+import { isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
 
 /*
  * Capture posts to the same /api/guide-request as the guide modal — one path,
- * one consent flow, one MailerLite group. The title is what lands in Lena's
- * inbox, so it names what the person was doing.
+ * one consent flow. Which MailerLite group it lands in, and whether the guide
+ * exists yet, are properties of the magnet, in src/lib/lead-magnets.ts.
  */
-const GUIDE_TITLE = "Ten Ways to Pay Your Mortgage Off Faster";
-
-/*
- * The PDF is not written yet. Until it exists the thank-you says the guide is
- * being finished rather than promising something already sent.
- */
-const GUIDE_READY = false;
+const MAGNET = LEAD_MAGNETS["pay-your-mortgage-off-faster"];
 
 export default function RepaymentsContent() {
   return (
@@ -40,7 +35,11 @@ export default function RepaymentsContent() {
 
       <section data-cmp="RepaymentsPage.Calculator" className="px-4 py-14 md:px-6">
         <div className="container mx-auto max-w-6xl">
-          <RepaymentCalculator guideTitle={GUIDE_TITLE} guideReady={GUIDE_READY} />
+          <RepaymentCalculator
+            guideKey={MAGNET.key}
+            guideTitle={MAGNET.title}
+            guideReady={isReady(MAGNET)}
+          />
         </div>
       </section>
 

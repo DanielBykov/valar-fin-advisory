@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import SplitLoanCalculator from "@/components/calculators/split-loan-calculator";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
+import { LEAD_MAGNETS } from "@/lib/lead-magnets";
 import { EXTRA_CAP_PERCENT } from "@/lib/split-loan";
 
 /*
@@ -11,12 +12,6 @@ import { EXTRA_CAP_PERCENT } from "@/lib/split-loan";
  * The title is what lands in Lena's inbox notification, so it names the tool
  * the person was actually using when they asked.
  */
-const SPLIT_REVIEW = {
-  key: "first-home-buyer-guide",
-  title: "Split structure review",
-  description:
-    "Send Lena your split and she will come back on what she would change — the parts, the terms, and where the extra repayment is doing the most work.",
-};
 
 const WHY_SPLIT = [
   {
@@ -41,7 +36,7 @@ export default function SplitLoanContent() {
       <GuideDownloadModal
         open={reviewOpen}
         onClose={() => setReviewOpen(false)}
-        guide={SPLIT_REVIEW}
+        guide={LEAD_MAGNETS["split-structure-review"]}
       />
 
       {/* ── Hero ─────────────────────────────────────────────── */}

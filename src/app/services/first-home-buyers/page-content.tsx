@@ -19,6 +19,7 @@ import {
   Clipboard,
 } from "lucide-react";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
+import { LEAD_MAGNETS } from "@/lib/lead-magnets";
 import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 import { faqs } from "./faqs";
 
@@ -72,17 +73,12 @@ function FAQItem({ question, answer }: { question: string; answer: string | stri
   );
 }
 
-const FIRST_HOME_GUIDE = {
-  key: "first-home-buyer-guide",
-  title: "First Home Buyer Guide",
-  description: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
-};
 
 export default function FirstHomeBuyersContent() {
   const [guideOpen, setGuideOpen] = useState(false);
   return (
     <div data-cmp="FirstHomeBuyersPage" className="w-full flex flex-col font-sans">
-      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={FIRST_HOME_GUIDE} />
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]} />
 
       {/* HERO */}
       <section data-cmp="FirstHomeBuyersPage.Hero" className="relative overflow-hidden">

@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { SITE_URL } from "@/lib/schema";
 import { calculateRepayments } from "@/lib/repayments";
 import { FREQUENCIES } from "@/lib/split-loan";
 import { nzd, parseRepaymentSnapshot } from "@/lib/repayment-report";
 import { renderRepaymentEmail } from "@/lib/emails/repayment-calculation";
+import { getLeadMagnet, isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -11,7 +13,7 @@ const FROM = "Lena Bykova <lena.bykova@valar.co.nz>";
 const TO_LENA = "lena.bykova@valar.co.nz";
 
 export async function POST(req: Request) {
-  const { firstName, lastName, email, phone, guideTitle, guideReady, subscribe, figures } =
+  const { firstName, lastName, email, phone, guideKey, guideTitle, subscribe, figures } =
     await req.json();
   if (!firstName || !email) {
     return NextResponse.json({ success: false, error: "Name and email required." }, { status: 400 });
@@ -25,16 +27,33 @@ export async function POST(req: Request) {
    */
   const snapshot = parseRepaymentSnapshot(figures);
 
-  // Everyone who requests the guide joins the First Home Buyers group — this triggers the
-  // MailerLite welcome automation that delivers the guide and the follow-up series.
+  /*
+   * Which magnet was promised decides which group they join, and therefore
+   * which automation fires. Requests without a key are from before this
+   * existed, and the first home guide is what they were all asking for.
+   */
+  const magnet = getLeadMagnet(guideKey) ?? LEAD_MAGNETS["first-home-buyer-guide"];
+  const title = magnet.title || guideTitle;
+
+  /*
+   * The calculators group may not be created in MailerLite yet. Falling back to
+   * the first home buyers group keeps every form working through the changeover
+   * rather than 500-ing on a real lead; the log line is what says it happened.
+   */
+  let groupId = process.env[magnet.groupEnv];
+  if (!groupId && magnet.groupEnv !== "MAILERLITE_FHB_GROUP_ID") {
+    console.warn(`${magnet.groupEnv} is not set — enrolling "${magnet.key}" in the first home buyers group instead.`);
+    groupId = process.env.MAILERLITE_FHB_GROUP_ID;
+  }
+
   // Ticking the news box also adds them to the general newsletter group.
-  const groups = [process.env.MAILERLITE_FHB_GROUP_ID];
+  const groups = [groupId];
   if (subscribe === "yes") groups.push(process.env.MAILERLITE_GROUP_ID);
 
   // Guard against a missing/misconfigured group id — otherwise we'd POST groups: [undefined]
   // to MailerLite, which silently fails to enrol the lead and never fires the welcome automation.
   if (groups.some((g) => !g)) {
-    console.error("MailerLite group id missing — check MAILERLITE_FHB_GROUP_ID / MAILERLITE_GROUP_ID env vars.");
+    console.error(`MailerLite group id missing — check ${magnet.groupEnv} / MAILERLITE_GROUP_ID env vars.`);
     return NextResponse.json({ success: false, error: "Subscription is temporarily unavailable." }, { status: 500 });
   }
 
@@ -77,9 +96,10 @@ export async function POST(req: Request) {
     to: TO_LENA,
     subject: snapshot
       ? `Calculation sent: ${firstName} — ${nzd(snapshot.amount)} @ ${snapshot.rate.toFixed(2)}%`
-      : `Guide request: ${guideTitle}`,
+      : `Guide request: ${title}`,
     html: `
-      <p><strong>Guide:</strong> ${guideTitle}</p>
+      <p><strong>Guide:</strong> ${title}</p>
+      <p><strong>Group:</strong> ${magnet.groupEnv === "MAILERLITE_FHB_GROUP_ID" ? "First home buyers" : "Calculators"}</p>
       <p><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ""}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone || "—"}</p>
@@ -114,8 +134,11 @@ export async function POST(req: Request) {
     ? renderRepaymentEmail({
         firstName,
         snapshot,
-        guideTitle: guideTitle || "Ten Ways to Pay Your Mortgage Off Faster",
-        guideReady: guideReady === true,
+        guideTitle: title,
+        // Derived, not taken from the request: the browser has no business
+        // telling the server whether a document exists.
+        guideReady: isReady(magnet),
+        guideUrl: magnet.file ? `${SITE_URL}${magnet.file}` : undefined,
       })
     : null;
 

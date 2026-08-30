@@ -3,21 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
+import { isReady, type LeadMagnet } from "@/lib/lead-magnets";
 
 interface GuideDownloadModalProps {
   open: boolean;
   onClose: () => void;
-  guide: {
-    title: string;
-    description?: string;
-    key: string;
-    /**
-     * Set while the PDF is still being written. The lead is still captured and
-     * Lena is still notified — the success screen just does not offer a
-     * download link that would 404.
-     */
-    comingSoon?: boolean;
-  };
+  /**
+   * What is being offered, straight from the registry. Whether there is a file
+   * to download is a property of the magnet, not something a page restates —
+   * the split calculator used to declare a key that pointed its download button
+   * at somebody else's PDF.
+   */
+  guide: LeadMagnet;
 }
 
 export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalProps) {
@@ -78,13 +75,13 @@ export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalP
               Thanks for your request.
             </h3>
             <p className="text-base text-valar-navy/80 mb-4">
-              {guide.comingSoon ? "It is on its way to you." : "Your guide is ready."}
+              {!isReady(guide) ? "It is on its way to you." : "Your guide is ready."}
             </p>
             <div className="h-[2px] w-8 bg-valar-amber mx-auto mb-5" />
 
-            {!guide.comingSoon && (
+            {isReady(guide) && (
               <a
-                href={`/resources/guides/${guide.key}.pdf`}
+                href={guide.file}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold py-3 px-6 rounded-sm transition-colors text-sm"
@@ -94,12 +91,16 @@ export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalP
             )}
 
             <p className="text-sm text-valar-indigo leading-relaxed mt-5">
-              {guide.comingSoon ? (
-                <>
-                  <span className="font-semibold">{guide.title}</span> is being finished right now.
-                  It will land in your inbox the moment it is done — along with anything you asked
-                  for above.
-                </>
+              {!isReady(guide) ? (
+                guide.pendingNote ? (
+                  guide.pendingNote
+                ) : (
+                  <>
+                    <span className="font-semibold">{guide.title}</span> is being finished right now.
+                    It will land in your inbox the moment it is done — along with anything you asked
+                    for above.
+                  </>
+                )
               ) : (
                 <>
                   We&apos;ve also emailed your copy of the{" "}

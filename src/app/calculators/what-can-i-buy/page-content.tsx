@@ -4,12 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import AffordabilityCalculator from "@/components/calculators/affordability-calculator";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
+import { LEAD_MAGNETS } from "@/lib/lead-magnets";
 
-const FIRST_HOME_GUIDE = {
-  key: "first-home-buyer-guide",
-  title: "First Home Buyer Guide",
-  description: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
-};
 
 const DEPOSIT_SOURCES = [
   { term: "Savings.", copy: "Money in the bank, in your name." },
@@ -58,7 +54,7 @@ export default function WhatCanIBuyContent() {
       <GuideDownloadModal
         open={guideOpen}
         onClose={() => setGuideOpen(false)}
-        guide={FIRST_HOME_GUIDE}
+        guide={LEAD_MAGNETS["first-home-buyer-guide"]}
       />
 
       {/* ── Hero ─────────────────────────────────────────────── */}

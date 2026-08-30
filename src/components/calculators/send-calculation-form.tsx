@@ -10,15 +10,19 @@ import type { RepaymentSnapshot } from "@/lib/repayment-report";
  * would leave a card that is mostly empty space next to a full one.
  *
  * It posts to the same /api/guide-request as the guide modal — one capture
- * path, one consent flow, one MailerLite group. What it adds is `figures`: the
- * calculator's inputs as they stood when the button was pressed, which is what
- * turns a subscription into an email the person actually wanted.
+ * path, one consent flow. What it adds is `figures`: the calculator's inputs as
+ * they stood when the button was pressed, which is what turns a subscription
+ * into an email the person actually wanted. The group they land in follows
+ * `guideKey`, resolved on the server from src/lib/lead-magnets.ts.
  */
 export default function SendCalculationForm({
+  guideKey,
   guideTitle,
   guideReady,
   figures,
 }: {
+  /** Which lead magnet this is — the server resolves the MailerLite group from it. */
+  guideKey?: string;
   guideTitle: string;
   /** False while the PDF is still being written — changes what the thank-you says. */
   guideReady: boolean;
@@ -44,7 +48,7 @@ export default function SendCalculationForm({
       const res = await fetch("/api/guide-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, guideTitle, guideReady, figures }),
+        body: JSON.stringify({ ...data, guideKey, guideTitle, figures }),
       });
       const json = await res.json();
       if (json.success) setSucceeded(true);

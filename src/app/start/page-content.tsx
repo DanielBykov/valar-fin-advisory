@@ -6,12 +6,8 @@ import Image from "next/image";
 import portraitImg from "../../../public/images/lena-portrait.webp";
 import { Calendar, ArrowRight, Download, Gauge, ChevronDown, Globe, Instagram, Linkedin, Facebook } from "lucide-react";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
+import { LEAD_MAGNETS } from "@/lib/lead-magnets";
 
-const FIRST_HOME_GUIDE = {
-  key: "first-home-buyer-guide",
-  title: "First Home Buyer Guide",
-  description: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
-};
 
 // Set this to the borrowing-capacity tool's URL and the tile appears. Left null
 // on purpose: a dead link in the Instagram bio is worse than one fewer tile.
@@ -37,7 +33,7 @@ export default function StartContent() {
       data-cmp="StartPage"
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-valar-navy font-sans"
     >
-      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={FIRST_HOME_GUIDE} />
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]} />
 
       {/* The Valar banner artwork, rebuilt as a gradient rather than shipped as
           the source PNG.

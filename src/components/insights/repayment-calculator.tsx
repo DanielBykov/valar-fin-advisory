@@ -130,9 +130,12 @@ function Field({
  * them. The page still owns the copy; it passes the words, not the element.
  */
 export default function RepaymentCalculator({
+  guideKey,
   guideTitle,
   guideReady,
 }: {
+  /** Which lead magnet the card offers — decides the MailerLite group. */
+  guideKey?: string;
   /** Named on the capture card and in the email. Omit to hide the card. */
   guideTitle?: string;
   /** False while the guide PDF is still being written. */
@@ -377,6 +380,7 @@ export default function RepaymentCalculator({
       {/* Row 2, right — the ask, level with the chart. */}
       {guideTitle && (
         <SendCalculationForm
+          guideKey={guideKey}
           guideTitle={guideTitle}
           guideReady={Boolean(guideReady)}
           figures={{ amount, rate, years, frequency, extraMode, extraValue }}

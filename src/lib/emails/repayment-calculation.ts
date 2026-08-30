@@ -60,11 +60,14 @@ export function renderRepaymentEmail({
   snapshot,
   guideTitle,
   guideReady,
+  guideUrl,
 }: {
   firstName: string;
   snapshot: RepaymentSnapshot;
   guideTitle: string;
   guideReady: boolean;
+  /** Absolute URL of the guide PDF, when there is one. */
+  guideUrl?: string;
 }): RepaymentEmail {
   const r = calculateRepayments(snapshot);
   const freqLabel = FREQUENCIES.find((f) => f.key === snapshot.frequency)?.label ?? "Fortnightly";
@@ -123,11 +126,28 @@ export function renderRepaymentEmail({
     </p>`
     : "";
 
+  /*
+   * The guide link goes in this email as well as in the MailerLite welcome
+   * automation, and that repetition is deliberate. A MailerLite automation
+   * fires once per subscriber, ever — so anyone who has already been through a
+   * Valar form gets nothing from it. This is the copy that always arrives.
+   */
   const guideLine = guideReady
-    ? `<p style="margin:0 0 20px;font-size:15px;line-height:24px;color:#3f4a5a;">
-         <strong style="color:${NAVY};">${esc(guideTitle)}</strong> is on its way in a separate email &mdash;
+    ? `<p style="margin:0 0 12px;font-size:15px;line-height:24px;color:#3f4a5a;">
+         And here is <strong style="color:${NAVY};">${esc(guideTitle)}</strong> &mdash;
          the things that actually move this number, in the order worth doing them.
-       </p>`
+       </p>
+       ${
+         guideUrl
+           ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;">
+                <tr><td style="border:1px solid ${CONCRETE};">
+                  <a href="${guideUrl}" style="display:inline-block;padding:12px 22px;font-size:14px;font-weight:700;color:${NAVY};text-decoration:none;">
+                    Read the guide &rarr;
+                  </a>
+                </td></tr>
+              </table>`
+           : ""
+       }`
     : `<p style="margin:0 0 20px;font-size:15px;line-height:24px;color:#3f4a5a;">
          I am finishing a short guide called <strong style="color:${NAVY};">${esc(guideTitle)}</strong> &mdash;
          the things that actually move this number, in the order worth doing them. You will get it the
@@ -275,6 +295,7 @@ export function renderRepaymentEmail({
     `  Extra repayment: ${usingExtra ? extraInput : "None"}`,
     "",
     `Printable version: ${reportUrl}`,
+    guideReady && guideUrl ? `${guideTitle}: ${guideUrl}` : "",
     `Book a clarity call: ${SITE_URL}/book`,
     "",
     "Indicative only. It assumes the rate stays fixed for the full term, which it will not — this is a comparison tool, not a quote, and not personalised advice on any particular loan.",
