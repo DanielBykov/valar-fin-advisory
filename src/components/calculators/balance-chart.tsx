@@ -62,6 +62,7 @@ export default function BalanceChart({
   payoffAtYears,
   payoffLabel,
   earlyLabel,
+  aspect = { w: 380, h: 210 },
 }: {
   series: BalancePoint[];
   /** With nothing extra there is one line, and no legend. */
@@ -72,11 +73,20 @@ export default function BalanceChart({
   payoffLabel: string | null;
   /** How much sooner than the scheduled term — "8 yr 8 mo". */
   earlyLabel: string | null;
+  /**
+   * The plot's aspect, as viewBox units. The default is the shape the card on
+   * the calculator page wants; the printed report passes a wider, shorter one
+   * so a full-width plot still leaves room for the rest of the A4 sheet.
+   *
+   * It is an aspect and not a pixel size: the svg is always width-driven, so
+   * these numbers set the ratio, never the rendered size.
+   */
+  aspect?: { w: number; h: number };
 }) {
   const [hoverYear, setHoverYear] = useState<number | null>(null);
 
-  const W = 380;
-  const H = 210;
+  const W = aspect.w;
+  const H = aspect.h;
   const PAD = { top: 14, right: 12, bottom: 26, left: 42 };
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;

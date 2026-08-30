@@ -1,6 +1,5 @@
 import Link from "next/link";
 import RepaymentCalculator from "@/components/insights/repayment-calculator";
-import SendCalculationForm from "@/components/calculators/send-calculation-form";
 
 /*
  * Capture posts to the same /api/guide-request as the guide modal — one path,
@@ -41,11 +40,7 @@ export default function RepaymentsContent() {
 
       <section data-cmp="RepaymentsPage.Calculator" className="px-4 py-14 md:px-6">
         <div className="container mx-auto max-w-6xl">
-          <RepaymentCalculator
-            sendForm={
-              <SendCalculationForm guideTitle={GUIDE_TITLE} guideReady={GUIDE_READY} />
-            }
-          />
+          <RepaymentCalculator guideTitle={GUIDE_TITLE} guideReady={GUIDE_READY} />
         </div>
       </section>
 

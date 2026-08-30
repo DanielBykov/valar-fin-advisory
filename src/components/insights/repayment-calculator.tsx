@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { AlertTriangle } from "lucide-react";
 import BalanceChart from "@/components/calculators/balance-chart";
+import SendCalculationForm from "@/components/calculators/send-calculation-form";
 import { EXTRA_CAP_PERCENT, FREQUENCIES, describeDuration } from "@/lib/split-loan";
 import { calculateRepayments, type ExtraMode } from "@/lib/repayments";
 import type { FrequencyKey } from "@/lib/split-loan";
@@ -122,11 +123,20 @@ function Field({
   );
 }
 
+/*
+ * The capture card is rendered here rather than passed in as a ReactNode.
+ * It has to carry the numbers currently on screen, and those only exist inside
+ * this component — a prebuilt element handed down from the page cannot see
+ * them. The page still owns the copy; it passes the words, not the element.
+ */
 export default function RepaymentCalculator({
-  sendForm,
+  guideTitle,
+  guideReady,
 }: {
-  /** The capture card that sits in row 2, opposite the chart. */
-  sendForm?: React.ReactNode;
+  /** Named on the capture card and in the email. Omit to hide the card. */
+  guideTitle?: string;
+  /** False while the guide PDF is still being written. */
+  guideReady?: boolean;
 }) {
   const [amount, setAmount] = useState(650_000);
   // 5.00% is roughly where the one-year fixed rate sits. It is a placeholder
@@ -365,7 +375,13 @@ export default function RepaymentCalculator({
       </div>
 
       {/* Row 2, right — the ask, level with the chart. */}
-      {sendForm}
+      {guideTitle && (
+        <SendCalculationForm
+          guideTitle={guideTitle}
+          guideReady={Boolean(guideReady)}
+          figures={{ amount, rate, years, frequency, extraMode, extraValue }}
+        />
+      )}
     </div>
   );
 }

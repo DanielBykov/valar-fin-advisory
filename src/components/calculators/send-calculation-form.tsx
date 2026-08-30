@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import type { RepaymentSnapshot } from "@/lib/repayment-report";
 
 /*
  * The fields sit on the card rather than behind a modal: this one lives beside
@@ -9,15 +10,24 @@ import Link from "next/link";
  * would leave a card that is mostly empty space next to a full one.
  *
  * It posts to the same /api/guide-request as the guide modal — one capture
- * path, one consent flow, one MailerLite group.
+ * path, one consent flow, one MailerLite group. What it adds is `figures`: the
+ * calculator's inputs as they stood when the button was pressed, which is what
+ * turns a subscription into an email the person actually wanted.
  */
 export default function SendCalculationForm({
   guideTitle,
   guideReady,
+  figures,
 }: {
   guideTitle: string;
   /** False while the PDF is still being written — changes what the thank-you says. */
   guideReady: boolean;
+  /**
+   * The calculation to send back. Only the inputs travel: the server recomputes
+   * the answer, so the email can never quote a figure the page did not.
+   * Omitted on any capture that is not attached to a calculator.
+   */
+  figures?: RepaymentSnapshot;
 }) {
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
@@ -34,7 +44,7 @@ export default function SendCalculationForm({
       const res = await fetch("/api/guide-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, guideTitle }),
+        body: JSON.stringify({ ...data, guideTitle, guideReady, figures }),
       });
       const json = await res.json();
       if (json.success) setSucceeded(true);
@@ -70,6 +80,11 @@ export default function SendCalculationForm({
             </>
           )}
         </p>
+        {figures && (
+          <p className="mt-3 text-sm leading-relaxed text-gray-600">
+            There is a printable one-page version linked inside it.
+          </p>
+        )}
         <p className="mt-5 text-sm leading-relaxed text-gray-600">
           If you would rather talk it through,{" "}
           <Link href="/book" className="font-semibold text-valar-navy underline hover:text-valar-amber">
