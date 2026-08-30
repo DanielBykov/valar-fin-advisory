@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { parseRepaymentSnapshot } from "@/lib/repayment-report";
 import { renderRepaymentEmail } from "@/lib/emails/repayment-calculation";
 import { isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
-import { SITE_URL } from "@/lib/schema";
 
 /*
  * Renders the calculation email in the browser, so it can be looked at without
@@ -34,6 +33,7 @@ export async function GET(req: Request) {
   });
   if (!snapshot) return new NextResponse("Bad figures", { status: 400 });
 
+  const baseUrl = new URL(req.url).origin;
   const magnet = LEAD_MAGNETS["pay-your-mortgage-off-faster"];
   const override = p.get("guideReady");
   const ready = override === null ? isReady(magnet) : override === "true";
@@ -43,7 +43,8 @@ export async function GET(req: Request) {
     snapshot,
     guideTitle: p.get("guideTitle") ?? magnet.title,
     guideReady: ready,
-    guideUrl: ready && magnet.file ? `${SITE_URL}${magnet.file}` : undefined,
+    guideUrl: ready && magnet.file ? `${baseUrl}${magnet.file}` : undefined,
+    baseUrl,
   });
 
   return new NextResponse(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });

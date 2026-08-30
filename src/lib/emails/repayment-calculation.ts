@@ -61,6 +61,7 @@ export function renderRepaymentEmail({
   guideTitle,
   guideReady,
   guideUrl,
+  baseUrl = SITE_URL,
 }: {
   firstName: string;
   snapshot: RepaymentSnapshot;
@@ -68,13 +69,19 @@ export function renderRepaymentEmail({
   guideReady: boolean;
   /** Absolute URL of the guide PDF, when there is one. */
   guideUrl?: string;
+  /**
+   * Where the links point. Defaults to the live site; a local run passes its
+   * own origin so a test send is actually clickable, instead of sending the
+   * tester to a production URL the change has not reached yet.
+   */
+  baseUrl?: string;
 }): RepaymentEmail {
   const r = calculateRepayments(snapshot);
   const freqLabel = FREQUENCIES.find((f) => f.key === snapshot.frequency)?.label ?? "Fortnightly";
   const usingExtra = r.extraPerPeriod > 0;
   const clearsEarly = usingExtra && r.periods < r.scheduledPeriods;
   const interestPct = Math.round(r.interestShare * 100);
-  const reportUrl = `${SITE_URL}${repaymentReportPath(snapshot)}`;
+  const reportUrl = `${baseUrl}${repaymentReportPath(snapshot)}`;
   const name = esc(firstName.trim());
 
   const extraInput =
@@ -244,7 +251,7 @@ export function renderRepaymentEmail({
         </p>
         <table role="presentation" cellpadding="0" cellspacing="0" border="0">
           <tr><td style="background-color:${AMBER};">
-            <a href="${SITE_URL}/book" style="display:inline-block;padding:12px 24px;font-size:14px;font-weight:700;color:${NAVY};text-decoration:none;">
+            <a href="${baseUrl}/book" style="display:inline-block;padding:12px 24px;font-size:14px;font-weight:700;color:${NAVY};text-decoration:none;">
               Book a clarity call
             </a>
           </td></tr>
@@ -296,7 +303,7 @@ export function renderRepaymentEmail({
     "",
     `Printable version: ${reportUrl}`,
     guideReady && guideUrl ? `${guideTitle}: ${guideUrl}` : "",
-    `Book a clarity call: ${SITE_URL}/book`,
+    `Book a clarity call: ${baseUrl}/book`,
     "",
     "Indicative only. It assumes the rate stays fixed for the full term, which it will not — this is a comparison tool, not a quote, and not personalised advice on any particular loan.",
     "",

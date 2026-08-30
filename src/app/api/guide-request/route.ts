@@ -28,6 +28,18 @@ export async function POST(req: Request) {
   const snapshot = parseRepaymentSnapshot(figures);
 
   /*
+   * Where the links in the email point.
+   *
+   * Production is always the canonical site — never the request's own host,
+   * which a caller controls and could use to put its own domain inside an
+   * email sent from Lena's address. Development follows the origin it was
+   * called from, so a test send from localhost is actually clickable rather
+   * than pointing at a production URL the change has not been deployed to.
+   */
+  const baseUrl =
+    process.env.NODE_ENV === "development" ? new URL(req.url).origin : SITE_URL;
+
+  /*
    * Which magnet was promised decides which group they join, and therefore
    * which automation fires. Requests without a key are from before this
    * existed, and the first home guide is what they were all asking for.
@@ -153,7 +165,8 @@ export async function POST(req: Request) {
         // Derived, not taken from the request: the browser has no business
         // telling the server whether a document exists.
         guideReady: isReady(magnet),
-        guideUrl: magnet.file ? `${SITE_URL}${magnet.file}` : undefined,
+        guideUrl: magnet.file ? `${baseUrl}${magnet.file}` : undefined,
+        baseUrl,
       })
     : null;
 
