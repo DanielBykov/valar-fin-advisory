@@ -33,7 +33,8 @@ export default function StartContent() {
       data-cmp="StartPage"
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-valar-navy font-sans"
     >
-      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]} />
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]}
+        source="Instagram link page" />
 
       {/* The Valar banner artwork, rebuilt as a gradient rather than shipped as
           the source PNG.

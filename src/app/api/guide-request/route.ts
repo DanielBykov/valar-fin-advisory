@@ -13,7 +13,7 @@ const FROM = "Lena Bykova <lena.bykova@valar.co.nz>";
 const TO_LENA = "lena.bykova@valar.co.nz";
 
 export async function POST(req: Request) {
-  const { firstName, lastName, email, phone, guideKey, guideTitle, subscribe, figures } =
+  const { firstName, lastName, email, phone, guideKey, guideTitle, source, subscribe, figures } =
     await req.json();
   if (!firstName || !email) {
     return NextResponse.json({ success: false, error: "Name and email required." }, { status: 400 });
@@ -100,6 +100,7 @@ export async function POST(req: Request) {
     html: `
       <p><strong>Guide:</strong> ${title}</p>
       <p><strong>Group:</strong> ${magnet.groupEnv === "MAILERLITE_FHB_GROUP_ID" ? "First home buyers" : "Calculators"}</p>
+      <p><strong>Came from:</strong> ${source || "—"}</p>
       <p><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ""}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone || "—"}</p>
@@ -118,7 +119,21 @@ export async function POST(req: Request) {
     },
     body: JSON.stringify({
       email,
-      fields: { name: firstName, ...(lastName ? { last_name: lastName } : {}) },
+      /*
+       * `lead_source` is which page asked, not which document was promised —
+       * the document is already implied by the group. It is there so a single
+       * calculators automation can still be segmented and personalised, which
+       * is the job a group per calculator would otherwise be doing badly.
+       *
+       * Deliberately no figures: what someone typed into a calculator is
+       * financial data about them and it has no business sitting in a
+       * marketing tool. It reaches Lena in the notification below instead.
+       */
+      fields: {
+        name: firstName,
+        ...(lastName ? { last_name: lastName } : {}),
+        ...(typeof source === "string" && source ? { lead_source: source } : {}),
+      },
       groups,
     }),
   });

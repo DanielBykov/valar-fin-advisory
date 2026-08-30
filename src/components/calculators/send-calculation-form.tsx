@@ -19,11 +19,14 @@ export default function SendCalculationForm({
   guideKey,
   guideTitle,
   guideReady,
+  source,
   figures,
 }: {
   /** Which lead magnet this is — the server resolves the MailerLite group from it. */
   guideKey?: string;
   guideTitle: string;
+  /** Which page asked, recorded against the subscriber in MailerLite. */
+  source?: string;
   /** False while the PDF is still being written — changes what the thank-you says. */
   guideReady: boolean;
   /**
@@ -48,7 +51,7 @@ export default function SendCalculationForm({
       const res = await fetch("/api/guide-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, guideKey, guideTitle, figures }),
+        body: JSON.stringify({ ...data, guideKey, guideTitle, source, figures }),
       });
       const json = await res.json();
       if (json.success) setSucceeded(true);

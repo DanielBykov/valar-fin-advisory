@@ -37,6 +37,7 @@ export default function SplitLoanContent() {
         open={reviewOpen}
         onClose={() => setReviewOpen(false)}
         guide={LEAD_MAGNETS["split-structure-review"]}
+        source="Split loan calculator"
       />
 
       {/* ── Hero ─────────────────────────────────────────────── */}

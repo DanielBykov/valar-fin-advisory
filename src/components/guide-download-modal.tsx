@@ -15,9 +15,14 @@ interface GuideDownloadModalProps {
    * at somebody else's PDF.
    */
   guide: LeadMagnet;
+  /**
+   * Which page asked. The same magnet is offered from five places, and knowing
+   * which one is the difference between a list and a list you can act on.
+   */
+  source: string;
 }
 
-export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalProps) {
+export function GuideDownloadModal({ open, onClose, guide, source }: GuideDownloadModalProps) {
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState("");
@@ -32,7 +37,7 @@ export function GuideDownloadModal({ open, onClose, guide }: GuideDownloadModalP
     const res = await fetch("/api/guide-request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, guideKey: guide.key, guideTitle: guide.title }),
+      body: JSON.stringify({ ...data, guideKey: guide.key, guideTitle: guide.title, source }),
     });
     const json = await res.json();
     if (json.success) {

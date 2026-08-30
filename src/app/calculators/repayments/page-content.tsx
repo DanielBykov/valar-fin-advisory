@@ -39,6 +39,7 @@ export default function RepaymentsContent() {
             guideKey={MAGNET.key}
             guideTitle={MAGNET.title}
             guideReady={isReady(MAGNET)}
+            source="Mortgage repayments calculator"
           />
         </div>
       </section>

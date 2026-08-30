@@ -82,7 +82,8 @@ export default function HomeContent() {
   };
   return (
     <div data-cmp="HomePage" className="w-full flex flex-col font-sans">
-      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]} />
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]}
+        source="Home page" />
       {/* HERO */}
       <section data-cmp="HomePage.Hero" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

@@ -55,6 +55,7 @@ export default function WhatCanIBuyContent() {
         open={guideOpen}
         onClose={() => setGuideOpen(false)}
         guide={LEAD_MAGNETS["first-home-buyer-guide"]}
+        source="What can I buy calculator"
       />
 
       {/* ── Hero ─────────────────────────────────────────────── */}

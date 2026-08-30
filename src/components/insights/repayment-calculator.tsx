@@ -133,6 +133,7 @@ export default function RepaymentCalculator({
   guideKey,
   guideTitle,
   guideReady,
+  source,
 }: {
   /** Which lead magnet the card offers — decides the MailerLite group. */
   guideKey?: string;
@@ -140,6 +141,8 @@ export default function RepaymentCalculator({
   guideTitle?: string;
   /** False while the guide PDF is still being written. */
   guideReady?: boolean;
+  /** Which page asked, recorded against the subscriber. */
+  source?: string;
 }) {
   const [amount, setAmount] = useState(650_000);
   // 5.00% is roughly where the one-year fixed rate sits. It is a placeholder
@@ -382,6 +385,7 @@ export default function RepaymentCalculator({
         <SendCalculationForm
           guideKey={guideKey}
           guideTitle={guideTitle}
+          source={source}
           guideReady={Boolean(guideReady)}
           figures={{ amount, rate, years, frequency, extraMode, extraValue }}
         />

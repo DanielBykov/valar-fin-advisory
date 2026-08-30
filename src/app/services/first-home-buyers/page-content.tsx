@@ -78,7 +78,8 @@ export default function FirstHomeBuyersContent() {
   const [guideOpen, setGuideOpen] = useState(false);
   return (
     <div data-cmp="FirstHomeBuyersPage" className="w-full flex flex-col font-sans">
-      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]} />
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]}
+        source="First home buyers page" />
 
       {/* HERO */}
       <section data-cmp="FirstHomeBuyersPage.Hero" className="relative overflow-hidden">
