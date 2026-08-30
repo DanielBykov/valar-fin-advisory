@@ -58,15 +58,19 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
     file: "/resources/guides/first-home-buyer-guide.pdf",
   },
 
+  /*
+   * Two A4 pages, ten strategies, one worked example. The title is the
+   * numeral because that is what the document calls itself on its own cover —
+   * a guide that arrives named differently from the email that promised it
+   * reads like the wrong attachment.
+   */
   "pay-your-mortgage-off-faster": {
     key: "pay-your-mortgage-off-faster",
-    title: "Ten Ways to Pay Your Mortgage Off Faster",
+    title: "10 Ways to Pay Your Mortgage Off Faster",
     description:
       "The things that actually move the number, in the order worth doing them.",
     groupEnv: "MAILERLITE_CALCULATORS_GROUP_ID",
-    // Set this the moment the PDF is in public/resources/guides/ — it is the
-    // single switch that turns "is being finished" into "is on its way".
-    file: undefined,
+    file: "/resources/guides/pay-your-mortgage-off-faster.pdf",
   },
 
   /*
