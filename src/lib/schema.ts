@@ -186,6 +186,33 @@ export function getFaqSchema(items: FaqEntry[]) {
   };
 }
 
+/**
+ * DefinedTermSet structured data for the glossary. Pass the same entries the
+ * page renders; each term points at its own anchor on the page.
+ */
+export function getGlossarySchema(
+  url: string,
+  name: string,
+  terms: { name: string; description: string; slug: string }[],
+) {
+  const setId = `${url}#terms`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": setId,
+    name,
+    url,
+    hasDefinedTerm: terms.map((term) => ({
+      "@type": "DefinedTerm",
+      "@id": `${url}#${term.slug}`,
+      name: term.name,
+      description: term.description,
+      url: `${url}#${term.slug}`,
+      inDefinedTermSet: setId,
+    })),
+  };
+}
+
 export interface ArticleSchemaInput {
   slug: string;
   title: string;

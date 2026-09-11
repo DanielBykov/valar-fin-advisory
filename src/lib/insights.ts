@@ -19,6 +19,15 @@
  */
 export const INSIGHTS_LIVE = true;
 
+/**
+ * Switch for /insights/glossary, on top of INSIGHTS_LIVE.
+ * false → the glossary 404s in production, stays out of the sitemap and
+ *         out of the Insights menu. It still opens on the local dev server.
+ * Built 2026-09-11 on 74 drafted terms. Flip once Lena has signed the
+ * definitions off. The terms themselves live in src/lib/glossary.ts.
+ */
+export const GLOSSARY_LIVE = false;
+
 /*
  * Calculators used to be gated from here as well, which meant two constants
  * called CALCULATORS_LIVE in two files. They now live in their own top-level

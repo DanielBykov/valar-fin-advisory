@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users, Newspaper, TrendingUp, Calculator, HelpCircle } from "lucide-react";
+import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefcase, Users, Newspaper, TrendingUp, Calculator, HelpCircle, BookA } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { INSIGHTS_LIVE } from "@/lib/insights";
+import { GLOSSARY_LIVE, INSIGHTS_LIVE } from "@/lib/insights";
 import { CALCULATORS_LIVE, calculatorHref, liveCalculators } from "@/lib/calculators";
 import { isStandaloneRoute } from "@/lib/standalone-routes";
 
@@ -34,6 +34,8 @@ export function Navbar() {
   // Insights shows in the menu once INSIGHTS_LIVE is on — and always when
   // running the site locally, so the menu can be reviewed before it goes public.
   const showInsights = INSIGHTS_LIVE || process.env.NODE_ENV === "development";
+  // The glossary sits inside Insights and has its own switch on top.
+  const showGlossary = (INSIGHTS_LIVE && GLOSSARY_LIVE) || process.env.NODE_ENV === "development";
 
   // Same rule for the Calculators section, gated by its own switch.
   const calculators = liveCalculators();
@@ -254,6 +256,15 @@ export function Navbar() {
                           <div className="text-sm text-valar-indigo mt-1 leading-snug">Straight answers to the questions we get most</div>
                         </div>
                       </Link>
+                      {showGlossary && (
+                        <Link href="/insights/glossary" className="flex items-start gap-3 group/item">
+                          <BookA className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
+                          <div>
+                            <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Glossary</div>
+                            <div className="text-sm text-valar-indigo mt-1 leading-snug">Mortgage, KiwiSaver and investing terms, in plain English</div>
+                          </div>
+                        </Link>
+                      )}
                     </div>
                   </div>
 
@@ -453,6 +464,11 @@ export function Navbar() {
                       <Link href="/insights/faq" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
                         <HelpCircle className="w-5 h-5 text-valar-steel shrink-0" /> FAQ
                       </Link>
+                      {showGlossary && (
+                        <Link href="/insights/glossary" className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                          <BookA className="w-5 h-5 text-valar-steel shrink-0" /> Glossary
+                        </Link>
+                      )}
                     </div>
                   </div>
                 )}
