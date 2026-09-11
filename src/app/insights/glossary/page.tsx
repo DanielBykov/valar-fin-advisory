@@ -9,7 +9,7 @@ import { getBreadcrumbSchema, getGlossarySchema, SITE_URL } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Mortgage, KiwiSaver & Investing Glossary NZ | Valar Financial Advisors",
   description:
-    "Plain-English definitions of the words New Zealanders meet in a home loan, a house purchase, KiwiSaver and investing — from LVR and break fees to asset allocation.",
+    "Plain-English definitions of the words New Zealanders meet in a home loan, a house purchase, KiwiSaver and investing, from LVR and break fees to asset allocation.",
   alternates: { canonical: "/insights/glossary" },
   openGraph: {
     images: ["/opengraph.jpg"],

@@ -162,7 +162,7 @@ export default function GlossaryContent({
             </motion.h1>
             <motion.p variants={fadeIn} className="max-w-2xl text-base text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light">
               What the words in a home loan, a purchase agreement, KiwiSaver and an investment actually
-              mean — and why each one matters to you.
+              mean, and why each one matters to you.
             </motion.p>
           </motion.div>
         </div>
@@ -183,7 +183,7 @@ export default function GlossaryContent({
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search the terms — try “deposit” or “KiwiSaver”"
+              placeholder="Search the terms, for example “deposit” or “KiwiSaver”"
               aria-label="Search the glossary"
               className="w-full rounded-sm border border-valar-concrete bg-white py-3 pr-11 pl-11 text-[15px] text-valar-navy placeholder:text-gray-400 focus:border-valar-navy focus:outline-none"
             />
@@ -267,7 +267,7 @@ export default function GlossaryContent({
           <div className="rounded-xl border border-valar-concrete bg-white p-10 text-center">
             <h2 className="mb-2 text-xl font-bold text-valar-navy">No term matches that yet</h2>
             <p className="mx-auto mb-6 max-w-md text-[15px] leading-relaxed text-gray-600">
-              Try a shorter word, or just ask — a real answer beats a search box.
+              Try a shorter word, or just ask. A real answer beats a search box.
             </p>
             <Link
               href="/contact"

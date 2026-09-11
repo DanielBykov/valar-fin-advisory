@@ -66,7 +66,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Asset",
     categories: ["investing"],
     body: [
-      "Something you own that has financial value — a home, an investment property, KiwiSaver, savings, shares or a business. Some assets earn income or grow in value over time; others, like a car, mostly lose value. What you own minus what you owe is your net worth.",
+      "Something you own that has financial value: a home, an investment property, KiwiSaver, savings, shares or a business. Some assets earn income or grow in value over time; others, like a car, mostly lose value. What you own minus what you owe is your net worth.",
     ],
     seeAlso: ["Net worth", "Asset allocation", "Equity"],
   },
@@ -74,7 +74,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Asset allocation",
     categories: ["investing", "kiwisaver"],
     body: [
-      "How an investment is split between the main types of asset. Shares and property are usually called growth assets: they can rise more over time, and fall further along the way. Cash and bonds are income assets: steadier, with lower expected returns. KiwiSaver fund types, from defensive through to aggressive, are defined by the share of growth assets they hold — so choosing a fund type is mostly choosing an asset allocation.",
+      "How an investment is split between the main types of asset. Shares and property are usually called growth assets: they can rise more over time, and fall further along the way. Cash and bonds are income assets: steadier, with lower expected returns. KiwiSaver fund types, from defensive through to aggressive, are defined by the share of growth assets they hold, so choosing a fund type is mostly choosing an asset allocation.",
     ],
     seeAlso: ["Diversification", "Risk profile", "Managed fund", "KiwiSaver"],
   },
@@ -82,7 +82,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Auction",
     categories: ["mortgages"],
     body: [
-      "A sale where buyers bid against each other on a set day. Once bidding passes the seller's reserve price the highest bid wins, and when the hammer falls the sale is unconditional — with the purchase deposit usually due that same day. There is no finance condition and no time for checks afterwards, so finance, the LIM, a building inspection and often a registered valuation all have to be done before auction day.",
+      "A sale where buyers bid against each other on a set day. Once bidding passes the seller's reserve price the highest bid wins, and when the hammer falls the sale is unconditional, with the purchase deposit usually due that same day. There is no finance condition and no time for checks afterwards, so finance, the LIM, a building inspection and often a registered valuation all have to be done before auction day.",
     ],
     seeAlso: ["Conditional and unconditional", "Deposit", "Due diligence", "Registered valuation"],
   },
@@ -90,7 +90,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Body corporate",
     categories: ["mortgages"],
     body: [
-      "The group every owner in a unit title development — an apartment block, or a set of townhouses — automatically belongs to. It looks after the shared parts of the property and charges owners a levy, which typically covers insurance, management costs and contributions to a long-term maintenance fund. It must keep a long-term maintenance plan and hold an annual general meeting where owners vote. Before you buy, the seller's disclosure statement — financial statements, maintenance, meeting minutes — shows what you would be joining, including any large repair work coming up.",
+      "The group every owner in a unit title development, such as an apartment block or a set of townhouses, automatically belongs to. It looks after the shared parts of the property and charges owners a levy, which typically covers insurance, management costs and contributions to a long-term maintenance fund. It must keep a long-term maintenance plan and hold an annual general meeting where owners vote. Before you buy, the seller's disclosure statement (financial statements, maintenance, meeting minutes) shows what you would be joining, including any large repair work coming up.",
     ],
     seeAlso: ["Unit title", "Due diligence"],
   },
@@ -98,7 +98,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Break fee",
     categories: ["mortgages"],
     body: [
-      "The cost of ending a fixed rate early — by repaying the fixed part, refinancing or selling before the fixed term is up. Also called a break cost. It covers what the lender loses when rates have fallen since you fixed, and it is based on how far rates have moved and how much time is left. If rates have risen instead, there is usually no break fee, or only a small admin charge. Many lenders let you repay a limited amount extra each year without triggering one, and if you are selling and buying at the same time, a substitution of security can sometimes move the fixed loan to the new property instead of breaking it.",
+      "The cost of ending a fixed rate early, by repaying the fixed part, refinancing or selling before the fixed term is up. Also called a break cost. It covers what the lender loses when rates have fallen since you fixed, and it is based on how far rates have moved and how much time is left. If rates have risen instead, there is usually no break fee, or only a small admin charge. Many lenders let you repay a limited amount extra each year without triggering one, and if you are selling and buying at the same time, a substitution of security can sometimes move the fixed loan to the new property instead of breaking it.",
     ],
     seeAlso: ["Fixed rate", "Refix", "Security", "Refinancing"],
   },
@@ -106,7 +106,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Bridging finance",
     categories: ["mortgages"],
     body: [
-      "Short-term lending for when you buy a new home before the sale of your current one has settled. It covers the gap, so for a time you carry lending on both properties. Lenders look closely at how certain the sale is — bridging is easier to arrange once the current home has sold unconditionally — and at whether you could manage if the sale took longer or achieved less than expected.",
+      "Short-term lending for when you buy a new home before the sale of your current one has settled. It covers the gap, so for a time you carry lending on both properties. Lenders look closely at how certain the sale is, and bridging is easier to arrange once the current home has sold unconditionally. They also look at whether you could manage if the sale took longer or achieved less than expected.",
     ],
     seeAlso: ["Security", "Settlement", "Conditional and unconditional"],
   },
@@ -114,7 +114,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Bright-line test",
     categories: ["investing"],
     body: [
-      "A tax rule on residential property: if you sell within a set period of buying, the profit can be taxed as income, whether or not you set out to make one. Your main home is usually excluded, as long as you meet Inland Revenue's criteria. The period has changed several times since the rule was introduced, so what applies depends on when the property was bought and sold — an accountant can confirm how it applies to you.",
+      "A tax rule on residential property: if you sell within a set period of buying, the profit can be taxed as income, whether or not you set out to make one. Your main home is usually excluded, as long as you meet Inland Revenue's criteria. The period has changed several times since the rule was introduced, so what applies depends on when the property was bought and sold. An accountant can confirm how it applies to you.",
     ],
     seeAlso: ["Investment property", "Interest deductibility"],
   },
@@ -122,7 +122,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Building inspection",
     categories: ["mortgages"],
     body: [
-      "A report from a qualified inspector on the condition of a property — structure, roof, moisture, and anything likely to need repair. It is normally done while the purchase is still conditional, so what it finds can still change your decision or the price. When buying at auction, it has to be done before auction day.",
+      "A report from a qualified inspector on the condition of a property: structure, roof, moisture, and anything likely to need repair. It is normally done while the purchase is still conditional, so what it finds can still change your decision or the price. When buying at auction, it has to be done before auction day.",
     ],
     seeAlso: ["Due diligence", "Auction", "Conditional and unconditional"],
   },
@@ -130,7 +130,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Cash flow",
     categories: ["investing"],
     body: [
-      "The money coming in and going out over a period — income against spending, loan repayments and saving. Positive cash flow means more comes in than goes out; negative means the gap is being covered by savings or debt. In a financial plan it is the starting point, because it shows what is really available to save, invest or repay. For an investment property it is whether the rent covers the costs.",
+      "The money coming in and going out over a period: income against spending, loan repayments and saving. Positive cash flow means more comes in than goes out; negative means the gap is being covered by savings or debt. In a financial plan it is the starting point, because it shows what is really available to save, invest or repay. For an investment property it is whether the rent covers the costs.",
     ],
     seeAlso: ["Financial plan", "Emergency fund", "Rental yield"],
   },
@@ -146,7 +146,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Chattels",
     categories: ["mortgages"],
     body: [
-      "Items sold with a property that are listed in the sale and purchase agreement — commonly curtains, blinds, light fittings, and appliances such as the oven, dishwasher or heat pump. Movable items that are not fixed to the property are only included if they are on that list, so it is worth reading closely: anything you expect to stay should be written in. You check them again at the pre-settlement inspection, to see they are there and working.",
+      "Items sold with a property that are listed in the sale and purchase agreement: commonly curtains, blinds, light fittings, and appliances such as the oven, dishwasher or heat pump. Movable items that are not fixed to the property are only included if they are on that list, so it is worth reading closely. Anything you expect to stay should be written in. You check them again at the pre-settlement inspection, to see they are there and working.",
     ],
     seeAlso: ["Sale and purchase agreement", "Pre-settlement inspection"],
   },
@@ -154,7 +154,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Clawback",
     categories: ["mortgages"],
     body: [
-      "When a loan arranged through an adviser is repaid or refinanced within an early period set by the lender, the lender takes back the commission it paid the adviser. Depending on the adviser's terms, some or all of that cost can be passed on to you. The terms are in the adviser's disclosure and agreement, and they are worth reading before you sign — not two years later when you want to move the loan.",
+      "When a loan arranged through an adviser is repaid or refinanced within an early period set by the lender, the lender takes back the commission it paid the adviser. Depending on the adviser's terms, some or all of that cost can be passed on to you. The terms are in the adviser's disclosure and agreement, and they are worth reading before you sign, not two years later when you want to move the loan.",
     ],
     seeAlso: ["Mortgage adviser", "Cashback", "Refinancing"],
   },
@@ -162,7 +162,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Code compliance certificate (CCC)",
     categories: ["mortgages"],
     body: [
-      "Confirmation from the council — or another building consent authority — that building work done under a building consent was completed in line with that consent. It matters most when a property has had renovations or additions: consented work that never received its certificate can show up on the LIM report, and it is far easier to resolve before you buy than after. Lenders usually want to see one before the final payment on a new build.",
+      "Confirmation from the council, or another building consent authority, that building work done under a building consent was completed in line with that consent. It matters most when a property has had renovations or additions: consented work that never received its certificate can show up on the LIM report, and it is far easier to resolve before you buy than after. Lenders usually want to see one before the final payment on a new build.",
     ],
     seeAlso: ["LIM report", "Building inspection", "Construction loan", "Due diligence"],
   },
@@ -170,7 +170,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Compounding",
     categories: ["investing"],
     body: [
-      "Earning returns on your earlier returns, not only on the money you put in. Each year's growth is added to the balance, and the next year's growth is worked out on that larger amount — so the effect is small at first and builds over time. It is why the number of years money stays invested matters so much. It works the same way against you on debt that is not being paid down.",
+      "Earning returns on your earlier returns, not only on the money you put in. Each year's growth is added to the balance, and the next year's growth is worked out on that larger amount, so the effect is small at first and builds over time. It is why the number of years money stays invested matters so much. It works the same way against you on debt that is not being paid down.",
     ],
     seeAlso: ["Return", "Investment horizon", "KiwiSaver"],
   },
@@ -178,7 +178,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Conditional and unconditional",
     categories: ["mortgages"],
     body: [
-      "An offer is conditional when the purchase depends on something happening first — commonly finance, a building inspection, a valuation, or selling your own home — usually each with its own date. An unconditional offer has no conditions at all. A conditional agreement becomes unconditional once every condition has been met or waived, and from then on it is binding: you are committed to settle, whatever happens with your finance. A winning bid at auction is unconditional the moment the hammer falls.",
+      "An offer is conditional when the purchase depends on something happening first. The usual conditions are finance, a building inspection, a valuation or selling your own home, each normally with its own date. An unconditional offer has no conditions at all. A conditional agreement becomes unconditional once every condition has been met or waived, and from then on it is binding: you are committed to settle, whatever happens with your finance. A winning bid at auction is unconditional the moment the hammer falls.",
     ],
     seeAlso: ["Finance condition", "Due diligence", "Auction", "Sale and purchase agreement", "Settlement"],
   },
@@ -186,7 +186,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Construction loan",
     categories: ["mortgages"],
     body: [
-      "A loan for building a new home, paid out in stages — progress payments — as the build reaches agreed milestones, rather than in one lump sum. Interest is charged only on what has been drawn so far. Lenders usually want the building contract, the plans and a valuation of the finished home before approving, and the code compliance certificate before the final payment.",
+      "A loan for building a new home, paid out in stages as the build reaches agreed milestones, rather than in one lump sum. These stages are called progress payments, and interest is charged only on what has been drawn so far. Lenders usually want the building contract, the plans and a valuation of the finished home before approving, and the code compliance certificate before the final payment.",
     ],
     seeAlso: ["Quantity surveyor", "Code compliance certificate", "Registered valuation"],
   },
@@ -194,7 +194,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Contribution",
     categories: ["kiwisaver"],
     body: [
-      "Money paid into KiwiSaver. There are usually three sources: what you pay from your wages at the rate you choose, what your employer adds, and a government contribution for eligible members. You can also pay in voluntarily, at any time — which is how self-employed members contribute. The rates and the rules for the government contribution have changed recently and more changes are scheduled, so Inland Revenue or your provider has the current settings.",
+      "Money paid into KiwiSaver. There are usually three sources: what you pay from your wages at the rate you choose, what your employer adds, and a government contribution for eligible members. You can also pay in voluntarily at any time, which is how self-employed members contribute. The rates and the rules for the government contribution have changed recently and more changes are scheduled, so Inland Revenue or your provider has the current settings.",
     ],
     seeAlso: ["KiwiSaver", "Compounding"],
   },
@@ -202,7 +202,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Credit report",
     categories: ["mortgages"],
     body: [
-      "The record credit reporting agencies hold on your borrowing — loans, credit cards, applications for credit, and any missed payments or defaults. Lenders check it when you apply. Applications are recorded on it too, which is one reason to avoid applying to several lenders yourself in a short space of time.",
+      "The record credit reporting agencies hold on your borrowing: loans, credit cards, applications for credit, and any missed payments or defaults. Lenders check it when you apply. Applications are recorded on it too, which is one reason to avoid applying to several lenders yourself in a short space of time.",
     ],
     seeAlso: ["Pre-approval", "Servicing"],
   },
@@ -210,7 +210,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Cross-lease",
     categories: ["mortgages"],
     body: [
-      "A form of ownership common in older New Zealand subdivisions. The owners share the land between them, and each holds a long lease over their own home, shown on a plan. If a home has been extended or altered without the plan being updated, the title can be defective — something your lawyer checks, and something lenders care about.",
+      "A form of ownership common in older New Zealand subdivisions. The owners share the land between them, and each holds a long lease over their own home, shown on a plan. If a home has been extended or altered without the plan being updated, the title can be defective. Your lawyer checks for this, and lenders care about it.",
     ],
     seeAlso: ["Record of Title", "Unit title"],
   },
@@ -227,8 +227,8 @@ const TERMS: GlossaryTerm[] = [
     categories: ["mortgages"],
     body: [
       "The word means two different things when you buy a home, and they are easy to confuse.",
-      "**Your deposit for the loan** is the part of the price you pay with your own money rather than borrow — savings, KiwiSaver, a gift from family, the sale of another property. Its size sets your loan-to-value ratio, which affects which lenders will consider you and the rate you are offered.",
-      "**The purchase deposit** is a payment made under the sale and purchase agreement. Depending on the agreement, it is paid once both sides have signed or once the agreement becomes unconditional — and at auction, usually on the day. It counts towards the price at settlement, but because it is paid earlier, that money has to be available sooner than the rest.",
+      "**Your deposit for the loan** is the part of the price you pay with your own money rather than borrow. It can come from savings, KiwiSaver, a gift from family or the sale of another property. Its size sets your loan-to-value ratio, which affects which lenders will consider you and the rate you are offered.",
+      "**The purchase deposit** is a payment made under the sale and purchase agreement. Depending on the agreement, it is paid once both sides have signed or once the agreement becomes unconditional, and at auction usually on the day. It counts towards the price at settlement, but because it is paid earlier, that money has to be available sooner than the rest.",
     ],
     seeAlso: ["Loan-to-value ratio", "Gifted deposit", "KiwiSaver first-home withdrawal", "Conditional and unconditional", "Auction"],
   },
@@ -236,7 +236,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Diversification",
     categories: ["investing", "kiwisaver"],
     body: [
-      "Spreading money across different investments, so that one going badly does less damage to the whole. It works across types of asset, companies, industries and countries. It lowers the risk of any single holding sinking the result, but it does not stop a portfolio falling when markets fall broadly. For a home owner, most of their wealth is often in one asset — the home — which is worth seeing clearly when looking at the whole picture.",
+      "Spreading money across different investments, so that one going badly does less damage to the whole. It works across types of asset, companies, industries and countries. It lowers the risk of any single holding sinking the result, but it does not stop a portfolio falling when markets fall broadly. For a home owner, most of their wealth is often in one asset, the home, which is worth seeing clearly when looking at the whole picture.",
     ],
     seeAlso: ["Asset allocation", "Managed fund", "Risk profile", "Net worth"],
   },
@@ -244,7 +244,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Due diligence",
     categories: ["mortgages"],
     body: [
-      "The checks a buyer makes before committing to a purchase: a building inspection, the LIM report, the title, and anything specific to the property — such as the body corporate's records for a unit title. It is usually a condition in the sale and purchase agreement with a set deadline, and if the checks turn up something serious in that time, the buyer can usually withdraw. At auction there is no condition to rely on, so all of it has to be done before auction day.",
+      "The checks a buyer makes before committing to a purchase: a building inspection, the LIM report, the title, and anything specific to the property, such as the body corporate's records for a unit title. It is usually a condition in the sale and purchase agreement with a set deadline, and if the checks turn up something serious in that time, the buyer can usually withdraw. At auction there is no condition to rely on, so all of it has to be done before auction day.",
     ],
     seeAlso: ["Conditional and unconditional", "Building inspection", "LIM report", "Body corporate", "Auction"],
   },
@@ -252,7 +252,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Emergency fund",
     categories: ["investing"],
     body: [
-      "Money set aside for the unexpected — losing an income, a medical cost, an urgent repair — and kept where you can reach it quickly, rather than invested where its value moves. It means a shock does not have to go on a credit card or force an investment to be sold at a bad time. How much is enough depends on income, costs and how secure the work is, which is why it is usually one of the first things a financial plan settles.",
+      "Money set aside for the unexpected, such as losing an income, a medical cost or an urgent repair. It is kept where you can reach it quickly, rather than invested where its value moves. It means a shock does not have to go on a credit card or force an investment to be sold at a bad time. How much is enough depends on income, costs and how secure the work is, which is why it is usually one of the first things a financial plan settles.",
     ],
     seeAlso: ["Financial plan", "Cash flow"],
   },
@@ -260,7 +260,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Equity",
     categories: ["mortgages", "investing"],
     body: [
-      "The part of a property you own outright: its current value minus what you still owe on it. Equity grows as you repay the loan and as the property's value rises. It can be borrowed against — for renovations, another purchase, or a deposit on an investment property. Borrowing more against it from your current lender is called a top-up.",
+      "The part of a property you own outright: its current value minus what you still owe on it. Equity grows as you repay the loan and as the property's value rises. It can be borrowed against for renovations, another purchase, or a deposit on an investment property. Borrowing more against it from your current lender is called a top-up.",
     ],
     seeAlso: ["Top-up", "Net worth", "Loan-to-value ratio", "Security"],
   },
@@ -268,7 +268,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Finance condition",
     categories: ["mortgages"],
     body: [
-      "A condition in a sale and purchase agreement that makes the purchase depend on the buyer arranging finance by a set date — the finance date. It is what “subject to finance” means on an offer. If the loan is not approved in time, the condition usually gives the buyer a way out of the agreement; once the buyer confirms finance or waives the condition, that protection is gone. The finance date has to leave the lender enough time to assess both you and the property.",
+      "A condition in a sale and purchase agreement that makes the purchase depend on the buyer arranging finance by a set date, called the finance date. It is what “subject to finance” means on an offer. If the loan is not approved in time, the condition usually gives the buyer a way out of the agreement; once the buyer confirms finance or waives the condition, that protection is gone. The finance date has to leave the lender enough time to assess both you and the property.",
     ],
     seeAlso: ["Conditional and unconditional", "Live deal", "Pre-approval", "Sale and purchase agreement"],
   },
@@ -276,7 +276,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Financial plan",
     categories: ["investing"],
     body: [
-      "A written picture of where you are now and a route to where you want to be: income, spending, assets and debts; the goals you are working towards, and by when; and the steps to get there — saving, investing, repaying debt, protecting against the things that could knock the plan over. It is meant to be revisited as life changes, not filed away once it is written.",
+      "A written picture of where you are now and a route to where you want to be. It covers income, spending, assets and debts; the goals you are working towards, and by when; and the steps to get there, such as saving, investing, repaying debt and protecting against the things that could knock the plan over. It is meant to be revisited as life changes, not filed away once it is written.",
     ],
     seeAlso: ["Wealth management", "Cash flow", "Net worth", "Emergency fund", "Investment horizon", "Risk profile"],
   },
@@ -292,7 +292,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Fixed rate",
     categories: ["mortgages"],
     body: [
-      "An interest rate locked for a set period — the fixed term — so your repayments do not change during it. The trade-off is flexibility: extra repayments are usually limited, and ending the fixed term early can cost a break fee. When the term ends you refix, or the loan normally moves to the floating rate. The fixed term is not the loan term, which is the full length of the mortgage.",
+      "An interest rate locked for a set period, called the fixed term, so your repayments do not change during it. The trade-off is flexibility: extra repayments are usually limited, and ending the fixed term early can cost a break fee. When the term ends you refix, or the loan normally moves to the floating rate. The fixed term is not the loan term, which is the full length of the mortgage.",
     ],
     seeAlso: ["Refix", "Floating rate", "Break fee", "Loan term", "Split loan"],
   },
@@ -316,7 +316,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Guarantor",
     categories: ["mortgages"],
     body: [
-      "A person — usually a parent — who agrees to be responsible for part of your loan if you cannot repay it. The guarantee is often secured against their own property and is usually limited to a set amount. It can help a buyer with a small deposit, but it puts the guarantor's property at risk, which is why lenders expect the guarantor to take independent legal advice before signing.",
+      "A person, usually a parent, who agrees to be responsible for part of your loan if you cannot repay it. The guarantee is often secured against their own property and is usually limited to a set amount. It can help a buyer with a small deposit, but it puts the guarantor's property at risk, which is why lenders expect the guarantor to take independent legal advice before signing.",
     ],
     seeAlso: ["Gifted deposit", "Deposit", "Security"],
   },
@@ -332,7 +332,7 @@ const TERMS: GlossaryTerm[] = [
     term: "High-LVR loan",
     categories: ["mortgages"],
     body: [
-      "A home loan that is a large share of the property's value — a small deposit, or little equity. The Reserve Bank limits how much of this lending banks can do, so high-LVR loans are harder to get, the criteria are tighter, and they usually cost more through a low-equity margin or premium. For eligible first home buyers, the First Home Loan is one way in.",
+      "A home loan that is a large share of the property's value, because the deposit or the equity is small. The Reserve Bank limits how much of this lending banks can do, so high-LVR loans are harder to get, the criteria are tighter, and they usually cost more through a low-equity margin or premium. For eligible first home buyers, the First Home Loan is one way in.",
     ],
     seeAlso: ["Loan-to-value ratio", "Low-equity margin", "First Home Loan", "Deposit"],
   },
@@ -340,7 +340,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Interest deductibility",
     categories: ["investing"],
     body: [
-      "Whether the interest on a loan used for a residential rental property can be claimed as an expense against the rent, which reduces the tax on rental income. Inland Revenue calls these the interest limitation rules. They have changed more than once in recent years, so what can be claimed depends on the tax year — an accountant can confirm your position. Interest on the loan for your own home is not deductible.",
+      "Whether the interest on a loan used for a residential rental property can be claimed as an expense against the rent, which reduces the tax on rental income. Inland Revenue calls these the interest limitation rules. They have changed more than once in recent years, so what can be claimed depends on the tax year. An accountant can confirm your position. Interest on the loan for your own home is not deductible.",
     ],
     seeAlso: ["Investment property", "Bright-line test", "Rental yield"],
   },
@@ -356,7 +356,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Investment horizon",
     categories: ["investing", "kiwisaver"],
     body: [
-      "How long money can stay invested before you need it. It is one of the main things that decides how much short-term rise and fall an investment can live with: money needed for a house deposit next year and money for retirement decades away have very different horizons — even when both sit in the same person's KiwiSaver.",
+      "How long money can stay invested before you need it. It is one of the main things that decides how much short-term rise and fall an investment can live with. Money needed for a house deposit next year and money for retirement decades away have very different horizons, even when both sit in the same person's KiwiSaver.",
     ],
     seeAlso: ["Risk profile", "Asset allocation", "KiwiSaver first-home withdrawal"],
   },
@@ -364,7 +364,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Investment property",
     categories: ["investing", "mortgages"],
     body: [
-      "A property bought to rent out, or for its future value, rather than to live in. Lenders treat it differently from a home: a bigger deposit is usually needed, because the Reserve Bank's LVR limits are tighter for investors; only part of the rent is usually counted when working out what you can afford; and interest-only periods are more common. The tax treatment is different too — the bright-line test and the interest limitation rules both apply.",
+      "A property bought to rent out, or for its future value, rather than to live in. Lenders treat it differently from a home: a bigger deposit is usually needed, because the Reserve Bank's LVR limits are tighter for investors; only part of the rent is usually counted when working out what you can afford; and interest-only periods are more common. The tax treatment is different too: the bright-line test and the interest limitation rules both apply.",
     ],
     seeAlso: ["Rental yield", "Loan-to-value ratio", "Bright-line test", "Interest deductibility", "Interest-only", "Healthy Homes Standards"],
   },
@@ -372,7 +372,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Joint tenants and tenants in common",
     categories: ["mortgages", "investing"],
     body: [
-      "The two ways people can own a property together, recorded on the title — and the difference matters most when one owner dies. **Joint tenants** own the whole property together, without separate shares; if one dies, the other automatically owns all of it, whatever a will says. **Tenants in common** each own a defined share, which can be unequal and is shown on the title; each share can be sold or left in a will. Which one fits — a couple, family or friends buying together, or owners who put in different amounts — is worth settling with your lawyer before you buy.",
+      "The two ways people can own a property together, recorded on the title. The difference matters most when one owner dies. **Joint tenants** own the whole property together, without separate shares; if one dies, the other automatically owns all of it, whatever a will says. **Tenants in common** each own a defined share, which can be unequal and is shown on the title; each share can be sold or left in a will. Whether you are a couple, family or friends buying together, or owners who put in different amounts, the choice is worth settling with your lawyer before you buy.",
     ],
     seeAlso: ["Record of Title", "Sale and purchase agreement", "Wealth management"],
   },
@@ -380,7 +380,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Kāinga Ora",
     categories: ["mortgages", "kiwisaver"],
     body: [
-      "Kāinga Ora – Homes and Communities, the government's housing and urban development agency and the country's public housing landlord. For buyers, it underwrites the First Home Loan, and it assesses previous home owners who want to use their KiwiSaver towards buying again.",
+      "The government's housing and urban development agency, and the country's public housing landlord. For buyers, it underwrites the First Home Loan, and it assesses previous home owners who want to use their KiwiSaver towards buying again.",
     ],
     seeAlso: ["First Home Loan", "KiwiSaver first-home withdrawal"],
   },
@@ -388,7 +388,7 @@ const TERMS: GlossaryTerm[] = [
     term: "KiwiSaver",
     categories: ["kiwisaver", "investing"],
     body: [
-      "New Zealand's voluntary, work-based savings scheme. Members save from their pay, employers usually contribute as well, and eligible members also receive a government contribution. The money is invested in a fund with a KiwiSaver provider — fund types run from defensive and conservative, through balanced, to growth and aggressive — and is generally held until retirement age, with a few exceptions. The one that matters most to buyers is a first home.",
+      "New Zealand's voluntary, work-based savings scheme. Members save from their pay, employers usually contribute as well, and eligible members also receive a government contribution. The money is invested in a fund with a KiwiSaver provider, and fund types run from defensive and conservative through balanced to growth and aggressive. It is generally held until retirement age, with a few exceptions; the one that matters most to buyers is a first home.",
     ],
     seeAlso: ["Contribution", "Managed fund", "Asset allocation", "KiwiSaver first-home withdrawal"],
   },
@@ -396,7 +396,7 @@ const TERMS: GlossaryTerm[] = [
     term: "KiwiSaver first-home withdrawal",
     categories: ["kiwisaver", "mortgages"],
     body: [
-      "KiwiSaver members of at least three years can usually withdraw most of their savings towards a first home — a small balance has to stay in the account. The home has to be one you intend to live in. The money is paid to your lawyer on or before settlement, not to you, and the application goes through your KiwiSaver provider, so it needs to start well before settlement day. Previous home owners can sometimes qualify too, after an assessment by Kāinga Ora.",
+      "KiwiSaver members of at least three years can usually withdraw most of their savings towards a first home, though a small balance has to stay in the account. The home has to be one you intend to live in. The money is paid to your lawyer on or before settlement, not to you, and the application goes through your KiwiSaver provider, so it needs to start well before settlement day. Previous home owners can sometimes qualify too, after an assessment by Kāinga Ora.",
     ],
     seeAlso: ["KiwiSaver", "Kāinga Ora", "Deposit", "First Home Loan"],
   },
@@ -404,7 +404,7 @@ const TERMS: GlossaryTerm[] = [
     term: "LIM report",
     categories: ["mortgages"],
     body: [
-      "A Land Information Memorandum — what the local council holds on file about a property: consents and code compliance certificates, zoning, known hazards such as flooding, and anything outstanding. It is usually obtained during due diligence, while the purchase is still conditional. Work done without a consent may show up here by its absence.",
+      "A Land Information Memorandum: what the local council holds on file about a property, including consents and code compliance certificates, zoning, known hazards such as flooding, and anything outstanding. It is usually obtained during due diligence, while the purchase is still conditional. Work done without a consent may show up here by its absence.",
     ],
     seeAlso: ["Due diligence", "Zoning", "Code compliance certificate", "Building inspection", "Record of Title"],
   },
@@ -428,7 +428,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Loan-to-value ratio (LVR)",
     categories: ["mortgages"],
     body: [
-      "The size of your loan as a share of the property's value. A lower LVR — a bigger deposit, or more equity — opens up more lenders and better rates. The Reserve Bank limits how much high-LVR lending banks can do, with tighter limits for investment property, which is why low-deposit loans are harder to get and often cost more.",
+      "The size of your loan as a share of the property's value. A lower LVR, meaning a bigger deposit or more equity, opens up more lenders and better rates. The Reserve Bank limits how much high-LVR lending banks can do, with tighter limits for investment property, which is why low-deposit loans are harder to get and often cost more.",
     ],
     seeAlso: ["High-LVR loan", "Deposit", "Equity", "Low-equity margin", "Debt-to-income ratio", "Investment property"],
   },
@@ -436,7 +436,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Low-equity margin",
     categories: ["mortgages"],
     body: [
-      "An extra cost some lenders charge when your deposit or equity is below what they treat as standard. It can be added to the interest rate (a low-equity margin) or charged once as a fee (a low-equity premium). It usually falls away once your equity reaches the lender's threshold — though with some lenders that only happens when you ask for a review.",
+      "An extra cost some lenders charge when your deposit or equity is below what they treat as standard. It can be added to the interest rate (a low-equity margin) or charged once as a fee (a low-equity premium). It usually falls away once your equity reaches the lender's threshold, though with some lenders that only happens when you ask for a review.",
     ],
     seeAlso: ["High-LVR loan", "Loan-to-value ratio", "Deposit", "Special rate"],
   },
@@ -460,7 +460,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Net worth",
     categories: ["investing"],
     body: [
-      "Everything you own minus everything you owe — your assets less your debts. For a home owner, the home and the mortgage are usually the two biggest numbers in it. Watching it change over time shows whether you are actually getting ahead, which income alone does not.",
+      "Everything you own minus everything you owe: your assets less your debts. For a home owner, the home and the mortgage are usually the two biggest numbers in it. Watching it change over time shows whether you are actually getting ahead, which income alone does not.",
     ],
     seeAlso: ["Wealth", "Asset", "Equity", "Financial plan"],
   },
@@ -468,7 +468,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Non-bank lender",
     categories: ["mortgages"],
     body: [
-      "A specialist mortgage lender or finance company that is not a registered bank. The Reserve Bank's LVR and DTI restrictions apply to registered banks, so non-bank lenders work to their own criteria and can sometimes lend where a bank will not — on self-employed income, a patchy credit history or an unusual property — usually at a higher rate. For many borrowers it is a step on the way back to a bank.",
+      "A specialist mortgage lender or finance company that is not a registered bank. The Reserve Bank's LVR and DTI restrictions apply to registered banks, so non-bank lenders work to their own criteria and can sometimes lend where a bank will not, for example on self-employed income, a patchy credit history or an unusual property. That lending usually comes at a higher rate. For many borrowers it is a step on the way back to a bank.",
     ],
     seeAlso: ["Refinancing", "Debt-to-income ratio", "Loan-to-value ratio"],
   },
@@ -476,7 +476,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Official Cash Rate (OCR)",
     categories: ["mortgages"],
     body: [
-      "The interest rate set by the Reserve Bank of New Zealand to keep inflation in its target range, reviewed on a published schedule through the year. Changes flow through to floating rates quickly. Fixed rates follow wholesale market rates instead, which move on what markets expect the OCR to do — so fixed rates often move before an OCR decision is announced, and sometimes when the OCR has not changed at all.",
+      "The interest rate set by the Reserve Bank of New Zealand to keep inflation in its target range, reviewed on a published schedule through the year. Changes flow through to floating rates quickly. Fixed rates follow wholesale market rates instead, which move on what markets expect the OCR to do, so fixed rates often move before an OCR decision is announced, and sometimes when the OCR has not changed at all.",
     ],
     seeAlso: ["Fixed rate", "Floating rate", "Test rate"],
   },
@@ -500,7 +500,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Pre-settlement inspection",
     categories: ["mortgages"],
     body: [
-      "A visit to the property shortly before settlement, to check it is in the condition it was in when you agreed to buy, that the chattels listed in the agreement are there and working, and that anything the seller agreed to do has been done. Any problem has to go through your lawyer before settlement — afterwards it is much harder to fix. Do not skip it.",
+      "A visit to the property shortly before settlement, to check it is in the condition it was in when you agreed to buy, that the chattels listed in the agreement are there and working, and that anything the seller agreed to do has been done. Any problem has to go through your lawyer before settlement, because afterwards it is much harder to fix. Do not skip it.",
     ],
     seeAlso: ["Chattels", "Settlement", "Sale and purchase agreement"],
   },
@@ -508,7 +508,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Principal and interest (P&I)",
     categories: ["mortgages"],
     body: [
-      "The standard way to repay a home loan. Each repayment covers the interest due and pays down part of the balance — the principal. Early on, most of each repayment is interest; as the balance falls, more of it goes to the principal, until the loan is repaid at the end of its term.",
+      "The standard way to repay a home loan. Each repayment covers the interest due and pays down part of the balance, called the principal. Early on, most of each repayment is interest; as the balance falls, more of it goes to the principal, until the loan is repaid at the end of its term.",
     ],
     seeAlso: ["Interest-only", "Loan term"],
   },
@@ -524,7 +524,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Rates",
     categories: ["mortgages"],
     body: [
-      "Not interest rates: the property tax charged by your local council — and in many areas the regional council — to pay for local services, usually in instalments through the year. Lenders include rates in your costs when they assess what you can afford, and they are one of the ongoing costs of owning.",
+      "Not interest rates: the property tax charged by your local council, and in many areas the regional council, to pay for local services, usually in instalments through the year. Lenders include rates in your costs when they assess what you can afford, and they are one of the ongoing costs of owning.",
     ],
     seeAlso: ["Rating valuation", "Servicing", "Settlement"],
   },
@@ -540,7 +540,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Record of Title",
     categories: ["mortgages"],
     body: [
-      "The official record of who owns a piece of land and what rights and restrictions come with it — mortgages, easements, covenants. It replaced the older certificate of title and is held by Land Information New Zealand (LINZ). Your lawyer checks it before you commit to a purchase.",
+      "The official record of who owns a piece of land and what rights and restrictions come with it, such as mortgages, easements and covenants. It replaced the older certificate of title and is held by Land Information New Zealand (LINZ). Your lawyer checks it before you commit to a purchase.",
     ],
     seeAlso: ["Joint tenants and tenants in common", "Cross-lease", "Unit title", "LIM report", "Due diligence"],
   },
@@ -548,7 +548,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Refinancing",
     categories: ["mortgages"],
     body: [
-      "Moving your home loan to a different lender — for a better rate or structure, a cashback, or lending your current lender will not offer. Before moving, weigh up the costs: break fees on fixed parts, any cashback you would have to repay, clawback, and legal fees. The new lender assesses you from scratch, so being approved for your current loan does not mean being approved for the same loan elsewhere. Changing the loan while staying with your current lender is a restructure, not a refinance.",
+      "Moving your home loan to a different lender, for a better rate or structure, a cashback, or lending your current lender will not offer. Before moving, weigh up the costs: break fees on fixed parts, any cashback you would have to repay, clawback, and legal fees. The new lender assesses you from scratch, so being approved for your current loan does not mean being approved for the same loan elsewhere. Changing the loan while staying with your current lender is a restructure, not a refinance.",
     ],
     seeAlso: ["Restructure", "Refix", "Top-up", "Break fee", "Cashback", "Clawback"],
   },
@@ -556,7 +556,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Refix",
     categories: ["mortgages"],
     body: [
-      "Choosing a new fixed rate and term when your current fixed term ends. Lenders usually get in touch beforehand — “your loan is coming up for refix” — with the rates on offer. Refixing at the end of a term costs no break fee, which makes it the natural point to review the whole loan: how much to fix and for how long, and whether to restructure, top up or refinance. If you do nothing, the loan usually moves to the floating rate.",
+      "Choosing a new fixed rate and term when your current fixed term ends. Lenders usually get in touch beforehand (“your loan is coming up for refix”) with the rates on offer. Refixing at the end of a term costs no break fee, which makes it the natural point to review the whole loan: how much to fix and for how long, and whether to restructure, top up or refinance. If you do nothing, the loan usually moves to the floating rate.",
     ],
     seeAlso: ["Fixed rate", "Floating rate", "Restructure", "Refinancing"],
   },
@@ -564,7 +564,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Registered valuation",
     categories: ["mortgages"],
     body: [
-      "An independent assessment of a property's market value by a registered valuer. Lenders often ask for one — for low-deposit loans, new builds, auctions, or properties without a recent sale. If it comes in below the price you agreed, the lender generally works from the valuation. It is not the same as the council's rating valuation (RV or CV), which is set for rates and often differs from market value.",
+      "An independent assessment of a property's market value by a registered valuer. Lenders often ask for one for low-deposit loans, new builds, auctions, or properties without a recent sale. If it comes in below the price you agreed, the lender generally works from the valuation. It is not the same as the council's rating valuation (RV or CV), which is set for rates and often differs from market value.",
     ],
     seeAlso: ["Valuation", "Rating valuation", "Loan-to-value ratio", "Auction"],
   },
@@ -572,7 +572,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Rental yield",
     categories: ["investing"],
     body: [
-      "The rent a property earns in a year, as a share of its value or purchase price. Gross yield uses the rent alone; net yield takes off the costs first — rates, insurance, maintenance, property management, any body corporate levies. Yield on its own does not show whether a property pays for itself: that also depends on the loan, the interest rate and tax.",
+      "The rent a property earns in a year, as a share of its value or purchase price. Gross yield uses the rent alone; net yield takes off the costs first: rates, insurance, maintenance, property management and any body corporate levies. Yield on its own does not show whether a property pays for itself, because that also depends on the loan, the interest rate and tax.",
     ],
     seeAlso: ["Yield", "Investment property", "Cash flow", "Return", "Interest deductibility"],
   },
@@ -580,7 +580,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Restructure",
     categories: ["mortgages"],
     body: [
-      "Changing how an existing loan is set up while staying with the same lender — splitting it differently, moving part between fixed and floating, adding an offset or revolving facility, or changing the loan term. It is usually simpler than refinancing, though changing a fixed part before its term ends can still cost a break fee.",
+      "Changing how an existing loan is set up while staying with the same lender: splitting it differently, moving part between fixed and floating, adding an offset or revolving facility, or changing the loan term. It is usually simpler than refinancing, though changing a fixed part before its term ends can still cost a break fee.",
     ],
     seeAlso: ["Refix", "Top-up", "Refinancing", "Split loan"],
   },
@@ -588,15 +588,15 @@ const TERMS: GlossaryTerm[] = [
     term: "Return",
     categories: ["investing"],
     body: [
-      "What an investment earns: the income it pays — interest, dividends or rent — plus any change in its value. It can be negative. Returns are usually quoted as a yearly percentage, and it matters whether a figure is before or after fees and tax, and what period it covers. Past returns are not a guide to future returns.",
+      "What an investment earns: the income it pays, such as interest, dividends or rent, plus any change in its value. It can be negative. Returns are usually quoted as a yearly percentage, and it matters whether a figure is before or after fees and tax, and what period it covers. Past returns are not a guide to future returns.",
     ],
-    seeAlso: ["Yield", "Compounding", "Rental yield", "Managed fund", "Risk tolerance"],
+    seeAlso: ["Yield", "XIRR", "Compounding", "Rental yield", "Managed fund", "Risk tolerance"],
   },
   {
     term: "Revolving credit",
     categories: ["mortgages"],
     body: [
-      "A home loan facility that works like a large overdraft: income goes in, spending comes out, and interest is charged daily on the balance, so every dollar sitting in it reduces the interest. It suits people who can keep the balance moving down, and costs those who cannot — the unused limit stays available to spend.",
+      "A home loan facility that works like a large overdraft: income goes in, spending comes out, and interest is charged daily on the balance, so every dollar sitting in it reduces the interest. It suits people who can keep the balance moving down, and costs those who cannot, because the unused limit stays available to spend.",
     ],
     seeAlso: ["Offset account", "Floating rate", "Split loan"],
   },
@@ -604,7 +604,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Risk profile",
     categories: ["investing", "kiwisaver"],
     body: [
-      "A summary of how much investment risk suits a person, combining two things: how much rise and fall they are comfortable with — their risk tolerance — and how much they can actually afford to take, given their investment horizon, income and goals. It is usually worked out through a questionnaire and a conversation. Advisers and KiwiSaver providers use it as the starting point when looking at which type of fund fits.",
+      "A summary of how much investment risk suits a person. It combines how much rise and fall they are comfortable with, which is their risk tolerance, and how much they can actually afford to take, given their investment horizon, income and goals. It is usually worked out through a questionnaire and a conversation. Advisers and KiwiSaver providers use it as the starting point when looking at which type of fund fits.",
     ],
     seeAlso: ["Risk tolerance", "Investment horizon", "Asset allocation"],
   },
@@ -612,7 +612,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Risk tolerance",
     categories: ["investing", "kiwisaver"],
     body: [
-      "How comfortable you are with the value of your investments going down, even for a while — how you would really feel, and what you would do, if your balance dropped sharply in a bad year. It is only half of a risk profile: someone can be comfortable with big swings but need the money soon, or the reverse. Selling after a fall because it became too uncomfortable is how a temporary drop becomes a permanent loss.",
+      "How comfortable you are with the value of your investments going down, even for a while. It is about how you would really feel, and what you would do, if your balance dropped sharply in a bad year. It is only half of a risk profile: someone can be comfortable with big swings but need the money soon, or the reverse. Selling after a fall because it became too uncomfortable is how a temporary drop becomes a permanent loss.",
     ],
     seeAlso: ["Risk profile", "Investment horizon", "Diversification"],
   },
@@ -620,7 +620,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Sale and purchase agreement",
     categories: ["mortgages"],
     body: [
-      "The contract between buyer and seller. It sets out the price, the purchase deposit, the settlement date, the chattels included, and any conditions — finance, a building inspection, a LIM, due diligence. Once signed it is binding on the terms it contains, so your lawyer should review it before you sign, not after.",
+      "The contract between buyer and seller. It sets out the price, the purchase deposit, the settlement date, the chattels included, and any conditions, such as finance, a building inspection, a LIM or due diligence. Once signed it is binding on the terms it contains, so your lawyer should review it before you sign, not after.",
     ],
     seeAlso: ["Vendor", "Conditional and unconditional", "Finance condition", "Chattels", "Deposit", "Settlement"],
   },
@@ -628,7 +628,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Security",
     categories: ["mortgages"],
     body: [
-      "The property a lender takes a mortgage over to protect the loan — if the loan is not repaid, the lender can sell it. One loan can be secured over more than one property, which is common for investors and can give the lender a say when one of them is sold. When you sell and buy at the same time, some lenders allow a substitution of security: the existing loan, fixed rates included, moves to the new property instead of being repaid, which can avoid a break fee.",
+      "The property a lender takes a mortgage over to protect the loan. If the loan is not repaid, the lender can sell it. One loan can be secured over more than one property, which is common for investors and can give the lender a say when one of them is sold. When you sell and buy at the same time, some lenders allow a substitution of security: the existing loan, fixed rates included, moves to the new property instead of being repaid, which can avoid a break fee.",
     ],
     seeAlso: ["Break fee", "Equity", "Bridging finance", "Investment property"],
   },
@@ -652,7 +652,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Special rate",
     categories: ["mortgages"],
     body: [
-      "A lender's discounted interest rate, lower than its standard “carded” rate. Special rates come with conditions — most often a minimum level of equity or deposit, sometimes taking other products from the same lender. The rate you are actually offered can differ from both advertised numbers.",
+      "A lender's discounted interest rate, lower than its standard “carded” rate. Special rates come with conditions: most often a minimum level of equity or deposit, and sometimes taking other products from the same lender. The rate you are actually offered can differ from both advertised numbers.",
     ],
     seeAlso: ["Fixed rate", "Low-equity margin", "Loan-to-value ratio"],
   },
@@ -660,7 +660,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Split loan",
     categories: ["mortgages"],
     body: [
-      "One home loan divided into parts with different rate types or terms — for example, part fixed for one term, part fixed for another, and part floating or revolving. Splitting spreads the timing risk of rate changes and keeps some flexibility for extra repayments, while the fixed parts keep their certainty.",
+      "One home loan divided into parts with different rate types or terms. For example, part can be fixed for one term, part fixed for another, and part floating or revolving. Splitting spreads the timing risk of rate changes and keeps some flexibility for extra repayments, while the fixed parts keep their certainty.",
     ],
     seeAlso: ["Fixed rate", "Floating rate", "Offset account", "Revolving credit", "Restructure"],
   },
@@ -676,7 +676,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Top-up",
     categories: ["mortgages"],
     body: [
-      "Borrowing more from your current lender against the equity in your property — for renovations, a deposit on another property, or another large cost. It is added to your existing loan or set up as a new part of it. The lender assesses you again as it would for any new lending — income, costs and an up-to-date value of the property — so the amount approved can be less than your equity suggests.",
+      "Borrowing more from your current lender against the equity in your property, for renovations, a deposit on another property, or another large cost. It is added to your existing loan or set up as a new part of it. The lender assesses you again as it would for any new lending, looking at income, costs and an up-to-date value of the property, so the amount approved can be less than your equity suggests.",
     ],
     seeAlso: ["Equity", "Restructure", "Refinancing", "Loan-to-value ratio"],
   },
@@ -684,7 +684,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Unit title",
     categories: ["mortgages"],
     body: [
-      "Ownership of a unit — usually an apartment or townhouse — inside a development, together with a share of the common property. Every owner belongs to the body corporate, which looks after the shared parts and charges levies. Before you buy, the seller has to give you a disclosure statement about the unit and the body corporate, and some lenders look at the development closely too.",
+      "Ownership of a unit, usually an apartment or townhouse, inside a development, together with a share of the common property. Every owner belongs to the body corporate, which looks after the shared parts and charges levies. Before you buy, the seller has to give you a disclosure statement about the unit and the body corporate, and some lenders look at the development closely too.",
     ],
     seeAlso: ["Body corporate", "Due diligence", "Cross-lease", "Record of Title"],
   },
@@ -692,7 +692,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Valuation",
     categories: ["mortgages"],
     body: [
-      "A word that covers several different things, and they are easy to mix up. A **registered valuation** is an independent assessment of market value by a registered valuer — the kind lenders ask for. A **rating valuation** (RV or CV) is the council's figure for sharing out rates, set at a past date. A real estate agent's **appraisal** is the agent's estimate of the likely sale price — useful, but not a valuation. For the same property, the three can be far apart.",
+      "A word that covers several different things, and they are easy to mix up. A **registered valuation** is an independent assessment of market value by a registered valuer, and it is the kind lenders ask for. A **rating valuation** (RV or CV) is the council's figure for sharing out rates, set at a past date. A real estate agent's **appraisal** is the agent's estimate of the likely sale price, which is useful but is not a valuation. For the same property, the three can be far apart.",
     ],
     seeAlso: ["Registered valuation", "Rating valuation", "Vendor"],
   },
@@ -700,7 +700,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Vendor",
     categories: ["mortgages"],
     body: [
-      "The seller. Sale and purchase agreements and real estate agents say “vendor” and “purchaser”. The agent selling a property works for the vendor, not for you, even while showing you around — though they must still treat buyers fairly and tell you about known problems with the property. Only a buyer's agent works for the buyer.",
+      "The seller. Sale and purchase agreements and real estate agents say “vendor” and “purchaser”. The agent selling a property works for the vendor, not for you, even while showing you around. They must still treat buyers fairly and tell you about known problems with the property. Only a buyer's agent works for the buyer.",
     ],
     seeAlso: ["Sale and purchase agreement", "Valuation", "Settlement"],
   },
@@ -708,7 +708,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Wealth",
     categories: ["investing"],
     body: [
-      "What you own that holds or grows its value and can support your life without depending on your next pay — property, investments, KiwiSaver, a business. It is not the same as income: a high income can sit alongside very little wealth, and the reverse. Net worth measures wealth at one point in time; building wealth is about what happens to that number over years.",
+      "What you own that holds or grows its value and can support your life without depending on your next pay: property, investments, KiwiSaver, a business. It is not the same as income. A high income can sit alongside very little wealth, and the reverse. Net worth measures wealth at one point in time; building wealth is about what happens to that number over years.",
     ],
     seeAlso: ["Net worth", "Wealth management", "Asset", "Compounding"],
   },
@@ -716,15 +716,23 @@ const TERMS: GlossaryTerm[] = [
     term: "Wealth management",
     categories: ["investing"],
     body: [
-      "Looking after someone's finances as a whole over the long term, rather than one product at a time — investments, property, KiwiSaver and debt, working towards goals such as financial independence or retirement, with regular reviews as life changes. The tax and legal questions within it, such as structures, trusts and wills, sit with an accountant and a lawyer working alongside.",
+      "Looking after someone's finances as a whole over the long term, rather than one product at a time. It brings together investments, property, KiwiSaver and debt, working towards goals such as financial independence or retirement, with regular reviews as life changes. The tax and legal questions within it, such as structures, trusts and wills, sit with an accountant and a lawyer working alongside.",
     ],
     seeAlso: ["Wealth", "Financial plan", "Risk profile", "Asset allocation"],
+  },
+  {
+    term: "XIRR",
+    categories: ["investing"],
+    body: [
+      "The annualised return on an investment when money has been added or withdrawn at different times. It takes the timing of each cash flow into account, giving a more realistic picture of your actual investment return.",
+    ],
+    seeAlso: ["Return", "Compounding", "Cash flow"],
   },
   {
     term: "Yield",
     categories: ["investing"],
     body: [
-      "The income an investment pays in a year — interest, dividends or rent — as a share of its value or price, without counting any change in that value. That is what separates it from return, which adds the rise or fall in value. A high yield is not automatically a better investment: it can reflect higher risk, or a price that has fallen.",
+      "The income an investment pays in a year, such as interest, dividends or rent, as a share of its value or price. It leaves out any change in that value, and that is what separates it from return, which adds the rise or fall. A high yield is not automatically a better investment. It can reflect higher risk, or a price that has fallen.",
     ],
     seeAlso: ["Return", "Rental yield", "Compounding"],
   },
@@ -732,7 +740,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Zoning",
     categories: ["mortgages", "investing"],
     body: [
-      "The council's rules for how land may be used, set in the district plan: whether a site is residential, rural, commercial or something else, and what can be built on it — how big, how close to the boundaries, and whether it can be subdivided. Zoning shows on the LIM report. It shapes what you can do with a property, now and later, and so its value; building something the zone does not permit needs a resource consent.",
+      "The council's rules for how land may be used, set in the district plan: whether a site is residential, rural, commercial or something else, and what can be built on it. That covers how big, how close to the boundaries, and whether the site can be subdivided. Zoning shows on the LIM report. It shapes what you can do with a property, now and later, and so its value; building something the zone does not permit needs a resource consent.",
     ],
     seeAlso: ["LIM report", "Due diligence", "Investment property"],
   },
