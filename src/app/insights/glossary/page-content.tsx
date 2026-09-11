@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import heroImg from "../../../../public/images/glossary-hero.jpg";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Search, X } from "lucide-react";
 // Types only: the terms arrive as props, so the data file stays out of the client bundle.
@@ -137,13 +139,24 @@ export default function GlossaryContent({
     <div data-cmp="GlossaryPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section data-cmp="GlossaryPage.Hero" className="relative overflow-hidden bg-valar-navy text-white">
-        {/* No photograph yet — a letterform stands in until Lena picks one. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-6 -bottom-16 hidden select-none text-[18rem] leading-none font-bold tracking-tighter text-white/[0.04] md:block"
-        >
-          A–Z
-        </span>
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={heroImg}
+            alt="A gold magnifying glass over a row of documents on a navy background"
+            fill
+            priority
+            placeholder="blur"
+            sizes="100vw"
+            // The artwork sits on the right and the left of the picture is empty
+            // navy, so the crop anchors right: a narrow screen keeps the magnifying
+            // glass rather than a strip of plain background.
+            className="object-cover object-right"
+          />
+          {/* The picture is already dark where the text sits, so on a wide screen the
+              wash stays light. On a phone the text crosses the artwork, so it goes darker. */}
+          <div className="absolute inset-0 bg-valar-navy/70 md:bg-transparent md:bg-linear-to-r md:from-valar-navy/60 md:via-valar-navy/10 md:to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent z-10" />
+        </div>
         <div className="container relative z-10 mx-auto max-w-6xl px-4 pt-28 pb-12 md:px-6">
           <Link
             href="/insights"
