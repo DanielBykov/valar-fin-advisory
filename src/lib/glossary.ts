@@ -540,7 +540,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Rates",
     categories: ["mortgages"],
     body: [
-      "The word means two different things in property, and they are easy to confuse. **Council rates** are the property tax charged by your local council, and in many areas the regional council, to pay for local services, usually in instalments through the year. They are one of the ongoing costs of owning, and lenders include them in your costs when they assess what you can afford. **Interest rates** are the percentage a lender charges on the money you borrow, such as a fixed or floating rate. When people talk about a property's rates, they usually mean council rates.",
+      "The word means two different things in property, and they are easy to confuse. **Council rates** are what property owners pay the local council, and in many areas the regional council, for local services. They are usually paid in instalments through the year. They are one of the ongoing costs of owning, and lenders include them in your costs when they assess what you can afford. **Interest rates** are the percentage a lender charges on the money you borrow, such as a fixed or floating rate. When people talk about a property's rates, they usually mean council rates.",
     ],
     seeAlso: ["Rating valuation", "Fixed rate", "Floating rate", "Servicing"],
   },
