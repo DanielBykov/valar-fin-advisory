@@ -261,7 +261,7 @@ export function Navbar() {
                           <BookA className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
                           <div>
                             <div className="font-semibold text-[15px] text-valar-navy group-hover/item:text-valar-horizon transition-colors">Glossary</div>
-                            <div className="text-sm text-valar-indigo mt-1 leading-snug">Financial terminology in plain English</div>
+                            <div className="text-sm text-valar-indigo mt-1 leading-snug">Financial terms in plain English</div>
                           </div>
                         </Link>
                       )}
