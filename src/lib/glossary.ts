@@ -188,7 +188,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A loan for building a new home, paid out in stages — progress payments — as the build reaches agreed milestones, rather than in one lump sum. Interest is charged only on what has been drawn so far. Lenders usually want the building contract, the plans and a valuation of the finished home before approving, and the code compliance certificate before the final payment.",
     ],
-    seeAlso: ["Code compliance certificate", "Registered valuation"],
+    seeAlso: ["Quantity surveyor", "Code compliance certificate", "Registered valuation"],
   },
   {
     term: "Contribution",
@@ -278,7 +278,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A written picture of where you are now and a route to where you want to be: income, spending, assets and debts; the goals you are working towards, and by when; and the steps to get there — saving, investing, repaying debt, protecting against the things that could knock the plan over. It is meant to be revisited as life changes, not filed away once it is written.",
     ],
-    seeAlso: ["Cash flow", "Net worth", "Emergency fund", "Investment horizon", "Risk profile"],
+    seeAlso: ["Wealth management", "Cash flow", "Net worth", "Emergency fund", "Investment horizon", "Risk profile"],
   },
   {
     term: "First Home Loan",
@@ -321,6 +321,22 @@ const TERMS: GlossaryTerm[] = [
     seeAlso: ["Gifted deposit", "Deposit", "Security"],
   },
   {
+    term: "Healthy Homes Standards",
+    categories: ["investing"],
+    body: [
+      "Minimum standards every rental property in New Zealand has to meet, covering heating, insulation, ventilation, moisture ingress and drainage, and draught stopping. Meeting them is the landlord's responsibility, so for anyone buying an investment property they are part of the purchase: a home that does not meet them yet comes with work, and a cost, to bring it up to standard. The building inspection and the seller's records are where checking starts.",
+    ],
+    seeAlso: ["Investment property", "Building inspection", "Rental yield"],
+  },
+  {
+    term: "High-LVR loan",
+    categories: ["mortgages"],
+    body: [
+      "A home loan that is a large share of the property's value — a small deposit, or little equity. The Reserve Bank limits how much of this lending banks can do, so high-LVR loans are harder to get, the criteria are tighter, and they usually cost more through a low-equity margin or premium. For eligible first home buyers, the First Home Loan is one way in.",
+    ],
+    seeAlso: ["Loan-to-value ratio", "Low-equity margin", "First Home Loan", "Deposit"],
+  },
+  {
     term: "Interest deductibility",
     categories: ["investing"],
     body: [
@@ -350,7 +366,15 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A property bought to rent out, or for its future value, rather than to live in. Lenders treat it differently from a home: a bigger deposit is usually needed, because the Reserve Bank's LVR limits are tighter for investors; only part of the rent is usually counted when working out what you can afford; and interest-only periods are more common. The tax treatment is different too — the bright-line test and the interest limitation rules both apply.",
     ],
-    seeAlso: ["Rental yield", "Loan-to-value ratio", "Bright-line test", "Interest deductibility", "Interest-only"],
+    seeAlso: ["Rental yield", "Loan-to-value ratio", "Bright-line test", "Interest deductibility", "Interest-only", "Healthy Homes Standards"],
+  },
+  {
+    term: "Joint tenants and tenants in common",
+    categories: ["mortgages", "investing"],
+    body: [
+      "The two ways people can own a property together, recorded on the title — and the difference matters most when one owner dies. **Joint tenants** own the whole property together, without separate shares; if one dies, the other automatically owns all of it, whatever a will says. **Tenants in common** each own a defined share, which can be unequal and is shown on the title; each share can be sold or left in a will. Which one fits — a couple, family or friends buying together, or owners who put in different amounts — is worth settling with your lawyer before you buy.",
+    ],
+    seeAlso: ["Record of Title", "Sale and purchase agreement", "Wealth management"],
   },
   {
     term: "Kāinga Ora",
@@ -382,7 +406,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A Land Information Memorandum — what the local council holds on file about a property: consents and code compliance certificates, zoning, known hazards such as flooding, and anything outstanding. It is usually obtained during due diligence, while the purchase is still conditional. Work done without a consent may show up here by its absence.",
     ],
-    seeAlso: ["Due diligence", "Code compliance certificate", "Building inspection", "Record of Title"],
+    seeAlso: ["Due diligence", "Zoning", "Code compliance certificate", "Building inspection", "Record of Title"],
   },
   {
     term: "Live deal",
@@ -406,7 +430,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The size of your loan as a share of the property's value. A lower LVR — a bigger deposit, or more equity — opens up more lenders and better rates. The Reserve Bank limits how much high-LVR lending banks can do, with tighter limits for investment property, which is why low-deposit loans are harder to get and often cost more.",
     ],
-    seeAlso: ["Deposit", "Equity", "Low-equity margin", "Debt-to-income ratio", "Investment property"],
+    seeAlso: ["High-LVR loan", "Deposit", "Equity", "Low-equity margin", "Debt-to-income ratio", "Investment property"],
   },
   {
     term: "Low-equity margin",
@@ -414,7 +438,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "An extra cost some lenders charge when your deposit or equity is below what they treat as standard. It can be added to the interest rate (a low-equity margin) or charged once as a fee (a low-equity premium). It usually falls away once your equity reaches the lender's threshold — though with some lenders that only happens when you ask for a review.",
     ],
-    seeAlso: ["Loan-to-value ratio", "Deposit", "Special rate"],
+    seeAlso: ["High-LVR loan", "Loan-to-value ratio", "Deposit", "Special rate"],
   },
   {
     term: "Managed fund",
@@ -438,7 +462,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "Everything you own minus everything you owe — your assets less your debts. For a home owner, the home and the mortgage are usually the two biggest numbers in it. Watching it change over time shows whether you are actually getting ahead, which income alone does not.",
     ],
-    seeAlso: ["Asset", "Equity", "Financial plan"],
+    seeAlso: ["Wealth", "Asset", "Equity", "Financial plan"],
   },
   {
     term: "Non-bank lender",
@@ -489,6 +513,14 @@ const TERMS: GlossaryTerm[] = [
     seeAlso: ["Interest-only", "Loan term"],
   },
   {
+    term: "Quantity surveyor",
+    categories: ["mortgages"],
+    body: [
+      "A professional who estimates and tracks building costs. On a new build or a large renovation, a lender may want a quantity surveyor's report to confirm the budget is realistic before approving the loan, and to check that each progress payment matches the work actually done. For a buyer, a cost estimate before committing shows whether a renovation plan adds up.",
+    ],
+    seeAlso: ["Construction loan", "Code compliance certificate", "Registered valuation"],
+  },
+  {
     term: "Rates",
     categories: ["mortgages"],
     body: [
@@ -502,7 +534,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The council's valuation of a property, used to share rates fairly between owners. It has three parts: the land value; the capital value (CV), which is the estimated value of the whole property at a set date; and the value of improvements, which is simply the difference between the two. Councils revalue only every few years, so it can be well out of step with today's market, and it is not meant for insurance or mortgage purposes. It is not a registered valuation either, and a sale price can land well above or below it.",
     ],
-    seeAlso: ["Registered valuation", "Rates"],
+    seeAlso: ["Valuation", "Registered valuation", "Rates"],
   },
   {
     term: "Record of Title",
@@ -510,7 +542,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The official record of who owns a piece of land and what rights and restrictions come with it — mortgages, easements, covenants. It replaced the older certificate of title and is held by Land Information New Zealand (LINZ). Your lawyer checks it before you commit to a purchase.",
     ],
-    seeAlso: ["Cross-lease", "Unit title", "LIM report", "Due diligence"],
+    seeAlso: ["Joint tenants and tenants in common", "Cross-lease", "Unit title", "LIM report", "Due diligence"],
   },
   {
     term: "Refinancing",
@@ -534,7 +566,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "An independent assessment of a property's market value by a registered valuer. Lenders often ask for one — for low-deposit loans, new builds, auctions, or properties without a recent sale. If it comes in below the price you agreed, the lender generally works from the valuation. It is not the same as the council's rating valuation (RV or CV), which is set for rates and often differs from market value.",
     ],
-    seeAlso: ["Rating valuation", "Loan-to-value ratio", "Auction"],
+    seeAlso: ["Valuation", "Rating valuation", "Loan-to-value ratio", "Auction"],
   },
   {
     term: "Rental yield",
@@ -542,7 +574,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The rent a property earns in a year, as a share of its value or purchase price. Gross yield uses the rent alone; net yield takes off the costs first — rates, insurance, maintenance, property management, any body corporate levies. Yield on its own does not show whether a property pays for itself: that also depends on the loan, the interest rate and tax.",
     ],
-    seeAlso: ["Investment property", "Cash flow", "Return", "Interest deductibility"],
+    seeAlso: ["Yield", "Investment property", "Cash flow", "Return", "Interest deductibility"],
   },
   {
     term: "Restructure",
@@ -558,7 +590,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "What an investment earns: the income it pays — interest, dividends or rent — plus any change in its value. It can be negative. Returns are usually quoted as a yearly percentage, and it matters whether a figure is before or after fees and tax, and what period it covers. Past returns are not a guide to future returns.",
     ],
-    seeAlso: ["Compounding", "Rental yield", "Managed fund", "Risk tolerance"],
+    seeAlso: ["Yield", "Compounding", "Rental yield", "Managed fund", "Risk tolerance"],
   },
   {
     term: "Revolving credit",
@@ -590,7 +622,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The contract between buyer and seller. It sets out the price, the purchase deposit, the settlement date, the chattels included, and any conditions — finance, a building inspection, a LIM, due diligence. Once signed it is binding on the terms it contains, so your lawyer should review it before you sign, not after.",
     ],
-    seeAlso: ["Conditional and unconditional", "Finance condition", "Chattels", "Deposit", "Settlement"],
+    seeAlso: ["Vendor", "Conditional and unconditional", "Finance condition", "Chattels", "Deposit", "Settlement"],
   },
   {
     term: "Security",
@@ -655,6 +687,54 @@ const TERMS: GlossaryTerm[] = [
       "Ownership of a unit — usually an apartment or townhouse — inside a development, together with a share of the common property. Every owner belongs to the body corporate, which looks after the shared parts and charges levies. Before you buy, the seller has to give you a disclosure statement about the unit and the body corporate, and some lenders look at the development closely too.",
     ],
     seeAlso: ["Body corporate", "Due diligence", "Cross-lease", "Record of Title"],
+  },
+  {
+    term: "Valuation",
+    categories: ["mortgages"],
+    body: [
+      "A word that covers several different things, and they are easy to mix up. A **registered valuation** is an independent assessment of market value by a registered valuer — the kind lenders ask for. A **rating valuation** (RV or CV) is the council's figure for sharing out rates, set at a past date. A real estate agent's **appraisal** is the agent's estimate of the likely sale price — useful, but not a valuation. For the same property, the three can be far apart.",
+    ],
+    seeAlso: ["Registered valuation", "Rating valuation", "Vendor"],
+  },
+  {
+    term: "Vendor",
+    categories: ["mortgages"],
+    body: [
+      "The seller. Sale and purchase agreements and real estate agents say “vendor” and “purchaser”. The agent selling a property works for the vendor, not for you, even while showing you around — though they must still treat buyers fairly and tell you about known problems with the property. Only a buyer's agent works for the buyer.",
+    ],
+    seeAlso: ["Sale and purchase agreement", "Valuation", "Settlement"],
+  },
+  {
+    term: "Wealth",
+    categories: ["investing"],
+    body: [
+      "What you own that holds or grows its value and can support your life without depending on your next pay — property, investments, KiwiSaver, a business. It is not the same as income: a high income can sit alongside very little wealth, and the reverse. Net worth measures wealth at one point in time; building wealth is about what happens to that number over years.",
+    ],
+    seeAlso: ["Net worth", "Wealth management", "Asset", "Compounding"],
+  },
+  {
+    term: "Wealth management",
+    categories: ["investing"],
+    body: [
+      "Looking after someone's finances as a whole over the long term, rather than one product at a time — investments, property, KiwiSaver and debt, working towards goals such as financial independence or retirement, with regular reviews as life changes. The tax and legal questions within it, such as structures, trusts and wills, sit with an accountant and a lawyer working alongside.",
+    ],
+    seeAlso: ["Wealth", "Financial plan", "Risk profile", "Asset allocation"],
+  },
+  {
+    term: "Yield",
+    categories: ["investing"],
+    body: [
+      "The income an investment pays in a year — interest, dividends or rent — as a share of its value or price, without counting any change in that value. That is what separates it from return, which adds the rise or fall in value. A high yield is not automatically a better investment: it can reflect higher risk, or a price that has fallen.",
+    ],
+    seeAlso: ["Return", "Rental yield", "Compounding"],
+  },
+  {
+    term: "Zoning",
+    categories: ["mortgages", "investing"],
+    body: [
+      "The council's rules for how land may be used, set in the district plan: whether a site is residential, rural, commercial or something else, and what can be built on it — how big, how close to the boundaries, and whether it can be subdivided. Zoning shows on the LIM report. It shapes what you can do with a property, now and later, and so its value; building something the zone does not permit needs a resource consent.",
+    ],
+    seeAlso: ["LIM report", "Due diligence", "Investment property"],
   },
 ];
 
