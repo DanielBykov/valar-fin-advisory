@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     images: ["/opengraph.jpg"],
     title: "Mortgage, KiwiSaver & Investing Glossary NZ | Valar Financial Advisors",
     description:
-      "What the words in a home loan, a purchase agreement, KiwiSaver and an investment actually mean — in plain English.",
+      "A simple guide to the terms you’ll come across in mortgages, property, KiwiSaver and investing, and why they matter.",
     url: "/insights/glossary",
     type: "website",
   },

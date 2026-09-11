@@ -161,8 +161,8 @@ export default function GlossaryContent({
               Glossary<span className="text-valar-amber">.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="max-w-2xl text-base text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light">
-              What the words in a home loan, a purchase agreement, KiwiSaver and an investment actually
-              mean, and why each one matters to you.
+              A simple guide to the terms you’ll come across in mortgages, property, KiwiSaver and
+              investing, and why they matter.
             </motion.p>
           </motion.div>
         </div>
