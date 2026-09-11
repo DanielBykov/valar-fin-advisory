@@ -127,6 +127,14 @@ const TERMS: GlossaryTerm[] = [
     seeAlso: ["Due diligence", "Auction", "Conditional and unconditional"],
   },
   {
+    term: "Cash contribution",
+    categories: ["mortgages"],
+    body: [
+      "Money some lenders pay you when a new loan is drawn down, often called cashback, usually put towards buying or switching costs. It comes with a minimum period the loan has to stay with that lender. Repay or move the loan before then and the lender can claw some or all of it back, often in proportion to how early you leave. The loan agreement sets out exactly how.",
+    ],
+    seeAlso: ["Clawback", "Refinancing"],
+  },
+  {
     term: "Cash flow",
     categories: ["investing"],
     body: [
@@ -135,28 +143,12 @@ const TERMS: GlossaryTerm[] = [
     seeAlso: ["Financial plan", "Emergency fund", "Rental yield"],
   },
   {
-    term: "Cashback",
-    categories: ["mortgages"],
-    body: [
-      "A cash contribution some lenders pay when a new loan is drawn down, usually used towards buying or switching costs. It comes with a minimum period the loan has to stay with that lender. Move the loan before then and the lender can ask for some or all of it back.",
-    ],
-    seeAlso: ["Refinancing", "Clawback"],
-  },
-  {
-    term: "Chattels",
-    categories: ["mortgages"],
-    body: [
-      "Items sold with a property that are listed in the sale and purchase agreement: commonly curtains, blinds, light fittings, and appliances such as the oven, dishwasher or heat pump. Movable items that are not fixed to the property are only included if they are on that list, so it is worth reading closely. Anything you expect to stay should be written in. You check them again at the pre-settlement inspection, to see they are there and working.",
-    ],
-    seeAlso: ["Sale and purchase agreement", "Pre-settlement inspection"],
-  },
-  {
     term: "Clawback",
     categories: ["mortgages"],
     body: [
-      "When a loan arranged through an adviser is repaid or refinanced within an early period set by the lender, the lender takes back the commission it paid the adviser. Depending on the adviser's terms, some or all of that cost can be passed on to you. The terms are in the adviser's disclosure and agreement, and they are worth reading before you sign, not two years later when you want to move the loan.",
+      "Money taken back when a loan is repaid, refinanced or moved within an early period, and it can happen in two ways. When the loan was arranged through an adviser, the lender takes back the commission it paid the adviser, and depending on the adviser's terms some or all of that cost can be passed on to you. When the lender paid a cash contribution, it can claw that back too, often in proportion to how early the loan is moved. The periods and amounts are set in the adviser's agreement and the loan agreement, so check both before you sign, not two years later when you want to move the loan.",
     ],
-    seeAlso: ["Mortgage adviser", "Cashback", "Refinancing"],
+    seeAlso: ["Mortgage adviser", "Cash contribution", "Refinancing"],
   },
   {
     term: "Code compliance certificate (CCC)",
@@ -191,14 +183,6 @@ const TERMS: GlossaryTerm[] = [
     seeAlso: ["Quantity surveyor", "Code compliance certificate", "Registered valuation"],
   },
   {
-    term: "Contribution",
-    categories: ["kiwisaver"],
-    body: [
-      "Money paid into KiwiSaver. There are usually three sources: what you pay from your wages at the rate you choose, what your employer adds, and a government contribution for eligible members. You can also pay in voluntarily at any time, which is how self-employed members contribute. The rates and the rules for the government contribution have changed recently and more changes are scheduled, so Inland Revenue or your provider has the current settings.",
-    ],
-    seeAlso: ["KiwiSaver", "Compounding"],
-  },
-  {
     term: "Credit report",
     categories: ["mortgages"],
     body: [
@@ -212,7 +196,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A form of ownership common in older New Zealand subdivisions. The owners share the land between them, and each holds a long lease over their own home, shown on a plan. If a home has been extended or altered without the plan being updated, the title can be defective. Your lawyer checks for this, and lenders care about it.",
     ],
-    seeAlso: ["Record of Title", "Unit title"],
+    seeAlso: ["Freehold", "Leasehold", "Record of Title", "Unit title"],
   },
   {
     term: "Debt-to-income ratio (DTI)",
@@ -227,10 +211,10 @@ const TERMS: GlossaryTerm[] = [
     categories: ["mortgages"],
     body: [
       "The word means two different things when you buy a home, and they are easy to confuse.",
-      "**Your deposit for the loan** is the part of the price you pay with your own money rather than borrow. It can come from savings, KiwiSaver, a gift from family or the sale of another property. Its size sets your loan-to-value ratio, which affects which lenders will consider you and the rate you are offered.",
+      "**Your deposit for the loan** is the part of the price you pay with your own money rather than borrow. It can come from savings, KiwiSaver, a gift or the sale of another property. Its size sets your loan-to-value ratio, which affects which lenders will consider you and the rate you are offered.",
       "**The purchase deposit** is a payment made under the sale and purchase agreement. Depending on the agreement, it is paid once both sides have signed or once the agreement becomes unconditional, and at auction usually on the day. It counts towards the price at settlement, but because it is paid earlier, that money has to be available sooner than the rest.",
     ],
-    seeAlso: ["Loan-to-value ratio", "Gifted deposit", "KiwiSaver first-home withdrawal", "Conditional and unconditional", "Auction"],
+    seeAlso: ["Loan-to-value ratio", "Gifted funds", "KiwiSaver first-home withdrawal", "Conditional and unconditional", "Auction"],
   },
   {
     term: "Diversification",
@@ -268,7 +252,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Finance condition",
     categories: ["mortgages"],
     body: [
-      "A condition in a sale and purchase agreement that makes the purchase depend on the buyer arranging finance by a set date, called the finance date. It is what “subject to finance” means on an offer. If the loan is not approved in time, the condition usually gives the buyer a way out of the agreement; once the buyer confirms finance or waives the condition, that protection is gone. The finance date has to leave the lender enough time to assess both you and the property.",
+      "A condition in a sale and purchase agreement that makes the purchase subject to arranging finance by an agreed date. This is what “subject to finance” means in an offer. If finance is not approved in time, the buyer may be able to cancel the agreement. The finance date should allow enough time for the lender to assess the application and check the property.",
     ],
     seeAlso: ["Conditional and unconditional", "Live deal", "Pre-approval", "Sale and purchase agreement"],
   },
@@ -305,10 +289,18 @@ const TERMS: GlossaryTerm[] = [
     seeAlso: ["Fixed rate", "Split loan", "Revolving credit", "Official Cash Rate"],
   },
   {
-    term: "Gifted deposit",
+    term: "Freehold",
     categories: ["mortgages"],
     body: [
-      "Money given by family towards your deposit, with no expectation of being repaid. Lenders usually want it confirmed in a signed gift certificate, so they know it is not a loan you would have to repay. If the money is really a loan, it has to be treated as one.",
+      "Owning the land and, generally, anything built on it. Also called fee simple, it is the most common kind of ownership in New Zealand. What you can do with the property can still be limited by interests on the title, such as easements or covenants, and by council rules.",
+    ],
+    seeAlso: ["Leasehold", "Cross-lease", "Unit title", "Record of Title"],
+  },
+  {
+    term: "Gifted funds",
+    categories: ["mortgages"],
+    body: [
+      "Money given towards your deposit, with no expectation of being repaid. It usually comes from family, but it can come from someone else, such as a friend. Lenders have their own rules on gifts and usually want one confirmed in a signed gift certificate, so they know it is not a loan you would have to repay. If the money is really a loan, it has to be treated as one.",
     ],
     seeAlso: ["Deposit", "Guarantor"],
   },
@@ -316,9 +308,9 @@ const TERMS: GlossaryTerm[] = [
     term: "Guarantor",
     categories: ["mortgages"],
     body: [
-      "A person, usually a parent, who agrees to be responsible for part of your loan if you cannot repay it. The guarantee is often secured against their own property and is usually limited to a set amount. It can help a buyer with a small deposit, but it puts the guarantor's property at risk, which is why lenders expect the guarantor to take independent legal advice before signing.",
+      "A person, usually a family member, who agrees to be responsible for part of your loan if you cannot repay it. The guarantee is often secured against their own property and is usually limited to a set amount. It can help a buyer with a small deposit, but it puts the guarantor's property at risk, which is why lenders expect the guarantor to take independent legal advice before signing.",
     ],
-    seeAlso: ["Gifted deposit", "Deposit", "Security"],
+    seeAlso: ["Gifted funds", "Deposit", "Security"],
   },
   {
     term: "Healthy Homes Standards",
@@ -390,7 +382,15 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "New Zealand's voluntary, work-based savings scheme. Members save from their pay, employers usually contribute as well, and eligible members also receive a government contribution. The money is invested in a fund with a KiwiSaver provider, and fund types run from defensive and conservative through balanced to growth and aggressive. It is generally held until retirement age, with a few exceptions; the one that matters most to buyers is a first home.",
     ],
-    seeAlso: ["Contribution", "Managed fund", "Asset allocation", "KiwiSaver first-home withdrawal"],
+    seeAlso: ["KiwiSaver contributions", "Managed fund", "Asset allocation", "KiwiSaver first-home withdrawal"],
+  },
+  {
+    term: "KiwiSaver contributions",
+    categories: ["kiwisaver"],
+    body: [
+      "Money paid into KiwiSaver. There are usually three sources: what you pay from your wages at the rate you choose, what your employer adds, and a government contribution for eligible members. You can also pay in voluntarily at any time, which is how self-employed members contribute. The rates and the rules for the government contribution have changed recently and more changes are scheduled, so Inland Revenue or your provider has the current settings.",
+    ],
+    seeAlso: ["KiwiSaver", "Compounding"],
   },
   {
     term: "KiwiSaver first-home withdrawal",
@@ -399,6 +399,14 @@ const TERMS: GlossaryTerm[] = [
       "KiwiSaver members of at least three years can usually withdraw most of their savings towards a first home, though a small balance has to stay in the account. The home has to be one you intend to live in. The money is paid to your lawyer on or before settlement, not to you, and the application goes through your KiwiSaver provider, so it needs to start well before settlement day. Previous home owners can sometimes qualify too, after an assessment by Kāinga Ora.",
     ],
     seeAlso: ["KiwiSaver", "Kāinga Ora", "Deposit", "First Home Loan"],
+  },
+  {
+    term: "Leasehold",
+    categories: ["mortgages"],
+    body: [
+      "Buying an exclusive right to use the land and the buildings on it for a set period, on the terms of a lease, rather than owning the land. You pay rent for the land, usually called ground rent, to the freehold owner, and the lease sets how often that rent is reviewed. A rising ground rent and a shortening lease can make a leasehold property much harder to sell later, so lenders look closely at the lease terms too.",
+    ],
+    seeAlso: ["Freehold", "Cross-lease", "Record of Title"],
   },
   {
     term: "LIM report",
@@ -502,7 +510,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A visit to the property shortly before settlement, to check it is in the condition it was in when you agreed to buy, that the chattels listed in the agreement are there and working, and that anything the seller agreed to do has been done. Any problem has to go through your lawyer before settlement, because afterwards it is much harder to fix. Do not skip it.",
     ],
-    seeAlso: ["Chattels", "Settlement", "Sale and purchase agreement"],
+    seeAlso: ["Settlement", "Sale and purchase agreement"],
   },
   {
     term: "Principal and interest (P&I)",
@@ -511,6 +519,14 @@ const TERMS: GlossaryTerm[] = [
       "The standard way to repay a home loan. Each repayment covers the interest due and pays down part of the balance, called the principal. Early on, most of each repayment is interest; as the balance falls, more of it goes to the principal, until the loan is repaid at the end of its term.",
     ],
     seeAlso: ["Interest-only", "Loan term"],
+  },
+  {
+    term: "Property valuation",
+    categories: ["mortgages"],
+    body: [
+      "The value of a property, and a term that covers several different things which are easy to mix up. A **registered valuation** is an independent assessment of market value by a registered valuer, and it is the kind lenders usually ask for. Some companies also produce **automated or desktop valuations** from sales data, and banks sometimes accept these instead. A **rating valuation** (RV or CV) is the council's figure for sharing out rates, set at a past date. A real estate agent's **appraisal** is the agent's estimate of the likely sale price, which is useful but is not a valuation. For the same property, these can be far apart.",
+    ],
+    seeAlso: ["Registered valuation", "Rating valuation", "Vendor"],
   },
   {
     term: "Quantity surveyor",
@@ -524,9 +540,9 @@ const TERMS: GlossaryTerm[] = [
     term: "Rates",
     categories: ["mortgages"],
     body: [
-      "Not interest rates: the property tax charged by your local council, and in many areas the regional council, to pay for local services, usually in instalments through the year. Lenders include rates in your costs when they assess what you can afford, and they are one of the ongoing costs of owning.",
+      "The word means two different things in property, and they are easy to confuse. **Council rates** are the property tax charged by your local council, and in many areas the regional council, to pay for local services, usually in instalments through the year. They are one of the ongoing costs of owning, and lenders include them in your costs when they assess what you can afford. **Interest rates** are the percentage a lender charges on the money you borrow, such as a fixed or floating rate. When people talk about a property's rates, they usually mean council rates.",
     ],
-    seeAlso: ["Rating valuation", "Servicing", "Settlement"],
+    seeAlso: ["Rating valuation", "Fixed rate", "Floating rate", "Servicing"],
   },
   {
     term: "Rating valuation (RV / CV)",
@@ -534,7 +550,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The council's valuation of a property, used to share rates fairly between owners. It has three parts: the land value; the capital value (CV), which is the estimated value of the whole property at a set date; and the value of improvements, which is simply the difference between the two. Councils revalue only every few years, so it can be well out of step with today's market, and it is not meant for insurance or mortgage purposes. It is not a registered valuation either, and a sale price can land well above or below it.",
     ],
-    seeAlso: ["Valuation", "Registered valuation", "Rates"],
+    seeAlso: ["Property valuation", "Registered valuation", "Rates"],
   },
   {
     term: "Record of Title",
@@ -548,15 +564,15 @@ const TERMS: GlossaryTerm[] = [
     term: "Refinancing",
     categories: ["mortgages"],
     body: [
-      "Moving your home loan to a different lender, for a better rate or structure, a cashback, or lending your current lender will not offer. Before moving, weigh up the costs: break fees on fixed parts, any cashback you would have to repay, clawback, and legal fees. The new lender assesses you from scratch, so being approved for your current loan does not mean being approved for the same loan elsewhere. Changing the loan while staying with your current lender is a restructure, not a refinance.",
+      "Changing an existing home loan. It can mean restructuring the loan with your current lender, or moving it to a different lender for a better rate, a better structure, or an option your current lender does not offer. Before moving lender, weigh up the costs: break fees on fixed parts, any cash contribution you would have to repay, clawback, and legal fees. A new lender assesses you from scratch, so being approved for your current loan does not mean being approved for the same loan elsewhere. Choosing a new fixed rate when a fixed term ends is a refix.",
     ],
-    seeAlso: ["Restructure", "Refix", "Top-up", "Break fee", "Cashback", "Clawback"],
+    seeAlso: ["Restructure", "Refix", "Top-up", "Break fee", "Cash contribution", "Clawback"],
   },
   {
     term: "Refix",
     categories: ["mortgages"],
     body: [
-      "Choosing a new fixed rate and term when your current fixed term ends. Lenders usually get in touch beforehand (“your loan is coming up for refix”) with the rates on offer. Refixing at the end of a term costs no break fee, which makes it the natural point to review the whole loan: how much to fix and for how long, and whether to restructure, top up or refinance. If you do nothing, the loan usually moves to the floating rate.",
+      "Choosing a new fixed rate and term when your current fixed term ends. Lenders usually get in touch beforehand (“your loan is coming up for refix”) with the rates on offer. Refixing at the end of a term costs no break fee, which makes it the natural point to review the whole loan: how much to fix and for how long, and whether to restructure, top up or move to another lender. If you do nothing, the loan usually moves to the floating rate.",
     ],
     seeAlso: ["Fixed rate", "Floating rate", "Restructure", "Refinancing"],
   },
@@ -566,7 +582,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "An independent assessment of a property's market value by a registered valuer. Lenders often ask for one for low-deposit loans, new builds, auctions, or properties without a recent sale. If it comes in below the price you agreed, the lender generally works from the valuation. It is not the same as the council's rating valuation (RV or CV), which is set for rates and often differs from market value.",
     ],
-    seeAlso: ["Valuation", "Rating valuation", "Loan-to-value ratio", "Auction"],
+    seeAlso: ["Property valuation", "Rating valuation", "Loan-to-value ratio", "Auction"],
   },
   {
     term: "Rental yield",
@@ -580,7 +596,7 @@ const TERMS: GlossaryTerm[] = [
     term: "Restructure",
     categories: ["mortgages"],
     body: [
-      "Changing how an existing loan is set up while staying with the same lender: splitting it differently, moving part between fixed and floating, adding an offset or revolving facility, or changing the loan term. It is usually simpler than refinancing, though changing a fixed part before its term ends can still cost a break fee.",
+      "Changing how an existing loan is set up while staying with the same lender: splitting it differently, moving part between fixed and floating, adding an offset or revolving facility, or changing the loan term. It is one form of refinancing, and usually simpler than moving to another lender, though changing a fixed part before its term ends can still cost a break fee.",
     ],
     seeAlso: ["Refix", "Top-up", "Refinancing", "Split loan"],
   },
@@ -622,7 +638,7 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The contract between buyer and seller. It sets out the price, the purchase deposit, the settlement date, the chattels included, and any conditions, such as finance, a building inspection, a LIM or due diligence. Once signed it is binding on the terms it contains, so your lawyer should review it before you sign, not after.",
     ],
-    seeAlso: ["Vendor", "Conditional and unconditional", "Finance condition", "Chattels", "Deposit", "Settlement"],
+    seeAlso: ["Vendor", "Conditional and unconditional", "Finance condition", "Deposit", "Settlement"],
   },
   {
     term: "Security",
@@ -689,20 +705,12 @@ const TERMS: GlossaryTerm[] = [
     seeAlso: ["Body corporate", "Due diligence", "Cross-lease", "Record of Title"],
   },
   {
-    term: "Valuation",
-    categories: ["mortgages"],
-    body: [
-      "A word that covers several different things, and they are easy to mix up. A **registered valuation** is an independent assessment of market value by a registered valuer, and it is the kind lenders ask for. A **rating valuation** (RV or CV) is the council's figure for sharing out rates, set at a past date. A real estate agent's **appraisal** is the agent's estimate of the likely sale price, which is useful but is not a valuation. For the same property, the three can be far apart.",
-    ],
-    seeAlso: ["Registered valuation", "Rating valuation", "Vendor"],
-  },
-  {
     term: "Vendor",
     categories: ["mortgages"],
     body: [
       "The seller. Sale and purchase agreements and real estate agents say “vendor” and “purchaser”. The agent selling a property works for the vendor, not for you, even while showing you around. They must still treat buyers fairly and tell you about known problems with the property. Only a buyer's agent works for the buyer.",
     ],
-    seeAlso: ["Sale and purchase agreement", "Valuation", "Settlement"],
+    seeAlso: ["Sale and purchase agreement", "Property valuation", "Settlement"],
   },
   {
     term: "Wealth",
