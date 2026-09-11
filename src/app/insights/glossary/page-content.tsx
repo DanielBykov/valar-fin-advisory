@@ -281,16 +281,21 @@ export default function GlossaryContent({
             {groups.map(([letter, items]) => (
               <div key={letter} id={`letter-${letter.toLowerCase()}`} className="scroll-mt-60">
                 <h2 className="mb-1 text-3xl font-bold text-valar-navy">{letter}</h2>
-                <div className="mb-5 h-[2px] w-6 bg-valar-amber" />
+                <div className="mb-2 h-[2px] w-6 bg-valar-amber" />
 
-                <div className="border-t border-valar-concrete">
+                {/*
+                 * Lines only between terms. The letter and its amber mark already open
+                 * the group, so a rule above the first term or below the last one just
+                 * doubled up with the next letter (Lena, 2026-09-11).
+                 */}
+                <div className="divide-y divide-valar-concrete">
                   {items.map((entry) => (
                     <article
                       key={entry.slug}
                       id={entry.slug}
                       data-cmp="GlossaryPage.Term"
                       className={[
-                        "scroll-mt-60 border-b border-valar-concrete py-7 transition-colors duration-700 md:grid md:grid-cols-[15rem_1fr] md:gap-10",
+                        "scroll-mt-60 py-6 transition-colors duration-700 md:grid md:grid-cols-[15rem_1fr] md:gap-10",
                         highlight === entry.slug ? "bg-valar-amber/10" : "",
                       ].join(" ")}
                     >
