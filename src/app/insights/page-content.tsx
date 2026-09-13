@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import heroImg from "../../../public/images/insights-hero.jpg";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Calculator, Calendar } from "lucide-react";
+import { ArrowRight, BookA, BookOpen, Calculator, Calendar } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
 import FaqAccordion from "@/components/insights/faq-accordion";
 import NewsletterSignup from "@/components/insights/newsletter-signup";
@@ -29,7 +29,16 @@ const INITIAL_ARTICLES = 3;
 /* Cards come from the calculator registry so this block can never advertise
    a calculator that is not actually published. */
 
-export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
+/** What the glossary card needs: the term count and a handful of terms to link to. */
+export type GlossaryTeaser = { count: number; featured: { slug: string; term: string }[] };
+
+export default function InsightsContent({
+  faqs,
+  glossary,
+}: {
+  faqs: FaqItem[];
+  glossary: GlossaryTeaser | null;
+}) {
   const articles = useMemo(() => visibleArticles(), []);
   const [filter, setFilter] = useState<InsightTag | "all">("all");
   const [expanded, setExpanded] = useState(false);
@@ -246,6 +255,51 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
           >
             All questions, by topic <ArrowRight className="h-4 w-4" />
           </Link>
+
+          {/* Glossary sits with the FAQ, as it does in the menu's Answers column.
+              A card rather than its own section: the page already has seven. */}
+          {glossary && (
+            <div
+              data-cmp="InsightsPage.Glossary"
+              className="mt-12 grid grid-cols-1 gap-6 rounded-xl border border-gray-100 bg-white p-7 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-center md:gap-10 md:p-9"
+            >
+              <div className="flex items-start gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
+                  <BookA className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+                    Glossary
+                  </p>
+                  <h3 className="mb-2 text-xl font-bold text-valar-navy">Financial terms in plain English</h3>
+                  <p className="text-[15px] leading-relaxed text-gray-600">
+                    A simple guide to the terms you’ll come across in mortgages, property, KiwiSaver and
+                    investing, and why they matter.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  {glossary.featured.map((term) => (
+                    <Link
+                      key={term.slug}
+                      href={`/insights/glossary#${term.slug}`}
+                      className="rounded-full border border-gray-200 bg-valar-fog px-4 py-2 text-sm font-medium text-valar-navy transition-colors hover:border-valar-amber"
+                    >
+                      {term.term}
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/insights/glossary"
+                  className="mt-5 inline-flex items-center gap-1 font-semibold text-valar-amber hover:underline"
+                >
+                  All {glossary.count} terms <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
