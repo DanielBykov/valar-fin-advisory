@@ -25,11 +25,14 @@ const GLOSSARY_FEATURED = [
   "cash-contribution",
   "kiwisaver-first-home-withdrawal",
   "bright-line-test",
+  // Seventh by Lena's call, 2026-09-14: evens the second row up with the first
+  // on a wide screen, and puts an investing term next to five mortgage ones.
+  "asset-allocation",
 ];
 
 /*
- * Built here rather than in page-content so the client bundle carries six term
- * names, not all the definitions. Same visibility as the glossary's menu link.
+ * Built here rather than in page-content so the client bundle carries a handful
+ * of term names, not all the definitions. Same visibility as the glossary's menu link.
  */
 function glossaryTeaser(): GlossaryTeaser | null {
   if (!GLOSSARY_LIVE && process.env.NODE_ENV !== "development") return null;
