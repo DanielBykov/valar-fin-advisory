@@ -517,7 +517,8 @@ export function renderAffordabilityEmail({
     <p style="margin:0;font-size:11px;line-height:18px;color:${STEEL};">
       Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider licence
       issued by the FMA. Financial advice is provided by Lena Bykova, Director and Financial
-      Adviser (FSP1010055). A disclosure statement is available free of charge on request.<br>
+      Adviser (FSP1010055). Disclosure statement:
+      <a href="${SITE_URL}/disclosure" style="color:#ffffff;text-decoration:underline;">valar.co.nz/disclosure</a><br>
       You are receiving this because you asked for these numbers on our calculator.
     </p>
   </td></tr>
@@ -584,7 +585,7 @@ export function renderAffordabilityEmail({
     "",
     `This is a guide, not advice. ${disclaimer}`,
     "",
-    "Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider licence issued by the FMA. Financial advice is provided by Lena Bykova, Director and Financial Adviser (FSP1010055). A disclosure statement is available free of charge on request.",
+    "Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider licence issued by the FMA. Financial advice is provided by Lena Bykova, Director and Financial Adviser (FSP1010055). Disclosure statement: valar.co.nz/disclosure",
   ]
     .join("\n")
     .replace(/\n{3,}/g, "\n\n");

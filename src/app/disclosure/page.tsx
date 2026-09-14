@@ -126,39 +126,22 @@ export default function DisclosurePage() {
             </p>
           </div>
 
-          {/* 5. Fees */}
+          {/* 5. Fees. The situations only, no amounts (Lena, 2026-09-14): amounts and how they are
+                 calculated live in the Nature and Scope of Advice. Keep the situations named here: the
+                 Privacy Authority clients sign says consultancy and clawback costs are on this website. */}
           <div>
             <h2 className="text-xl font-bold text-valar-navy mb-3">Our fees</h2>
             <p>
               We do not usually charge a fee where your lending is retained for at least 27 months and we have
               received a commission from the lender.
             </p>
-            <p className="mt-3">We may charge a one-off adviser fee for:</p>
-            <Bullets
-              items={[
-                "Arranging finance through a non-bank lender.",
-                "Lending intended to be repaid within 27 months, such as bridging finance, spec builds or property flips.",
-              ]}
-            />
-            <p className="mt-4">
-              Any fee is quoted and agreed before you accept a loan offer. Where a lender pays no commission, we
-              may charge an agreed fee. We will discuss it with you before we proceed.
-            </p>
             <p className="mt-3">
-              If you do not proceed after receiving a loan offer we arranged, we may charge a minimum of 10 hours
-              at $250 per hour plus GST. If you refinance to another lender within 27 months of settlement, a fee
-              of $2,500 minimum, or actual time at $250 per hour plus GST if greater, may apply.
-            </p>
-            <p className="mt-3">
-              If you cancel or refinance your loan within 27 months of settlement, the lender may recover part of
-              the commission it paid us. Any fee we charge you in that case is for the work we did on your
-              application, at $250 per hour plus GST. It is not calculated from the commission the lender
-              recovers. The bank may also recover any cash incentive it paid you, directly from you.
-            </p>
-            <p className="mt-3">
-              If you need financial advice and planning beyond your lending, we may charge for that advice based
-              on the time it takes. We will discuss this with you first. Any invoice is due within 7 days, with
-              payment details on the invoice.
+              A fee may apply if we arrange finance through a non-bank lender or a lender that pays no commission,
+              if the lending is intended to be repaid within 27 months, if you do not proceed after receiving a
+              loan offer we arranged, or if you cancel or refinance your loan within 27 months of settlement. Any
+              fee, and how it is calculated, is set out in your Nature and Scope of Advice, which you receive
+              before we give advice. If you need financial advice or planning beyond your lending, we will discuss
+              any fee with you first.
             </p>
           </div>
 

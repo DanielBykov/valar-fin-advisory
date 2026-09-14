@@ -1377,8 +1377,8 @@ export default function UaContent() {
                 written there. */}
             Valar Financial Advisors Limited (FSP1012862) має ліцензію Financial Advice Provider,
             видану FMA. Фінансові консультації надає Ліна Бикова (Lena Bykova, FSP1010055),
-            директорка та фінансова радниця. Заяву про розкриття інформації (Disclosure Statement)
-            можна отримати безкоштовно на запит.
+            директорка та фінансова радниця. Заява про розкриття інформації (Disclosure Statement):
+            valar.co.nz/disclosure
           </p>
         </div>
       </footer>
