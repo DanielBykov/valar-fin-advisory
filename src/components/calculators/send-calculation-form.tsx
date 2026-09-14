@@ -1,8 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import type { AffordabilitySnapshot } from "@/lib/affordability-report";
 import type { RepaymentSnapshot } from "@/lib/repayment-report";
+import type { SplitSnapshot } from "@/lib/split-report";
+
+/** Any calculator's inputs. The server tells them apart by `kind`. */
+export type CalculationFigures = RepaymentSnapshot | SplitSnapshot | AffordabilitySnapshot;
 
 /*
  * The fields sit on the card rather than behind a modal: this one lives beside
@@ -19,6 +25,9 @@ export default function SendCalculationForm({
   guideKey,
   guideTitle,
   guideReady,
+  pendingNote,
+  blurb,
+  cover,
   source,
   figures,
 }: {
@@ -27,14 +36,28 @@ export default function SendCalculationForm({
   guideTitle: string;
   /** Which page asked, recorded against the subscriber in MailerLite. */
   source?: string;
-  /** False while the PDF is still being written — changes what the thank-you says. */
+  /** False while there is no document to send — changes what the thank-you says. */
   guideReady: boolean;
+  /**
+   * What the thank-you says instead of "it is being finished". Not every magnet
+   * is a document: a structure review is answered by Lena, so telling someone it
+   * is being written is simply wrong.
+   */
+  pendingNote?: string;
+  /** The card's own sentence, when "a short guide" is the wrong description. */
+  blurb?: React.ReactNode;
+  /**
+   * The guide's cover. An offer someone can see is a different offer from one
+   * they have to read about, so it goes above the fold of the card — and it is
+   * only ever the real document's own artwork, never a stock placeholder.
+   */
+  cover?: { src: string; width: number; height: number };
   /**
    * The calculation to send back. Only the inputs travel: the server recomputes
    * the answer, so the email can never quote a figure the page did not.
    * Omitted on any capture that is not attached to a calculator.
    */
-  figures?: RepaymentSnapshot;
+  figures?: CalculationFigures;
 }) {
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
@@ -76,18 +99,20 @@ export default function SendCalculationForm({
         <p className="text-sm leading-relaxed text-gray-600">
           {guideReady ? (
             <>
-              Your figures and <span className="font-semibold text-valar-navy">{guideTitle}</span>{" "}
+              Your numbers and <span className="font-semibold text-valar-navy">{guideTitle}</span>{" "}
               are heading to your inbox now.
             </>
+          ) : pendingNote ? (
+            <>Your numbers are on their way. {pendingNote}</>
           ) : (
             <>
-              Your figures are on their way.{" "}
+              Your numbers are on their way.{" "}
               <span className="font-semibold text-valar-navy">{guideTitle}</span> is being finished
               right now and will follow the moment it is done.
             </>
           )}
         </p>
-        {figures && (
+        {figures && !("kind" in figures) && (
           <p className="mt-3 text-sm leading-relaxed text-gray-600">
             There is a printable one-page version linked inside it.
           </p>
@@ -108,16 +133,30 @@ export default function SendCalculationForm({
       data-cmp="SendCalculationForm"
       className="flex h-full flex-col rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
     >
+      {cover && (
+        <Image
+          src={cover.src}
+          alt={guideTitle}
+          width={cover.width}
+          height={cover.height}
+          className="mb-5 w-full rounded-lg"
+          sizes="(min-width: 1024px) 420px, 100vw"
+        />
+      )}
       <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
         Want this in writing?
       </p>
       <h3 className="mb-3 text-xl font-bold text-valar-navy">
-        I can send you these figures<span className="text-valar-amber">.</span>
+        I can send you these numbers<span className="text-valar-amber">.</span>
       </h3>
       <p className="mb-5 text-sm leading-relaxed text-gray-600">
-        Your numbers, and a short guide with them —{" "}
-        <b className="text-valar-navy">{guideTitle}</b>. The things that actually move the number, in
-        the order worth doing them.
+        {blurb ?? (
+          <>
+            Your numbers, and a short guide with them:{" "}
+            <b className="text-valar-navy">{guideTitle}</b>. The things that actually move the
+            number, in the order worth doing them.
+          </>
+        )}
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-3">
@@ -179,7 +218,7 @@ export default function SendCalculationForm({
             value="yes"
             className="mt-0.5 h-4 w-4 shrink-0 rounded border-valar-concrete accent-valar-amber"
           />
-          Keep me updated — occasional market news, research and guides from Valar.
+          Keep me updated with occasional market news, research and guides from Valar.
         </label>
 
         {error && <p className="text-xs font-semibold text-red-600">{error}</p>}
