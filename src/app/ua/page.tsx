@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import UaContent from "./page-content";
 import { JsonLd } from "@/components/json-ld";
 import { getFaqSchema } from "@/lib/schema";
@@ -36,7 +37,16 @@ export const metadata: Metadata = {
   },
 };
 
+/*
+ * Off on the live site until Lena says the page is finished (2026-09-14): it
+ * is still being worked on. Production answers 404; running locally ignores
+ * the switch so the work stays reviewable, the same rule the calculators use.
+ * Nothing on the site links here, and it is not in the sitemap.
+ */
+const UA_LIVE = false;
+
 export default function Page() {
+  if (process.env.NODE_ENV !== "development" && !UA_LIVE) notFound();
   return (
     <>
       {/* The same six questions the page shows, as FAQ structured data. They
