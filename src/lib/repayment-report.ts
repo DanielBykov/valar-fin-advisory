@@ -10,7 +10,7 @@
  */
 
 import { FREQUENCIES, type FrequencyKey } from "./split-loan";
-import type { ExtraMode, RepaymentInput } from "./repayments";
+import type { RepaymentExtraMode, RepaymentInput } from "./repayments";
 
 export type RepaymentSnapshot = RepaymentInput;
 
@@ -64,7 +64,8 @@ export function parseRepaymentSnapshot(raw: unknown): RepaymentSnapshot | null {
   if (amount === null || rate === null || years === null) return null;
 
   const frequency: FrequencyKey = isFrequency(r.frequency) ? r.frequency : "fortnightly";
-  const extraMode: ExtraMode = r.extraMode === "percent" ? "percent" : "amount";
+  const extraMode: RepaymentExtraMode =
+    r.extraMode === "percent" ? "percent" : r.extraMode === "target" ? "target" : "amount";
 
   const clampedAmount = clamp(amount, LIMITS.amount.min, LIMITS.amount.max);
 
@@ -75,7 +76,9 @@ export function parseRepaymentSnapshot(raw: unknown): RepaymentSnapshot | null {
     frequency,
     extraMode,
     // An extra payment larger than the loan itself is not a scenario, it is a
-    // typo or a probe. Percent is capped at the whole loan per year.
+    // typo or a probe. Percent is capped at the whole loan per year. A target
+    // is a whole payment rather than an extra, but the same ceiling holds: a
+    // payment bigger than the loan is not a scenario either.
     extraValue: clamp(extraValue ?? 0, 0, extraMode === "percent" ? 100 : clampedAmount),
   };
 }

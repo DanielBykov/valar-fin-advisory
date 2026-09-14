@@ -7,7 +7,7 @@ import { nzd, type RepaymentSnapshot } from "@/lib/repayment-report";
 
 /*
  * The printable version of a repayment calculation, reached from the link in
- * the "here are your figures" email.
+ * the "here are your numbers" email.
  *
  * One printed A4 sheet, exactly — the same rule the wealth plan report runs on.
  * Every print adjustment lives in PRINT_CSS below rather than in scattered
@@ -96,7 +96,9 @@ export default function RepaymentReportContent({
       usingExtra
         ? snapshot.extraMode === "percent"
           ? `${snapshot.extraValue}% of the loan a year`
-          : `${nzd(snapshot.extraValue)} per payment`
+          : snapshot.extraMode === "target"
+            ? `rounded up to ${nzd(snapshot.extraValue)} a payment`
+            : `${nzd(snapshot.extraValue)} per payment`
         : "None",
     ],
   ];
@@ -133,7 +135,7 @@ export default function RepaymentReportContent({
               Mortgage repayment summary<span className="text-valar-amber">.</span>
             </h1>
             <p className="report-lede mb-6 text-sm text-gray-600">
-              The figures you ran on the Valar repayments calculator.
+              The numbers you ran on the Valar repayments calculator.
             </p>
 
             {/* What went in, and what came out. */}
@@ -201,9 +203,9 @@ export default function RepaymentReportContent({
               <p className="report-block report-strip mt-4 rounded-lg bg-valar-amber/12 px-5 py-3 text-[13px] leading-relaxed text-valar-navy">
                 <span className="font-bold">
                   Paying{" "}
-                  {snapshot.extraMode === "amount"
-                    ? nzd(r.extraPerPeriod)
-                    : `${snapshot.extraValue}%`}{" "}
+                  {snapshot.extraMode === "percent"
+                    ? `${snapshot.extraValue}%`
+                    : nzd(r.extraPerPeriod)}{" "}
                   extra
                 </span>{" "}
                 clears the loan <b>{describeDuration(r.periodsSaved, r.perYear)}</b> early and saves{" "}

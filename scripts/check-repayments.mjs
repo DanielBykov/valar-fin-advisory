@@ -165,6 +165,43 @@ const input = (over = {}) => ({
   ok("a higher rate costs more per payment", dear.basePayment > cheap.basePayment);
 }
 
+// ── Rounding a payment up ───────────────────────────────────────────────
+//
+// "target" asks for the whole payment and derives the extra, because $966 a
+// week is a number nobody remembers and $1,000 is a number nobody forgets.
+// The mode is only ever subtraction, so these hold it to that.
+{
+  const scheduled = calculateRepayments(input({ extraMode: "amount", extraValue: 0 })).basePayment;
+
+  const target = Math.ceil((scheduled + 0.01) / 100) * 100;
+  const byTarget = calculateRepayments(input({ extraMode: "target", extraValue: target }));
+  const byAmount = calculateRepayments(
+    input({ extraMode: "amount", extraValue: target - scheduled }),
+  );
+
+  near("a target is the scheduled payment plus the extra", byTarget.totalPayment, target);
+  near("target and amount agree on the extra", byTarget.extraPerPeriod, byAmount.extraPerPeriod);
+  near("and on the interest saved", byTarget.interestSaved, byAmount.interestSaved, 1);
+  ok("rounding up clears the loan early", byTarget.periodsSaved > 0);
+
+  // A target below the scheduled payment is someone dragging a slider down,
+  // not a request to pay less than the loan requires.
+  const under = calculateRepayments(input({ extraMode: "target", extraValue: scheduled / 2 }));
+  ok("a target under the scheduled payment means no extra", under.extraPerPeriod === 0);
+  near("and leaves the payment where it was", under.totalPayment, scheduled);
+
+  const zero = calculateRepayments(input({ extraMode: "target", extraValue: 0 }));
+  ok("a target of zero means no extra", zero.extraPerPeriod === 0);
+
+  const negative = calculateRepayments(input({ extraMode: "target", extraValue: -500 }));
+  ok("a negative target means no extra", negative.extraPerPeriod === 0);
+
+  // The allowance warning has to survive the new mode: rounding up is exactly
+  // how someone quietly crosses 5% a year without meaning to.
+  const big = calculateRepayments(input({ extraMode: "target", extraValue: scheduled * 3 }));
+  ok("a large round-up still trips the allowance warning", big.overAllowance);
+}
+
 if (failures === 0) {
   console.log(`✓ ${checks} checks — repayments maths holds.`);
 } else {

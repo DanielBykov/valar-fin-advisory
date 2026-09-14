@@ -17,14 +17,35 @@ import {
 
 export type ExtraMode = "amount" | "percent";
 
+/**
+ * How this calculator asks for the extra, which is one mode wider than the
+ * split calculator's `ExtraMode`.
+ *
+ * "target" exists because of how people actually hold a number in their head.
+ * A scheduled payment of $966 a week is forgettable; $1,000 is not, and the
+ * $34 between them goes straight to principal. So the third mode asks for the
+ * payment someone wants to make and derives the extra, rather than asking for
+ * the extra and reporting a total nobody would have chosen.
+ *
+ * Deliberately NOT added to `ExtraMode` itself: that type belongs to the split
+ * calculator's `LoanPart`, and the split calculator does not model extra
+ * repayments at all. Widening it would put a mode into a shape that has no
+ * branch for it.
+ */
+export type RepaymentExtraMode = ExtraMode | "target";
+
 export type RepaymentInput = {
   amount: number;
   /** Nominal annual rate, as a percentage. */
   rate: number;
   years: number;
   frequency: FrequencyKey;
-  extraMode: ExtraMode;
-  /** Dollars per payment when mode is "amount"; percent of the loan per year when "percent". */
+  extraMode: RepaymentExtraMode;
+  /**
+   * Dollars per payment when mode is "amount"; percent of the loan per year
+   * when "percent"; the whole payment to be made, extra included, when
+   * "target".
+   */
   extraValue: number;
 };
 
@@ -118,10 +139,18 @@ export function calculateRepayments(input: RepaymentInput): RepaymentResult {
 
   const basePayment = periodicPayment(input.amount, ratePerPeriod, periods);
 
+  /*
+   * "target" is the only mode that needs the scheduled payment to resolve, and
+   * a target at or below it is not an error — it is someone typing a number
+   * before thinking, or dragging a slider down. It means no extra, not a
+   * negative one.
+   */
   const extraAnnual =
     input.extraMode === "amount"
       ? Math.max(0, input.extraValue) * perYear
-      : (Math.max(0, input.extraValue) / 100) * input.amount;
+      : input.extraMode === "target"
+        ? Math.max(0, Math.max(0, input.extraValue) - basePayment) * perYear
+        : (Math.max(0, input.extraValue) / 100) * input.amount;
   const extraPerPeriod = extraAnnual / perYear;
 
   const base = amortise(input.amount, ratePerPeriod, basePayment, periods);

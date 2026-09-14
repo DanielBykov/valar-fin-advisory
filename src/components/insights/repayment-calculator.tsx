@@ -3,9 +3,10 @@
 import { useMemo, useState } from "react";
 import { AlertTriangle } from "lucide-react";
 import BalanceChart from "@/components/calculators/balance-chart";
+import NumberField from "@/components/calculators/number-field";
 import SendCalculationForm from "@/components/calculators/send-calculation-form";
 import { EXTRA_CAP_PERCENT, FREQUENCIES, describeDuration } from "@/lib/split-loan";
-import { calculateRepayments, type ExtraMode } from "@/lib/repayments";
+import { calculateRepayments, type RepaymentExtraMode } from "@/lib/repayments";
 import type { FrequencyKey } from "@/lib/split-loan";
 
 const nzd = (n: number, decimals = 0) =>
@@ -16,123 +17,34 @@ const nzd = (n: number, decimals = 0) =>
     minimumFractionDigits: decimals,
   }).format(Number.isFinite(n) ? n : 0);
 
-type FieldProps = {
-  label: string;
-  hint?: string;
-  value: number;
-  min: number;
-  max: number;
-  step: number;
-  /**
-   * The unit, shown in a fixed-width slot to the LEFT of the box. It sits in
-   * front rather than behind so that every input in the column starts and ends
-   * on the same line — a trailing "%" or "yrs" pushed its box out of step with
-   * the one above it.
-   */
-  unit?: string;
-  /** Decimal places to show. 0 also turns on thousands separators. */
-  decimals?: number;
-  onChange: (value: number) => void;
-};
-
-function Field({
-  label,
-  hint,
-  value,
-  min,
-  max,
-  step,
-  unit,
-  decimals = 0,
-  onChange,
-}: FieldProps) {
-  /*
-   * While the box is being typed into, the raw keystrokes are held here and the
-   * committed value is left alone.
-   *
-   * The previous version clamped on every keystroke, which made the box
-   * unusable: with a $50,000 minimum, clearing it and typing the first digit of
-   * "650000" snapped the value straight back to 50,000, so the only way to
-   * change the number was the slider. Clamping now happens when the field is
-   * left, not while it is being filled in.
-   */
-  const [draft, setDraft] = useState<string | null>(null);
-
-  const clamp = (n: number) => Math.min(max, Math.max(min, n));
-  const format = (n: number) =>
-    decimals > 0 ? n.toFixed(decimals) : Math.round(n).toLocaleString("en-NZ");
-  const parse = (raw: string) => Number(raw.replace(/[^0-9.]/g, ""));
-
-  const commit = () => {
-    if (draft === null) return;
-    const parsed = parse(draft);
-    onChange(draft.trim() === "" || !Number.isFinite(parsed) ? value : clamp(parsed));
-    setDraft(null);
-  };
-
-  return (
-    <div data-cmp="RepaymentCalculator.Field" className="flex flex-col gap-2">
-      <div className="flex items-baseline justify-between gap-3">
-        <label className="text-sm font-semibold text-valar-navy">{label}</label>
-        <div className="flex items-center gap-1 text-valar-navy">
-          <span className="w-7 shrink-0 text-right text-sm text-valar-steel">{unit}</span>
-          <input
-            type="text"
-            inputMode={decimals > 0 ? "decimal" : "numeric"}
-            value={draft ?? format(value)}
-            onChange={(e) => {
-              const raw = e.target.value;
-              setDraft(raw);
-              const parsed = parse(raw);
-              // Update the results live, but only once what has been typed is
-              // actually a usable number. A half-typed "6" on its way to
-              // "650,000" must not drag the whole calculator down to the floor.
-              if (Number.isFinite(parsed) && parsed >= min && parsed <= max) onChange(parsed);
-            }}
-            onFocus={(e) => {
-              setDraft(format(value));
-              e.currentTarget.select();
-            }}
-            onBlur={commit}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                commit();
-                e.currentTarget.blur();
-              }
-            }}
-            className="w-32 rounded-lg border border-valar-concrete bg-white px-3 py-1.5 text-right text-sm font-semibold tabular-nums focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
-            aria-label={label}
-          />
-        </div>
-      </div>
-      <input
-        type="range"
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        onChange={(e) => {
-          setDraft(null);
-          onChange(Number(e.target.value));
-        }}
-        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-valar-concrete accent-valar-amber"
-        aria-label={`${label} slider`}
-      />
-      {hint && <p className="text-xs leading-relaxed text-valar-steel">{hint}</p>}
-    </div>
-  );
-}
-
 /*
  * The capture card is rendered here rather than passed in as a ReactNode.
  * It has to carry the numbers currently on screen, and those only exist inside
  * this component — a prebuilt element handed down from the page cannot see
  * them. The page still owns the copy; it passes the words, not the element.
  */
+/**
+ * The round payments sitting just above the scheduled one.
+ *
+ * Three steps, because which number is "round" depends on the size of the
+ * payment: at $966 a week the memorable figure is $1,000, at $340 a fortnight
+ * it is $350. Duplicates collapse — $966 rounds to $1,000 at both the $50 and
+ * the $100 step, and offering it twice would be noise.
+ */
+function roundUpTargets(base: number): number[] {
+  const out: number[] = [];
+  for (const step of [10, 50, 100]) {
+    const value = Math.ceil((base + 0.01) / step) * step;
+    if (!out.includes(value)) out.push(value);
+  }
+  return out;
+}
+
 export default function RepaymentCalculator({
   guideKey,
   guideTitle,
   guideReady,
+  cover,
   source,
 }: {
   /** Which lead magnet the card offers — decides the MailerLite group. */
@@ -141,6 +53,8 @@ export default function RepaymentCalculator({
   guideTitle?: string;
   /** False while the guide PDF is still being written. */
   guideReady?: boolean;
+  /** The guide's cover art, shown at the top of the capture card. */
+  cover?: { src: string; width: number; height: number };
   /** Which page asked, recorded against the subscriber. */
   source?: string;
 }) {
@@ -150,7 +64,7 @@ export default function RepaymentCalculator({
   const [rate, setRate] = useState(5);
   const [years, setYears] = useState(30);
   const [frequency, setFrequency] = useState<FrequencyKey>("fortnightly");
-  const [extraMode, setExtraMode] = useState<ExtraMode>("amount");
+  const [extraMode, setExtraMode] = useState<RepaymentExtraMode>("amount");
   const [extraValue, setExtraValue] = useState(0);
 
   const result = useMemo(
@@ -163,7 +77,11 @@ export default function RepaymentCalculator({
   const extraMax =
     extraMode === "percent"
       ? Math.max(10, EXTRA_CAP_PERCENT * 1.5)
-      : Math.max(1_000, Math.ceil((result.allowancePerPeriod * 1.5) / 50) * 50);
+      : extraMode === "target"
+        ? Math.ceil((result.basePayment + result.allowancePerPeriod * 1.5) / 50) * 50
+        : Math.max(1_000, Math.ceil((result.allowancePerPeriod * 1.5) / 50) * 50);
+
+  const targets = roundUpTargets(result.basePayment);
 
   const usingExtra = result.extraPerPeriod > 0;
   const clearsEarly = usingExtra && result.periods < result.scheduledPeriods;
@@ -183,7 +101,8 @@ export default function RepaymentCalculator({
           data-cmp="RepaymentCalculator.Inputs"
           className="flex flex-col gap-6 rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
         >
-          <Field
+          <NumberField
+            cmp="RepaymentCalculator.Field"
             label="Loan amount"
             value={amount}
             min={50_000}
@@ -192,7 +111,8 @@ export default function RepaymentCalculator({
             unit="$"
             onChange={setAmount}
           />
-          <Field
+          <NumberField
+            cmp="RepaymentCalculator.Field"
             label="Interest rate"
             value={rate}
             min={1}
@@ -203,7 +123,8 @@ export default function RepaymentCalculator({
             hint="Use the rate you have been quoted, not the advertised headline."
             onChange={setRate}
           />
-          <Field
+          <NumberField
+            cmp="RepaymentCalculator.Field"
             label="Loan term"
             value={years}
             min={5}
@@ -240,16 +161,25 @@ export default function RepaymentCalculator({
               <div
                 className="flex rounded-lg border border-valar-concrete bg-white p-0.5"
                 role="group"
-                aria-label="Extra repayment as an amount or a percentage"
+                aria-label="Extra repayment as an amount, a percentage, or a total payment"
               >
-                {(["amount", "percent"] as ExtraMode[]).map((mode) => (
+                {(["amount", "percent", "target"] as RepaymentExtraMode[]).map((mode) => (
                   <button
                     key={mode}
                     type="button"
                     aria-pressed={extraMode === mode}
                     onClick={() => {
                       setExtraMode(mode);
-                      setExtraValue(0);
+                      /*
+                       * Zero is the right empty state for an extra, and the
+                       * wrong one for a target: a target of nothing reads as a
+                       * broken field and produces no extra. Land on the next
+                       * round hundred instead, which is the move this mode
+                       * exists for.
+                       */
+                      setExtraValue(
+                        mode === "target" ? Math.ceil((result.basePayment + 0.01) / 100) * 100 : 0,
+                      );
                     }}
                     className={`rounded-md px-3 py-1 text-xs font-bold transition-colors ${
                       extraMode === mode
@@ -257,26 +187,55 @@ export default function RepaymentCalculator({
                         : "text-valar-steel hover:text-valar-navy"
                     }`}
                   >
-                    {mode === "amount" ? "$" : "%"}
+                    {mode === "amount" ? "$" : mode === "percent" ? "%" : "Total"}
                   </button>
                 ))}
               </div>
             </div>
-            <Field
-              label={extraMode === "amount" ? "Per repayment" : "Of the loan, per year"}
+            <NumberField
+              cmp="RepaymentCalculator.Field"
+              label={
+                extraMode === "amount"
+                  ? "Per repayment"
+                  : extraMode === "percent"
+                    ? "Of the loan, per year"
+                    : "Payment you want to make"
+              }
               value={extraValue}
               min={0}
               max={extraMax}
-              step={extraMode === "amount" ? 10 : 0.25}
-              unit={extraMode === "amount" ? "$" : "%"}
+              step={extraMode === "percent" ? 0.25 : 10}
+              unit={extraMode === "percent" ? "%" : "$"}
               decimals={extraMode === "percent" ? 2 : 0}
               hint={
                 extraMode === "amount"
                   ? `Paying a little more, every time — this is where the number moves. On a fixed rate most lenders let you pay up to about ${EXTRA_CAP_PERCENT}% of the loan a year, which is ${nzd(result.allowancePerPeriod)} per payment here.`
-                  : `A share of the loan each year, spread across your payments — ${nzd(result.extraPerPeriod, 2)} per payment here. On a fixed rate most lenders allow up to about ${EXTRA_CAP_PERCENT}%.`
+                  : extraMode === "percent"
+                    ? `A share of the loan each year, spread across your payments — ${nzd(result.extraPerPeriod, 2)} per payment here. On a fixed rate most lenders allow up to about ${EXTRA_CAP_PERCENT}%.`
+                    : `Your scheduled payment is ${nzd(result.basePayment)}. Pay a round ${nzd(extraValue)} instead and ${nzd(result.extraPerPeriod)} of every payment comes straight off the loan — a number you can hold in your head, which is most of why it gets paid.`
               }
               onChange={setExtraValue}
             />
+            {extraMode === "target" && (
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-semibold text-valar-steel">Round up to</span>
+                {targets.map((target) => (
+                  <button
+                    key={target}
+                    type="button"
+                    aria-pressed={Math.round(extraValue) === target}
+                    onClick={() => setExtraValue(target)}
+                    className={`rounded-full border px-3 py-1 text-xs font-bold transition-colors ${
+                      Math.round(extraValue) === target
+                        ? "border-valar-navy bg-valar-navy text-white"
+                        : "border-valar-concrete bg-white text-valar-navy hover:border-valar-navy"
+                    }`}
+                  >
+                    {nzd(target)}
+                  </button>
+                ))}
+              </div>
+            )}
             {result.overAllowance && (
               <p className="flex items-start gap-2 rounded-lg bg-valar-amber/10 p-3 text-xs leading-relaxed text-valar-navy">
                 <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-valar-amber" />
@@ -352,7 +311,7 @@ export default function RepaymentCalculator({
         {usingExtra && result.periodsSaved > 0 && (
           <div className="mt-6 rounded-lg bg-white/10 p-4">
             <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.1em] text-valar-amber">
-              Paying {extraMode === "amount" ? nzd(result.extraPerPeriod) : `${extraValue}%`} extra
+              Paying {extraMode === "percent" ? `${extraValue}%` : nzd(result.extraPerPeriod)} extra
             </p>
             <p className="text-sm leading-relaxed">
               Clears the loan <b>{describeDuration(result.periodsSaved, result.perYear)}</b> early
@@ -387,6 +346,7 @@ export default function RepaymentCalculator({
           guideTitle={guideTitle}
           source={source}
           guideReady={Boolean(guideReady)}
+          cover={cover}
           figures={{ amount, rate, years, frequency, extraMode, extraValue }}
         />
       )}

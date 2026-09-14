@@ -61,6 +61,7 @@ export function renderRepaymentEmail({
   guideTitle,
   guideReady,
   guideUrl,
+  pendingNote,
   baseUrl = SITE_URL,
 }: {
   firstName: string;
@@ -69,6 +70,12 @@ export function renderRepaymentEmail({
   guideReady: boolean;
   /** Absolute URL of the guide PDF, when there is one. */
   guideUrl?: string;
+  /**
+   * What to say when there is no document. Not every magnet is one being
+   * written — some are answered by Lena — so the default sentence is wrong for
+   * them and this replaces it.
+   */
+  pendingNote?: string;
   /**
    * Where the links point. Defaults to the live site; a local run passes its
    * own origin so a test send is actually clickable, instead of sending the
@@ -87,7 +94,9 @@ export function renderRepaymentEmail({
   const extraInput =
     snapshot.extraMode === "percent"
       ? `${snapshot.extraValue}% of the loan a year`
-      : `${nzd(snapshot.extraValue)} per payment`;
+      : snapshot.extraMode === "target"
+        ? `rounded up to ${nzd(snapshot.extraValue)} a payment`
+        : `${nzd(snapshot.extraValue)} per payment`;
 
   /*
    * The interest-share bar: two table cells with background colours and
@@ -112,7 +121,7 @@ export function renderRepaymentEmail({
       <tr>
         <td style="padding:16px;">
           <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${AMBER};">
-            Paying ${snapshot.extraMode === "amount" ? nzd(r.extraPerPeriod) : `${snapshot.extraValue}%`} extra
+            Paying ${snapshot.extraMode === "percent" ? `${snapshot.extraValue}%` : nzd(r.extraPerPeriod)} extra
           </p>
           <p style="margin:0;font-size:14px;line-height:22px;color:#ffffff;">
             Clears the loan <strong>${describeDuration(r.periodsSaved, r.perYear)}</strong> early
@@ -156,16 +165,20 @@ export function renderRepaymentEmail({
            : ""
        }`
     : `<p style="margin:0 0 20px;font-size:15px;line-height:24px;color:#3f4a5a;">
-         I am finishing a short guide called <strong style="color:${NAVY};">${esc(guideTitle)}</strong> &mdash;
-         the things that actually move this number, in the order worth doing them. You will get it the
-         moment it is done.
+         ${
+           pendingNote
+             ? esc(pendingNote)
+             : `I am finishing a short guide called <strong style="color:${NAVY};">${esc(guideTitle)}</strong> &mdash;
+                the things that actually move this number, in the order worth doing them. You will get
+                it the moment it is done.`
+         }
        </p>`;
 
   const html = `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Your mortgage repayment figures</title>
+<title>Your mortgage repayment numbers</title>
 </head>
 <body style="margin:0;padding:0;background-color:${FOG};">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0;">${nzd(r.totalPayment, 2)} ${freqLabel.toLowerCase()} on ${nzd(snapshot.amount)} at ${snapshot.rate.toFixed(2)}%.</div>
@@ -183,7 +196,7 @@ export function renderRepaymentEmail({
       <td width="32" height="2" style="background-color:${AMBER};font-size:0;line-height:0;">&nbsp;</td>
     </tr></table>
     <h1 style="margin:16px 0 12px;font-size:24px;line-height:32px;font-weight:700;color:${NAVY};">
-      ${name ? `${name}, here` : "Here"} are your figures<span style="color:${AMBER};">.</span>
+      ${name ? `${name}, here` : "Here"} are your numbers<span style="color:${AMBER};">.</span>
     </h1>
     <p style="margin:0 0 24px;font-size:15px;line-height:24px;color:#3f4a5a;">
       This is the calculation you ran on the Valar repayments calculator, so you have it in writing
@@ -273,7 +286,7 @@ export function renderRepaymentEmail({
     <p style="margin:0;font-size:11px;line-height:18px;color:${STEEL};">
       Lena Bykova (FSP1010055) trades as Valar Financial Advisors. A disclosure statement is
       available free of charge on request.<br>
-      You are receiving this because you asked for these figures on our calculator.
+      You are receiving this because you asked for these numbers on our calculator.
     </p>
   </td></tr>
 
@@ -283,7 +296,7 @@ export function renderRepaymentEmail({
 </body></html>`;
 
   const text = [
-    name ? `${name}, here are your figures.` : "Here are your figures.",
+    name ? `${name}, here are your numbers.` : "Here are your numbers.",
     "",
     `Your ${freqLabel.toLowerCase()} repayment: ${nzd(r.totalPayment, 2)}`,
     usingExtra ? `  (${nzd(r.basePayment, 2)} required, plus ${nzd(r.extraPerPeriod, 2)} extra)` : "",
@@ -302,7 +315,7 @@ export function renderRepaymentEmail({
     `  Extra repayment: ${usingExtra ? extraInput : "None"}`,
     "",
     `Printable version: ${reportUrl}`,
-    guideReady && guideUrl ? `${guideTitle}: ${guideUrl}` : "",
+    guideReady && guideUrl ? `${guideTitle}: ${guideUrl}` : pendingNote || "",
     `Book a clarity call: ${baseUrl}/book`,
     "",
     "Indicative only. It assumes the rate stays fixed for the full term, which it will not — this is a comparison tool, not a quote, and not personalised advice on any particular loan.",
