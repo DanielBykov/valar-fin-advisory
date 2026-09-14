@@ -124,9 +124,9 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div data-cmp="Footer.BottomBar" className="pt-8 border-t border-valar-indigo flex flex-col md:flex-row justify-between items-center text-xs text-valar-lilac/70 gap-4">
-          <p>© 2026 Valar Financial Advisors Ltd.<br />All rights reserved.</p>
+          <p>© 2026 Valar Financial Advisors Limited.<br />All rights reserved.</p>
           <p className="text-center md:text-right max-w-3xl">
-            Lena Bykova (FSP1010055) trades as Valar Financial Advisors.<br />A disclosure statement is available free of charge on request.
+            Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider licence issued by the FMA.<br />Financial advice is provided by Lena Bykova, Director and Financial Adviser (FSP1010055). A disclosure statement is available free of charge on request.
           </p>
         </div>
       </div>

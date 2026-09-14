@@ -42,8 +42,9 @@ const staggerContainer = {
 };
 
 // Testimonials below are PLACEHOLDER examples — the whole section is hidden at
-// launch until real, consented, Fundsmart Policy 22-approved quotes replace the
-// TESTIMONIALS / MINI_REVIEWS arrays. Flip to true to show it again (SEO L4).
+// launch until real, consented quotes, approved by Lena as Director and logged in
+// the marketing register, replace the TESTIMONIALS / MINI_REVIEWS arrays. Flip to
+// true to show it again (SEO L4).
 const SHOW_TESTIMONIALS: boolean = false;
 
 const TESTIMONIALS = [

@@ -131,8 +131,8 @@ export async function POST(req: Request) {
                 <td>
                   <p style="margin:0 0 4px;color:#061634;font-size:14px;font-weight:bold;">${t.signName}</p>
                   <p style="margin:0 0 2px;color:#4a5568;font-size:13px;">${t.role}</p>
-                  <p style="margin:0 0 2px;color:#4a5568;font-size:13px;">VALAR Financial Advisors Limited</p>
-                  <p style="margin:8px 0 2px;color:#4a5568;font-size:13px;">P: <a href="tel:+64210863569" style="color:#f0a500;">+64 21 086 35 695</a></p>
+                  <p style="margin:0 0 2px;color:#4a5568;font-size:13px;">Valar Financial Advisors Limited &middot; FSP1012862</p>
+                  <p style="margin:8px 0 2px;color:#4a5568;font-size:13px;">P: <a href="tel:+642108635695" style="color:#f0a500;">+64 21 086 35695</a></p>
                   <p style="margin:0 0 2px;color:#4a5568;font-size:13px;">E: <a href="mailto:lena.bykova@valar.co.nz" style="color:#f0a500;">lena.bykova@valar.co.nz</a></p>
                   <p style="margin:0;color:#4a5568;font-size:13px;">W: <a href="https://www.valar.co.nz" style="color:#f0a500;">www.valar.co.nz</a></p>
                 </td>

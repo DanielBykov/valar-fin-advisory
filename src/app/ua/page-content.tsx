@@ -1375,9 +1375,10 @@ export default function UaContent() {
                 A visitor who wants to check the licence searches the Financial
                 Service Providers Register, and "Ліна Бикова" is not what is
                 written there. */}
-            Ліна Бикова (Lena Bykova, FSP1010055) працює під торговою назвою Valar Financial
-            Advisors. Заяву про розкриття інформації (Disclosure Statement) можна отримати
-            безкоштовно на запит.
+            Valar Financial Advisors Limited (FSP1012862) має ліцензію Financial Advice Provider,
+            видану FMA. Фінансові консультації надає Ліна Бикова (Lena Bykova, FSP1010055),
+            директорка та фінансова радниця. Заяву про розкриття інформації (Disclosure Statement)
+            можна отримати безкоштовно на запит.
           </p>
         </div>
       </footer>

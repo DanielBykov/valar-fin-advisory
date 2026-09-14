@@ -252,8 +252,10 @@ export default function RepaymentReportContent({
             <p className="report-legal mt-5 text-[11px] leading-relaxed text-gray-500">
               Indicative only. It assumes the rate stays fixed for the full term, which it will not —
               this is a comparison tool, not a quote, and not personalised advice on any particular
-              loan. Lena Bykova (FSP1010055) trades as Valar Financial Advisors. A disclosure
-              statement is available free of charge on request. valar.co.nz
+              loan. Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider
+              licence issued by the FMA. Financial advice is provided by Lena Bykova, Director and
+              Financial Adviser (FSP1010055). A disclosure statement is available free of charge on
+              request. valar.co.nz
             </p>
           </div>
         </div>

@@ -8,12 +8,12 @@ import { glossaryEntries } from "@/lib/glossary";
 export const metadata: Metadata = {
   title: "Insights | Mortgage & Financial Tips | Valar",
   description:
-    "Analysis, market updates, and strategic guidance from the Valar advisory team. Practical insights on mortgages, property and financial planning in New Zealand.",
+    "Analysis, market updates and strategic guidance from Lena Bykova at Valar Financial Advisors. Practical insights on mortgages, property and financial planning in New Zealand.",
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "Insights | Mortgage & Financial Tips | Valar",
     description:
-      "Analysis, market updates, and strategic guidance from the Valar advisory team on mortgages, property and financial planning.",
+      "Analysis, market updates and strategic guidance from Lena Bykova at Valar Financial Advisors, on mortgages, property and financial planning.",
   },
 };
 

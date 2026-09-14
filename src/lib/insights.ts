@@ -894,8 +894,8 @@ export const ARTICLES: Article[] = [
         "A humanoid robot carrying a steel milk churn stands in a New Zealand paddock among grazing dairy cows, while a rocket marked for Mars lifts off over the hills behind.",
     },
     readingMinutes: 6,
-    // Wealth/thinking piece, not mortgage advice — sits in Lena's own scope, not
-    // the Fundsmart regime. No figures anywhere, and nothing framed as a forecast:
+    // Wealth/thinking piece, not mortgage advice: general commentary, not
+    // personalised advice. No figures anywhere, and nothing framed as a forecast:
     // the land block is an illustrative example, deliberately with no number in it.
     // Read and approved by Lena, 2026-08-27.
     draft: false,

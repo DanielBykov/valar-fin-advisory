@@ -27,7 +27,7 @@ export default function TermsPage() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Terms &amp; Conditions<span className="text-valar-amber">.</span>
           </h1>
-          <p className="text-valar-lilac font-light">Last updated: June 2026</p>
+          <p className="text-valar-lilac font-light">Last updated: September 2026</p>
         </div>
       </section>
 
@@ -38,7 +38,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-xl font-bold text-valar-navy mb-3">About this website</h2>
             <p>
-              This website is operated by Valar Financial Advisors Limited, operated by Lyubov (Lena) Bykova (FSP1010055), trading as Valar Financial Advisors. By accessing or using this website, you agree to these terms.
+              This website is operated by Valar Financial Advisors Limited (FSP1012862). By accessing or using this website, you agree to these terms.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export default function TermsPage() {
               The content on this website is provided for general information purposes only. It does not constitute financial advice and should not be relied upon as a substitute for professional advice tailored to your personal circumstances.
             </p>
             <p className="mt-3">
-              Regulated financial advice is only provided after a scope of engagement has been agreed in writing between Valar Financial Advisors Limited and the client.
+              Regulated financial advice is only provided after a Nature and Scope of Advice has been agreed in writing between Valar Financial Advisors Limited and the client.
             </p>
           </div>
 

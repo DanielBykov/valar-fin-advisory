@@ -375,7 +375,7 @@ export default function AboutContent() {
               Licensing &amp; Disclosure.
             </motion.h2>
             <motion.p variants={fadeIn} className="text-valar-indigo text-sm leading-relaxed mb-4 max-w-2xl">
-              Lena Bykova trades as Valar Financial Advisors.<br />Mortgage advice is provided through Fundsmart Limited, licensed Financial Advice Provider (FSP1008314).
+              Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider licence issued by the FMA.<br />Lena Bykova is its Director and Financial Adviser (FSP1010055).
             </motion.p>
             <motion.div variants={stagger} className="flex flex-wrap gap-4 mb-6">
               {[
