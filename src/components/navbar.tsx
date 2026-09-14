@@ -8,7 +8,35 @@ import { Menu, X, ChevronDown, Mail, Home, FileText, Compass, BarChart2, Briefca
 import { cn } from "@/lib/utils";
 import { GLOSSARY_LIVE, INSIGHTS_LIVE } from "@/lib/insights";
 import { CALCULATORS_LIVE, calculatorHref, liveCalculators } from "@/lib/calculators";
-import { isStandaloneRoute } from "@/lib/standalone-routes";
+import { LEAD_MAGNETS } from "@/lib/lead-magnets";
+import { isChromelessRoute } from "@/lib/standalone-routes";
+
+/*
+ * The guide the calculators menu offers.
+ *
+ * Not an arbitrary pick: this magnet's MailerLite group is literally
+ * "Calculators", and it is the one the repayment and split-loan capture forms
+ * already deliver. The menu points at the same door rather than opening a
+ * second one, so anyone arriving from here lands in the list they'd have
+ * landed in anyway.
+ */
+const CALCULATOR_GUIDE = LEAD_MAGNETS["pay-your-mortgage-off-faster"];
+
+/*
+ * The card's art — deliberately not the guide's own `cover`.
+ *
+ * `cover` is the branded banner with the title burnt into the image. That is
+ * right on a capture card, where the point is to show the document as a thing.
+ * It is wrong here: the card already carries the title underneath as real type,
+ * so the banner would say it twice, and at this size the lettering inside the
+ * image is unreadable anyway. This is the same photograph without the words.
+ */
+const CALCULATOR_GUIDE_ART = {
+  src: "/images/guides/mortgage-free-couple.webp",
+  width: 800,
+  height: 533,
+  alt: "A couple sitting outside their home with coffee in the morning sun",
+};
 
 function navLink(isActive: boolean) {
   return cn(
@@ -52,7 +80,7 @@ export function Navbar() {
     setIsMobileCalculatorsOpen(false);
   }, [pathname]);
 
-  if (isStandaloneRoute(pathname)) return null;
+  if (isChromelessRoute(pathname)) return null;
 
   return (
     <>
@@ -321,12 +349,16 @@ export function Navbar() {
               >
                 Calculators <ChevronDown className={cn("w-4 h-4 opacity-50 transition-transform", isCalculatorsOpen && "rotate-180")} />
               </Link>
-              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 w-[460px] max-w-[95vw] transition-all duration-200 z-50", isCalculatorsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
-                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 overflow-hidden">
-                  <div className="p-8">
+              <div className={cn("absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 w-[720px] max-w-[95vw] transition-all duration-200 z-50", isCalculatorsOpen ? "opacity-100 visible" : "opacity-0 invisible")}>
+                <div className="bg-valar-fog shadow-2xl rounded-2xl border border-valar-concrete/60 grid gap-0 overflow-hidden" style={{gridTemplateColumns: "1.25fr 1fr"}}>
+
+                  {/* Run your own numbers — one column, not two. The live-flag
+                      decides how many calculators are here, so a fixed split
+                      would go lopsided the day Rent vs Buy is switched on. */}
+                  <div className="p-10">
                     <h3 className="font-bold text-xs uppercase tracking-widest text-valar-steel mb-3">Run your own numbers</h3>
-                    <div className="border-t border-valar-concrete mb-6" />
-                    <div className="space-y-6">
+                    <div className="border-t border-valar-concrete mb-7" />
+                    <div className="space-y-7">
                       {calculators.map((calculator) => (
                         <Link key={calculator.slug} href={calculatorHref(calculator.slug)} className="flex items-start gap-3 group/item">
                           <Calculator className="w-5 h-5 mt-0.5 text-valar-steel group-hover/item:text-valar-horizon shrink-0 transition-colors" />
@@ -338,11 +370,41 @@ export function Navbar() {
                       ))}
                     </div>
                   </div>
-                  <div className="px-8 py-4 border-t border-valar-concrete">
+
+                  {/* Guide card — row-span-2 so it covers the All Calculators row
+                      below, the same shape and image height as the Insights hub
+                      card. Art above, title and CTA below. */}
+                  <div className="bg-valar-navy overflow-hidden flex flex-col row-span-2">
+                    <div className="w-full h-56 overflow-hidden shrink-0">
+                      <Image
+                        src={CALCULATOR_GUIDE_ART.src}
+                        alt={CALCULATOR_GUIDE_ART.alt}
+                        width={CALCULATOR_GUIDE_ART.width}
+                        height={CALCULATOR_GUIDE_ART.height}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-8 flex flex-col flex-1">
+                      <h4 className="font-bold text-xl leading-tight mb-3 text-white">{CALCULATOR_GUIDE.title}</h4>
+                      <p className="text-sm text-valar-lilac mb-6 leading-relaxed flex-1">
+                        Run the numbers, send them to yourself, and the guide comes with them.
+                      </p>
+                      <Link
+                        href={calculatorHref("repayments")}
+                        className="inline-flex items-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-semibold text-sm px-5 py-2.5 rounded-sm transition-colors self-start"
+                      >
+                        Get the guide &rarr;
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* All Calculators — the guide card covers the second column */}
+                  <div className="px-10 py-4 border-t border-valar-concrete">
                     <Link href="/calculators" className="text-sm font-semibold text-valar-horizon hover:text-valar-navy transition-colors flex items-center gap-1.5">
                       View all calculators <span>&rarr;</span>
                     </Link>
                   </div>
+
                 </div>
               </div>
             </div></>
@@ -493,6 +555,9 @@ export function Navbar() {
                           <Calculator className="w-5 h-5 text-valar-steel shrink-0" /> {calculator.title}
                         </Link>
                       ))}
+                      <Link href={calculatorHref("repayments")} className="flex items-center gap-3 py-3 text-base text-white/90 hover:text-white" onClick={() => setIsOpen(false)}>
+                        <FileText className="w-5 h-5 text-valar-steel shrink-0" /> {CALCULATOR_GUIDE.title}
+                      </Link>
                       <Link href="/calculators" className="flex items-center gap-3 py-3 text-base font-semibold text-valar-amber" onClick={() => setIsOpen(false)}>
                         View all calculators &rarr;
                       </Link>

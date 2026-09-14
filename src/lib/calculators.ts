@@ -19,12 +19,24 @@
 
 export type CalculatorSlug = "what-can-i-buy" | "repayments" | "split-loan" | "rent-vs-buy";
 
+/** Named here, mapped to components on the hub — this file stays icon-free. */
+export type CalculatorIconKey = "home" | "trending-down" | "split" | "scale";
+
 export type Calculator = {
   slug: CalculatorSlug;
   /** Card heading on the hub, and the menu row. */
   title: string;
-  /** One line under the title on the hub card. */
+  /**
+   * One line under the title on the hub card — and the same sentence the page
+   * itself opens with. Keep them identical: a card that promises one thing and
+   * a hero that says another is the drift this replaced.
+   */
   blurb: string;
+  /**
+   * The card icon on the hub. One per calculator, because three identical
+   * calculator glyphs in a row tell the eye nothing about which is which.
+   */
+  icon: CalculatorIconKey;
   /** Shorter line for the navbar dropdown, where the column is narrow. */
   menuBlurb: string;
   live: boolean;
@@ -32,29 +44,37 @@ export type Calculator = {
 
 export const CALCULATORS_LIVE = true;
 
+/*
+ * Hub and menu order. Lena's call (2026-09-14): simplest first, and the
+ * borrowing calculator last among the live ones because it asks the most of
+ * the visitor.
+ */
 export const CALCULATORS: Calculator[] = [
-  {
-    slug: "what-can-i-buy",
-    title: "What can I actually buy?",
-    blurb:
-      "Put in what you earn, what you spend and what you have saved. You get a realistic price — and the one thing standing between you and a bigger one.",
-    menuBlurb: "A realistic price, and what is capping it",
-    live: true,
-  },
   {
     slug: "repayments",
     title: "Mortgage repayments",
     blurb:
-      "Weekly, fortnightly or monthly — and what paying a little extra each time actually takes off the term and the interest.",
+      "Set the loan, the rate and the term. Then add your extra and see what it saves.",
     menuBlurb: "What it costs, and what extra payments save",
+    icon: "trending-down",
     live: true,
   },
   {
     slug: "split-loan",
     title: "Split home loan",
     blurb:
-      "Split a loan into three parts, each with its own rate, term and extra repayment, and see the combined cost and the weighted average rate across the whole structure.",
+      "Splitting isn't about chasing the best rate. It's about spreading the risk.",
     menuBlurb: "Three parts, three rates, one real cost",
+    icon: "split",
+    live: true,
+  },
+  {
+    slug: "what-can-i-buy",
+    title: "How much can I borrow?",
+    blurb:
+      "Run your numbers to see what your income, deposit and commitments support.",
+    menuBlurb: "Your maximum loan, and what it buys",
+    icon: "home",
     live: true,
   },
   {
@@ -63,6 +83,7 @@ export const CALCULATORS: Calculator[] = [
     blurb:
       "How long you would have to stay for buying to come out ahead, and what the money would have done instead.",
     menuBlurb: "Where the two actually cross over",
+    icon: "scale",
     live: false,
   },
 ];
