@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
-import { isStandaloneRoute } from "@/lib/standalone-routes";
+import { isChromelessRoute } from "@/lib/standalone-routes";
 
 export function Footer() {
   const [firstName, setFirstName] = useState("");
@@ -23,7 +23,7 @@ export function Footer() {
     if (res.ok) setSubscribed(true);
   }
 
-  if (isStandaloneRoute(pathname)) return null;
+  if (isChromelessRoute(pathname)) return null;
 
   return (
     <footer data-cmp="Footer" className="bg-valar-navy text-valar-lilac pt-16 pb-8 font-sans">
