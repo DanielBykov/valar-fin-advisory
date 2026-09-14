@@ -13,6 +13,10 @@
  * Instagram goes unrecorded in GA unless that person already accepted cookies
  * elsewhere on the site.
  *
+ * `/card` is the networking card behind the QR code on Lena's printed business
+ * card. It is the same kind of single-purpose page as `/start`, so it drops the
+ * chrome and the banner for the same reasons.
+ *
  * `/calculators/repayments/report` is the printable calculation from the email.
  * It has to come out as exactly one A4 sheet, and a navbar and a full footer on
  * the page are two more things to fight in print CSS for no gain — the way back
@@ -27,10 +31,10 @@
  */
 
 /** No navbar, no footer. */
-const CHROMELESS_ROUTES = ["/start", "/calculators/repayments/report", "/ua"];
+const CHROMELESS_ROUTES = ["/start", "/card", "/calculators/repayments/report", "/ua"];
 
 /** No cookie banner either. */
-export const STANDALONE_ROUTES = ["/start", "/calculators/repayments/report"];
+export const STANDALONE_ROUTES = ["/start", "/card", "/calculators/repayments/report"];
 
 export function isChromelessRoute(pathname: string | null | undefined): boolean {
   return !!pathname && CHROMELESS_ROUTES.includes(pathname);
