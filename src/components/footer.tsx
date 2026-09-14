@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
-import { isStandaloneRoute } from "@/lib/standalone-routes";
+import { isChromelessRoute } from "@/lib/standalone-routes";
 
 export function Footer() {
   const [firstName, setFirstName] = useState("");
@@ -23,7 +23,7 @@ export function Footer() {
     if (res.ok) setSubscribed(true);
   }
 
-  if (isStandaloneRoute(pathname)) return null;
+  if (isChromelessRoute(pathname)) return null;
 
   return (
     <footer data-cmp="Footer" className="bg-valar-navy text-valar-lilac pt-16 pb-8 font-sans">
@@ -124,9 +124,9 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div data-cmp="Footer.BottomBar" className="pt-8 border-t border-valar-indigo flex flex-col md:flex-row justify-between items-center text-xs text-valar-lilac/70 gap-4">
-          <p>© 2026 Valar Financial Advisors Ltd.<br />All rights reserved.</p>
+          <p className="whitespace-nowrap">© 2026 Valar. All rights reserved.</p>
           <p className="text-center md:text-right max-w-3xl">
-            Lena Bykova (FSP1010055) trades as Valar Financial Advisors.<br />A disclosure statement is available free of charge on request.
+            Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider licence issued by the FMA.<br />Financial advice is provided by Lena Bykova, Director and Financial Adviser (FSP1010055).
           </p>
         </div>
       </div>

@@ -5,11 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import heroImg from "../../../public/images/insights-hero.jpg";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Calculator, Calendar, LineChart, Wallet } from "lucide-react";
+import { ArrowRight, BookA, BookOpen, Calculator, Calendar } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
 import FaqAccordion from "@/components/insights/faq-accordion";
 import NewsletterSignup from "@/components/insights/newsletter-signup";
-import { CALCULATORS_LIVE, TAG_LABELS, TAG_ORDER, visibleArticles, type InsightTag } from "@/lib/insights";
+import { TAG_LABELS, TAG_ORDER, visibleArticles, type InsightTag } from "@/lib/insights";
+import { CALCULATORS_LIVE, calculatorHref, liveCalculators } from "@/lib/calculators";
 import type { FaqItem } from "@/lib/faqs";
 
 const fadeIn = {
@@ -25,31 +26,19 @@ const staggerContainer = {
 /** Latest shows this many cards; the rest sit behind the More button. */
 const INITIAL_ARTICLES = 3;
 
-const TOOLS = [
-  {
-    href: "/insights/calculators",
-    icon: Calculator,
-    title: "Mortgage Repayments",
-    copy: "Weekly, fortnightly or monthly — and what an extra $100 a week takes off the term.",
-    live: true,
-  },
-  {
-    href: "/insights/calculators",
-    icon: LineChart,
-    title: "Borrowing Power",
-    copy: "What a bank is likely to lend on your income, and what moves the number.",
-    live: false,
-  },
-  {
-    href: "/insights/calculators",
-    icon: Wallet,
-    title: "Cashflow",
-    copy: "Where the money actually goes each month, before a lender asks.",
-    live: false,
-  },
-];
+/* Cards come from the calculator registry so this block can never advertise
+   a calculator that is not actually published. */
 
-export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
+/** What the glossary card needs: the term count and a handful of terms to link to. */
+export type GlossaryTeaser = { count: number; featured: { slug: string; term: string }[] };
+
+export default function InsightsContent({
+  faqs,
+  glossary,
+}: {
+  faqs: FaqItem[];
+  glossary: GlossaryTeaser | null;
+}) {
   const articles = useMemo(() => visibleArticles(), []);
   const [filter, setFilter] = useState<InsightTag | "all">("all");
   const [expanded, setExpanded] = useState(false);
@@ -168,9 +157,9 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
       )}
 
       {/* ── C · Tools ────────────────────────────────────────── */}
-      {/* Calculators publish separately — CALCULATORS_LIVE in src/lib/insights.ts
-          is the one switch for this block and for the header menu. */}
-      {CALCULATORS_LIVE && (
+      {/* Cards are the live calculators from src/lib/calculators.ts, so this
+          block cannot advertise something that 404s. */}
+      {CALCULATORS_LIVE && liveCalculators().length > 0 && (
       <section data-cmp="InsightsPage.Tools" className="bg-white px-4 py-16 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -181,55 +170,31 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
               <h2 className="text-3xl font-bold text-valar-navy">Run your own numbers</h2>
             </div>
             <Link
-              href="/insights/calculators"
+              href="/calculators"
               className="text-sm font-semibold text-valar-indigo hover:text-valar-navy"
             >
               See all calculators →
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {TOOLS.map((tool) => {
-              const Icon = tool.icon;
-              const body = (
-                <>
-                  <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  {!tool.live && (
-                    <span className="mb-2 block text-[10px] font-bold uppercase tracking-[0.1em] text-valar-steel">
-                      Coming later
-                    </span>
-                  )}
-                  <h3 className="mb-2 text-lg font-bold text-valar-navy">{tool.title}</h3>
-                  <p className="mb-5 flex-1 text-sm leading-relaxed text-gray-600">{tool.copy}</p>
-                  {tool.live && (
-                    <span className="inline-flex items-center text-sm font-semibold text-valar-navy">
-                      Open <ArrowRight className="ml-2 h-4 w-4 text-valar-amber" />
-                    </span>
-                  )}
-                </>
-              );
-
-              return tool.live ? (
-                <Link
-                  key={tool.title}
-                  href={tool.href}
-                  data-cmp="InsightsPage.Tools.Card"
-                  className="flex flex-col rounded-xl border border-gray-100 bg-valar-fog p-7 transition-shadow hover:shadow-md"
-                >
-                  {body}
-                </Link>
-              ) : (
-                <div
-                  key={tool.title}
-                  data-cmp="InsightsPage.Tools.Card"
-                  className="flex flex-col rounded-xl border border-gray-100 bg-valar-fog p-7 opacity-60"
-                >
-                  {body}
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {liveCalculators().map((tool) => (
+              <Link
+                key={tool.slug}
+                href={calculatorHref(tool.slug)}
+                data-cmp="InsightsPage.Tools.Card"
+                className="flex flex-col rounded-xl border border-gray-100 bg-valar-fog p-7 transition-shadow hover:shadow-md"
+              >
+                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
+                  <Calculator className="h-5 w-5" />
+                </span>
+                <h3 className="mb-2 text-lg font-bold text-valar-navy">{tool.title}</h3>
+                <p className="mb-5 flex-1 text-sm leading-relaxed text-gray-600">{tool.blurb}</p>
+                <span className="inline-flex items-center text-sm font-semibold text-valar-navy">
+                  Open <ArrowRight className="ml-2 h-4 w-4 text-valar-amber" />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -290,6 +255,51 @@ export default function InsightsContent({ faqs }: { faqs: FaqItem[] }) {
           >
             All questions, by topic <ArrowRight className="h-4 w-4" />
           </Link>
+
+          {/* Glossary sits with the FAQ, as it does in the menu's Answers column.
+              A card rather than its own section: the page already has seven. */}
+          {glossary && (
+            <div
+              data-cmp="InsightsPage.Glossary"
+              className="mt-12 grid grid-cols-1 gap-6 rounded-xl border border-gray-100 bg-white p-7 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-center md:gap-10 md:p-9"
+            >
+              <div className="flex items-start gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
+                  <BookA className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+                    Glossary
+                  </p>
+                  <h3 className="mb-2 text-xl font-bold text-valar-navy">Financial terms in plain English</h3>
+                  <p className="text-[15px] leading-relaxed text-gray-600">
+                    A simple guide to the terms you’ll come across in mortgages, property, KiwiSaver and
+                    investing, and why they matter.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  {glossary.featured.map((term) => (
+                    <Link
+                      key={term.slug}
+                      href={`/insights/glossary#${term.slug}`}
+                      className="rounded-full border border-gray-200 bg-valar-fog px-4 py-2 text-sm font-medium text-valar-navy transition-colors hover:border-valar-amber"
+                    >
+                      {term.term}
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/insights/glossary"
+                  className="mt-5 inline-flex items-center gap-1 font-semibold text-valar-amber hover:underline"
+                >
+                  All {glossary.count} terms <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

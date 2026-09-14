@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
+import { LEAD_MAGNETS } from "@/lib/lead-magnets";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -41,8 +42,9 @@ const staggerContainer = {
 };
 
 // Testimonials below are PLACEHOLDER examples — the whole section is hidden at
-// launch until real, consented, Fundsmart Policy 22-approved quotes replace the
-// TESTIMONIALS / MINI_REVIEWS arrays. Flip to true to show it again (SEO L4).
+// launch until real, consented quotes, approved by Lena as Director and logged in
+// the marketing register, replace the TESTIMONIALS / MINI_REVIEWS arrays. Flip to
+// true to show it again (SEO L4).
 const SHOW_TESTIMONIALS: boolean = false;
 
 const TESTIMONIALS = [
@@ -62,11 +64,6 @@ const MINI_REVIEWS = [
   "Always available when we needed.",
 ];
 
-const FIRST_HOME_GUIDE = {
-  key: "first-home-buyer-guide",
-  title: "First Home Buyer Guide",
-  description: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
-};
 
 export default function HomeContent() {
   const testimonialTrackRef = useRef<HTMLDivElement>(null);
@@ -86,7 +83,8 @@ export default function HomeContent() {
   };
   return (
     <div data-cmp="HomePage" className="w-full flex flex-col font-sans">
-      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={FIRST_HOME_GUIDE} />
+      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]}
+        source="Home page" />
       {/* HERO */}
       <section data-cmp="HomePage.Hero" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

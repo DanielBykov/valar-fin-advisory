@@ -9,15 +9,23 @@ import { CookieBanner } from "@/components/consent/cookie-banner";
 import { Analytics } from "@/components/consent/analytics";
 import { getOrganizationSchema, getWebsiteSchema } from "@/lib/schema";
 
+/*
+ * Cyrillic is loaded alongside latin because `/ua` is written in it, and
+ * without the subset every Ukrainian character falls back to a system font —
+ * the page renders in a different typeface than the brand and looks like a
+ * mistake. It costs the English pages nothing: next/font emits one file per
+ * subset with a `unicode-range`, so a browser only fetches the Cyrillic face on
+ * a page that actually draws Cyrillic glyphs.
+ */
 const manrope = Manrope({
   variable: "--font-manrope",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
 const lora = Lora({
   variable: "--font-lora",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500"],
 });
 

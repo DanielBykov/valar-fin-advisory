@@ -21,7 +21,7 @@ How to write an entry:
 Rules:
 - Nothing with `status: draft` ever reaches the public site. Write freely.
 - Only flip to `approved` once you have read the answer and stand behind it
-  (Fundsmart Policy 20 — every published answer is your signed-off advice).
+  (every published answer is your signed-off advice, as Valar's Director).
 - Keep answers short. One idea, then what to do next.
 - No rates, no lender names, no promises about approval.
 

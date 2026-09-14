@@ -52,8 +52,9 @@ Create `web/.env.local`:
 ```bash
 RESEND_API_KEY=          # Resend — transactional email (contact + lead notifications)
 MAILERLITE_API_KEY=      # MailerLite — subscriber API
-MAILERLITE_GROUP_ID=     # General newsletter group
-MAILERLITE_FHB_GROUP_ID= # First Home Buyers group (triggers the guide-delivery automation)
+MAILERLITE_GROUP_ID=             # General newsletter group
+MAILERLITE_FHB_GROUP_ID=         # First Home Buyers group (triggers the first-home guide automation)
+MAILERLITE_CALCULATORS_GROUP_ID= # Calculators group (triggers the mortgage-off-faster automation)
 ```
 
 Without these, the contact form, newsletter, and guide-download flows will fail.

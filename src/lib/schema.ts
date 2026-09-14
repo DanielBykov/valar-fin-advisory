@@ -24,7 +24,7 @@ export function getOrganizationSchema() {
     "@type": "Organization",
     "@id": ORGANIZATION_ID,
     name: "Valar Financial Advisors",
-    legalName: "Valar Financial Advisors Ltd.",
+    legalName: "Valar Financial Advisors Limited",
     url: SITE_URL,
     logo: `${SITE_URL}/images/valar-logo.webp`,
     email: "lena.bykova@valar.co.nz",
@@ -79,7 +79,7 @@ export function getLocalBusinessSchema() {
     identifier: {
       "@type": "PropertyValue",
       propertyID: "Financial Service Provider Number",
-      value: "FSP1010055",
+      value: "FSP1012862",
     },
   };
 }
@@ -183,6 +183,33 @@ export function getFaqSchema(items: FaqEntry[]) {
         acceptedAnswer: { "@type": "Answer", text: answer },
       };
     }),
+  };
+}
+
+/**
+ * DefinedTermSet structured data for the glossary. Pass the same entries the
+ * page renders; each term points at its own anchor on the page.
+ */
+export function getGlossarySchema(
+  url: string,
+  name: string,
+  terms: { name: string; description: string; slug: string }[],
+) {
+  const setId = `${url}#terms`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": setId,
+    name,
+    url,
+    hasDefinedTerm: terms.map((term) => ({
+      "@type": "DefinedTerm",
+      "@id": `${url}#${term.slug}`,
+      name: term.name,
+      description: term.description,
+      url: `${url}#${term.slug}`,
+      inDefinedTermSet: setId,
+    })),
   };
 }
 

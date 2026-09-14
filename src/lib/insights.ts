@@ -20,13 +20,20 @@
 export const INSIGHTS_LIVE = true;
 
 /**
- * Calculators ship on their own timeline, separately from the articles.
- * false → /insights/calculators 404s in production, and every link to it
- *         stays out of the header menu and off the Insights page.
- * Flip to true when the calculators themselves are ready — nothing else
- * has to be put back by hand.
+ * Switch for /insights/glossary, on top of INSIGHTS_LIVE.
+ * false → the glossary 404s in production, stays out of the sitemap and
+ *         out of the Insights menu. It still opens on the local dev server.
+ * Built 2026-09-11 and switched on the same day, after Lena reviewed the
+ * terms. The terms themselves live in src/lib/glossary.ts.
  */
-export const CALCULATORS_LIVE: boolean = false;
+export const GLOSSARY_LIVE = true;
+
+/*
+ * Calculators used to be gated from here as well, which meant two constants
+ * called CALCULATORS_LIVE in two files. They now live in their own top-level
+ * section: src/lib/calculators.ts is the single switch, and it gates one
+ * calculator at a time rather than all of them together.
+ */
 
 export type InsightTag = "guides" | "market" | "case-studies" | "first-home";
 
@@ -887,8 +894,8 @@ export const ARTICLES: Article[] = [
         "A humanoid robot carrying a steel milk churn stands in a New Zealand paddock among grazing dairy cows, while a rocket marked for Mars lifts off over the hills behind.",
     },
     readingMinutes: 6,
-    // Wealth/thinking piece, not mortgage advice — sits in Lena's own scope, not
-    // the Fundsmart regime. No figures anywhere, and nothing framed as a forecast:
+    // Wealth/thinking piece, not mortgage advice: general commentary, not
+    // personalised advice. No figures anywhere, and nothing framed as a forecast:
     // the land block is an illustrative example, deliberately with no number in it.
     // Read and approved by Lena, 2026-08-27.
     draft: false,

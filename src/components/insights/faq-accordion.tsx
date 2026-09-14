@@ -4,8 +4,31 @@ import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import type { FaqItem } from "@/lib/faqs";
 
-export default function FaqAccordion({ items }: { items: FaqItem[] }) {
-  const [open, setOpen] = useState<number | null>(0);
+/**
+ * Takes only the three fields it actually renders, not a whole `FaqItem`.
+ *
+ * The FAQ page passes items parsed out of `content/faqs.md`, which carry draft
+ * flags, service tags and review dates as well. `/ua` writes its questions in
+ * TypeScript and has none of those — and requiring it to invent `draft: false`
+ * to reuse a working accordion would be the type asking for paperwork rather
+ * than for what it needs.
+ */
+export default function FaqAccordion({
+  items,
+  defaultOpen = 0,
+}: {
+  items: Pick<FaqItem, "id" | "question" | "answer">[];
+  /**
+   * Which item starts expanded, or `null` for none.
+   *
+   * `/ua` renders four of these, one per group of questions. Four accordions
+   * each opening their own first item would show four answers at once, which
+   * is the wall the grouping exists to avoid — so only the first group opens
+   * one, and the rest start closed.
+   */
+  defaultOpen?: number | null;
+}) {
+  const [open, setOpen] = useState<number | null>(defaultOpen);
 
   return (
     <div data-cmp="FaqAccordion" className="border-t border-valar-concrete">

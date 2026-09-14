@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RentVsBuyCalculator from "@/components/calculators/rent-vs-buy-calculator";
-import { CALCULATORS_LIVE } from "@/lib/calculators";
+import { calculatorVisible } from "@/lib/calculators";
 
 export const metadata: Metadata = {
   title: "Rent vs Buy Calculator NZ | Valar",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  if (!CALCULATORS_LIVE && process.env.NODE_ENV !== "development") notFound();
+  if (!calculatorVisible("rent-vs-buy")) notFound();
 
   return (
     <div data-cmp="RentVsBuyPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
