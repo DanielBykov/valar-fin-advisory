@@ -294,6 +294,40 @@ export function calculatePart(
   };
 }
 
+/**
+ * Interest charged across the whole structure in its first twelve months.
+ *
+ * Separate from `totalInterestToFirstRefix`, which is measured to the earliest
+ * re-fix in the split — that horizon moves when the terms change, so it is not
+ * a number you can put next to an annual repayment. This one is always a year,
+ * which is what "interest paid per year" has to mean if it is going to sit
+ * beside "paid per year".
+ *
+ * Built on calculatePart with a one-year horizon rather than its own loop, so
+ * interest-only parts behave here exactly as they do everywhere else.
+ *
+ * Returned per part as well as summed, because the table breaks the total down
+ * and the two must not be computed two different ways.
+ */
+export function interestInFirstYearByPart(
+  parts: LoanPart[],
+  perYear: number,
+  loanYears: number,
+): number[] {
+  return parts.map((p) =>
+    p.amount > 0 ? calculatePart(p, perYear, loanYears, 1).interestToFirstRefix : 0,
+  );
+}
+
+/** The same figure for the whole structure. */
+export function interestInFirstYear(
+  parts: LoanPart[],
+  perYear: number,
+  loanYears: number,
+): number {
+  return interestInFirstYearByPart(parts, perYear, loanYears).reduce((sum, n) => sum + n, 0);
+}
+
 export type SplitResult = {
   perYear: number;
   frequencyLabel: string;
