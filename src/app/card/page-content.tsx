@@ -8,8 +8,10 @@ import {
   ArrowRight,
   Briefcase,
   Calendar,
+  Facebook,
   Globe,
   House,
+  Instagram,
   Linkedin,
   Mail,
   Phone,
@@ -36,11 +38,21 @@ export default function CardContent() {
   const [qrOpen, setQrOpen] = useState(false);
   const c = CARD_CONTACT;
 
+  // Phone and email stay as readable text: a business card that hides the
+  // number behind an icon is not much of a card.
   const contacts = [
-    { href: `tel:${c.phoneDial}`, label: c.phoneDisplay, Icon: Phone, external: false },
-    { href: `mailto:${c.email}`, label: c.email, Icon: Mail, external: false },
-    { href: c.linkedin, label: c.linkedinDisplay, Icon: Linkedin, external: true },
-    { href: "/", label: "valar.co.nz", Icon: Globe, external: false },
+    { href: `tel:${c.phoneDial}`, label: c.phoneDisplay, Icon: Phone },
+    { href: `mailto:${c.email}`, label: c.email, Icon: Mail },
+  ];
+
+  // The round icon row from /start, which Lena asked for here too. LinkedIn is
+  // her personal profile rather than the company page /start uses: at a
+  // networking event people connect with the person.
+  const socials = [
+    { href: c.instagram, label: "Instagram", Icon: Instagram },
+    { href: c.linkedin, label: "LinkedIn", Icon: Linkedin },
+    { href: c.facebook, label: "Facebook", Icon: Facebook },
+    { href: c.website, label: "Website", Icon: Globe },
   ];
 
   // Business first, then home buyers: the card is handed out at networking
@@ -141,32 +153,30 @@ export default function CardContent() {
           data-cmp="CardPage.Contacts"
           className="mt-6 w-full divide-y divide-white/10 rounded-sm border border-white/15"
         >
-          {contacts.map(({ href, label, Icon, external }) => {
-            const inner = (
-              <>
+          {contacts.map(({ href, label, Icon }) => (
+            <li key={href}>
+              <a href={href} className={contactRow}>
                 <Icon className="h-[18px] w-[18px] shrink-0 text-valar-amber" />
                 <span className="truncate">{label}</span>
-              </>
-            );
-            return (
-              <li key={href}>
-                {href === "/" ? (
-                  <Link href={href} className={contactRow}>
-                    {inner}
-                  </Link>
-                ) : (
-                  <a
-                    href={href}
-                    className={contactRow}
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  >
-                    {inner}
-                  </a>
-                )}
-              </li>
-            );
-          })}
+              </a>
+            </li>
+          ))}
         </ul>
+
+        <div data-cmp="CardPage.Socials" className="mt-5 flex items-center gap-3">
+          {socials.map(({ href, label, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-valar-lilac transition-colors hover:border-valar-amber hover:text-valar-amber"
+            >
+              <Icon className="h-[18px] w-[18px]" />
+            </a>
+          ))}
+        </div>
 
         <p className="mt-9 self-start text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
           Where I can help

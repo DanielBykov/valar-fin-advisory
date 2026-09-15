@@ -16,7 +16,8 @@ export const CARD_CONTACT = {
   email: "lena.bykova@valar.co.nz",
   website: "https://valar.co.nz",
   linkedin: "https://www.linkedin.com/in/lenabykova/",
-  linkedinDisplay: "linkedin.com/in/lenabykova",
+  instagram: "https://www.instagram.com/lena.valarnz/",
+  facebook: "https://www.facebook.com/lena.valarnz",
   // Sits under the contact in the phone's address book, for the moment months
   // later when nobody remembers where they met.
   note: "Home loans, investment property and business lending. valar.co.nz",

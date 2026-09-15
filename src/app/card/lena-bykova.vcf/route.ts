@@ -46,6 +46,10 @@ export function GET() {
     // X-ABLabel is Apple's label extension. Apps that do not know it keep the URL.
     `item1.URL:${c.linkedin}`,
     "item1.X-ABLabel:LinkedIn",
+    `item2.URL:${c.instagram}`,
+    "item2.X-ABLabel:Instagram",
+    `item3.URL:${c.facebook}`,
+    "item3.X-ABLabel:Facebook",
     `NOTE:${text(c.note)}`,
     `PHOTO;ENCODING=b;TYPE=JPEG:${photo}`,
     "END:VCARD",
