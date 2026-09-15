@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import avatarImg from "../../../public/images/lena-avatar.webp";
+import portraitImg from "../../../public/images/lena-portrait.webp";
 import {
   ArrowRight,
   Briefcase,
@@ -104,17 +104,21 @@ export default function CardContent() {
           <Image src="/images/valar-logo.webp" alt="Valar" fill sizes="150px" priority className="object-contain" />
         </div>
 
-        {/* lena-avatar.webp is already a face-centred square crop, so a plain
-            cover fill works here without the offset trick /start needs. */}
+        {/* Exactly the photo and framing from /start, which Lena prefers: the
+            half-body portrait rendered at 2.6x the circle and offset onto the
+            face. A tighter crop was tried here and rejected, so do not re-crop.
+            If the portrait is replaced, re-tune width/height and left/top
+            together, as on /start. */}
         <div className="mt-9 relative h-32 w-32 overflow-hidden rounded-full ring-2 ring-valar-amber ring-offset-4 ring-offset-valar-navy">
           <Image
-            src={avatarImg}
+            src={portraitImg}
             alt="Lena Bykova"
-            fill
-            sizes="128px"
+            width={333}
+            height={373}
             placeholder="blur"
             priority
-            className="object-cover"
+            className="absolute max-w-none"
+            style={{ left: "-106px", top: "-65px" }}
           />
         </div>
 
