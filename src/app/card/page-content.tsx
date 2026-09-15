@@ -128,11 +128,12 @@ export default function CardContent() {
         <p className="mt-2 text-center text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
           {c.title}
         </p>
-        {/* Lena's wording. text-balance keeps the last line from ending on a
-            single word at phone width. */}
+        {/* Lena's wording, one sentence per line: run together, the second
+            sentence left a lone "I" at the end of a line. text-balance evens
+            out each sentence's wrap at phone width. */}
         <p className="mt-4 max-w-md text-balance text-center text-[17px] font-light leading-relaxed text-white/85">
-          Home loans, investment property and business lending. I help individuals and business owners
-          find the right finance.
+          <span className="block">Home loans, investment property and business lending.</span>
+          <span className="block">I help individuals and business owners find the right finance.</span>
         </p>
 
         {/* PRIMARY. A plain <a> with no download attribute, so the phone decides
