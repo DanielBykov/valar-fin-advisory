@@ -128,8 +128,11 @@ export default function CardContent() {
         <p className="mt-2 text-center text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
           {c.title}
         </p>
-        <p className="mt-4 max-w-md text-center text-[17px] font-light leading-relaxed text-white/85">
-          Home loans and investment property. I also help business owners with lending.
+        {/* Lena's wording. text-balance keeps the last line from ending on a
+            single word at phone width. */}
+        <p className="mt-4 max-w-md text-balance text-center text-[17px] font-light leading-relaxed text-white/85">
+          Home loans, investment property and business lending. I help individuals and business owners
+          find the right finance.
         </p>
 
         {/* PRIMARY. A plain <a> with no download attribute, so the phone decides
