@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertTriangle, ChevronDown, ChevronUp } from "lucide-react";
 
 import {
@@ -230,11 +230,29 @@ function axisTicks(max: number, count: number) {
   return { top, ticks };
 }
 
-/** Principal and interest per year, stacked. Principal at the base. */
+/**
+ * Principal and interest per year, stacked. Principal at the base.
+ *
+ * Fills whatever height its column leaves (Lena, 2026-09-24: the two columns
+ * should end on one line), so it is drawn at its measured pixel size rather
+ * than scaled from a fixed viewBox, which would stretch the labels.
+ */
 function YearChart({ years }: { years: YearSplit[] }) {
   const [hover, setHover] = useState<number | null>(null);
-  const W = 640;
-  const H = 260;
+  const box = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 640, h: 260 });
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => {
+      const { width, height } = e.contentRect;
+      if (width > 0 && height > 0) setSize({ w: width, h: height });
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const W = size.w;
+  const H = size.h;
   const pad = { l: 48, r: 8, t: 12, b: 28 };
   const max = Math.max(0, ...years.map((y) => y.principal + y.interest));
   const { top, ticks } = axisTicks(max, 4);
@@ -247,7 +265,10 @@ function YearChart({ years }: { years: YearSplit[] }) {
   const hovered = hover === null ? null : years[hover];
 
   return (
-    <div className="rounded-xl p-4 md:p-5" style={{ background: SURFACE }}>
+    <div
+      className="flex flex-1 flex-col rounded-xl p-4 md:p-5"
+      style={{ background: SURFACE }}
+    >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-semibold text-white">
           Where each year&rsquo;s payments go
@@ -274,9 +295,11 @@ function YearChart({ years }: { years: YearSplit[] }) {
           ? `Year ${hovered.year}: ${money(hovered.principal)} principal, ${money(hovered.interest)} interest`
           : ""}
       </p>
+      <div ref={box} className="relative min-h-[220px] flex-1">
       <svg
-        viewBox={`0 0 ${W} ${H}`}
-        className="h-auto w-full"
+        width={W}
+        height={H}
+        className="absolute inset-0"
         role="img"
         aria-label="Principal and interest paid each year"
       >
@@ -348,6 +371,7 @@ function YearChart({ years }: { years: YearSplit[] }) {
           );
         })}
       </svg>
+      </div>
       <p className="mt-1 text-center text-[11px] text-valar-lilac">Year</p>
     </div>
   );
