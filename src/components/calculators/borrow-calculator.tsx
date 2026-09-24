@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, ChevronDown, ChevronUp } from "lucide-react";
 
 import {
   type BorrowInput,
@@ -71,6 +71,11 @@ const SURFACE = "#061634";
 const PRINCIPAL = "#5B8DEF";
 const INTEREST = "#C58329";
 
+/*
+ * One row per question (Lena, 2026-09-24): label and explanation on the left,
+ * a short input on the right with up/down arrows. Full-width boxes for a
+ * four-digit number read as a form to fill, not a number to try.
+ */
 function Field({
   id,
   label,
@@ -78,24 +83,44 @@ function Field({
   prefix,
   suffix,
   decimal,
+  step,
+  min = 0,
+  max,
   value,
   onChange,
 }: {
   id: string;
   label: string;
-  hint?: string;
+  hint?: React.ReactNode;
   prefix?: string;
   suffix?: string;
   decimal?: boolean;
+  /** How far one arrow click moves the value. */
+  step: number;
+  min?: number;
+  max?: number;
   value: string;
   onChange: (v: string) => void;
 }) {
+  const nudge = (dir: 1 | -1) => {
+    const current = decimal ? parseFloat(value) || 0 : toNumber(value);
+    let next = Math.round((current + dir * step) / step) * step;
+    next = Math.max(min, max === undefined ? next : Math.min(max, next));
+    onChange(decimal ? next.toFixed(2) : withCommas(String(next)));
+  };
+
   return (
-    <div data-cmp="BorrowCalculator.Field" className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-semibold text-valar-navy">
-        {label}
-      </label>
-      <div className="flex items-center rounded-lg border border-valar-concrete bg-white focus-within:border-valar-amber focus-within:ring-2 focus-within:ring-valar-amber/30">
+    <div
+      data-cmp="BorrowCalculator.Field"
+      className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-dashed border-valar-concrete py-4 last:border-0"
+    >
+      <div className="min-w-0">
+        <label htmlFor={id} className="text-[15px] font-semibold text-valar-navy">
+          {label}
+        </label>
+        {hint && <p className="mt-0.5 text-xs leading-relaxed text-valar-steel">{hint}</p>}
+      </div>
+      <div className="flex w-40 items-center rounded-lg border border-valar-concrete bg-white focus-within:border-valar-amber focus-within:ring-2 focus-within:ring-valar-amber/30">
         {prefix && <span className="pl-3 text-sm text-valar-steel">{prefix}</span>}
         <input
           id={id}
@@ -105,11 +130,32 @@ function Field({
           onChange={(e) =>
             onChange(decimal ? e.target.value.replace(/[^0-9.]/g, "") : withCommas(e.target.value))
           }
-          className="w-full bg-transparent px-2 py-2.5 text-sm font-semibold tabular-nums text-valar-navy focus:outline-none"
+          onKeyDown={(e) => {
+            if (e.key === "ArrowUp") (e.preventDefault(), nudge(1));
+            if (e.key === "ArrowDown") (e.preventDefault(), nudge(-1));
+          }}
+          className="w-full min-w-0 bg-transparent px-2 py-2.5 text-right text-sm font-semibold tabular-nums text-valar-navy focus:outline-none"
         />
-        {suffix && <span className="whitespace-nowrap pr-3 text-sm text-valar-steel">{suffix}</span>}
+        {suffix && <span className="whitespace-nowrap text-xs text-valar-steel">{suffix}</span>}
+        <div className="ml-1 flex flex-col border-l border-valar-concrete">
+          <button
+            type="button"
+            aria-label={`Increase ${label}`}
+            onClick={() => nudge(1)}
+            className="px-1.5 py-0.5 text-valar-steel hover:text-valar-navy"
+          >
+            <ChevronUp className="h-3.5 w-3.5" />
+          </button>
+          <button
+            type="button"
+            aria-label={`Decrease ${label}`}
+            onClick={() => nudge(-1)}
+            className="border-t border-valar-concrete px-1.5 py-0.5 text-valar-steel hover:text-valar-navy"
+          >
+            <ChevronDown className="h-3.5 w-3.5" />
+          </button>
+        </div>
       </div>
-      {hint && <p className="text-xs leading-relaxed text-valar-steel">{hint}</p>}
     </div>
   );
 }
@@ -338,41 +384,47 @@ export default function BorrowCalculator({
             })}
           </div>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col">
             <Field
               id="borrow-income"
-              label={`Household take-home pay, per ${per}`}
-              hint="After tax and KiwiSaver, for everyone on the loan. Include any regular income you'd count on."
+              label={`Household take-home pay per ${per}`}
+              hint="After tax and KiwiSaver, everyone on the loan together."
               prefix="$"
+              step={100}
               value={draft.income}
               onChange={(v) => set("income", v)}
             />
             <Field
               id="borrow-payment"
-              label={`The most you want to pay, per ${per}`}
-              hint="What you could put toward the mortgage after everyday living costs."
+              label={`Mortgage payments you plan per ${per}`}
+              hint="The most you'd put toward the mortgage after everyday living costs."
               prefix="$"
+              step={50}
               value={draft.payment}
               onChange={(v) => set("payment", v)}
             />
-            <div className="grid grid-cols-2 gap-4">
-              <Field
-                id="borrow-rate"
-                label="Interest rate"
-                suffix="% p.a."
-                decimal
-                value={draft.rate}
-                onChange={(v) => set("rate", v)}
-              />
-              <Field
-                id="borrow-years"
-                label="Loan term"
-                hint="25 to 30 years is standard."
-                suffix="years"
-                value={draft.years}
-                onChange={(v) => set("years", v)}
-              />
-            </div>
+            <Field
+              id="borrow-rate"
+              label="Interest rate"
+              hint="We calculate at this rate. Check today's rates with your bank or adviser and put in your own."
+              suffix="%"
+              decimal
+              step={0.1}
+              max={20}
+              value={draft.rate}
+              onChange={(v) => set("rate", v)}
+            />
+            <Field
+              id="borrow-years"
+              label="Loan term"
+              hint="25 to 30 years is standard."
+              suffix="years"
+              step={1}
+              min={1}
+              max={40}
+              value={draft.years}
+              onChange={(v) => set("years", v)}
+            />
           </div>
         </section>
 
