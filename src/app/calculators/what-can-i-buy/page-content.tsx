@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import AffordabilityCalculator from "@/components/calculators/affordability-calculator";
+import BorrowCalculator from "@/components/calculators/borrow-calculator";
 import { isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
 
 /*
@@ -71,18 +71,24 @@ const DEPOSIT_LEVELS = [
  * published. The owner-occupier scope and the settlement-costs note live here
  * now because the sections that carried them were cut.
  */
+/*
+ * Rewritten 2026-09-24 for the payment-first calculator. The income-based
+ * version's list (loan cap, living costs, card limits) is in the archive:
+ * ws-valar/calculators/_archive/what-can-i-buy-v1/.
+ */
 const ASSUMPTIONS = [
-  { term: "Stress test.", copy: "Repayments are tested at 7% over 30 years." },
   {
-    term: "Loan cap.",
-    copy: "Six times your gross income, where most bank lending stops for a home you'll live in. A rental is assessed differently.",
+    term: "The loan.",
+    copy: "What your chosen payment repays in full over the term, at the rate you enter, principal and interest.",
   },
-  { term: "Take-home pay.", copy: "After income tax, ACC and your KiwiSaver contribution." },
-  { term: "Living costs.", copy: "Never below a minimum for your household size and income." },
-  { term: "Cards, BNPL and overdrafts.", copy: "3.8% of the limit a month, used or not." },
+  { term: "Stress test.", copy: "The same loan repriced at 7%, the level lenders commonly test at." },
   {
-    term: "Deposit.",
-    copy: "All of it goes into the price. Settlement costs are often covered by a lender's cashback; check with your adviser.",
+    term: "Payment bands.",
+    copy: "Your payment as a share of take-home pay: up to 30% comfortable, 30–40% manageable, 40–50% stretched, above 50% high risk. A rule of thumb, not a lender's rule.",
+  },
+  {
+    term: "Not a lender's limit.",
+    copy: "A bank also looks at your living costs, other debts and deposit. It may lend more or less than this.",
   },
 ];
 
@@ -103,9 +109,9 @@ const ASSUMPTIONS = [
  * stated in the assumptions folded away at the foot of the page.
  */
 const HERO_CHIPS = [
-  "Your borrowing range",
-  "What limits it",
-  "What it could cost",
+  "Start from your payment",
+  "Share of your pay",
+  "Stress test at 7%",
   "Send it to yourself",
 ];
 
@@ -195,7 +201,7 @@ export default function WhatCanIBuyContent() {
             How much can I borrow<span className="text-valar-amber">?</span>
           </h1>
           <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
-            Run your numbers to see what your income, deposit and commitments support.
+            Start from what you&rsquo;d be comfortable paying and see the loan it carries.
           </p>
           {/* Chips rather than a sentence — see HERO_CHIPS for why these four. */}
           <ul className="mt-6 flex flex-wrap gap-2">
@@ -215,7 +221,7 @@ export default function WhatCanIBuyContent() {
       {/* ── The calculator ───────────────────────────────────── */}
       <section data-cmp="WhatCanIBuyPage.Calculator" className="px-4 py-14 md:px-6">
         <div className="container mx-auto max-w-6xl">
-          <AffordabilityCalculator
+          <BorrowCalculator
             guideKey={MAGNET.key}
             guideTitle={MAGNET.title}
             guideReady={isReady(MAGNET)}

@@ -6,12 +6,12 @@ import WhatCanIBuyContent from "./page-content";
 export const metadata: Metadata = {
   title: "How Much Can I Borrow? Home Loan Calculator NZ | Valar",
   description:
-    "Run your numbers to see what your income, deposit and commitments support.",
+    "Start from the repayment you'd be comfortable with and see the loan it carries.",
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "How Much Can I Borrow? Home Loan Calculator NZ | Valar",
     description:
-      "Run your numbers to see what your income, deposit and commitments support.",
+      "Start from the repayment you'd be comfortable with and see the loan it carries.",
   },
 };
 
