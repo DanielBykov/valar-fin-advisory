@@ -15,10 +15,18 @@
  *      what people feel, not a smaller loan.
  */
 
-import { shareBand } from "./affordability";
+import { shareBand as baseBand } from "./affordability";
 import { FREQUENCIES, type FrequencyKey } from "./split-loan";
 
-export { shareBand };
+/*
+ * The old engine's bands, with the top one renamed (Lena, 2026-09-24):
+ * "High risk" read like a formal risk classification, which this is not.
+ * It is a payment pressure indicator, so the top band says pressure.
+ */
+export function shareBand(share: number) {
+  const b = baseBand(share);
+  return b.label === "High risk" ? { ...b, label: "High pressure" } : b;
+}
 
 /** The rate the same loan is re-priced at for the stress test. */
 export const STRESS_RATE = 7;

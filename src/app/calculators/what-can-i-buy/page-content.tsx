@@ -84,7 +84,7 @@ const ASSUMPTIONS = [
   { term: "Stress test.", copy: "The same loan repriced at 7%, the level lenders commonly test at." },
   {
     term: "Payment bands.",
-    copy: "Your payment as a share of take-home pay: up to 30% comfortable, 30–40% manageable, 40–50% stretched, above 50% high risk. A rule of thumb, not a lender's rule.",
+    copy: "Your payment as a share of take-home pay: up to 30% comfortable, 30–40% manageable, 40–50% stretched, above 50% high pressure. A rule of thumb, not a lender's rule: the higher the income, the larger the share a household can usually carry.",
   },
   {
     term: "Not a lender's limit.",

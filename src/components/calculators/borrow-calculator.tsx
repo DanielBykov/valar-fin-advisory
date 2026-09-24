@@ -60,15 +60,15 @@ const SHARE_SCALE = [
   { label: "Comfortable", range: "to 30%", on: "bg-emerald-600 text-white" },
   { label: "Manageable", range: "30–40%", on: "bg-emerald-600 text-white" },
   { label: "Stretched", range: "40–50%", on: "bg-valar-amber text-valar-navy" },
-  { label: "High risk", range: "50%+", on: "bg-orange-500 text-white" },
+  { label: "High pressure", range: "50%+", on: "bg-orange-500 text-white" },
 ] as const;
 
 /** The bands in words, one line each (cut short on Lena's call, 2026-09-24). */
 const BAND_NOTES = [
-  { label: "Comfortable", copy: "room for savings and a rate rise." },
-  { label: "Manageable", copy: "works with a steady income." },
-  { label: "Stretched", copy: "little room if rates or costs rise." },
-  { label: "High risk", copy: "one change can tip the budget." },
+  { label: "Comfortable", copy: "a good buffer in your cashflow." },
+  { label: "Manageable", copy: "usually workable, depends on your other costs." },
+  { label: "Stretched", copy: "sensitive to rising rates or costs." },
+  { label: "High pressure", copy: "little room for rate rises, income changes or surprises." },
 ] as const;
 
 /*
@@ -595,7 +595,7 @@ export default function BorrowCalculator({
             <>
               {/* ---- 2. the payment against take-home pay ---- */}
               <div className="border-b border-gray-100 p-6 md:px-8">
-                <Eyebrow>Your payment against your pay</Eyebrow>
+                <Eyebrow>Your mortgage payment load</Eyebrow>
                 {result.hasIncome ? (
                   <>
                     <p className="mb-4 text-[15px] leading-relaxed text-gray-600">
@@ -685,9 +685,10 @@ export default function BorrowCalculator({
                   ))}
                 </dl>
                 <p className="mb-3 text-sm leading-relaxed text-gray-600">
-                  <b className="text-valar-navy">A guide, not a rule.</b>{" "}A bank
-                  may lend you more, but you don&rsquo;t have to take it. What
-                  matters is the payment you can live with.
+                  <b className="text-valar-navy">A guide, not a rule.</b>{" "}
+                  The higher your income, the bigger the share that can go to a
+                  mortgage: food, power and basics don&rsquo;t rise with pay. A
+                  bank may lend you more, but you don&rsquo;t have to take it.
                 </p>
                 <p className="text-xs leading-relaxed text-valar-steel">
                   Indicative only. What you can actually borrow is confirmed by
