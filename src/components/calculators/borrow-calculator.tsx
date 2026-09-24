@@ -63,28 +63,12 @@ const SHARE_SCALE = [
   { label: "High risk", range: "50%+", on: "bg-orange-500 text-white" },
 ] as const;
 
-/** The bands in words, under the stress test. Draft for Lena to edit. */
+/** The bands in words, one line each (cut short on Lena's call, 2026-09-24). */
 const BAND_NOTES = [
-  {
-    label: "Comfortable",
-    range: "up to 30%",
-    copy: "Room for savings, surprises and a rate rise.",
-  },
-  {
-    label: "Manageable",
-    range: "30–40%",
-    copy: "Works for most households with steady income and a budget they keep to.",
-  },
-  {
-    label: "Stretched",
-    range: "40–50%",
-    copy: "Possible, but little room if rates rise, costs go up or income drops.",
-  },
-  {
-    label: "High risk",
-    range: "above 50%",
-    copy: "Most of your pay goes to the mortgage. One change can tip the budget over.",
-  },
+  { label: "Comfortable", copy: "room for savings and a rate rise." },
+  { label: "Manageable", copy: "works with a steady income." },
+  { label: "Stretched", copy: "little room if rates or costs rise." },
+  { label: "High risk", copy: "one change can tip the budget." },
 ] as const;
 
 /*
@@ -587,6 +571,18 @@ export default function BorrowCalculator({
                     </dd>
                   </div>
                 </dl>
+                {/*
+                 * The send form sits below the fold; this puts the ask where the
+                 * number lands (Lena, 2026-09-24: "the form is hard to see").
+                 */}
+                {guideTitle && (
+                  <a
+                    href="#send-my-numbers"
+                    className="mt-6 inline-flex w-full items-center justify-center rounded-lg bg-valar-amber px-6 py-3 text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
+                  >
+                    Send me this calculation
+                  </a>
+                )}
               </>
             ) : (
               <p className="text-2xl font-bold leading-tight text-white">
@@ -678,39 +674,20 @@ export default function BorrowCalculator({
                */}
               <div className="p-6 md:px-8">
                 <Eyebrow>What the bands mean</Eyebrow>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600">
-                  This is how much of your take-home pay goes to the mortgage.
-                  The lower the share, the more you have left for everyday
-                  spending, saving and the unexpected.
-                </p>
-                <dl className="mb-4 flex flex-col gap-2.5 text-sm leading-relaxed">
+                <dl className="mb-3 grid grid-cols-1 gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2">
                   {BAND_NOTES.map((b) => (
-                    <div
-                      key={b.label}
-                      className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-3"
-                    >
-                      <dt>
-                        <span className="block font-bold text-valar-navy">
-                          {b.label}
-                        </span>
-                        <span className="block text-xs text-valar-steel">
-                          {b.range}
-                        </span>
-                      </dt>
-                      <dd className="text-gray-600">{b.copy}</dd>
+                    <div key={b.label}>
+                      <dt className="inline font-bold text-valar-navy">
+                        {b.label}
+                      </dt>{" "}
+                      <dd className="inline text-gray-600">{b.copy}</dd>
                     </div>
                   ))}
                 </dl>
-                <p className="mb-3 rounded-lg bg-valar-fog p-4 text-sm leading-relaxed text-gray-600">
-                  <b className="text-valar-navy">A guide, not a rule.</b>{" "}
-                  Going over a band doesn&rsquo;t make a loan wrong. It means your
-                  budget deserves a closer look before you commit.
-                </p>
-                <p className="mb-4 rounded-lg bg-valar-fog p-4 text-sm leading-relaxed text-gray-600">
-                  <b className="text-valar-navy">A bank may lend you more.</b>{" "}
-                  That doesn&rsquo;t mean you need it. The number that matters
-                  is the payment you can live with, not the lender&rsquo;s
-                  ceiling.
+                <p className="mb-3 text-sm leading-relaxed text-gray-600">
+                  <b className="text-valar-navy">A guide, not a rule.</b>{" "}A bank
+                  may lend you more, but you don&rsquo;t have to take it. What
+                  matters is the payment you can live with.
                 </p>
                 <p className="text-xs leading-relaxed text-valar-steel">
                   Indicative only. What you can actually borrow is confirmed by
