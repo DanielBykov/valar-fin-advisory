@@ -14,7 +14,7 @@ import {
 } from "@/lib/borrow-from-payment";
 import { FREQUENCIES, type FrequencyKey } from "@/lib/split-loan";
 import { money, toNumber, withCommas } from "@/lib/affordability";
-import type { RepaymentSnapshot } from "@/lib/repayment-report";
+import type { BorrowSnapshot } from "@/lib/borrow-report";
 import SendCalculationForm from "@/components/calculators/send-calculation-form";
 
 /*
@@ -440,20 +440,9 @@ export default function BorrowCalculator({
   const ready = input.payment > 0 && result.loan > 0;
   const alreadyAtStress = input.rate >= STRESS_RATE;
 
-  /*
-   * Interim, until the borrowing email is rebuilt for this version: the
-   * calculation travels as a single-loan repayment snapshot (the loan, rate,
-   * term and frequency), which the existing repayments email already handles.
-   */
-  const figures: RepaymentSnapshot | undefined = ready
-    ? {
-        amount: Math.round(result.loan),
-        rate: input.rate,
-        years: input.years,
-        frequency: input.frequency,
-        extraMode: "amount",
-        extraValue: 0,
-      }
+  // Only the inputs travel; the email recomputes the answer (borrow-report.ts).
+  const figures: BorrowSnapshot | undefined = ready
+    ? { kind: "borrow", ...input }
     : undefined;
 
   const debtFree = result.debtFree.toLocaleString("en-NZ", {

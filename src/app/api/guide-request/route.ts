@@ -10,6 +10,9 @@ import { inputsFromSnapshot, parseAffordabilitySnapshot } from "@/lib/affordabil
 import { renderRepaymentEmail } from "@/lib/emails/repayment-calculation";
 import { renderSplitEmail } from "@/lib/emails/split-calculation";
 import { renderAffordabilityEmail } from "@/lib/emails/affordability-calculation";
+import { parseBorrowSnapshot } from "@/lib/borrow-report";
+import { calculateBorrow } from "@/lib/borrow-from-payment";
+import { renderBorrowEmail } from "@/lib/emails/borrow-calculation";
 import { getLeadMagnet, isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -37,9 +40,11 @@ export async function POST(req: Request) {
    * are tried first and the single loan is what is left over — which is what
    * keeps every payload sent before any of this existed reading correctly.
    */
-  const borrowing = parseAffordabilitySnapshot(figures);
-  const split = borrowing ? null : parseSplitSnapshot(figures);
-  const snapshot = borrowing || split ? null : parseRepaymentSnapshot(figures);
+  // The payment-first borrowing calculator (2026-09-24) is tried first.
+  const borrowPay = parseBorrowSnapshot(figures);
+  const borrowing = borrowPay ? null : parseAffordabilitySnapshot(figures);
+  const split = borrowPay || borrowing ? null : parseSplitSnapshot(figures);
+  const snapshot = borrowPay || borrowing || split ? null : parseRepaymentSnapshot(figures);
 
   /*
    * Where the links in the email point.
@@ -113,7 +118,33 @@ export async function POST(req: Request) {
    * half of the lead: what they were actually modelling.
    */
   let figuresBlock = "";
-  if (snapshot) {
+  const borrowResult = borrowPay ? calculateBorrow(borrowPay) : null;
+  if (borrowPay && borrowResult) {
+    const per = { weekly: "wk", fortnightly: "fn", monthly: "mo" }[borrowPay.frequency];
+    const pct = (n: number) => `${Math.round(n * 100)}%`;
+    figuresBlock = `
+      <hr>
+      <p><strong>What their payment borrows</strong></p>
+      <p>
+        Take-home ${borrowPay.income > 0 ? `${money(borrowPay.income)}/${per}` : "not entered"},
+        mortgage payment ${money(borrowPay.payment)}/${per}, ${borrowPay.rate}% over ${borrowPay.years} years.
+      </p>
+      <p>
+        Loan <strong>${money(borrowResult.loan)}</strong> &middot;
+        total interest ${money(borrowResult.totalInterest)}${
+          borrowResult.hasIncome
+            ? ` &middot; payment load <strong>${pct(borrowResult.share)}</strong> (${borrowResult.band.label})`
+            : ""
+        }
+      </p>
+      <p>
+        At 7%: ${money(borrowResult.stress.payment)}/${per}${
+          borrowResult.hasIncome
+            ? `, ${pct(borrowResult.stress.share)} (${borrowResult.stress.band.label})`
+            : ""
+        }
+      </p>`;
+  } else if (snapshot) {
     const r = calculateRepayments(snapshot);
     const freqLabel = FREQUENCIES.find((f) => f.key === snapshot.frequency)?.label ?? "";
     figuresBlock = `
@@ -213,7 +244,9 @@ export async function POST(req: Request) {
   const notify = resend.emails.send({
     from: "Valar Website <lena.bykova@valar.co.nz>",
     to: TO_LENA,
-    subject: snapshot
+    subject: borrowPay && borrowResult
+      ? `Borrowing calc: ${firstName} — ${money(borrowResult.loan)} on ${money(borrowPay.payment)} a payment`
+      : snapshot
       ? `Calculation sent: ${firstName} — ${nzd(snapshot.amount)} @ ${snapshot.rate.toFixed(2)}%`
       : split
         ? `Split sent: ${firstName} — ${nzd(
@@ -291,7 +324,9 @@ export async function POST(req: Request) {
     baseUrl,
   };
 
-  const mail = borrowing
+  const mail = borrowPay
+    ? renderBorrowEmail({ ...common, snapshot: borrowPay })
+    : borrowing
     ? renderAffordabilityEmail({ ...common, snapshot: borrowing })
     : split
       ? renderSplitEmail({ ...common, snapshot: split })
