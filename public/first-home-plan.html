@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your First Home Plan | Valar Financial Advisors</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Your first home plan">
+<meta property="og:description" content="Answer 21 questions and get a clear, one-page plan for buying your first home in New Zealand.">
+<meta property="og:image" content="https://valar.co.nz/opengraph.jpg">
+<meta name="description" content="A free interactive workbook for first home buyers in New Zealand, by Valar Financial Advisors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#061634; --ink-soft:#4A5672; --indigo:#2E4882;
+  --horizon:#6F88C4; --amber:#E8A23A; --lav:#8F93B5; --lilac:#C8CBE3; --concrete:#C9CED6; --tint:#EEF0F4;
+  --good:#2F7D5B; --bad:#B44A4A; --on-amber:#061634;
+  --rail1:#061634; --rail2:#2E4882;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#040E24; --surface:#0B1C3F; --ink:#F6F7F9; --ink-soft:#C8CBE3; --indigo:#9FB3E6;
+    --horizon:#9FB3E6; --concrete:#23396A; --tint:#12264F; --good:#6FCF9E; --bad:#F08A8A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#040E24; --surface:#0B1C3F; --ink:#F6F7F9; --ink-soft:#C8CBE3; --indigo:#9FB3E6;
+  --horizon:#9FB3E6; --concrete:#23396A; --tint:#12264F; --good:#6FCF9E; --bad:#F08A8A; color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.road{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.road li{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--concrete);border-radius:14px;padding:14px 16px}
+.road .num{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--indigo);color:#fff;font:700 14px Manrope,sans-serif}
+.road li.st-done .num{background:var(--good)}
+.road li.next{border-color:var(--amber);box-shadow:0 0 0 3px rgba(232,162,58,.18)}
+.road li.next .num{background:var(--amber);color:var(--on-amber)}
+.road li>div{flex:1;min-width:0;display:grid;gap:4px}
+.road .rt{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.road .rt b{font-size:15.5px}
+.road p{font-size:14px;color:var(--ink-soft);line-height:1.5}
+.road .tag{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--horizon)}
+.road li.st-done .tag{color:var(--good)} .road li.next .tag{color:#B07014}
+.road li.st-done p{opacity:.8}
+.save{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.save a.btn{text-decoration:none}
+.tip.wlist{display:block}.wlist ul{margin:6px 0 0;padding-left:18px}.wlist li{margin:4px 0}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,"Segoe UI",system-ui,sans-serif;font-size:16px;line-height:1.55;padding-inline:16px;padding-block:28px 48px}
+h1,h2,h3{font-family:Lora,Georgia,serif;font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+p{margin:0}
+.dot{color:var(--amber)}
+a{color:var(--indigo);font-weight:600}
+.shell{max-width:980px;margin:0 auto;display:grid;grid-template-columns:290px 1fr;background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(6,22,52,.06),0 12px 40px rgba(6,22,52,.08);min-height:620px}
+.rail{background:linear-gradient(160deg,var(--rail1),var(--rail2));color:#F6F7F9;padding:28px 26px;display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.16em;font-size:11px;text-transform:uppercase;color:var(--lilac)}
+.brand svg{width:20px;height:16px;fill:#F6F7F9}
+.bignum{font-family:Lora,Georgia,serif;font-size:72px;font-weight:600;line-height:1;color:var(--lilac)}
+.railtitle{font-family:Lora,Georgia,serif;font-size:24px;line-height:1.2}
+.stepper{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;position:relative;z-index:1}
+.stepper li{display:flex;gap:10px;align-items:center;font-size:14px;color:rgba(200,203,227,.75)}
+.stepper li i{width:8px;height:8px;border-radius:50%;background:rgba(200,203,227,.35);flex:none}
+.stepper li.done i{background:var(--lilac)}
+.stepper li.cur{color:#fff;font-weight:700}
+.stepper li.cur i{background:var(--amber);box-shadow:0 0 0 4px rgba(232,162,58,.25)}
+.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;pointer-events:none}
+.main{padding:36px 40px;display:flex;flex-direction:column;gap:22px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;font-weight:700;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase}
+.progress{height:4px;background:var(--tint);border-radius:999px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--amber);width:0;transition:width .35s}
+.qtitle{font-size:clamp(24px,3.6vw,32px)}
+.sub{color:var(--ink-soft);font-size:15px;margin-top:-10px}
+.opts{display:grid;gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{position:relative;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--concrete);border-radius:14px;padding:15px 16px 15px 46px;font:600 15.5px Manrope,system-ui,sans-serif;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;min-height:54px}
+@media (hover:hover){.opt:hover{border-color:var(--lav)}}
+.opt:active{transform:scale(.99)}
+.opt::before{content:"";position:absolute;left:16px;top:17px;width:18px;height:18px;border:2px solid var(--lav);border-radius:50%;background:var(--surface)}
+.opt.multi::before{border-radius:5px}
+.opt.sel{border-color:var(--indigo);background:var(--tint)}
+.opt.sel::before{background:var(--indigo) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;border-color:var(--indigo)}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 10%,var(--surface))}
+.opt.right::before{background:var(--good);border-color:var(--good)}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 8%,var(--surface))}
+.opt.wrong::before{background:var(--bad);border-color:var(--bad)}
+.opt small{display:block;color:var(--ink-soft);font-size:13.5px;font-weight:500;margin-top:4px;line-height:1.45}
+.tip{display:flex;gap:12px;align-items:flex-start;background:var(--tint);border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.5;animation:in .25s ease}
+.tip .ic{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--indigo);color:#fff;font:700 14px Lora,serif}
+.tip.good .ic{background:var(--good)} .tip.bad .ic{background:var(--bad)}
+.tip b{display:block}
+@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.money{display:flex;align-items:center;gap:8px;border:1.5px solid var(--concrete);border-radius:14px;padding:0 16px;background:var(--surface);width:min(100%,300px)}
+.money:focus-within{border-color:var(--indigo)}
+.money span{color:var(--ink-soft);font:600 22px Manrope,sans-serif}
+.money input{border:0;background:transparent;color:var(--ink);font:700 26px Manrope,system-ui,sans-serif;padding:12px 0;width:100%;font-variant-numeric:tabular-nums}
+.money input:focus{outline:none}
+.mrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--surface);border-radius:12px;padding:12px;border:1px solid var(--concrete)}
+.tile small{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.tile b{font:600 20px Lora,serif;font-variant-numeric:tabular-nums}
+.pill{appearance:none;border:1.5px solid var(--concrete);background:var(--surface);color:var(--ink);border-radius:999px;padding:10px 16px;font:600 14.5px Manrope,sans-serif;cursor:pointer}
+.pill.sel{border-color:var(--indigo);background:var(--tint)}
+textarea,.field{width:100%;border:1.5px solid var(--concrete);border-radius:12px;padding:11px 14px;font:500 15px Manrope,system-ui,sans-serif;background:var(--surface);color:var(--ink)}
+textarea{min-height:64px;resize:vertical}
+.three{display:grid;gap:8px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:6px}
+.btn{appearance:none;border:0;border-radius:12px;padding:13px 22px;font:700 15.5px Manrope,system-ui,sans-serif;cursor:pointer}
+.btn-primary{background:var(--amber);color:var(--on-amber)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--concrete)}
+.btn-link{background:none;border:0;color:var(--ink-soft);font:600 14.5px Manrope,sans-serif;cursor:pointer;padding:8px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn:focus-visible,.opt:focus-visible,.pill:focus-visible,input:focus-visible,textarea:focus-visible,.btn-link:focus-visible{outline:3px solid var(--horizon);outline-offset:2px}
+/* intro */
+.hero h1{font-size:clamp(34px,5vw,48px)}
+.lead{color:var(--ink-soft);font-size:17px;max-width:46ch}
+.stats{display:flex;gap:28px;flex-wrap:wrap}
+.stats div b{display:block;font:600 30px Lora,serif}
+.stats div span{font-size:13px;color:var(--ink-soft)}
+.fine{font-size:12.5px;color:var(--ink-soft)}
+/* result */
+.score{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
+.score svg{width:84px;height:84px}
+.score b{font:600 22px Lora,serif}
+.sec{display:flex;flex-direction:column;gap:12px}
+.sec h3{font-size:20px}
+.check{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.check li{display:flex;gap:12px;align-items:flex-start;background:var(--tint);border-radius:12px;padding:12px 14px;font-size:15px;font-weight:600;cursor:pointer}
+.check li i{flex:none;width:20px;height:20px;border:2px solid var(--lav);border-radius:6px;margin-top:1px;background:var(--surface)}
+.check li.on{opacity:.55;text-decoration:line-through}
+.check li.on i{background:var(--indigo) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;border-color:var(--indigo)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acard{border:1px solid var(--concrete);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.acard h4{margin:0;font:700 12px Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{background:var(--tint);border-radius:999px;padding:5px 11px;font-size:13.5px;font-weight:600}
+.cta{background:linear-gradient(160deg,var(--rail1),var(--rail2));color:#F6F7F9;border-radius:16px;padding:22px 24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.cta h3{color:#fff;font-size:22px}
+.cta p{color:var(--lilac);font-size:14.5px}
+.cta a.btn{text-decoration:none}
+.contact{user-select:all;font-variant-numeric:tabular-nums}
+@media (max-width:760px){
+  .shell{grid-template-columns:1fr;min-height:0}
+  .rail{padding:18px 20px;gap:10px;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .rail .bignum{font-size:34px}.rail .railtitle{font-size:18px}.stepper,.hills,.rail .raildesc{display:none}
+  .main{padding:22px 18px}
+  .opts.two,.grid2,.tiles{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="rail" id="rail"></aside>
+  <main class="main" id="main"></main>
+</div>
+
+<script>
+const P={1:'Why a first home',2:'What kind of home',3:'Budget and deposit',4:'Getting mortgage ready',5:'Your team',6:'How buying works in NZ',7:'Your plan'};
+const CALC='/calculators/what-can-i-buy';
+const GUIDE='/services/first-home-buyers';
+const Q=[
+ {id:'purpose',p:1,type:'multi',q:'What is the main purpose of your first home?',sub:'Choose all that apply.',o:[
+  {t:'A family home to live in long term',h:'Think about schools, space, community and how the home will suit you in 5-10 years.'},
+  {t:'Live in it now, rent it out later',h:'Check early how easy the property would be to rent out and to sell.'},
+  {t:'A first step to building wealth',h:'Look for growth potential: infrastructure, transport and new schools nearby.'},
+  {t:'Something to pass on to my children',h:'Land and a standalone house usually hold value best over the long term.'},
+  {t:'Live in it a few years, then sell and upgrade',h:'Liquidity matters: choose a home that will be easy to sell.'},
+  {t:'Not sure yet',h:'That\'s fine. Your purpose shapes what you should buy, so it\'s worth deciding early.',todo:'Decide the main purpose of your first home'}]},
+ {id:'types',p:2,type:'multi',q:'Which property types are you considering?',sub:'Tap an option to see what it means.',o:[
+  {t:'Standalone house (freehold)',d:'You own the land and the house. Most growth potential, most maintenance.'},
+  {t:'Townhouse',d:'A balance of price and space. Often shared walls and a body corporate.'},
+  {t:'Apartment (unit title)',d:'Lower entry price and little maintenance. Body corporate fees, usually slower growth.'},
+  {t:'Cross-lease',d:'You share the land with neighbours. Changes to the house need their agreement.'},
+  {t:'Leasehold',d:'You own the building but not the land. Cheaper, but banks are cautious and it\'s harder to sell.',h:'Leasehold can look cheap, but ground rent can rise and banks are cautious. Get legal advice first.'},
+  {t:'Lifestyle block',d:'Land and space. Banks usually ask for a bigger deposit.',h:'Lifestyle blocks usually need a larger deposit and have fewer lender options.'},
+  {t:'Not decided yet',todo:'Shortlist 1-2 property types that fit your purpose and budget'}]},
+ {id:'matters',p:2,type:'multi',q:'What matters most to you in a home?',sub:'Choose up to five.',max:5,o:[
+  {t:'Location near work'},{t:'School zone'},{t:'Number of bedrooms'},{t:'Outdoor space'},{t:'Low maintenance'},
+  {t:'Renovation potential'},{t:'Could rent out part of it'},{t:'Future value growth'},{t:'Transport links'}],
+  after:'Write down your must-haves and your nice-to-haves. It will keep your search focused.'},
+ {id:'search',p:2,type:'multi',q:'How are you searching at the moment?',o:[
+  {t:'Trade Me Property'},{t:'realestate.co.nz'},{t:'OneRoof'},{t:'homes.co.nz'},{t:'Talking to agents'},{t:'Going to open homes'},
+  {t:'Haven\'t started yet',todo:'Set up saved searches and alerts on Trade Me and realestate.co.nz'}],
+  after:'Register with several agents to hear about listings early. Use homes.co.nz to check estimated values and recent sales. Visit the area at different times of day.'},
+ {id:'deposit',p:3,type:'money',q:'How much do you have for a deposit today, including KiwiSaver?',sub:'A rough number is fine.',notSure:'Not sure yet'},
+ {id:'sources',p:3,type:'multi',q:'Where could your deposit come from?',sub:'Most buyers combine 2-3 sources.',o:[
+  {t:'Savings',h:'Banks want to see genuine savings: regular deposits over the last 3-6 months.'},
+  {t:'KiwiSaver',h:'Available after 3 years of membership; $1,000 stays in. Consider a more conservative fund before you buy.'},
+  {t:'Family gift',h:'You\'ll need a formal gifting letter confirming the money doesn\'t have to be repaid. The bank may ask for the donor\'s statements.',todo:'Prepare a gifting letter and the donor\'s bank statements'},
+  {t:'Sale of assets',h:'Banks need the sale agreement and proof of transfer.',todo:'Gather the sale agreement and proof of transfer for sold assets'},
+  {t:'Money from overseas',h:'Banks check the source of funds under AML rules. International transfers usually take 3-7 days.',todo:'Prepare proof of the source of overseas funds (AML)'},
+  {t:'Equity in another property',h:'Banks generally let you use equity up to 80% of the property\'s value.'},
+  {t:'Not sure yet',todo:'List your deposit sources and how much each could contribute'}]},
+ {id:'range',p:3,type:'single',q:'What price range are you considering?',o:[
+  {t:'Under $600K'},{t:'$600K-800K'},{t:'$800K-1M'},{t:'$1M-1.3M'},{t:'Over $1.3M'},{t:'Not sure yet',todo:'Work out a realistic price range'}],
+  after:'For reference: the national median sale price was about $750,000 in August 2026 (REINZ).'},
+ {id:'repay',p:3,type:'money',q:'How much could you comfortably pay towards a mortgage?',sub:'Pick how often you\'d pay, then enter the amount. Aim for one that still lets you enjoy life.',notSure:'I don\'t know yet',freq:true,
+  info:'<b>A simple guide: </b>up to 30% of your take-home pay is comfortable, 30-40% manageable, 40-50% stretched, over 50% high pressure.'},
+ {id:'preapp',p:3,type:'single',q:'Do you have pre-approval?',o:[
+  {t:'Yes',h:'Pre-approvals usually last 60-90 days. Keep your finances stable: no new debt, no job change.'},
+  {t:'I\'ve applied',h:'Banks usually decide within about a week once they have all documents.'},
+  {t:'Not yet',h:'Pre-approval helps: it gives you budget clarity and an edge at auctions and negotiations. You can also talk with a mortgage adviser to understand your potential and your best options.',todo:'Get pre-approval, or talk to a mortgage adviser about your options'},
+  {t:'I don\'t know what it is',h:'Pre-approval is a lender\'s conditional commitment to lend you up to a set amount. It helps you search with a clear budget. You can also talk with a mortgage adviser to understand your potential and your best options.',todo:'Get pre-approval, or talk to a mortgage adviser about your options'}]},
+ {id:'credit',p:4,type:'single',q:'Have you checked your credit report?',o:[
+  {t:'Yes, it\'s clean',h:'Great. Avoid new credit applications before you apply: each enquiry stays on your report for up to 2 years.'},
+  {t:'Yes, and there are some issues',h:'Don\'t try to hide defaults or missed payments. Discuss them with your adviser and plan how to explain them to the bank.',todo:'Talk to a mortgage adviser about how to present past credit issues'},
+  {t:'No',h:'Get your free report from Centrix, Equifax or Illion and correct any errors before you apply.',todo:'Get your free credit report (Centrix, Equifax, Illion)'},
+  {t:'I didn\'t know I could',h:'You can get it free once a year from Centrix, Equifax or Illion.',todo:'Get your free credit report (Centrix, Equifax, Illion)'}],
+  after:'Banks look closely at your last 3-6 months: no missed or dishonoured payments, no new loans. They also count your credit card limit, not just the balance, and any Afterpay or BNPL. If you have loans or credit cards, talk them through with a mortgage adviser.'},
+ {id:'docs',p:4,type:'multi',inc:true,q:'How do you earn your income, and which documents do you already have ready?',o:[
+  {t:'Payslips (last 3 months)'},{t:'Bank statements (last 3 months)'},{t:'Financial statements and tax returns (self-employed)'},{t:'KiwiSaver statement'},{t:'Proof of deposit'},{t:'None yet'}],
+  docsTodo:true},
+ {id:'team',p:5,type:'multi',q:'Which professionals are you already in touch with?',o:[
+  {t:'Mortgage adviser',d:'Recommended. Compares lenders for you, usually at no cost to you.'},
+  {t:'Lawyer / solicitor',d:'Required. Reviews the agreement before you sign and handles settlement.'},
+  {t:'Building inspector',d:'Strongly recommended before you go unconditional.'},
+  {t:'Real estate agent',d:'Works for the seller, but can alert you to new listings.'},
+  {t:'No one yet'}],teamTodo:true},
+ {id:'checks',p:6,type:'multi',k:'all',q:'Before you buy: which of these checks did you already know about?',sub:'All of them can matter. Tick the ones you knew.',o:[
+  {t:'Building inspection',d:'Finds hidden issues: moisture, structure, wiring. About $500-800.'},
+  {t:'LIM report',d:'Council information on the land: zoning, consents, hazards. About $300-700.'},
+  {t:'Title search',d:'Your lawyer checks who owns the property and any restrictions, easements or claims on it.'},
+  {t:'Valuation',d:'Required by the bank to confirm the price, especially if your deposit is under 20%.'},
+  {t:'Body corporate documents',d:'For apartments and townhouses: rules, finances and planned repairs.'},
+  {t:'General due diligence',d:'Any other checks you need: council plans for the area, unconsented changes to the house, insurance quotes, or specialist reports (electrical, plumbing, drainage).'}],
+  reveal:'Which checks you need depends on the property. Your lawyer and adviser will tell you which ones matter for yours.'},
+ {id:'methods',p:6,type:'multi',k:'all',q:'Which ways of selling property in NZ did you already know about?',sub:'Tick the ones you knew.',o:[
+  {t:'Auction',d:'Public bidding. The highest bid wins and the sale is unconditional on the day.'},
+  {t:'Negotiation',d:'You make a written offer, with or without a price guide, and negotiate. Conditions are allowed.'},
+  {t:'Tender',d:'Sealed offers by a set date. The seller picks the best offer, not always the highest.'},
+  {t:'Deadline sale',d:'Offers are invited until a deadline, but the seller can accept one earlier.'}],
+  reveal:'All four are used in NZ. For a first home, negotiation is usually the easiest: you have time and can add conditions.'},
+ {id:'auction',p:6,type:'single',k:'one',q:'You want to buy at auction. What must be ready before auction day?',o:[
+  {t:'Just the deposit'},{t:'All your checks, because the sale is unconditional',c:1},{t:'Nothing, conditions can be added later'}],
+  why:'At auction you can\'t add conditions: when the hammer falls, the sale is unconditional and a deposit (often 10%) is usually paid on the day. So everything you would normally make a condition must be done before: finance approval, your lawyer\'s review, building inspection, LIM, valuation, and any other due diligence the property needs (body corporate documents, insurance, specialist reports).'},
+ {id:'accepted',p:6,type:'single',k:'one',q:'You make an offer by negotiation and the seller accepts. What happens next?',o:[
+  {t:'You now own the house'},{t:'You have a conditional Sale and Purchase Agreement',c:1},{t:'Nothing is binding yet'}],
+  why:'The Sale and Purchase Agreement is signed, and you have a set time to satisfy your conditions before the deal becomes final.'},
+ {id:'conditions',p:6,type:'multi',k:'all',q:'Which of these offer conditions did you already know about?',sub:'Conditions protect you. Tick the ones you knew.',o:[
+  {t:'Finance approval',d:'You can walk away if the bank doesn\'t approve the loan.'},
+  {t:'Building inspection',d:'You can renegotiate or walk away if serious issues are found.'},
+  {t:'LIM report',d:'Protects you from council surprises: consents, zoning, flooding.'},
+  {t:'Valuation',d:'If the valuation is lower than the price, the bank may lend less.'},
+  {t:'Due diligence',d:'A catch-all period for any other checks.'},
+  {t:'Sale of your current home',d:'Only if you need to sell first.'}],
+  reveal:'Most offers include finance, building inspection and LIM. Your lawyer must review the agreement and conditions before you sign.'},
+ {id:'uncond',p:6,type:'single',k:'one',q:'What does "going unconditional" mean?',o:[
+  {t:'You can still walk away at no cost'},{t:'All conditions are met and the deal is binding',c:1},{t:'The bank has given you pre-approval'}],
+  why:'Once unconditional, there\'s no way out without serious cost. Finance, inspection and legal review must all be done first.'},
+ {id:'settle',p:6,type:'single',k:'one',q:'What happens on settlement day?',o:[
+  {t:'You sign your first offer'},{t:'The building inspection takes place'},{t:'Funds are transferred, ownership is registered and you get the keys',c:1}],
+  why:'Your lawyer and the bank handle the transfer. Do a final walkthrough of the property before settlement.'},
+ {id:'worries',p:7,type:'multi',q:'What worries you most, or feels unclear?',text:'Anything else? Write it here.',o:[
+  {t:'How much I can borrow',h:'See "How Much Can You Borrow?" in the guide, or try the Valar calculator.'},
+  {t:'Saving the deposit',h:'See "How Much Deposit Do You Need?" in the guide.'},
+  {t:'My credit history',h:'See "Credit Score. Why Does It Matter?" in the guide.'},
+  {t:'Fixed or floating rate',h:'See "Mortgage Selection Factors" in the guide.'},
+  {t:'Hidden costs',h:'Budget $5,000-10,000 on top of your deposit. See "Budgeting for Additional Costs".'},
+  {t:'Choosing the right property',h:'See "Effective Property Search" and "Open home: Attention on…".'},
+  {t:'Offers and auctions',h:'See "Making an Offer and Negotiating" in the guide.'},
+  {t:'Whether now is the right time',h:'Nobody can time the market. A plan with a buffer matters more than perfect timing.'}]},
+ {id:'plan',p:7,type:'final',q:'When would you like to own your first home, and what are your next three steps?',o:[
+  {t:'Within 6 months'},{t:'6-12 months'},{t:'1-2 years'},{t:'Just exploring'}]}
+];
+
+const $=id=>document.getElementById(id);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>'$'+Math.round(n).toLocaleString('en-NZ');
+const LOGO='<svg viewBox="0 0 44 36" aria-hidden="true"><path d="M1 1h13l14 22-7 12z"/><path d="M24 1h19L34 16z"/></svg>';
+const HILLS='<svg class="hills" viewBox="0 0 290 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 95 C60 70 110 80 160 98 S250 120 290 90 V160 H0Z" fill="rgba(200,203,227,.10)"/><path d="M0 120 C70 100 130 112 190 126 S260 140 290 124 V160 H0Z" fill="rgba(200,203,227,.16)"/><circle cx="222" cy="62" r="16" fill="rgba(232,162,58,.55)"/><path d="M92 118 v-16 l12-10 12 10 v16z" fill="rgba(246,247,249,.85)"/><rect x="101" y="108" width="6" height="10" fill="rgba(46,72,130,.9)"/></svg>';
+let i=-1, A={}, view='intro';
+try{A=JSON.parse(localStorage.getItem('valar-fhp-v2')||'{}')||{}}catch(e){A={}}
+const save=()=>{try{localStorage.setItem('valar-fhp-v2',JSON.stringify(A))}catch(e){}};
+function rail(num,title,desc,cur,extra){
+  const steps=Object.keys(P).map(k=>'<li class="'+(k<cur?'done':k==cur?'cur':'')+'"><i></i>'+esc(P[k])+'</li>').join('');
+  $('rail').innerHTML='<div class="brand">'+LOGO+'Valar</div>'+(num?'<div class="bignum">'+num+'</div>':'')+'<div class="railtitle">'+title+'</div>'+(desc?'<p class="raildesc" style="color:var(--lilac);font-size:14.5px;position:relative;z-index:1">'+desc+'</p>':'')+(extra||'')+(cur?'<ul class="stepper">'+steps+'</ul>':'')+HILLS;
+}
+function answered(q){const a=A[q.id]; if(!a) return false;
+  if(q.type==='multi') return (a.sel||[]).length>0||!!(a.text||'').trim();
+  if(q.type==='single') return a.sel!=null;
+  if(q.type==='money') return a.val>0||!!a.unsure;
+  if(q.type==='final') return a.sel!=null||(a.steps||[]).some(s=>s&&s.trim());
+  return false;}
+function tipHTML(t,cls,title){return '<div class="tip '+(cls||'')+'"><span class="ic">'+(cls==='good'?'✓':cls==='bad'?'!':'i')+'</span><span>'+(title?'<b>'+esc(title)+'</b>':'')+esc(t)+'</span></div>'}
+function intro(){
+  view='intro';
+  rail('','First Home<br>Buyers Guide','The interactive workbook.',0);
+  $('main').innerHTML='<div class="hero" style="display:flex;flex-direction:column;gap:22px;margin:auto 0">'+
+   '<h1>Your first home plan<span class="dot">.</span></h1>'+
+   '<p class="lead">Answer a few questions and get a clear, one-page plan for buying your first home in New Zealand.</p>'+
+   '<div class="stats"><div><b>21</b><span>questions</span></div><div><b>7</b><span>minutes</span></div><div><b>1</b><span>page plan</span></div></div>'+
+   '<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><button class="btn btn-primary" id="go">Start my plan</button>'+(Object.keys(A).length?'<button class="btn btn-ghost" id="last">See my last plan</button>':'')+'<span class="fine">Private: answers stay in your browser.</span></div></div>';
+  $('go').onclick=()=>{A={}; save(); try{localStorage.removeItem('valar-fhp-v2-done')}catch(e){} i=0;quiz();};
+  if($('last')) $('last').onclick=result;
+}
+function quiz(){
+  view='quiz'; const q=Q[i]; const a=A[q.id]||(A[q.id]={});
+  rail(String(q.p).padStart(2,'0'),esc(P[q.p]),'',q.p);
+  const short=q.o&&q.o.length>=4&&q.o.every(o=>o.t.length<=26&&!o.d)&&q.type!=='final';
+  let h='<div class="top"><span>Question '+(i+1)+' of '+Q.length+'</span><span>'+Math.round(i/Q.length*100)+'%</span></div><div class="progress"><span style="width:'+(i/Q.length*100)+'%"></span></div>'+
+        '<h2 class="qtitle">'+esc(q.q)+'</h2>'+(q.sub?'<p class="sub">'+esc(q.sub)+'</p>':'');
+  if(q.info) h+='<div class="tip"><span class="ic">i</span><span>'+q.info.replace('<b>','<b>').replace('<span>',' ').replace('</span>','')+'</span></div>';
+  if(q.inc) h+='<div class="mrow" role="radiogroup" aria-label="Income">'+[['salary','Salary or wages'],['self','Self-employed'],['both','Both']].map(([v,l])=>'<button type="button" class="pill inc'+(a.inc===v?' sel':'')+'" data-v="'+v+'" aria-checked="'+(a.inc===v)+'">'+l+'</button>').join('')+'</div>';
+  if(q.o&&q.type!=='money'){
+    h+='<div class="opts'+(short?' two':'')+'" role="'+(q.type==='multi'?'group':'radiogroup')+'">';
+    q.o.forEach((o,k)=>{
+      const sel=q.type==='multi'?(a.sel||[]).includes(k):a.sel===k;
+      let cls='opt'+(q.type==='multi'?' multi':'')+(sel?' sel':'');
+      if(q.k==='one'&&a.sel!=null){cls='opt'+(o.c?' right':sel?' wrong':'');}
+      const showD=o.d&&(q.k==='all'||(!q.k&&sel));
+      h+='<button type="button" class="'+cls+'" id="'+q.id+'-'+k+'" data-k="'+k+'" '+(q.type==='multi'?'aria-pressed':'aria-checked')+'="'+sel+'">'+esc(o.t)+(showD?'<small>'+esc(o.d)+'</small>':'')+'</button>';
+    });
+    h+='</div>';
+  }
+  if(q.text) h+='<textarea id="'+q.id+'-text" placeholder="'+esc(q.text)+'"></textarea>';
+  if(q.type==='final') h+='<div class="three"><span class="sub" style="margin:4px 0 0">Your next three steps</span>'+[0,1,2].map(n=>'<input class="field" id="step-'+n+'" placeholder="'+['e.g. Get my free credit report','e.g. Talk to a mortgage adviser','e.g. Visit three open homes'][n]+'">').join('')+'</div>';
+  if(q.freq){a.freq=a.freq||'week'; h+='<div class="mrow" role="radiogroup" aria-label="How often">'+[['week','Weekly'],['fortnight','Fortnightly'],['month','Monthly']].map(([v,l])=>'<button type="button" class="pill freq'+(a.freq===v?' sel':'')+'" data-f="'+v+'" aria-checked="'+(a.freq===v)+'">'+l+'</button>').join('')+'</div>';}
+  if(q.type==='money') h+='<div class="mrow"><label class="money" for="mval"><span>$</span><input id="mval" inputmode="numeric" autocomplete="off" placeholder="0">'+(q.freq?'<span style="font-size:15px;white-space:nowrap">per '+a.freq+'</span>':'')+'</label><button type="button" class="pill'+(a.unsure?' sel':'')+'" id="unsure" aria-pressed="'+!!a.unsure+'">'+esc(q.notSure)+'</button></div>';
+  h+='<div id="fb" aria-live="polite" style="display:grid;gap:10px"></div>';
+  h+='<div class="nav"><button class="btn btn-ghost" id="back"'+(i===0?' style="visibility:hidden"':'')+'>Back</button><div style="display:flex;gap:4px;align-items:center"><button class="btn-link" id="skip">Skip</button><button class="btn btn-primary" id="next">'+(i===Q.length-1?'See my plan':'Next')+'</button></div></div>';
+  $('main').innerHTML=h;
+  // handlers
+  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    const k=+b.dataset.k; if(q.k==='one'&&a.sel!=null) return;
+    if(q.type==='multi'){a.sel=a.sel||[]; const x=a.sel.indexOf(k); if(x>=0){a.sel.splice(x,1);a.last=null;} else {if(q.max&&a.sel.length>=q.max) return; a.sel.push(k); a.last=k;}}
+    else {a.sel=k; a.last=k;}
+    save(); quiz();
+  });
+  if(q.text){const t=$(q.id+'-text'); t.value=a.text||''; t.oninput=()=>{a.text=t.value;save();nav();};}
+  if(q.type==='final'){a.steps=a.steps||['','',''];[0,1,2].forEach(n=>{const f=$('step-'+n); f.value=a.steps[n]||''; f.oninput=()=>{a.steps[n]=f.value;save();nav();};});}
+  if(q.type==='money'){const inp=$('mval'); inp.value=a.val?Number(a.val).toLocaleString('en-NZ'):'';
+    inp.oninput=()=>{a.val=Number(inp.value.replace(/[^0-9]/g,'')); if(a.val>0){a.unsure=false;$('unsure').classList.remove('sel');} save(); fb(); nav();};
+    inp.onblur=()=>{inp.value=a.val?Number(a.val).toLocaleString('en-NZ'):''};
+    $('unsure').onclick=()=>{a.unsure=!a.unsure; if(a.unsure) a.val=0; save(); quiz();};
+    document.querySelectorAll('.pill.freq').forEach(b=>b.onclick=()=>{a.freq=b.dataset.f; save(); quiz();});
+    if(!a.val&&!a.unsure) setTimeout(()=>inp.focus({preventScroll:true}),50);}
+  document.querySelectorAll('.pill.inc').forEach(b=>b.onclick=()=>{a.inc=b.dataset.v; save(); quiz();});
+  $('back').onclick=()=>{i--;quiz();};
+  $('skip').onclick=next; $('next').onclick=next;
+  fb(); nav();
+}
+function fb(){
+  const q=Q[i], a=A[q.id]||{}; let h='';
+  if(!q.k){
+    if(a.last!=null&&q.o&&q.o[a.last]&&q.o[a.last].h) h+=tipHTML(q.o[a.last].h);
+    else if(q.after&&answered(q)) h+=tipHTML(q.after);
+  }
+  if(q.k==='one'&&a.sel!=null){const ok=!!q.o[a.sel].c; h+=tipHTML(q.why,ok?'good':'bad',ok?'Correct. ':'Not quite. ');}
+  if(q.k==='all') h+=tipHTML(q.reveal);
+  if(q.type==='money'){
+    if(q.id==='deposit'&&a.val>0) h+='<div class="tiles"><div class="tile"><small>20% deposit</small><b>'+fmt(a.val*5)+'</b></div><div class="tile"><small>10% deposit</small><b>'+fmt(a.val*10)+'</b></div><div class="tile"><small>5% deposit</small><b>'+fmt(a.val*20)+'</b></div></div>'+tipHTML('The most each deposit level could cover. What a bank lends also depends on your income.');
+    else if(q.id==='deposit'&&a.unsure) h+=tipHTML('Start by adding up your savings and KiwiSaver balance.');
+    if(q.id==='repay'&&a.val>0){const ppy={week:52,fortnight:26,month:12}[a.freq||'week']; const L=(r)=>a.val*(1-Math.pow(1+r/ppy,-30*ppy))/(r/ppy);
+      h+='<div class="tiles" style="grid-template-columns:1fr 1fr"><div class="tile"><small>Loan it carries at 5%</small><b>'+fmt(L(.05))+'</b></div><div class="tile"><small>Loan it carries at 7% (stress test)</small><b>'+fmt(L(.07))+'</b></div></div>';}
+    if(q.id==='repay'&&(a.unsure||a.val>0)) h+='<div class="tip"><span class="ic">i</span><span>Try the <a href="'+CALC+'" target="_blank" rel="noopener">Valar calculator</a> for the full picture.</span></div>';
+  }
+  $('fb').innerHTML=h;
+  if($('chk')) $('chk').onclick=()=>{a.checked=true;save();quiz();};
+}
+function nav(){const q=Q[i], a=A[q.id]||{}; let ok=answered(q); if(q.k==='all') ok=true; $('next').disabled=!ok;}
+function next(){ if(i<Q.length-1){i++;quiz();window.scrollTo({top:0});} else result(); }
+function ansList(q){const a=A[q.id]||{};
+  if(q.type==='money') return a.val>0?[q.id==='deposit'?'Deposit '+fmt(a.val):fmt(a.val)+' a '+(a.freq||'month')]:(a.unsure?[(q.id==='deposit'?'Deposit: ':'Repayment: ')+q.notSure.toLowerCase()]:[]);
+  if(q.type==='single'||q.type==='final') return a.sel!=null?[q.o[a.sel].t]:[];
+  if(q.type==='multi') return (q.inc&&a.inc?[{salary:'Salary or wages',self:'Self-employed',both:'Salary and self-employed'}[a.inc]]:[]).concat((a.sel||[]).map(k=>q.o[k].t)).concat((a.text||'').trim()?[(a.text||'').trim()]:[]);
+  return [];}
+function S(id){const q=Q.find(x=>x.id===id), a=A[id]||{}; if(!q) return [];
+  if(q.type==='multi') return (a.sel||[]).map(k=>q.o[k].t);
+  if(q.type==='single'||q.type==='final') return a.sel!=null?[q.o[a.sel].t]:[];
+  return [];}
+const has=(id,t)=>S(id).some(x=>x.startsWith(t));
+function numbers(){
+  const d=(A.deposit||{}).val||0, r=(A.repay||{}).val||0, f=(A.repay||{}).freq||'week';
+  const ppy={week:52,fortnight:26,month:12}[f];
+  const L=rate=>r*(1-Math.pow(1+rate/ppy,-30*ppy))/(rate/ppy);
+  return {d,r,f,l5:r?L(.05):0,l7:r?L(.07):0};
+}
+function stage(){
+  const n=numbers(), pre=S('preapp')[0]||'', when=S('plan')[0]||'';
+  const team=S('team'), hasTeam=team.includes('Mortgage adviser')||team.includes('Lawyer / solicitor');
+  if(when==='Just exploring'||has('purpose','Not sure')) return ['Exploring','You\'re exploring your options','Great time to get clear on why you\'re buying and what\'s realistic. No pressure: a clear goal now makes every later step easier.'];
+  if((pre==='Yes'||pre==='I\'ve applied')&&n.d>0&&hasTeam) return ['Ready to search','You\'re ready to start searching','Your finances and team are in place. Focus now on the right area and property, and on doing your checks before any offer.'];
+  if(n.d>0&&(when==='Within 6 months'||when==='6-12 months')) return ['Preparing','You\'re in the preparation stage','You have a deposit and a timeline. The next step: pre-approval, or a chat with a mortgage adviser to understand your potential and your best options before you fall in love with a house.'];
+  return ['Building foundations','You\'re building your foundations','The most valuable thing now is getting your numbers clear: your deposit, a comfortable repayment and your credit profile.'];
+}
+function numbersCard(){
+  const n=numbers(); if(!n.d&&!n.r) return '';
+  let h='<div class="sec"><h3>Your numbers</h3>';
+  if(n.d&&n.r){
+    const p5=n.l5+n.d, p7=n.l7+n.d, pct=n.d/p5*100;
+    h+='<div class="tiles"><div class="tile"><small>Deposit</small><b>'+fmt(n.d)+'</b></div><div class="tile"><small>Repayment</small><b>'+fmt(n.r)+'<span style="font:600 13px Manrope">/'+n.f+'</span></b></div><div class="tile"><small>Price you could target</small><b>~'+fmt(Math.round(p5/10000)*10000)+'</b></div></div>';
+    let dep;
+    if(pct>=20) dep='Your deposit would be about '+Math.round(pct)+'% of that price: the strongest position, with the best rates and easiest pre-approval.';
+    else if(pct>=10) dep='Your deposit would be about '+Math.round(pct)+'% of that price: a low deposit loan. A good start, with rates typically 0.25-0.75% higher.';
+    else if(pct>=5) dep='Your deposit would be about '+Math.round(pct)+'% of that price. Look at the Kāinga Ora First Home Loan (5%, income caps apply) or a lower target price.';
+    else dep='Your deposit would be under 5% of that price. Build the deposit further, or aim for a lower price.';
+    h+=tipHTML(dep);
+    h+=tipHTML('At 7% the same repayment carries about '+fmt(Math.round(n.l7/1000)*1000)+', so a price of about '+fmt(Math.round(p7/10000)*10000)+' keeps you safe if rates rise. What a bank lends also depends on your income (up to about 6 times it).');
+    const rg=S('range')[0]; const R={'Under $600K':[0,600000],'$600K-800K':[600000,800000],'$800K-1M':[800000,1000000],'$1M-1.3M':[1000000,1300000],'Over $1.3M':[1300000,Infinity]}[rg];
+    if(R){ if(p5<R[0]) h+=tipHTML('Your chosen range ('+rg+') is above what these numbers support. Options: grow the deposit, look at a different area or property type, or start with a smaller first home.','bad','Check your range. ');
+           else h+=tipHTML('Your chosen range ('+rg+') fits your numbers.','good'); }
+  } else if(n.d){
+    h+='<div class="tiles"><div class="tile"><small>With 20% deposit</small><b>'+fmt(n.d*5)+'</b></div><div class="tile"><small>With 10%</small><b>'+fmt(n.d*10)+'</b></div><div class="tile"><small>With 5%</small><b>'+fmt(n.d*20)+'</b></div></div>'+tipHTML('The most your deposit could cover. Add a comfortable repayment to see a realistic price.');
+  } else {
+    h+='<div class="tiles" style="grid-template-columns:1fr 1fr"><div class="tile"><small>Loan at 5%</small><b>'+fmt(n.l5)+'</b></div><div class="tile"><small>Loan at 7%</small><b>'+fmt(n.l7)+'</b></div></div>'+tipHTML('Add up your savings and KiwiSaver to see what price that could mean.');
+  }
+  return h+'</div>';
+}
+function insightData(){
+  const out=[]; const add=(t,b,c)=>out.push({t,b,c});
+  const purpose=S('purpose'), types=S('types'), n=numbers(), pre=S('preapp')[0]||'', when=S('plan')[0]||'', src=S('sources'), matters=S('matters');
+  const rent=purpose.some(p=>p.startsWith('Live in it now')||p.startsWith('A first step')), kids=purpose.some(p=>p.startsWith('Something to pass')), flip=purpose.some(p=>p.startsWith('Live in it a few'));
+  if(types.includes('Not decided yet')||!types.length){
+    if(purpose.some(p=>p.startsWith('A family home'))||kids) add('Property type','For a long-term family home, a standalone house or a larger townhouse usually fits best: space, land and schools.');
+    else if(rent) add('Property type','If you may rent it out or want growth, look at a standalone house or townhouse close to transport and jobs.');
+    else if(flip) add('Property type','If you plan to sell in a few years, choose what is easy to resell: a townhouse or house in a popular area.');
+  }
+  if(types.some(t=>t.startsWith('Apartment'))&&(rent||kids)) add('Apartments and growth','Apartments are easier to enter but usually grow slower, and body corporate fees reduce rental returns. Check both before you buy.');
+  if(types.includes('Leasehold')) add('Leasehold','Ground rent can rise and banks are cautious. Get legal advice before you make an offer.','bad');
+  if(types.includes('Cross-lease')) add('Cross-lease','Check the flats plan matches what is built. Unapproved changes can delay a sale or need a fix before settlement.');
+  if(kids&&(types.includes('Leasehold')||types.includes('Cross-lease'))) add('Passing it on','For a home to pass on, land you fully own (freehold) usually holds value best.');
+  if(matters.includes('Could rent out part of it')) add('Boarder or flatmate income','Some banks count boarder income towards what you can borrow. Mention it when you apply.');
+  if(src.includes('KiwiSaver')) add('KiwiSaver','You can withdraw after 3 years of membership, keeping $1,000 in the account. Your lawyer applies for it, so allow about 10 working days.');
+  if(src.includes('Family gift')) add('Family gift','Your bank will need a formal gifting letter, and may ask for the donor\'s bank statements.');
+  if(src.includes('Money from overseas')||src.includes('Sale of assets')) add('Source of funds','Banks check where the money comes from (AML). Prepare the sale agreement and transfer records early; transfers take 3-7 days.');
+  const inc=(A.docs||{}).inc; if(inc==='self'||inc==='both') add('Self-employed income','Banks usually ask for 2 years of financial statements and IR3 tax returns prepared by your accountant, and look at your net profit, not turnover. Some lenders accept 1 year. Talk with a mortgage adviser early.');
+  if((S('credit')[0]||'').startsWith('Yes, and there are')) add('Credit history','Don\'t hide past issues. Talk them through with an adviser first, so they are explained well to the bank.','bad');
+  if(when==='Within 6 months'&&pre!=='Yes'&&pre!=='I\'ve applied') add('Your timeline','Six months is achievable, but start now: documents and the bank\'s decision can take several weeks.','bad');
+  if(S('range').includes('Not sure yet')&&n.l5) add('Your price range','Based on your numbers, start by looking around '+fmt(Math.round((n.l5+n.d)/10000)*10000)+'.');
+  return out;
+}
+function worryData(){
+  const q=Q.find(x=>x.id==='worries'), wa=(A.worries||{});
+  const w=(wa.sel||[]).map(k=>({t:q.o[k].t,b:q.o[k].h}));
+  if((wa.text||'').trim()) w.push({t:'Your note',b:'"'+wa.text.trim()+'" Bring this to your consultation.'});
+  return w;
+}
+function roadmap(){
+  const n=numbers(), pre=S('preapp')[0]||'', team=S('team'), docs=S('docs'), src=S('sources'), cr=S('credit')[0]||'';
+  const purpose=S('purpose').filter(x=>x!=='Not sure yet'), types=S('types').filter(x=>x!=='Not decided yet'), matters=S('matters');
+  const search=S('search').filter(x=>x!=='Haven\'t started yet');
+  const kq=Q.filter(q=>q.k==='one'), missed=kq.filter(q=>{const a=A[q.id];return !(a&&a.sel!=null&&q.o[a.sel].c)}).map(q=>({auction:'auctions',accepted:'accepted offers',uncond:'going unconditional',settle:'settlement'}[q.id]));
+  const R=[];
+  // 1 budget
+  if(n.d&&n.r) R.push({t:'Know your budget',st:'done',d:'Deposit '+fmt(n.d)+' and '+fmt(n.r)+' per '+n.f+' point to a price of about '+fmt(Math.round((n.l5+n.d)/10000)*10000)+' (about '+fmt(Math.round((n.l7+n.d)/10000)*10000)+' if rates reach 7%).'});
+  else R.push({t:'Work out a clear budget',st:(n.d||n.r)?'progress':'todo',d:(!n.d?'Add up your savings and KiwiSaver. ':'')+(!n.r?'Work out a repayment you are comfortable with (the Valar calculator helps). ':'')+'Together they tell you a realistic price.'});
+  // 2 adviser + pre-approval
+  const adv=team.includes('Mortgage adviser');
+  if(pre==='Yes') R.push({t:'Pre-approval',st:'done',d:'It usually lasts 60-90 days. Until you buy: no new loans or credit cards, and no job change.'});
+  else R.push({t:'Talk with a mortgage adviser and get pre-approval',st:(pre==='I\'ve applied'||adv)?'progress':'todo',
+    d:(pre==='I\'ve applied'?'Your application is in. ':'')+'An adviser shows your real potential and your best options across lenders, usually at no cost to you.'+(cr.startsWith('Yes, and there are')?' Mention your credit history up front.':'')});
+  // 3 what you're buying
+  const miss=[]; if(!purpose.length) miss.push('your main purpose'); if(!types.length) miss.push('1-2 property types'); if(!matters.length) miss.push('your must-haves');
+  R.push({t:'Decide what you\'re buying',st:miss.length?(miss.length<3?'progress':'todo'):'done',
+    d:(purpose.length?'Purpose: '+purpose.join(', ').toLowerCase()+'. ':'')+(types.length?'Type: '+types.join(', ')+'. ':'')+(matters.length?'Must-haves: '+matters.join(', ').toLowerCase()+'. ':'')+(miss.length?'Still to decide: '+miss.join(', ')+'.':'')});
+  // 4 team
+  const need=['Mortgage adviser','Lawyer / solicitor','Building inspector'], have=need.filter(x=>team.includes(x)), lack=need.filter(x=>!team.includes(x));
+  R.push({t:'Build your team',st:!lack.length?'done':have.length?'progress':'todo',
+    d:(have.length?'In place: '+have.join(', ').toLowerCase()+'. ':'')+(lack.length?'Still needed: '+lack.join(', ').toLowerCase()+'.':'')+(lack.includes('Lawyer / solicitor')?' A lawyer must review the agreement before you sign.':'')});
+  // 5 documents
+  const inc=(A.docs||{}).inc, self=inc==='self'||inc==='both';
+  const dn=[]; if(inc!=='self'&&!docs.includes('Payslips (last 3 months)')) dn.push('3 months of payslips'); if(!docs.includes('Bank statements (last 3 months)')) dn.push('3 months of bank statements');
+  if(self&&!docs.some(x=>x.startsWith('Financial statements'))) dn.push('2 years of financial statements and IR3 tax returns');
+  if(src.includes('KiwiSaver')&&!docs.includes('KiwiSaver statement')) dn.push('KiwiSaver statement');
+  if(!docs.includes('Proof of deposit')) dn.push('proof of deposit');
+  if(src.includes('Family gift')) dn.push('gifting letter');
+  if(src.includes('Money from overseas')||src.includes('Sale of assets')) dn.push('source of funds records');
+  if(cr==='No'||cr.startsWith('I didn\'t')) dn.push('your free credit report');
+  const crIssue=cr.startsWith('Yes, and there are');
+  R.push({t:'Get mortgage-ready: documents and credit',st:(!dn.length&&!crIssue)?'done':docs.length?'progress':'todo',
+    d:(dn.length?'Prepare: '+dn.join(', ')+'. ':'Your documents are ready. ')+'Keep your last 6 months clean: no missed or dishonoured payments, no new loans, cards or BNPL.'+(crIssue?' Discuss your credit history and any current loans with a mortgage adviser before you apply.':'')+(self?' Being self-employed, check early with an adviser which lenders suit you: some accept 1 year of accounts.':'')});
+  // 6 search + process
+  R.push({t:'Start searching and learn how buying works',st:(search.length&&!missed.length)?'done':(search.length||!missed.length)?'progress':'todo',
+    d:(search.length?'Searching on: '+search.join(', ')+'. ':'Set up saved searches and visit a few open homes. ')+(missed.length?'Review: '+missed.join(', ')+' ("Making an Offer" in the guide).':'You know the buying process.')});
+  const rank={todo:0,progress:0,done:1}; const first=R.findIndex(r=>r.st!=='done'); if(first>=0) R[first].next=true;
+  return R;
+}
+function planText(){
+  const [chip]=stage(), when=S('plan')[0], n=numbers(), own=((A.plan||{}).steps||[]).filter(s=>s&&s.trim());
+  const L=['MY FIRST HOME PLAN','Stage: '+chip+(when?'. Goal: '+when:''),''];
+  if(n.d||n.r){L.push('MY NUMBERS'); if(n.d) L.push('Deposit: '+fmt(n.d)); if(n.r) L.push('Comfortable repayment: '+fmt(n.r)+' per '+n.f); if(n.d&&n.r) L.push('Price to target: about '+fmt(Math.round((n.l5+n.d)/10000)*10000)); L.push('');}
+  L.push('MY ROADMAP'); roadmap().forEach((r,k)=>L.push((k+1)+'. '+r.t+' ['+({done:'done',progress:'in progress',todo:'to do'}[r.st])+']',"   "+r.d)); L.push('');
+  if(own.length){L.push('MY OWN NEXT STEPS'); own.forEach(s=>L.push('- '+s)); L.push('');}
+  const w=worryData(); if(w.length){L.push('QUESTIONS FOR MY CONSULTATION'); w.forEach(x=>L.push('- '+(x.t==='Your note'?'My note':x.t)+(x.t==='Your note'?': '+x.b.replace(' Bring this to your consultation.',''):''))); L.push('');}
+  return L.join('\n');
+}
+function loadJsPDF(){return new Promise((ok,no)=>{if(window.jspdf) return ok(window.jspdf); const s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'; s.onload=()=>ok(window.jspdf); s.onerror=no; document.head.appendChild(s);});}
+async function buildPDF(){
+  const {jsPDF}=await loadJsPDF(); const doc=new jsPDF({unit:'mm',format:'a4'});
+  const W=210, M=18, CW=W-2*M; let y=0;
+  const clean=t=>String(t).replace(/ā/g,'a').replace(/[“”]/g,'"').replace(/[‘’]/g,"'").replace(/…/g,'...');
+  const need=h=>{if(y+h>280){doc.addPage(); y=20;}};
+  const para=(t,size,style,color,indent)=>{doc.setFont('helvetica',style||'normal'); doc.setFontSize(size); doc.setTextColor(...(color||[6,22,52])); const lines=doc.splitTextToSize(clean(t),CW-(indent||0)); lines.forEach(l=>{need(size*0.45); doc.text(l,M+(indent||0),y); y+=size*0.45;});};
+  const head=t=>{y+=4; need(12); doc.setFont('times','bold'); doc.setFontSize(14); doc.setTextColor(6,22,52); doc.text(clean(t),M,y); const tw=doc.getTextWidth(clean(t)); doc.setFillColor(232,162,58); doc.circle(M+tw+1.4,y-0.4,0.9,'F'); y+=3; doc.setDrawColor(201,206,214); doc.line(M,y,W-M,y); y+=6;};
+  // header band
+  doc.setFillColor(6,22,52); doc.rect(0,0,W,38,'F'); doc.setFillColor(46,72,130); doc.rect(0,34,W,4,'F');
+  doc.setTextColor(200,203,227); doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.text('V A L A R   F I N A N C I A L   A D V I S O R S',M,13);
+  doc.setTextColor(255,255,255); doc.setFont('times','bold'); doc.setFontSize(24); doc.text('My first home plan',M,26);
+  doc.setFillColor(232,162,58); doc.circle(M+doc.getTextWidth('My first home plan')+1.8,25.4,1.2,'F');
+  const [chip,title,desc]=stage(), when=S('plan')[0];
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(200,203,227); doc.text(new Date().toLocaleDateString('en-NZ',{day:'numeric',month:'long',year:'numeric'}),W-M,13,{align:'right'});
+  y=50; para('Stage: '+chip+(when?'   |   Goal: '+when.toLowerCase():''),11,'bold',[46,72,130]); y+=1; para(desc,10,'normal',[74,86,114]);
+  const n=numbers();
+  if(n.d||n.r){head('My numbers'); const cells=[]; if(n.d) cells.push(['DEPOSIT',fmt(n.d)]); if(n.r) cells.push(['REPAYMENT',fmt(n.r)+' / '+n.f]); if(n.d&&n.r) cells.push(['PRICE TO TARGET','~'+fmt(Math.round((n.l5+n.d)/10000)*10000)]);
+    const cw=(CW-(cells.length-1)*4)/cells.length; need(20); cells.forEach((c,k)=>{const x=M+k*(cw+4); doc.setFillColor(238,240,244); doc.roundedRect(x,y,cw,17,2,2,'F'); doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(74,86,114); doc.text(c[0],x+4,y+6); doc.setFont('times','bold'); doc.setFontSize(13); doc.setTextColor(6,22,52); doc.text(c[1],x+4,y+13);}); y+=23;
+    if(n.d&&n.r) para('If rates reach 7%, the same repayment supports a price of about '+fmt(Math.round((n.l7+n.d)/10000)*10000)+'. What a bank lends also depends on your income.',9.5,'normal',[74,86,114]);}
+  head('My roadmap');
+  roadmap().forEach((r,k)=>{need(16); const cx=M+3.5, cy=y-1.2;
+    if(r.st==='done'){doc.setFillColor(47,125,91); doc.circle(cx,cy,3.5,'F'); doc.setDrawColor(255,255,255); doc.setLineWidth(0.6); doc.line(cx-1.6,cy,cx-0.4,cy+1.3); doc.line(cx-0.4,cy+1.3,cx+1.8,cy-1.3); doc.setLineWidth(0.2);}
+    else {doc.setFillColor(...(r.next?[232,162,58]:[46,72,130])); doc.circle(cx,cy,3.5,'F'); doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(r.next?6:255,r.next?22:255,r.next?52:255); doc.text(String(k+1),cx,cy+1.1,{align:'center'});}
+    doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(6,22,52); doc.text(clean(r.t),M+10,y);
+    const tag=r.next?'START HERE':{done:'DONE',progress:'IN PROGRESS',todo:'TO DO'}[r.st]; doc.setFontSize(7); doc.setTextColor(...(r.next?[176,112,20]:r.st==='done'?[47,125,91]:[111,136,196])); doc.text(tag,W-M,y,{align:'right'});
+    y+=5; para(r.d,9.5,'normal',[74,86,114],10); y+=3;});
+  const own=((A.plan||{}).steps||[]).filter(s=>s&&s.trim());
+  if(own.length){head('My own next steps'); own.forEach(s=>{need(6); doc.setDrawColor(143,147,181); doc.rect(M+1,y-3.2,3.6,3.6); para(s,10,'normal',null,8); y+=1.5;});}
+  const ins=insightData(); if(ins.length){head('What my answers tell me'); ins.forEach(x=>{need(14); para(x.t,10,'bold',x.c==='bad'?[180,74,74]:[6,22,52]); para(x.b,9.5,'normal',[74,86,114]); y+=2.5;});}
+  const w=worryData(); if(w.length){head('Questions for my consultation'); w.forEach(x=>{need(14); para(x.t==='Your note'?'My note':x.t,10,'bold'); para(x.b,9.5,'normal',[74,86,114]); y+=2.5;});}
+  need(34); y+=4; doc.setFillColor(6,22,52); doc.roundedRect(M,y,CW,24,3,3,'F');
+  doc.setFont('times','bold'); doc.setFontSize(13); doc.setTextColor(255,255,255); doc.text('Go through your plan with Lena Bykova',M+6,y+8.5);
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(200,203,227); doc.text('Free 30-minute consultation  |  English, Ukrainian, Russian',M+6,y+14.5); doc.text('lena.bykova@valar.co.nz  |  +64 21 086 35695  |  valar.co.nz',M+6,y+19.5); y+=30;
+  para('General information only, not personalised financial advice. Estimates assume a 30-year loan and are a guide only. Figures current as at September 2026. Valar Financial Advisors Limited (FSP1012862). Adviser: Lena Bykova (FSP1010055).',7.5,'normal',[120,128,150]);
+  return doc.output('arraybuffer');
+}
+function result(){
+  view='result';
+  const kq=Q.filter(q=>q.k==='one'); const right=kq.filter(q=>{const a=A[q.id];return a&&a.sel!=null&&q.o[a.sel].c}).length;
+  const pct=right/kq.length, C=2*Math.PI*34;
+  const [chip,title,desc]=stage(); const when=S('plan')[0];
+  const donut='<div class="score"><svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="34" fill="none" stroke="rgba(200,203,227,.25)" stroke-width="8"/><circle cx="42" cy="42" r="34" fill="none" stroke="#E8A23A" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+(C*pct)+' '+C+'" transform="rotate(-90 42 42)"/></svg><div><b>'+right+' of '+kq.length+'</b><br><span style="color:var(--lilac);font-size:13.5px">buying process questions</span></div></div>';
+  rail('','Your plan<span class="dot">.</span>','',0,'<div style="display:grid;gap:6px;position:relative;z-index:1"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--lilac)">Your stage</span><span style="font:600 22px Lora,serif">'+esc(chip)+'</span>'+(when?'<span style="color:var(--lilac);font-size:14px">Goal: '+esc(when.toLowerCase())+'</span>':'')+'</div>'+donut);
+  const rm=roadmap(), own=((A.plan||{}).steps||[]).filter(s=>s&&s.trim());
+  const tag={done:'Done',progress:'In progress',todo:'To do'};
+  const road='<ol class="road">'+rm.map((r,k)=>'<li class="st-'+r.st+(r.next?' next':'')+'"><span class="num">'+(r.st==='done'?'✓':k+1)+'</span><div><div class="rt"><b>'+esc(r.t)+'</b><span class="tag">'+(r.next?'Start here':tag[r.st])+'</span></div><p>'+esc(r.d)+'</p></div></li>').join('')+'</ol>';
+  const ins=insightData().map(x=>tipHTML(x.b,x.c,x.t+'. ')); const w=worryData();
+  if(w.length) ins.push('<div class="tip wlist"><b>What you\'re unsure about.</b><ul>'+w.map(x=>'<li><b>'+esc(x.t)+'.</b> '+esc(x.b)+'</li>').join('')+'</ul><p style="margin-top:8px">The guide is free: <a href="'+GUIDE+'">get the First Home Buyers Guide</a>.</p></div>');
+  let cards=''; Object.keys(P).forEach(p=>{const items=Q.filter(q=>q.p==p&&!q.k).flatMap(ansList); if(items.length) cards+='<div class="acard"><h4>'+esc(P[p])+'</h4><div class="chips">'+items.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div></div>';});
+  $('main').innerHTML='<div style="display:grid;gap:10px"><h2 class="qtitle">'+esc(title)+'<span class="dot">.</span></h2><p class="lead">'+esc(desc)+'</p></div>'+
+   numbersCard()+
+   '<div class="sec"><h3>Your roadmap</h3><p class="sub" style="margin:-6px 0 0">In order of priority, based on your answers.</p>'+road+
+   (own.length?'<div class="acard"><h4>Your own next steps</h4><ul class="check" style="gap:6px">'+own.map(s=>'<li style="cursor:default"><i></i><span>'+esc(s)+'</span></li>').join('')+'</ul></div>':'')+'</div>'+
+   (ins.length?'<div class="sec"><h3>What your answers tell us</h3>'+ins.join('')+'</div>':'')+
+   '<details class="acard"><summary style="cursor:pointer;font-weight:700">See all my answers</summary><div class="grid2" style="margin-top:12px">'+(cards||'<p class="sub">No answers yet.</p>')+'</div></details>'+
+   '<div class="sec"><h3>Keep your plan</h3><p class="sub" style="margin:-6px 0 0">Save it as a PDF, then send it to lena.bykova@valar.co.nz or bring it to your consultation.</p><div class="save">'+
+     '<button class="btn btn-primary" id="pdf">Download PDF</button>'+
+     '<button class="btn btn-ghost" id="edit">Change answers</button><button class="btn btn-ghost" id="restart">Start again</button></div><span class="fine" id="saved" aria-live="polite"></span></div>'+
+   '<div class="cta"><div style="display:grid;gap:4px"><h3>Go through your plan with Lena</h3><p>Free 30-minute consultation · English, Ukrainian, Russian</p><p class="contact">lena.bykova@valar.co.nz · +64 21 086 35695</p></div><a class="btn btn-primary" href="/book">Book a free call</a></div>'+
+   '<p class="fine">General information only, not personalised financial advice. Estimates assume a 30-year loan and are a guide only. Figures current as at September 2026. Valar Financial Advisors Limited (FSP1012862). Adviser: Lena Bykova (FSP1010055).</p>';
+  $('edit').onclick=()=>{i=0;quiz();};
+  $('restart').onclick=()=>{A={}; save(); i=0; quiz(); window.scrollTo({top:0});};
+  $('pdf').onclick=async()=>{
+    const msg=t=>{$('saved').textContent=t;}; const b=$('pdf'); b.disabled=true; msg('Preparing your PDF…');
+    try{
+      const data=await buildPDF(); const dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;
+      if(dl){ try{await dl.save({filename:'My first home plan - Valar.pdf',data}); msg('Saved.');}catch(e){msg(e&&e.code==='declined'?'':'Download isn\'t available here. Try opening the page in your browser.');} }
+      else { const u=URL.createObjectURL(new Blob([data],{type:'application/pdf'})); const a=document.createElement('a'); a.href=u; a.download='My first home plan - Valar.pdf'; document.body.appendChild(a); a.click(); a.remove(); msg(''); }
+    }catch(e){msg('Couldn\'t create the PDF. Please try again.');}
+    b.disabled=false;
+  };
+  window.scrollTo({top:0});
+}
+
+intro();
+</script>
+</body>
+</html>
