@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Your First Home Plan | Valar Financial Advisors</title>
+<title>First Home Buyer Workbook | Valar Financial Advisors</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="Your first home plan">
-<meta property="og:description" content="Answer 21 questions and get a clear, one-page plan for buying your first home in New Zealand.">
+<meta property="og:title" content="First Home Buyer Workbook">
+<meta property="og:description" content="An interactive workbook for first home buyers in New Zealand. Answer 21 questions and get your personal roadmap as a PDF.">
 <meta property="og:image" content="https://valar.co.nz/opengraph.jpg">
 <meta name="description" content="A free interactive workbook for first home buyers in New Zealand, by Valar Financial Advisors.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -219,8 +219,8 @@ const Q=[
   {t:'Real estate agent',d:'Works for the seller, but can alert you to new listings.'},
   {t:'No one yet'}],teamTodo:true},
  {id:'checks',p:6,type:'multi',k:'all',q:'Before you buy: which of these checks did you already know about?',sub:'All of them can matter. Tick the ones you knew.',o:[
-  {t:'Building inspection',d:'Finds hidden issues: moisture, structure, wiring. About $500-800.'},
-  {t:'LIM report',d:'Council information on the land: zoning, consents, hazards. About $300-700.'},
+  {t:'Building inspection',d:'Finds hidden issues: moisture, structure, wiring. About $400-800.'},
+  {t:'LIM report',d:'Council information on the land: zoning, consents, hazards. About $200-500.'},
   {t:'Title search',d:'Your lawyer checks who owns the property and any restrictions, easements or claims on it.'},
   {t:'Valuation',d:'Required by the bank to confirm the price, especially if your deposit is under 20%.'},
   {t:'Body corporate documents',d:'For apartments and townhouses: rules, finances and planned repairs.'},
@@ -286,12 +286,12 @@ function answered(q){const a=A[q.id]; if(!a) return false;
 function tipHTML(t,cls,title){return '<div class="tip '+(cls||'')+'"><span class="ic">'+(cls==='good'?'✓':cls==='bad'?'!':'i')+'</span><span>'+(title?'<b>'+esc(title)+'</b>':'')+esc(t)+'</span></div>'}
 function intro(){
   view='intro';
-  rail('','First Home<br>Buyers Guide','The interactive workbook.',0);
+  rail('','First Home<br>Buyer Workbook','Interactive. Pairs with the First Home Buyers Guide.',0);
   $('main').innerHTML='<div class="hero" style="display:flex;flex-direction:column;gap:22px;margin:auto 0">'+
-   '<h1>Your first home plan<span class="dot">.</span></h1>'+
-   '<p class="lead">Answer a few questions and get a clear, one-page plan for buying your first home in New Zealand.</p>'+
-   '<div class="stats"><div><b>21</b><span>questions</span></div><div><b>7</b><span>minutes</span></div><div><b>1</b><span>page plan</span></div></div>'+
-   '<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><button class="btn btn-primary" id="go">Start my plan</button>'+(Object.keys(A).length?'<button class="btn btn-ghost" id="last">See my last plan</button>':'')+'<span class="fine">Private: answers stay in your browser.</span></div></div>';
+   '<h1>Your first home buyer workbook<span class="dot">.</span></h1>'+
+   '<p class="lead">Answer 21 questions and get your personal roadmap for buying your first home in New Zealand, ready to save as a PDF.</p>'+
+   '<div class="stats"><div><b>21</b><span>questions</span></div><div><b>7</b><span>minutes</span></div><div><b>1</b><span>PDF to keep</span></div></div>'+
+   '<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><button class="btn btn-primary" id="go">Start the workbook</button>'+(Object.keys(A).length?'<button class="btn btn-ghost" id="last">See my last results</button>':'')+'<span class="fine">Private: answers stay in your browser.</span></div></div>';
   $('go').onclick=()=>{A={}; save(); try{localStorage.removeItem('valar-fhp-v2-done')}catch(e){} i=0;quiz();};
   if($('last')) $('last').onclick=result;
 }
@@ -319,7 +319,7 @@ function quiz(){
   if(q.freq){a.freq=a.freq||'week'; h+='<div class="mrow" role="radiogroup" aria-label="How often">'+[['week','Weekly'],['fortnight','Fortnightly'],['month','Monthly']].map(([v,l])=>'<button type="button" class="pill freq'+(a.freq===v?' sel':'')+'" data-f="'+v+'" aria-checked="'+(a.freq===v)+'">'+l+'</button>').join('')+'</div>';}
   if(q.type==='money') h+='<div class="mrow"><label class="money" for="mval"><span>$</span><input id="mval" inputmode="numeric" autocomplete="off" placeholder="0">'+(q.freq?'<span style="font-size:15px;white-space:nowrap">per '+a.freq+'</span>':'')+'</label><button type="button" class="pill'+(a.unsure?' sel':'')+'" id="unsure" aria-pressed="'+!!a.unsure+'">'+esc(q.notSure)+'</button></div>';
   h+='<div id="fb" aria-live="polite" style="display:grid;gap:10px"></div>';
-  h+='<div class="nav"><button class="btn btn-ghost" id="back"'+(i===0?' style="visibility:hidden"':'')+'>Back</button><div style="display:flex;gap:4px;align-items:center"><button class="btn-link" id="skip">Skip</button><button class="btn btn-primary" id="next">'+(i===Q.length-1?'See my plan':'Next')+'</button></div></div>';
+  h+='<div class="nav"><button class="btn btn-ghost" id="back"'+(i===0?' style="visibility:hidden"':'')+'>Back</button><div style="display:flex;gap:4px;align-items:center"><button class="btn-link" id="skip">Skip</button><button class="btn btn-primary" id="next">'+(i===Q.length-1?'See my results':'Next')+'</button></div></div>';
   $('main').innerHTML=h;
   // handlers
   document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
@@ -479,7 +479,7 @@ function roadmap(){
 }
 function planText(){
   const [chip]=stage(), when=S('plan')[0], n=numbers(), own=((A.plan||{}).steps||[]).filter(s=>s&&s.trim());
-  const L=['MY FIRST HOME PLAN','Stage: '+chip+(when?'. Goal: '+when:''),''];
+  const L=['MY FIRST HOME BUYER WORKBOOK','Stage: '+chip+(when?'. Goal: '+when:''),''];
   if(n.d||n.r){L.push('MY NUMBERS'); if(n.d) L.push('Deposit: '+fmt(n.d)); if(n.r) L.push('Comfortable repayment: '+fmt(n.r)+' per '+n.f); if(n.d&&n.r) L.push('Price to target: about '+fmt(Math.round((n.l5+n.d)/10000)*10000)); L.push('');}
   L.push('MY ROADMAP'); roadmap().forEach((r,k)=>L.push((k+1)+'. '+r.t+' ['+({done:'done',progress:'in progress',todo:'to do'}[r.st])+']',"   "+r.d)); L.push('');
   if(own.length){L.push('MY OWN NEXT STEPS'); own.forEach(s=>L.push('- '+s)); L.push('');}
@@ -497,8 +497,8 @@ async function buildPDF(){
   // header band
   doc.setFillColor(6,22,52); doc.rect(0,0,W,38,'F'); doc.setFillColor(46,72,130); doc.rect(0,34,W,4,'F');
   doc.setTextColor(200,203,227); doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.text('V A L A R   F I N A N C I A L   A D V I S O R S',M,13);
-  doc.setTextColor(255,255,255); doc.setFont('times','bold'); doc.setFontSize(24); doc.text('My first home plan',M,26);
-  doc.setFillColor(232,162,58); doc.circle(M+doc.getTextWidth('My first home plan')+1.8,25.4,1.2,'F');
+  doc.setTextColor(255,255,255); doc.setFont('times','bold'); doc.setFontSize(24); doc.text('My first home workbook',M,26);
+  doc.setFillColor(232,162,58); doc.circle(M+doc.getTextWidth('My first home workbook')+1.8,25.4,1.2,'F');
   const [chip,title,desc]=stage(), when=S('plan')[0];
   doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(200,203,227); doc.text(new Date().toLocaleDateString('en-NZ',{day:'numeric',month:'long',year:'numeric'}),W-M,13,{align:'right'});
   y=50; para('Stage: '+chip+(when?'   |   Goal: '+when.toLowerCase():''),11,'bold',[46,72,130]); y+=1; para(desc,10,'normal',[74,86,114]);
@@ -518,8 +518,8 @@ async function buildPDF(){
   const ins=insightData(); if(ins.length){head('What my answers tell me'); ins.forEach(x=>{need(14); para(x.t,10,'bold',x.c==='bad'?[180,74,74]:[6,22,52]); para(x.b,9.5,'normal',[74,86,114]); y+=2.5;});}
   const w=worryData(); if(w.length){head('Questions for my consultation'); w.forEach(x=>{need(14); para(x.t==='Your note'?'My note':x.t,10,'bold'); para(x.b,9.5,'normal',[74,86,114]); y+=2.5;});}
   need(34); y+=4; doc.setFillColor(6,22,52); doc.roundedRect(M,y,CW,24,3,3,'F');
-  doc.setFont('times','bold'); doc.setFontSize(13); doc.setTextColor(255,255,255); doc.text('Go through your plan with Lena Bykova',M+6,y+8.5);
-  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(200,203,227); doc.text('Free 30-minute consultation  |  English, Ukrainian, Russian',M+6,y+14.5); doc.text('lena.bykova@valar.co.nz  |  +64 21 086 35695  |  valar.co.nz',M+6,y+19.5); y+=30;
+  doc.setFont('times','bold'); doc.setFontSize(13); doc.setTextColor(255,255,255); doc.text('Go through your results with Lena Bykova',M+6,y+8.5);
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(200,203,227); doc.text('Free 20-minute clarity call  |  English, Ukrainian, Russian',M+6,y+14.5); doc.text('lena.bykova@valar.co.nz  |  +64 21 086 35695  |  valar.co.nz',M+6,y+19.5); y+=30;
   para('General information only, not personalised financial advice. Estimates assume a 30-year loan and are a guide only. Figures current as at September 2026. Valar Financial Advisors Limited (FSP1012862). Adviser: Lena Bykova (FSP1010055).',7.5,'normal',[120,128,150]);
   return doc.output('arraybuffer');
 }
@@ -529,7 +529,7 @@ function result(){
   const pct=right/kq.length, C=2*Math.PI*34;
   const [chip,title,desc]=stage(); const when=S('plan')[0];
   const donut='<div class="score"><svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="34" fill="none" stroke="rgba(200,203,227,.25)" stroke-width="8"/><circle cx="42" cy="42" r="34" fill="none" stroke="#E8A23A" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+(C*pct)+' '+C+'" transform="rotate(-90 42 42)"/></svg><div><b>'+right+' of '+kq.length+'</b><br><span style="color:var(--lilac);font-size:13.5px">buying process questions</span></div></div>';
-  rail('','Your plan<span class="dot">.</span>','',0,'<div style="display:grid;gap:6px;position:relative;z-index:1"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--lilac)">Your stage</span><span style="font:600 22px Lora,serif">'+esc(chip)+'</span>'+(when?'<span style="color:var(--lilac);font-size:14px">Goal: '+esc(when.toLowerCase())+'</span>':'')+'</div>'+donut);
+  rail('','Your results<span class="dot">.</span>','',0,'<div style="display:grid;gap:6px;position:relative;z-index:1"><span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--lilac)">Your stage</span><span style="font:600 22px Lora,serif">'+esc(chip)+'</span>'+(when?'<span style="color:var(--lilac);font-size:14px">Goal: '+esc(when.toLowerCase())+'</span>':'')+'</div>'+donut);
   const rm=roadmap(), own=((A.plan||{}).steps||[]).filter(s=>s&&s.trim());
   const tag={done:'Done',progress:'In progress',todo:'To do'};
   const road='<ol class="road">'+rm.map((r,k)=>'<li class="st-'+r.st+(r.next?' next':'')+'"><span class="num">'+(r.st==='done'?'✓':k+1)+'</span><div><div class="rt"><b>'+esc(r.t)+'</b><span class="tag">'+(r.next?'Start here':tag[r.st])+'</span></div><p>'+esc(r.d)+'</p></div></li>').join('')+'</ol>';
@@ -542,10 +542,10 @@ function result(){
    (own.length?'<div class="acard"><h4>Your own next steps</h4><ul class="check" style="gap:6px">'+own.map(s=>'<li style="cursor:default"><i></i><span>'+esc(s)+'</span></li>').join('')+'</ul></div>':'')+'</div>'+
    (ins.length?'<div class="sec"><h3>What your answers tell us</h3>'+ins.join('')+'</div>':'')+
    '<details class="acard"><summary style="cursor:pointer;font-weight:700">See all my answers</summary><div class="grid2" style="margin-top:12px">'+(cards||'<p class="sub">No answers yet.</p>')+'</div></details>'+
-   '<div class="sec"><h3>Keep your plan</h3><p class="sub" style="margin:-6px 0 0">Save it as a PDF, then send it to lena.bykova@valar.co.nz or bring it to your consultation.</p><div class="save">'+
+   '<div class="sec"><h3>Keep your results</h3><p class="sub" style="margin:-6px 0 0">Save it as a PDF, then send it to lena.bykova@valar.co.nz or bring it to your consultation.</p><div class="save">'+
      '<button class="btn btn-primary" id="pdf">Download PDF</button>'+
      '<button class="btn btn-ghost" id="edit">Change answers</button><button class="btn btn-ghost" id="restart">Start again</button></div><span class="fine" id="saved" aria-live="polite"></span></div>'+
-   '<div class="cta"><div style="display:grid;gap:4px"><h3>Go through your plan with Lena</h3><p>Free 30-minute consultation · English, Ukrainian, Russian</p><p class="contact">lena.bykova@valar.co.nz · +64 21 086 35695</p></div><a class="btn btn-primary" href="/book">Book a free call</a></div>'+
+   '<div class="cta"><div style="display:grid;gap:4px"><h3>Go through your results with Lena</h3><p>Free 20-minute clarity call · English, Ukrainian, Russian</p><p class="contact">lena.bykova@valar.co.nz · +64 21 086 35695</p></div><a class="btn btn-primary" href="/book">Book a free call</a></div>'+
    '<p class="fine">General information only, not personalised financial advice. Estimates assume a 30-year loan and are a guide only. Figures current as at September 2026. Valar Financial Advisors Limited (FSP1012862). Adviser: Lena Bykova (FSP1010055).</p>';
   $('edit').onclick=()=>{i=0;quiz();};
   $('restart').onclick=()=>{A={}; save(); i=0; quiz(); window.scrollTo({top:0});};
@@ -553,8 +553,8 @@ function result(){
     const msg=t=>{$('saved').textContent=t;}; const b=$('pdf'); b.disabled=true; msg('Preparing your PDF…');
     try{
       const data=await buildPDF(); const dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;
-      if(dl){ try{await dl.save({filename:'My first home plan - Valar.pdf',data}); msg('Saved.');}catch(e){msg(e&&e.code==='declined'?'':'Download isn\'t available here. Try opening the page in your browser.');} }
-      else { const u=URL.createObjectURL(new Blob([data],{type:'application/pdf'})); const a=document.createElement('a'); a.href=u; a.download='My first home plan - Valar.pdf'; document.body.appendChild(a); a.click(); a.remove(); msg(''); }
+      if(dl){ try{await dl.save({filename:'First home buyer workbook - Valar.pdf',data}); msg('Saved.');}catch(e){msg(e&&e.code==='declined'?'':'Download isn\'t available here. Try opening the page in your browser.');} }
+      else { const u=URL.createObjectURL(new Blob([data],{type:'application/pdf'})); const a=document.createElement('a'); a.href=u; a.download='First home buyer workbook - Valar.pdf'; document.body.appendChild(a); a.click(); a.remove(); msg(''); }
     }catch(e){msg('Couldn\'t create the PDF. Please try again.');}
     b.disabled=false;
   };
