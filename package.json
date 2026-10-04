@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:onedrive": "bash ../docs_local/sync-onedrive.sh",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "sync:onedrive": "bash .local/sync-onedrive.sh",
     "check:affordability": "node scripts/build-affordability-check.mjs && node scripts/check-affordability.mjs",
     "check:split-loan": "node scripts/check-split-loan.mjs",
     "check:repayments": "node scripts/check-repayments.mjs"
@@ -31,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "prettier": "^3.9.9",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
