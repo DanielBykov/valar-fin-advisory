@@ -8,9 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "prettier:check": "prettier --check .",
     "sync:onedrive": "bash .local/sync-onedrive.sh",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
     "check:affordability": "node scripts/build-affordability-check.mjs && node scripts/check-affordability.mjs",
     "check:split-loan": "node scripts/check-split-loan.mjs",
     "check:repayments": "node scripts/check-repayments.mjs"
@@ -28,6 +31,7 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
