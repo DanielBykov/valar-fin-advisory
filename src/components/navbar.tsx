@@ -70,7 +70,13 @@ export function Navbar() {
   const showCalculators =
     (CALCULATORS_LIVE || process.env.NODE_ENV === "development") && calculators.length > 0;
 
+  // Close every menu when the route changes. The rule is right that this is a
+  // cascading render: the navigation already re-rendered the bar, and these
+  // seven setters make it render again. The honest fix is structural — a menu
+  // should close in the handler that triggers the navigation, not react to the
+  // pathname afterwards — so it belongs to the server/client pass, not here.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsServicesOpen(false);
     setIsOpen(false);
     setIsMobileServicesOpen(false);

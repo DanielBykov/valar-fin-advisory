@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Calendar,
-  Phone,
   CheckCircle,
   ChevronDown,
   Home as HomeIcon,
