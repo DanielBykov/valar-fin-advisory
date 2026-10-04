@@ -34,10 +34,7 @@ export type UaFaqGroup =
    * other, and a reader has to stop and work out whose "я" it is. The first
    * label now names the role and the second has no pronoun at all.
    */
-  | "Про роботу з адвайзером"
-  | "Чи варто спробувати?"
-  | "Як це працює"
-  | "Інвестиції";
+  "Про роботу з адвайзером" | "Чи варто спробувати?" | "Як це працює" | "Інвестиції";
 
 export type UaFaqItem = { group: UaFaqGroup; question: string; answer: string[] };
 
@@ -151,8 +148,7 @@ export const UA_FAQ: UaFaqItem[] = [
    */
   {
     group: "Чи варто спробувати?",
-    question:
-      "У мене маленький депозит і невеликий дохід. Чи варто взагалі пробувати?",
+    question: "У мене маленький депозит і невеликий дохід. Чи варто взагалі пробувати?",
     answer: [
       "Варто. Купити житло можна навіть з депозитом 5%.",
       "Крім того, для певних категорій first home buyer існують програми Kāinga Ora. Чи підходите ви під них, перевіряємо на розмові, і зробити це я раджу якнайшвидше.",

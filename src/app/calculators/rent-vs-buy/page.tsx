@@ -37,8 +37,8 @@ export default function Page() {
           </h1>
           <p className="max-w-2xl border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
             The honest version of the question is not &ldquo;is renting dead money&rdquo;. It is how
-            long you would have to stay, and what the money would have done instead. Move the numbers
-            and find out.
+            long you would have to stay, and what the money would have done instead. Move the
+            numbers and find out.
           </p>
         </div>
       </section>

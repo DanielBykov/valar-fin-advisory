@@ -111,9 +111,7 @@ export function parseSplitSnapshot(raw: unknown): SplitSnapshot | null {
 
   return {
     kind: "split",
-    loanYears: Math.round(
-      clamp(loanYears ?? 30, LIMITS.loanYears.min, LIMITS.loanYears.max),
-    ),
+    loanYears: Math.round(clamp(loanYears ?? 30, LIMITS.loanYears.min, LIMITS.loanYears.max)),
     frequency: isFrequency(r.frequency) ? r.frequency : "fortnightly",
     parts,
   };

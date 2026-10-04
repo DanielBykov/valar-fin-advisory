@@ -35,7 +35,8 @@ export function AdviserCredentialStrip() {
               Lena Bykova — Mortgage & Investment Adviser
             </h3>
             <p className="text-sm text-valar-indigo">
-              Licensed Financial Adviser (FSP1010055) · 20+ years across finance, valuation, investment analysis and business advisory in New Zealand.
+              Licensed Financial Adviser (FSP1010055) · 20+ years across finance, valuation,
+              investment analysis and business advisory in New Zealand.
             </p>
           </div>
 

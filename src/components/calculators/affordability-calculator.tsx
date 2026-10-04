@@ -46,7 +46,9 @@ function MoneyField({
           inputMode={prefix === "%" ? "decimal" : "numeric"}
           value={value}
           onChange={(e) =>
-            onChange(prefix === "%" ? e.target.value.replace(/[^0-9.]/g, "") : withCommas(e.target.value))
+            onChange(
+              prefix === "%" ? e.target.value.replace(/[^0-9.]/g, "") : withCommas(e.target.value),
+            )
           }
           className="w-full bg-transparent px-2 py-2.5 text-sm font-semibold tabular-nums text-valar-navy focus:outline-none"
         />
@@ -128,7 +130,13 @@ function IncomeField({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <MoneyField id={id} label={label} hint="Per year, before tax" value={value} onChange={onChange} />
+      <MoneyField
+        id={id}
+        label={label}
+        hint="Per year, before tax"
+        value={value}
+        onChange={onChange}
+      />
       <InlineSelect
         id={`${id}-kiwi`}
         label="KiwiSaver"
@@ -501,35 +509,35 @@ export default function AffordabilityCalculator({
             <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
               What you already owe
             </p>
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  <MoneyField
-                    id="cc"
-                    label="Cards, BNPL & overdrafts"
-                    hint="The total limit, not what you owe."
-                    value={draft.cc}
-                    onChange={(v) => set("cc", v)}
-                  />
-                  <MoneyField
-                    id="car"
-                    label="Car loan or hire purchase"
-                    hint="Your monthly payments."
-                    value={draft.car}
-                    onChange={(v) => set("car", v)}
-                  />
-                  <MoneyField
-                    id="stud"
-                    label="Student loan repayment"
-                    hint="Your monthly payments."
-                    value={draft.stud}
-                    onChange={(v) => set("stud", v)}
-                  />
-                  <MoneyField
-                    id="other"
-                    label="Anything else you repay"
-                    hint="Your monthly payments."
-                    value={draft.other}
-                    onChange={(v) => set("other", v)}
-                  />
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <MoneyField
+                id="cc"
+                label="Cards, BNPL & overdrafts"
+                hint="The total limit, not what you owe."
+                value={draft.cc}
+                onChange={(v) => set("cc", v)}
+              />
+              <MoneyField
+                id="car"
+                label="Car loan or hire purchase"
+                hint="Your monthly payments."
+                value={draft.car}
+                onChange={(v) => set("car", v)}
+              />
+              <MoneyField
+                id="stud"
+                label="Student loan repayment"
+                hint="Your monthly payments."
+                value={draft.stud}
+                onChange={(v) => set("stud", v)}
+              />
+              <MoneyField
+                id="other"
+                label="Anything else you repay"
+                hint="Your monthly payments."
+                value={draft.other}
+                onChange={(v) => set("other", v)}
+              />
             </div>
           </div>
 
@@ -596,21 +604,21 @@ export default function AffordabilityCalculator({
                         {money(result.best.loan)}
                       </dd>
                       {/*
-                        * Which of the three limits is holding the number, in one
-                        * line under it.
-                        *
-                        * This exists because of a real confusion: adding
-                        * expenses left the figure unmoved and read as a broken
-                        * formula. It wasn't — the six-times cap was binding, so
-                        * servicing could fall a long way before the answer
-                        * changed. Without saying so, the screen looks stuck.
-                        *
-                        * It named the six-times rule until Lena cut it: the
-                        * rule itself belongs in the assumptions box, not here.
-                        * "Income" still carries the explanation — a figure set
-                        * by income is one that expenses cannot move — which is
-                        * the whole reason the line exists.
-                        */}
+                       * Which of the three limits is holding the number, in one
+                       * line under it.
+                       *
+                       * This exists because of a real confusion: adding
+                       * expenses left the figure unmoved and read as a broken
+                       * formula. It wasn't — the six-times cap was binding, so
+                       * servicing could fall a long way before the answer
+                       * changed. Without saying so, the screen looks stuck.
+                       *
+                       * It named the six-times rule until Lena cut it: the
+                       * rule itself belongs in the assumptions box, not here.
+                       * "Income" still carries the explanation — a figure set
+                       * by income is one that expenses cannot move — which is
+                       * the whole reason the line exists.
+                       */}
                       <p className="mt-1.5 text-xs leading-relaxed text-valar-steel">
                         {result.best.cappedBy === "deposit"
                           ? "What your deposit reaches"
@@ -620,7 +628,9 @@ export default function AffordabilityCalculator({
                       </p>
                     </div>
                     <div>
-                      <dt className="mb-1 text-sm font-semibold text-valar-lilac">Purchase price</dt>
+                      <dt className="mb-1 text-sm font-semibold text-valar-lilac">
+                        Purchase price
+                      </dt>
                       <dd className="text-4xl font-bold tabular-nums text-white md:text-5xl">
                         {money(result.best.price)}
                       </dd>
@@ -650,15 +660,15 @@ export default function AffordabilityCalculator({
                       aria-controls="lvr-info"
                       aria-label="What LVR means"
                       className={`inline-flex h-4 w-4 items-center justify-center rounded-full align-middle transition-colors ${
-                        showLvrInfo ? "bg-white text-valar-navy" : "text-valar-amber hover:text-white"
+                        showLvrInfo
+                          ? "bg-white text-valar-navy"
+                          : "text-valar-amber hover:text-white"
                       }`}
                     >
                       <Info className="h-4 w-4" />
                     </button>{" "}
                     is{" "}
-                    <b className="font-semibold text-white">
-                      {Math.round(result.best.lvr * 100)}%
-                    </b>
+                    <b className="font-semibold text-white">{Math.round(result.best.lvr * 100)}%</b>
                     .
                   </p>
                   {showLvrInfo && (
@@ -666,9 +676,9 @@ export default function AffordabilityCalculator({
                       id="lvr-info"
                       className="mt-3 rounded-lg bg-white/10 p-3 text-xs leading-relaxed text-valar-lilac"
                     >
-                      <b className="font-semibold text-white">LVR, loan-to-value ratio:</b>{" "}
-                      your loan as a share of the home&rsquo;s value. Above 80%, a bank adds a low-equity margin
-                      to your rate or a one-off fee. Each lender sets its own.
+                      <b className="font-semibold text-white">LVR, loan-to-value ratio:</b> your
+                      loan as a share of the home&rsquo;s value. Above 80%, a bank adds a low-equity
+                      margin to your rate or a one-off fee. Each lender sets its own.
                     </p>
                   )}
                 </>
@@ -705,8 +715,8 @@ export default function AffordabilityCalculator({
                          * 2026-09-14 on Lena's call, not only in its footer.
                          */}
                         <p className="mt-2 text-xs leading-relaxed text-gray-600">
-                          All these figures are indicative and not guaranteed. For a real assessment,
-                          talk to a mortgage adviser or your bank directly.
+                          All these figures are indicative and not guaranteed. For a real
+                          assessment, talk to a mortgage adviser or your bank directly.
                         </p>
                       </div>
                     </div>
@@ -804,15 +814,15 @@ export default function AffordabilityCalculator({
                         <p>
                           Repayment pressure shows how much of your take-home pay goes towards
                           mortgage, credit card and loan repayments (cards estimated at 3.8% of the
-                          limit). The lower the percentage, the
-                          more income you have left for everyday spending, saving and unexpected
-                          costs.
+                          limit). The lower the percentage, the more income you have left for
+                          everyday spending, saving and unexpected costs.
                         </p>
                         <p>
                           There is no single &ldquo;right&rdquo; level, but lower repayment pressure
-                          generally gives you more financial flexibility. Once debt repayments approach
-                          50% of your take-home pay, your budget has much less room to absorb changes
-                          such as higher interest rates, increased expenses or a drop in income.
+                          generally gives you more financial flexibility. Once debt repayments
+                          approach 50% of your take-home pay, your budget has much less room to
+                          absorb changes such as higher interest rates, increased expenses or a drop
+                          in income.
                         </p>
                       </div>
                     )}
@@ -952,7 +962,10 @@ export default function AffordabilityCalculator({
                             key={s.key}
                             title={`${s.label}: ${money(s.amount)} a month · ${s.pct}%`}
                             className={`@container flex items-center justify-center text-[11px] font-bold tabular-nums ${s.ink}`}
-                            style={{ width: `${(s.pct / splitWhole) * 100}%`, backgroundColor: s.fill }}
+                            style={{
+                              width: `${(s.pct / splitWhole) * 100}%`,
+                              backgroundColor: s.fill,
+                            }}
                           >
                             <span
                               className={`hidden ${
@@ -1119,9 +1132,10 @@ export default function AffordabilityCalculator({
                     <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-valar-amber" />
                     <p className="text-sm leading-relaxed text-valar-navy">
                       <b className="font-bold">These are payments, not limits.</b> A lender would go
-                      to {money(result.maxLoan)}, with {hasLoans ? "all your repayments" : "the repayment"}{" "}
-                      at {result.repaymentShare.all}% of your take-home pay. The rows above are what the
-                      same income buys at a repayment you would choose.
+                      to {money(result.maxLoan)}, with{" "}
+                      {hasLoans ? "all your repayments" : "the repayment"} at{" "}
+                      {result.repaymentShare.all}% of your take-home pay. The rows above are what
+                      the same income buys at a repayment you would choose.
                     </p>
                   </div>
 
@@ -1152,7 +1166,6 @@ export default function AffordabilityCalculator({
              * they are wanted back.
              */}
           </section>
-
         </div>
       </div>
 

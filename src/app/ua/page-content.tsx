@@ -79,7 +79,6 @@ const WEBINAR = LEAD_MAGNETS["ua-first-home-webinar"];
 const SOURCE_GUIDE = "Ukrainian landing page — guide";
 const SOURCE_WEBINAR = "Ukrainian landing page — webinar";
 
-
 /*
  * The situations someone might recognise themselves in — six, and deliberately
  * not all about a first house. Lena is an investment adviser as well as a
@@ -123,7 +122,7 @@ const SITUATIONS = [
     title: "Стратегія на роки вперед",
     body: "Капітал, інвестиції, безпека для родини, погляд на 15–20 років уперед і retirement plan (мандри або город).",
   },
-];/*
+]; /*
  * The same four stages the English service pages describe, in Ukrainian and in
  * the first person. It was three steps invented for this page; mirroring the
  * site means a person who reads both is told the same thing about how the work
@@ -355,11 +354,13 @@ function UaContactForm() {
         <p className="text-base text-valar-navy/80">Ваше повідомлення в мене.</p>
         <div className="mx-auto my-5 h-[2px] w-8 bg-valar-amber" />
         <p className="text-sm leading-relaxed text-valar-indigo">
-          Відповім протягом одного робочого дня. Лист із підтвердженням уже надіслано на вашу
-          пошту.
+          Відповім протягом одного робочого дня. Лист із підтвердженням уже надіслано на вашу пошту.
         </p>
         <p className="mt-5 text-sm leading-relaxed">
-          <a href="#book" className="font-semibold text-valar-navy underline hover:text-valar-amber">
+          <a
+            href="#book"
+            className="font-semibold text-valar-navy underline hover:text-valar-amber"
+          >
             або оберіть час для розмови
           </a>
         </p>
@@ -660,8 +661,8 @@ export default function UaContent() {
                 the space to its right stayed empty. Size the container, not the
                 paragraph. */}
             <p className="mt-3 text-[16px] leading-relaxed text-valar-indigo">
-              Після розмови у вас буде чітке розуміння, де ви зараз, які можливості маєте і які кроки
-              попереду.
+              Після розмови у вас буде чітке розуміння, де ви зараз, які можливості маєте і які
+              кроки попереду.
             </p>
             {/* Its own paragraph, not a second sentence. What the visitor is
                 promised and what they are not obliged to do afterwards are two
@@ -785,7 +786,10 @@ export default function UaContent() {
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s) => (
-              <div key={s.n} className="flex h-full flex-col rounded-sm border border-valar-concrete bg-white p-6">
+              <div
+                key={s.n}
+                className="flex h-full flex-col rounded-sm border border-valar-concrete bg-white p-6"
+              >
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-valar-navy text-[13px] font-bold text-valar-amber">
                   {s.n}
                 </span>
@@ -875,20 +879,20 @@ export default function UaContent() {
           </div>
 
           <div className="rounded-xl bg-white p-7 shadow-2xl md:p-8">
-              <div className="mb-6">
-                <div className="h-[2px] w-6 bg-valar-amber mb-4" />
-                <h3 className="text-[19px] font-bold leading-snug text-valar-navy">
-                  Куди надіслати гайд?
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-valar-indigo">
-                  Завантажите одразу після відправки. Копію надішлю на пошту.
-                </p>
-              </div>
+            <div className="mb-6">
+              <div className="h-[2px] w-6 bg-valar-amber mb-4" />
+              <h3 className="text-[19px] font-bold leading-snug text-valar-navy">
+                Куди надіслати гайд?
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-valar-indigo">
+                Завантажите одразу після відправки. Копію надішлю на пошту.
+              </p>
+            </div>
 
-              <GuideCaptureForm
-                guide={GUIDE}
-                source={SOURCE_GUIDE}
-                copy={{
+            <GuideCaptureForm
+              guide={GUIDE}
+              source={SOURCE_GUIDE}
+              copy={{
                 firstNameLabel: "Ім’я",
                 lastNameLabel: "Прізвище",
                 emailLabel: "Електронна пошта",
@@ -920,7 +924,7 @@ export default function UaContent() {
                 ],
                 closeLabel: "Закрити",
               }}
-              />
+            />
 
             {/* Under the form, not above it: someone who has already given
                 their email is the person most likely to spend twenty minutes
@@ -983,7 +987,10 @@ export default function UaContent() {
 
           <p className="mt-10 text-[16px] leading-relaxed text-valar-indigo">
             Не знайшли свого питання?{" "}
-            <a href="#contact" className="font-bold text-valar-navy underline hover:text-valar-amber">
+            <a
+              href="#contact"
+              className="font-bold text-valar-navy underline hover:text-valar-amber"
+            >
               Напишіть мені
             </a>
             , відповім особисто. Або подивіться вебінар нижче: там багато цих питань розібрано
@@ -1228,9 +1235,7 @@ export default function UaContent() {
               <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
                 Що буде далі
               </p>
-              <p>
-                Я прочитаю ваше повідомлення сама. Це не служба підтримки й не бот.
-              </p>
+              <p>Я прочитаю ваше повідомлення сама. Це не служба підтримки й не бот.</p>
               <p>
                 Якщо питання швидке, відповім листом. Якщо ні, запропоную поговорити, і тоді можна
                 одразу обрати час нижче.
@@ -1295,7 +1300,11 @@ export default function UaContent() {
             styles={{ height: "750px" }}
             /* Tags the booking with where it came from, so "did the Ukrainian
                page produce anything" is a question Calendly can answer. */
-            utm={{ utmSource: "valar-ua", utmMedium: "website", utmCampaign: "ukrainian-community" }}
+            utm={{
+              utmSource: "valar-ua",
+              utmMedium: "website",
+              utmCampaign: "ukrainian-community",
+            }}
             pageSettings={{
               backgroundColor: "f6f7f9",
               hideEventTypeDetails: false,
@@ -1331,9 +1340,21 @@ export default function UaContent() {
               </p>
               <div className="mt-4 flex gap-3">
                 {[
-                  { href: "https://www.instagram.com/lena.valarnz/", Icon: Instagram, label: "Instagram" },
-                  { href: "https://www.facebook.com/lena.valarnz", Icon: Facebook, label: "Facebook" },
-                  { href: "https://www.linkedin.com/company/valar-advisors", Icon: Linkedin, label: "LinkedIn" },
+                  {
+                    href: "https://www.instagram.com/lena.valarnz/",
+                    Icon: Instagram,
+                    label: "Instagram",
+                  },
+                  {
+                    href: "https://www.facebook.com/lena.valarnz",
+                    Icon: Facebook,
+                    label: "Facebook",
+                  },
+                  {
+                    href: "https://www.linkedin.com/company/valar-advisors",
+                    Icon: Linkedin,
+                    label: "LinkedIn",
+                  },
                 ].map(({ href, Icon, label }) => (
                   <a
                     key={label}

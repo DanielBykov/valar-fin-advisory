@@ -87,168 +87,163 @@ export default function RepaymentCalculator({
   const clearsEarly = usingExtra && result.periods < result.scheduledPeriods;
   const payoffAtYears = clearsEarly ? result.periods / result.perYear : null;
   const payoffLabel = clearsEarly ? describeDuration(result.periods, result.perYear) : null;
-  const earlyLabel = clearsEarly
-    ? describeDuration(result.periodsSaved, result.perYear)
-    : null;
+  const earlyLabel = clearsEarly ? describeDuration(result.periodsSaved, result.perYear) : null;
 
   return (
-    <div
-      data-cmp="RepaymentCalculator"
-      className="grid gap-6 lg:grid-cols-[1fr_400px]"
-    >
+    <div data-cmp="RepaymentCalculator" className="grid gap-6 lg:grid-cols-[1fr_400px]">
       {/* Row 1, left — the controls. */}
       <div
-          data-cmp="RepaymentCalculator.Inputs"
-          className="flex flex-col gap-6 rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
-        >
-          <NumberField
-            cmp="RepaymentCalculator.Field"
-            label="Loan amount"
-            value={amount}
-            min={50_000}
-            max={2_000_000}
-            step={5_000}
-            unit="$"
-            onChange={setAmount}
-          />
-          <NumberField
-            cmp="RepaymentCalculator.Field"
-            label="Interest rate"
-            value={rate}
-            min={1}
-            max={12}
-            step={0.05}
-            unit="%"
-            decimals={2}
-            hint="Use the rate you have been quoted, not the advertised headline."
-            onChange={setRate}
-          />
-          <NumberField
-            cmp="RepaymentCalculator.Field"
-            label="Loan term"
-            value={years}
-            min={5}
-            max={30}
-            step={1}
-            unit="yrs"
-            onChange={setYears}
-          />
+        data-cmp="RepaymentCalculator.Inputs"
+        className="flex flex-col gap-6 rounded-2xl border border-valar-concrete bg-white p-6 md:p-8"
+      >
+        <NumberField
+          cmp="RepaymentCalculator.Field"
+          label="Loan amount"
+          value={amount}
+          min={50_000}
+          max={2_000_000}
+          step={5_000}
+          unit="$"
+          onChange={setAmount}
+        />
+        <NumberField
+          cmp="RepaymentCalculator.Field"
+          label="Interest rate"
+          value={rate}
+          min={1}
+          max={12}
+          step={0.05}
+          unit="%"
+          decimals={2}
+          hint="Use the rate you have been quoted, not the advertised headline."
+          onChange={setRate}
+        />
+        <NumberField
+          cmp="RepaymentCalculator.Field"
+          label="Loan term"
+          value={years}
+          min={5}
+          max={30}
+          step={1}
+          unit="yrs"
+          onChange={setYears}
+        />
 
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-semibold text-valar-navy">Repayment frequency</span>
-            <div className="flex gap-2" role="group" aria-label="Repayment frequency">
-              {FREQUENCIES.map((f) => (
+        <div className="flex flex-col gap-2">
+          <span className="text-sm font-semibold text-valar-navy">Repayment frequency</span>
+          <div className="flex gap-2" role="group" aria-label="Repayment frequency">
+            {FREQUENCIES.map((f) => (
+              <button
+                key={f.key}
+                type="button"
+                onClick={() => setFrequency(f.key)}
+                aria-pressed={frequency === f.key}
+                className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+                  frequency === f.key
+                    ? "border-valar-navy bg-valar-navy text-white"
+                    : "border-valar-concrete bg-white text-gray-700 hover:border-valar-amber"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-sm font-semibold text-valar-navy">Extra repayment</span>
+            <div
+              className="flex rounded-lg border border-valar-concrete bg-white p-0.5"
+              role="group"
+              aria-label="Extra repayment as an amount, a percentage, or a total payment"
+            >
+              {(["amount", "percent", "target"] as RepaymentExtraMode[]).map((mode) => (
                 <button
-                  key={f.key}
+                  key={mode}
                   type="button"
-                  onClick={() => setFrequency(f.key)}
-                  aria-pressed={frequency === f.key}
-                  className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
-                    frequency === f.key
-                      ? "border-valar-navy bg-valar-navy text-white"
-                      : "border-valar-concrete bg-white text-gray-700 hover:border-valar-amber"
+                  aria-pressed={extraMode === mode}
+                  onClick={() => {
+                    setExtraMode(mode);
+                    /*
+                     * Zero is the right empty state for an extra, and the
+                     * wrong one for a target: a target of nothing reads as a
+                     * broken field and produces no extra. Land on the next
+                     * round hundred instead, which is the move this mode
+                     * exists for.
+                     */
+                    setExtraValue(
+                      mode === "target" ? Math.ceil((result.basePayment + 0.01) / 100) * 100 : 0,
+                    );
+                  }}
+                  className={`rounded-md px-3 py-1 text-xs font-bold transition-colors ${
+                    extraMode === mode
+                      ? "bg-valar-navy text-white"
+                      : "text-valar-steel hover:text-valar-navy"
                   }`}
                 >
-                  {f.label}
+                  {mode === "amount" ? "$" : mode === "percent" ? "%" : "Total"}
                 </button>
               ))}
             </div>
           </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between gap-3">
-              <span className="text-sm font-semibold text-valar-navy">Extra repayment</span>
-              <div
-                className="flex rounded-lg border border-valar-concrete bg-white p-0.5"
-                role="group"
-                aria-label="Extra repayment as an amount, a percentage, or a total payment"
-              >
-                {(["amount", "percent", "target"] as RepaymentExtraMode[]).map((mode) => (
-                  <button
-                    key={mode}
-                    type="button"
-                    aria-pressed={extraMode === mode}
-                    onClick={() => {
-                      setExtraMode(mode);
-                      /*
-                       * Zero is the right empty state for an extra, and the
-                       * wrong one for a target: a target of nothing reads as a
-                       * broken field and produces no extra. Land on the next
-                       * round hundred instead, which is the move this mode
-                       * exists for.
-                       */
-                      setExtraValue(
-                        mode === "target" ? Math.ceil((result.basePayment + 0.01) / 100) * 100 : 0,
-                      );
-                    }}
-                    className={`rounded-md px-3 py-1 text-xs font-bold transition-colors ${
-                      extraMode === mode
-                        ? "bg-valar-navy text-white"
-                        : "text-valar-steel hover:text-valar-navy"
-                    }`}
-                  >
-                    {mode === "amount" ? "$" : mode === "percent" ? "%" : "Total"}
-                  </button>
-                ))}
-              </div>
+          <NumberField
+            cmp="RepaymentCalculator.Field"
+            label={
+              extraMode === "amount"
+                ? "Per repayment"
+                : extraMode === "percent"
+                  ? "Of the loan, per year"
+                  : "Payment you want to make"
+            }
+            value={extraValue}
+            min={0}
+            max={extraMax}
+            step={extraMode === "percent" ? 0.25 : 10}
+            unit={extraMode === "percent" ? "%" : "$"}
+            decimals={extraMode === "percent" ? 2 : 0}
+            hint={
+              extraMode === "amount"
+                ? `Paying a little more, every time — this is where the number moves. On a fixed rate most lenders let you pay up to about ${EXTRA_CAP_PERCENT}% of the loan a year, which is ${nzd(result.allowancePerPeriod)} per payment here.`
+                : extraMode === "percent"
+                  ? `A share of the loan each year, spread across your payments — ${nzd(result.extraPerPeriod, 2)} per payment here. On a fixed rate most lenders allow up to about ${EXTRA_CAP_PERCENT}%.`
+                  : `Your scheduled payment is ${nzd(result.basePayment)}. Pay a round ${nzd(extraValue)} instead and ${nzd(result.extraPerPeriod)} of every payment comes straight off the loan — a number you can hold in your head, which is most of why it gets paid.`
+            }
+            onChange={setExtraValue}
+          />
+          {extraMode === "target" && (
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold text-valar-steel">Round up to</span>
+              {targets.map((target) => (
+                <button
+                  key={target}
+                  type="button"
+                  aria-pressed={Math.round(extraValue) === target}
+                  onClick={() => setExtraValue(target)}
+                  className={`rounded-full border px-3 py-1 text-xs font-bold transition-colors ${
+                    Math.round(extraValue) === target
+                      ? "border-valar-navy bg-valar-navy text-white"
+                      : "border-valar-concrete bg-white text-valar-navy hover:border-valar-navy"
+                  }`}
+                >
+                  {nzd(target)}
+                </button>
+              ))}
             </div>
-            <NumberField
-              cmp="RepaymentCalculator.Field"
-              label={
-                extraMode === "amount"
-                  ? "Per repayment"
-                  : extraMode === "percent"
-                    ? "Of the loan, per year"
-                    : "Payment you want to make"
-              }
-              value={extraValue}
-              min={0}
-              max={extraMax}
-              step={extraMode === "percent" ? 0.25 : 10}
-              unit={extraMode === "percent" ? "%" : "$"}
-              decimals={extraMode === "percent" ? 2 : 0}
-              hint={
-                extraMode === "amount"
-                  ? `Paying a little more, every time — this is where the number moves. On a fixed rate most lenders let you pay up to about ${EXTRA_CAP_PERCENT}% of the loan a year, which is ${nzd(result.allowancePerPeriod)} per payment here.`
-                  : extraMode === "percent"
-                    ? `A share of the loan each year, spread across your payments — ${nzd(result.extraPerPeriod, 2)} per payment here. On a fixed rate most lenders allow up to about ${EXTRA_CAP_PERCENT}%.`
-                    : `Your scheduled payment is ${nzd(result.basePayment)}. Pay a round ${nzd(extraValue)} instead and ${nzd(result.extraPerPeriod)} of every payment comes straight off the loan — a number you can hold in your head, which is most of why it gets paid.`
-              }
-              onChange={setExtraValue}
-            />
-            {extraMode === "target" && (
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold text-valar-steel">Round up to</span>
-                {targets.map((target) => (
-                  <button
-                    key={target}
-                    type="button"
-                    aria-pressed={Math.round(extraValue) === target}
-                    onClick={() => setExtraValue(target)}
-                    className={`rounded-full border px-3 py-1 text-xs font-bold transition-colors ${
-                      Math.round(extraValue) === target
-                        ? "border-valar-navy bg-valar-navy text-white"
-                        : "border-valar-concrete bg-white text-valar-navy hover:border-valar-navy"
-                    }`}
-                  >
-                    {nzd(target)}
-                  </button>
-                ))}
-              </div>
-            )}
-            {result.overAllowance && (
-              <p className="flex items-start gap-2 rounded-lg bg-valar-amber/10 p-3 text-xs leading-relaxed text-valar-navy">
-                <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-valar-amber" />
-                <span>
-                  That is more than {EXTRA_CAP_PERCENT}% of the loan a year. On a <b>fixed</b> rate
-                  most lenders charge a break cost above roughly that, so the saving below may not be
-                  available to you. On a <b>floating</b> loan there is usually no limit at all. The
-                  exact allowance is in your loan contract — worth checking before you set up a
-                  payment you intend to keep.
-                </span>
-              </p>
-            )}
-          </div>
+          )}
+          {result.overAllowance && (
+            <p className="flex items-start gap-2 rounded-lg bg-valar-amber/10 p-3 text-xs leading-relaxed text-valar-navy">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-valar-amber" />
+              <span>
+                That is more than {EXTRA_CAP_PERCENT}% of the loan a year. On a <b>fixed</b> rate
+                most lenders charge a break cost above roughly that, so the saving below may not be
+                available to you. On a <b>floating</b> loan there is usually no limit at all. The
+                exact allowance is in your loan contract — worth checking before you set up a
+                payment you intend to keep.
+              </span>
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Row 1, right — the answer. */}

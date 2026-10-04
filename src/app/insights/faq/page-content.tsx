@@ -20,9 +20,7 @@ const staggerContainer = {
 
 /** Everything a question can be matched against, lower-cased once up front. */
 function haystack(question: string, answer: FaqBlock[]): string {
-  const body = answer
-    .map((b) => (b.type === "p" ? b.text : b.items.join(" ")))
-    .join(" ");
+  const body = answer.map((b) => (b.type === "p" ? b.text : b.items.join(" "))).join(" ");
   return `${question} ${body}`.toLowerCase();
 }
 
@@ -141,15 +139,28 @@ export default function FaqContent({ categories }: { categories: FaqCategory[] }
             <ArrowLeft className="h-4 w-4" />
             Insights
           </Link>
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="max-w-4xl"
+          >
             <motion.div variants={fadeIn} className="mb-3 flex flex-col space-y-2">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Common Questions</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">
+                Common Questions
+              </span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-3 tracking-tight leading-[1.1] text-white">
+            <motion.h1
+              variants={fadeIn}
+              className="text-4xl md:text-5xl font-bold mb-3 tracking-tight leading-[1.1] text-white"
+            >
               Questions<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="max-w-2xl text-base text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light">
+            <motion.p
+              variants={fadeIn}
+              className="max-w-2xl text-base text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light"
+            >
               The things people ask before they book — deposits, KiwiSaver, how much a bank will
               actually lend, and what the process really looks like.
             </motion.p>
@@ -272,7 +283,11 @@ export default function FaqContent({ categories }: { categories: FaqCategory[] }
                               )}
                             </span>
                             <span className="shrink-0 text-valar-amber" aria-hidden="true">
-                              {isOpen ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+                              {isOpen ? (
+                                <Minus className="h-5 w-5" />
+                              ) : (
+                                <Plus className="h-5 w-5" />
+                              )}
                             </span>
                           </button>
                         </h3>

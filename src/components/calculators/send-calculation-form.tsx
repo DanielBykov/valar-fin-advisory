@@ -119,7 +119,10 @@ export default function SendCalculationForm({
         )}
         <p className="mt-5 text-sm leading-relaxed text-gray-600">
           If you would rather talk it through,{" "}
-          <Link href="/book" className="font-semibold text-valar-navy underline hover:text-valar-amber">
+          <Link
+            href="/book"
+            className="font-semibold text-valar-navy underline hover:text-valar-amber"
+          >
             book a clarity call
           </Link>
           .

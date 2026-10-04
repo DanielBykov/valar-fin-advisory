@@ -2,13 +2,13 @@
 
 @theme {
   --color-valar-navy: #061634;
-  --color-valar-indigo: #2E4882;
-  --color-valar-horizon: #6F88C4;
-  --color-valar-amber: #E8A23A;
-  --color-valar-steel: #8F93B5;
-  --color-valar-lilac: #C8CBE3;
-  --color-valar-concrete: #C9CED6;
-  --color-valar-fog: #F6F7F9;
+  --color-valar-indigo: #2e4882;
+  --color-valar-horizon: #6f88c4;
+  --color-valar-amber: #e8a23a;
+  --color-valar-steel: #8f93b5;
+  --color-valar-lilac: #c8cbe3;
+  --color-valar-concrete: #c9ced6;
+  --color-valar-fog: #f6f7f9;
   --color-valar-amber-hover: #d4922e;
 
   --font-manrope: "Manrope", ui-sans-serif, system-ui, sans-serif;
@@ -32,12 +32,16 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2 {
+  h1,
+  h2 {
     font-family: var(--font-lora), serif;
     font-weight: 500;
   }
 
-  h3, h4, h5, h6 {
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-manrope), sans-serif;
     font-weight: 600;
   }

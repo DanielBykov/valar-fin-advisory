@@ -28,8 +28,7 @@ const LIMITS = {
 
 const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n));
 
-const isFrequency = (v: unknown): v is FrequencyKey =>
-  FREQUENCIES.some((f) => f.key === v);
+const isFrequency = (v: unknown): v is FrequencyKey => FREQUENCIES.some((f) => f.key === v);
 
 /**
  * Accepts numbers and numeric strings; anything else is not a number.

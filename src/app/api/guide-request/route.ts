@@ -23,7 +23,10 @@ export async function POST(req: Request) {
   const { firstName, lastName, email, phone, guideKey, guideTitle, source, subscribe, figures } =
     await req.json();
   if (!firstName || !email) {
-    return NextResponse.json({ success: false, error: "Name and email required." }, { status: 400 });
+    return NextResponse.json(
+      { success: false, error: "Name and email required." },
+      { status: 400 },
+    );
   }
 
   /*
@@ -50,8 +53,7 @@ export async function POST(req: Request) {
    * called from, so a test send from localhost is actually clickable rather
    * than pointing at a production URL the change has not been deployed to.
    */
-  const baseUrl =
-    process.env.NODE_ENV === "development" ? new URL(req.url).origin : SITE_URL;
+  const baseUrl = process.env.NODE_ENV === "development" ? new URL(req.url).origin : SITE_URL;
 
   /*
    * Which magnet was promised decides which group they join, and therefore
@@ -71,7 +73,9 @@ export async function POST(req: Request) {
 
   let groupId = process.env[magnet.groupEnv];
   if (!groupId && fallbackEnv && fallbackEnv !== magnet.groupEnv) {
-    console.warn(`${magnet.groupEnv} is not set — enrolling "${magnet.key}" in ${fallbackEnv} instead.`);
+    console.warn(
+      `${magnet.groupEnv} is not set — enrolling "${magnet.key}" in ${fallbackEnv} instead.`,
+    );
     groupId = process.env[fallbackEnv];
   }
 
@@ -100,11 +104,18 @@ export async function POST(req: Request) {
   // Guard against a missing/misconfigured group id — otherwise we'd POST groups: [undefined]
   // to MailerLite, which silently fails to enrol the lead and never fires the welcome automation.
   if (enrolable && groups.some((g) => !g)) {
-    console.error(`MailerLite group id missing — check ${magnet.groupEnv} / MAILERLITE_GROUP_ID env vars.`);
-    return NextResponse.json({ success: false, error: "Subscription is temporarily unavailable." }, { status: 500 });
+    console.error(
+      `MailerLite group id missing — check ${magnet.groupEnv} / MAILERLITE_GROUP_ID env vars.`,
+    );
+    return NextResponse.json(
+      { success: false, error: "Subscription is temporarily unavailable." },
+      { status: 500 },
+    );
   }
   if (!enrolable) {
-    console.warn(`${magnet.groupEnv} is not set and "${magnet.key}" has no fallback — capturing the lead without enrolling.`);
+    console.warn(
+      `${magnet.groupEnv} is not set and "${magnet.key}" has no fallback — capturing the lead without enrolling.`,
+    );
   }
 
   /*
@@ -247,7 +258,7 @@ export async function POST(req: Request) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.MAILERLITE_API_KEY}`,
+          Authorization: `Bearer ${process.env.MAILERLITE_API_KEY}`,
         },
         body: JSON.stringify({
           email,
@@ -317,7 +328,10 @@ export async function POST(req: Request) {
   if (mailerlite && !mailerlite.ok) {
     const detail = await mailerlite.text().catch(() => "");
     console.error(`MailerLite subscribe failed (${mailerlite.status}): ${detail}`);
-    return NextResponse.json({ success: false, error: "Could not complete your request." }, { status: 502 });
+    return NextResponse.json(
+      { success: false, error: "Could not complete your request." },
+      { status: 502 },
+    );
   }
 
   /*

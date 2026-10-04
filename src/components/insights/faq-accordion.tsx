@@ -35,7 +35,11 @@ export default function FaqAccordion({
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div key={item.id} data-cmp="FaqAccordion.Item" className="border-b border-valar-concrete">
+          <div
+            key={item.id}
+            data-cmp="FaqAccordion.Item"
+            className="border-b border-valar-concrete"
+          >
             <h3>
               <button
                 type="button"

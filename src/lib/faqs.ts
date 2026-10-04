@@ -193,7 +193,13 @@ export function faqCategories(): FaqCategory[] {
       ...c,
       items: c.items
         .filter((i) => !i.draft)
-        .map((i) => ({ id: i.id, question: i.question, answer: i.answer, draft: i.draft, services: i.services })),
+        .map((i) => ({
+          id: i.id,
+          question: i.question,
+          answer: i.answer,
+          draft: i.draft,
+          services: i.services,
+        })),
     }))
     .filter((c) => c.items.length > 0);
 }
@@ -210,7 +216,5 @@ export function faqsForService(slug: string): FaqItem[] {
 
 /** Answer flattened to a single string — for FAQPage structured data. */
 export function faqPlainAnswer(item: FaqItem): string {
-  return item.answer
-    .map((b) => (b.type === "p" ? b.text : b.items.join(". ")))
-    .join(" ");
+  return item.answer.map((b) => (b.type === "p" ? b.text : b.items.join(". "))).join(" ");
 }

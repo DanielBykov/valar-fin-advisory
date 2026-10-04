@@ -172,7 +172,13 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "An offer is conditional when the purchase depends on something happening first. The usual conditions are finance, a building inspection, a valuation or selling your own home, each normally with its own date. An unconditional offer has no conditions at all. A conditional agreement becomes unconditional once every condition has been met or waived, and from then on it is binding: you are committed to settle, whatever happens with your finance. A winning bid at auction is unconditional the moment the hammer falls.",
     ],
-    seeAlso: ["Finance condition", "Due diligence", "Auction", "Sale and purchase agreement", "Settlement"],
+    seeAlso: [
+      "Finance condition",
+      "Due diligence",
+      "Auction",
+      "Sale and purchase agreement",
+      "Settlement",
+    ],
   },
   {
     term: "Construction loan",
@@ -214,7 +220,13 @@ const TERMS: GlossaryTerm[] = [
       "**Your deposit for the loan** is the part of the price you pay with your own money rather than borrow. It can come from savings, KiwiSaver, a gift or the sale of another property. Its size sets your loan-to-value ratio, which affects which lenders will consider you and the rate you are offered.",
       "**The purchase deposit** is a payment made under the sale and purchase agreement. Depending on the agreement, it is paid once both sides have signed or once the agreement becomes unconditional, and at auction usually on the day. It counts towards the price at settlement, but because it is paid earlier, that money has to be available sooner than the rest.",
     ],
-    seeAlso: ["Loan-to-value ratio", "Gifted funds", "KiwiSaver first-home withdrawal", "Conditional and unconditional", "Auction"],
+    seeAlso: [
+      "Loan-to-value ratio",
+      "Gifted funds",
+      "KiwiSaver first-home withdrawal",
+      "Conditional and unconditional",
+      "Auction",
+    ],
   },
   {
     term: "Diversification",
@@ -230,7 +242,13 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The checks a buyer makes before committing to a purchase: a building inspection, the LIM report, the title, and anything specific to the property, such as the body corporate's records for a unit title. It is usually a condition in the sale and purchase agreement with a set deadline, and if the checks turn up something serious in that time, the buyer can usually withdraw. At auction there is no condition to rely on, so all of it has to be done before auction day.",
     ],
-    seeAlso: ["Conditional and unconditional", "Building inspection", "LIM report", "Body corporate", "Auction"],
+    seeAlso: [
+      "Conditional and unconditional",
+      "Building inspection",
+      "LIM report",
+      "Body corporate",
+      "Auction",
+    ],
   },
   {
     term: "Emergency fund",
@@ -254,7 +272,12 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A condition in a sale and purchase agreement that makes the purchase subject to arranging finance by an agreed date. This is what “subject to finance” means in an offer. If finance is not approved in time, the buyer may be able to cancel the agreement. The finance date should allow enough time for the lender to assess the application and check the property.",
     ],
-    seeAlso: ["Conditional and unconditional", "Live deal", "Pre-approval", "Sale and purchase agreement"],
+    seeAlso: [
+      "Conditional and unconditional",
+      "Live deal",
+      "Pre-approval",
+      "Sale and purchase agreement",
+    ],
   },
   {
     term: "Financial plan",
@@ -262,7 +285,14 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A written picture of where you are now and a route to where you want to be. It covers income, spending, assets and debts; the goals you are working towards, and by when; and the steps to get there, such as saving, investing, repaying debt and protecting against the things that could knock the plan over. It is meant to be revisited as life changes, not filed away once it is written.",
     ],
-    seeAlso: ["Wealth management", "Cash flow", "Net worth", "Emergency fund", "Investment horizon", "Risk profile"],
+    seeAlso: [
+      "Wealth management",
+      "Cash flow",
+      "Net worth",
+      "Emergency fund",
+      "Investment horizon",
+      "Risk profile",
+    ],
   },
   {
     term: "First Home Loan",
@@ -358,7 +388,14 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A property bought to rent out, or for its future value, rather than to live in. Lenders treat it differently from a home: a bigger deposit is usually needed, because the Reserve Bank's LVR limits are tighter for investors; only part of the rent is usually counted when working out what you can afford; and interest-only periods are more common. The tax treatment is different too: the bright-line test and the interest limitation rules both apply.",
     ],
-    seeAlso: ["Rental yield", "Loan-to-value ratio", "Bright-line test", "Interest deductibility", "Interest-only", "Healthy Homes Standards"],
+    seeAlso: [
+      "Rental yield",
+      "Loan-to-value ratio",
+      "Bright-line test",
+      "Interest deductibility",
+      "Interest-only",
+      "Healthy Homes Standards",
+    ],
   },
   {
     term: "Joint tenants and tenants in common",
@@ -382,7 +419,12 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "New Zealand's voluntary, work-based savings scheme. Members save from their pay, employers usually contribute as well, and eligible members also receive a government contribution. The money is invested in a fund with a KiwiSaver provider, and fund types run from defensive and conservative through balanced to growth and aggressive. It is generally held until retirement age, with a few exceptions; the one that matters most to buyers is a first home.",
     ],
-    seeAlso: ["KiwiSaver contributions", "Managed fund", "Asset allocation", "KiwiSaver first-home withdrawal"],
+    seeAlso: [
+      "KiwiSaver contributions",
+      "Managed fund",
+      "Asset allocation",
+      "KiwiSaver first-home withdrawal",
+    ],
   },
   {
     term: "KiwiSaver contributions",
@@ -414,7 +456,13 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "A Land Information Memorandum: what the local council holds on file about a property, including consents and code compliance certificates, zoning, known hazards such as flooding, and anything outstanding. It is usually obtained during due diligence, while the purchase is still conditional. Work done without a consent may show up here by its absence.",
     ],
-    seeAlso: ["Due diligence", "Zoning", "Code compliance certificate", "Building inspection", "Record of Title"],
+    seeAlso: [
+      "Due diligence",
+      "Zoning",
+      "Code compliance certificate",
+      "Building inspection",
+      "Record of Title",
+    ],
   },
   {
     term: "Live deal",
@@ -438,7 +486,14 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The size of your loan as a share of the property's value. A lower LVR, meaning a bigger deposit or more equity, opens up more lenders and better rates. The Reserve Bank limits how much high-LVR lending banks can do, with tighter limits for investment property, which is why low-deposit loans are harder to get and often cost more.",
     ],
-    seeAlso: ["High-LVR loan", "Deposit", "Equity", "Low-equity margin", "Debt-to-income ratio", "Investment property"],
+    seeAlso: [
+      "High-LVR loan",
+      "Deposit",
+      "Equity",
+      "Low-equity margin",
+      "Debt-to-income ratio",
+      "Investment property",
+    ],
   },
   {
     term: "Low-equity margin",
@@ -558,7 +613,13 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The official record of who owns a piece of land and what rights and restrictions come with it, such as mortgages, easements and covenants. It replaced the older certificate of title and is held by Land Information New Zealand (LINZ). Your lawyer checks it before you commit to a purchase.",
     ],
-    seeAlso: ["Joint tenants and tenants in common", "Cross-lease", "Unit title", "LIM report", "Due diligence"],
+    seeAlso: [
+      "Joint tenants and tenants in common",
+      "Cross-lease",
+      "Unit title",
+      "LIM report",
+      "Due diligence",
+    ],
   },
   {
     term: "Refinancing",
@@ -638,7 +699,13 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The contract between buyer and seller. It sets out the price, the purchase deposit, the settlement date, the chattels included, and any conditions, such as finance, a building inspection, a LIM or due diligence. Once signed it is binding on the terms it contains, so your lawyer should review it before you sign, not after.",
     ],
-    seeAlso: ["Vendor", "Conditional and unconditional", "Finance condition", "Deposit", "Settlement"],
+    seeAlso: [
+      "Vendor",
+      "Conditional and unconditional",
+      "Finance condition",
+      "Deposit",
+      "Settlement",
+    ],
   },
   {
     term: "Security",
@@ -662,7 +729,12 @@ const TERMS: GlossaryTerm[] = [
     body: [
       "The day the purchase completes: the lender pays the seller through the lawyers, the property becomes yours, and you get the keys. Shortly before it, you do a pre-settlement inspection. Insurance has to be in place before the lender will release the money, and from settlement day the repayments, insurance and rates are yours.",
     ],
-    seeAlso: ["Pre-settlement inspection", "Sale and purchase agreement", "Conditional and unconditional", "Rates"],
+    seeAlso: [
+      "Pre-settlement inspection",
+      "Sale and purchase agreement",
+      "Conditional and unconditional",
+      "Rates",
+    ],
   },
   {
     term: "Special rate",

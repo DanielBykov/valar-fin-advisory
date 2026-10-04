@@ -139,7 +139,8 @@ function project(i: Inputs): Projection {
     // Rent and ownership costs step once a year, not every month.
     const yearElapsed = Math.floor((m - 1) / 12);
     const rentThisMonth = monthlyRent0 * Math.pow(1 + i.rentGrowthPct / 100, yearElapsed);
-    const ownCostsThisMonth = monthlyOwnCosts0 * Math.pow(1 + i.ownCostGrowthPct / 100, yearElapsed);
+    const ownCostsThisMonth =
+      monthlyOwnCosts0 * Math.pow(1 + i.ownCostGrowthPct / 100, yearElapsed);
     const mortgageThisMonth = m <= loanMonths ? monthlyMortgage : 0;
     const owningThisMonth = mortgageThisMonth + ownCostsThisMonth;
 
@@ -295,7 +296,7 @@ function LineChart({ years, series }: { years: number[]; series: ChartSeries[] }
               "L" +
               xOf(years[years.length - 1 - i]).toFixed(1) +
               "," +
-              yOf(series[1].values[years.length - 1 - i]).toFixed(1)
+              yOf(series[1].values[years.length - 1 - i]).toFixed(1),
           )
           .join(" ") +
         " Z"
@@ -310,7 +311,9 @@ function LineChart({ years, series }: { years: number[]; series: ChartSeries[] }
         viewBox={"0 0 " + VIEW_W + " " + VIEW_H}
         className="h-auto w-full"
         role="img"
-        aria-label={series.map((s) => s.label).join(" compared with ") + " over " + horizon + " years"}
+        aria-label={
+          series.map((s) => s.label).join(" compared with ") + " over " + horizon + " years"
+        }
       >
         {gridValues.map((value, i) => (
           <g key={value}>
@@ -549,7 +552,9 @@ function Field({ label, hint, value, min, max, step, prefix, suffix, onChange }:
 function FieldGroup({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="border-t border-valar-concrete/70 pt-7 first:border-t-0 first:pt-0">
-      <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.14em] text-valar-amber">{title}</h3>
+      <h3 className="mb-5 text-xs font-bold uppercase tracking-[0.14em] text-valar-amber">
+        {title}
+      </h3>
       <div className="grid gap-x-10 gap-y-6 md:grid-cols-2">{children}</div>
     </section>
   );
@@ -630,7 +635,7 @@ export default function RentVsBuyCalculator() {
       horizonYears,
       startInvest,
       diffMode,
-    ]
+    ],
   );
 
   const last = p.years.length - 1;
@@ -829,7 +834,11 @@ export default function RentVsBuyCalculator() {
             <span className="text-sm font-semibold text-valar-navy">
               If renting costs less each month
             </span>
-            <div className="flex gap-2" role="group" aria-label="What happens to the monthly difference">
+            <div
+              className="flex gap-2"
+              role="group"
+              aria-label="What happens to the monthly difference"
+            >
               <button
                 type="button"
                 onClick={() => setDiffMode("invest")}
@@ -891,13 +900,21 @@ export default function RentVsBuyCalculator() {
         data-cmp="RentVsBuyCalculator.Stats"
         className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
       >
-        <StatTile label="Mortgage" value={nzd(p.monthlyMortgage) + "/mo"} note="Principal & interest" />
+        <StatTile
+          label="Mortgage"
+          value={nzd(p.monthlyMortgage) + "/mo"}
+          note="Principal & interest"
+        />
         <StatTile
           label="Rates, insurance, upkeep"
           value={nzd(p.monthlyOwnCosts) + "/mo"}
           note="On top of the mortgage"
         />
-        <StatTile label="Rent today" value={nzd(p.monthlyRent) + "/mo"} note={nzd(weeklyRent) + " a week"} />
+        <StatTile
+          label="Rent today"
+          value={nzd(p.monthlyRent) + "/mo"}
+          note={nzd(weeklyRent) + " a week"}
+        />
         <StatTile
           label="Monthly gap"
           value={(monthlyGap >= 0 ? "+" : "−") + nzd(Math.abs(monthlyGap))}
@@ -911,10 +928,7 @@ export default function RentVsBuyCalculator() {
       </div>
 
       {/* ── Headline ────────────────────────────────────────── */}
-      <div
-        data-cmp="RentVsBuyCalculator.Headline"
-        className="rounded-2xl bg-valar-navy p-6 md:p-8"
-      >
+      <div data-cmp="RentVsBuyCalculator.Headline" className="rounded-2xl bg-valar-navy p-6 md:p-8">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-valar-amber">
           After {horizonYears} years
         </p>
@@ -932,16 +946,13 @@ export default function RentVsBuyCalculator() {
         </p>
         <p className="mt-3 max-w-[70ch] text-[15px] leading-relaxed text-valar-lilac">
           Buyer&rsquo;s equity {nzd(finalBuy)} against the renter&rsquo;s {nzd(finalRent)}, with the
-          renter {diffMode === "invest" ? "investing" : "spending"} the monthly difference. Change one
-          assumption and this number moves — that is the point of it.
+          renter {diffMode === "invest" ? "investing" : "spending"} the monthly difference. Change
+          one assumption and this number moves — that is the point of it.
         </p>
       </div>
 
       {/* ── Position over time ──────────────────────────────── */}
-      <div
-        data-cmp="RentVsBuyCalculator.Position"
-        className="rounded-2xl bg-valar-navy p-6 md:p-8"
-      >
+      <div data-cmp="RentVsBuyCalculator.Position" className="rounded-2xl bg-valar-navy p-6 md:p-8">
         <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
           <div>
             <h3 className="mb-1.5 text-xl font-bold text-white">Where you stand</h3>
@@ -950,7 +961,11 @@ export default function RentVsBuyCalculator() {
               investment balance.
             </p>
           </div>
-          <button type="button" onClick={() => setShowPositionTable((v) => !v)} className={panelButton}>
+          <button
+            type="button"
+            onClick={() => setShowPositionTable((v) => !v)}
+            className={panelButton}
+          >
             {showPositionTable ? "Show chart" : "Show table"}
           </button>
         </div>
@@ -975,16 +990,13 @@ export default function RentVsBuyCalculator() {
       </div>
 
       {/* ── What you actually pay ───────────────────────────── */}
-      <div
-        data-cmp="RentVsBuyCalculator.Payments"
-        className="rounded-2xl bg-valar-navy p-6 md:p-8"
-      >
+      <div data-cmp="RentVsBuyCalculator.Payments" className="rounded-2xl bg-valar-navy p-6 md:p-8">
         <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
           <div>
             <h3 className="mb-1.5 text-xl font-bold text-white">What you actually pay</h3>
             <p className="max-w-[62ch] text-sm leading-relaxed text-valar-lilac">
-              The mortgage itself never moves. Rates, insurance, upkeep and rent all do — which is why
-              these two lines eventually meet.
+              The mortgage itself never moves. Rates, insurance, upkeep and rent all do — which is
+              why these two lines eventually meet.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -1004,7 +1016,11 @@ export default function RentVsBuyCalculator() {
                 {f.label}
               </button>
             ))}
-            <button type="button" onClick={() => setShowPaymentTable((v) => !v)} className={panelButton}>
+            <button
+              type="button"
+              onClick={() => setShowPaymentTable((v) => !v)}
+              className={panelButton}
+            >
               {showPaymentTable ? "Show chart" : "Show table"}
             </button>
           </div>
@@ -1067,16 +1083,16 @@ export default function RentVsBuyCalculator() {
             values can fall as well as rise.
           </p>
           <p>
-            Included on the owning side: principal and interest at the rate and term you set, council
-            rates, insurance and maintenance, all growing each year. Not included: the one-off costs of
-            buying and selling — legal fees, building reports, agent commission — or any low-equity
-            margin on a deposit under 20%.
+            Included on the owning side: principal and interest at the rate and term you set,
+            council rates, insurance and maintenance, all growing each year. Not included: the
+            one-off costs of buying and selling — legal fees, building reports, agent commission —
+            or any low-equity margin on a deposit under 20%.
           </p>
           <p>
-            On the renting side, the starting investment defaults to the buyer&rsquo;s deposit so both
-            sides begin level, and returns are shown before tax and fees. Where owning costs more each
-            month, that gap is invested in full and on time, every month — which is the renter&rsquo;s
-            best case rather than the usual one.
+            On the renting side, the starting investment defaults to the buyer&rsquo;s deposit so
+            both sides begin level, and returns are shown before tax and fees. Where owning costs
+            more each month, that gap is invested in full and on time, every month — which is the
+            renter&rsquo;s best case rather than the usual one.
           </p>
         </div>
       </div>

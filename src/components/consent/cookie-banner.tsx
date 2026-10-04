@@ -28,8 +28,8 @@ export function CookieBanner() {
         >
           <div className="mx-auto max-w-3xl rounded-lg border border-valar-concrete bg-white shadow-lg p-5 md:flex md:items-center md:gap-6">
             <p className="flex-1 text-sm leading-relaxed text-valar-indigo">
-              We use cookies to understand how visitors use our site and improve
-              your experience. You can accept or decline analytics cookies. See our{" "}
+              We use cookies to understand how visitors use our site and improve your experience.
+              You can accept or decline analytics cookies. See our{" "}
               <Link
                 href="/privacy-policy"
                 className="font-semibold text-valar-navy underline underline-offset-2 hover:text-valar-amber"

@@ -26,10 +26,7 @@
 
 import { SITE_URL } from "@/lib/schema";
 import { calculate, money } from "@/lib/affordability";
-import {
-  inputsFromSnapshot,
-  type AffordabilitySnapshot,
-} from "@/lib/affordability-report";
+import { inputsFromSnapshot, type AffordabilitySnapshot } from "@/lib/affordability-report";
 
 const NAVY = "#061634";
 const AMBER = "#E8A23A";
@@ -172,7 +169,10 @@ export function renderAffordabilityEmail({
       <p style="margin:0;font-size:22px;line-height:30px;font-weight:700;color:#ffffff;">${esc(r.headline)}</p>
       <p style="margin:14px 0 0;font-size:15px;line-height:23px;font-weight:700;color:#ffffff;">${esc(r.title)}</p>
       ${r.body
-        .map((p) => `<p style="margin:8px 0 0;font-size:14px;line-height:22px;color:${LILAC};">${esc(p)}</p>`)
+        .map(
+          (p) =>
+            `<p style="margin:8px 0 0;font-size:14px;line-height:22px;color:${LILAC};">${esc(p)}</p>`,
+        )
         .join("")}`
     : `
       ${eyebrow("Indicative maximum")}
@@ -259,9 +259,27 @@ export function renderAffordabilityEmail({
    * carries every figure.
    */
   const segments = [
-    { label: "Mortgage", pct: share.mortgage, amount: r.payAtRate, fill: SPLIT.mortgage, ink: "#ffffff" },
-    { label: "Cards &amp; other loans", pct: share.loans, amount: r.debtMonthly, fill: SPLIT.owed, ink: NAVY },
-    { label: "Left to live on", pct: r.leftToLive.pct, amount: r.leftToLive.atRate, fill: SPLIT.left, ink: NAVY },
+    {
+      label: "Mortgage",
+      pct: share.mortgage,
+      amount: r.payAtRate,
+      fill: SPLIT.mortgage,
+      ink: "#ffffff",
+    },
+    {
+      label: "Cards &amp; other loans",
+      pct: share.loans,
+      amount: r.debtMonthly,
+      fill: SPLIT.owed,
+      ink: NAVY,
+    },
+    {
+      label: "Left to live on",
+      pct: r.leftToLive.pct,
+      amount: r.leftToLive.atRate,
+      fill: SPLIT.left,
+      ink: NAVY,
+    },
   ].filter((s) => s.pct > 0);
   // Past 100%, with repayments above take-home pay, the bar is scaled to fit.
   const whole = Math.max(100, share.all);
@@ -395,10 +413,16 @@ export function renderAffordabilityEmail({
     ["Everyday spending", `${money(snapshot.spend)} a month`],
     ["Rates & house insurance", `${money(snapshot.rins)} a month`],
     ...(snapshot.insurance > 0
-      ? ([["Life, health & income cover", `${money(snapshot.insurance)} a month`]] as [string, string][])
+      ? ([["Life, health & income cover", `${money(snapshot.insurance)} a month`]] as [
+          string,
+          string,
+        ][])
       : []),
     ...(snapshot.otherSpend > 0
-      ? ([["Anything else, every month", `${money(snapshot.otherSpend)} a month`]] as [string, string][])
+      ? ([["Anything else, every month", `${money(snapshot.otherSpend)} a month`]] as [
+          string,
+          string,
+        ][])
       : []),
     ["Deposit", money(snapshot.deposit)],
     ["Mortgage rate", `${snapshot.rate.toFixed(2)}%`],
@@ -556,7 +580,9 @@ export function renderAffordabilityEmail({
         `Your take-home pay: ${money(r.netMonthly)} a month`,
         ...segments.map((s) => `  ${plain(s.label)}: ${money(s.amount)}, ${s.pct}%`),
         `If mortgage rates hit 7%, ${
-          hasLoans ? `all your repayments take ${share.allAtTest}% and leave` : `the repayment takes ${share.allAtTest}% and leaves`
+          hasLoans
+            ? `all your repayments take ${share.allAtTest}% and leave`
+            : `the repayment takes ${share.allAtTest}% and leaves`
         } ${money(r.leftToLive.atTest)} to live on.`,
         "",
         "EXAMPLES BY REPAYMENT PRESSURE",

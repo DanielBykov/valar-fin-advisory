@@ -2,7 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { TAG_LABELS, type Article } from "@/lib/insights";
 
-export default function ArticleCard({ article, tone = "light" }: { article: Article; tone?: "light" | "fog" }) {
+export default function ArticleCard({
+  article,
+  tone = "light",
+}: {
+  article: Article;
+  tone?: "light" | "fog";
+}) {
   return (
     <article
       data-cmp="ArticleCard"

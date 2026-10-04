@@ -53,8 +53,7 @@ export const CALCULATORS: Calculator[] = [
   {
     slug: "repayments",
     title: "Mortgage repayments",
-    blurb:
-      "Set the loan, the rate and the term. Then add your extra and see what it saves.",
+    blurb: "Set the loan, the rate and the term. Then add your extra and see what it saves.",
     menuBlurb: "What it costs, and what extra payments save",
     icon: "trending-down",
     live: true,
@@ -62,8 +61,7 @@ export const CALCULATORS: Calculator[] = [
   {
     slug: "split-loan",
     title: "Split home loan",
-    blurb:
-      "Splitting isn't about chasing the best rate. It's about spreading the risk.",
+    blurb: "Splitting isn't about chasing the best rate. It's about spreading the risk.",
     menuBlurb: "Three parts, three rates, one real cost",
     icon: "split",
     live: true,
@@ -71,8 +69,7 @@ export const CALCULATORS: Calculator[] = [
   {
     slug: "what-can-i-buy",
     title: "How much can I borrow?",
-    blurb:
-      "Run your numbers to see what your income, deposit and commitments support.",
+    blurb: "Run your numbers to see what your income, deposit and commitments support.",
     menuBlurb: "Your maximum loan, and what it buys",
     icon: "home",
     live: true,

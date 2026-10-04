@@ -59,43 +59,223 @@ import { calculate, down1k, livingBenchmark, money, shareBand } from "../src/lib
 const CASES = [
   {
     name: "Defaults — couple, comfortable",
-    input: { who: "2", inc1: "85,000", inc2: "70,000", deps: "0", kiwi1: "0", kiwi2: "0", spend: "2,200", dep: "120,000", cc: "0", car: "0", stud: "0", other: "0", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "2",
+      inc1: "85,000",
+      inc2: "70,000",
+      deps: "0",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "2,200",
+      dep: "120,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
   {
     name: "Single buyer, modest income",
-    input: { who: "1", inc1: "72,000", inc2: "0", deps: "0", kiwi1: "0", kiwi2: "0", spend: "1,900", dep: "80,000", cc: "0", car: "0", stud: "0", other: "0", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "1",
+      inc1: "72,000",
+      inc2: "0",
+      deps: "0",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "1,900",
+      dep: "80,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
   {
     name: "Deposit binds — big income, small deposit",
-    input: { who: "2", inc1: "140,000", inc2: "120,000", deps: "0", kiwi1: "0", kiwi2: "0", spend: "2,000", dep: "60,000", cc: "0", car: "0", stud: "0", other: "0", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "2",
+      inc1: "140,000",
+      inc2: "120,000",
+      deps: "0",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "2,000",
+      dep: "60,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
   {
     name: "DTI binds — very high income, large deposit",
-    input: { who: "2", inc1: "150,000", inc2: "150,000", deps: "0", kiwi1: "0", kiwi2: "0", spend: "1,500", dep: "600,000", cc: "0", car: "0", stud: "0", other: "0", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "2",
+      inc1: "150,000",
+      inc2: "150,000",
+      deps: "0",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "1,500",
+      dep: "600,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
   {
     name: "Cannot service — low income, high spend",
-    input: { who: "1", inc1: "48,000", inc2: "0", deps: "2", kiwi1: "0", kiwi2: "0", spend: "3,200", dep: "90,000", cc: "0", car: "0", stud: "0", other: "0", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "1",
+      inc1: "48,000",
+      inc2: "0",
+      deps: "2",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "3,200",
+      dep: "90,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
   {
     name: "Very small deposit",
-    input: { who: "1", inc1: "90,000", inc2: "0", deps: "0", kiwi1: "0", kiwi2: "0", spend: "1,800", dep: "2,000", cc: "0", car: "0", stud: "0", other: "0", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "1",
+      inc1: "90,000",
+      inc2: "0",
+      deps: "0",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "1,800",
+      dep: "2,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
   {
     name: "With debts — card limits and a car loan",
-    input: { who: "2", inc1: "95,000", inc2: "80,000", deps: "1", kiwi1: "0", kiwi2: "0", spend: "2,400", dep: "150,000", cc: "15,000", car: "650", stud: "220", other: "0", rate: "6.50", rins: "450", ins: "0", extra: "0", detailed: true },
+    input: {
+      who: "2",
+      inc1: "95,000",
+      inc2: "80,000",
+      deps: "1",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "2,400",
+      dep: "150,000",
+      cc: "15,000",
+      car: "650",
+      stud: "220",
+      other: "0",
+      rate: "6.50",
+      rins: "450",
+      ins: "0",
+      extra: "0",
+      detailed: true,
+    },
   },
   {
     name: "With debts — heavy enough to block servicing",
-    input: { who: "1", inc1: "70,000", inc2: "0", deps: "1", kiwi1: "0", kiwi2: "0", spend: "2,300", dep: "100,000", cc: "25,000", car: "900", stud: "400", other: "300", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: true },
+    input: {
+      who: "1",
+      inc1: "70,000",
+      inc2: "0",
+      deps: "1",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "2,300",
+      dep: "100,000",
+      cc: "25,000",
+      car: "900",
+      stud: "400",
+      other: "300",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: true,
+    },
   },
   {
     name: "Living cost floor kicks in",
-    input: { who: "2", inc1: "110,000", inc2: "95,000", deps: "3", kiwi1: "0", kiwi2: "0", spend: "800", dep: "200,000", cc: "0", car: "0", stud: "0", other: "0", rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "2",
+      inc1: "110,000",
+      inc2: "95,000",
+      deps: "3",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "800",
+      dep: "200,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "6.50",
+      rins: "400",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
   {
     name: "Different rate and rates/insurance",
-    input: { who: "2", inc1: "88,000", inc2: "0", deps: "0", kiwi1: "0", kiwi2: "0", spend: "2,100", dep: "140,000", cc: "0", car: "0", stud: "0", other: "0", rate: "7.95", rins: "720", ins: "0", extra: "0", detailed: false },
+    input: {
+      who: "2",
+      inc1: "88,000",
+      inc2: "0",
+      deps: "0",
+      kiwi1: "0",
+      kiwi2: "0",
+      spend: "2,100",
+      dep: "140,000",
+      cc: "0",
+      car: "0",
+      stud: "0",
+      other: "0",
+      rate: "7.95",
+      rins: "720",
+      ins: "0",
+      extra: "0",
+      detailed: false,
+    },
   },
 ];
 
@@ -153,9 +333,17 @@ for (const testCase of CASES) {
   // The original writes its answers into DOM nodes; line them up with the
   // fields the ported version returns.
   const comparisons = [
-    ["headline price", original["out-price"], ported.blocked ? (LEGACY_HEADLINES[ported.headline] ?? ported.headline) : money(legacyPrice)],
+    [
+      "headline price",
+      original["out-price"],
+      ported.blocked ? (LEGACY_HEADLINES[ported.headline] ?? ported.headline) : money(legacyPrice),
+    ],
     ["loan", original["out-loan"], ported.blocked ? "—" : money(legacyLoan)],
-    ["deposit", original["out-dep"], ported.blocked && ported.depAvail <= 0 ? "—" : money(ported.depAvail)],
+    [
+      "deposit",
+      original["out-dep"],
+      ported.blocked && ported.depAvail <= 0 ? "—" : money(ported.depAvail),
+    ],
   ];
 
   for (const [label, expected, actual] of comparisons) {
@@ -214,9 +402,23 @@ for (const testCase of CASES) {
 // built so servicing is what limits the loan.
 {
   const base = {
-    who: "1", inc1: "70,000", inc2: "0", deps: "2", kiwi1: "0", kiwi2: "0",
-    spend: "800", dep: "90,000", cc: "0", car: "0", stud: "0", other: "0",
-    rate: "6.50", rins: "400", ins: "0", extra: "0", detailed: false,
+    who: "1",
+    inc1: "70,000",
+    inc2: "0",
+    deps: "2",
+    kiwi1: "0",
+    kiwi2: "0",
+    spend: "800",
+    dep: "90,000",
+    cc: "0",
+    car: "0",
+    stud: "0",
+    other: "0",
+    rate: "6.50",
+    rins: "400",
+    ins: "0",
+    extra: "0",
+    detailed: false,
   };
 
   const r = calculate(base);
@@ -253,9 +455,23 @@ for (const testCase of CASES) {
 // limit included, the same monthly figure the servicing test uses.
 {
   const base = {
-    who: "1", inc1: "90,000", inc2: "0", deps: "0", kiwi1: "0", kiwi2: "0",
-    spend: "2,000", dep: "100,000", cc: "0", car: "0", stud: "0", other: "0",
-    rate: "5.59", rins: "400", ins: "0", extra: "0", detailed: true,
+    who: "1",
+    inc1: "90,000",
+    inc2: "0",
+    deps: "0",
+    kiwi1: "0",
+    kiwi2: "0",
+    spend: "2,000",
+    dep: "100,000",
+    cc: "0",
+    car: "0",
+    stud: "0",
+    other: "0",
+    rate: "5.59",
+    rins: "400",
+    ins: "0",
+    extra: "0",
+    detailed: true,
   };
   const fail = (msg) => {
     failures += 1;
@@ -266,7 +482,11 @@ for (const testCase of CASES) {
   // straight share of pay.
   const plain = calculate(base);
   checks += 1;
-  if (plain.debtMonthly !== 0 || plain.repaymentShare.loans !== 0 || plain.repaymentShare.all !== plain.repaymentShare.mortgage) {
+  if (
+    plain.debtMonthly !== 0 ||
+    plain.repaymentShare.loans !== 0 ||
+    plain.repaymentShare.all !== plain.repaymentShare.mortgage
+  ) {
     fail("with no loans the total share should equal the mortgage share");
   }
   checks += 1;
@@ -280,23 +500,38 @@ for (const testCase of CASES) {
   const owed = 10000 * 0.038 + 600 + 250 + 150;
   checks += 1;
   if (Math.abs(loaded.debtMonthly - owed) > 0.005) {
-    fail(`monthly debt should be cards at 3.8% + car + student + other = ${owed}, got ${loaded.debtMonthly}`);
+    fail(
+      `monthly debt should be cards at 3.8% + car + student + other = ${owed}, got ${loaded.debtMonthly}`,
+    );
   }
   checks += 1;
   const expectAll = Math.round(((loaded.payAtRate + owed) / loaded.netMonthly) * 100);
-  if (s.all !== expectAll || s.mortgage !== Math.round(loaded.shareAtRate * 100) || s.mortgage + s.loans !== s.all) {
-    fail(`shares do not add up: mortgage ${s.mortgage} + loans ${s.loans} vs all ${s.all} (expected ${expectAll})`);
+  if (
+    s.all !== expectAll ||
+    s.mortgage !== Math.round(loaded.shareAtRate * 100) ||
+    s.mortgage + s.loans !== s.all
+  ) {
+    fail(
+      `shares do not add up: mortgage ${s.mortgage} + loans ${s.loans} vs all ${s.all} (expected ${expectAll})`,
+    );
   }
   checks += 1;
   if (s.band.label !== shareBand(s.all / 100).label) {
     fail(`band ${s.band.label} is not the band of the ${s.all}% total`);
   }
   checks += 1;
-  if (!loaded.caution.detail.includes(`${s.all}%`) || !loaded.caution.detail.includes(s.band.label)) {
+  if (
+    !loaded.caution.detail.includes(`${s.all}%`) ||
+    !loaded.caution.detail.includes(s.band.label)
+  ) {
     fail(`caution does not quote the total: ${loaded.caution.detail}`);
   }
   checks += 1;
-  if (loaded.levels.some((l) => Math.abs(l.payment - Math.max(0, loaded.netMonthly * l.share - owed)) > 0.005)) {
+  if (
+    loaded.levels.some(
+      (l) => Math.abs(l.payment - Math.max(0, loaded.netMonthly * l.share - owed)) > 0.005,
+    )
+  ) {
     fail("each row's mortgage payment should be the share of pay less cards and loans");
   }
 
@@ -316,7 +551,9 @@ for (const testCase of CASES) {
   const cardsOnly = calculate({ ...base, cc: "20,000" });
   checks += 1;
   if (!(cardsOnly.debtMonthly > 0 && cardsOnly.repaymentShare.loans > 0)) {
-    fail(`a card limit on its own should count: debt ${cardsOnly.debtMonthly}, loans share ${cardsOnly.repaymentShare.loans}%`);
+    fail(
+      `a card limit on its own should count: debt ${cardsOnly.debtMonthly}, loans share ${cardsOnly.repaymentShare.loans}%`,
+    );
   }
 
   // Loans bigger than the whole 30% share: that row has no mortgage in it.
@@ -324,12 +561,16 @@ for (const testCase of CASES) {
   const first = buried.levels[0];
   checks += 1;
   if (!(buried.netMonthly * 0.3 < 2400) || first.payment !== 0 || first.loan !== 0) {
-    fail(`30% row should be empty when loans exceed it: payment ${first.payment}, loan ${first.loan}`);
+    fail(
+      `30% row should be empty when loans exceed it: payment ${first.payment}, loan ${first.loan}`,
+    );
   }
 }
 
 if (failures === 0) {
-  console.log(`✓ ${checks} checks across ${CASES.length} scenarios — the servicing engine still matches the original.`);
+  console.log(
+    `✓ ${checks} checks across ${CASES.length} scenarios — the servicing engine still matches the original.`,
+  );
 } else {
   console.error(`\n✗ ${failures} of ${checks} checks failed.`);
   process.exit(1);

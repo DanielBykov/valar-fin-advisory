@@ -4,10 +4,19 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import portraitImg from "../../../public/images/lena-portrait.webp";
-import { Calendar, ArrowRight, Download, Gauge, ChevronDown, Globe, Instagram, Linkedin, Facebook } from "lucide-react";
+import {
+  Calendar,
+  ArrowRight,
+  Download,
+  Gauge,
+  ChevronDown,
+  Globe,
+  Instagram,
+  Linkedin,
+  Facebook,
+} from "lucide-react";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
 import { LEAD_MAGNETS } from "@/lib/lead-magnets";
-
 
 // Set this to the borrowing-capacity tool's URL and the tile appears. Left null
 // on purpose: a dead link in the Instagram bio is worse than one fewer tile.
@@ -33,8 +42,12 @@ export default function StartContent() {
       data-cmp="StartPage"
       className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-valar-navy font-sans"
     >
-      <GuideDownloadModal open={guideOpen} onClose={() => setGuideOpen(false)} guide={LEAD_MAGNETS["first-home-buyer-guide"]}
-        source="Instagram link page" />
+      <GuideDownloadModal
+        open={guideOpen}
+        onClose={() => setGuideOpen(false)}
+        guide={LEAD_MAGNETS["first-home-buyer-guide"]}
+        source="Instagram link page"
+      />
 
       {/* The Valar banner artwork, rebuilt as a gradient rather than shipped as
           the source PNG.
@@ -68,7 +81,14 @@ export default function StartContent() {
         {/* The plain VALAR mark, not the lockup with the "Financial Advisors"
             tagline — the brand stands alone here. */}
         <div className="relative h-8 w-[150px]">
-          <Image src="/images/valar-logo.webp" alt="Valar" fill sizes="150px" priority className="object-contain" />
+          <Image
+            src="/images/valar-logo.webp"
+            alt="Valar"
+            fill
+            sizes="150px"
+            priority
+            className="object-contain"
+          />
         </div>
 
         {/* The source photo is a half-body shot, so the face is small in frame.
@@ -100,8 +120,8 @@ export default function StartContent() {
         {/* One paragraph, and it stops short of naming the action — the button
             immediately below already says "book a clarity call". */}
         <p className="mt-4 max-w-md text-center text-[17px] font-light leading-relaxed text-white/85">
-          I help you get the home loan and build wealth behind it.
-          Feel free to discuss your financial situation.
+          I help you get the home loan and build wealth behind it. Feel free to discuss your
+          financial situation.
         </p>
 
         {/* PRIMARY */}
@@ -211,8 +231,16 @@ export default function StartContent() {
         {/* SOCIALS — the globe goes to the site, alongside the three channels */}
         <div className="mt-8 flex items-center gap-3">
           {[
-            { href: "https://www.instagram.com/lena.valarnz/", label: "Instagram", Icon: Instagram },
-            { href: "https://www.linkedin.com/company/valar-advisors", label: "LinkedIn", Icon: Linkedin },
+            {
+              href: "https://www.instagram.com/lena.valarnz/",
+              label: "Instagram",
+              Icon: Instagram,
+            },
+            {
+              href: "https://www.linkedin.com/company/valar-advisors",
+              label: "LinkedIn",
+              Icon: Linkedin,
+            },
             { href: "https://www.facebook.com/lena.valarnz", label: "Facebook", Icon: Facebook },
             { href: "https://valar.co.nz", label: "Website", Icon: Globe },
           ].map(({ href, label, Icon }) => (
@@ -238,11 +266,17 @@ export default function StartContent() {
             <span className="text-valar-lilac">Financial Adviser</span>
           </p>
           <p className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-valar-lilac/60">
-            <Link href="/" className="transition-colors hover:text-valar-amber">valar.co.nz</Link>
+            <Link href="/" className="transition-colors hover:text-valar-amber">
+              valar.co.nz
+            </Link>
             <span className="text-valar-lilac/25">|</span>
-            <Link href="/disclosure" className="transition-colors hover:text-valar-amber">Disclosure</Link>
+            <Link href="/disclosure" className="transition-colors hover:text-valar-amber">
+              Disclosure
+            </Link>
             <span className="text-valar-lilac/25">|</span>
-            <Link href="/privacy-policy" className="transition-colors hover:text-valar-amber">Privacy</Link>
+            <Link href="/privacy-policy" className="transition-colors hover:text-valar-amber">
+              Privacy
+            </Link>
           </p>
         </div>
       </div>

@@ -101,7 +101,14 @@ export default function CardContent() {
         className="relative z-10 flex w-full max-w-xl flex-col items-center px-6 py-12 md:my-12 md:rounded-sm md:border md:border-white/10 md:bg-valar-navy/25 md:px-10 md:py-14 md:shadow-2xl"
       >
         <div className="relative h-8 w-[150px]">
-          <Image src="/images/valar-logo.webp" alt="Valar" fill sizes="150px" priority className="object-contain" />
+          <Image
+            src="/images/valar-logo.webp"
+            alt="Valar"
+            fill
+            sizes="150px"
+            priority
+            className="object-contain"
+          />
         </div>
 
         {/* Exactly the photo and framing from /start, which Lena prefers: the
@@ -133,7 +140,9 @@ export default function CardContent() {
             out each sentence's wrap at phone width. */}
         <p className="mt-4 max-w-md text-balance text-center text-[17px] font-light leading-relaxed text-white/85">
           <span className="block">Home loans, investment property and business lending.</span>
-          <span className="block">I help individuals and business owners find the right finance.</span>
+          <span className="block">
+            I help individuals and business owners find the right finance.
+          </span>
         </p>
 
         {/* PRIMARY. A plain <a> with no download attribute, so the phone decides
@@ -191,7 +200,12 @@ export default function CardContent() {
         </p>
         <div className="mt-3 flex w-full flex-col gap-3">
           {shelf.map(({ href, title, sub, Icon, cmp }) => (
-            <Link key={href} href={href} data-cmp={`CardPage.Link.${cmp}`} className={`${tile} ${tileSecondary}`}>
+            <Link
+              key={href}
+              href={href}
+              data-cmp={`CardPage.Link.${cmp}`}
+              className={`${tile} ${tileSecondary}`}
+            >
               <Icon className="h-5 w-5 shrink-0 text-valar-amber" />
               <span className="flex-1">
                 <span className="block font-bold">{title}</span>
@@ -231,9 +245,13 @@ export default function CardContent() {
             /start. Keep it when tidying. */}
         <div className="mt-10 w-full border-t border-white/10 pt-6 text-center">
           <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-valar-lilac/60">
-            <Link href="/disclosure" className="transition-colors hover:text-valar-amber">Disclosure</Link>
+            <Link href="/disclosure" className="transition-colors hover:text-valar-amber">
+              Disclosure
+            </Link>
             <span className="text-valar-lilac/25">|</span>
-            <Link href="/privacy-policy" className="transition-colors hover:text-valar-amber">Privacy</Link>
+            <Link href="/privacy-policy" className="transition-colors hover:text-valar-amber">
+              Privacy
+            </Link>
           </p>
         </div>
       </div>

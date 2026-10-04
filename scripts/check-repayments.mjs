@@ -57,8 +57,11 @@ const input = (over = {}) => ({
   // Not a maths check — a guard so the placeholder rate cannot drift back up
   // without someone noticing. 5% is roughly the one-year fixed rate.
   const r = calculateRepayments(input({ rate: 5 }));
-  ok("a 5% default produces a sane fortnightly figure on $650k over 30 years",
-    r.basePayment > 1_500 && r.basePayment < 1_700, `got ${r.basePayment}`);
+  ok(
+    "a 5% default produces a sane fortnightly figure on $650k over 30 years",
+    r.basePayment > 1_500 && r.basePayment < 1_700,
+    `got ${r.basePayment}`,
+  );
 }
 
 // ── 3 · The balance series starts and ends where it must ────────────────
@@ -70,7 +73,11 @@ const input = (over = {}) => ({
   near("series starts at year 0", s[0].year, 0);
   near("series has one point per year plus the start", s.length, 31);
   near("series ends at year 30", s[s.length - 1].year, 30);
-  ok("the balance is cleared by the end", s[s.length - 1].base < 1_000, `got ${s[s.length - 1].base}`);
+  ok(
+    "the balance is cleared by the end",
+    s[s.length - 1].base < 1_000,
+    `got ${s[s.length - 1].base}`,
+  );
 
   // A P&I balance only ever falls.
   let monotonic = true;
@@ -80,14 +87,20 @@ const input = (over = {}) => ({
   // Early on, most of the payment is interest — after one year of a 30-year
   // loan barely 1.5% of the principal is gone.
   const paidInYearOne = 650_000 - s[1].base;
-  ok("year one repays only a sliver of principal",
-    paidInYearOne > 5_000 && paidInYearOne < 15_000, `got ${paidInYearOne}`);
+  ok(
+    "year one repays only a sliver of principal",
+    paidInYearOne > 5_000 && paidInYearOne < 15_000,
+    `got ${paidInYearOne}`,
+  );
 }
 
 // ── 4 · With no extra, the two lines are identical ──────────────────────
 {
   const s = calculateRepayments(input({ extraValue: 0 })).series;
-  ok("no extra means no gap", s.every((p) => p.base === p.withExtra));
+  ok(
+    "no extra means no gap",
+    s.every((p) => p.base === p.withExtra),
+  );
 }
 
 // ── 5 · An extra repayment pulls the second line below the first ────────
@@ -95,12 +108,17 @@ const input = (over = {}) => ({
   const r = calculateRepayments(input({ extraMode: "amount", extraValue: 200 }));
   const s = r.series;
 
-  ok("the extra line sits below the base line", s.slice(1, -1).every((p) => p.withExtra < p.base));
+  ok(
+    "the extra line sits below the base line",
+    s.slice(1, -1).every((p) => p.withExtra < p.base),
+  );
   ok("the gap widens over time", s[20].base - s[20].withExtra > s[5].base - s[5].withExtra);
   ok("the loan clears early", r.periodsSaved > 0);
   ok("interest is saved", r.interestSaved > 0);
-  ok("the extra line reaches zero before the term ends",
-    s.some((p) => p.withExtra === 0 && p.year < 30));
+  ok(
+    "the extra line reaches zero before the term ends",
+    s.some((p) => p.withExtra === 0 && p.year < 30),
+  );
 }
 
 // ── 6 · Percent and amount agree on the same money ──────────────────────
@@ -111,7 +129,11 @@ const input = (over = {}) => ({
   const byAmount = calculateRepayments(
     input({ extraMode: "amount", extraValue: 13_000 / perYear }),
   );
-  near("percent and amount agree on the payment", byPercent.extraPerPeriod, byAmount.extraPerPeriod);
+  near(
+    "percent and amount agree on the payment",
+    byPercent.extraPerPeriod,
+    byAmount.extraPerPeriod,
+  );
   near("and on the interest saved", byPercent.interestSaved, byAmount.interestSaved, 1);
 }
 
@@ -130,7 +152,11 @@ const input = (over = {}) => ({
 
 // ── 8 · Every frequency behaves ─────────────────────────────────────────
 {
-  for (const [frequency, perYear] of [["weekly", 52], ["fortnightly", 26], ["monthly", 12]]) {
+  for (const [frequency, perYear] of [
+    ["weekly", 52],
+    ["fortnightly", 26],
+    ["monthly", 12],
+  ]) {
     const r = calculateRepayments(input({ frequency }));
     near(`${frequency}: perYear`, r.perYear, perYear);
     near(`${frequency}: series length`, r.series.length, 31);
@@ -139,17 +165,26 @@ const input = (over = {}) => ({
   // The annual cost should be within a couple of percent across frequencies.
   const w = calculateRepayments(input({ frequency: "weekly" }));
   const m = calculateRepayments(input({ frequency: "monthly" }));
-  near("annual cost is close across frequencies",
-    w.basePayment * 52, m.basePayment * 12, m.basePayment * 12 * 0.02);
+  near(
+    "annual cost is close across frequencies",
+    w.basePayment * 52,
+    m.basePayment * 12,
+    m.basePayment * 12 * 0.02,
+  );
 }
 
 // ── 9 · A payment that cannot cover the interest does not explode ───────
 {
   // balanceSeries is called directly with a deliberately hopeless payment.
   const s = balanceSeries(500_000, 0.06 / 12, 100, 0, 360, 12);
-  ok("a hopeless payment holds the balance rather than growing it",
-    s.every((p) => p.base <= 500_000 && p.base > 0));
-  ok("and never goes negative", s.every((p) => p.base >= 0));
+  ok(
+    "a hopeless payment holds the balance rather than growing it",
+    s.every((p) => p.base <= 500_000 && p.base > 0),
+  );
+  ok(
+    "and never goes negative",
+    s.every((p) => p.base >= 0),
+  );
 }
 
 // ── 10 · Shorter terms and higher rates move the right way ──────────────

@@ -30,7 +30,13 @@ interface GuideDownloadModalProps {
  * renders straight onto the page instead. A cold visitor from a Facebook group
  * is one tap from leaving, and a form behind a button is that tap.
  */
-export function GuideDownloadModal({ open, onClose, guide, source, copy }: GuideDownloadModalProps) {
+export function GuideDownloadModal({
+  open,
+  onClose,
+  guide,
+  source,
+  copy,
+}: GuideDownloadModalProps) {
   if (!open) return null;
 
   return (

@@ -78,8 +78,16 @@ const part = (over = {}) => ({
 // into twelve months. Getting this wrong produced a repayment ~8x too large.
 {
   const perYear = 26;
-  const oneYearFix = calculatePart(part({ amount: 300_000, rate: 5.79, fixedYears: 1 }), perYear, 30);
-  const fiveYearFix = calculatePart(part({ amount: 300_000, rate: 5.79, fixedYears: 5 }), perYear, 30);
+  const oneYearFix = calculatePart(
+    part({ amount: 300_000, rate: 5.79, fixedYears: 1 }),
+    perYear,
+    30,
+  );
+  const fiveYearFix = calculatePart(
+    part({ amount: 300_000, rate: 5.79, fixedYears: 5 }),
+    perYear,
+    30,
+  );
 
   near(
     "the fixed period does not change the repayment",
@@ -116,7 +124,11 @@ const part = (over = {}) => ({
   const perYear = 26;
   const i = annual / 100 / perYear;
 
-  const r = calculatePart(part({ amount: P, rate: annual, fixedYears: 5, type: "io" }), perYear, 30);
+  const r = calculatePart(
+    part({ amount: P, rate: annual, fixedYears: 5, type: "io" }),
+    perYear,
+    30,
+  );
 
   near("interest-only payment is the interest charge", r.basePayment, P * i);
   near("interest-only interest over the fix", r.interestDuringFixed, P * i * 5 * perYear);
@@ -161,7 +173,11 @@ const part = (over = {}) => ({
     30,
   );
 
-  near("weighted average rate", split.weightedAverageRate, ((15_000 + 12_000 + 7_000) / 600_000) * 100);
+  near(
+    "weighted average rate",
+    split.weightedAverageRate,
+    ((15_000 + 12_000 + 7_000) / 600_000) * 100,
+  );
   near("total principal", split.totalPrincipal, 600_000);
   near("first re-fix is the shortest fix", split.nextRefixYears, 2);
   ok(
@@ -321,7 +337,14 @@ const part = (over = {}) => ({
 // ── 12 · An extra on an interest-only part does reduce the balance ──────
 {
   const r = calculatePart(
-    part({ amount: 300_000, rate: 6, fixedYears: 5, type: "io", extraMode: "percent", extraValue: 5 }),
+    part({
+      amount: 300_000,
+      rate: 6,
+      fixedYears: 5,
+      type: "io",
+      extraMode: "percent",
+      extraValue: 5,
+    }),
     12,
     30,
   );

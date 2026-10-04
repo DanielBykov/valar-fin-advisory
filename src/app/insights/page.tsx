@@ -41,7 +41,8 @@ function glossaryTeaser(): GlossaryTeaser | null {
   const featured = GLOSSARY_FEATURED.map((slug) => {
     const entry = entries.find((e) => e.slug === slug);
     // Renaming a term changes its anchor. Fail the build rather than ship a dead link.
-    if (!entry) throw new Error(`Insights hub: the glossary card names "${slug}", which is not a term.`);
+    if (!entry)
+      throw new Error(`Insights hub: the glossary card names "${slug}", which is not a term.`);
     return { slug, term: entry.term };
   });
 

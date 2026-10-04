@@ -68,11 +68,7 @@ const PRINT_CSS = `
 }
 `;
 
-export default function RepaymentReportContent({
-  snapshot,
-}: {
-  snapshot: RepaymentSnapshot;
-}) {
+export default function RepaymentReportContent({ snapshot }: { snapshot: RepaymentSnapshot }) {
   const r = calculateRepayments(snapshot);
   const freqLabel = FREQUENCIES.find((f) => f.key === snapshot.frequency)?.label ?? "Fortnightly";
   const usingExtra = r.extraPerPeriod > 0;
@@ -148,7 +144,9 @@ export default function RepaymentReportContent({
                   {inputs.map(([label, value]) => (
                     <div key={label} className="flex items-baseline justify-between gap-4">
                       <dt className="text-[13px] text-gray-600">{label}</dt>
-                      <dd className="text-[13px] font-bold tabular-nums text-valar-navy">{value}</dd>
+                      <dd className="text-[13px] font-bold tabular-nums text-valar-navy">
+                        {value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
@@ -250,11 +248,12 @@ export default function RepaymentReportContent({
             </div>
 
             <p className="report-legal mt-5 text-[11px] leading-relaxed text-gray-500">
-              Indicative only. It assumes the rate stays fixed for the full term, which it will not —
-              this is a comparison tool, not a quote, and not personalised advice on any particular
-              loan. Valar Financial Advisors Limited (FSP1012862) holds a Financial Advice Provider
-              licence issued by the FMA. Financial advice is provided by Lena Bykova, Director and
-              Financial Adviser (FSP1010055). Disclosure statement: valar.co.nz/disclosure
+              Indicative only. It assumes the rate stays fixed for the full term, which it will not
+              — this is a comparison tool, not a quote, and not personalised advice on any
+              particular loan. Valar Financial Advisors Limited (FSP1012862) holds a Financial
+              Advice Provider licence issued by the FMA. Financial advice is provided by Lena
+              Bykova, Director and Financial Adviser (FSP1010055). Disclosure statement:
+              valar.co.nz/disclosure
             </p>
           </div>
         </div>

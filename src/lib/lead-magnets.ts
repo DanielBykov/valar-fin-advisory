@@ -28,9 +28,7 @@ export type LeadMagnetKey =
  * components — only the server ever resolves one.
  */
 export type GroupEnvVar =
-  | "MAILERLITE_FHB_GROUP_ID"
-  | "MAILERLITE_CALCULATORS_GROUP_ID"
-  | "MAILERLITE_UA_GROUP_ID";
+  "MAILERLITE_FHB_GROUP_ID" | "MAILERLITE_CALCULATORS_GROUP_ID" | "MAILERLITE_UA_GROUP_ID";
 
 export type LeadMagnet = {
   key: LeadMagnetKey;
@@ -93,8 +91,7 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
   "pay-your-mortgage-off-faster": {
     key: "pay-your-mortgage-off-faster",
     title: "10 Ways to Pay Your Mortgage Off Faster",
-    description:
-      "The things that actually move the number, in the order worth doing them.",
+    description: "The things that actually move the number, in the order worth doing them.",
     groupEnv: "MAILERLITE_CALCULATORS_GROUP_ID",
     groupLabel: "Calculators",
     file: "/resources/guides/pay-your-mortgage-off-faster.pdf",
@@ -166,8 +163,7 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
   "ua-first-home-webinar": {
     key: "ua-first-home-webinar",
     title: "Вебінар: як працює іпотека в Новій Зеландії",
-    description:
-      "Запис, який можна дивитися коли завгодно, просто на цій сторінці.",
+    description: "Запис, який можна дивитися коли завгодно, просто на цій сторінці.",
     groupEnv: "MAILERLITE_UA_GROUP_ID",
     groupLabel: "Ukrainian community",
     fallbackGroupEnv: null,
@@ -183,4 +179,3 @@ export function getLeadMagnet(key: unknown): LeadMagnet | undefined {
 export function isReady(magnet: LeadMagnet): boolean {
   return Boolean(magnet.file);
 }
-

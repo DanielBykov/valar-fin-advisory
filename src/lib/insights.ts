@@ -233,7 +233,8 @@ export const ARTICLES: Article[] = [
       { type: "h2", text: "The one that deserves a serious answer" },
       {
         type: "objection",
-        quote: "I'd rather invest the difference myself. More flexible, and probably more profitable.",
+        quote:
+          "I'd rather invest the difference myself. More flexible, and probably more profitable.",
         fair: "Run properly, this can beat buying. The maths is sound, and anyone in my industry who waves it away is selling you something.",
         points: [
           "It depends on a surplus that does not stay the same size. Rent resets upward; a principal-and-interest repayment is fixed in dollars.",
@@ -241,7 +242,8 @@ export const ARTICLES: Article[] = [
           "It also assumes a person who never skips a contribution, through a bad year, a broken car and a better holiday. Most people are not that person, and everybody thinks they are.",
           "Investment returns are taxed as they are earned. The gain on the home you live in generally is not. That gap sits under every comparison you will read online.",
         ],
-        bottom: "A mortgage doesn't ask permission. That's the whole reason it works for most people.",
+        bottom:
+          "A mortgage doesn't ask permission. That's the whole reason it works for most people.",
       },
 
       { type: "h2", text: "The risk objections" },
@@ -673,7 +675,6 @@ export const ARTICLES: Article[] = [
           "Your real number: the balance in the app, less the $1,000 that stays behind, and knowing it will still move with the market until the day it is paid.",
         ],
       },
-
     ],
     takeaways: [
       "The first-home withdrawal is early access to your own KiwiSaver balance, not government money.",
@@ -890,8 +891,7 @@ export const ARTICLES: Article[] = [
     topics: ["AI and the economy", "Scarcity", "Land", "Long-term thinking"],
     image: {
       src: "/images/ai-abundance-nz-farm.png",
-      alt:
-        "A humanoid robot carrying a steel milk churn stands in a New Zealand paddock among grazing dairy cows, while a rocket marked for Mars lifts off over the hills behind.",
+      alt: "A humanoid robot carrying a steel milk churn stands in a New Zealand paddock among grazing dairy cows, while a rocket marked for Mars lifts off over the hills behind.",
     },
     readingMinutes: 6,
     // Wealth/thinking piece, not mortgage advice: general commentary, not
@@ -1093,7 +1093,8 @@ export function publishedArticles(): Article[] {
 
 /** Published articles, plus drafts when running locally, so layout can be reviewed. */
 export function visibleArticles(): Article[] {
-  const list = process.env.NODE_ENV === "development" ? [...ARTICLES] : ARTICLES.filter((a) => !a.draft);
+  const list =
+    process.env.NODE_ENV === "development" ? [...ARTICLES] : ARTICLES.filter((a) => !a.draft);
   return list.sort(byNewest);
 }
 

@@ -91,7 +91,8 @@ export default function GlossaryContent({
 
   const lettersShown = new Set(groups.map(([letter]) => letter));
 
-  const countFor = (id: GlossaryCategory) => entries.filter((e) => e.categories.includes(id)).length;
+  const countFor = (id: GlossaryCategory) =>
+    entries.filter((e) => e.categories.includes(id)).length;
 
   // A see-also link can point at a term the current filter hides. Clear the
   // filter first, then scroll once the term is back on the page.
@@ -138,7 +139,10 @@ export default function GlossaryContent({
   return (
     <div data-cmp="GlossaryPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section data-cmp="GlossaryPage.Hero" className="relative overflow-hidden bg-valar-navy text-white">
+      <section
+        data-cmp="GlossaryPage.Hero"
+        className="relative overflow-hidden bg-valar-navy text-white"
+      >
         <div className="absolute inset-0 z-0">
           <Image
             src={heroImg}
@@ -165,15 +169,28 @@ export default function GlossaryContent({
             <ArrowLeft className="h-4 w-4" />
             Insights
           </Link>
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="max-w-4xl"
+          >
             <motion.div variants={fadeIn} className="mb-3 flex flex-col space-y-2">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Plain English</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">
+                Plain English
+              </span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-3 tracking-tight leading-[1.1] text-white">
+            <motion.h1
+              variants={fadeIn}
+              className="text-4xl md:text-5xl font-bold mb-3 tracking-tight leading-[1.1] text-white"
+            >
               Glossary<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="max-w-2xl text-base text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light">
+            <motion.p
+              variants={fadeIn}
+              className="max-w-2xl text-base text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light"
+            >
               A simple guide to the terms you’ll come across in mortgages, property, KiwiSaver and
               investing, and why they matter.
             </motion.p>
@@ -213,32 +230,38 @@ export default function GlossaryContent({
           </div>
 
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter terms by topic">
-            {[{ id: "all" as const, title: "All", count: entries.length }, ...categories.map((c) => ({ ...c, count: countFor(c.id) }))].map(
-              (chip) => {
-                const active = activeCategory === chip.id;
-                return (
-                  <button
-                    key={chip.id}
-                    type="button"
-                    onClick={() => setActiveCategory(chip.id)}
-                    aria-pressed={active}
-                    className={[
-                      "rounded-sm px-3 py-1.5 text-[13px] font-semibold transition-colors",
-                      active
-                        ? "bg-valar-navy text-white"
-                        : "border border-valar-concrete bg-white text-valar-navy hover:border-valar-navy",
-                    ].join(" ")}
-                  >
-                    {chip.title}
-                    <span className={active ? "ml-1.5 text-white/60" : "ml-1.5 text-gray-400"}>{chip.count}</span>
-                  </button>
-                );
-              },
-            )}
+            {[
+              { id: "all" as const, title: "All", count: entries.length },
+              ...categories.map((c) => ({ ...c, count: countFor(c.id) })),
+            ].map((chip) => {
+              const active = activeCategory === chip.id;
+              return (
+                <button
+                  key={chip.id}
+                  type="button"
+                  onClick={() => setActiveCategory(chip.id)}
+                  aria-pressed={active}
+                  className={[
+                    "rounded-sm px-3 py-1.5 text-[13px] font-semibold transition-colors",
+                    active
+                      ? "bg-valar-navy text-white"
+                      : "border border-valar-concrete bg-white text-valar-navy hover:border-valar-navy",
+                  ].join(" ")}
+                >
+                  {chip.title}
+                  <span className={active ? "ml-1.5 text-white/60" : "ml-1.5 text-gray-400"}>
+                    {chip.count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Scrolls sideways on a phone rather than wrapping into three rows of letters. */}
-          <nav aria-label="Jump to a letter" className="-mx-4 mt-3 overflow-x-auto px-4 md:mx-0 md:px-0">
+          <nav
+            aria-label="Jump to a letter"
+            className="-mx-4 mt-3 overflow-x-auto px-4 md:mx-0 md:px-0"
+          >
             <ol className="flex min-w-max gap-0.5 md:min-w-0 md:justify-between">
               {ALPHABET.map((letter) => {
                 const available = lettersShown.has(letter);
@@ -275,7 +298,10 @@ export default function GlossaryContent({
       </div>
 
       {/* ── Terms ────────────────────────────────────────────── */}
-      <section data-cmp="GlossaryPage.List" className="container mx-auto max-w-6xl px-4 py-14 md:px-6">
+      <section
+        data-cmp="GlossaryPage.List"
+        className="container mx-auto max-w-6xl px-4 py-14 md:px-6"
+      >
         {groups.length === 0 ? (
           <div className="rounded-xl border border-valar-concrete bg-white p-10 text-center">
             <h2 className="mb-2 text-xl font-bold text-valar-navy">No term matches that yet</h2>
@@ -374,10 +400,10 @@ export default function GlossaryContent({
           data-cmp="GlossaryPage.Disclaimer"
           className="mt-12 border-t border-valar-concrete pt-5 text-[13px] leading-[1.65] text-valar-steel"
         >
-          <span className="font-semibold text-valar-navy">General information.</span> These definitions do
-          not take your personal circumstances into account and are not personalised financial or tax
-          advice. Lender policies and government rules differ and change. For advice on your own
-          situation,{" "}
+          <span className="font-semibold text-valar-navy">General information.</span> These
+          definitions do not take your personal circumstances into account and are not personalised
+          financial or tax advice. Lender policies and government rules differ and change. For
+          advice on your own situation,{" "}
           <Link href="/book" className="text-valar-horizon underline underline-offset-2">
             book a strategy call
           </Link>{" "}
@@ -392,7 +418,8 @@ export default function GlossaryContent({
             <div className="min-w-[260px] flex-1">
               <h2 className="mb-2 text-2xl font-bold text-white">Still not sure?</h2>
               <p className="text-[15px] leading-relaxed text-valar-lilac">
-                A definition tells you what a word means. A conversation tells you what it means for you.
+                A definition tells you what a word means. A conversation tells you what it means for
+                you.
               </p>
             </div>
             <Link

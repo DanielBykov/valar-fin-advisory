@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useSyncExternalStore,
-} from "react";
+import { createContext, useCallback, useContext, useSyncExternalStore } from "react";
 
 type Consent = "granted" | "denied" | null;
 
@@ -66,16 +61,18 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const consent = useSyncExternalStore(subscribe, readConsent, () => null);
   // false on the server and during the first hydration render, true after —
   // keeps server and client markup identical so nothing flashes.
-  const ready = useSyncExternalStore(noopSubscribe, () => true, () => false);
+  const ready = useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false,
+  );
 
   const accept = useCallback(() => writeConsent("granted"), []);
   const decline = useCallback(() => writeConsent("denied"), []);
   const reset = useCallback(() => writeConsent(null), []);
 
   return (
-    <ConsentContext.Provider
-      value={{ consent, ready, accept, decline, reset }}
-    >
+    <ConsentContext.Provider value={{ consent, ready, accept, decline, reset }}>
       {children}
     </ConsentContext.Provider>
   );

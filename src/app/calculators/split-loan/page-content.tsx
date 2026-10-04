@@ -56,11 +56,7 @@ const WHY_SPLIT = [
  * on its own. Both are real — the "Weighted average rate" tile, and the Payment
  * / Interest per year columns in the per-part table.
  */
-const HERO_CHIPS = [
-  "Your combined rate",
-  "Payments for each part",
-  "Send it to yourself",
-];
+const HERO_CHIPS = ["Your combined rate", "Payments for each part", "Send it to yourself"];
 
 export default function SplitLoanContent() {
   return (
@@ -95,28 +91,29 @@ export default function SplitLoanContent() {
 
         <div className="relative container mx-auto max-w-6xl">
           <div className="md:max-w-[54%]">
-          <div className="mb-4 flex flex-col space-y-3">
-            <div className="h-[2px] w-6 bg-valar-amber" />
-            <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
-              Calculator
-            </span>
-          </div>
-          <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
-            Split home loan<span className="text-valar-amber">.</span>
-          </h1>
-          <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
-            Splitting isn&rsquo;t about chasing the best rate. It&rsquo;s about spreading the risk.
-          </p>
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {HERO_CHIPS.map((chip) => (
-              <li
-                key={chip}
-                className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-              >
-                {chip}
-              </li>
-            ))}
-          </ul>
+            <div className="mb-4 flex flex-col space-y-3">
+              <div className="h-[2px] w-6 bg-valar-amber" />
+              <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
+                Calculator
+              </span>
+            </div>
+            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+              Split home loan<span className="text-valar-amber">.</span>
+            </h1>
+            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+              Splitting isn&rsquo;t about chasing the best rate. It&rsquo;s about spreading the
+              risk.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {HERO_CHIPS.map((chip) => (
+                <li
+                  key={chip}
+                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
+                >
+                  {chip}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -153,10 +150,7 @@ export default function SplitLoanContent() {
           <h2 className="mb-6 text-2xl font-bold text-valar-navy">Why split it at all</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {WHY_SPLIT.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-xl border border-gray-100 bg-white p-5"
-              >
+              <div key={item.title} className="rounded-xl border border-gray-100 bg-white p-5">
                 <div className="mb-3 h-[2px] w-6 bg-valar-amber" />
                 <h3 className="mb-2 text-base font-bold text-valar-navy">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-gray-600">{item.copy}</p>
@@ -197,15 +191,15 @@ export default function SplitLoanContent() {
         <div className="container mx-auto max-w-6xl">
           <div className="border-t border-valar-concrete pt-6 text-sm leading-relaxed text-valar-steel">
             <p className="mb-2">
-              <strong className="text-valar-navy">This is a guide, not advice.</strong> These figures
-              are indicative only — based on the numbers you entered and on general assumptions, not
-              on your circumstances. They are not an offer of finance or a recommendation to borrow,
-              structure or fix any amount.
+              <strong className="text-valar-navy">This is a guide, not advice.</strong> These
+              figures are indicative only — based on the numbers you entered and on general
+              assumptions, not on your circumstances. They are not an offer of finance or a
+              recommendation to borrow, structure or fix any amount.
             </p>
             <p>
               Rates, available terms, split minimums and early-repayment allowances differ by lender
-              and by contract. What your loan can actually be structured as is confirmed by a lender,
-              in writing, after a full application.
+              and by contract. What your loan can actually be structured as is confirmed by a
+              lender, in writing, after a full application.
             </p>
           </div>
         </div>

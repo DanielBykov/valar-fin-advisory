@@ -447,7 +447,8 @@ export function calculate(input: Inputs) {
    * row the deposit is actually capping. On an income-capped row it is worth
    * $10,000 and nothing more: the loan does not move, so the price cannot.
    */
-  const savingTier = best.cappedBy === "deposit" ? best : tier20.cappedBy === "deposit" ? tier20 : null;
+  const savingTier =
+    best.cappedBy === "deposit" ? best : tier20.cappedBy === "deposit" ? tier20 : null;
   const leverage = savingTier ? down1k(10_000 / savingTier.pct) : 0;
 
   /** "a 20% deposit" but "an 11% deposit". */
@@ -679,10 +680,7 @@ export function calculate(input: Inputs) {
     priceByIncome: Math.max(0, priceByIncome),
     priceByDeposit: Math.max(0, priceByDeposit),
     depositBinds,
-    headline:
-      depAvail <= 0
-        ? "No deposit in these numbers yet"
-        : "Not there on these numbers yet",
+    headline: depAvail <= 0 ? "No deposit in these numbers yet" : "Not there on these numbers yet",
     title,
     body: verdict,
     caution,

@@ -132,9 +132,7 @@ export default function BalanceChart({
               Paid off in
             </p>
             <p className="text-lg font-bold leading-tight text-white">{payoffLabel}</p>
-            {earlyLabel && (
-              <p className="text-[11px] text-valar-lilac">{earlyLabel} early</p>
-            )}
+            {earlyLabel && <p className="text-[11px] text-valar-lilac">{earlyLabel} early</p>}
           </div>
         )}
       </div>
@@ -352,7 +350,9 @@ export default function BalanceChart({
                   <td className="px-3 py-1.5 tabular-nums text-valar-lilac">{p.year}</td>
                   <td className="px-3 py-1.5 tabular-nums text-valar-lilac">{nzd(p.base)}</td>
                   {showExtra && (
-                    <td className="px-3 py-1.5 tabular-nums text-valar-lilac">{nzd(p.withExtra)}</td>
+                    <td className="px-3 py-1.5 tabular-nums text-valar-lilac">
+                      {nzd(p.withExtra)}
+                    </td>
                   )}
                 </tr>
               ))}

@@ -31,11 +31,18 @@ export default function SubscribeContent() {
 
   return (
     <div data-cmp="SubscribePage" className="w-full flex flex-col bg-valar-fog min-h-screen">
-
       {/* Hero */}
       <section className="relative text-white overflow-hidden min-h-[200px] flex items-center">
         <div className="absolute inset-0 z-0">
-          <Image src={heroImg} alt="Subscribe" fill sizes="100vw" priority placeholder="blur" className="object-cover object-[center_40%]" />
+          <Image
+            src={heroImg}
+            alt="Subscribe"
+            fill
+            sizes="100vw"
+            priority
+            placeholder="blur"
+            className="object-cover object-[center_40%]"
+          />
           <div className="absolute inset-0 bg-valar-navy/70" />
         </div>
         <div className="container mx-auto max-w-2xl px-4 md:px-6 relative z-10 pt-20 pb-10 text-center">
@@ -60,13 +67,25 @@ export default function SubscribeContent() {
                 Welcome. You'll hear from me soon — one email a week, worth reading.
               </p>
               <div className="pt-4 flex flex-col gap-3">
-                <Link href="/services" className="flex items-center justify-between px-4 py-3 rounded-md border border-valar-concrete hover:border-valar-amber hover:bg-valar-fog transition-all group">
+                <Link
+                  href="/services"
+                  className="flex items-center justify-between px-4 py-3 rounded-md border border-valar-concrete hover:border-valar-amber hover:bg-valar-fog transition-all group"
+                >
                   <span className="text-sm text-valar-navy font-medium">Explore our services</span>
-                  <span className="text-valar-amber text-sm group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="text-valar-amber text-sm group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
                 </Link>
-                <Link href="/insights" className="flex items-center justify-between px-4 py-3 rounded-md border border-valar-concrete hover:border-valar-amber hover:bg-valar-fog transition-all group">
-                  <span className="text-sm text-valar-navy font-medium">Browse the Knowledge Hub</span>
-                  <span className="text-valar-amber text-sm group-hover:translate-x-1 transition-transform">→</span>
+                <Link
+                  href="/insights"
+                  className="flex items-center justify-between px-4 py-3 rounded-md border border-valar-concrete hover:border-valar-amber hover:bg-valar-fog transition-all group"
+                >
+                  <span className="text-sm text-valar-navy font-medium">
+                    Browse the Knowledge Hub
+                  </span>
+                  <span className="text-valar-amber text-sm group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
                 </Link>
               </div>
             </div>
@@ -89,7 +108,12 @@ export default function SubscribeContent() {
 
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="space-y-1.5">
-                  <label htmlFor="firstName" className="text-xs font-semibold text-valar-navy uppercase tracking-wide">First Name</label>
+                  <label
+                    htmlFor="firstName"
+                    className="text-xs font-semibold text-valar-navy uppercase tracking-wide"
+                  >
+                    First Name
+                  </label>
                   <input
                     id="firstName"
                     name="firstName"
@@ -100,7 +124,12 @@ export default function SubscribeContent() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label htmlFor="email" className="text-xs font-semibold text-valar-navy uppercase tracking-wide">Email Address</label>
+                  <label
+                    htmlFor="email"
+                    className="text-xs font-semibold text-valar-navy uppercase tracking-wide"
+                  >
+                    Email Address
+                  </label>
                   <input
                     id="email"
                     name="email"
@@ -120,8 +149,10 @@ export default function SubscribeContent() {
                 </button>
                 <p className="text-center text-xs text-valar-indigo/50">
                   By subscribing, you agree to our{" "}
-                  <Link href="/privacy-policy" className="underline hover:text-valar-navy">Privacy Policy</Link>.
-                  Unsubscribe any time.
+                  <Link href="/privacy-policy" className="underline hover:text-valar-navy">
+                    Privacy Policy
+                  </Link>
+                  . Unsubscribe any time.
                 </p>
               </form>
             </div>

@@ -148,7 +148,6 @@ export function describeDuration(periods: number, perYear: number) {
   return `${y} ${m}`;
 }
 
-
 export type PartResult = {
   /** The scheduled repayment, before anything extra. */
   basePayment: number;
@@ -259,10 +258,7 @@ export function calculatePart(
 
   // The same, measured to the earliest re-fix anywhere in the split, so the
   // summary can add the parts together over one shared horizon.
-  const sharedPeriods = Math.max(
-    1,
-    Math.min(termPeriods, Math.round(firstRefixYears * perYear)),
-  );
+  const sharedPeriods = Math.max(1, Math.min(termPeriods, Math.round(firstRefixYears * perYear)));
   const toFirstRefix = isFlatInterestOnly
     ? runInterestOnly(sharedPeriods)
     : amortise(part.amount, ratePerPeriod, payment, sharedPeriods);
@@ -320,11 +316,7 @@ export function interestInFirstYearByPart(
 }
 
 /** The same figure for the whole structure. */
-export function interestInFirstYear(
-  parts: LoanPart[],
-  perYear: number,
-  loanYears: number,
-): number {
+export function interestInFirstYear(parts: LoanPart[], perYear: number, loanYears: number): number {
   return interestInFirstYearByPart(parts, perYear, loanYears).reduce((sum, n) => sum + n, 0);
 }
 

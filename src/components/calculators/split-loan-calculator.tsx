@@ -466,46 +466,46 @@ export default function SplitLoanCalculator({
               </p>
 
               <div className="mt-3 overflow-x-auto">
-                  <table className="w-full min-w-[440px] text-xs">
-                    <thead>
-                      <tr className="text-left text-valar-steel">
-                        {[
-                          "Part",
-                          `Per ${singular}`,
-                          "Per year",
-                          "Interest / yr",
-                          "Left at re-fix",
-                        ].map((h) => (
-                          <th key={h} className="py-2 pr-3 font-semibold uppercase tracking-wider">
-                            {h}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {visible.map((part, i) => {
-                        if (part.amount <= 0) return null;
-                        const r = result.parts[i];
-                        return (
-                          <tr key={i} className="border-t border-white/10">
-                            <td className="py-2 pr-3 text-valar-lilac">Part {i + 1}</td>
-                            <td className="py-2 pr-3 font-semibold tabular-nums">
-                              {nzd(r.totalPayment, 2)}
-                            </td>
-                            <td className="py-2 pr-3 tabular-nums text-valar-lilac">
-                              {nzd(r.totalPayment * perYear)}
-                            </td>
-                            <td className="py-2 pr-3 tabular-nums text-valar-amber">
-                              {nzd(interestByPart[i])}
-                            </td>
-                            <td className="py-2 pr-3 tabular-nums text-valar-lilac">
-                              {nzd(r.balanceAtRefix)}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                <table className="w-full min-w-[440px] text-xs">
+                  <thead>
+                    <tr className="text-left text-valar-steel">
+                      {[
+                        "Part",
+                        `Per ${singular}`,
+                        "Per year",
+                        "Interest / yr",
+                        "Left at re-fix",
+                      ].map((h) => (
+                        <th key={h} className="py-2 pr-3 font-semibold uppercase tracking-wider">
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {visible.map((part, i) => {
+                      if (part.amount <= 0) return null;
+                      const r = result.parts[i];
+                      return (
+                        <tr key={i} className="border-t border-white/10">
+                          <td className="py-2 pr-3 text-valar-lilac">Part {i + 1}</td>
+                          <td className="py-2 pr-3 font-semibold tabular-nums">
+                            {nzd(r.totalPayment, 2)}
+                          </td>
+                          <td className="py-2 pr-3 tabular-nums text-valar-lilac">
+                            {nzd(r.totalPayment * perYear)}
+                          </td>
+                          <td className="py-2 pr-3 tabular-nums text-valar-amber">
+                            {nzd(interestByPart[i])}
+                          </td>
+                          <td className="py-2 pr-3 tabular-nums text-valar-lilac">
+                            {nzd(r.balanceAtRefix)}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
                 <p className="mt-3 text-[11px] leading-relaxed text-valar-steel">
                   <b className="text-valar-lilac">Interest / yr</b> is what that part costs you in
                   interest over its first twelve months — the part of the repayment that buys you

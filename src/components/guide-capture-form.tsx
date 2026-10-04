@@ -75,9 +75,7 @@ export const DEFAULT_CAPTURE_COPY: CaptureCopy = {
   successPending: "It is on its way to you.",
   downloadLabel: "Download the guide →",
   emailedNote: (title) => (
-    <>
-      We&apos;ve also emailed your copy of the {title}. Keep an eye on your inbox.
-    </>
+    <>We&apos;ve also emailed your copy of the {title}. Keep an eye on your inbox.</>
   ),
   pendingNote: (title) => (
     <>
@@ -241,75 +239,82 @@ export function GuideCaptureForm({
     <>
       {header}
       <form className="space-y-4" onSubmit={handleSubmit}>
-      <div className="space-y-1.5">
-        <label htmlFor={id("firstName")} className={label}>
-          {t.firstNameLabel}
-        </label>
-        <input
-          id={id("firstName")}
-          name="firstName"
-          type="text"
-          required
-          autoComplete="given-name"
-          className={field}
-        />
-      </div>
-      {t.lastNameLabel && (
         <div className="space-y-1.5">
-          <label htmlFor={id("lastName")} className={label}>
-            {t.lastNameLabel}
+          <label htmlFor={id("firstName")} className={label}>
+            {t.firstNameLabel}
           </label>
           <input
-            id={id("lastName")}
-            name="lastName"
+            id={id("firstName")}
+            name="firstName"
             type="text"
             required
-            autoComplete="family-name"
+            autoComplete="given-name"
             className={field}
           />
         </div>
-      )}
-      <div className="space-y-1.5">
-        <label htmlFor={id("email")} className={label}>
-          {t.emailLabel}
-        </label>
-        <input id={id("email")} name="email" type="email" required autoComplete="email" className={field} />
-      </div>
-      <div className="space-y-1.5">
-        <label htmlFor={id("phone")} className={label}>
-          {t.phoneLabel}{" "}
-          <span className="text-valar-indigo/40 normal-case font-normal">{t.phoneOptional}</span>
-        </label>
-        <input id={id("phone")} name="phone" type="tel" autoComplete="tel" className={field} />
-      </div>
-
-      {t.subscribeLabel && (
-        <label className="flex items-start gap-3 cursor-pointer group">
-          <input
-            type="checkbox"
-            name="subscribe"
-            value="yes"
-            className="mt-0.5 accent-valar-amber w-4 h-4 flex-shrink-0"
-          />
-          <span className="text-xs text-valar-indigo leading-relaxed">{t.subscribeLabel}</span>
-        </label>
-      )}
-
-      {error && <p className="text-xs text-red-500">{error}</p>}
-
-      <button
-        type="submit"
-        disabled={submitting}
-        className="w-full bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold py-3 rounded-sm transition-colors text-sm disabled:opacity-60"
-      >
-        {submitting ? t.submitting : t.submit}
-      </button>
-      <p className="text-center text-xs text-valar-indigo/50">
-        {t.privacy(
-          <a href="/privacy-policy" className="underline hover:text-valar-navy">
-            {t.privacyLinkLabel}
-          </a>,
+        {t.lastNameLabel && (
+          <div className="space-y-1.5">
+            <label htmlFor={id("lastName")} className={label}>
+              {t.lastNameLabel}
+            </label>
+            <input
+              id={id("lastName")}
+              name="lastName"
+              type="text"
+              required
+              autoComplete="family-name"
+              className={field}
+            />
+          </div>
         )}
+        <div className="space-y-1.5">
+          <label htmlFor={id("email")} className={label}>
+            {t.emailLabel}
+          </label>
+          <input
+            id={id("email")}
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            className={field}
+          />
+        </div>
+        <div className="space-y-1.5">
+          <label htmlFor={id("phone")} className={label}>
+            {t.phoneLabel}{" "}
+            <span className="text-valar-indigo/40 normal-case font-normal">{t.phoneOptional}</span>
+          </label>
+          <input id={id("phone")} name="phone" type="tel" autoComplete="tel" className={field} />
+        </div>
+
+        {t.subscribeLabel && (
+          <label className="flex items-start gap-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              name="subscribe"
+              value="yes"
+              className="mt-0.5 accent-valar-amber w-4 h-4 flex-shrink-0"
+            />
+            <span className="text-xs text-valar-indigo leading-relaxed">{t.subscribeLabel}</span>
+          </label>
+        )}
+
+        {error && <p className="text-xs text-red-500">{error}</p>}
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className="w-full bg-valar-amber hover:bg-valar-amber-hover text-valar-navy font-bold py-3 rounded-sm transition-colors text-sm disabled:opacity-60"
+        >
+          {submitting ? t.submitting : t.submit}
+        </button>
+        <p className="text-center text-xs text-valar-indigo/50">
+          {t.privacy(
+            <a href="/privacy-policy" className="underline hover:text-valar-navy">
+              {t.privacyLinkLabel}
+            </a>,
+          )}
         </p>
       </form>
     </>

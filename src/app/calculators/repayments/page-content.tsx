@@ -72,28 +72,28 @@ export default function RepaymentsContent() {
           {/* The copy column is sized, not the type — the right half is spoken
               for by the art. */}
           <div className="md:max-w-[54%]">
-          <div className="mb-4 flex flex-col space-y-3">
-            <div className="h-[2px] w-6 bg-valar-amber" />
-            <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
-              Calculator
-            </span>
-          </div>
-          <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
-            Mortgage repayments<span className="text-valar-amber">.</span>
-          </h1>
-          <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
-            Set the loan, the rate and the term. Then add your extra and see what it saves.
-          </p>
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {HERO_CHIPS.map((chip) => (
-              <li
-                key={chip}
-                className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-              >
-                {chip}
-              </li>
-            ))}
-          </ul>
+            <div className="mb-4 flex flex-col space-y-3">
+              <div className="h-[2px] w-6 bg-valar-amber" />
+              <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
+                Calculator
+              </span>
+            </div>
+            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+              Mortgage repayments<span className="text-valar-amber">.</span>
+            </h1>
+            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+              Set the loan, the rate and the term. Then add your extra and see what it saves.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {HERO_CHIPS.map((chip) => (
+                <li
+                  key={chip}
+                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
+                >
+                  {chip}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

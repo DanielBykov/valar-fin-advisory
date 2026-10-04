@@ -5,13 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import heroImg from "../../../../public/images/small-business-loans-hero.webp";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Calendar,
-  ChevronDown,
-  Wrench,
-  RefreshCw,
-  DollarSign,
-} from "lucide-react";
+import { Calendar, ChevronDown, Wrench, RefreshCw, DollarSign } from "lucide-react";
 import { AdviserCredentialStrip } from "@/components/adviser-credential-strip";
 import { faqs } from "./faqs";
 
@@ -34,7 +28,9 @@ function FAQItem({ question, answer }: { question: string; answer: string | stri
         onClick={() => setOpen(!open)}
       >
         <span className="font-semibold text-valar-navy text-base">{question}</span>
-        <ChevronDown className={`w-5 h-5 text-valar-amber flex-shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown
+          className={`w-5 h-5 text-valar-amber flex-shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+        />
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -68,28 +64,51 @@ function FAQItem({ question, answer }: { question: string; answer: string | stri
 export default function SmallBusinessLoansContent() {
   return (
     <div data-cmp="SmallBusinessLoansPage" className="w-full flex flex-col font-sans">
-
       {/* HERO */}
       <section data-cmp="SmallBusinessLoansPage.Hero" className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image src={heroImg} fill sizes="100vw" priority placeholder="blur" className="object-cover object-center" alt="Business loans hero" />
+          <Image
+            src={heroImg}
+            fill
+            sizes="100vw"
+            priority
+            placeholder="blur"
+            className="object-cover object-center"
+            alt="Business loans hero"
+          />
           <div className="absolute inset-0 bg-linear-to-r from-valar-navy/80 via-valar-navy/20 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/30 to-transparent z-10" />
         </div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 pt-36 pb-20 text-white">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="max-w-4xl"
+          >
             <motion.div variants={fadeIn} className="mb-5 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Business</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">
+                Business
+              </span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-[1.05]">
+            <motion.h1
+              variants={fadeIn}
+              className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-[1.05]"
+            >
               Small Business Loans<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.div variants={fadeIn} className="text-base text-valar-lilac max-w-2xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4">
+            <motion.div
+              variants={fadeIn}
+              className="text-base text-valar-lilac max-w-2xl leading-relaxed mb-10 border-l-2 border-valar-amber pl-4"
+            >
               Helping small business owners access funding for growth and working capital.
             </motion.div>
             <motion.div data-cmp="SmallBusinessLoansPage.Hero.Cta" variants={fadeIn}>
-              <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
+              <Link
+                href="/book"
+                className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors"
+              >
                 <Calendar className="w-5 h-5" /> Book a Consultation
               </Link>
             </motion.div>
@@ -109,10 +128,16 @@ export default function SmallBusinessLoansContent() {
           >
             <motion.div variants={staggerContainer}>
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Why Small Business Loans?</span>
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">
+                  Why Small Business Loans?
+                </span>
               </motion.div>
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight">
-                Running a business often requires investment<span className="text-valar-amber">.</span>
+              <motion.h2
+                variants={fadeIn}
+                className="text-3xl md:text-4xl font-bold text-valar-navy mb-6 leading-tight"
+              >
+                Running a business often requires investment
+                <span className="text-valar-amber">.</span>
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed">
                 Finding the right funding solution can be challenging.
@@ -120,9 +145,15 @@ export default function SmallBusinessLoansContent() {
             </motion.div>
 
             <motion.div variants={staggerContainer}>
-              <motion.p variants={fadeIn} className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-5">Why work with Valar?</motion.p>
+              <motion.p
+                variants={fadeIn}
+                className="text-valar-amber font-bold tracking-widest text-xs uppercase mb-5"
+              >
+                Why work with Valar?
+              </motion.p>
               <motion.p variants={fadeIn} className="text-valar-indigo font-medium mb-5 text-sm">
-                Business lending is about presenting your business effectively and finding resources that support your goals.
+                Business lending is about presenting your business effectively and finding resources
+                that support your goals.
               </motion.p>
               <motion.ul variants={staggerContainer} className="space-y-2">
                 {[
@@ -133,7 +164,11 @@ export default function SmallBusinessLoansContent() {
                   "Structure applications effectively",
                   "Navigate the approval process",
                 ].map((item, i) => (
-                  <motion.li key={i} variants={fadeIn} className="flex items-center gap-3 text-sm text-valar-navy">
+                  <motion.li
+                    key={i}
+                    variants={fadeIn}
+                    className="flex items-center gap-3 text-sm text-valar-navy"
+                  >
                     <div className="w-1.5 h-1.5 rounded-full bg-valar-amber flex-shrink-0" />
                     {item}
                   </motion.li>
@@ -145,7 +180,10 @@ export default function SmallBusinessLoansContent() {
       </section>
 
       {/* WHAT WE CAN HELP WITH */}
-      <section data-cmp="SmallBusinessLoansPage.WhatWeHelpWith" className="py-24 bg-valar-navy text-white">
+      <section
+        data-cmp="SmallBusinessLoansPage.WhatWeHelpWith"
+        className="py-24 bg-valar-navy text-white"
+      >
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.div
             initial="hidden"
@@ -155,7 +193,9 @@ export default function SmallBusinessLoansContent() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What We Can Help With</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">
+                What We Can Help With
+              </span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold">
               Funding for every stage of your business<span className="text-valar-amber">.</span>
@@ -186,7 +226,12 @@ export default function SmallBusinessLoansContent() {
                 desc: "Reviewing existing lending and exploring better options.",
               },
             ].map((card, i) => (
-              <motion.div data-cmp="SmallBusinessLoansPage.WhatWeHelpWith.FundingCard" key={i} variants={fadeIn} className="bg-valar-fog p-8 rounded-sm border-t-2 border-valar-amber">
+              <motion.div
+                data-cmp="SmallBusinessLoansPage.WhatWeHelpWith.FundingCard"
+                key={i}
+                variants={fadeIn}
+                className="bg-valar-fog p-8 rounded-sm border-t-2 border-valar-amber"
+              >
                 <div className="flex items-center gap-3 mb-4">
                   <card.icon className="w-5 h-5 text-valar-amber" />
                   <h3 className="font-bold text-lg text-valar-navy">{card.title}</h3>
@@ -209,7 +254,9 @@ export default function SmallBusinessLoansContent() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Who Is This Service For?</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">
+                Who Is This Service For?
+              </span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
               Built for business owners who need results<span className="text-valar-amber">.</span>
@@ -230,7 +277,12 @@ export default function SmallBusinessLoansContent() {
               "Property Developers & Renovators",
               "Start-Ups",
             ].map((item, i) => (
-              <motion.div data-cmp="SmallBusinessLoansPage.WhoIsThisFor.Item" key={i} variants={fadeIn} className="px-5 py-3 border border-valar-amber rounded-sm text-valar-navy font-medium text-sm">
+              <motion.div
+                data-cmp="SmallBusinessLoansPage.WhoIsThisFor.Item"
+                key={i}
+                variants={fadeIn}
+                className="px-5 py-3 border border-valar-amber rounded-sm text-valar-navy font-medium text-sm"
+              >
                 {item}
               </motion.div>
             ))}
@@ -249,7 +301,9 @@ export default function SmallBusinessLoansContent() {
             className="mb-16"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">What to Expect</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">
+                What to Expect
+              </span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
               From initial discussion to settlement<span className="text-valar-amber">.</span>
@@ -264,14 +318,38 @@ export default function SmallBusinessLoansContent() {
             className="max-w-3xl"
           >
             {[
-              { num: "01", title: "Initial Discussion", body: "We discuss your business, funding requirements, and goals." },
-              { num: "02", title: "Information Review", body: "We review available financial information and supporting documentation." },
-              { num: "03", title: "Funding Strategy", body: "We identify potential funding options and recommend a suitable structure." },
-              { num: "04", title: "Application Support", body: "We assist with preparing and presenting the application to the lender." },
-              { num: "05", title: "Approval & Settlement", body: "We guide you through the approval process and coordinate next steps." },
+              {
+                num: "01",
+                title: "Initial Discussion",
+                body: "We discuss your business, funding requirements, and goals.",
+              },
+              {
+                num: "02",
+                title: "Information Review",
+                body: "We review available financial information and supporting documentation.",
+              },
+              {
+                num: "03",
+                title: "Funding Strategy",
+                body: "We identify potential funding options and recommend a suitable structure.",
+              },
+              {
+                num: "04",
+                title: "Application Support",
+                body: "We assist with preparing and presenting the application to the lender.",
+              },
+              {
+                num: "05",
+                title: "Approval & Settlement",
+                body: "We guide you through the approval process and coordinate next steps.",
+              },
             ].map((step, i, arr) => (
               <div key={i}>
-                <motion.div data-cmp="SmallBusinessLoansPage.HowItWorks.Step" variants={fadeIn} className="grid grid-cols-[1fr_2fr] gap-8 items-start py-5">
+                <motion.div
+                  data-cmp="SmallBusinessLoansPage.HowItWorks.Step"
+                  variants={fadeIn}
+                  className="grid grid-cols-[1fr_2fr] gap-8 items-start py-5"
+                >
                   <div className="flex items-center gap-4">
                     <span className="text-xs font-bold text-valar-amber">{step.num}</span>
                     <h3 className="text-base font-bold text-valar-navy">{step.title}</h3>
@@ -300,14 +378,21 @@ export default function SmallBusinessLoansContent() {
             className="mb-12"
           >
             <motion.div variants={fadeIn} className="mb-4">
-              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Frequently Asked Questions</span>
+              <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">
+                Frequently Asked Questions
+              </span>
             </motion.div>
             <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy">
               Common questions<span className="text-valar-amber">.</span>
             </motion.h2>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+          >
             {faqs.map((faq, i) => (
               <FAQItem key={i} question={faq.question} answer={faq.answer} />
             ))}
@@ -328,16 +413,25 @@ export default function SmallBusinessLoansContent() {
               variants={staggerContainer}
             >
               <motion.div variants={fadeIn} className="mb-4">
-                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">Ready to Explore Your Funding Options?</span>
+                <span className="text-valar-amber font-bold tracking-widest text-xs uppercase">
+                  Ready to Explore Your Funding Options?
+                </span>
               </motion.div>
-              <motion.h2 variants={fadeIn} className="text-3xl md:text-4xl font-bold text-valar-navy mb-6">
-                Let&apos;s find the right funding for your business<span className="text-valar-amber">.</span>
+              <motion.h2
+                variants={fadeIn}
+                className="text-3xl md:text-4xl font-bold text-valar-navy mb-6"
+              >
+                Let&apos;s find the right funding for your business
+                <span className="text-valar-amber">.</span>
               </motion.h2>
               <motion.p variants={fadeIn} className="text-valar-indigo leading-relaxed mb-8">
                 Understand your options and navigate the lending process with confidence.
               </motion.p>
               <motion.div variants={fadeIn}>
-                <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors">
+                <Link
+                  href="/book"
+                  className="inline-flex items-center justify-center gap-2 bg-valar-amber hover:bg-valar-amber-hover text-valar-navy px-8 py-4 rounded-sm font-bold transition-colors"
+                >
                   <Calendar className="w-5 h-5" /> Book a Consultation
                 </Link>
               </motion.div>
@@ -349,12 +443,17 @@ export default function SmallBusinessLoansContent() {
               variants={fadeIn}
               className="relative h-80 rounded-sm overflow-hidden"
             >
-              <Image src="/images/lena-client.webp" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center" alt="Lena with client" />
+              <Image
+                src="/images/lena-client.webp"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-center"
+                alt="Lena with client"
+              />
             </motion.div>
           </div>
         </div>
       </section>
-
     </div>
   );
 }

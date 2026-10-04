@@ -22,7 +22,10 @@ export const metadata: Metadata = {
 const breadcrumbs = getBreadcrumbSchema([
   { name: "Home", url: `${SITE_URL}/` },
   { name: "Services", url: `${SITE_URL}/services` },
-  { name: "Investment Property Analysis", url: `${SITE_URL}/services/investment-property-analysis` },
+  {
+    name: "Investment Property Analysis",
+    url: `${SITE_URL}/services/investment-property-analysis`,
+  },
 ]);
 
 export default function Page() {

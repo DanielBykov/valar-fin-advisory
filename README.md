@@ -85,4 +85,3 @@ Designed and built solo, end-to-end — architecture, implementation, SEO, and l
 content and branding are the client's real, public-facing copy (a licensed New Zealand financial
 advisory firm), already live at [valar.co.nz](https://valar.co.nz).
 .
-

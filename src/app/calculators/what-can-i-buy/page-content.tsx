@@ -185,29 +185,29 @@ export default function WhatCanIBuyContent() {
 
         <div className="relative container mx-auto max-w-6xl">
           <div className="md:max-w-[54%]">
-          <div className="mb-4 flex flex-col space-y-3">
-            <div className="h-[2px] w-6 bg-valar-amber" />
-            <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
-              Calculator
-            </span>
-          </div>
-          <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
-            How much can I borrow<span className="text-valar-amber">?</span>
-          </h1>
-          <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
-            Run your numbers to see what your income, deposit and commitments support.
-          </p>
-          {/* Chips rather than a sentence — see HERO_CHIPS for why these four. */}
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {HERO_CHIPS.map((chip) => (
-              <li
-                key={chip}
-                className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-              >
-                {chip}
-              </li>
-            ))}
-          </ul>
+            <div className="mb-4 flex flex-col space-y-3">
+              <div className="h-[2px] w-6 bg-valar-amber" />
+              <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
+                Calculator
+              </span>
+            </div>
+            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+              How much can I borrow<span className="text-valar-amber">?</span>
+            </h1>
+            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+              Run your numbers to see what your income, deposit and commitments support.
+            </p>
+            {/* Chips rather than a sentence — see HERO_CHIPS for why these four. */}
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {HERO_CHIPS.map((chip) => (
+                <li
+                  key={chip}
+                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
+                >
+                  {chip}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -382,8 +382,8 @@ export default function WhatCanIBuyContent() {
               </summary>
               <div className="border-t border-valar-concrete px-4 py-3">
                 <p className="mb-2">
-                  Common lending practice, not any one bank&rsquo;s rules. Nothing here is guaranteed,
-                  and every lender applies its own.
+                  Common lending practice, not any one bank&rsquo;s rules. Nothing here is
+                  guaranteed, and every lender applies its own.
                 </p>
                 <ul className="flex flex-col gap-1">
                   {ASSUMPTIONS.map((a) => (

@@ -13,12 +13,7 @@ import {
   relatedArticles,
   visibleArticles,
 } from "@/lib/insights";
-import {
-  SITE_URL,
-  getArticleSchema,
-  getBreadcrumbSchema,
-  getPersonSchema,
-} from "@/lib/schema";
+import { SITE_URL, getArticleSchema, getBreadcrumbSchema, getPersonSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -147,7 +142,10 @@ export default async function Page({ params }: Props) {
       </header>
 
       {/* Body */}
-      <article data-cmp="ArticlePage.Body" className="mx-auto w-full max-w-[720px] px-4 pt-10 md:px-6">
+      <article
+        data-cmp="ArticlePage.Body"
+        className="mx-auto w-full max-w-[720px] px-4 pt-10 md:px-6"
+      >
         {article.takeaways.length > 0 && (
           <aside
             data-cmp="ArticlePage.Takeaways"
@@ -182,7 +180,10 @@ export default async function Page({ params }: Props) {
             );
           if (block.type === "list")
             return (
-              <ul key={i} className="mb-6 flex list-disc flex-col gap-3 pl-5 text-[18px] leading-[1.7] text-gray-700">
+              <ul
+                key={i}
+                className="mb-6 flex list-disc flex-col gap-3 pl-5 text-[18px] leading-[1.7] text-gray-700"
+              >
                 {block.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -190,7 +191,11 @@ export default async function Page({ params }: Props) {
             );
           if (block.type === "deflist")
             return (
-              <dl key={i} data-cmp="ArticlePage.Deflist" className="my-7 rounded-xl bg-valar-fog px-7 py-3">
+              <dl
+                key={i}
+                data-cmp="ArticlePage.Deflist"
+                className="my-7 rounded-xl bg-valar-fog px-7 py-3"
+              >
                 {block.items.map((item) => (
                   <div
                     key={item.term}
@@ -227,13 +232,19 @@ export default async function Page({ params }: Props) {
                       {item.delta && (
                         <p className="mt-1.5 text-[13px] font-semibold tabular-nums text-valar-amber">
                           <span aria-hidden="true">
-                            {item.direction === "down" ? "▼" : item.direction === "flat" ? "→" : "▲"}
+                            {item.direction === "down"
+                              ? "▼"
+                              : item.direction === "flat"
+                                ? "→"
+                                : "▲"}
                           </span>{" "}
                           {item.delta}
                         </p>
                       )}
                       {item.note && (
-                        <p className="mt-1.5 text-[12px] leading-[1.5] text-valar-steel">{item.note}</p>
+                        <p className="mt-1.5 text-[12px] leading-[1.5] text-valar-steel">
+                          {item.note}
+                        </p>
                       )}
                     </div>
                   ))}
@@ -349,7 +360,10 @@ export default async function Page({ params }: Props) {
                           legitimate choices, so colour would be taking a side. */}
                       <ul className="mb-4 flex flex-col gap-2.5">
                         {col.pros.map((p) => (
-                          <li key={p} className="flex gap-2.5 text-[15px] leading-[1.6] text-gray-700">
+                          <li
+                            key={p}
+                            className="flex gap-2.5 text-[15px] leading-[1.6] text-gray-700"
+                          >
                             <span
                               aria-hidden="true"
                               className="mt-[0.15em] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-valar-navy text-[12px] font-bold leading-none text-white"
@@ -363,7 +377,10 @@ export default async function Page({ params }: Props) {
 
                       <ul className="flex flex-col gap-2.5 border-t border-valar-concrete pt-4">
                         {col.cons.map((c) => (
-                          <li key={c} className="flex gap-2.5 text-[15px] leading-[1.6] text-gray-700">
+                          <li
+                            key={c}
+                            className="flex gap-2.5 text-[15px] leading-[1.6] text-gray-700"
+                          >
                             <span
                               aria-hidden="true"
                               className="mt-[0.15em] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-valar-steel text-[12px] font-bold leading-none text-white"
@@ -492,7 +509,9 @@ export default async function Page({ params }: Props) {
           data-cmp="ArticlePage.Cta"
           className="mb-4 rounded-xl bg-valar-navy p-8 text-center text-valar-lilac"
         >
-          <h2 className="mb-2 text-2xl font-bold text-white">Want this run on your actual numbers?</h2>
+          <h2 className="mb-2 text-2xl font-bold text-white">
+            Want this run on your actual numbers?
+          </h2>
           <p className="mx-auto mb-6 max-w-[34rem] text-[15px]">
             A strategy call is thirty minutes and costs nothing. Bring your income, your deposit and
             your questions.

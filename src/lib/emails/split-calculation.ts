@@ -91,8 +91,7 @@ export function renderSplitEmail({
   baseUrl?: string;
 }): SplitEmail {
   const r = calculateSplit(snapshot.parts, snapshot.frequency, snapshot.loanYears);
-  const freqLabel =
-    FREQUENCIES.find((f) => f.key === snapshot.frequency)?.label ?? "Fortnightly";
+  const freqLabel = FREQUENCIES.find((f) => f.key === snapshot.frequency)?.label ?? "Fortnightly";
   const freq = freqLabel.toLowerCase();
   const annual = r.totalPayment * r.perYear;
   // Matches the figure the panel shows, so the email cannot say something

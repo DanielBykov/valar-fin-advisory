@@ -139,23 +139,23 @@ export default function Page() {
             {calculators.map((calculator) => {
               const Icon = ICONS[calculator.icon];
               return (
-              <Link
-                key={calculator.slug}
-                href={calculatorHref(calculator.slug)}
-                data-cmp="CalculatorsPage.Card"
-                className="flex flex-col rounded-xl border border-gray-100 bg-white p-7 transition-shadow hover:shadow-md md:p-8"
-              >
-                <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h2 className="mb-3 text-xl font-bold text-valar-navy">{calculator.title}</h2>
-                <p className="mb-6 flex-1 text-[15px] leading-relaxed text-gray-600">
-                  {calculator.blurb}
-                </p>
-                <span className="inline-flex items-center text-sm font-semibold text-valar-navy">
-                  Open <ArrowRight className="ml-2 h-4 w-4 text-valar-amber" />
-                </span>
-              </Link>
+                <Link
+                  key={calculator.slug}
+                  href={calculatorHref(calculator.slug)}
+                  data-cmp="CalculatorsPage.Card"
+                  className="flex flex-col rounded-xl border border-gray-100 bg-white p-7 transition-shadow hover:shadow-md md:p-8"
+                >
+                  <span className="mb-5 flex h-10 w-10 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h2 className="mb-3 text-xl font-bold text-valar-navy">{calculator.title}</h2>
+                  <p className="mb-6 flex-1 text-[15px] leading-relaxed text-gray-600">
+                    {calculator.blurb}
+                  </p>
+                  <span className="inline-flex items-center text-sm font-semibold text-valar-navy">
+                    Open <ArrowRight className="ml-2 h-4 w-4 text-valar-amber" />
+                  </span>
+                </Link>
               );
             })}
           </div>

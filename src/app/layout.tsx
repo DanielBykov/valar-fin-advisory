@@ -48,19 +48,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${manrope.variable} ${lora.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${manrope.variable} ${lora.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
         <ConsentProvider>
           <JsonLd data={[getOrganizationSchema(), getWebsiteSchema()]} />
           <Navbar />
-          <main data-cmp="Main" className="flex-1">{children}</main>
+          <main data-cmp="Main" className="flex-1">
+            {children}
+          </main>
           <Footer />
           <CookieBanner />
           <Analytics />

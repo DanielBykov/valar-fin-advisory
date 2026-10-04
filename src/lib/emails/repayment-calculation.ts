@@ -301,7 +301,9 @@ export function renderRepaymentEmail({
     name ? `${name}, here are your numbers.` : "Here are your numbers.",
     "",
     `Your ${freqLabel.toLowerCase()} repayment: ${nzd(r.totalPayment, 2)}`,
-    usingExtra ? `  (${nzd(r.basePayment, 2)} required, plus ${nzd(r.extraPerPeriod, 2)} extra)` : "",
+    usingExtra
+      ? `  (${nzd(r.basePayment, 2)} required, plus ${nzd(r.extraPerPeriod, 2)} extra)`
+      : "",
     `Paid per year: ${nzd(r.totalPayment * r.perYear)}`,
     `Total interest: ${nzd(r.totalInterest)}`,
     `Total repaid: ${nzd(r.totalPaid)} — interest is ${interestPct}% of it`,

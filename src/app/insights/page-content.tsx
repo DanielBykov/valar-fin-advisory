@@ -83,17 +83,30 @@ export default function InsightsContent({
           <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black/60 to-transparent z-10" />
         </div>
         <div className="container relative z-10 mx-auto max-w-6xl px-4 pt-36 pb-20 md:px-6">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="max-w-4xl"
+          >
             <motion.div variants={fadeIn} className="mb-4 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
-              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">Market Commentary &amp; Guides</span>
+              <span className="text-valar-steel font-bold tracking-widest text-xs uppercase">
+                Market Commentary &amp; Guides
+              </span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white">
+            <motion.h1
+              variants={fadeIn}
+              className="text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-[1.1] text-white"
+            >
               Insights<span className="text-valar-amber">.</span>
             </motion.h1>
-            <motion.p variants={fadeIn} className="max-w-2xl text-lg text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light">
-              Property market commentary, financial education and straight answers — so the numbers behind
-              your decisions are visible before you make them.
+            <motion.p
+              variants={fadeIn}
+              className="max-w-2xl text-lg text-white/80 leading-relaxed border-l-2 border-valar-amber pl-4 font-light"
+            >
+              Property market commentary, financial education and straight answers — so the numbers
+              behind your decisions are visible before you make them.
             </motion.p>
           </motion.div>
         </div>
@@ -119,7 +132,11 @@ export default function InsightsContent({
             )}
           </div>
 
-          <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter articles by topic">
+          <div
+            className="mb-8 flex flex-wrap gap-2"
+            role="group"
+            aria-label="Filter articles by topic"
+          >
             {(["all", ...availableTags] as const).map((tag) => {
               const active = filter === tag;
               return (
@@ -160,44 +177,44 @@ export default function InsightsContent({
       {/* Cards are the live calculators from src/lib/calculators.ts, so this
           block cannot advertise something that 404s. */}
       {CALCULATORS_LIVE && liveCalculators().length > 0 && (
-      <section data-cmp="InsightsPage.Tools" className="bg-white px-4 py-16 md:px-6">
-        <div className="container mx-auto max-w-6xl">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-                Tools
-              </p>
-              <h2 className="text-3xl font-bold text-valar-navy">Run your own numbers</h2>
-            </div>
-            <Link
-              href="/calculators"
-              className="text-sm font-semibold text-valar-indigo hover:text-valar-navy"
-            >
-              See all calculators →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {liveCalculators().map((tool) => (
+        <section data-cmp="InsightsPage.Tools" className="bg-white px-4 py-16 md:px-6">
+          <div className="container mx-auto max-w-6xl">
+            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+                  Tools
+                </p>
+                <h2 className="text-3xl font-bold text-valar-navy">Run your own numbers</h2>
+              </div>
               <Link
-                key={tool.slug}
-                href={calculatorHref(tool.slug)}
-                data-cmp="InsightsPage.Tools.Card"
-                className="flex flex-col rounded-xl border border-gray-100 bg-valar-fog p-7 transition-shadow hover:shadow-md"
+                href="/calculators"
+                className="text-sm font-semibold text-valar-indigo hover:text-valar-navy"
               >
-                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
-                  <Calculator className="h-5 w-5" />
-                </span>
-                <h3 className="mb-2 text-lg font-bold text-valar-navy">{tool.title}</h3>
-                <p className="mb-5 flex-1 text-sm leading-relaxed text-gray-600">{tool.blurb}</p>
-                <span className="inline-flex items-center text-sm font-semibold text-valar-navy">
-                  Open <ArrowRight className="ml-2 h-4 w-4 text-valar-amber" />
-                </span>
+                See all calculators →
               </Link>
-            ))}
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {liveCalculators().map((tool) => (
+                <Link
+                  key={tool.slug}
+                  href={calculatorHref(tool.slug)}
+                  data-cmp="InsightsPage.Tools.Card"
+                  className="flex flex-col rounded-xl border border-gray-100 bg-valar-fog p-7 transition-shadow hover:shadow-md"
+                >
+                  <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] bg-valar-amber/15 text-valar-amber">
+                    <Calculator className="h-5 w-5" />
+                  </span>
+                  <h3 className="mb-2 text-lg font-bold text-valar-navy">{tool.title}</h3>
+                  <p className="mb-5 flex-1 text-sm leading-relaxed text-gray-600">{tool.blurb}</p>
+                  <span className="inline-flex items-center text-sm font-semibold text-valar-navy">
+                    Open <ArrowRight className="ml-2 h-4 w-4 text-valar-amber" />
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       )}
 
       {/* ── D · First Home Buyers Hub ────────────────────── */}
@@ -271,10 +288,12 @@ export default function InsightsContent({
                   <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
                     Glossary
                   </p>
-                  <h3 className="mb-2 text-xl font-bold text-valar-navy">Financial terms in plain English</h3>
+                  <h3 className="mb-2 text-xl font-bold text-valar-navy">
+                    Financial terms in plain English
+                  </h3>
                   <p className="text-[15px] leading-relaxed text-gray-600">
-                    A simple guide to the terms you’ll come across in mortgages, property, KiwiSaver and
-                    investing, and why they matter.
+                    A simple guide to the terms you’ll come across in mortgages, property, KiwiSaver
+                    and investing, and why they matter.
                   </p>
                 </div>
               </div>

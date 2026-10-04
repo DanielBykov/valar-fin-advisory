@@ -161,8 +161,7 @@ export function getBreadcrumbSchema(items: BreadcrumbItem[]) {
 /** Accepts either {question, answer} or {q, a}; answer may be a string or a
  *  list of strings (joined for the schema text). */
 export type FaqEntry =
-  | { question: string; answer: string | string[] }
-  | { q: string; a: string | string[] };
+  { question: string; answer: string | string[] } | { q: string; a: string | string[] };
 
 /**
  * FAQPage structured data. Pass the SAME array the page renders its visible
