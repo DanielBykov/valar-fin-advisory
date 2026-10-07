@@ -8,3 +8,8 @@
 
 # style: prettier — first full run over src/, 81 files, +5612 −2102.
 51d2fbb403cfc2b6fc00b2e778ef14e1d48363b2
+
+# style: prettier over the dev/lena merge — the payment-first calculator was
+# written before the prettier config existed, so its seven files needed the
+# same treatment on arrival.
+05898b7ce077216a36329fa9800cfd01199f6229
