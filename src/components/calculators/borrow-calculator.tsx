@@ -139,8 +139,14 @@ function Field({
             onChange(decimal ? e.target.value.replace(/[^0-9.]/g, "") : withCommas(e.target.value))
           }
           onKeyDown={(e) => {
-            if (e.key === "ArrowUp") (e.preventDefault(), nudge(1));
-            if (e.key === "ArrowDown") (e.preventDefault(), nudge(-1));
+            if (e.key === "ArrowUp") {
+              e.preventDefault();
+              nudge(1);
+            }
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              nudge(-1);
+            }
           }}
           className="w-full min-w-0 bg-transparent px-2 py-2.5 text-right text-sm font-semibold tabular-nums text-valar-navy focus:outline-none"
         />
