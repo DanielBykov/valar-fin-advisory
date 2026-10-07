@@ -6,9 +6,14 @@ import Link from "next/link";
 import type { AffordabilitySnapshot } from "@/lib/affordability-report";
 import type { RepaymentSnapshot } from "@/lib/repayment-report";
 import type { SplitSnapshot } from "@/lib/split-report";
+import type { BorrowSnapshot } from "@/lib/borrow-report";
 
 /** Any calculator's inputs. The server tells them apart by `kind`. */
-export type CalculationFigures = RepaymentSnapshot | SplitSnapshot | AffordabilitySnapshot;
+export type CalculationFigures =
+  | RepaymentSnapshot
+  | SplitSnapshot
+  | AffordabilitySnapshot
+  | BorrowSnapshot;
 
 /*
  * The fields sit on the card rather than behind a modal: this one lives beside
