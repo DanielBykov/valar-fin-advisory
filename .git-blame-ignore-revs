@@ -1,0 +1,10 @@
+# Commits that only moved whitespace. `git blame` skips them and reports the
+# commit that last changed the line's content instead.
+#
+# Enabled per clone (it is not picked up automatically):
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# GitHub reads this file by name, no configuration needed.
+
+# style: prettier — first full run over src/, 81 files, +5612 −2102.
+51d2fbb403cfc2b6fc00b2e778ef14e1d48363b2
