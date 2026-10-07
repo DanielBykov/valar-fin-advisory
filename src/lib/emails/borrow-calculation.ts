@@ -33,7 +33,13 @@ const BAND_TAG: Record<string, { bg: string; ink: string }> = {
 const PERIOD_WORD = { weekly: "week", fortnightly: "fortnight", monthly: "month" } as const;
 
 function esc(s: string): string {
-  const map: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+  const map: Record<string, string> = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  };
   return s.replace(/[&<>"']/g, (c) => map[c]);
 }
 

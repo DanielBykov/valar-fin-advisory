@@ -48,11 +48,15 @@ export type BorrowInput = {
 /** One bar on the chart: what a year of payments goes to. */
 export type YearSplit = { year: number; principal: number; interest: number };
 
-export const perYearOf = (f: FrequencyKey) =>
-  FREQUENCIES.find((x) => x.key === f)?.perYear ?? 12;
+export const perYearOf = (f: FrequencyKey) => FREQUENCIES.find((x) => x.key === f)?.perYear ?? 12;
 
 /** Present value of a level payment: the loan that payment carries. */
-export function loanFromPayment(payment: number, annualRatePct: number, periods: number, perYear: number) {
+export function loanFromPayment(
+  payment: number,
+  annualRatePct: number,
+  periods: number,
+  perYear: number,
+) {
   if (payment <= 0 || periods <= 0) return 0;
   const r = annualRatePct / 100 / perYear;
   if (r === 0) return payment * periods;
@@ -60,7 +64,12 @@ export function loanFromPayment(payment: number, annualRatePct: number, periods:
 }
 
 /** Level payment on a principal. */
-export function paymentOnLoan(loan: number, annualRatePct: number, periods: number, perYear: number) {
+export function paymentOnLoan(
+  loan: number,
+  annualRatePct: number,
+  periods: number,
+  perYear: number,
+) {
   if (loan <= 0 || periods <= 0) return 0;
   const r = annualRatePct / 100 / perYear;
   if (r === 0) return loan / periods;

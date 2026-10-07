@@ -123,33 +123,20 @@ function Field({
       className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-dashed border-valar-concrete py-4 last:border-0"
     >
       <div className="min-w-0">
-        <label
-          htmlFor={id}
-          className="text-[15px] font-semibold text-valar-navy"
-        >
+        <label htmlFor={id} className="text-[15px] font-semibold text-valar-navy">
           {label}
         </label>
-        {hint && (
-          <p className="mt-0.5 text-xs leading-relaxed text-valar-steel">
-            {hint}
-          </p>
-        )}
+        {hint && <p className="mt-0.5 text-xs leading-relaxed text-valar-steel">{hint}</p>}
       </div>
       <div className="flex w-40 items-center rounded-lg border border-valar-concrete bg-white focus-within:border-valar-amber focus-within:ring-2 focus-within:ring-valar-amber/30">
-        {prefix && (
-          <span className="pl-3 text-sm text-valar-steel">{prefix}</span>
-        )}
+        {prefix && <span className="pl-3 text-sm text-valar-steel">{prefix}</span>}
         <input
           id={id}
           type="text"
           inputMode={decimal ? "decimal" : "numeric"}
           value={value}
           onChange={(e) =>
-            onChange(
-              decimal
-                ? e.target.value.replace(/[^0-9.]/g, "")
-                : withCommas(e.target.value),
-            )
+            onChange(decimal ? e.target.value.replace(/[^0-9.]/g, "") : withCommas(e.target.value))
           }
           onKeyDown={(e) => {
             if (e.key === "ArrowUp") (e.preventDefault(), nudge(1));
@@ -157,11 +144,7 @@ function Field({
           }}
           className="w-full min-w-0 bg-transparent px-2 py-2.5 text-right text-sm font-semibold tabular-nums text-valar-navy focus:outline-none"
         />
-        {suffix && (
-          <span className="whitespace-nowrap text-xs text-valar-steel">
-            {suffix}
-          </span>
-        )}
+        {suffix && <span className="whitespace-nowrap text-xs text-valar-steel">{suffix}</span>}
         <div className="ml-1 flex flex-col border-l border-valar-concrete">
           <button
             type="button"
@@ -222,8 +205,7 @@ function axisTicks(max: number, count: number) {
   if (max <= 0) return { top: 1, ticks: [0, 1] };
   const rough = max / count;
   const magnitude = Math.pow(10, Math.floor(Math.log10(rough)));
-  const step =
-    ([1, 2, 2.5, 5, 10].find((m) => magnitude * m >= rough) ?? 10) * magnitude;
+  const step = ([1, 2, 2.5, 5, 10].find((m) => magnitude * m >= rough) ?? 10) * magnitude;
   const top = Math.ceil(max / step) * step;
   const ticks: number[] = [];
   for (let v = 0; v <= top + step / 2; v += step) ticks.push(v);
@@ -265,27 +247,16 @@ function YearChart({ years }: { years: YearSplit[] }) {
   const hovered = hover === null ? null : years[hover];
 
   return (
-    <div
-      className="flex flex-1 flex-col rounded-xl p-4 md:p-5"
-      style={{ background: SURFACE }}
-    >
+    <div className="flex flex-1 flex-col rounded-xl p-4 md:p-5" style={{ background: SURFACE }}>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm font-semibold text-white">
-          Where each year&rsquo;s payments go
-        </p>
+        <p className="text-sm font-semibold text-white">Where each year&rsquo;s payments go</p>
         <div className="flex items-center gap-4 text-xs text-valar-lilac">
           <span className="flex items-center gap-1.5">
-            <span
-              className="h-2.5 w-2.5 rounded-sm"
-              style={{ background: PRINCIPAL }}
-            />
+            <span className="h-2.5 w-2.5 rounded-sm" style={{ background: PRINCIPAL }} />
             Principal
           </span>
           <span className="flex items-center gap-1.5">
-            <span
-              className="h-2.5 w-2.5 rounded-sm"
-              style={{ background: INTEREST }}
-            />
+            <span className="h-2.5 w-2.5 rounded-sm" style={{ background: INTEREST }} />
             Interest
           </span>
         </div>
@@ -296,81 +267,69 @@ function YearChart({ years }: { years: YearSplit[] }) {
           : ""}
       </p>
       <div ref={box} className="relative min-h-[220px] flex-1">
-      <svg
-        width={W}
-        height={H}
-        className="absolute inset-0"
-        role="img"
-        aria-label="Principal and interest paid each year"
-      >
-        {ticks.map((t) => (
-          <g key={t}>
-            <line
-              x1={pad.l}
-              x2={W - pad.r}
-              y1={y(t)}
-              y2={y(t)}
-              stroke="rgba(255,255,255,0.12)"
-            />
-            <text
-              x={pad.l - 8}
-              y={y(t) + 4}
-              textAnchor="end"
-              fontSize="11"
-              fill="#B9BCD6"
-            >
-              {compact(t)}
-            </text>
-          </g>
-        ))}
-        {years.map((d, i) => {
-          const x = pad.l + i * slot + (slot - barW) / 2;
-          const pTop = y(d.principal);
-          const iTop = y(d.principal + d.interest);
-          const dim = hover !== null && hover !== i;
-          return (
-            <g
-              key={d.year}
-              onMouseEnter={() => setHover(i)}
-              onMouseLeave={() => setHover(null)}
-              opacity={dim ? 0.5 : 1}
-            >
-              <rect
-                x={pad.l + i * slot}
-                y={pad.t}
-                width={slot}
-                height={plotH}
-                fill="transparent"
-              />
-              <rect
-                x={x}
-                y={pTop}
-                width={barW}
-                height={Math.max(0, y(0) - pTop)}
-                fill={PRINCIPAL}
-              />
-              <rect
-                x={x}
-                y={iTop}
-                width={barW}
-                height={Math.max(0, pTop - iTop - 1)}
-                fill={INTEREST}
-              />
-              {(d.year === 1 || d.year % labelEvery === 0) && (
-                <text
-                  x={x + barW / 2}
-                  y={H - 10}
-                  textAnchor="middle"
-                  fontSize="11"
-                  fill="#B9BCD6"
-                >
-                  {d.year}
-                </text>
-              )}
+        <svg
+          width={W}
+          height={H}
+          className="absolute inset-0"
+          role="img"
+          aria-label="Principal and interest paid each year"
+        >
+          {ticks.map((t) => (
+            <g key={t}>
+              <line x1={pad.l} x2={W - pad.r} y1={y(t)} y2={y(t)} stroke="rgba(255,255,255,0.12)" />
+              <text x={pad.l - 8} y={y(t) + 4} textAnchor="end" fontSize="11" fill="#B9BCD6">
+                {compact(t)}
+              </text>
             </g>
-          );
-        })}
-      </svg>
+          ))}
+          {years.map((d, i) => {
+            const x = pad.l + i * slot + (slot - barW) / 2;
+            const pTop = y(d.principal);
+            const iTop = y(d.principal + d.interest);
+            const dim = hover !== null && hover !== i;
+            return (
+              <g
+                key={d.year}
+                onMouseEnter={() => setHover(i)}
+                onMouseLeave={() => setHover(null)}
+                opacity={dim ? 0.5 : 1}
+              >
+                <rect
+                  x={pad.l + i * slot}
+                  y={pad.t}
+                  width={slot}
+                  height={plotH}
+                  fill="transparent"
+                />
+                <rect
+                  x={x}
+                  y={pTop}
+                  width={barW}
+                  height={Math.max(0, y(0) - pTop)}
+                  fill={PRINCIPAL}
+                />
+                <rect
+                  x={x}
+                  y={iTop}
+                  width={barW}
+                  height={Math.max(0, pTop - iTop - 1)}
+                  fill={INTEREST}
+                />
+                {(d.year === 1 || d.year % labelEvery === 0) && (
+                  <text
+                    x={x + barW / 2}
+                    y={H - 10}
+                    textAnchor="middle"
+                    fontSize="11"
+                    fill="#B9BCD6"
+                  >
+                    {d.year}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </svg>
       </div>
       <p className="mt-1 text-center text-[11px] text-valar-lilac">Year</p>
     </div>
@@ -421,10 +380,7 @@ export default function BorrowCalculator({
 
   const input: BorrowInput = useMemo(() => {
     const rate = Math.min(20, Math.max(0, parseFloat(draft.rate) || 0));
-    const years = Math.min(
-      40,
-      Math.max(1, Math.round(parseFloat(draft.years) || 0)),
-    );
+    const years = Math.min(40, Math.max(1, Math.round(parseFloat(draft.years) || 0)));
     return {
       frequency: draft.frequency,
       income: toNumber(draft.income),
@@ -441,9 +397,7 @@ export default function BorrowCalculator({
   const alreadyAtStress = input.rate >= STRESS_RATE;
 
   // Only the inputs travel; the email recomputes the answer (borrow-report.ts).
-  const figures: BorrowSnapshot | undefined = ready
-    ? { kind: "borrow", ...input }
-    : undefined;
+  const figures: BorrowSnapshot | undefined = ready ? { kind: "borrow", ...input } : undefined;
 
   const debtFree = result.debtFree.toLocaleString("en-NZ", {
     month: "short",
@@ -457,12 +411,9 @@ export default function BorrowCalculator({
         <div className="flex flex-col gap-8">
           {/* ============ INPUTS ============ */}
           <section className="rounded-xl border border-valar-concrete bg-valar-indigo/[0.04] p-6 md:p-8">
-            <h2 className="mb-1 text-2xl font-bold text-valar-navy">
-              Start from your payment
-            </h2>
+            <h2 className="mb-1 text-2xl font-bold text-valar-navy">Start from your payment</h2>
             <p className="mb-6 text-sm leading-relaxed text-gray-600">
-              Tell us what you&rsquo;d be comfortable paying. We&rsquo;ll show
-              the loan it carries.
+              Tell us what you&rsquo;d be comfortable paying. We&rsquo;ll show the loan it carries.
             </p>
 
             <div
@@ -480,9 +431,7 @@ export default function BorrowCalculator({
                     aria-checked={on}
                     onClick={() => switchFrequency(f.key)}
                     className={`rounded-md py-2 text-sm font-semibold transition-colors ${
-                      on
-                        ? "bg-valar-navy text-white"
-                        : "text-valar-steel hover:text-valar-navy"
+                      on ? "bg-valar-navy text-white" : "text-valar-steel hover:text-valar-navy"
                     }`}
                   >
                     {f.label}
@@ -552,11 +501,8 @@ export default function BorrowCalculator({
                   {money(result.loan)}
                 </p>
                 <p className="mt-2 text-sm text-valar-lilac">
-                  Paying{" "}
-                  <b className="font-semibold text-white">
-                    {money(input.payment)}
-                  </b>{" "}
-                  a {per} at {input.rate}% over {input.years} years.
+                  Paying <b className="font-semibold text-white">{money(input.payment)}</b> a {per}{" "}
+                  at {input.rate}% over {input.years} years.
                 </p>
                 <dl className="mt-6 grid grid-cols-3 gap-3 border-t border-white/15 pt-5">
                   <div>
@@ -579,9 +525,7 @@ export default function BorrowCalculator({
                     <dt className="text-[11px] font-bold uppercase tracking-wider text-valar-steel">
                       Debt-free by
                     </dt>
-                    <dd className="mt-1 text-lg font-bold tabular-nums text-white">
-                      {debtFree}
-                    </dd>
+                    <dd className="mt-1 text-lg font-bold tabular-nums text-white">{debtFree}</dd>
                   </div>
                 </dl>
                 {/*
@@ -612,20 +556,16 @@ export default function BorrowCalculator({
                 {result.hasIncome ? (
                   <>
                     <p className="mb-4 text-[15px] leading-relaxed text-gray-600">
-                      <b className="text-valar-navy">{money(input.payment)}</b>{" "}
-                      is <b className="text-valar-navy">{pct(result.share)}</b>{" "}
-                      of your take-home pay. That&rsquo;s{" "}
-                      <b className="text-valar-navy">
-                        {result.band.label.toLowerCase()}
-                      </b>
-                      .
+                      <b className="text-valar-navy">{money(input.payment)}</b> is{" "}
+                      <b className="text-valar-navy">{pct(result.share)}</b> of your take-home pay.
+                      That&rsquo;s{" "}
+                      <b className="text-valar-navy">{result.band.label.toLowerCase()}</b>.
                     </p>
                     <ShareScale active={result.band.label} />
                   </>
                 ) : (
                   <p className="text-[15px] leading-relaxed text-gray-600">
-                    Add your take-home pay to see what share of it this payment
-                    takes.
+                    Add your take-home pay to see what share of it this payment takes.
                   </p>
                 )}
               </div>
@@ -640,27 +580,19 @@ export default function BorrowCalculator({
                     </p>
                     {alreadyAtStress ? (
                       <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                        Your rate is already at or above {STRESS_RATE}%, the
-                        level lenders test at.
+                        Your rate is already at or above {STRESS_RATE}%, the level lenders test at.
                       </p>
                     ) : (
                       <>
                         <p className="mt-1 text-sm leading-relaxed text-gray-600">
                           The same {money(result.loan)} would cost{" "}
-                          <b className="text-valar-navy">
-                            {money(result.stress.payment)}
-                          </b>{" "}
-                          a {per},{" "}
-                          <b className="text-valar-navy">
-                            {money(result.stress.rise)} more
-                          </b>
+                          <b className="text-valar-navy">{money(result.stress.payment)}</b> a {per},{" "}
+                          <b className="text-valar-navy">{money(result.stress.rise)} more</b>
                           {result.hasIncome && (
                             <>
                               . That&rsquo;s{" "}
-                              <b className="text-valar-navy">
-                                {pct(result.stress.share)}
-                              </b>{" "}
-                              of your take-home pay:{" "}
+                              <b className="text-valar-navy">{pct(result.stress.share)}</b> of your
+                              take-home pay:{" "}
                               <b className="text-valar-navy">
                                 {result.stress.band.label.toLowerCase()}
                               </b>
@@ -690,22 +622,19 @@ export default function BorrowCalculator({
                 <dl className="mb-3 grid grid-cols-1 gap-x-6 gap-y-1.5 text-sm sm:grid-cols-2">
                   {BAND_NOTES.map((b) => (
                     <div key={b.label}>
-                      <dt className="inline font-bold text-valar-navy">
-                        {b.label}
-                      </dt>{" "}
+                      <dt className="inline font-bold text-valar-navy">{b.label}</dt>{" "}
                       <dd className="inline text-gray-600">{b.copy}</dd>
                     </div>
                   ))}
                 </dl>
                 <p className="mb-3 text-sm leading-relaxed text-gray-600">
-                  <b className="text-valar-navy">A guide, not a rule.</b>{" "}
-                  The higher your income, the bigger the share that can go to a
-                  mortgage: food, power and basics don&rsquo;t rise with pay. A
-                  bank may lend you more, but you don&rsquo;t have to take it.
+                  <b className="text-valar-navy">A guide, not a rule.</b> The higher your income,
+                  the bigger the share that can go to a mortgage: food, power and basics don&rsquo;t
+                  rise with pay. A bank may lend you more, but you don&rsquo;t have to take it.
                 </p>
                 <p className="text-xs leading-relaxed text-valar-steel">
-                  Indicative only. What you can actually borrow is confirmed by
-                  a lender after a full application.
+                  Indicative only. What you can actually borrow is confirmed by a lender after a
+                  full application.
                 </p>
               </div>
             </>

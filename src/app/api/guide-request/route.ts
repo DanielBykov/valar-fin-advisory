@@ -255,19 +255,20 @@ export async function POST(req: Request) {
   const notify = resend.emails.send({
     from: "Valar Website <lena.bykova@valar.co.nz>",
     to: TO_LENA,
-    subject: borrowPay && borrowResult
-      ? `Borrowing calc: ${firstName} — ${money(borrowResult.loan)} on ${money(borrowPay.payment)} a payment`
-      : snapshot
-      ? `Calculation sent: ${firstName} — ${nzd(snapshot.amount)} @ ${snapshot.rate.toFixed(2)}%`
-      : split
-        ? `Split sent: ${firstName} — ${nzd(
-            split.parts.reduce((sum, p) => sum + p.amount, 0),
-          )} in ${split.parts.length} part${split.parts.length === 1 ? "" : "s"}`
-        : borrowing
-          ? `Borrowing calc: ${firstName} — ${money(
-              calculateBorrowing(inputsFromSnapshot(borrowing)).maxLoan,
-            )} on ${money(borrowing.inc1 + borrowing.inc2)}`
-          : `Guide request: ${title}`,
+    subject:
+      borrowPay && borrowResult
+        ? `Borrowing calc: ${firstName} — ${money(borrowResult.loan)} on ${money(borrowPay.payment)} a payment`
+        : snapshot
+          ? `Calculation sent: ${firstName} — ${nzd(snapshot.amount)} @ ${snapshot.rate.toFixed(2)}%`
+          : split
+            ? `Split sent: ${firstName} — ${nzd(
+                split.parts.reduce((sum, p) => sum + p.amount, 0),
+              )} in ${split.parts.length} part${split.parts.length === 1 ? "" : "s"}`
+            : borrowing
+              ? `Borrowing calc: ${firstName} — ${money(
+                  calculateBorrowing(inputsFromSnapshot(borrowing)).maxLoan,
+                )} on ${money(borrowing.inc1 + borrowing.inc2)}`
+              : `Guide request: ${title}`,
     html: `
       <p><strong>Guide:</strong> ${title}</p>
       <p><strong>Group:</strong> ${magnet.groupLabel}${enrolable ? "" : " (not enrolled — group not created yet)"}</p>
@@ -338,12 +339,12 @@ export async function POST(req: Request) {
   const mail = borrowPay
     ? renderBorrowEmail({ ...common, snapshot: borrowPay })
     : borrowing
-    ? renderAffordabilityEmail({ ...common, snapshot: borrowing })
-    : split
-      ? renderSplitEmail({ ...common, snapshot: split })
-      : snapshot
-        ? renderRepaymentEmail({ ...common, snapshot })
-        : null;
+      ? renderAffordabilityEmail({ ...common, snapshot: borrowing })
+      : split
+        ? renderSplitEmail({ ...common, snapshot: split })
+        : snapshot
+          ? renderRepaymentEmail({ ...common, snapshot })
+          : null;
 
   const deliver = mail
     ? resend.emails.send({

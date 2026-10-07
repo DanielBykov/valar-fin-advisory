@@ -10,10 +10,7 @@ import type { BorrowSnapshot } from "@/lib/borrow-report";
 
 /** Any calculator's inputs. The server tells them apart by `kind`. */
 export type CalculationFigures =
-  | RepaymentSnapshot
-  | SplitSnapshot
-  | AffordabilitySnapshot
-  | BorrowSnapshot;
+  RepaymentSnapshot | SplitSnapshot | AffordabilitySnapshot | BorrowSnapshot;
 
 /*
  * The fields sit on the card rather than behind a modal: this one lives beside
