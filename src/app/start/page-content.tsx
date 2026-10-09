@@ -18,9 +18,9 @@ import {
 import { GuideDownloadModal } from "@/components/guide-download-modal";
 import { LEAD_MAGNETS } from "@/lib/lead-magnets";
 
-// Set this to the borrowing-capacity tool's URL and the tile appears. Left null
-// on purpose: a dead link in the Instagram bio is worse than one fewer tile.
-const BORROWING_CAPACITY_URL: string | null = null;
+// Null hides the tile. Keep it null whenever the target is not live: a dead
+// link in the Instagram bio is worse than one fewer tile.
+const BORROWING_CAPACITY_URL: string | null = "/calculators/what-can-i-buy";
 
 // No entrance animation on this page, deliberately. Nearly all of its traffic
 // arrives in the Instagram in-app browser — the slowest, most throttled context
@@ -167,7 +167,7 @@ export default function StartContent() {
             >
               <Gauge className="h-5 w-5 shrink-0 text-valar-amber" />
               <span className="flex-1">
-                <span className="block font-bold">How much can you borrow?</span>
+                <span className="block font-bold">How much can I borrow?</span>
                 <span className="block text-sm font-light text-valar-lilac">
                   Check your borrowing capacity in a couple of minutes.
                 </span>
