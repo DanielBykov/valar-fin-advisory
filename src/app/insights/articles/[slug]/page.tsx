@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
 import { JsonLd } from "@/components/json-ld";
+import { glossaryEntries, glossarySlug } from "@/lib/glossary";
 import {
+  GLOSSARY_LIVE,
   INSIGHTS_LIVE,
   TAG_LABELS,
   formatDate,
@@ -54,6 +57,27 @@ export default async function Page({ params }: Props) {
 
   const related = relatedArticles(slug);
 
+  // Step headings take their number and phase from the roadmap, so the map and
+  // the sections can't disagree. Articles without a roadmap get an empty map.
+  const steps = new Map<
+    string,
+    { n: number; phaseNumber: number; phaseTitle: string; phaseNote?: string; opensPhase: boolean }
+  >();
+  for (const block of article.body) {
+    if (block.type !== "roadmap") continue;
+    block.phases.forEach((phase, p) =>
+      phase.steps.forEach((s, k) =>
+        steps.set(s.id, {
+          n: s.n,
+          phaseNumber: p + 1,
+          phaseTitle: phase.title,
+          phaseNote: phase.note,
+          opensPhase: k === 0,
+        }),
+      ),
+    );
+  }
+
   // Person is emitted here as well as on /about: the Article's author @id
   // only resolves if the Person node is on the same page. Organization
   // comes from the root layout.
@@ -97,8 +121,18 @@ export default async function Page({ params }: Props) {
             </span>
           </div>
 
-          <h1 className="mb-5 max-w-[22ch] text-3xl font-bold leading-tight text-valar-navy md:text-5xl">
-            {article.title}
+          <h1
+            className={`mb-5 text-3xl font-bold leading-tight text-valar-navy md:text-5xl ${article.titleBreak ? "" : "max-w-[22ch]"}`}
+          >
+            {article.titleBreak && article.title.includes(": ") ? (
+              <>
+                {article.title.slice(0, article.title.indexOf(": ") + 1)}
+                <br />
+                {article.title.slice(article.title.indexOf(": ") + 2)}
+              </>
+            ) : (
+              article.title
+            )}
           </h1>
 
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-valar-steel">
@@ -166,17 +200,143 @@ export default async function Page({ params }: Props) {
           if (block.type === "lede")
             return (
               <p key={i} className="mb-6 text-xl leading-[1.6] text-valar-navy md:text-[1.35rem]">
-                {block.text}
+                {withGlossaryLinks(block.text)}
               </p>
             );
-          if (block.type === "h2")
+          if (block.type === "h2") {
+            const step = block.id ? steps.get(block.id) : undefined;
+            if (!step)
+              return (
+                <h2
+                  key={i}
+                  id={block.id}
+                  // The navbar is fixed, so a jump from the roadmap would otherwise
+                  // land with the heading hidden behind it.
+                  className="mt-11 mb-4 scroll-mt-28 border-t border-valar-concrete pt-8 text-2xl font-bold text-balance text-valar-navy"
+                >
+                  {withGlossaryLinks(block.text)}
+                </h2>
+              );
+            // A heading that is a roadmap step repeats the map's number and phase,
+            // so a reader dropped mid-article by a link still knows where they are.
+            // The first step of each phase also opens that phase with a band:
+            // ten identical sections read as one long wall, four chapters don't.
             return (
-              <h2
+              <div key={i} data-cmp="ArticlePage.Step">
+                {step.opensPhase && (
+                  <div
+                    data-cmp="ArticlePage.PhaseBand"
+                    className="mt-14 rounded-xl bg-valar-navy px-6 py-5 text-valar-lilac"
+                  >
+                    <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-valar-amber">
+                      Phase {step.phaseNumber}
+                    </p>
+                    <p className="text-2xl font-bold text-white">{step.phaseTitle}</p>
+                    {step.phaseNote && <p className="mt-0.5 text-[14px]">{step.phaseNote}</p>}
+                  </div>
+                )}
+                <h2
+                  id={block.id}
+                  className={`mb-4 scroll-mt-28 ${
+                    step.opensPhase ? "mt-9" : "mt-11 border-t border-valar-concrete pt-8"
+                  }`}
+                >
+                  {/* Under a phase band the label would just repeat it. */}
+                  {!step.opensPhase && (
+                    <span className="mb-2 block text-[11px] font-bold uppercase tracking-[0.13em] text-valar-steel">
+                      Phase {step.phaseNumber} · {step.phaseTitle}
+                    </span>
+                  )}
+                  <span className="flex items-center gap-3 text-2xl font-bold text-balance text-valar-navy md:text-[1.75rem]">
+                    <span
+                      aria-hidden="true"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-valar-navy text-[17px] font-bold tabular-nums text-white"
+                    >
+                      {step.n}
+                    </span>
+                    {/* The number is in the badge; screen readers still get it. */}
+                    <span>
+                      <span className="sr-only">{step.n}. </span>
+                      {block.text.replace(/^\d+\.\s*/, "")}
+                    </span>
+                  </span>
+                </h2>
+              </div>
+            );
+          }
+          if (block.type === "bottomline")
+            return (
+              <p
                 key={i}
-                className="mt-11 mb-4 border-t border-valar-concrete pt-8 text-2xl font-bold text-balance text-valar-navy"
+                data-cmp="ArticlePage.Bottomline"
+                // The slide's own line: what a skimming reader should take from the
+                // section, so it is the loudest thing in it.
+                className="my-8 rounded-r-xl border-l-4 border-valar-amber bg-valar-fog px-6 py-5 text-[20px] leading-[1.4] font-semibold text-balance text-valar-navy md:text-[22px]"
               >
-                {block.text}
-              </h2>
+                {withGlossaryLinks(block.text)}
+              </p>
+            );
+          if (block.type === "roadmap")
+            return (
+              <nav
+                key={i}
+                data-cmp="ArticlePage.Roadmap"
+                aria-label={block.caption ?? "Steps in this guide"}
+                // Breaks out of the 720px text column on wide screens: four phases
+                // inside it leave ~170px each and wrap the step titles word by word.
+                className="my-10 xl:-mx-36"
+              >
+                {block.caption && (
+                  <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-indigo">
+                    {block.caption}
+                  </p>
+                )}
+                {/* Four phases in a row on a wide screen, two by two below that,
+                    stacked on a phone: the order reads the same in every layout. */}
+                <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                  {block.phases.map((phase, p) => (
+                    <li
+                      key={phase.title}
+                      className="rounded-xl border border-valar-concrete border-t-[3px] border-t-valar-amber bg-valar-fog p-4"
+                    >
+                      <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-valar-steel">
+                        Phase {p + 1}
+                      </p>
+                      <p className="text-[17px] font-bold text-valar-navy">{phase.title}</p>
+                      {phase.note && (
+                        <p className="mt-1 text-[13px] leading-[1.5] text-valar-steel">
+                          {phase.note}
+                        </p>
+                      )}
+                      <ol className="mt-3 flex flex-col gap-2">
+                        {phase.steps.map((step) => (
+                          <li key={step.id}>
+                            <a
+                              href={`#${step.id}`}
+                              className="flex items-center gap-2 rounded-lg border border-valar-concrete bg-white px-2.5 py-2.5 text-[14px] leading-snug font-semibold whitespace-nowrap text-valar-navy transition-colors hover:border-valar-navy"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-valar-navy text-[12px] font-bold tabular-nums text-white"
+                              >
+                                {step.n}
+                              </span>
+                              <span>
+                                {step.title}
+                                {step.note && (
+                                  <span className="mt-0.5 block text-[12px] font-normal text-valar-steel">
+                                    {step.note}
+                                  </span>
+                                )}
+                              </span>
+                            </a>
+                          </li>
+                        ))}
+                      </ol>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
             );
           if (block.type === "list")
             return (
@@ -185,7 +345,7 @@ export default async function Page({ params }: Props) {
                 className="mb-6 flex list-disc flex-col gap-3 pl-5 text-[18px] leading-[1.7] text-gray-700"
               >
                 {block.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item}>{withGlossaryLinks(item)}</li>
                 ))}
               </ul>
             );
@@ -194,19 +354,28 @@ export default async function Page({ params }: Props) {
               <dl
                 key={i}
                 data-cmp="ArticlePage.Deflist"
-                className="my-7 rounded-xl bg-valar-fog px-7 py-3"
+                className={`rounded-xl bg-valar-fog ${block.compact ? "my-6 px-5 py-1" : "my-7 px-7 py-3"}`}
               >
                 {block.items.map((item) => (
                   <div
                     key={item.term}
-                    className="border-b border-valar-concrete py-5 last:border-b-0"
+                    className={`border-b border-valar-concrete last:border-b-0 ${block.compact ? "py-3" : "py-5"}`}
                   >
-                    <dt className="mb-1 font-bold text-valar-navy">{item.term}</dt>
-                    <dd className="m-0 text-[16px] leading-[1.65] text-gray-700">{item.text}</dd>
+                    <dt
+                      className={`font-bold text-valar-navy ${block.compact ? "mb-0.5 text-[15px]" : "mb-1"}`}
+                    >
+                      {item.term}
+                    </dt>
+                    <dd
+                      className={`m-0 text-gray-700 ${block.compact ? "text-[15px] leading-[1.6]" : "text-[16px] leading-[1.65]"}`}
+                    >
+                      {withGlossaryLinks(item.text)}
+                    </dd>
                   </div>
                 ))}
               </dl>
             );
+          if (block.type === "cta") return <StrategyCallCta key={i} className="my-10" />;
           if (block.type === "stats")
             return (
               <figure key={i} data-cmp="ArticlePage.Stats" className="my-8">
@@ -425,7 +594,9 @@ export default async function Page({ params }: Props) {
                 <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-navy">
                   {block.label}
                 </p>
-                <p className="text-[16px] leading-[1.7] text-valar-navy">{block.text}</p>
+                <p className="text-[16px] leading-[1.7] text-valar-navy">
+                  {withGlossaryLinks(block.text)}
+                </p>
               </aside>
             );
           if (block.type === "pull")
@@ -435,7 +606,7 @@ export default async function Page({ params }: Props) {
                 data-cmp="ArticlePage.Pull"
                 className="my-9 border-t border-valar-concrete pt-8 text-center text-2xl leading-[1.35] font-medium text-balance text-valar-navy md:text-[1.9rem]"
               >
-                {block.text}
+                {withGlossaryLinks(block.text)}
               </p>
             );
           if (block.type === "case")
@@ -457,7 +628,9 @@ export default async function Page({ params }: Props) {
                 <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-steel">
                   What it turns on
                 </p>
-                <p className="text-[16px] leading-[1.7] text-gray-700">{block.text}</p>
+                <p className="text-[16px] leading-[1.7] text-gray-700">
+                  {withGlossaryLinks(block.text)}
+                </p>
               </aside>
             );
           if (block.type === "tracks")
@@ -473,7 +646,9 @@ export default async function Page({ params }: Props) {
                     className="border-l-[3px] border-valar-steel bg-valar-fog py-5 pr-5 pl-6"
                   >
                     <h3 className="mb-2 text-[17px] font-bold text-valar-navy">{item.title}</h3>
-                    <p className="text-[15px] leading-[1.65] text-gray-700">{item.text}</p>
+                    <p className="text-[15px] leading-[1.65] text-gray-700">
+                      {withGlossaryLinks(item.text)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -481,7 +656,7 @@ export default async function Page({ params }: Props) {
           if (block.type === "p")
             return (
               <p key={i} className="mb-6 text-[18px] leading-[1.75] text-gray-700">
-                {block.text}
+                {withGlossaryLinks(block.text)}
               </p>
             );
           // A block type with no renderer yet draws nothing rather than
@@ -505,24 +680,7 @@ export default async function Page({ params }: Props) {
           or speak to a licensed financial adviser.
         </aside>
 
-        <div
-          data-cmp="ArticlePage.Cta"
-          className="mb-4 rounded-xl bg-valar-navy p-8 text-center text-valar-lilac"
-        >
-          <h2 className="mb-2 text-2xl font-bold text-white">
-            Want this run on your actual numbers?
-          </h2>
-          <p className="mx-auto mb-6 max-w-[34rem] text-[15px]">
-            A strategy call is thirty minutes and costs nothing. Bring your income, your deposit and
-            your questions.
-          </p>
-          <Link
-            href="/book"
-            className="inline-flex items-center rounded-lg bg-valar-amber px-6 py-3.5 text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
-          >
-            Book Strategy Call
-          </Link>
-        </div>
+        {!article.body.some((b) => b.type === "cta") && <StrategyCallCta className="mb-4" />}
       </article>
 
       {/* Related */}
@@ -540,4 +698,68 @@ export default async function Page({ params }: Props) {
       )}
     </div>
   );
+}
+
+/** One component for both placements, so the wording can't drift between them. */
+function StrategyCallCta({ className }: { className: string }) {
+  return (
+    <div
+      data-cmp="ArticlePage.Cta"
+      className={`rounded-xl bg-valar-navy p-8 text-center text-valar-lilac ${className}`}
+    >
+      <h2 className="mb-2 text-2xl font-bold text-white">Want this run on your actual numbers?</h2>
+      <p className="mx-auto mb-6 max-w-[34rem] text-[15px]">
+        A strategy call is thirty minutes and costs nothing. Bring your income, your deposit and
+        your questions.
+      </p>
+      <Link
+        href="/book"
+        className="inline-flex items-center rounded-lg bg-valar-amber px-6 py-3.5 text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
+      >
+        Book Strategy Call
+      </Link>
+    </div>
+  );
+}
+
+const GLOSSARY_SLUGS = new Set(glossaryEntries().map((e) => e.slug));
+const GLOSSARY_LINK = /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
+
+/**
+ * Article text marks a glossary term as [[LIM]], or [[LIM|LIM report]] when the
+ * words on the page differ from the glossary entry. The link opens the glossary
+ * in a new tab, scrolled to the term and lit up, so the reader keeps their place.
+ * Mark the first mention only: every repeat underlined makes the page heavy.
+ *
+ * An unknown term fails the build rather than linking to nowhere. While the
+ * glossary is switched off, the words render as plain text.
+ */
+function withGlossaryLinks(text: string): ReactNode {
+  if (!text.includes("[[")) return text;
+  const out: ReactNode[] = [];
+  let last = 0;
+  for (const m of text.matchAll(GLOSSARY_LINK)) {
+    const [whole, shown, term = shown] = m;
+    const slug = glossarySlug(term);
+    if (!GLOSSARY_SLUGS.has(slug)) throw new Error(`Glossary link to unknown term "${term}"`);
+    out.push(text.slice(last, m.index));
+    out.push(
+      GLOSSARY_LIVE ? (
+        <a
+          key={m.index}
+          href={`/insights/glossary#${slug}`}
+          target="_blank"
+          rel="noopener"
+          className="underline decoration-valar-amber decoration-dotted decoration-2 underline-offset-4 transition-colors hover:decoration-solid"
+        >
+          {shown}
+        </a>
+      ) : (
+        shown
+      ),
+    );
+    last = m.index + whole.length;
+  }
+  out.push(text.slice(last));
+  return out;
 }

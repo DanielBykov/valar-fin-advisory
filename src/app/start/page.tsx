@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import { INSIGHTS_LIVE, getArticle } from "@/lib/insights";
 import StartContent from "./page-content";
+
+// The steps guide gets a tile only once it is published: getArticle hides drafts
+// in production, so the tile appears by itself when draft flips to false.
+const STEPS_SLUG = "first-home-buying-steps-nz";
 
 export const metadata: Metadata = {
   title: "Lena Bykova | Valar Financial Advisors",
@@ -19,5 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <StartContent />;
+  const stepsHref =
+    INSIGHTS_LIVE && getArticle(STEPS_SLUG) ? `/insights/articles/${STEPS_SLUG}` : null;
+  return <StartContent stepsHref={stepsHref} />;
 }

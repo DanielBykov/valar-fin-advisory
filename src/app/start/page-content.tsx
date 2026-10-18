@@ -14,6 +14,7 @@ import {
   Instagram,
   Linkedin,
   Facebook,
+  Route,
 } from "lucide-react";
 import { GuideDownloadModal } from "@/components/guide-download-modal";
 import { LEAD_MAGNETS } from "@/lib/lead-magnets";
@@ -33,7 +34,7 @@ const tile =
 const tileSecondary =
   "border border-white/25 bg-white/[0.06] hover:bg-white/[0.12] hover:border-white/50 text-white";
 
-export default function StartContent() {
+export default function StartContent({ stepsHref }: { stepsHref: string | null }) {
   const [guideOpen, setGuideOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
 
@@ -170,6 +171,23 @@ export default function StartContent() {
                 <span className="block font-bold">How much can I borrow?</span>
                 <span className="block text-sm font-light text-valar-lilac">
                   Check your borrowing capacity in a couple of minutes.
+                </span>
+              </span>
+              <ArrowRight className="h-5 w-5 shrink-0 text-valar-lilac transition-transform group-hover:translate-x-1" />
+            </Link>
+          )}
+
+          {stepsHref && (
+            <Link
+              href={stepsHref}
+              data-cmp="StartPage.Link.Steps"
+              className={`${tile} ${tileSecondary}`}
+            >
+              <Route className="h-5 w-5 shrink-0 text-valar-amber" />
+              <span className="flex-1">
+                <span className="block font-bold">Buying your first home: 10 steps</span>
+                <span className="block text-sm font-light text-valar-lilac">
+                  The whole path on one map, from your why to the keys.
                 </span>
               </span>
               <ArrowRight className="h-5 w-5 shrink-0 text-valar-lilac transition-transform group-hover:translate-x-1" />

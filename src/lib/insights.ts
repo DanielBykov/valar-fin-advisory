@@ -51,10 +51,17 @@ export const TAG_ORDER: InsightTag[] = ["guides", "market", "case-studies", "fir
 export type ArticleBlock =
   | { type: "lede"; text: string }
   | { type: "p"; text: string }
-  | { type: "h2"; text: string }
+  /** `id` makes the heading a link target, e.g. for a `roadmap` step. */
+  | { type: "h2"; text: string; id?: string }
   | { type: "list"; items: string[] }
   /** Boxed aside the reader must not miss. One or two per article, no more. */
   | { type: "callout"; label: string; text: string }
+  /**
+   * The one-line conclusion that closes a section of a step-by-step guide.
+   * Where the guide has an Instagram twin, this is the slide's own line, word
+   * for word, so the two never say different things.
+   */
+  | { type: "bottomline"; text: string }
   /** Full-width emphasis line — the sentence where the argument turns. One per article. */
   | { type: "pull"; text: string }
   /**
@@ -65,7 +72,20 @@ export type ArticleBlock =
   /** Two (or more) side-by-side options, each on its own stripe. */
   | { type: "tracks"; items: { title: string; text: string }[] }
   /** Term-and-definition rows on a grey panel. For qualities, criteria, checklists. */
-  | { type: "deflist"; items: { term: string; text: string }[] }
+  | {
+      type: "deflist";
+      items: { term: string; text: string }[];
+      /**
+       * Tighter padding and smaller type. For long guides that use many
+       * deflists, where the full-size panel makes every section feel heavy.
+       */
+      compact?: boolean;
+    }
+  /**
+   * The strategy-call box, placed where the article is most relevant to it.
+   * An article that places one gets no second box at the end of the page.
+   */
+  | { type: "cta" }
   /**
    * Small comparison table. Keep it to 2-4 columns: it scrolls sideways on a phone,
    * and anything wider stops being readable there. Every column after the first is
@@ -125,6 +145,24 @@ export type ArticleBlock =
       caption?: string;
       columns: { title: string; pros: string[]; cons: string[] }[];
     }
+  /**
+   * The whole of a step-by-step guide on one screen, as phases of numbered steps.
+   * Each step links to the `h2` carrying the matching `id`, so the map doubles as
+   * a table of contents. Built as markup rather than an image: an image of ten
+   * steps is unreadable on a phone and its text is invisible to search.
+   *
+   * `note` on a step is for the one thing the order hides, such as two steps
+   * that run at the same time. Leave it off otherwise.
+   */
+  | {
+      type: "roadmap";
+      caption?: string;
+      phases: {
+        title: string;
+        note?: string;
+        steps: { n: number; title: string; id: string; note?: string }[];
+      }[];
+    }
   /** In-article image. `src` is a path under /public, e.g. "/images/adviser-client.png". */
   | { type: "figure"; src: string; alt: string; caption?: string };
 
@@ -139,6 +177,11 @@ export type Article = {
   topics?: string[];
   /** Thumbnail for the article card on /insights and in Related reading. */
   image?: { src: string; alt: string };
+  /**
+   * Break the page heading onto a second line after the first ": ". Display
+   * only: the title in search results and link previews stays one line.
+   */
+  titleBreak?: boolean;
   readingMinutes: number;
   draft: boolean;
   body: ArticleBlock[];
@@ -350,6 +393,502 @@ export const ARTICLES: Article[] = [
       "The strongest case for renting is investing the difference. Its weak point is not the maths: rent resets upward while a principal-and-interest debt stays fixed, so the surplus shrinks and eventually disappears.",
       "Mobility is the one thing renting genuinely wins on. If you would realistically move within a couple of years, rent, and don't treat that as second best.",
       "The numbers that matter are yours, not the national median. Which doubt is actually yours changes the answer.",
+    ],
+  },
+  {
+    slug: "first-home-buying-steps-nz",
+    title: "Buying your first home: The 10 steps in order",
+    titleBreak: true,
+    excerpt:
+      "From knowing your why to getting the keys: the ten steps of a first home purchase on one map, and the point after which walking away gets very expensive.",
+    tag: "first-home",
+    published: "2026-10-18",
+    topics: ["First home", "Pre-approval", "Offers & conditions", "Settlement"],
+    image: {
+      src: "/images/first-home-steps.jpg",
+      alt: "A couple at a kitchen table comparing printed house listings, a floor plan and a checklist",
+    },
+    readingMinutes: 11,
+    // Drafted 2026-10-18. Built on Lena's Instagram carousel: step names and
+    // each step's closing line (`bottomline`) match the slides word for word,
+    // and the body expands them. Change a slide's conclusion, change it here
+    // too. Cost ranges deliberately left out (her call). Approved by Lena 2026-10-18.
+    draft: false,
+    body: [
+      {
+        type: "lede",
+        text: "Most first home buyers think the hard part is finding the house. It usually isn't. The hard part is knowing which step you're on, what has to happen next, and what you can still undo.",
+      },
+      {
+        type: "p",
+        text: "Buying a home in New Zealand runs through ten steps. Here they are on one map. Each step links to its section below.",
+      },
+      {
+        type: "roadmap",
+        caption: "The path to your first home",
+        phases: [
+          {
+            title: "Explore",
+            note: "Nothing signed yet",
+            steps: [
+              { n: 1, title: "Know your why", id: "step-1" },
+              { n: 2, title: "Explore the market", id: "step-2" },
+              { n: 3, title: "Build your team", id: "step-3" },
+            ],
+          },
+          {
+            title: "Prepare and find",
+            note: "Know your numbers, then search",
+            steps: [
+              { n: 4, title: "What you can borrow", id: "step-4" },
+              { n: 5, title: "Search smart", id: "step-5" },
+            ],
+          },
+          {
+            title: "Commit",
+            note: "Signed and checked",
+            steps: [
+              { n: 6, title: "Offer and checks", id: "step-6" },
+              { n: 7, title: "Final bank approval", id: "step-7" },
+              { n: 8, title: "Going unconditional", id: "step-8" },
+            ],
+          },
+          {
+            title: "Own",
+            note: "The keys are yours",
+            steps: [
+              { n: 9, title: "Settlement day", id: "step-9" },
+              { n: 10, title: "Life after purchase", id: "step-10" },
+            ],
+          },
+        ],
+      },
+
+      { type: "h2", text: "1. Know your why", id: "step-1" },
+      {
+        type: "p",
+        text: "Start with why, not with listings. A home has to fit the way you actually live: your work and commute, your family, your weekends, how much time you want to spend on maintenance. A house that looks perfect at the open home but fights your lifestyle every day is the wrong house.",
+      },
+      {
+        type: "p",
+        text: "And it has to fit where you're going, not just where you are. So before anything else, decide what this home's strategy is for the next few years.",
+      },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "A long-term family home",
+            text: "You're buying for years, not for the next move. Space, schools and the neighbourhood matter more than the cheapest way in.",
+          },
+          {
+            term: "A stepping stone",
+            text: "A first home for a few years, before something bigger. What it will sell for later matters as much as how it feels now.",
+          },
+          {
+            term: "A home as an asset",
+            text: "Property is also an asset. Maybe part of it is rented out, or you're buying where you expect the area to grow. Be clear what the asset is for, and what lifestyle it has to support while you live in it.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Whichever it is, remember that plans change. Jobs move, families grow, life happens. A good choice still works if your plan shifts halfway through.",
+      },
+      {
+        type: "p",
+        text: "Then be honest about condition and maintenance:",
+      },
+      {
+        type: "list",
+        items: [
+          "How much maintenance are you ready for? Time, money and weekends all count.",
+          "Does it need to be brand new? A new build needs very little maintenance in its first years, and you usually pay for that.",
+          "Are you handy? If you can fix and renovate yourself, a home that needs work can be the better buy: you pay less for it and keep the benefit of what you improve.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Your lifestyle and your strategy then point to the type of home: standalone, townhouse or apartment. Each one trades freedom against ease of upkeep.",
+      },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "Standalone house",
+            text: "The most freedom, and all the maintenance is yours.",
+          },
+          {
+            term: "Townhouse",
+            text: "Often newer, with less upkeep. May have [[body corporate]] fees.",
+          },
+          {
+            term: "Apartment",
+            text: "The most affordable way in. Always a body corporate, so check the building’s finances too.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Last, split your list into must-haves and nice-to-haves: location and commute, schools, bedrooms, parking, a yard, sun, a quiet street. The must-haves come straight from your lifestyle and your strategy. Everything else is a nice-to-have, however good it looks on the day.",
+      },
+      {
+        type: "bottomline",
+        text: "The goal is a home that fits this stage, not a perfect one.",
+      },
+
+      { type: "h2", text: "2. Explore the market", id: "step-2" },
+      {
+        type: "p",
+        text: "Before you look for your home, learn the market. You're not buying yet. You're training your eye, so that when the right house comes along you recognise it, and you recognise the wrong price too.",
+      },
+      { type: "p", text: "Three habits do most of the work." },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "Sold prices, not asking prices",
+            text: "An asking price is what a seller hopes for. A sold price is what a buyer actually paid. Many listings show no price at all ([[auction]], tender, deadline sale, “by negotiation”), so sales history on homes.co.nz is your best guide.",
+          },
+          {
+            term: "The area's future",
+            text: "Look at how the area is developing: new roads and transport, schools, zoning changes. The council's district plan shows what's coming. Infrastructure shapes what a suburb will be worth to live in, and to sell in, years from now.",
+          },
+          {
+            term: "5 to 10 open homes",
+            text: "Go just to compare, with no intention of buying. After five to ten, you start to feel what a home is worth. Visit the areas you like in the evening, at the weekend and in rush hour too.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Set up saved searches on Trade Me Property, OneRoof and realestate.co.nz, and let the market come to you for a few weeks.",
+      },
+      {
+        type: "bottomline",
+        text: "Then you'll know a bargain from a sales pitch.",
+      },
+
+      { type: "h2", text: "3. Build your team", id: "step-3" },
+      {
+        type: "p",
+        text: "Buying a home is a team effort, and most first buyers meet their team too late: in the week they find the house. Line them up before you need them, and choose them the way you'd choose anyone you trust with your money.",
+      },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "Mortgage adviser",
+            text: "Compares lenders, helps with the application and structures the loan. Optional: you can go to a bank directly, but a bank can only offer its own products. On most home loans the lender pays the adviser a commission, so you don't pay a fee. Ask about [[clawback]] before you sign.",
+          },
+          {
+            term: "Solicitor",
+            text: "Reviews the agreement and runs settlement. Find one before your first offer, not after: they suggest your conditions and help with the [[KiwiSaver withdrawal|KiwiSaver first-home withdrawal]].",
+          },
+          {
+            term: "Building inspector",
+            text: "Checks the house before you commit. Their report is often the difference between a good buy and an expensive surprise.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Then there's the person you'll talk to most: the real estate agent. Helpful, knows the area, sometimes the first to hear about a listing. But the agent works for the seller. That's not a criticism, it's their job. It just means the rest of your team has to be on your side.",
+      },
+      {
+        type: "p",
+        text: "You can also hire a buyer's agent, who works for you rather than the seller. Worth considering if you're short on time or new to the area, but only if you trust them. Ask how they're paid.",
+      },
+      {
+        type: "bottomline",
+        text: "Your team should work for you. Make sure they do.",
+      },
+
+      { type: "h2", text: "4. Know what you can borrow", id: "step-4" },
+      {
+        type: "p",
+        text: "Get this right before you fall in love with a house. There are two numbers here, and they are not the same: what a bank will lend you, and what you can really afford.",
+      },
+      {
+        type: "p",
+        text: "The maximum [[debt-to-income ratio (DTI)]] for an owner-occupier is 6 times gross income, but a bank may approve less, depending on your financial position. That's a ceiling, not a target. Inside it, the bank looks at three things.",
+      },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "Income and expenses",
+            text: "Tested at the bank's [[test rate]], which sits above the rate you'll actually pay.",
+          },
+          {
+            term: "Income stability",
+            text: "Self-employed borrowers usually need two years of financials, though some lenders accept one.",
+          },
+          {
+            term: "Account conduct",
+            text: "Usually the last three to six months. Card limits count even if you never use them, and so does buy-now-pay-later.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Then run your own test. Check what your repayment would be at a higher rate than today's. If it still fits your life, with room for the unexpected, that's your real limit.",
+      },
+      {
+        type: "p",
+        text: "[[Pre-approval]] is the bank's preliminary yes: we're ready to lend you up to this amount. With a deposit of 20% or more it's usually straightforward. Below 20%, it depends on the bank and on the month. If pre-approval isn't possible, the bank can assess a [[live deal]] instead: your application against a specific home, usually with your offer conditional on finance.",
+      },
+      {
+        type: "p",
+        text: "From here on, keep your finances quiet. No new loans, no higher card limits, no buy-now-pay-later.",
+      },
+      {
+        type: "bottomline",
+        text: "Banks notice everything, including that card limit you forgot about.",
+      },
+      { type: "cta" },
+
+      { type: "h2", text: "5. Search smart", id: "step-5" },
+      {
+        type: "p",
+        text: "Now you search for real, against your why from step 1. Open homes are designed to make you feel at home: fresh paint, good furniture, the smell of coffee. That's staging, and its job is to sell. Your job is to look past it, for two things.",
+      },
+      {
+        type: "tracks",
+        items: [
+          {
+            title: "Potential",
+            text: "Not just what the house could become, but what it could be worth. How is the area developing? How much room does the value have to grow? How easily would it sell if you needed to, and would it rent well? Then the house itself: room to extend or improve.",
+          },
+          {
+            title: "Hidden issues",
+            text: "Cracks, uneven floors, the roof. Moisture and mould: a damp smell is a warning sign, whatever the photos say. Insulation, heating, plumbing, electrics, unconsented work.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "And always ask why they're selling. A job move, a growing family and a leaking roof are three very different stories behind the same listing. Then ask how long it's been on the market, whether there's a [[LIM|LIM report]] or a building report, and for a townhouse or apartment, what the body corporate fees are.",
+      },
+      {
+        type: "p",
+        text: "Write notes after every viewing. By the fifth house, they all blur together. The price you pay and the problems you miss today decide what this home is worth to you years from now.",
+      },
+      {
+        type: "bottomline",
+        text: "A good deal starts not when you sell, but when you buy.",
+      },
+
+      { type: "h2", text: "6. Offer to unconditional", id: "step-6" },
+      {
+        type: "p",
+        text: "You've found the one. The offer is a written proposal on the [[Sale and Purchase Agreement]], usually made through the agent. It sets the price, your [[conditions|Conditional and unconditional]], the dates by which each condition must be met, and the settlement date.",
+      },
+      {
+        type: "p",
+        text: "Once both sides sign, the agreement is binding. Your conditions give you time to check the house properly before you're fully committed. The checks usually take 1 to 3 weeks, depending on the property.",
+      },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "Building inspection",
+            text: "A professional look at the structure, moisture and everything you couldn't see at the open home.",
+          },
+          {
+            term: "LIM",
+            text: "The council's report on consents and [[code compliance certificates (CCC)|Code compliance certificate]], natural hazards, zoning and rates. It can take up to 10 working days, so order it early.",
+          },
+          { term: "Title", text: "Checked by your solicitor." },
+          {
+            term: "Valuation",
+            text: "Often required by the bank, to confirm the home is worth what you're paying.",
+          },
+          { term: "Finance", text: "The bank's final approval for this property. More in step 7." },
+          {
+            term: "Insurance",
+            text: "The home has to be insurable from settlement day, or the bank won't lend.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "A problem found in the checks isn't automatically the end. You can negotiate the price, ask the seller to fix it, or withdraw if the condition allows. Your solicitor advises which.",
+      },
+      {
+        type: "callout",
+        label: "Auctions are different",
+        text: "An auction sale has no conditions, so there's no safety net. Every check, and your finance, has to be done before the auction day.",
+      },
+      {
+        type: "bottomline",
+        text: "Conditions are your safety net. Use them.",
+      },
+
+      { type: "h2", text: "7. Final bank approval", id: "step-7" },
+      {
+        type: "p",
+        text: "This runs alongside step 6, and it's the step most often confused with something you already have. Pre-approval feels like a yes, and it is: a yes to you. Final approval is a yes to you and this specific property.",
+      },
+      {
+        type: "tracks",
+        items: [
+          {
+            title: "Pre-approval",
+            text: "Up to an amount, for a home not yet found, on the assumption that nothing about you changes in the meantime.",
+          },
+          {
+            title: "Final approval",
+            text: "For this property, after the bank has seen the [[valuation|Property valuation]], the insurance and, for a [[unit title]], the body corporate documents.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Between the two, the bank also checks that nothing about you has changed. A new job, a new car loan or a drop in income can change the answer.",
+      },
+      {
+        type: "p",
+        text: "With a [[finance condition]], approval has to land before you go unconditional, and if the bank declines, you can withdraw. Without one, at auction or with an unconditional offer, finance must be sorted before you commit.",
+      },
+      {
+        type: "bottomline",
+        text: "Pre-approval is a promise. Final approval is the signature.",
+      },
+
+      { type: "h2", text: "8. Going unconditional", id: "step-8" },
+      {
+        type: "p",
+        text: "Every check is back and every answer is fine. You confirm through your solicitor that the deal is unconditional. From here, changing your mind gets very expensive.",
+      },
+      {
+        type: "pull",
+        text: "After unconditional, you can still walk away. It just costs a lot.",
+      },
+      {
+        type: "p",
+        text: "Pulling out now is a breach of contract. It can cost you your deposit, and the seller can claim their losses as well. That's why every check before this point matters so much. Here is what you can still do at each stage:",
+      },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "Before you sign",
+            text: "You can walk away for any reason. All you lose is what you've spent on reports.",
+          },
+          {
+            term: "Signed, conditions open",
+            text: "You can withdraw only under a condition that hasn't been met. Your solicitor confirms how.",
+          },
+          {
+            term: "Unconditional",
+            text: "You can still pull out, but it's a breach of contract. It can cost you your deposit and a claim for the seller's losses.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Going unconditional is also when you pay the [[deposit under the agreement|Deposit]]. It's easy to confuse with the deposit your bank talks about, and they are two different things.",
+      },
+      {
+        type: "tracks",
+        items: [
+          {
+            title: "The deposit for the bank",
+            text: "Your own share of the purchase price. It decides how much you need to borrow.",
+          },
+          {
+            title: "The deposit under the agreement",
+            text: "Confirms the deal and counts towards the price. Often 10%, but it's negotiated in the offer and can be lower, for example when your money sits in KiwiSaver.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Then you prepare for settlement: decide your loan structure (fixed portions for different terms, floating, [[offset|Offset account]]), sign the loan documents with your solicitor, confirm the insurance starts on settlement day, and check the settlement statement line by line.",
+      },
+      {
+        type: "bottomline",
+        text: "Cold feet are cheaper before unconditional.",
+      },
+
+      { type: "h2", text: "9. Settlement day", id: "step-9" },
+      {
+        type: "p",
+        text: "Settlement day is when the money moves and the home becomes yours. Most of it happens between the bank and the solicitors. Your part comes a few days earlier.",
+      },
+      {
+        type: "p",
+        text: "Two to five days before, you do a [[pre-settlement inspection]]. It's your last chance to see that you're getting what you paid for. Check that:",
+      },
+      {
+        type: "list",
+        items: [
+          "The home is in the same condition as when you bought it.",
+          "The chattels are all there.",
+          "Any agreed work is done.",
+          "Taps, lights and heating work.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Report any problem to your solicitor before settlement, not after. Once the money has moved, fixing it gets much harder.",
+      },
+      {
+        type: "p",
+        text: "On the day, the bank pays the seller through the solicitors, and your solicitor registers the title in your name with LINZ, the government land registry, along with the bank's mortgage. Then the agent hands over the keys, usually around midday. Some movers will take a same-day afternoon booking, but settlements do run late. It's safer to book them for the next day. And set up power, internet and water in your name beforehand.",
+      },
+      {
+        type: "bottomline",
+        text: "Keys at midday. Furniture tomorrow. Champagne today.",
+      },
+
+      { type: "h2", text: "10. Life after purchase", id: "step-10" },
+      {
+        type: "p",
+        text: "The keys are yours. Congratulations. Now the next stage starts: you're running a loan and a home, and both reward a little attention.",
+      },
+      {
+        type: "deflist",
+        compact: true,
+        items: [
+          {
+            term: "Settle in and automate your payments",
+            text: "The mortgage usually comes out automatically. Set up direct debits for rates and insurance, and put a little aside each month for repairs. The first year in a new home usually finds something to fix.",
+          },
+          {
+            term: "Plan the next few years",
+            text: "Know when each fixed term ends, and decide in advance, not in the week the bank's letter arrives. If you can, pay a little extra: even small amounts cut the total interest a lot. Fixed portions usually limit how much extra you can pay without a fee.",
+          },
+          {
+            term: "Review your rates and LVR regularly",
+            text: "[[LVR|Loan-to-value ratio]] is your loan as a percentage of the home's value. With less than a 20% deposit, it starts above 80%, and the rate or fees may be higher. Once it drops to 80% or below, through repayments or price growth, ask the bank to review your terms.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "A good mortgage adviser often tracks all of this for you: refix reminders, structure reviews, LVR.",
+      },
+
+      { type: "h2", text: "Ready for the next step?" },
+      {
+        type: "p",
+        text: "Wherever you are on the map, the next step is always clearer with your own numbers in front of you.",
+      },
+    ],
+    takeaways: [
+      "Start with why: a home that fits your lifestyle and your plan for the next few years. A home that fits this stage, not a perfect one. Judge the market on sold prices, not asking prices.",
+      "The maximum DTI for an owner-occupier is 6 times gross income, and a bank may approve less, depending on your financial position. That's a ceiling, not a target: check what you can really afford at a higher rate.",
+      "Build a team that works for you: a mortgage adviser, a solicitor and a building inspector. The agent works for the seller.",
+      "Conditions are your safety net during the 1 to 3 weeks of checks. Pre-approval is a promise; final approval is the signature.",
+      "After unconditional, pulling out is possible but very expensive: it can cost you your deposit and more. Check everything first.",
     ],
   },
   {
