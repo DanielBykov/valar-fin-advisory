@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { isReady, type LeadMagnet } from "@/lib/lead-magnets";
+import { suggestEmail } from "@/lib/email-typo";
 
 /**
  * The email-for-a-document exchange itself: the fields, the request, and what
@@ -37,10 +38,21 @@ export type CaptureCopy = {
    */
   lastNameLabel: string | null;
   emailLabel: string;
+  /**
+   * The "did you mean" line under the email field, given the corrected
+   * address as a button. `null` turns the check off, which is the default:
+   * the English capture points are working and were not asked to change.
+   */
+  emailSuggestion: ((fix: React.ReactNode) => React.ReactNode) | null;
   phoneLabel: string;
   phoneOptional: string;
   /** `null` removes the newsletter opt-in entirely — for a page whose visitors would be joining a list written in a language they did not ask for. */
   subscribeLabel: string | null;
+  /**
+   * The required agreement, shown only for a magnet with `requiresConsent`.
+   * A node rather than a string because it carries links to the terms.
+   */
+  consentLabel: React.ReactNode;
   submit: string;
   submitting: string;
   genericError: string;
@@ -62,9 +74,11 @@ export const DEFAULT_CAPTURE_COPY: CaptureCopy = {
   firstNameLabel: "First Name",
   lastNameLabel: null,
   emailLabel: "Email",
+  emailSuggestion: null,
   phoneLabel: "Phone",
   phoneOptional: "(optional)",
   subscribeLabel: "Keep me updated — occasional market news, research and guides from Valar.",
+  consentLabel: "I agree to the terms of this download.",
   submit: "Send me the guide",
   submitting: "Sending…",
   genericError: "Something went wrong. Please try again.",
@@ -115,6 +129,12 @@ interface GuideCaptureFormProps {
    * confirmation rather than stacking one on the other.
    */
   header?: React.ReactNode;
+  /**
+   * First and last name side by side. Off by default, so the forms that
+   * already ask for a last name keep their layout; the Valári modal turns it
+   * on to keep a long form short.
+   */
+  pairNames?: boolean;
 }
 
 export function GuideCaptureForm({
@@ -124,11 +144,17 @@ export function GuideCaptureForm({
   onClose,
   header,
   onSuccess,
+  pairNames = false,
 }: GuideCaptureFormProps) {
   const t = { ...DEFAULT_CAPTURE_COPY, ...copy };
   const [submitting, setSubmitting] = useState(false);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  /* Checked on blur, not per keystroke: mid-typing, "name@gm" is not a typo
+     yet, and a suggestion flickering under the field while someone types
+     reads as the form arguing with them. */
+  const [suggestion, setSuggestion] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -172,7 +198,7 @@ export function GuideCaptureForm({
         </p>
         <div className="h-[2px] w-8 bg-valar-amber mx-auto mb-5" />
 
-        {isReady(guide) && (
+        {isReady(guide) && !guide.emailOnly && (
           <a
             href={guide.file}
             target="_blank"
@@ -239,34 +265,40 @@ export function GuideCaptureForm({
     <>
       {header}
       <form className="space-y-4" onSubmit={handleSubmit}>
-        <div className="space-y-1.5">
-          <label htmlFor={id("firstName")} className={label}>
-            {t.firstNameLabel}
-          </label>
-          <input
-            id={id("firstName")}
-            name="firstName"
-            type="text"
-            required
-            autoComplete="given-name"
-            className={field}
-          />
-        </div>
-        {t.lastNameLabel && (
+        <div
+          className={
+            pairNames && t.lastNameLabel ? "grid grid-cols-1 gap-4 sm:grid-cols-2" : "space-y-4"
+          }
+        >
           <div className="space-y-1.5">
-            <label htmlFor={id("lastName")} className={label}>
-              {t.lastNameLabel}
+            <label htmlFor={id("firstName")} className={label}>
+              {t.firstNameLabel}
             </label>
             <input
-              id={id("lastName")}
-              name="lastName"
+              id={id("firstName")}
+              name="firstName"
               type="text"
               required
-              autoComplete="family-name"
+              autoComplete="given-name"
               className={field}
             />
           </div>
-        )}
+          {t.lastNameLabel && (
+            <div className="space-y-1.5">
+              <label htmlFor={id("lastName")} className={label}>
+                {t.lastNameLabel}
+              </label>
+              <input
+                id={id("lastName")}
+                name="lastName"
+                type="text"
+                required
+                autoComplete="family-name"
+                className={field}
+              />
+            </div>
+          )}
+        </div>
         <div className="space-y-1.5">
           <label htmlFor={id("email")} className={label}>
             {t.emailLabel}
@@ -277,16 +309,68 @@ export function GuideCaptureForm({
             type="email"
             required
             autoComplete="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setSuggestion(null);
+            }}
+            onBlur={() => t.emailSuggestion && setSuggestion(suggestEmail(email))}
+            aria-describedby={suggestion ? id("email-fix") : undefined}
             className={field}
           />
+          {suggestion && t.emailSuggestion && (
+            <p id={id("email-fix")} className="text-xs leading-relaxed text-valar-indigo">
+              {t.emailSuggestion(
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmail(suggestion);
+                    setSuggestion(null);
+                  }}
+                  className="font-semibold text-valar-navy underline hover:text-valar-amber"
+                >
+                  {suggestion}
+                </button>,
+              )}
+            </p>
+          )}
         </div>
         <div className="space-y-1.5">
           <label htmlFor={id("phone")} className={label}>
-            {t.phoneLabel}{" "}
-            <span className="text-valar-indigo/40 normal-case font-normal">{t.phoneOptional}</span>
+            {t.phoneLabel}
+            {!guide.requiresPhone && (
+              <>
+                {" "}
+                <span className="text-valar-indigo/40 normal-case font-normal">
+                  {t.phoneOptional}
+                </span>
+              </>
+            )}
           </label>
-          <input id={id("phone")} name="phone" type="tel" autoComplete="tel" className={field} />
+          <input
+            id={id("phone")}
+            name="phone"
+            type="tel"
+            required={guide.requiresPhone}
+            autoComplete="tel"
+            className={field}
+          />
         </div>
+
+        {/* Before the news opt-in, and required: the one tick that is a
+            condition of the download rather than a preference. */}
+        {guide.requiresConsent && (
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              name="consent"
+              value="yes"
+              required
+              className="mt-0.5 accent-valar-amber w-4 h-4 flex-shrink-0"
+            />
+            <span className="text-xs text-valar-navy leading-relaxed">{t.consentLabel}</span>
+          </label>
+        )}
 
         {t.subscribeLabel && (
           <label className="flex items-start gap-3 cursor-pointer group">

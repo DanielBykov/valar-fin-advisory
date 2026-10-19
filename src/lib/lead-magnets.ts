@@ -20,7 +20,8 @@ export type LeadMagnetKey =
   | "pay-your-mortgage-off-faster"
   | "split-structure-review"
   | "ua-home-buying-journey"
-  | "ua-first-home-webinar";
+  | "ua-first-home-webinar"
+  | "valari-ai-skill";
 
 /**
  * Env var names, not values. The ids are secrets-adjacent configuration that
@@ -28,7 +29,10 @@ export type LeadMagnetKey =
  * components — only the server ever resolves one.
  */
 export type GroupEnvVar =
-  "MAILERLITE_FHB_GROUP_ID" | "MAILERLITE_CALCULATORS_GROUP_ID" | "MAILERLITE_UA_GROUP_ID";
+  | "MAILERLITE_FHB_GROUP_ID"
+  | "MAILERLITE_CALCULATORS_GROUP_ID"
+  | "MAILERLITE_UA_GROUP_ID"
+  | "MAILERLITE_VALARI_GROUP_ID";
 
 export type LeadMagnet = {
   key: LeadMagnetKey;
@@ -69,6 +73,20 @@ export type LeadMagnet = {
    * does: a page names a magnet, and everything about it follows from that.
    */
   cover?: { src: string; width: number; height: number };
+  /** Phone becomes a required field, on the form and in the API. */
+  requiresPhone?: boolean;
+  /**
+   * The visitor must tick an agreement before the request is accepted. The API
+   * refuses without it, so the tick is a record and not only a UI rule — the
+   * page supplies the wording, Lena's notification records that it was given.
+   */
+  requiresConsent?: boolean;
+  /**
+   * The file goes by email only: the confirmation screen says so and offers no
+   * download button. For a magnet whose delivery email is the point — it
+   * proves the address is real before the file is handed over.
+   */
+  emailOnly?: boolean;
 };
 
 export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
@@ -168,6 +186,35 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
     groupLabel: "Ukrainian community",
     fallbackGroupEnv: null,
     pendingNote: "Запис відкрито на цій сторінці. Вмикайте.",
+  },
+
+  /*
+   * The Valári AI skill, a zip rather than a PDF (Lena, 2026-10-19). Gated with
+   * phone and a required agreement: the agreement is that Valári is general
+   * information, not advice, and it has to exist before the file is handed
+   * over rather than be a line someone may or may not read.
+   *
+   * No fallback group. The delivery email is a MailerLite automation Lena is
+   * writing for this file; a lead dropped into the first home buyers sequence
+   * would be sent a guide instead of the skill. The file goes by email only
+   * (`emailOnly`), so without the group and its automation nobody receives
+   * it: the page cannot go live before a test send arrives.
+   *
+   * The file name carries the version. A new version is a new file and a new
+   * path here, so a browser or an old email never serves a cached v1.
+   */
+  "valari-ai-skill": {
+    key: "valari-ai-skill",
+    title: "Valári, first home AI assistant",
+    description: "One file. Works with Claude and ChatGPT. Setup notes are inside.",
+    groupEnv: "MAILERLITE_VALARI_GROUP_ID",
+    groupLabel: "Valári AI skill",
+    fallbackGroupEnv: null,
+    file: "/resources/valari/valari-first-home-ai-skill-v1.zip",
+    requiresPhone: true,
+    requiresConsent: true,
+    // Lena, 2026-10-19: the file is emailed, not downloaded on the page.
+    emailOnly: true,
   },
 };
 

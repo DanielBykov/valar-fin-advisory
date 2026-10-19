@@ -23,8 +23,18 @@ const FROM = "Lena Bykova — Valar <lena.bykova@valar.co.nz>";
 const TO_LENA = "lena.bykova@valar.co.nz";
 
 export async function POST(req: Request) {
-  const { firstName, lastName, email, phone, guideKey, guideTitle, source, subscribe, figures } =
-    await req.json();
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    guideKey,
+    guideTitle,
+    source,
+    subscribe,
+    consent,
+    figures,
+  } = await req.json();
   if (!firstName || !email) {
     return NextResponse.json(
       { success: false, error: "Name and email required." },
@@ -67,6 +77,18 @@ export async function POST(req: Request) {
    */
   const magnet = getLeadMagnet(guideKey) ?? LEAD_MAGNETS["first-home-buyer-guide"];
   const title = magnet.title || guideTitle;
+
+  // The form enforces these too, but a request can skip the form: the
+  // agreement only counts as a record if the server refuses without it.
+  if (magnet.requiresPhone && !phone) {
+    return NextResponse.json({ success: false, error: "Phone required." }, { status: 400 });
+  }
+  if (magnet.requiresConsent && consent !== "yes") {
+    return NextResponse.json(
+      { success: false, error: "Please tick the agreement to continue." },
+      { status: 400 },
+    );
+  }
 
   /*
    * The calculators group may not be created in MailerLite yet. Falling back to
@@ -277,6 +299,11 @@ export async function POST(req: Request) {
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone || "—"}</p>
       <p><strong>News opt-in:</strong> ${subscribe === "yes" ? "Yes" : "No"}</p>
+      ${
+        magnet.requiresConsent
+          ? `<p><strong>Agreement:</strong> accepted ${new Date().toISOString()}</p>`
+          : ""
+      }
       ${figuresBlock}
     `,
   });
