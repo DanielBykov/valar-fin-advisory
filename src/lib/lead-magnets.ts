@@ -32,6 +32,7 @@ export type GroupEnvVar =
   | "MAILERLITE_FHB_GROUP_ID"
   | "MAILERLITE_CALCULATORS_GROUP_ID"
   | "MAILERLITE_UA_GROUP_ID"
+  | "MAILERLITE_UA_WEBINAR_GROUP_ID"
   | "MAILERLITE_VALARI_GROUP_ID";
 
 export type LeadMagnet = {
@@ -158,16 +159,24 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
     groupEnv: "MAILERLITE_UA_GROUP_ID",
     groupLabel: "Ukrainian community",
     fallbackGroupEnv: null,
-    file: "/resources/guides/home-buying-journey-ua.pdf",
+    /*
+     * The rewritten guide (Lena, 2026-10-16, 38 pages). No year in the name on
+     * purpose: this path is printed in emails that cannot be recalled, so the
+     * next edition replaces the file here rather than arriving under a new URL.
+     */
+    file: "/resources/guides/first-home-buyers-guide-ua.pdf",
   },
 
   /*
    * The recorded webinar, gated the same way the guide is: an email buys a
-   * link rather than a file. It shares the Ukrainian group deliberately —
-   * the same person, the same language, and one nurture sequence rather than
-   * two half-written ones. Which of the two they asked for is carried by
-   * `lead_source`, which is why the two capture points on `/ua` pass
-   * different `source` strings.
+   * link rather than a file.
+   *
+   * Its own group, not the guide's (2026-10-16). It shared the Ukrainian
+   * group at first, but the page now promises an email with the webinar's
+   * presentation and AI skill, and a MailerLite automation fires once per
+   * subscriber: someone who took the guide first and then watched the
+   * webinar would already be in the group, and the webinar email would
+   * silently never come. A group per magnet is what lets both arrive.
    *
    * No `file`, and there never will be one. The recording is not a thing that
    * gets sent — it plays embedded on `/ua` and nowhere else, because a link in
@@ -182,8 +191,8 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
     key: "ua-first-home-webinar",
     title: "Вебінар: як працює іпотека в Новій Зеландії",
     description: "Запис, який можна дивитися коли завгодно, просто на цій сторінці.",
-    groupEnv: "MAILERLITE_UA_GROUP_ID",
-    groupLabel: "Ukrainian community",
+    groupEnv: "MAILERLITE_UA_WEBINAR_GROUP_ID",
+    groupLabel: "Ukrainian webinar",
     fallbackGroupEnv: null,
     pendingNote: "Запис відкрито на цій сторінці. Вмикайте.",
   },

@@ -14,6 +14,8 @@
  * placeholder waiting to be filled in on the page itself.
  */
 
+import { Calculator, Split, Wallet, type LucideIcon } from "lucide-react";
+
 export type UaResourceKind =
   /** Курс — a paid or free structured programme, hosted anywhere. */
   | "course"
@@ -35,49 +37,45 @@ export type UaResource = {
   external?: boolean;
   /**
    * A short qualifier under the title — length, price, or the language it is
-   * actually in. The calculators are in English and saying so on the tile is
-   * the honest version: a Ukrainian speaker who taps expecting Ukrainian and
-   * gets English has been told something untrue by the page.
+   * actually in, where saying so helps.
    */
   meta?: string;
+  /** Shown in an amber square beside the title, as on the page's other cards. */
+  icon?: LucideIcon;
 };
 
 export const UA_RESOURCES: UaResource[] = [
   /*
-   * The calculators are the only resources that exist in a finished, linkable
-   * state today. They are in English — deliberately listed anyway, because the
-   * numbers are the point and a person deciding whether they can afford a
-   * house will work through an English form to find out.
+   * The three calculators that are live on the site, each described by the
+   * one thing it shows that the others do not (Lena, 2026-10-16).
+   *
+   * No "Англійською" tag any more, at Lena's call: the forms are numbers and
+   * a few labels, people manage, and a language warning on every tile was
+   * talking visitors out of trying.
+   *
+   * Rent-vs-buy is not here: it is switched off in `calculators.ts`, and its
+   * tile would have sent people to a 404 on the live site.
    */
   {
     kind: "tool",
-    title: "Скільки я можу позичити",
-    description:
-      "Оцінка суми, яку банк може дати саме вам, з урахуванням доходу, боргів і депозиту.",
-    href: "/calculators/what-can-i-buy",
-    meta: "Англійською",
-  },
-  {
-    kind: "tool",
     title: "Розрахунок платежів",
-    description:
-      "Скільки виходить на місяць, скільки відсотків ви заплатите за весь термін, і що змінює дострокове погашення.",
+    description: "Платіж і відсотки за весь термін. І як дострокове погашення скорочує кредит.",
     href: "/calculators/repayments",
-    meta: "Англійською",
+    icon: Calculator,
   },
   {
     kind: "tool",
-    title: "Оренда чи покупка",
-    description: "Порівняння двох сценаріїв на одному горизонті: що насправді виходить дорожче.",
-    href: "/calculators/rent-vs-buy",
-    meta: "Англійською",
-  },
-  {
-    kind: "tool",
-    title: "Розділення кредиту",
-    description: "Як розбити позику на частини з різними ставками й термінами, і що це дає.",
+    title: "Split: розділення кредиту",
+    description: "Як розбити позику на частини з різними ставками й термінами.",
     href: "/calculators/split-loan",
-    meta: "Англійською",
+    icon: Split,
+  },
+  {
+    kind: "tool",
+    title: "Скільки я можу позичити",
+    description: "Від платежу, комфортного вам, а не від максимуму банку. З тестом на ріст ставки.",
+    href: "/calculators/what-can-i-buy",
+    icon: Wallet,
   },
 
   /*

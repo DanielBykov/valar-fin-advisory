@@ -3,12 +3,12 @@
 import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { InlineWidget } from "react-calendly";
 import {
   ArrowRight,
   Bookmark,
-  Download,
   ExternalLink,
+  FileText,
+  Sparkles,
   Check,
   Play,
   Mail,
@@ -24,9 +24,11 @@ import {
 } from "lucide-react";
 import heroBandImg from "../../../public/images/first-home-villa.png";
 import firstHomeImg from "../../../public/images/first-home-guide.png";
-import webinarImg from "../../../public/images/lena-intro.webp";
+import webinarImg from "../../../public/images/webinar-ua-cover.jpg";
+import contactImg from "../../../public/images/lena-client.webp";
 import aboutImg from "../../../public/images/lena-portrait.webp";
 import { GuideCaptureForm } from "@/components/guide-capture-form";
+import { UaWebinarPlayer, type WebinarSection } from "@/components/ua-webinar-player";
 import { LEAD_MAGNETS } from "@/lib/lead-magnets";
 import { resourcesOfKind, type UaResource } from "@/lib/ua-resources";
 import { UA_FAQ, UA_FAQ_GROUPS } from "@/lib/ua-faq";
@@ -72,9 +74,9 @@ const GUIDE = LEAD_MAGNETS["ua-home-buying-journey"];
 const WEBINAR = LEAD_MAGNETS["ua-first-home-webinar"];
 
 /*
- * Two capture points on one page, so each says which one it was. They share a
- * MailerLite group, and `lead_source` is the only thing that distinguishes
- * "asked for the recording" from "asked for the guide" once they are in it.
+ * Two capture points on one page, so each says which one it was. They enrol
+ * into separate MailerLite groups now, but `lead_source` still tells Lena's
+ * notification and the subscriber record which form on the page was used.
  */
 const SOURCE_GUIDE = "Ukrainian landing page — guide";
 const SOURCE_WEBINAR = "Ukrainian landing page — webinar";
@@ -194,12 +196,18 @@ const GUIDE_CONTENTS = [
  * That rules out an unlisted YouTube link, which plays for anyone holding the
  * URL no matter where they open it.
  *
- * ⚠️ REQUIRED BEFORE `/ua` IS PUBLISHED. Until this is set the form takes an
- * email and has nothing to open, which is the one thing the block promises.
- * Set it to the host's *embed* URL (the one meant for an iframe), not the
- * page URL a viewer would see.
+ * ⚠️ REQUIRED BEFORE `/ua` IS PUBLISHED: the video's allowed origins in the
+ * Cloudflare dashboard must be restricted to valar.co.nz. Without that this
+ * URL plays anywhere it is pasted. It is the host's *embed* URL (the one
+ * meant for an iframe), not the page URL a viewer would see.
  */
-const WEBINAR_EMBED_URL: string | null = null;
+/*
+ * Cloudflare Stream, "First home in New Zealand, Sep 26 UA.mp4" (uploaded
+ * 2026-10-16). `primaryColor` is Valar amber, so the progress bar and buttons
+ * belong to the page rather than to Cloudflare.
+ */
+const WEBINAR_EMBED_URL: string | null =
+  "https://customer-mnwb9zq4xbqrb8ya.cloudflarestream.com/78b0edc3b0cec942a6b3027fb5dabaf9/iframe?primaryColor=%23f0a500";
 
 /*
  * Remembers, in this browser only, that the form has already been filled in, so
@@ -252,21 +260,112 @@ const webinarUnlock = {
 };
 
 /*
- * Facts about the format, not claims about the content. The recording does not
- * exist yet and its running order is not decided, so anything describing what
- * is *in* it would be a promise written before the thing it promises. Lena is
- * sending the list of what the webinar covers; that replaces these.
+ * The recording's chapters, read off the transcript's subtitle timings and
+ * named by Lena (2026-10-16). They replace the three format facts that stood
+ * here while the recording did not exist: a list of what is actually in two
+ * hours is a better reason to leave an email than a promise about the player.
  *
- * "Українською" is deliberately not here. It was in the eyebrow, in the first
- * fact and in the description all at once — three times inside one block, which
- * is where the page started sounding like it was insisting. It survives in the
- * eyebrow only.
+ * Times are the moment the topic starts in the recording. If it is ever
+ * re-cut or re-uploaded with a different intro, every line shifts with it.
  */
-const WEBINAR_FACTS = [
-  "Це запис, тож дивіться коли зручно і з паузами",
-  "Можна розгорнути на весь екран",
-  "PDF-матеріали з вебінару приходять на пошту",
+const WEBINAR_DURATION = "1 год 54 хв";
+
+/* Grouped into the eight blocks Lena announces at 2:50 in the recording, so
+   the page and the webinar describe the same structure. The intro sits ahead
+   of them unnumbered, as it does in the recording. */
+const WEBINAR_SECTIONS: WebinarSection[] = [
+  {
+    title: "Вступ",
+    chapters: [
+      { at: "0:00", title: "Для кого цей вебінар" },
+      { at: "4:09", title: "Про мене" },
+      { at: "5:47", title: "Шлях до ключів і базові терміни" },
+    ],
+  },
+  {
+    title: "1. Хто і навіщо купує",
+    chapters: [{ at: "11:17", title: "Оренда чи свій дім. Хто може купувати" }],
+  },
+  {
+    title: "2. Банк, депозит і бюджет",
+    chapters: [
+      { at: "14:10", title: "Як банк оцінює вас і скільки можна позичити" },
+      { at: "18:17", title: "Депозит: 5%, 10–20% чи 20%" },
+      { at: "22:49", title: "Звідки береться депозит" },
+      { at: "25:15", title: "Додаткові витрати і ваш бюджет" },
+    ],
+  },
+  {
+    title: "3. Ставки і стрес-тест",
+    chapters: [
+      { at: "29:21", title: "Ставки: OCR, фіксована, спліт, offset" },
+      { at: "38:09", title: "Стрес-тест: скільки брати насправді" },
+    ],
+  },
+  {
+    title: "4. Ринок і вибори",
+    chapters: [{ at: "44:17", title: "Ринок зараз, регіони і вибори" }],
+  },
+  {
+    title: "5. Вибір і перевірка будинку",
+    chapters: [
+      { at: "58:12", title: "Типи нерухомості" },
+      { at: "1:03:39", title: "Стан будинку і building inspection" },
+    ],
+  },
+  {
+    title: "6. Процес купівлі",
+    chapters: [
+      { at: "1:06:53", title: "Ваша команда: адвайзер, юрист, інспектор" },
+      { at: "1:10:30", title: "Аукціон, переговори, тендер" },
+      { at: "1:14:06", title: "Етапи укладення договору купівлі-продажу" },
+    ],
+  },
+  {
+    title: "7. Реальні кейси",
+    chapters: [
+      { at: "1:23:14", title: "Чотири реальні кейси" },
+      { at: "1:35:38", title: "Мислити як інвестор" },
+    ],
+  },
+  {
+    title: "8. План дій і помилки",
+    chapters: [
+      { at: "1:40:16", title: "План на 8 тижнів і типові помилки" },
+      { at: "1:47:47", title: "Підсумки, консультація і бонус Valári" },
+    ],
+  },
 ];
+
+/* What sits under the video before the form, in Lena's words (2026-10-16).
+   Questions rather than topics: a visitor scans for their own question, and a
+   topic name makes them work out whether it is in there. */
+const WEBINAR_TEASER = {
+  facts: ["8 розділів", "2 години", "4 реальні кейси", "план на 8 тижнів"],
+  heading: "Питання, на які відповідає вебінар",
+  /* Six, each short enough for one or two lines in a half-width column: seven
+     long ones pushed the closing note well below the form beside them. */
+  questions: [
+    "Як побудувати стратегію купівлі?",
+    "Як банк оцінює ваш дохід?",
+    "Скільки брати, щоб пережити ріст ставок?",
+    "Як пройти шлях від оферу до ключів?",
+    "Кого взяти в команду і що перевірити?",
+    "Яких помилок уникати, купуючи вперше?",
+  ],
+  outcomes: [
+    {
+      icon: Compass,
+      lead: "Структура в голові:",
+      text: "що робити, у якому порядку, на що звернути увагу.",
+    },
+    {
+      icon: Sparkles,
+      lead: "Valári на пошту:",
+      text: "AI skill, який допоможе побудувати власну систему й відповісти на ваші запитання.",
+    },
+  ],
+};
 
 /*
  * What people actually arrive with, not a services menu. It sits under the
@@ -355,14 +454,6 @@ function UaContactForm() {
         <div className="mx-auto my-5 h-[2px] w-8 bg-valar-amber" />
         <p className="text-sm leading-relaxed text-valar-indigo">
           Відповім протягом одного робочого дня. Лист із підтвердженням уже надіслано на вашу пошту.
-        </p>
-        <p className="mt-5 text-sm leading-relaxed">
-          <a
-            href="#book"
-            className="font-semibold text-valar-navy underline hover:text-valar-amber"
-          >
-            або оберіть час для розмови
-          </a>
         </p>
       </div>
     );
@@ -490,10 +581,16 @@ export default function UaContent() {
           width the whole picture is on screen and nothing is cropped at all; the
           min and max heights only take over at the extremes. Before this the
           header was a 3.7:1 letterbox and a third of the image was being thrown
-          away, which is what "приблизил" was. */}
+          away, which is what "приблизил" was.
+
+          `w-full` is load-bearing. Without a definite width, the max height
+          is transferred back through the aspect ratio and the box narrows to
+          680 × 1920/819 ≈ 1594px, so on any wider screen the photograph
+          stopped short of the right edge (found 2026-10-16, when a
+          full-width block below it made the gap visible). */}
       <section
         data-cmp="UaPage.Hero"
-        className="relative isolate flex min-h-[480px] items-center overflow-hidden md:aspect-[1920/819] md:max-h-[680px] md:min-h-[520px]"
+        className="relative isolate flex min-h-[480px] w-full items-center overflow-hidden md:aspect-[1920/819] md:max-h-[680px] md:min-h-[520px]"
       >
         {/* Vertical position is the whole game here, and the horizontal value
             was doing nothing at all.
@@ -583,8 +680,13 @@ export default function UaContent() {
 
             {/* Two doors, not four. Four made the header a menu to be chosen
                 from rather than a thing to act on, and choosing is what people
-                postpone. The webinar and the calculators keep their sections
-                and their anchors; they just stop competing with the ask.
+                postpone. The guide and the calculators keep their sections and
+                their anchors; they just stop competing with the ask.
+
+                The second door is the webinar, not the guide (Lena,
+                2026-10-16): two hours of her explaining the whole process does
+                more to earn a first message than a PDF can, and the guide is
+                offered again under the webinar's own form anyway.
 
                 Same box for both, differing only in colour. */}
             <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -597,17 +699,82 @@ export default function UaContent() {
                 Написати мені
               </a>
               <a
-                href="#guide"
-                data-cmp="UaPage.Cta.Guide"
+                href="#webinar"
+                data-cmp="UaPage.Cta.Webinar"
                 className={`${HERO_CTA} ${HERO_CTA_SECONDARY}`}
               >
-                <Download className="h-[18px] w-[18px] shrink-0 text-valar-amber" />
-                Гайд First Home Buyer
+                <Play className="h-[18px] w-[18px] shrink-0 fill-valar-amber text-valar-amber" />
+                Дивитися вебінар
               </a>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ─────────────────────── УЖЕ Є ─────────────────────── */}
+      {/* A thin strip of what already exists in Ukrainian, straight under the
+          header (Lena, 2026-10-16). Most of the page is about the visitor's
+          situation; this is the one place that says "there is material here
+          already", and doubles as navigation for someone who came back for
+          one thing. Valári has no section of its own: it arrives by email
+          with the webinar, so its link goes to the webinar. */}
+      <nav
+        aria-label="Матеріали українською"
+        data-cmp="UaPage.Materials"
+        className="bg-valar-fog px-6 py-10"
+      >
+        {/* Its own section with room above it, not a band glued to the
+            photograph: the first version sat flush under the header and read
+            as part of it (Lena, 2026-10-16). Three small cards, the same
+            shape as the cards further down, so it belongs to the page. */}
+        <div className="container mx-auto max-w-5xl">
+          <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+            Українською вже є
+          </p>
+          <ul className="mt-4 grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                href: "#webinar",
+                Icon: Play,
+                label: "Вебінар",
+                body: "Як працює іпотека в Новій Зеландії. Запис на 2 години.",
+              },
+              {
+                href: "#guide",
+                Icon: FileText,
+                label: "Гайд",
+                body: "Як купити свій перший будинок, з Coaching Workbook.",
+              },
+              {
+                href: "#webinar",
+                Icon: Sparkles,
+                label: "AI-помічник Valári",
+                body: "Відповідає на питання вашою мовою. Приходить бонусом до вебінару.",
+              },
+            ].map(({ href, Icon, label, body }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  className="group flex h-full items-start gap-3 rounded-sm border border-valar-concrete bg-white p-4 transition-colors hover:border-valar-amber"
+                >
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-valar-amber/15">
+                    <Icon className="h-[18px] w-[18px] text-valar-amber" strokeWidth={1.75} />
+                  </span>
+                  <span>
+                    <span className="flex items-center gap-1.5 text-[15px] font-bold text-valar-navy">
+                      {label}
+                      <ArrowRight className="h-3.5 w-3.5 text-valar-amber transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                    <span className="mt-1 block text-[14px] leading-snug text-valar-indigo">
+                      {body}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
 
       {/* ───────────────────── ЧИ ЦЕ ПРО ВАС ───────────────────── */}
       {/* Cards rather than a list of sentences. As a two-column bullet list this
@@ -756,7 +923,7 @@ export default function UaContent() {
                   line most likely to be the reason somebody writes in. */}
               <div className="border-l-2 border-valar-amber pl-5 pt-1">
                 <p className="text-valar-navy">
-                  Мені важливо працювати з людьми довго. Якщо одного дня ваші діти прийдуть до мене
+                  Мені важливо працювати з людьми довго. Якщо одного дня ваші друзі чи діти прийдуть до мене
                   купувати свій перший дім, для мене це буде найкращою оцінкою моєї роботи.
                 </p>
               </div>
@@ -777,8 +944,159 @@ export default function UaContent() {
         </div>
       </section>
 
+      {/* ──────────────────────── ВЕБІНАР ──────────────────────── */}
+      {/* Straight after the introduction, not after the FAQ where it started
+          (Lena, 2026-10-16). It sat low while it was imagined as a short video
+          and the biggest ask on the page; at two hours it is the page's
+          strongest asset — the whole process in her own voice, which is what
+          lets someone decide they want her handling their mortgage. "Хто я"
+          stays directly above it: the cards end on "нам варто поговорити", and
+          that section answers "with whom" before anything else is offered.
+
+          It is written as a recording that exists and can be watched now —
+          there is no "coming soon" state, by Lena's instruction.
+
+          The email buys the player, not a link: on success the thumbnail is
+          replaced in place by the embed, and there is no URL anywhere for a
+          viewer to copy and pass on. See `WEBINAR_EMBED_URL` for the part of
+          that promise this page cannot keep on its own. */}
+      <section id="webinar" data-cmp="UaPage.Webinar" className="scroll-mt-6 bg-white px-6 py-16">
+        <div className="container mx-auto max-w-5xl">
+          <div className="h-[2px] w-8 bg-valar-amber" />
+          <p className="mt-4 text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+            Вебінар українською
+          </p>
+          {/* The page's own heading, not `WEBINAR.title`: the magnet's title
+              keeps the word "Вебінар" because it is also the subject line of
+              Lena's lead notification, where it has to say what was asked for.
+              Here the eyebrow already says it. */}
+          <h2 className="mt-3 max-w-3xl text-[28px] font-bold leading-tight tracking-tight text-valar-navy md:text-[38px]">
+            Як працює іпотека в Новій Зеландії
+          </h2>
+          <p className="mt-4 max-w-2xl text-[17px] font-light leading-relaxed text-valar-indigo md:text-[19px]">
+            {WEBINAR.description}
+          </p>
+
+          <UaWebinarPlayer
+            embedUrl={WEBINAR_EMBED_URL}
+            unlocked={webinarUnlocked}
+            title={WEBINAR.title}
+            sections={WEBINAR_SECTIONS}
+            teaser={WEBINAR_TEASER}
+            duration={WEBINAR_DURATION}
+            poster={
+              <>
+                {/* The recording's own title slide, taken from Cloudflare's
+                    thumbnail at 2s (2026-10-16) and kept as a file here, so
+                    the poster is what the player opens on rather than a
+                    portrait that promised a different video. 16:9 like the
+                    frame, so nothing is cropped.
+
+                    The slide is mostly white, so the scrim is light and the
+                    caption sits on its own navy chip instead of relying on
+                    the picture behind it to be dark. */}
+                <Image
+                  src={webinarImg}
+                  alt="Ваш шлях до першого дому в Новій Зеландії. Титульний слайд вебінару"
+                  fill
+                  sizes="(min-width: 768px) 60vw, 100vw"
+                  placeholder="blur"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-valar-navy/15" />
+                {/* Over the illustration, which is the left 37.5% of the slide
+                    (720 of 1920px). Centred on the whole frame, the button sat
+                    on top of the slide's title. */}
+                <div className="absolute inset-y-0 left-0 flex w-[37.5%] flex-col items-center justify-center gap-3 px-2 text-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-valar-amber shadow-lg">
+                    <Play className="ml-1 h-7 w-7 fill-valar-navy text-valar-navy" />
+                  </span>
+                  <span className="rounded-sm bg-valar-navy/85 px-3 py-1.5 text-sm font-light text-white">
+                    {webinarUnlocked
+                      ? "Запис ось-ось буде тут."
+                      : "Залиште пошту, і запис відкриється тут."}
+                  </span>
+                </div>
+              </>
+            }
+            unlockedNote={
+              <div className="flex flex-col gap-2 rounded-sm bg-valar-amber/15 px-5 py-4 text-[15px] leading-relaxed text-valar-navy sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                <p>
+                  <span className="font-bold">Дякую!</span> PDF-презентація і AI-помічник Valári
+                  прийдуть вам на пошту.
+                </p>
+                <a href="#contact" className="shrink-0 font-bold underline hover:text-valar-amber">
+                  Написати мені
+                </a>
+              </div>
+            }
+            aside={
+              <div className="rounded-xl border border-valar-concrete bg-valar-fog p-7 md:p-8">
+                <div className="mb-6">
+                  <div className="h-[2px] w-6 bg-valar-amber mb-4" />
+                  <h3 className="text-[19px] font-bold leading-snug text-valar-navy">
+                    Залиште пошту і дивіться
+                  </h3>
+                  {/* ⚠️ A promise of two files. Neither is delivered yet: the
+                      Ukrainian MailerLite group and its automation do not
+                      exist, and the presentation and the AI skill are not on
+                      the site. Both have to be in place before `/ua` goes
+                      live, or this line is the first thing the page breaks. */}
+                  <p className="mt-2 text-sm leading-relaxed text-valar-indigo">
+                    Запис відкривається одразу. Вам на пошту прийде PDF-презентація з цього вебінару
+                    і AI-помічник Valári.
+                  </p>
+                </div>
+
+                <GuideCaptureForm
+                  guide={WEBINAR}
+                  source={SOURCE_WEBINAR}
+                  onSuccess={() => {
+                    webinarUnlock.write();
+                    // The form disappears and the player widens, so the
+                    // section reflows under the visitor's feet. Bring its top
+                    // back into view so the first thing they see is the video.
+                    requestAnimationFrame(() =>
+                      document
+                        .getElementById("webinar")
+                        ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+                    );
+                  }}
+                  copy={{
+                    firstNameLabel: "Ім’я",
+                    lastNameLabel: "Прізвище",
+                    emailLabel: "Електронна пошта",
+                    emailSuggestion: (fix) => <>Можливо, ви мали на увазі {fix}?</>,
+                    phoneLabel: "Телефон",
+                    phoneOptional: "(за бажанням)",
+                    subscribeLabel:
+                      "Підписатися на новини та матеріали від Valar. Розсилка англійською.",
+                    submit: "Дивитися вебінар",
+                    submitting: "Надсилаю…",
+                    genericError: "Щось пішло не так. Спробуйте ще раз, будь ласка.",
+                    privacy: (link) => <>Надсилаючи форму, ви погоджуєтесь із {link}.</>,
+                    privacyLinkLabel: "політикою конфіденційності",
+                    successTitle: "Дякую!",
+                    successReady: "Запис відкрито.",
+                    successPending: "Запис відкрито.",
+                    downloadLabel: "Дивитися вебінар →",
+                    emailedNote: () => <>Запис відкрито на цій сторінці. Вмикайте.</>,
+                    closingLine: "Будуть питання, пишіть.",
+                    learnMoreLabel: "Далі:",
+                    learnMoreLinks: [{ href: "#contact", label: "написати мені" }],
+                    closeLabel: "Закрити",
+                  }}
+                />
+              </div>
+            }
+          />
+        </div>
+      </section>
+
       {/* ─────────────────────── ЯК МИ ПРАЦЮЄМО ─────────────────────── */}
-      <section data-cmp="UaPage.Steps" className="bg-white px-6 py-16">
+      {/* Fog, where it used to be white: the webinar now sits between it and
+          "Хто я", and the alternation has to hold on both sides of it. */}
+      <section data-cmp="UaPage.Steps" className="bg-valar-fog px-6 py-16">
         <div className="container mx-auto max-w-5xl">
           <div className="h-[2px] w-8 bg-valar-amber" />
           <h2 className="mt-4 text-[26px] font-bold tracking-tight text-valar-navy md:text-[32px]">
@@ -896,6 +1214,7 @@ export default function UaContent() {
                 firstNameLabel: "Ім’я",
                 lastNameLabel: "Прізвище",
                 emailLabel: "Електронна пошта",
+                emailSuggestion: (fix) => <>Можливо, ви мали на увазі {fix}?</>,
                 phoneLabel: "Телефон",
                 phoneOptional: "(за бажанням)",
                 /* The newsletter is in English and the label says so. It was
@@ -916,20 +1235,20 @@ export default function UaContent() {
                   <>Копію ({title}) також надіслано вам на пошту. Перевірте вхідні.</>
                 ),
                 pendingNote: (title) => <>{title}: надішлю, щойно буде готовий.</>,
-                closingLine: "Будуть питання, пишіть або записуйтесь на розмову.",
+                closingLine: "Будуть питання, пишіть.",
                 learnMoreLabel: "Наступний крок:",
                 learnMoreLinks: [
                   { href: "#webinar", label: "подивитися вебінар" },
-                  { href: "#book", label: "записатися на розмову" },
+                  { href: "#contact", label: "написати мені" },
                 ],
                 closeLabel: "Закрити",
               }}
             />
 
             {/* Under the form, not above it: someone who has already given
-                their email is the person most likely to spend twenty minutes
-                on the recording, and anything offered before the form competes
-                with it. */}
+                their email is the person most likely to spend time on the
+                recording, and anything offered before the form competes with
+                it. */}
             <div className="mt-5 rounded-sm bg-valar-amber/15 px-5 py-4">
               <p className="text-[14px] leading-relaxed text-valar-navy">
                 Дуже раджу подивитися ще{" "}
@@ -948,7 +1267,9 @@ export default function UaContent() {
           is close, and what is left in the way is not information but doubt.
           Open on the page rather than behind a form — an objection answered in
           exchange for an email address is an objection answered too late. */}
-      <section data-cmp="UaPage.Faq" className="bg-valar-fog px-6 py-14">
+      {/* White since the webinar moved up: the first resource section below is
+          fog, and two fog sections in a row read as one. */}
+      <section data-cmp="UaPage.Faq" className="bg-white px-6 py-14">
         <div className="container mx-auto max-w-5xl">
           <div className="h-[2px] w-8 bg-valar-amber" />
           <h2 className="mt-4 text-[26px] font-bold tracking-tight text-valar-navy md:text-[32px]">
@@ -993,133 +1314,15 @@ export default function UaContent() {
             >
               Напишіть мені
             </a>
-            , відповім особисто. Або подивіться вебінар нижче: там багато цих питань розібрано
-            детальніше.
+            , відповім особисто. Або{" "}
+            <a
+              href="#webinar"
+              className="font-bold text-valar-navy underline hover:text-valar-amber"
+            >
+              подивіться вебінар
+            </a>
+            : там багато цих питань розібрано детальніше.
           </p>
-        </div>
-      </section>
-
-      {/* ──────────────────────── ВЕБІНАР ──────────────────────── */}
-      {/* Above the guide because it is the stronger offer: a recording of Lena
-          talking does in ten minutes what a PDF cannot do at all, which is let
-          someone decide whether they want this person handling their mortgage.
-
-          It is written as a recording that exists and can be watched now —
-          there is no "coming soon" state, by Lena's instruction.
-
-          The email buys the player, not a link: on success the thumbnail is
-          replaced in place by the embed, and there is no URL anywhere for a
-          viewer to copy and pass on. See `WEBINAR_EMBED_URL` for the part of
-          that promise this page cannot keep on its own. */}
-      <section id="webinar" data-cmp="UaPage.Webinar" className="scroll-mt-6 bg-white px-6 py-16">
-        <div className="container mx-auto max-w-5xl">
-          <div className="h-[2px] w-8 bg-valar-amber" />
-          <p className="mt-4 text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-            Безкоштовний вебінар українською
-          </p>
-          <h2 className="mt-3 max-w-3xl text-[28px] font-bold leading-tight tracking-tight text-valar-navy md:text-[38px]">
-            {WEBINAR.title}
-          </h2>
-          <p className="mt-4 max-w-2xl text-[17px] font-light leading-relaxed text-valar-indigo md:text-[19px]">
-            {WEBINAR.description}
-          </p>
-
-          {/* Columns stretch to the same height and the player frame takes the
-              slack, exactly as in the guide block above. */}
-          <div className="mt-10 grid gap-10 md:grid-cols-2">
-            <div className="flex flex-col">
-              <div className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-sm bg-valar-navy">
-                {webinarUnlocked && WEBINAR_EMBED_URL ? (
-                  <iframe
-                    src={WEBINAR_EMBED_URL}
-                    title={WEBINAR.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen"
-                    allowFullScreen
-                    className="absolute inset-0 h-full w-full border-0"
-                  />
-                ) : (
-                  <>
-                    {/* 16:9 out of a 1122x1402 portrait — the crop window is
-                        631px tall, centred at 38% to hold the face and
-                        shoulders. If the photo is ever swapped this needs
-                        re-tuning with it. */}
-                    <Image
-                      src={webinarImg}
-                      alt="Ліна Бикова"
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      placeholder="blur"
-                      className="object-cover object-[center_38%]"
-                    />
-                    <div className="absolute inset-0 bg-valar-navy/35" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
-                      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-valar-amber shadow-lg">
-                        <Play className="ml-1 h-7 w-7 fill-valar-navy text-valar-navy" />
-                      </span>
-                      <span className="text-sm font-light text-white/90">
-                        {webinarUnlocked
-                          ? "Запис ось-ось буде тут."
-                          : "Залиште пошту, і запис відкриється тут."}
-                      </span>
-                    </div>
-                  </>
-                )}
-              </div>
-
-              <ul className="mt-7 space-y-3">
-                {WEBINAR_FACTS.map((fact) => (
-                  <li
-                    key={fact}
-                    className="flex gap-3 text-[16px] leading-relaxed text-valar-indigo"
-                  >
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-valar-amber" />
-                    {fact}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-xl border border-valar-concrete bg-valar-fog p-7 md:p-8">
-              <div className="mb-6">
-                <div className="h-[2px] w-6 bg-valar-amber mb-4" />
-                <h3 className="text-[19px] font-bold leading-snug text-valar-navy">
-                  Залиште пошту і дивіться
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-valar-indigo">
-                  Запис відкривається одразу. Вам на пошту прийдуть PDF-матеріали з цього вебінару.
-                </p>
-              </div>
-
-              <GuideCaptureForm
-                guide={WEBINAR}
-                source={SOURCE_WEBINAR}
-                onSuccess={webinarUnlock.write}
-                copy={{
-                  firstNameLabel: "Ім’я",
-                  lastNameLabel: "Прізвище",
-                  emailLabel: "Електронна пошта",
-                  phoneLabel: "Телефон",
-                  phoneOptional: "(за бажанням)",
-                  subscribeLabel:
-                    "Підписатися на новини та матеріали від Valar. Розсилка англійською.",
-                  submit: "Дивитися вебінар",
-                  submitting: "Надсилаю…",
-                  genericError: "Щось пішло не так. Спробуйте ще раз, будь ласка.",
-                  privacy: (link) => <>Надсилаючи форму, ви погоджуєтесь із {link}.</>,
-                  privacyLinkLabel: "політикою конфіденційності",
-                  successTitle: "Дякую!",
-                  successReady: "Запис відкрито.",
-                  successPending: "Запис відкрито.",
-                  downloadLabel: "Дивитися вебінар →",
-                  emailedNote: () => <>Запис відкрито на цій сторінці. Вмикайте.</>,
-                  closingLine: "Будуть питання, пишіть або записуйтесь на розмову.",
-                  learnMoreLabel: "Далі:",
-                  learnMoreLinks: [{ href: "#book", label: "записатися на розмову" }],
-                  closeLabel: "Закрити",
-                }}
-              />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1143,10 +1346,19 @@ export default function UaContent() {
             </h2>
             <p className="mt-3 text-[16px] text-valar-indigo">{section.intro}</p>
 
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {/* Three across for the calculators, which are exactly three; two
+                across for everything else, where a long title needs the width. */}
+            <div
+              className={`mt-8 grid gap-4 md:grid-cols-2 ${section.kind === "tool" ? "lg:grid-cols-3" : ""}`}
+            >
               {section.items.map((r) => {
                 const inner = (
                   <>
+                    {r.icon && (
+                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-valar-amber/15">
+                        <r.icon className="h-[18px] w-[18px] text-valar-amber" strokeWidth={1.75} />
+                      </span>
+                    )}
                     <div className="flex-1">
                       <span className="block font-bold text-valar-navy">{r.title}</span>
                       {r.meta && (
@@ -1215,104 +1427,83 @@ export default function UaContent() {
       </section>
 
       {/* ───────────────────────── КОНТАКТ ───────────────────────── */}
-      {/* The first call to action on the page lands here, ahead of the
-          calendar. Writing a message is a smaller step than picking a slot in
-          someone's diary, and for a stranger arriving from a Facebook group the
-          smaller step is the one that gets taken. The calendar is directly
-          below for the people who are already past that. */}
+      {/* The first call to action on the page lands here. Writing a message is
+          the smallest step a stranger from a Facebook group can take, and since
+          2026-10-16 it is the only one: Lena removed the booking calendar, and
+          a time is agreed by reply instead.
+
+          The "nothing obliges you" note and "I read it myself, not a bot" are
+          gone at Lena's instruction: the section says what happens next and
+          stops. */}
       <section id="contact" data-cmp="UaPage.Contact" className="scroll-mt-6 bg-white px-6 py-16">
-        <div className="container mx-auto max-w-5xl">
-          <div className="h-[2px] w-8 bg-valar-amber" />
-          <h2 className="mt-4 text-[26px] font-bold tracking-tight text-valar-navy md:text-[32px]">
-            Напишіть мені
-          </h2>
-          <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-valar-indigo">
-            Опишіть коротко свою ситуацію, і я відповім протягом одного робочого дня. Українською.
-          </p>
+        {/* Two columns from the top, the heading level with the form, and the
+            left column no taller than the form beside it (Lena, 2026-10-16).
+            The first pass put the heading above both columns and a 300px
+            portrait under the text, which made this the tallest block on the
+            page for the smallest ask. */}
+        <div className="container mx-auto grid max-w-5xl gap-10 md:grid-cols-[1fr_1.1fr]">
+          <div className="flex flex-col text-[16px] leading-relaxed text-valar-indigo">
+            <div className="h-[2px] w-8 bg-valar-amber" />
+            <h2 className="mt-4 text-[26px] font-bold tracking-tight text-valar-navy md:text-[32px]">
+              Напишіть мені
+            </h2>
+            {/* One sentence per line, as Lena reads it. */}
+            <p className="mt-3">Опишіть коротко свою ситуацію.</p>
+            <p>Я відповім вам протягом одного робочого дня.</p>
+            <p>Українською.</p>
 
-          <div className="mt-9 grid gap-10 md:grid-cols-[1fr_1.1fr] md:items-start">
-            <div className="space-y-4 text-[16px] leading-relaxed text-valar-indigo">
-              <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-                Що буде далі
-              </p>
-              <p>Я прочитаю ваше повідомлення сама. Це не служба підтримки й не бот.</p>
-              <p>
-                Якщо питання швидке, відповім листом. Якщо ні, запропоную поговорити, і тоді можна
-                одразу обрати час нижче.
-              </p>
-              <p className="border-l-2 border-valar-concrete pl-5 text-[15px] text-valar-indigo/80">
-                Написати листа ні до чого не зобов’язує. Регульована консультація починається лише
-                після того, як обидві сторони підписали обсяг послуг (scope of engagement).
-              </p>
-              <p className="pt-2 text-[15px]">
-                Або просто напишіть на{" "}
-                <a
-                  href="mailto:lena.bykova@valar.co.nz"
-                  className="font-semibold text-valar-navy underline hover:text-valar-amber"
-                >
-                  lena.bykova@valar.co.nz
-                </a>
-              </p>
-            </div>
+            <p className="mt-8 text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
+              Що буде далі
+            </p>
+            <p className="mt-2">
+              Якщо питання швидке, я відповім вам листом. Якщо ні, запропоную поговорити, і ми
+              призначимо з вами час.
+            </p>
+            <p className="mt-4 text-[15px]">
+              Або просто напишіть на{" "}
+              <a
+                href="mailto:lena.bykova@valar.co.nz"
+                className="font-semibold text-valar-navy underline hover:text-valar-amber"
+              >
+                lena.bykova@valar.co.nz
+              </a>
+            </p>
 
-            <div className="rounded-xl border border-valar-concrete bg-valar-fog p-7 md:p-8">
-              <UaContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* A face next to the form: the person is about to write to
+                someone, and this is who.
 
-      {/* ───────────────────────── ЗАПИС ───────────────────────── */}
-      <section id="book" data-cmp="UaPage.Book" className="scroll-mt-6 bg-valar-fog px-6 pt-16">
-        <div className="container mx-auto max-w-3xl">
-          <div className="h-[2px] w-8 bg-valar-amber" />
-          <h2 className="mt-4 text-[26px] font-bold tracking-tight text-valar-navy md:text-[32px]">
-            Записатися на розмову
-          </h2>
-          <p className="mt-3 text-[16px] text-valar-indigo">
-            Безкоштовно, 20–30 хвилин. Оберіть зручний час, або напишіть вище, якщо так простіше.
-          </p>
+                The frame takes whatever height the text leaves beside the
+                form (`flex-1`), so the column ends level with it and nothing
+                is left empty. A small fixed thumbnail was tried first: it left
+                a hole above it, and a full-length portrait shrank her face to
+                a few pixels.
 
-          {/* The same wording the English booking page carries, and it is not
-              decorative: a free introductory call is not a financial advice
-              service, and saying where regulated advice actually begins is what
-              keeps this page on the right side of that line. */}
-          <div className="mt-6 flex items-start gap-4">
-            <div className="min-h-[1.5rem] w-[2px] shrink-0 self-stretch bg-valar-amber" />
-            <div className="space-y-2 text-sm leading-relaxed text-valar-indigo">
-              <p className="font-semibold text-valar-navy">Що буде на цій розмові</p>
-              <p>
-                Безкоштовні 20–30 хвилин про те, де ви зараз, чого хочете досягти й чи підходимо ми
-                одне одному.
-              </p>
-              <p className="italic text-valar-indigo/70">
-                Ця розмова не є наданням фінансової консультації. Регульована консультація
-                починається лише після того, як обидві сторони підписали обсяг послуг (scope of
-                engagement). Жодних зобов’язань і жодної оплати за цю розмову.
+                The at-desk photograph, by Lena's choice (2026-10-16): her at
+                work across the table from a client, the same one the service
+                pages use. It reads as the conversation the form is asking
+                for, rather than as a portrait. */}
+            <div className="mt-8 flex flex-1 flex-col">
+              <div className="relative min-h-[240px] w-full max-w-[380px] flex-1 overflow-hidden rounded-sm">
+                <Image
+                  src={contactImg}
+                  alt="Ліна Бикова за столом із клієнткою"
+                  fill
+                  sizes="380px"
+                  placeholder="blur"
+                  className="object-cover object-center"
+                />
+              </div>
+              <p className="mt-3 text-[14px] leading-snug">
+                {/* In English, as on the webinar's title slide (Lena, 2026-10-16). */}
+                <span className="font-bold text-valar-navy">Ліна Бикова</span>, Mortgage &
+                Investment Advisor
               </p>
             </div>
           </div>
-        </div>
 
-        <div className="container mx-auto max-w-3xl">
-          <InlineWidget
-            url="https://calendly.com/lena-bykova-valar/new-meeting"
-            styles={{ height: "750px" }}
-            /* Tags the booking with where it came from, so "did the Ukrainian
-               page produce anything" is a question Calendly can answer. */
-            utm={{
-              utmSource: "valar-ua",
-              utmMedium: "website",
-              utmCampaign: "ukrainian-community",
-            }}
-            pageSettings={{
-              backgroundColor: "f6f7f9",
-              hideEventTypeDetails: false,
-              hideLandingPageDetails: false,
-              primaryColor: "f0a500",
-              textColor: "061634",
-            }}
-          />
+          <div className="rounded-xl border border-valar-concrete bg-valar-fog p-7 md:p-8">
+            <UaContactForm />
+          </div>
         </div>
       </section>
 
