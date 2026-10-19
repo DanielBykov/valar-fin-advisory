@@ -38,12 +38,13 @@ export const metadata: Metadata = {
 };
 
 /*
- * Off on the live site until Lena says the page is finished (2026-09-14): it
- * is still being worked on. Production answers 404; running locally ignores
- * the switch so the work stays reviewable, the same rule the calculators use.
- * Nothing on the site links here, and it is not in the sitemap.
+ * Live since 2026-10-19, on Lena's word that the page and both MailerLite
+ * flows are finished. Turning it off again answers 404 in production while
+ * local development ignores the switch, the same rule the calculators use.
+ * Nothing on the site links here and it is not in the sitemap: its traffic
+ * comes from Ukrainian community groups and the webinar emails.
  */
-const UA_LIVE = false;
+const UA_LIVE = true;
 
 export default function Page() {
   if (process.env.NODE_ENV !== "development" && !UA_LIVE) notFound();
