@@ -46,8 +46,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/og-ua.jpg",
-        width: 1200,
-        height: 630,
+        /* Double size: LinkedIn recompresses every share image, and at
+           1200 wide the result looked soft on high-density screens. */
+        width: 2400,
+        height: 1260,
         alt: "Як купити дім у Новій Зеландії. Покроково. Українською.",
       },
     ],
