@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import FirstHomeAiSkillContent from "./page-content";
 
 export const metadata: Metadata = {
-  title: "Valári, first home AI assistant | Valar Financial Advisors",
+  /* Lena's wording, 2026-10-21. No "| Valar Financial Advisors": Google
+     already shows the site name above the title, so the space goes to the
+     words people search instead. */
+  title: "Valári First Home AI Assistant: free for NZ buyers",
   description:
     "Get Valári, a free AI skill that walks you through buying your first home in New Zealand. Works with Claude and ChatGPT.",
   // Indexed (Lena, 2026-10-21). It started unlisted, like /card, for the
