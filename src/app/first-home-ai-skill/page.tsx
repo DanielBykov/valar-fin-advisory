@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     url: "https://valar.co.nz/first-home-ai-skill",
     type: "website",
     siteName: "Valar Financial Advisors",
+    locale: "en_NZ",
     /* Valári's own card (Lena, 2026-10-21), cropped from her 1734x907
        original. 1200 wide, not the 2400 /ua uses: the source has no more
        pixels than that to give. */
