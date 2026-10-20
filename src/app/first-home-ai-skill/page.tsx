@@ -4,16 +4,27 @@ import FirstHomeAiSkillContent from "./page-content";
 export const metadata: Metadata = {
   title: "Valári, first home AI assistant | Valar Financial Advisors",
   description:
-    "Download Valári, a free AI skill that walks you through buying your first home in New Zealand. Works with Claude and ChatGPT.",
-  // Unlisted, like /card: people arrive from the QR code on the webinar slide
-  // and from the webinar email, not from search. noindex rather than a
-  // robots.txt disallow, for the reason given on /start.
-  robots: { index: false, follow: false },
+    "Get Valári, a free AI skill that walks you through buying your first home in New Zealand. Works with Claude and ChatGPT.",
+  // Indexed (Lena, 2026-10-21). It started unlisted, like /card, for the
+  // webinar QR; she wants first home buyers to find it from search as well.
   alternates: { canonical: "https://valar.co.nz/first-home-ai-skill" },
   openGraph: {
     title: "Valári, first home AI assistant",
     description: "A free AI skill for buying your first home in New Zealand.",
-    images: ["/opengraph.jpg"],
+    url: "https://valar.co.nz/first-home-ai-skill",
+    type: "website",
+    siteName: "Valar Financial Advisors",
+    /* Valári's own card (Lena, 2026-10-21), cropped from her 1734x907
+       original. 1200 wide, not the 2400 /ua uses: the source has no more
+       pixels than that to give. */
+    images: [
+      {
+        url: "/images/og-valari.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Valári, the first home AI assistant, with a couple looking at a laptop.",
+      },
+    ],
   },
 };
 
