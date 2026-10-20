@@ -56,6 +56,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...calculators,
     { url: `${SITE_URL}/`, lastModified, changeFrequency: "monthly", priority: 1.0 },
     { url: `${SITE_URL}/about`, lastModified, changeFrequency: "monthly", priority: 0.9 },
+    // The Ukrainian page is meant to be found by search, unlike /start or /card.
+    { url: `${SITE_URL}/ua`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/services`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     {
       url: `${SITE_URL}/services/mortgage-advice`,

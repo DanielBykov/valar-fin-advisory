@@ -33,7 +33,19 @@ export const metadata: Metadata = {
     description:
       "Від першої розмови до ключів. І далі. Ліцензована іпотечна та інвестиційна радниця, яка говорить вашою мовою.",
     locale: "uk_UA",
-    images: ["/opengraph.jpg"],
+    /* Its own card, not the site's English lighthouse (2026-10-20): the link
+       is posted in Ukrainian groups, and an English headline on the preview
+       tells that reader the page is not for them before they click. The
+       image says the task, the og:title under it says the journey, so the
+       two lines of a preview never repeat each other. */
+    images: [
+      {
+        url: "/images/og-ua.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Як купити дім у Новій Зеландії. Іпотека та капітал українською",
+      },
+    ],
   },
 };
 
@@ -41,8 +53,8 @@ export const metadata: Metadata = {
  * Live since 2026-10-19, on Lena's word that the page and both MailerLite
  * flows are finished. Turning it off again answers 404 in production while
  * local development ignores the switch, the same rule the calculators use.
- * Nothing on the site links here and it is not in the sitemap: its traffic
- * comes from Ukrainian community groups and the webinar emails.
+ * Nothing on the site links here; its traffic comes from Ukrainian community
+ * groups, the webinar emails and search (it is in the sitemap since 2026-10-20).
  */
 const UA_LIVE = true;
 
