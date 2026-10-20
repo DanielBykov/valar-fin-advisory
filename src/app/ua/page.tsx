@@ -16,17 +16,18 @@ import { UA_FAQ } from "@/lib/ua-faq";
  */
 export const metadata: Metadata = {
   /*
-   * The search title leads with "іпотека" and the page's own name follows it.
-   * Nobody searches for "дім і капітал" — they search for the problem, and the
-   * title tag is the one piece of this page written for the search box rather
-   * than for the person once they arrive.
+   * Lena's wording, 2026-10-20. The title leads with the question people type
+   * ("як купити дім у Новій Зеландії") and matches the share image, so search
+   * and social say the same thing. It stays under ~60 characters and the
+   * description under ~155, the points where Google cuts them: the description
+   * ends on the free consultation, which is the part that must survive.
    *
-   * "Родинам" is gone from both, at Lena's instruction: she advises people who
+   * "Родинам" stays out of both, at Lena's instruction: she advises people who
    * are not families too, and the word quietly turned some of them away.
    */
-  title: "Іпотека та капітал у Новій Зеландії українською | Valar Financial Advisors",
+  title: "Як купити дім у Новій Зеландії: іпотека покроково | Valar",
   description:
-    "Іпотека, рефінансування та побудова капіталу в Новій Зеландії, українською. Скільки можна позичити, який потрібен депозит, як пройти шлях до ключів. Безкоштовна розмова.",
+    "Весь шлях від оферу до ключів: скільки можна позичити і як банк оцінює ваш дохід. Вебінар, детальний гайд і безкоштовна консультація українською.",
   alternates: { canonical: "https://valar.co.nz/ua" },
   openGraph: {
     title: "Від першого дому до власного капіталу | Нова Зеландія",
