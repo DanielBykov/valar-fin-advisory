@@ -33,6 +33,10 @@ export const metadata: Metadata = {
     /* Short on purpose: Facebook cuts the preview line at about 70
        characters, and this one has to survive whole (Lena, 2026-10-20). */
     description: "Вебінар, детальний гайд і AI-помічник Valári. Українською.",
+    // Facebook's debugger flags both as missing; it guesses them, but should not have to.
+    url: "https://valar.co.nz/ua",
+    type: "website",
+    siteName: "Valar Financial Advisors",
     locale: "uk_UA",
     /* Its own card, not the site's English lighthouse (2026-10-20): the link
        is posted in Ukrainian groups, and an English headline on the preview
