@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useConsent } from "./consent-provider";
 import { isStandaloneRoute } from "@/lib/standalone-routes";
@@ -32,7 +33,19 @@ export function CookieBanner() {
           aria-label="Cookie notice"
           className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4"
         >
-          <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-lg border border-valar-concrete bg-white p-5 shadow-lg md:flex-row md:items-center md:gap-6">
+          <div className="relative mx-auto flex max-w-3xl flex-col gap-3 rounded-lg border border-valar-concrete bg-white p-5 pr-10 shadow-lg md:flex-row md:items-center md:gap-6">
+            {/* For people who close notices rather than answer them (Lena,
+                2026-10-21). Closing is the same as OK: the banner is a
+                notice, and cookies stay on unless switched off. */}
+            <button
+              type="button"
+              onClick={accept}
+              aria-label="Close"
+              data-cmp="CookieBanner.Close"
+              className="absolute top-2 right-2 cursor-pointer rounded-full p-1 text-valar-indigo/60 transition-colors hover:bg-valar-fog hover:text-valar-navy"
+            >
+              <X className="h-4 w-4" />
+            </button>
             <p className="flex-1 text-sm leading-relaxed text-valar-indigo">
               We use cookies to improve the site and show you relevant content.
             </p>
