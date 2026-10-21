@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 import type { AffordabilitySnapshot } from "@/lib/affordability-report";
 import type { RepaymentSnapshot } from "@/lib/repayment-report";
 import type { SplitSnapshot } from "@/lib/split-report";
@@ -79,8 +80,10 @@ export default function SendCalculationForm({
         body: JSON.stringify({ ...data, guideKey, guideTitle, source, figures }),
       });
       const json = await res.json();
-      if (json.success) setSucceeded(true);
-      else setError(json.error || "Something went wrong. Please try again.");
+      if (json.success) {
+        setSucceeded(true);
+        trackMetaEvent("Lead", guideTitle);
+      } else setError(json.error || "Something went wrong. Please try again.");
     } catch {
       setError("Something went wrong. Please try again.");
     }

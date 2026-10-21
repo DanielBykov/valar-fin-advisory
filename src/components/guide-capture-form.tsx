@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { isReady, type LeadMagnet } from "@/lib/lead-magnets";
 import { suggestEmail } from "@/lib/email-typo";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 /**
  * The email-for-a-document exchange itself: the fields, the request, and what
@@ -169,6 +170,7 @@ export function GuideCaptureForm({
     const json = await res.json();
     if (json.success) {
       setSucceeded(true);
+      trackMetaEvent("Lead", guide.title);
       onSuccess?.();
     } else {
       setError(json.error || t.genericError);

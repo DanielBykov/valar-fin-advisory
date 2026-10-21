@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Privacy Policy<span className="text-valar-amber">.</span>
           </h1>
-          <p className="text-valar-lilac font-light">Last updated: September 2026</p>
+          <p className="text-valar-lilac font-light">Last updated: October 2026</p>
         </div>
       </section>
 
@@ -234,6 +234,14 @@ export default function PrivacyPolicyPage() {
               hard drive so that we can recognise your browser) to monitor your use of the website.
               You may disable cookies by changing the settings on your browser, although this may
               mean that you cannot use all of the features of the website.
+            </p>
+            <p>
+              We use analytics and marketing tools to understand how visitors use the site and how
+              people find us, so we can improve the site and our online marketing. These tools are
+              provided by third parties (currently Google and Meta) and may use contact details you
+              enter in a form, in encrypted form, to measure our marketing. You can switch them off
+              at any time using the cookie banner or the &quot;Cookie settings&quot; link in the
+              footer.
             </p>
             <p>
               We may use information about your use of our websites and other IT systems to prevent

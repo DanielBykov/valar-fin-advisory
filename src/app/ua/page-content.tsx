@@ -30,6 +30,7 @@ import aboutImg from "../../../public/images/lena-portrait.webp";
 import { GuideCaptureForm } from "@/components/guide-capture-form";
 import { UaWebinarPlayer, type WebinarSection } from "@/components/ua-webinar-player";
 import { LEAD_MAGNETS } from "@/lib/lead-magnets";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 import { resourcesOfKind, type UaResource } from "@/lib/ua-resources";
 import { UA_FAQ, UA_FAQ_GROUPS } from "@/lib/ua-faq";
 import FaqAccordion from "@/components/insights/faq-accordion";
@@ -429,8 +430,10 @@ function UaContactForm() {
         body: JSON.stringify({ ...data, locale: "uk" }),
       });
       const json = await res.json();
-      if (json.success) setSucceeded(true);
-      else setError("Не вдалося надіслати. Спробуйте ще раз, будь ласка.");
+      if (json.success) {
+        setSucceeded(true);
+        trackMetaEvent("Contact", "Contact form (UA)");
+      } else setError("Не вдалося надіслати. Спробуйте ще раз, будь ласка.");
     } catch {
       setError("Не вдалося надіслати. Спробуйте ще раз, будь ласка.");
     }

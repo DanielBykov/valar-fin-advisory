@@ -1,19 +1,28 @@
 "use client";
 
+import { useEffect } from "react";
 import Script from "next/script";
-import { useConsent } from "./consent-provider";
+import { useConsent, useTrackingAllowed } from "./consent-provider";
 
 const GA_ID = "G-EKZTGV6R58";
 
 /**
- * Loads Google Analytics 4 only after the visitor accepts cookies.
- * Until consent === "granted" nothing is injected, so no GA cookie is set
- * and no request goes to Google.
+ * Loads Google Analytics 4 unless the visitor has switched cookies off (see
+ * `useTrackingAllowed` for why this is opt-out).
  */
 export function Analytics() {
   const { consent } = useConsent();
+  const allowed = useTrackingAllowed();
 
-  if (consent !== "granted") return null;
+  // A script already on the page cannot be unloaded, so "Switch off" in the
+  // middle of a visit uses GA's own kill switch until the next page load.
+  useEffect(() => {
+    if (consent === "denied") {
+      (window as unknown as Record<string, boolean>)[`ga-disable-${GA_ID}`] = true;
+    }
+  }, [consent]);
+
+  if (!allowed) return null;
 
   return (
     <>
