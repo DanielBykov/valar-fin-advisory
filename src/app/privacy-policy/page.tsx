@@ -238,9 +238,10 @@ export default function PrivacyPolicyPage() {
             <p>
               We use analytics and marketing tools to understand how visitors use the site and how
               people find us, so we can improve the site and our online marketing. These tools are
-              provided by third parties (currently Google and Meta). We do not send them your name,
-              email or phone number. You can switch them off at any time using the cookie banner or
-              the &quot;Cookie settings&quot; link in the footer.
+              provided by third parties (currently Google and Meta) and may use contact details you
+              enter in a form, in encrypted form, to measure our marketing. You can switch them off
+              at any time using the cookie banner or the &quot;Cookie settings&quot; link in the
+              footer.
             </p>
             <p>
               We may use information about your use of our websites and other IT systems to prevent

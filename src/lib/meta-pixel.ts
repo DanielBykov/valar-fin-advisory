@@ -6,8 +6,10 @@
  * who declined cookies: `fbq` only exists after consent (see
  * `components/consent/meta-pixel.tsx`).
  *
- * Only the name of what was asked for goes to Meta, never the person's name,
- * email or phone: those stay between the visitor and Valar.
+ * The event itself carries only the name of what was asked for. Contact
+ * details can still reach Meta, hashed, through "Automatic advanced matching"
+ * in Events Manager (Lena, 2026-10-21): the Privacy Policy says so, and the
+ * setting must not be on before that wording is live.
  */
 export function trackMetaEvent(event: "Lead" | "Contact", contentName: string) {
   const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
