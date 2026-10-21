@@ -1,16 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
 import Script from "next/script";
-import { useConsent } from "./consent-provider";
+import { useConsent, useTrackingAllowed } from "./consent-provider";
 
 // Lena's pixel ("Valar website" dataset in Meta Events Manager, 2026-10-21).
 // Public by nature: it is printed in every page that loads the pixel.
 const META_PIXEL_ID = "1080163244849694";
 
 /**
- * Loads the Meta (Facebook) pixel only after the visitor accepts cookies, on
- * the same terms as Google Analytics: until consent === "granted" nothing is
- * injected and no request goes to Meta.
+ * Loads the Meta (Facebook) pixel unless the visitor has switched cookies off,
+ * on the same terms as Google Analytics (see `useTrackingAllowed`).
  *
  * It exists for paid Facebook ads (Lena, 2026-10-21). Without it Meta cannot
  * tell which ad clicks became a form, and optimises for clicks instead.
@@ -20,8 +20,16 @@ const META_PIXEL_ID = "1080163244849694";
  */
 export function MetaPixel() {
   const { consent } = useConsent();
+  const allowed = useTrackingAllowed();
 
-  if (consent !== "granted") return null;
+  // "Switch off" in the middle of a visit: the loaded pixel stops sending.
+  useEffect(() => {
+    if (consent === "denied") {
+      (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq?.("consent", "revoke");
+    }
+  }, [consent]);
+
+  if (!allowed) return null;
 
   return (
     <Script id="meta-pixel" strategy="afterInteractive">

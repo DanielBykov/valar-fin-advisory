@@ -6,12 +6,14 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Linkedin, Instagram, Facebook } from "lucide-react";
 import { isChromelessRoute } from "@/lib/standalone-routes";
+import { useConsent } from "@/components/consent/consent-provider";
 
 export function Footer() {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const pathname = usePathname();
+  const { reset: resetConsent } = useConsent();
 
   async function handleSubscribe(e: React.FormEvent) {
     e.preventDefault();
@@ -175,6 +177,18 @@ export function Footer() {
                 <Link href="/disclosure" className="hover:text-white transition-colors">
                   Disclosure Statement
                 </Link>
+              </li>
+              {/* The way back to the cookie banner, which the Privacy Policy
+                  promises: OK hides it for good otherwise. */}
+              <li>
+                <button
+                  type="button"
+                  onClick={resetConsent}
+                  data-cmp="Footer.CookieSettings"
+                  className="cursor-pointer hover:text-white transition-colors"
+                >
+                  Cookie settings
+                </button>
               </li>
             </ul>
           </div>

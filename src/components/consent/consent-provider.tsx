@@ -1,6 +1,8 @@
 "use client";
 
 import { createContext, useCallback, useContext, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
+import { isStandaloneRoute } from "@/lib/standalone-routes";
 
 type Consent = "granted" | "denied" | null;
 
@@ -84,4 +86,25 @@ export function useConsent() {
     throw new Error("useConsent must be used within a ConsentProvider");
   }
   return ctx;
+}
+
+/**
+ * Whether Google Analytics and the Meta pixel may load.
+ *
+ * Opt-out, not opt-in (Lena, 2026-10-21): with ads running, a pixel that only
+ * saw the minority who pressed Accept left Meta optimising blind. The banner
+ * says the site uses cookies from the first page view, and "Switch off" turns
+ * them off; a choice to switch off is remembered and always respected.
+ *
+ * The exception is a standalone route, where the banner is never shown: no
+ * notice there, so nothing loads until the visitor has said OK elsewhere.
+ * Nothing loads before `ready` either, which keeps the server render and the
+ * first client render identical.
+ */
+export function useTrackingAllowed() {
+  const { consent, ready } = useConsent();
+  const pathname = usePathname();
+  if (!ready) return false;
+  if (consent === "granted") return true;
+  return consent === null && !isStandaloneRoute(pathname);
 }
