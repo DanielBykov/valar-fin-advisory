@@ -12,6 +12,7 @@ import {
   Facebook,
   CheckCircle,
 } from "lucide-react";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export default function ContactContent() {
   const [submitting, setSubmitting] = useState(false);
@@ -46,6 +47,7 @@ export default function ContactContent() {
     const json = await res.json();
     if (json.success) {
       setSucceeded(true);
+      trackMetaEvent("Contact", "Contact form");
       setSubmittedEmail(data.email as string);
       setFirstName((data.firstName as string) || "");
     } else {

@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/json-ld";
 import { ConsentProvider } from "@/components/consent/consent-provider";
 import { CookieBanner } from "@/components/consent/cookie-banner";
 import { Analytics } from "@/components/consent/analytics";
+import { MetaPixel } from "@/components/consent/meta-pixel";
 import { getOrganizationSchema, getWebsiteSchema } from "@/lib/schema";
 
 /*
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Footer />
           <CookieBanner />
           <Analytics />
+          <MetaPixel />
         </ConsentProvider>
       </body>
     </html>
