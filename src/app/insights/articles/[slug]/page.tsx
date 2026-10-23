@@ -42,7 +42,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: article.excerpt,
       // The article's own image when it has one, so a shared link previews the
       // article rather than the generic site card.
-      images: [article.image?.src ?? "/opengraph.jpg"],
+      locale: "en_NZ",
+      images: [
+        article.image
+          ? { url: article.image.src, alt: article.image.alt }
+          : { url: "/opengraph.jpg" },
+      ],
       publishedTime: article.published,
     },
   };

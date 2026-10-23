@@ -1658,9 +1658,9 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "nz-election-2026-party-policies",
-    title: "NZ Election 2026: Tax, KiwiSaver and housing policies compared",
+    title: "NZ Election 2026: What It Means for Your Money",
     excerpt:
-      "Seven parties, six categories each: what is proposed on income tax, capital and wealth taxes, KiwiSaver, housing, first home buyers and property investors. A neutral comparison, as at 23 October 2026.",
+      "What the main NZ parties propose on income tax, CGT, wealth taxes and KiwiSaver, and what it could mean for households, first home buyers and investors.",
     tag: "guides",
     published: "2026-10-23",
     topics: ["Election 2026", "Tax", "KiwiSaver", "First home", "Property investment"],
@@ -1676,7 +1676,7 @@ export const ARTICLES: Article[] = [
     // gets the same six cards in the same order, and a category with nothing in it
     // still gets its card. Figures fact-checked 2026-10-23 against the KPMG tracker
     // and interest.co.nz roundups; open points are listed in the reading-copy mirror.
-    draft: true,
+    draft: false,
     body: [
       {
         type: "lede",
@@ -1915,7 +1915,7 @@ export const ARTICLES: Article[] = [
           {
             title: "Income and business tax",
             points: [
-              "A move to two income tax rates, with a top rate of 28%. The second rate has not been stated.",
+              "Has proposed two income tax rates with a top rate of 28%. The second rate has not been stated.",
               "Company tax stays at 28%.",
             ],
           },
