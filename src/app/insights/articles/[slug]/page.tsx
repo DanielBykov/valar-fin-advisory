@@ -57,6 +57,12 @@ export default async function Page({ params }: Props) {
 
   const related = relatedArticles(slug);
 
+  // A wide article runs its whole column at the width the breakout blocks
+  // (roadmap, cards) otherwise reach on their own, so headings, text and cards
+  // share one edge. 1008px = the 720px column plus the 144px breakout each side.
+  const column = article.wide ? "max-w-[1008px]" : "max-w-[720px]";
+  const breakout = article.wide ? "" : "xl:-mx-36";
+
   // Step headings take their number and phase from the roadmap, so the map and
   // the sections can't disagree. Articles without a roadmap get an empty map.
   const steps = new Map<
@@ -104,7 +110,7 @@ export default async function Page({ params }: Props) {
       <JsonLd data={structuredData} />
       {/* Header */}
       <header data-cmp="ArticlePage.Header" className="border-b border-gray-100 px-4 md:px-6">
-        <div className="mx-auto w-full max-w-[720px] pt-8">
+        <div className={`mx-auto w-full ${column} pt-8`}>
           <Link
             href="/insights"
             className="inline-flex items-center gap-2 text-sm text-valar-steel transition-colors hover:text-valar-navy"
@@ -114,7 +120,7 @@ export default async function Page({ params }: Props) {
           </Link>
         </div>
 
-        <div className="mx-auto w-full max-w-[720px] pt-6 pb-9">
+        <div className={`mx-auto w-full ${column} pt-6 pb-9`}>
           <div className="mb-3 flex flex-wrap items-center gap-3">
             <span className="text-[11px] font-bold uppercase tracking-[0.13em] text-valar-amber">
               {TAG_LABELS[article.tag]}
@@ -178,7 +184,7 @@ export default async function Page({ params }: Props) {
       {/* Body */}
       <article
         data-cmp="ArticlePage.Body"
-        className="mx-auto w-full max-w-[720px] px-4 pt-10 md:px-6"
+        className={`mx-auto w-full ${column} px-4 pt-10 md:px-6`}
       >
         {article.takeaways.length > 0 && (
           <aside
@@ -204,6 +210,44 @@ export default async function Page({ params }: Props) {
               </p>
             );
           if (block.type === "h2") {
+            if (block.band)
+              return (
+                // The rule above each band closes the previous subject's cards, so
+                // a reader can tell which cards belong to which heading.
+                <div
+                  key={i}
+                  className="mt-14 mb-6 scroll-mt-28 border-t-2 border-valar-concrete pt-12"
+                  id={block.id}
+                >
+                  <div
+                    data-cmp="ArticlePage.HeadingBand"
+                    className="rounded-r-xl border-l-[6px] border-valar-navy bg-valar-fog px-6 py-5"
+                    // Inline because party colours are content, not design tokens:
+                    // they belong to the article's subjects, not to Valar.
+                    style={block.band.color ? { borderLeftColor: block.band.color } : undefined}
+                  >
+                    <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-valar-steel">
+                      {block.band.label}
+                    </p>
+                    <h2 className="flex items-center gap-3 text-2xl font-bold text-balance text-valar-navy md:text-[1.75rem]">
+                      {block.band.color && (
+                        <span
+                          aria-hidden="true"
+                          // The ring keeps a pale colour (yellow, teal) visible on fog.
+                          className="h-4 w-4 shrink-0 rounded-full ring-1 ring-black/15"
+                          style={{ backgroundColor: block.band.color }}
+                        />
+                      )}
+                      {block.text}
+                    </h2>
+                    {block.band.note && (
+                      <p className="mt-1 text-[15px] leading-[1.6] text-gray-700">
+                        {block.band.note}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
             const step = block.id ? steps.get(block.id) : undefined;
             if (!step)
               return (
@@ -284,7 +328,7 @@ export default async function Page({ params }: Props) {
                 aria-label={block.caption ?? "Steps in this guide"}
                 // Breaks out of the 720px text column on wide screens: four phases
                 // inside it leave ~170px each and wrap the step titles word by word.
-                className="my-10 xl:-mx-36"
+                className={`my-10 ${breakout}`}
               >
                 {block.caption && (
                   <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-indigo">
@@ -563,6 +607,56 @@ export default async function Page({ params }: Props) {
                     </div>
                   ))}
                 </div>
+              </figure>
+            );
+          if (block.type === "cards")
+            return (
+              <figure
+                key={i}
+                data-cmp="ArticlePage.Cards"
+                // Breaks out of the text column on wide screens, like the roadmap:
+                // three cards inside 720px leave each one too narrow for its bullets.
+                className={`my-8 ${breakout}`}
+              >
+                {block.caption && (
+                  <figcaption className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.13em] text-valar-indigo">
+                    {block.caption}
+                  </figcaption>
+                )}
+                <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                  {block.items.map((card, c) => (
+                    <li
+                      key={card.title}
+                      className="rounded-xl border border-valar-concrete border-t-[3px] border-t-valar-amber bg-valar-fog p-5"
+                    >
+                      {/* Zero-padded so the numbers line up as category codes: a
+                          reader skimming for "03" finds the same card in every grid. */}
+                      <p className="text-[11px] font-bold uppercase tracking-[0.13em] tabular-nums text-valar-steel">
+                        {String(c + 1).padStart(2, "0")}
+                      </p>
+                      <h3 className="mb-3 text-[17px] font-bold text-valar-navy">{card.title}</h3>
+                      <ul className="flex flex-col gap-2">
+                        {card.points.map((pt) => (
+                          <li
+                            key={pt}
+                            className="flex gap-2.5 text-[15px] leading-[1.55] text-gray-700"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="mt-[0.6em] h-[5px] w-[5px] shrink-0 rounded-full bg-valar-amber"
+                            />
+                            <span>{withGlossaryLinks(pt)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ol>
+                {block.source && (
+                  <p className="mt-2.5 text-[13px] leading-[1.6] text-valar-steel">
+                    {block.source}
+                  </p>
+                )}
               </figure>
             );
           if (block.type === "figure")

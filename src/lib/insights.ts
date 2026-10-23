@@ -51,8 +51,24 @@ export const TAG_ORDER: InsightTag[] = ["guides", "market", "case-studies", "fir
 export type ArticleBlock =
   | { type: "lede"; text: string }
   | { type: "p"; text: string }
-  /** `id` makes the heading a link target, e.g. for a `roadmap` step. */
-  | { type: "h2"; text: string; id?: string }
+  /**
+   * `id` makes the heading a link target, e.g. for a `roadmap` step.
+   * `band` sets the heading in a navy band with a small label above it and an
+   * optional note below: for articles that run through a set of named subjects
+   * (the election article's parties), where a plain heading gets lost among
+   * the cards between them.
+   */
+  /*
+   * `band.color` is the subject's own colour (a party's), shown as a stripe and
+   * a dot only. Never as a fill: the text stays Valar navy on fog, so a yellow
+   * or pale colour cannot make a heading unreadable.
+   */
+  | {
+      type: "h2";
+      text: string;
+      id?: string;
+      band?: { label: string; note?: string; color?: string };
+    }
   | { type: "list"; items: string[] }
   /** Boxed aside the reader must not miss. One or two per article, no more. */
   | { type: "callout"; label: string; text: string }
@@ -163,6 +179,22 @@ export type ArticleBlock =
         steps: { n: number; title: string; id: string; note?: string }[];
       }[];
     }
+  /**
+   * A grid of numbered cards, each a title over short bullets. Built for
+   * comparisons where every subject gets the same categories in the same order
+   * (the election article: seven parties, six categories each), so a reader can
+   * skim one category down the page by its number. That only works if every
+   * grid in an article keeps the same titles in the same order, including a
+   * card that says nothing was proposed.
+   *
+   * `source` sits under the grid in small type.
+   */
+  | {
+      type: "cards";
+      caption?: string;
+      items: { title: string; points: string[] }[];
+      source?: string;
+    }
   /** In-article image. `src` is a path under /public, e.g. "/images/adviser-client.png". */
   | { type: "figure"; src: string; alt: string; caption?: string };
 
@@ -182,6 +214,12 @@ export type Article = {
    * only: the title in search results and link previews stays one line.
    */
   titleBreak?: boolean;
+  /**
+   * Run the whole article at the width of the card grid instead of the 720px
+   * reading column. For comparison articles built mostly of `cards`, where a
+   * narrow heading and text above full-width cards reads as misaligned.
+   */
+  wide?: boolean;
   readingMinutes: number;
   draft: boolean;
   body: ArticleBlock[];
@@ -1616,6 +1654,589 @@ export const ARTICLES: Article[] = [
       "AI can make intelligence and a great many goods cheap. It can't make more land, more energy, more raw material, or more hours in a day — and those four are what the rest gets built out of.",
       "A guaranteed income redistributes money. It doesn't create more of what is actually scarce, so it ends up as another bidding chip for the same limited pool.",
       "The practical shift: keep investing in your skills, and stop treating that as your only investment. The second track is assets whose value doesn't depend on any particular skill staying scarce.",
+    ],
+  },
+  {
+    slug: "nz-election-2026-party-policies",
+    title: "NZ Election 2026: Tax, KiwiSaver and housing policies compared",
+    excerpt:
+      "Seven parties, six categories each: what is proposed on income tax, capital and wealth taxes, KiwiSaver, housing, first home buyers and property investors. A neutral comparison, as at 23 October 2026.",
+    tag: "guides",
+    published: "2026-10-23",
+    topics: ["Election 2026", "Tax", "KiwiSaver", "First home", "Property investment"],
+    image: {
+      src: "/images/election-2026.jpg",
+      alt: "A coffee cup and a newspaper headlined Election 2026 on a table, with a view over Auckland houses and pōhutukawa to Rangitoto Island",
+    },
+    titleBreak: true,
+    wide: true,
+    readingMinutes: 12,
+    // Neutrality is carried by the structure, not only the disclaimer. Parties run
+    // in order of 2023 party vote (stated in the methodology section), every party
+    // gets the same six cards in the same order, and a category with nothing in it
+    // still gets its card. Figures fact-checked 2026-10-23 against the KPMG tracker
+    // and interest.co.nz roundups; open points are listed in the reading-copy mirror.
+    draft: true,
+    body: [
+      {
+        type: "lede",
+        text: "New Zealand votes on 7 November 2026. Behind the campaign headlines sit concrete proposals on tax, [[KiwiSaver]] and housing, and some of them would change what it costs to buy, own or invest in property.",
+      },
+      {
+        type: "p",
+        text: "Some parties propose a capital gains tax (CGT) or new taxes on land or wealth. Others keep the current tax settings and focus on KiwiSaver contributions, housing supply and who can get a low-deposit loan. We have set out the main proposals of seven parties side by side, in the same six categories for each, so they can be compared on the same terms.",
+      },
+      {
+        type: "p",
+        text: "This is a summary of what has been proposed, with the rates, thresholds and dates the parties have published. It does not endorse any party or predict the result.",
+      },
+
+      {
+        type: "h2",
+        text: "National",
+        id: "national",
+        band: {
+          label: "Centre-right · 2023 party vote 38.1%",
+          note: "Economic stance: lower taxes, spending restraint and a faster return to surplus.",
+          color: "#00529F",
+        },
+      },
+      {
+        type: "p",
+        text: "National is campaigning on no new taxes. Its programme makes KiwiSaver compulsory, lifts contributions on both sides, and widens access to 5% deposit loans for first home buyers. The current approach to property tax stays broadly as it is.",
+      },
+      {
+        type: "cards",
+        items: [
+          {
+            title: "Income and business tax",
+            points: [
+              "No new taxes.",
+              "Current personal income tax brackets kept.",
+              "Bracket adjustments for inflation to be considered once the government's books are back in surplus.",
+            ],
+          },
+          {
+            title: "CGT and wealth tax",
+            points: ["No CGT.", "No wealth or inheritance tax."],
+          },
+          {
+            title: "KiwiSaver",
+            points: [
+              "Compulsory for workers from 1 July 2028.",
+              "Employee and employer contributions each rising to 6% by 2032, 12% combined.",
+              "Contributions can be paused only under the existing hardship test.",
+              "Automatic enrolment at birth, with a $1,500 Baby Boost.",
+            ],
+          },
+          {
+            title: "Housing and construction",
+            points: [
+              "Changes to planning and consenting rules, including minimum car parking requirements.",
+              "An Auckland Deal with Auckland Council on housing, infrastructure and growth.",
+              "A council-backed Home Energy Fund offering long-term loans for solar, batteries and insulation.",
+            ],
+          },
+          {
+            title: "First home buyers",
+            points: [
+              "[[First Home Loan]] income cap raised to $300,000, the same for one buyer or several.",
+              "Today's caps: $95,000 for a single buyer, $150,000 for two or more buyers or a single buyer with dependants.",
+              "Minimum deposit stays at 5%.",
+              "Lenders' usual affordability assessment still applies.",
+            ],
+          },
+          {
+            title: "Property investors",
+            points: [
+              "No CGT or wealth tax.",
+              "No changes announced to [[interest deductibility|Interest deductibility]] or the two-year [[bright-line test|Bright-line test]].",
+            ],
+          },
+        ],
+        source:
+          "Source: National Party 2026 policy announcements; KPMG Election 2026 tax policy tracker.",
+      },
+
+      {
+        type: "h2",
+        text: "Labour",
+        id: "labour",
+        band: {
+          label: "Centre-left · 2023 party vote 26.9%",
+          note: "Economic stance: targeted taxes on capital, mainly property gains, to fund health and public services.",
+          color: "#D82C20",
+        },
+      },
+      {
+        type: "p",
+        text: "Labour proposes a targeted CGT on investment and commercial property, compulsory employer KiwiSaver contributions and more social housing. The tax would apply only to gains made after 1 July 2027, and the family home is excluded.",
+      },
+      {
+        type: "cards",
+        items: [
+          {
+            title: "Income and business tax",
+            points: [
+              "No change to personal income tax rates or brackets.",
+              "No change to the company tax rate.",
+            ],
+          },
+          {
+            title: "CGT and wealth tax",
+            points: [
+              "28% CGT on residential investment and commercial property.",
+              "Applies only to gains made after 1 July 2027, and is paid when the property is sold.",
+              "Excludes the family home, farms, KiwiSaver, shares, businesses and inherited property.",
+              "Wealth and inheritance taxes ruled out.",
+            ],
+          },
+          {
+            title: "KiwiSaver",
+            points: [
+              "Employer contributions compulsory from 1 July 2028, rising to 6% by 2032.",
+              "The employer keeps paying even when the employee pauses or lowers their own contribution.",
+              "Default employee rate of 4%, with no minimum rate.",
+              "Employer contributions extended to workers over 65 and to paid parental leave.",
+            ],
+          },
+          {
+            title: "Housing and construction",
+            points: [
+              "6,000 additional social housing places over four years.",
+              "A higher Crown guarantee for community housing bonds.",
+              "Government-backed finance to remove the upfront cost of solar, plus a community battery fund.",
+            ],
+          },
+          {
+            title: "First home buyers",
+            points: [
+              "No change announced to First Home Loans or the 5% deposit.",
+              "Higher employer contributions would grow the KiwiSaver balances available for a first-home withdrawal.",
+            ],
+          },
+          {
+            title: "Property investors",
+            points: [
+              "28% CGT on gains made after 1 July 2027, when a rental is sold.",
+              "Interest deductibility kept.",
+              "The family home exclusion does not extend to rental properties.",
+            ],
+          },
+        ],
+        source:
+          "Source: Labour Party 2026 policy announcements; KPMG Election 2026 tax policy tracker.",
+      },
+
+      {
+        type: "h2",
+        text: "Green Party",
+        id: "greens",
+        band: {
+          label: "Left · 2023 party vote 11.6%",
+          note: "Economic stance: shift tax from wages to wealth and large companies, and expand public provision.",
+          color: "#098137",
+        },
+      },
+      {
+        type: "p",
+        text: "The Greens propose a new income tax scale, an annual tax on large fortunes and a tax on large gifts and inheritances. Their housing programme focuses on public housing and on the rental market: rent limits, a rental warrant of fitness and a landlord register.",
+      },
+      {
+        type: "cards",
+        items: [
+          {
+            title: "Income and business tax",
+            points: [
+              "0% up to $10,000.",
+              "10% to $20,000, 17.5% to $40,000, 25.5% to $60,000.",
+              "30.5% to $80,000, 33.5% to $160,000.",
+              "45% above $160,000.",
+              "Company tax of 33% for the largest companies, 28% for small and medium ones.",
+            ],
+          },
+          {
+            title: "CGT and wealth tax",
+            points: [
+              "2.5% annual tax on net wealth above $10 million per person.",
+              "The family home is excluded.",
+              "33% tax on gifts and inheritances above $1 million, with family homes and family farms exempt.",
+            ],
+          },
+          {
+            title: "KiwiSaver",
+            points: ["No change to contribution rates announced."],
+          },
+          {
+            title: "Housing and construction",
+            points: [
+              "Tens of thousands of new public homes, and more papakāinga on Māori land.",
+              "Stronger Healthy Homes Standards.",
+              "A legislated right to housing.",
+              "Investigate a cap on how many homes one person, company or family estate can buy.",
+            ],
+          },
+          {
+            title: "First home buyers",
+            points: ["No change announced to First Home Loans or the 5% deposit."],
+          },
+          {
+            title: "Property investors",
+            points: [
+              "Reinstate the 10-year bright-line test, with the family home exempt.",
+              "Reinstate limits on deducting mortgage interest for residential investors.",
+              "Limits on annual rent increases.",
+              "A rental warrant of fitness and a register of landlords and property managers.",
+              "Tenancies offered as long-term or permanent by default.",
+            ],
+          },
+        ],
+        source:
+          "Source: Green Party 2026 tax and housing policies; KPMG Election 2026 tax policy tracker.",
+      },
+
+      {
+        type: "h2",
+        text: "ACT",
+        id: "act",
+        band: {
+          label: "Right, classical liberal · 2023 party vote 8.6%",
+          note: "Economic stance: smaller government, lower and flatter taxes, fewer regulations.",
+          color: "#FDE401",
+        },
+      },
+      {
+        type: "p",
+        text: "ACT's proposals centre on how savings and investment are taxed, and on removing regulatory barriers to building. It would stop taxing KiwiSaver earnings and let landlords offset rental losses against other income again. It does not propose a CGT or wealth tax.",
+      },
+      {
+        type: "cards",
+        items: [
+          {
+            title: "Income and business tax",
+            points: [
+              "A move to two income tax rates, with a top rate of 28%. The second rate has not been stated.",
+              "Company tax stays at 28%.",
+            ],
+          },
+          {
+            title: "CGT and wealth tax",
+            points: [
+              "No CGT.",
+              "No wealth or inheritance tax.",
+              "Cryptocurrency gains tax-free if held for more than a year.",
+            ],
+          },
+          {
+            title: "KiwiSaver",
+            points: [
+              "No tax on KiwiSaver investment earnings.",
+              "No government contribution for members whose employer already contributes.",
+              "KiwiSaver stays voluntary.",
+              "NZ Super age raised to 67, gradually over 12 years.",
+            ],
+          },
+          {
+            title: "Housing and construction",
+            points: [
+              "Resource management reform based on property rights.",
+              "Simpler consenting, excluding purely spiritual and religious effects from it.",
+              "Households allowed to export and sell more of the power they generate.",
+            ],
+          },
+          {
+            title: "First home buyers",
+            points: ["No change announced to First Home Loans or the 5% deposit."],
+          },
+          {
+            title: "Property investors",
+            points: [
+              "Abolish ring-fencing of residential rental losses.",
+              "Rental losses from the day the change starts could be offset against other taxable income. Losses already ring-fenced stay under the current rules.",
+              "No CGT on investment property.",
+            ],
+          },
+        ],
+        source: "Source: ACT 2026 policy announcements; KPMG Election 2026 tax policy tracker.",
+      },
+
+      {
+        type: "h2",
+        text: "New Zealand First",
+        id: "nz-first",
+        band: {
+          label: "Economically nationalist, socially conservative · 2023 party vote 6.1%",
+          note: "Economic stance: economic nationalism, with New Zealand ownership and citizens first.",
+          color: "#000000",
+        },
+      },
+      {
+        type: "p",
+        text: "New Zealand First proposes cutting company tax for businesses with turnover under $30 million, and making KiwiSaver compulsory with contributions rising to 8%, then 10%. NZ Super and social housing would go to citizens first. It would also buy back BNZ and merge it with Kiwibank into a fully Crown-owned national bank.",
+      },
+      {
+        type: "cards",
+        items: [
+          {
+            title: "Income and business tax",
+            points: [
+              "No change to personal income tax rates announced.",
+              "Company tax cut from 28% to 20% for businesses with turnover under $30 million.",
+            ],
+          },
+          {
+            title: "CGT and wealth tax",
+            points: ["No CGT announced.", "No wealth or land tax announced."],
+          },
+          {
+            title: "KiwiSaver",
+            points: [
+              "Compulsory for workers.",
+              "Contributions rising to 8%, then to 10%. Whether that is per side or combined has not been specified.",
+              "Automatic enrolment at birth, with a $1,000 Crown contribution for NZ citizens.",
+              "NZ Super limited to citizens.",
+            ],
+          },
+          {
+            title: "Housing and construction",
+            points: [
+              "Social housing for NZ citizens first.",
+              "A 30-year population plan linking immigration, housing and infrastructure.",
+              "Fast-track developers to show infrastructure needs and funding.",
+            ],
+          },
+          {
+            title: "First home buyers",
+            points: ["No change announced to First Home Loans or the 5% deposit."],
+          },
+          {
+            title: "Property investors",
+            points: ["No new tax on residential investment property announced."],
+          },
+        ],
+        source: "Source: New Zealand First 2026 policies; KPMG Election 2026 tax policy tracker.",
+      },
+
+      {
+        type: "h2",
+        text: "Te Pāti Māori",
+        id: "te-pati-maori",
+        band: {
+          label: "Left, Māori rights · 2023 party vote 3.1%",
+          note: "Economic stance: redistribution through taxes on wealth and property, and Māori-led housing.",
+          color: "#B2001A",
+        },
+      },
+      {
+        type: "p",
+        text: "Te Pāti Māori proposes a new income tax scale, an annual wealth tax and a stamp duty on residential property, with first home buyers under $1 million exempt. On rentals it would remove interest deductibility, tax vacant homes and introduce rent control.",
+      },
+      {
+        type: "cards",
+        items: [
+          {
+            title: "Income and business tax",
+            points: [
+              "0% up to $30,000.",
+              "15% to $60,000, 33% to $90,000.",
+              "39% to $180,000, 42% to $300,000.",
+              "48% above $300,000.",
+              "Company tax raised to 33%.",
+            ],
+          },
+          {
+            title: "CGT and wealth tax",
+            points: [
+              "Annual net wealth tax: 1.5% on $2m to $5m, 2% on $5m to $10m, 2.5% above $10m.",
+              "5% stamp duty on residential property sales.",
+              "33% land banking tax.",
+            ],
+          },
+          {
+            title: "KiwiSaver",
+            points: ["No change to contribution rates announced."],
+          },
+          {
+            title: "Housing and construction",
+            points: [
+              "2,000 homes on ancestral Māori land within four years.",
+              "Half of new social housing allocated to Māori.",
+              "End sales of freehold land to offshore buyers.",
+              "Universal rent control, and an end to no-cause evictions.",
+            ],
+          },
+          {
+            title: "First home buyers",
+            points: [
+              "Exempt from the 5% stamp duty on homes under $1 million.",
+              "No change announced to First Home Loans or the 5% deposit.",
+            ],
+          },
+          {
+            title: "Property investors",
+            points: [
+              "Interest deductibility repealed.",
+              "2% annual tax on homes left empty for more than three months a year.",
+              "5% stamp duty on residential purchases, and the 33% land banking tax.",
+            ],
+          },
+        ],
+        source:
+          "Source: Te Pāti Māori 2026 tax and housing policies; KPMG Election 2026 tax policy tracker.",
+      },
+
+      {
+        type: "h2",
+        text: "Opportunity Party",
+        id: "opportunity",
+        band: {
+          label: "Centre · 2023 party vote 2.2%",
+          note: "Economic stance: tax land rather than work, and pay every adult a basic income.",
+          color: "#32DAC3",
+        },
+      },
+      {
+        type: "p",
+        text: "The Opportunity Party proposes replacing many main benefits with a Citizen's Income: $19,400 a year, tax-free, paid to every citizen and resident aged 18 and over, whether or not they work. It would be paid for by an annual tax on land value and a new income tax scale. Its KiwiSaver 2.0 would be a separate compulsory scheme, with its own rules for using savings towards a first home.",
+      },
+      {
+        type: "cards",
+        items: [
+          {
+            title: "Income and business tax",
+            points: [
+              "28% up to $50,000.",
+              "34% from $50,000 to $200,000.",
+              "39% above $200,000.",
+              "A tax-free Citizen's Income of about $370 a week for citizens and residents aged 18 and over, replacing many main benefits.",
+            ],
+          },
+          {
+            title: "CGT and wealth tax",
+            points: [
+              "Annual land value tax: 1.75% on urban land, 0.5% on rural land.",
+              "Charged on the value of the land, not the buildings on it.",
+              "Deferral possible for superannuitants and farmers, and for up to two years during development.",
+              "No CGT or wealth tax.",
+            ],
+          },
+          {
+            title: "KiwiSaver",
+            points: [
+              "KiwiSaver 2.0, a separate compulsory scheme.",
+              "Employee and employer contributions each rising to 6%, phased in over eight years.",
+              "Contributions tax-free, and fund earnings tax-free after 20 years.",
+              "Existing KiwiSaver accounts can stay as they are or be transferred.",
+            ],
+          },
+          {
+            title: "Housing and construction",
+            points: [
+              "Ten nationally consistent planning zones.",
+              "National pre-approval for proven prefabricated and modular building methods.",
+              "Low-cost government finance for councils, community housing providers and iwi.",
+              "The party projects a 10–15% fall in house prices from its tax changes. That is its own modelling, not an independent estimate.",
+            ],
+          },
+          {
+            title: "First home buyers",
+            points: [
+              "KiwiSaver 2.0 has its own first-home rules: savings stay invested, and banks could lend against the balance. Details have not been published.",
+              "No first-home or hardship withdrawals from KiwiSaver 2.0.",
+              "First-home withdrawals from existing KiwiSaver unchanged.",
+            ],
+          },
+          {
+            title: "Property investors",
+            points: [
+              "Annual land value tax on investment property land, 1.75% in urban areas.",
+              "Based on land value, not on rent received or gains made on sale.",
+            ],
+          },
+        ],
+        source:
+          "Source: Opportunity Party Tax Reset and KiwiSaver 2.0 policies; KPMG Election 2026 tax policy tracker.",
+      },
+
+      { type: "h2", text: "Where the parties differ" },
+      {
+        type: "p",
+        text: "Set side by side, the proposals differ in four main areas.",
+      },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "Tax",
+            text: "Between them, the parties' proposals touch income tax, GST, capital gains tax, land value tax, wealth tax, stamp duty and capital acquisitions tax. National, ACT and New Zealand First propose no new taxes on capital or property. Labour, the Greens, Te Pāti Māori and the Opportunity Party each propose at least one.",
+          },
+          {
+            term: "KiwiSaver",
+            text: "Most parties lean towards higher contributions and compulsory membership: National, New Zealand First and the Opportunity Party for both employees and employers, and Labour for employers. ACT would keep KiwiSaver voluntary and stop taxing its earnings. The Greens and Te Pāti Māori have announced no change to contributions. Higher contributions build larger balances over time and leave less take-home pay today.",
+          },
+          {
+            term: "Property investors",
+            text: "The proposals would change the cost of owning a rental at different points: when it is sold (Labour's CGT), every year (the Opportunity Party's land tax, Te Pāti Māori's vacant home tax), and when it is bought (Te Pāti Māori's stamp duty). Interest deductibility stays under National and Labour and goes under the Greens and Te Pāti Māori, while ACT would let rental losses offset other income. Rent limits from the Greens and Te Pāti Māori would affect rental income.",
+          },
+          {
+            term: "First home buyers",
+            text: "Three parties address them directly: a higher First Home Loan income cap (National), an exemption from stamp duty (Te Pāti Māori), and a new KiwiSaver scheme with its own rules for using savings towards a first home (Opportunity). Other proposals could reach them indirectly, through larger KiwiSaver balances or through taxes that change investor demand and prices. How large those indirect effects would be is far less certain than what each rule says.",
+          },
+        ],
+      },
+
+      { type: "h2", text: "What happens after the election" },
+      {
+        type: "p",
+        text: "New Zealand uses MMP, so the next government will most likely be a coalition, and what it does will come out of coalition negotiations rather than any one party's programme. Even an agreed policy usually needs legislation, funding, consultation and detailed rules before it applies to anyone, and several of these proposals already carry start dates of 2027 or 2028.",
+      },
+      {
+        type: "pull",
+        text: "These are proposals, not law. Nothing in this article has changed yet.",
+      },
+
+      { type: "h2", text: "What this means for your plans" },
+      {
+        type: "p",
+        text: "Read side by side, the proposals give most households a rough sense of where each party would take their finances: the tax on their income, the cost of owning a home or a rental, how much goes into KiwiSaver, and how much easier or harder a first purchase would become.",
+      },
+      {
+        type: "p",
+        text: "The useful step now is to note which proposals would touch your own situation, then wait to see which of them appear in a coalition agreement, and with which dates and details. The detail is what decides the effect: a tax on gains after 2027 and a tax on land every year can both be called a property tax and still land very differently on the same property.",
+      },
+      {
+        type: "p",
+        text: "This article covers only the financial and economic side of the parties' programmes. It does not cover the wider debates between them, on health, education, the environment, immigration, the Treaty of Waitangi and more, which many voters will weigh alongside the money.",
+      },
+
+      { type: "h2", text: "Sources and methodology" },
+      {
+        type: "p",
+        text: "This comparison is based on publicly announced 2026 election policies and independent summaries available as at 23 October 2026. It covers policies relevant to personal finances, tax, KiwiSaver, housing and residential property investment, not every policy each party has announced. Parties are listed in order of their 2023 party vote.",
+      },
+      {
+        type: "p",
+        text: "Where a card says nothing has been announced, we could not find a published proposal in that area. That does not mean the party has no position on it.",
+      },
+      {
+        type: "list",
+        items: [
+          "Party policy pages: National, Labour, Green Party, ACT, New Zealand First, Te Pāti Māori, Opportunity Party.",
+          "KPMG, Election 2026: Party tax policies tracker.",
+          "interest.co.nz, Housing policies roundup, 19 October 2026.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Valar Financial Advisors does not endorse, support or recommend any political party or candidate.",
+      },
+    ],
+    takeaways: [
+      "Election day is 7 November 2026. Under MMP the final policies will come from coalition talks, so nothing here is law yet.",
+      "Seven parties compared on the same six topics: income tax, capital and wealth taxes, KiwiSaver, housing, first home buyers and property investors.",
+      "New property taxes proposed: Labour's 28% capital gains tax (CGT), the Opportunity Party's 1.75% land tax, and wealth taxes from the Greens and Te Pāti Māori.",
+      "Higher KiwiSaver contributions proposed by National, Labour, NZ First and the Opportunity Party.",
+      "Interest deductibility on rentals: kept by National and Labour, removed by the Greens and Te Pāti Māori.",
     ],
   },
 ];
