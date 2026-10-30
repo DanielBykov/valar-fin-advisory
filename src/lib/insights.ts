@@ -1261,6 +1261,218 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
+    slug: "market-update-october-2026",
+    title: "Market Update OCT 26: A pause before the unknown.",
+    excerpt:
+      "The OCR held at 2.75% and rates barely moved. The market is waiting on the 7 November election.",
+    tag: "market",
+    published: "2026-10-30",
+    topics: ["Market update", "OCR", "Fixed rates", "Property values", "Election 2026"],
+    // Own image for this edition, at Lena's choice, instead of the series image.
+    image: {
+      src: "/images/market-update-october-2026.jpg",
+      alt: "A woman with a takeaway coffee glances at property listings in an agency window on a sunny New Zealand street",
+    },
+    readingMinutes: 6,
+    // Rates from interest.co.nz, read 30 Oct, at Lena's direction (August used her
+    // lender sheets). No change column: Lena cut it as too much text. Co-operative
+    // is its "Owner Occupied" row, which has no "Special" label. OCR copy states the
+    // decision only, no vote detail (Lena). The strategy-call box sits after the
+    // rate table, where "what does this mean for me" is most likely to be asked.
+    // Checked with /page-launch and approved by Lena, 2026-10-30.
+    draft: false,
+    body: [
+      {
+        type: "lede",
+        text: "October was a pause, not a turn. The OCR held, mortgage rates barely moved, and the whole market is waiting for 7 November: until the votes are counted and a government is formed, nobody knows how property and savings will be taxed. The pause is unlikely to last past December. Here is where the numbers sit as at 30 October 2026.",
+      },
+
+      { type: "h2", text: "The Official Cash Rate" },
+      {
+        type: "stats",
+        items: [
+          {
+            label: "OCR now",
+            value: "2.75%",
+            delta: "0.25 on 2 September",
+            direction: "up",
+            note: "Held on 28 October",
+          },
+          {
+            label: "A year ago",
+            value: "2.50%",
+            note: "October 2025, after the October cut",
+          },
+          { label: "Next review", value: "9 Dec", note: "Monetary Policy Statement" },
+          {
+            label: "By December",
+            value: "~3.00%",
+            delta: "0.25",
+            direction: "up",
+            note: "Where most main banks see it",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "The OCR has risen 50 basis points since July: from 2.25% to 2.50% in July, then to 2.75% on 2 September. On 28 October the Reserve Bank held it there. It also said a further increase is likely, with the timing uncertain.",
+      },
+      {
+        type: "p",
+        text: "For context, three years ago the OCR sat at 5.50%. Rates are rising again, but from a much lower base.",
+      },
+      { type: "h2", text: "Where mortgage rates sit" },
+      {
+        type: "table",
+        caption: "Special rates, LVR under 80%",
+        headers: ["Bank", "1 year", "2 years", "3 years"],
+        rows: [
+          ["ANZ", "4.99%", "5.35%", "5.59%"],
+          ["ASB", "4.99%", "5.35%", "5.59%"],
+          ["BNZ", "5.19%", "5.35%", "5.59%"],
+          ["Kiwibank", "5.15%", "5.39%", "5.59%"],
+          ["Westpac", "5.19%", "5.29%", "5.59%"],
+          ["SBS Bank", "4.99%", "5.29%", "5.59%"],
+          ["Co-operative Bank", "5.19%", "5.49%", "5.69%"],
+        ],
+        note: "As at 30 October 2026. Special rates apply where the loan is under 80% of the property's value; rates for smaller deposits sit higher. Six-month specials start from 4.79%. Advertised rates are a starting point, not a quote: the rate available to you depends on your equity, your income and how the loan is structured. Ask your mortgage adviser, or the bank directly, for the rate and structure that apply to your situation.",
+      },
+      {
+        type: "pull",
+        text: "The Reserve Bank paused. It did not change direction.",
+      },
+      { type: "cta" },
+
+      { type: "h2", text: "What is driving it" },
+      {
+        type: "stats",
+        items: [
+          {
+            label: "Annual inflation",
+            value: "3.7%",
+            delta: "from 4.1% in June",
+            direction: "down",
+            note: "September 2026 quarter",
+          },
+          {
+            label: "Unemployment",
+            value: "5.6%",
+            note: "Unchanged since June, new figures on 4 November",
+          },
+          {
+            label: "Average property value",
+            value: "$892,580",
+            delta: "1.5% over the quarter",
+            direction: "down",
+            note: "QV House Price Index, September",
+          },
+          {
+            label: "New homes consented",
+            value: "41,268",
+            delta: "21% on last year",
+            direction: "up",
+            note: "Year to August 2026",
+          },
+        ],
+      },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "Inflation eased, but not for the right reasons",
+            text: "Annual inflation fell from 4.1% to 3.7%, and petrol did most of the work. Without fuel, it would have been 3.2%. That is still above the Reserve Bank's 1–3% target band, and local council rates rose another 6.2% over the year. Some bank economists expect inflation to pick up again before the end of the year, which is why one soft quarter did not end the tightening.",
+          },
+          {
+            term: "A labour market that argues the other way",
+            text: "Unemployment at 5.6% is the highest in over a decade, and underutilisation, people who want more hours than they have, reached 13.8%. A weak jobs market is normally a reason to cut. The Reserve Bank is weighing that against inflation still above target, and this month the jobs side bought a pause. The next labour market figures land on 4 November, three days before the election, and will feed straight into the December decision.",
+          },
+          {
+            term: "Most first home buyers now borrow with less than 20% deposit",
+            text: "In September, 56% of new lending to first home buyers, by value, went to loans above 80% LVR, meaning a deposit under 20%. Two years earlier it was 42%. First home buyers now take two thirds of all low-deposit lending. That changes how to read the rate table above: those special rates are for loans under 80% LVR, and most first home buyer lending carries a low-equity margin on top.",
+          },
+          {
+            term: "An election in one week",
+            text: "How property and savings are taxed is on the ballot on 7 November, and which government forms afterwards is far from settled. We will cover what the result means in the November update.",
+          },
+        ],
+      },
+
+      {
+        type: "figure",
+        src: "/images/market-update-october-2026.jpg",
+        alt: "A woman with a takeaway coffee glances at property listings in an agency window on a sunny New Zealand street",
+      },
+
+      { type: "h2", text: "What property did" },
+      {
+        type: "table",
+        caption: "September 2026",
+        headers: ["Measure", "Latest", "Change"],
+        rows: [
+          ["National median price (REINZ)", "$755,000", "−2.3% year on year"],
+          ["Average value (QV index)", "$892,580", "−1.5% over the quarter"],
+          ["Properties sold", "5,752", "−11.6% year on year"],
+          ["Median days to sell", "46", "+3 days on a year ago"],
+        ],
+        note: "REINZ and QV measure different things: a median sale price moves with what is selling, an index tracks value change across all homes. They are still pointing the same direction.",
+      },
+      {
+        type: "p",
+        text: "The spring lift that usually arrives in September did not. Sales were down more than a tenth on a year ago, and the median price slipped again. Outside Auckland the median barely moved over the year, at $691,200, while Auckland's fell 2.6% to $950,000. One small sign of movement: homes sold six days faster than in August, though still three days slower than a year ago.",
+      },
+      {
+        type: "p",
+        text: "Supply is still arriving. 41,268 new homes were consented in the year to August, up 21% on the year before.",
+      },
+
+      { type: "h2", text: "The trends underneath the numbers" },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "Everyone is waiting for 7 November",
+            text: "The election is the one thing the whole market is waiting on. The outcome is uncertain, and under MMP the vote is only the first step: the government is formed by negotiation afterwards, and which parties end up at that table, and what they agree on tax, cannot be known until then. The proposals in play differ widely on how property, investment returns and savings are taxed. That is why buyers and investors are holding off: nobody wants to commit capital before knowing how the return will be taxed. On past form activity turns gradually once the rules are known, as they are legislated and priced in. For what the parties propose and what it could mean for your money, read [[our election guide|article:nz-election-2026-party-policies]].",
+          },
+          {
+            term: "The quiet is unlikely to outlast December",
+            text: "The Reserve Bank's pause was about the data, not the election: a weak jobs market weighed against inflation still above target. New jobs figures land on 4 November, and the main banks still expect the OCR to rise at the 9 December review.",
+          },
+          {
+            term: "The gap between one and two years has nearly closed",
+            text: "In August, moving from a one-year rate to a two-year rate cost around half a percent at every main bank. Now the gap ranges from 0.10% to 0.36%. One-year rates went up after the September rise, while two-year rates came down. Longer rates follow where markets expect the OCR to settle, not just the latest decision, and most bank forecasts show the OCR levelling off in 2027. Three-year rates now sit at 5.59% at six of the seven lenders above. A longer term is still a view on where rates go, and it holds you either way.",
+          },
+          {
+            term: "Conditions favour buyers, but borrowing power does not",
+            text: "Fewer sales, softer prices and less competition give buyers more room to negotiate than at any time in recent years. Working against that is the size of loan a bank will approve, which shrinks as test rates rise. The constraint is still the loan, not the property.",
+          },
+        ],
+      },
+
+      {
+        type: "callout",
+        label: "The question has moved from “if” to “how far”",
+        text: "In August the question was whether rates had turned. That is answered. What households are now weighing is how high the OCR goes and how long it stays there. Bank economists differ on the peak, from 3% to 4% during 2027, and that spread is the real uncertainty in any decision about how long to fix.",
+      },
+
+      { type: "h2", text: "Your numbers, not the national ones" },
+      {
+        type: "p",
+        text: "Everything above is national data, which describes nobody in particular. Your rate, your term structure, your income stability and how much headroom you have will move all of it, and some of it a long way.",
+      },
+      {
+        type: "p",
+        text: "If you want to see your version, with the assumptions written down where you can argue with them, that is the conversation worth having.",
+      },
+    ],
+    takeaways: [
+      "Everything is waiting on the 7 November election, and on who forms the government after it.",
+      "The OCR is on hold at 2.75%, with a rise to about 3.00% expected by December.",
+      "One-year rates rose and two-year rates fell, so the gap between them has nearly closed.",
+      "Inflation eased to 3.7%, mostly on petrol. Unemployment is still 5.6%.",
+      "Property is still drifting: the national median is $755,000, down 2.3% on a year ago.",
+    ],
+  },
+  {
     slug: "market-update-august-2026",
     title: "Market Update AUG 26: Rates are going up. House prices aren't.",
     excerpt:

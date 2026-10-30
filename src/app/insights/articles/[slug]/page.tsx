@@ -832,6 +832,10 @@ const GLOSSARY_LINK = /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
  *
  * An unknown term fails the build rather than linking to nowhere. While the
  * glossary is switched off, the words render as plain text.
+ *
+ * [[words|article:slug]] links to another article instead, in the same tab.
+ * It reuses this syntax so an article link gets the same build-time check: a
+ * renamed or deleted slug fails loudly rather than leaving a dead link.
  */
 function withGlossaryLinks(text: string): ReactNode {
   if (!text.includes("[[")) return text;
@@ -839,6 +843,22 @@ function withGlossaryLinks(text: string): ReactNode {
   let last = 0;
   for (const m of text.matchAll(GLOSSARY_LINK)) {
     const [whole, shown, term = shown] = m;
+    if (term.startsWith("article:")) {
+      const target = term.slice("article:".length);
+      if (!getArticle(target)) throw new Error(`Article link to unknown slug "${target}"`);
+      out.push(text.slice(last, m.index));
+      out.push(
+        <Link
+          key={m.index}
+          href={`/insights/articles/${target}`}
+          className="underline decoration-valar-amber decoration-2 underline-offset-4 transition-colors hover:text-valar-navy"
+        >
+          {shown}
+        </Link>,
+      );
+      last = m.index + whole.length;
+      continue;
+    }
     const slug = glossarySlug(term);
     if (!GLOSSARY_SLUGS.has(slug)) throw new Error(`Glossary link to unknown term "${term}"`);
     out.push(text.slice(last, m.index));
