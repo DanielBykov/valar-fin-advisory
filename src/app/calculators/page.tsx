@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   title: "Mortgage Calculators NZ | Valar Financial Advisors",
   description:
     "Free New Zealand mortgage calculators — work out what you can afford as a first home buyer, and what your repayments would be. Your own numbers, before anyone asks you to commit to them.",
+  alternates: { canonical: "/calculators" },
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "Mortgage Calculators NZ | Valar Financial Advisors",

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Insights | Mortgage & Financial Tips | Valar",
   description:
     "Analysis, market updates and strategic guidance from Lena Bykova at Valar Financial Advisors. Practical insights on mortgages, property and financial planning in New Zealand.",
+  alternates: { canonical: "/insights" },
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "Insights | Mortgage & Financial Tips | Valar",
