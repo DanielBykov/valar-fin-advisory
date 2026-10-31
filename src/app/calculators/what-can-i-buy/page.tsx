@@ -6,6 +6,7 @@ import WhatCanIBuyContent from "./page-content";
 export const metadata: Metadata = {
   title: "How Much Can I Borrow? Home Loan Calculator NZ | Valar",
   description: "Start from the repayment you'd be comfortable with and see the loan it carries.",
+  alternates: { canonical: "/calculators/what-can-i-buy" },
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "How Much Can I Borrow? Home Loan Calculator NZ | Valar",

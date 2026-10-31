@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Mortgage Repayment Calculator NZ | Valar",
   description:
     "Work out mortgage repayments on any loan amount, rate and term — weekly, fortnightly or monthly — and see on a chart how much sooner an extra repayment clears the loan.",
+  alternates: { canonical: "/calculators/repayments" },
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "Mortgage Repayment Calculator NZ | Valar",
