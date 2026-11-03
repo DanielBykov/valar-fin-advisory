@@ -28,10 +28,12 @@
  * it carries its own Ukrainian footer instead. But it is a paid-ad landing
  * page: whether it converts is the entire question being asked of it, so
  * measurement is the one thing it cannot afford to give up.
+ *
+ * `/ru` is the same page in Russian, for the same reasons.
  */
 
 /** No navbar, no footer. */
-const CHROMELESS_ROUTES = ["/start", "/card", "/calculators/repayments/report", "/ua"];
+const CHROMELESS_ROUTES = ["/start", "/card", "/calculators/repayments/report", "/ua", "/ru"];
 
 /** No cookie banner either. */
 export const STANDALONE_ROUTES = ["/start", "/card", "/calculators/repayments/report"];

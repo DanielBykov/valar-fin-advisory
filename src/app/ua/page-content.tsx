@@ -1499,7 +1499,7 @@ export default function UaContent() {
               <p className="mt-3 text-[14px] leading-snug">
                 {/* In English, as on the webinar's title slide (Lena, 2026-10-16). */}
                 <span className="font-bold text-valar-navy">Ліна Бикова</span>, Mortgage &
-                Investment Advisor
+                Investment Adviser
               </p>
             </div>
           </div>

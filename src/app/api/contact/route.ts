@@ -53,12 +53,35 @@ const REPLY_COPY = {
       "ВАЖЛИВО: цей лист і будь-які вкладення є конфіденційними. Якщо він призначений не вам або надійшов помилково, будь ласка, повідомте відправника й видаліть усі копії. Висловлені думки належать автору й не обов'язково збігаються з позицією Valar Financial Advisors Limited.",
     fallbackName: "друже",
   },
+  ru: {
+    subject: "Ваше сообщение получено | Valar Financial Advisors",
+    title: "Спасибо, что написали",
+    greeting: (name: string) => `Здравствуйте, ${name}!`,
+    received: (window: string) =>
+      `Я получила ваше сообщение и отвечу в течение <strong>${window}</strong>.`,
+    window: "одного рабочего дня",
+    meanwhile: "А пока:",
+    ctas: [
+      { label: "Гайд First Home Buyer →", href: "https://www.valar.co.nz/ru#guide" },
+      { label: "Посмотреть вебинар →", href: "https://www.valar.co.nz/ru#webinar" },
+    ],
+    signName: "Лина Быкова",
+    /* English: "mortgage" stays untranslated in Russian copy, Lena's rule. */
+    role: "Mortgage &amp; Investment Adviser (FSP1010055)",
+    disclaimer:
+      "ВАЖНО: это письмо и любые вложения являются конфиденциальными. Если оно предназначено не вам или пришло по ошибке, пожалуйста, сообщите отправителю и удалите все копии. Высказанные мнения принадлежат автору и не обязательно совпадают с позицией Valar Financial Advisors Limited.",
+    fallbackName: "друг",
+  },
 } as const;
+
+/** The language label for Lena's notification; absent for the English site. */
+const LOCALE_LABEL: Record<string, string> = { uk: "Ukrainian", ru: "Russian" };
 
 export async function POST(req: Request) {
   const { firstName, lastName, email, phone, message, locale } = await req.json();
   const name = [firstName, lastName].filter(Boolean).join(" ") || "Someone";
-  const t = locale === "uk" ? REPLY_COPY.uk : REPLY_COPY.en;
+  const t = locale === "uk" ? REPLY_COPY.uk : locale === "ru" ? REPLY_COPY.ru : REPLY_COPY.en;
+  const language = LOCALE_LABEL[locale];
 
   try {
     await Promise.all([
@@ -67,12 +90,12 @@ export async function POST(req: Request) {
       resend.emails.send({
         from: "Valar Website <lena.bykova@valar.co.nz>",
         to: "lena.bykova@valar.co.nz",
-        subject: `New message from ${name}${locale === "uk" ? " (Ukrainian page)" : ""}`,
+        subject: `New message from ${name}${language ? ` (${language} page)` : ""}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
-          ${locale === "uk" ? "<p><strong>Wrote in:</strong> Ukrainian — reply in Ukrainian</p>" : ""}
+          ${language ? `<p><strong>Wrote in:</strong> ${language} — reply in ${language}</p>` : ""}
           <p><strong>Message:</strong></p>
           <p>${message.replace(/\n/g, "<br>")}</p>
         `,
