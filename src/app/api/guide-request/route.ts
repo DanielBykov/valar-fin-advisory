@@ -14,6 +14,9 @@ import { parseBorrowSnapshot } from "@/lib/borrow-report";
 import { calculateBorrow } from "@/lib/borrow-from-payment";
 import { renderBorrowEmail } from "@/lib/emails/borrow-calculation";
 import { getLeadMagnet, isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
+import { parseRefinanceSnapshot } from "@/lib/refinance-report";
+import { calculateRefinance, daysBefore, describeRefinance, formatDate } from "@/lib/refinance";
+import { renderRefinanceEmail } from "@/lib/emails/refinance-calculation";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -54,10 +57,12 @@ export async function POST(req: Request) {
    * keeps every payload sent before any of this existed reading correctly.
    */
   // The payment-first borrowing calculator (2026-09-24) is tried first.
-  const borrowPay = parseBorrowSnapshot(figures);
-  const borrowing = borrowPay ? null : parseAffordabilitySnapshot(figures);
-  const split = borrowPay || borrowing ? null : parseSplitSnapshot(figures);
-  const snapshot = borrowPay || borrowing || split ? null : parseRepaymentSnapshot(figures);
+  const refinance = parseRefinanceSnapshot(figures);
+  const borrowPay = refinance ? null : parseBorrowSnapshot(figures);
+  const borrowing = refinance || borrowPay ? null : parseAffordabilitySnapshot(figures);
+  const split = refinance || borrowPay || borrowing ? null : parseSplitSnapshot(figures);
+  const snapshot =
+    refinance || borrowPay || borrowing || split ? null : parseRepaymentSnapshot(figures);
 
   /*
    * Where the links in the email point.
@@ -152,7 +157,28 @@ export async function POST(req: Request) {
    */
   let figuresBlock = "";
   const borrowResult = borrowPay ? calculateBorrow(borrowPay) : null;
-  if (borrowPay && borrowResult) {
+  const today = new Date().toISOString().slice(0, 10);
+  if (refinance) {
+    const words = describeRefinance(calculateRefinance(refinance, today), refinance);
+    /*
+     * The date is the most useful thing in this lead, and the page promises a
+     * reminder that Lena sets by hand, so what she has to do comes first.
+     */
+    figuresBlock = `
+      <hr>
+      <p><strong>Their refinance check</strong></p>
+      ${
+        refinance.fixedEnd
+          ? `<p><strong>Fixed rate ends ${formatDate(refinance.fixedEnd)}. Reminder promised for ${formatDate(daysBefore(refinance.fixedEnd, 90))}: put it in the calendar.</strong></p>`
+          : "<p>No fixed date entered (floating).</p>"
+      }
+      <p>
+        ${nzd(refinance.balance)} at ${refinance.rate.toFixed(2)}%,
+        ${nzd(refinance.repayment)} ${refinance.frequency}.
+      </p>
+      <p>The page told them: ${words.label}: <strong>${words.headline} ${words.headlineUnit ?? ""}</strong></p>
+      <p>${words.sub}</p>`;
+  } else if (borrowPay && borrowResult) {
     const per = { weekly: "wk", fortnightly: "fn", monthly: "mo" }[borrowPay.frequency];
     const pct = (n: number) => `${Math.round(n * 100)}%`;
     figuresBlock = `
@@ -277,9 +303,12 @@ export async function POST(req: Request) {
   const notify = resend.emails.send({
     from: "Valar Website <lena.bykova@valar.co.nz>",
     to: TO_LENA,
-    subject:
-      borrowPay && borrowResult
-        ? `Borrowing calc: ${firstName} — ${money(borrowResult.loan)} on ${money(borrowPay.payment)} a payment`
+    subject: refinance
+      ? `Refinance check: ${firstName} — ${nzd(refinance.balance)} @ ${refinance.rate.toFixed(2)}%${
+          refinance.fixedEnd ? `, fixed until ${formatDate(refinance.fixedEnd)}` : ""
+        }`
+      : borrowPay && borrowResult
+        ? `Borrowing calc:${firstName} — ${money(borrowResult.loan)} on ${money(borrowPay.payment)} a payment`
         : snapshot
           ? `Calculation sent: ${firstName} — ${nzd(snapshot.amount)} @ ${snapshot.rate.toFixed(2)}%`
           : split
@@ -363,15 +392,17 @@ export async function POST(req: Request) {
     baseUrl,
   };
 
-  const mail = borrowPay
-    ? renderBorrowEmail({ ...common, snapshot: borrowPay })
-    : borrowing
-      ? renderAffordabilityEmail({ ...common, snapshot: borrowing })
-      : split
-        ? renderSplitEmail({ ...common, snapshot: split })
-        : snapshot
-          ? renderRepaymentEmail({ ...common, snapshot })
-          : null;
+  const mail = refinance
+    ? renderRefinanceEmail({ ...common, snapshot: refinance, today })
+    : borrowPay
+      ? renderBorrowEmail({ ...common, snapshot: borrowPay })
+      : borrowing
+        ? renderAffordabilityEmail({ ...common, snapshot: borrowing })
+        : split
+          ? renderSplitEmail({ ...common, snapshot: split })
+          : snapshot
+            ? renderRepaymentEmail({ ...common, snapshot })
+            : null;
 
   const deliver = mail
     ? resend.emails.send({

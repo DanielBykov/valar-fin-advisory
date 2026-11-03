@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { GLOSSARY_LIVE, INSIGHTS_LIVE, publishedArticles } from "@/lib/insights";
 import { CALCULATORS_LIVE, calculatorHref, liveCalculators } from "@/lib/calculators";
+import { REFINANCE_LIVE } from "@/lib/refinance";
 
 const SITE_URL = "https://valar.co.nz";
 
@@ -54,6 +55,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...insights,
     ...calculators,
+    // Enters with the page's switch, so the sitemap can never point Google at a 404.
+    ...(REFINANCE_LIVE
+      ? [
+          {
+            url: `${SITE_URL}/refinance`,
+            lastModified,
+            changeFrequency: "monthly" as const,
+            priority: 0.8,
+          },
+        ]
+      : []),
     { url: `${SITE_URL}/`, lastModified, changeFrequency: "monthly", priority: 1.0 },
     { url: `${SITE_URL}/about`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     // The Ukrainian page is meant to be found by search, unlike /start or /card.
