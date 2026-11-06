@@ -414,35 +414,34 @@ export default async function Page({ params }: Props) {
                 target="_blank"
                 rel="noopener"
                 data-cmp="ArticlePage.Banner"
-                className={`group relative my-12 block overflow-hidden rounded-2xl bg-valar-navy ${breakout}`}
+                // Light and inside the text column: it reads as a link to a
+                // resource, not a second call to action competing with the
+                // strategy-call box at the end of the page (Lena, 2026-11-06).
+                className="group my-10 flex flex-col overflow-hidden rounded-xl border border-valar-concrete bg-valar-fog transition-colors hover:border-valar-navy sm:flex-row"
               >
                 {block.image && (
-                  <Image
-                    src={block.image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 1280px) 100vw, 1000px"
-                    className="object-cover opacity-35 transition-opacity group-hover:opacity-45"
-                  />
+                  <div className="relative aspect-[16/9] sm:aspect-auto sm:min-h-[220px] sm:w-[45%] sm:shrink-0">
+                    <Image
+                      src={block.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, 320px"
+                      // The page photo is very wide with the couple and the
+                      // house on the right; a centred crop shows only the sky.
+                      className="object-cover object-[80%_center]"
+                    />
+                  </div>
                 )}
-                {/* Navy wash from the left keeps the white text readable whatever
-                    the photo behind it does. */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-r from-valar-navy via-valar-navy/85 to-valar-navy/30"
-                />
-                <div className="relative px-8 py-12 md:px-12 md:py-16">
-                  <p className="mb-3 text-[12px] font-bold uppercase tracking-[0.16em] text-valar-amber">
+                <div className="flex flex-col justify-center px-6 py-6">
+                  <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-indigo">
                     {block.label}
                   </p>
-                  <p className="mb-3 max-w-[20ch] text-3xl leading-tight font-bold text-white md:text-4xl">
+                  <p className="mb-2 text-[20px] leading-tight font-bold text-valar-navy">
                     {block.title}
                   </p>
-                  <p className="mb-8 max-w-[36rem] text-[17px] leading-[1.6] text-valar-lilac">
-                    {block.text}
-                  </p>
-                  <span className="inline-flex items-center rounded-lg bg-valar-amber px-7 py-4 text-[16px] font-bold text-valar-navy transition-colors group-hover:bg-valar-amber-hover">
-                    {block.button}
+                  <p className="mb-4 text-[15px] leading-[1.6] text-gray-700">{block.text}</p>
+                  <span className="text-[15px] font-bold text-valar-navy underline decoration-valar-amber decoration-2 underline-offset-4">
+                    {block.button} →
                   </span>
                 </div>
               </a>

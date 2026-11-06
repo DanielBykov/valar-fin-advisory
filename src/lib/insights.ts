@@ -76,7 +76,7 @@ export type ArticleBlock =
    */
   | { type: "list"; items: string[]; title?: string }
   /**
-   * Large full-width banner that sends the reader to another page of the site,
+   * Light link card (photo, title, line, link) that sends the reader to another page,
    * in a new tab so the article stays open behind it. For pointing at a free
    * guide whose sign-up form already lives on its own page: the banner links
    * there instead of duplicating the form, so there is one form to maintain.
@@ -514,7 +514,7 @@ export const ARTICLES: Article[] = [
         text: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
         button: "Get the free guide",
         href: "/services/first-home-buyers",
-        image: "/images/first-home-guide.png",
+        image: "/images/first-home-hero.webp",
       },
     ],
   },
