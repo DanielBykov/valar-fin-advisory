@@ -332,17 +332,22 @@ export const ARTICLES: Article[] = [
         ],
       },
 
-      { type: "h2", text: "Case 1: Stability first" },
+      {
+        type: "h2",
+        text: "Stability first",
+        band: { label: "Case 1 · Sam and Emma" },
+      },
       {
         type: "deflist",
+        compact: true,
         items: [
           {
             term: "The situation",
-            text: "Sam and Emma, both nearly thirty, planning their first child in the next year or two. When the baby comes, Emma will take parental leave, and for a while the family will live on Sam's salary alone. They were renting, and they didn't want to start family life in a house a landlord could sell at any moment.",
+            text: "Both nearly thirty, both working, renting. They're planning their first child in the next year or two, and they didn't want to start family life in a house a landlord could sell at any moment.",
           },
           {
             term: "What mattered most",
-            text: "Stability. Not the biggest house, not the best suburb. A home of their own, and a mortgage they could carry on one income.",
+            text: "Stability. Not the biggest house, not the best suburb. A home of their own, and a mortgage that stays comfortable when the baby arrives.",
           },
         ],
       },
@@ -353,29 +358,30 @@ export const ARTICLES: Article[] = [
           "Bought with a 5% deposit through the [[First Home Loan]], backed by [[Kāinga Ora]].",
           "Used their KiwiSaver towards the deposit.",
           "Chose a small townhouse with low maintenance, so there were fewer unexpected bills in the baby years.",
-          "Sized the loan to Sam's salary, not to what the bank would lend on two incomes.",
+          "Kept the loan below the maximum the bank offered, so it stays manageable in the baby years.",
         ],
       },
       {
         type: "p",
-        text: "The plan is simple: up to five years in this small home, settled and secure. After that, with more equity, two incomes again and a clearer picture of the family, they can change the setup.",
-      },
-      {
-        type: "p",
-        text: "They didn't wait years for a 20% deposit. They bought what they could carry, and they kept the option of moving up later.",
+        text: "The plan: up to five years in this small home, settled and secure. Then, with more equity and a clearer picture of the family, they can change the setup. They didn't wait years for a 20% deposit. They bought what they could carry, and kept the option of moving up later.",
       },
       {
         type: "bottomline",
         text: "Sometimes the best first home is simply the one that gets you on the property ladder and still lets you sleep at night.",
       },
 
-      { type: "h2", text: "Case 2: Location first" },
+      {
+        type: "h2",
+        text: "Location first",
+        band: { label: "Case 2 · David and Anna" },
+      },
       {
         type: "deflist",
+        compact: true,
         items: [
           {
             term: "The situation",
-            text: "David and Anna, with their son Leo, 13. For five years they had rented a large house in a good suburb, at $1,000 a week, and the rent hadn't moved. Leo was settled at a school they loved, the beach was ten minutes away, and both of them had a short commute. Life worked. They just didn't own any of it.",
+            text: "A family with a son, Leo, 13. For five years they had rented a large house in a good suburb, at $1,000 a week, and the rent hadn't moved. Leo was settled at a school they loved, the beach was ten minutes away, and both of them had a short commute. Life worked. They just didn't own any of it.",
           },
           {
             term: "What mattered most",
@@ -402,13 +408,18 @@ export const ARTICLES: Article[] = [
         text: "Sometimes the best first home is an investment property that builds your capital while you live where you want to be.",
       },
 
-      { type: "h2", text: "Case 3: Income first" },
+      {
+        type: "h2",
+        text: "Income first",
+        band: { label: "Case 3 · Tom and Mia" },
+      },
       {
         type: "deflist",
+        compact: true,
         items: [
           {
             term: "The situation",
-            text: "Tom and Mia, closer to forty, no children, both working and renting. They like the life they've built. But work felt less certain than it used to, and they wanted to cut back their hours one day, not depend on two full salaries for thirty years.",
+            text: "Closer to forty, no children, both working and renting. They like the life they've built. But work felt less certain than it used to, and they wanted to cut back their hours one day, not depend on two full salaries for thirty years.",
           },
           {
             term: "What mattered most",
@@ -433,11 +444,6 @@ export const ARTICLES: Article[] = [
           "A tenant can leave, but the mortgage stays.",
           "You become a landlord, with everything that comes with it.",
         ],
-      },
-      {
-        type: "figure",
-        src: "/images/insights/home-and-income.svg",
-        alt: "Diagram of a two-storey house: the owners live upstairs, a tenant lives on the ground floor, and the mortgage is paid from both the owners' income and the tenant's rent.",
       },
       {
         type: "bottomline",
