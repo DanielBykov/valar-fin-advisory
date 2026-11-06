@@ -262,8 +262,8 @@ export const ARTICLES: Article[] = [
     published: "2026-11-06",
     topics: ["First home", "Strategy", "Home and income"],
     image: {
-      src: "/images/first-home-2.webp",
-      alt: "A couple carrying moving boxes into their new townhouse",
+      src: "/images/insights/first-home-three-cases.jpg",
+      alt: "An adviser going through a first home scenario on a laptop with a young couple",
     },
     readingMinutes: 6,
     // Drafted 2026-11-06 with Lena, first person. Cases are composites with
@@ -338,6 +338,11 @@ export const ARTICLES: Article[] = [
         band: { label: "Case 1 · Sam and Emma" },
       },
       {
+        type: "figure",
+        src: "/images/insights/first-home-case-stability.jpg",
+        alt: "A young couple smiling outside their new townhouse, holding up the keys",
+      },
+      {
         type: "deflist",
         compact: true,
         items: [
@@ -376,6 +381,11 @@ export const ARTICLES: Article[] = [
         band: { label: "Case 2 · David and Anna" },
       },
       {
+        type: "figure",
+        src: "/images/insights/first-home-case-location.jpg",
+        alt: "A modern rental home with a For Rent sign, mountains and a lake behind it",
+      },
+      {
         type: "deflist",
         compact: true,
         items: [
@@ -412,6 +422,11 @@ export const ARTICLES: Article[] = [
         type: "h2",
         text: "Income first",
         band: { label: "Case 3 · Tom and Mia" },
+      },
+      {
+        type: "figure",
+        src: "/images/insights/first-home-case-income.jpg",
+        alt: "A two-storey house with its own stairs to the upper floor and a separate ground-floor unit",
       },
       {
         type: "deflist",
