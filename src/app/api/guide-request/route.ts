@@ -308,7 +308,7 @@ export async function POST(req: Request) {
           refinance.fixedEnd ? `, fixed until ${formatDate(refinance.fixedEnd)}` : ""
         }`
       : borrowPay && borrowResult
-        ? `Borrowing calc:${firstName} — ${money(borrowResult.loan)} on ${money(borrowPay.payment)} a payment`
+        ? `Borrowing calc: ${firstName} — ${money(borrowResult.loan)} on ${money(borrowPay.payment)} a payment`
         : snapshot
           ? `Calculation sent: ${firstName} — ${nzd(snapshot.amount)} @ ${snapshot.rate.toFixed(2)}%`
           : split
