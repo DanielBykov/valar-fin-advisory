@@ -69,7 +69,27 @@ export type ArticleBlock =
       id?: string;
       band?: { label: string; note?: string; color?: string };
     }
-  | { type: "list"; items: string[] }
+  /**
+   * `title` is a small bold lead-in above the bullets ("The deal"). Body text
+   * has no bold, so a list that needs a label carries it here rather than in
+   * a separate paragraph that would read as one more sentence.
+   */
+  | { type: "list"; items: string[]; title?: string }
+  /**
+   * Large full-width banner that sends the reader to another page of the site,
+   * in a new tab so the article stays open behind it. For pointing at a free
+   * guide whose sign-up form already lives on its own page: the banner links
+   * there instead of duplicating the form, so there is one form to maintain.
+   */
+  | {
+      type: "banner";
+      label: string;
+      title: string;
+      text: string;
+      button: string;
+      href: string;
+      image?: string;
+    }
   /** Boxed aside the reader must not miss. One or two per article, no more. */
   | { type: "callout"; label: string; text: string }
   /**
@@ -232,6 +252,251 @@ export type Article = {
  * the public site until Lena writes the body and flips the flag.
  */
 export const ARTICLES: Article[] = [
+  {
+    slug: "first-home-buyers-three-cases",
+    title: "First Home Buyers: Three Different Cases",
+    titleBreak: true,
+    excerpt:
+      "Same goal, different priorities. How stability, location and income shaped three very different first home deals.",
+    tag: "first-home",
+    published: "2026-11-06",
+    topics: ["First home", "Strategy", "Home and income"],
+    image: {
+      src: "/images/first-home-2.webp",
+      alt: "A couple carrying moving boxes into their new townhouse",
+    },
+    readingMinutes: 6,
+    // Drafted 2026-11-06 with Lena, first person. Cases are composites with
+    // details changed. Situation figures only (5%, $1,000/week): no outcomes,
+    // per the no-worked-figures rule. The `bottomline` lines are the carousel
+    // slides' lines; change one, change both. Reading copy and decisions:
+    // Valar website/articles/2026-11-06-first-home-buyers-three-cases.md
+    draft: true,
+    takeaways: [
+      "Every first home buyer wants the same thing: a foot on the ladder. The deal that gets you there can look completely different.",
+      "Before you look at properties, know what matters most to you: stability, location or extra income.",
+      "The smallest deposit isn't always the riskiest choice, and the most expensive house isn't always the hardest to carry.",
+      "Your first property doesn't have to be the home you live in.",
+      "The plan decides the deal. Not the other way around.",
+    ],
+    body: [
+      {
+        type: "lede",
+        text: "When first home buyers come to me, most of them are already choosing houses. They're scrolling listings, going to open homes, maybe they've picked a suburb. The property comes first, and the plan gets built around it afterwards.",
+      },
+      { type: "p", text: "That's backwards." },
+      {
+        type: "list",
+        title: "The first questions aren't about the house. They're about you:",
+        items: [
+          "How do you want to live in the next five to ten years?",
+          "What do you need this home to do for you?",
+        ],
+      },
+      {
+        type: "p",
+        text: "The answers change everything: how much you borrow, what you buy, where, and even whether you live in it at all. Helping people work this out is a big part of what I do.",
+      },
+      {
+        type: "p",
+        text: "Here are three first home buyers I've worked with. The details have been changed to protect their privacy. Same goal for all three: their first property. Three completely different deals.",
+      },
+      {
+        type: "cards",
+        caption: "Three buyers, three deals",
+        items: [
+          {
+            title: "Sam and Emma: stability",
+            points: [
+              "5% deposit through the First Home Loan, plus KiwiSaver",
+              "A small, low-maintenance townhouse",
+              "They live in it",
+            ],
+          },
+          {
+            title: "David and Anna: location",
+            points: [
+              "Deposit from savings, KiwiSaver left invested",
+              "An investment property in a more affordable region",
+              "They keep renting near their son's school",
+            ],
+          },
+          {
+            title: "Tom and Mia: income",
+            points: [
+              "A bigger, more expensive house",
+              "The ground floor rented to a tenant",
+              "They live upstairs",
+            ],
+          },
+        ],
+      },
+
+      { type: "h2", text: "Case 1: Stability first" },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "The situation",
+            text: "Sam and Emma, both nearly thirty, planning their first child in the next year or two. When the baby comes, Emma will take parental leave, and for a while the family will live on Sam's salary alone. They were renting, and they didn't want to start family life in a house a landlord could sell at any moment.",
+          },
+          {
+            term: "What mattered most",
+            text: "Stability. Not the biggest house, not the best suburb. A home of their own, and a mortgage they could carry on one income.",
+          },
+        ],
+      },
+      {
+        type: "list",
+        title: "The deal",
+        items: [
+          "Bought with a 5% deposit through the [[First Home Loan]], backed by [[Kāinga Ora]].",
+          "Used their KiwiSaver towards the deposit.",
+          "Chose a small townhouse with low maintenance, so there were fewer unexpected bills in the baby years.",
+          "Sized the loan to Sam's salary, not to what the bank would lend on two incomes.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The plan is simple: up to five years in this small home, settled and secure. After that, with more equity, two incomes again and a clearer picture of the family, they can change the setup.",
+      },
+      {
+        type: "p",
+        text: "They didn't wait years for a 20% deposit. They bought what they could carry, and they kept the option of moving up later.",
+      },
+      {
+        type: "bottomline",
+        text: "Sometimes the best first home is simply the one that gets you on the property ladder and still lets you sleep at night.",
+      },
+
+      { type: "h2", text: "Case 2: Location first" },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "The situation",
+            text: "David and Anna, with their son Leo, 13. For five years they had rented a large house in a good suburb, at $1,000 a week, and the rent hadn't moved. Leo was settled at a school they loved, the beach was ten minutes away, and both of them had a short commute. Life worked. They just didn't own any of it.",
+          },
+          {
+            term: "What mattered most",
+            text: "Location. Buying in that suburb was far beyond their budget, and buying somewhere cheaper meant a new school for Leo at the worst possible age. They weren't willing to make that trade.",
+          },
+        ],
+      },
+      {
+        type: "list",
+        title: "The deal",
+        items: [
+          "Left their KiwiSaver where it was and used their savings for the deposit. For them, the point was diversification: KiwiSaver stays invested in funds, and the property becomes a second, separate asset.",
+          "Bought an investment property in a more affordable region, chosen for positive cash flow.",
+          "Stayed renting near the school, so nothing about daily life changed.",
+          "Let the property build equity in the background.",
+        ],
+      },
+      {
+        type: "p",
+        text: "When Leo finishes school, that equity becomes the capital for a home of their own, wherever they choose to live then.",
+      },
+      {
+        type: "bottomline",
+        text: "Sometimes the best first home is an investment property that builds your capital while you live where you want to be.",
+      },
+
+      { type: "h2", text: "Case 3: Income first" },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "The situation",
+            text: "Tom and Mia, closer to forty, no children, both working and renting. They like the life they've built. But work felt less certain than it used to, and they wanted to cut back their hours one day, not depend on two full salaries for thirty years.",
+          },
+          {
+            term: "What mattered most",
+            text: "Extra income: a home that earns a buffer of its own.",
+          },
+        ],
+      },
+      {
+        type: "list",
+        title: "The deal",
+        items: [
+          "Bought a bigger, more expensive house than a first home buyer usually would.",
+          "Live upstairs, rent out the ground floor.",
+          "Put the rent towards the mortgage and pay it down faster.",
+        ],
+      },
+      {
+        type: "list",
+        title: "This is called a home and income deal, and it carries extra risks:",
+        items: [
+          "Lenders assess it under their own rules.",
+          "A tenant can leave, but the mortgage stays.",
+          "You become a landlord, with everything that comes with it.",
+        ],
+      },
+      {
+        type: "figure",
+        src: "/images/insights/home-and-income.svg",
+        alt: "Diagram of a two-storey house: the owners live upstairs, a tenant lives on the ground floor, and the mortgage is paid from both the owners' income and the tenant's rent.",
+      },
+      {
+        type: "bottomline",
+        text: "Home and income: a bigger house the rent helps carry, with extra risks to weigh first.",
+      },
+
+      { type: "h2", text: "What the three cases have in common" },
+      {
+        type: "p",
+        text: "On the surface, nothing. A small townhouse, an investment property in another region, a big house with a tenant downstairs. Underneath, two things.",
+      },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "All three wanted property as part of their assets",
+            text: "Not because prices always go up, they don't. But every mortgage repayment builds equity over time, and property spreads their wealth beyond savings and KiwiSaver. Each had a different reason for wanting that.",
+          },
+          {
+            term: "All three knew why they were buying before they started looking",
+            text: "That was their first step, not the open homes. Each had a clear answer to one question: what do we need this property to do?",
+          },
+        ],
+      },
+      {
+        type: "list",
+        items: [
+          "Sam and Emma needed stability.",
+          "David and Anna needed to stay in the right location.",
+          "Tom and Mia needed income.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Stability. Location. Income. Three different priorities, three different deals, one principle.",
+      },
+      {
+        type: "bottomline",
+        text: "Don't start with the property. Start with your priorities, and the right deal follows from them.",
+      },
+      {
+        type: "p",
+        text: "If you're thinking about your first home, start there. Before the listings, before the open homes, sit down with the two questions above. That's the conversation I have with every first home buyer, and it's usually the most useful hour of the whole process.",
+      },
+      {
+        type: "p",
+        text: "If you'd like to start on your own, my free First Home Buyer Guide goes through these questions in more detail, along with the rest of the buying process.",
+      },
+      {
+        type: "banner",
+        label: "Free guide",
+        title: "First Home Buyer Guide",
+        text: "A practical roadmap with clear steps you can work through, tick off, and make your own.",
+        button: "Get the free guide",
+        href: "/services/first-home-buyers",
+        image: "/images/first-home-guide.png",
+      },
+    ],
+  },
   {
     slug: "rent-vs-buy-eight-doubts",
     title: "Rent vs buy: eight doubts, answered straight",

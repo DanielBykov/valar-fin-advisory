@@ -387,8 +387,8 @@ export default async function Page({ params }: Props) {
                 </ol>
               </nav>
             );
-          if (block.type === "list")
-            return (
+          if (block.type === "list") {
+            const list = (
               <ul
                 key={i}
                 className="mb-6 flex list-disc flex-col gap-3 pl-5 text-[18px] leading-[1.7] text-gray-700"
@@ -397,6 +397,55 @@ export default async function Page({ params }: Props) {
                   <li key={item}>{withGlossaryLinks(item)}</li>
                 ))}
               </ul>
+            );
+            if (!block.title) return list;
+            return (
+              <div key={i} data-cmp="ArticlePage.TitledList">
+                <p className="mb-3 text-[18px] font-bold text-valar-navy">{block.title}</p>
+                {list}
+              </div>
+            );
+          }
+          if (block.type === "banner")
+            return (
+              <a
+                key={i}
+                href={block.href}
+                target="_blank"
+                rel="noopener"
+                data-cmp="ArticlePage.Banner"
+                className={`group relative my-12 block overflow-hidden rounded-2xl bg-valar-navy ${breakout}`}
+              >
+                {block.image && (
+                  <Image
+                    src={block.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 1280px) 100vw, 1000px"
+                    className="object-cover opacity-35 transition-opacity group-hover:opacity-45"
+                  />
+                )}
+                {/* Navy wash from the left keeps the white text readable whatever
+                    the photo behind it does. */}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-r from-valar-navy via-valar-navy/85 to-valar-navy/30"
+                />
+                <div className="relative px-8 py-12 md:px-12 md:py-16">
+                  <p className="mb-3 text-[12px] font-bold uppercase tracking-[0.16em] text-valar-amber">
+                    {block.label}
+                  </p>
+                  <p className="mb-3 max-w-[20ch] text-3xl leading-tight font-bold text-white md:text-4xl">
+                    {block.title}
+                  </p>
+                  <p className="mb-8 max-w-[36rem] text-[17px] leading-[1.6] text-valar-lilac">
+                    {block.text}
+                  </p>
+                  <span className="inline-flex items-center rounded-lg bg-valar-amber px-7 py-4 text-[16px] font-bold text-valar-navy transition-colors group-hover:bg-valar-amber-hover">
+                    {block.button}
+                  </span>
+                </div>
+              </a>
             );
           if (block.type === "deflist")
             return (
