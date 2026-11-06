@@ -53,9 +53,15 @@ function changedCode() {
 // hooks get switched off.
 if (!changedCode()) process.exit(0);
 
+// Through `node` rather than ./node_modules/.bin: on Windows execSync runs in
+// cmd.exe, which cannot execute a "./" path, so every check "failed" there
+// with "'.' is not recognized" while the code itself was clean.
 const STEPS = [
-  { label: "pnpm typecheck", command: "./node_modules/.bin/tsc --noEmit" },
-  { label: "pnpm lint", command: "./node_modules/.bin/eslint --max-warnings 0" },
+  { label: "pnpm typecheck", command: "node ./node_modules/typescript/bin/tsc --noEmit" },
+  {
+    label: "pnpm lint",
+    command: "node ./node_modules/eslint/bin/eslint.js --max-warnings 0",
+  },
 ];
 
 for (const step of STEPS) {

@@ -387,8 +387,8 @@ export default async function Page({ params }: Props) {
                 </ol>
               </nav>
             );
-          if (block.type === "list")
-            return (
+          if (block.type === "list") {
+            const list = (
               <ul
                 key={i}
                 className="mb-6 flex list-disc flex-col gap-3 pl-5 text-[18px] leading-[1.7] text-gray-700"
@@ -397,6 +397,54 @@ export default async function Page({ params }: Props) {
                   <li key={item}>{withGlossaryLinks(item)}</li>
                 ))}
               </ul>
+            );
+            if (!block.title) return list;
+            return (
+              <div key={i} data-cmp="ArticlePage.TitledList">
+                <p className="mb-3 text-[18px] font-bold text-valar-navy">{block.title}</p>
+                {list}
+              </div>
+            );
+          }
+          if (block.type === "banner")
+            return (
+              <a
+                key={i}
+                href={block.href}
+                target="_blank"
+                rel="noopener"
+                data-cmp="ArticlePage.Banner"
+                // Light and inside the text column: it reads as a link to a
+                // resource, not a second call to action competing with the
+                // strategy-call box at the end of the page (Lena, 2026-11-06).
+                className="group my-10 flex flex-col overflow-hidden rounded-xl border border-valar-concrete bg-valar-fog transition-colors hover:border-valar-navy sm:flex-row"
+              >
+                {block.image && (
+                  <div className="relative aspect-[16/9] sm:aspect-auto sm:min-h-[220px] sm:w-[45%] sm:shrink-0">
+                    <Image
+                      src={block.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, 320px"
+                      // The page photo is very wide with the couple and the
+                      // house on the right; a centred crop shows only the sky.
+                      className="object-cover object-[80%_center]"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-col justify-center px-6 py-6">
+                  <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-indigo">
+                    {block.label}
+                  </p>
+                  <p className="mb-2 text-[20px] leading-tight font-bold text-valar-navy">
+                    {block.title}
+                  </p>
+                  <p className="mb-4 text-[15px] leading-[1.6] text-gray-700">{block.text}</p>
+                  <span className="text-[15px] font-bold text-valar-navy underline decoration-valar-amber decoration-2 underline-offset-4">
+                    {block.button} →
+                  </span>
+                </div>
+              </a>
             );
           if (block.type === "deflist")
             return (

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Split Home Loan Calculator NZ | Valar Financial Advisors",
   description:
     "Split a New Zealand home loan into three parts, each with its own rate, term and extra repayment, and see the combined repayment and the weighted average rate across the whole structure.",
+  alternates: { canonical: "/calculators/split-loan" },
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "Split Home Loan Calculator NZ | Valar Financial Advisors",

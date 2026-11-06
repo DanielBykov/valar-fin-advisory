@@ -21,6 +21,8 @@ export type LeadMagnetKey =
   | "split-structure-review"
   | "ua-home-buying-journey"
   | "ua-first-home-webinar"
+  | "ru-home-buying-journey"
+  | "ru-first-home-webinar"
   | "valari-ai-skill";
 
 /**
@@ -33,6 +35,8 @@ export type GroupEnvVar =
   | "MAILERLITE_CALCULATORS_GROUP_ID"
   | "MAILERLITE_UA_GROUP_ID"
   | "MAILERLITE_UA_WEBINAR_GROUP_ID"
+  | "MAILERLITE_RU_GROUP_ID"
+  | "MAILERLITE_RU_WEBINAR_GROUP_ID"
   | "MAILERLITE_VALARI_GROUP_ID";
 
 export type LeadMagnet = {
@@ -195,6 +199,38 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
     groupLabel: "Ukrainian webinar",
     fallbackGroupEnv: null,
     pendingNote: "Запис відкрито на цій сторінці. Вмикайте.",
+  },
+
+  /*
+   * The Russian pair, built on the same reasoning as the two above: a group per
+   * magnet because an automation fires once per subscriber, and no fallback
+   * because an English welcome sequence is worse than none. The groups do not
+   * exist yet, so until they do a lead reaches Lena and enrols nowhere.
+   */
+  "ru-home-buying-journey": {
+    key: "ru-home-buying-journey",
+    title: "Как купить свой первый дом?",
+    description:
+      "Пошаговый гайд и Coaching Workbook для тех, кто покупает жильё впервые: от первого шага до ключей.",
+    groupEnv: "MAILERLITE_RU_GROUP_ID",
+    groupLabel: "Russian community",
+    fallbackGroupEnv: null,
+    /*
+     * No `file` until Lena's Russian PDF exists: a path here would offer a
+     * download that 404s. It goes in as
+     * "/resources/guides/first-home-buyers-guide-ru.pdf".
+     */
+  },
+
+  "ru-first-home-webinar": {
+    key: "ru-first-home-webinar",
+    title: "Вебинар: как купить дом в Новой Зеландии",
+    description:
+      "От первой ипотеки до получения ключей. Разбираем весь процесс, реальные кейсы и ошибки, которых можно избежать. Смотрите в любое удобное время.",
+    groupEnv: "MAILERLITE_RU_WEBINAR_GROUP_ID",
+    groupLabel: "Russian webinar",
+    fallbackGroupEnv: null,
+    pendingNote: "Запись открыта на этой странице. Включайте.",
   },
 
   /*

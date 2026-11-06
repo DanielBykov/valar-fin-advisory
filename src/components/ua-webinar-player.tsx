@@ -42,6 +42,11 @@ export function UaWebinarPlayer({
   poster,
   aside,
   unlockedNote,
+  contentsLabels = {
+    heading: "Зміст вебінару",
+    jumpHint: "натисніть на розділ, щоб перейти до нього",
+    pendingHint: "розділи стануть клікабельними, щойно запис буде на сторінці",
+  },
 }: {
   embedUrl: string | null;
   unlocked: boolean;
@@ -64,6 +69,8 @@ export function UaWebinarPlayer({
   aside: ReactNode;
   /** A line under the full-width player once the form is done with. */
   unlockedNote: ReactNode;
+  /** The player's own words. Defaults to Ukrainian so `/ua` passes nothing; `/ru` overrides. */
+  contentsLabels?: { heading: string; jumpHint: string; pendingHint: string };
 }) {
   /*
    * A chapter click reloads the player at that point rather than seeking the
@@ -168,13 +175,10 @@ export function UaWebinarPlayer({
         <div className="mt-12">
           <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
             <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-              Зміст вебінару
+              {contentsLabels.heading}
             </p>
             <p className="text-[14px] text-valar-indigo/70">
-              {duration} ·{" "}
-              {playable
-                ? "натисніть на розділ, щоб перейти до нього"
-                : "розділи стануть клікабельними, щойно запис буде на сторінці"}
+              {duration} · {playable ? contentsLabels.jumpHint : contentsLabels.pendingHint}
             </p>
           </div>
 

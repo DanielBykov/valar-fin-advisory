@@ -8,10 +8,11 @@ import type { AffordabilitySnapshot } from "@/lib/affordability-report";
 import type { RepaymentSnapshot } from "@/lib/repayment-report";
 import type { SplitSnapshot } from "@/lib/split-report";
 import type { BorrowSnapshot } from "@/lib/borrow-report";
+import type { RefinanceSnapshot } from "@/lib/refinance-report";
 
 /** Any calculator's inputs. The server tells them apart by `kind`. */
 export type CalculationFigures =
-  RepaymentSnapshot | SplitSnapshot | AffordabilitySnapshot | BorrowSnapshot;
+  RepaymentSnapshot | SplitSnapshot | AffordabilitySnapshot | BorrowSnapshot | RefinanceSnapshot;
 
 /*
  * The fields sit on the card rather than behind a modal: this one lives beside

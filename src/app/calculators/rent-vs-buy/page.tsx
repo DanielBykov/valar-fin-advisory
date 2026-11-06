@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Rent vs Buy Calculator NZ | Valar",
   description:
     "Compare renting and buying in New Zealand on your own numbers — deposit, rate, rent and time frame — and see where the two actually cross over.",
+  alternates: { canonical: "/calculators/rent-vs-buy" },
   openGraph: {
     images: ["/opengraph.jpg"],
     title: "Rent vs Buy Calculator NZ | Valar",

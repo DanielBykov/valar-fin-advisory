@@ -32,6 +32,19 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Tailwind v4's preflight resets buttons to the arrow cursor (v3 gave them the
+     hand). Links always had the hand, so a page mixing <a> and <button> looked
+     half-clickable (Lena, 2026-11-03). One rule here instead of a class on each
+     of the ~70 buttons across the site. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  label:has(> input[type="checkbox"], > input[type="radio"]) {
+    cursor: pointer;
+  }
+
   h1,
   h2 {
     font-family: var(--font-lora), serif;
