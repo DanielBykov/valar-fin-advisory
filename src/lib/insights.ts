@@ -271,7 +271,9 @@ export const ARTICLES: Article[] = [
     // per the no-worked-figures rule. The `bottomline` lines are the carousel
     // slides' lines; change one, change both. Reading copy and decisions:
     // Valar website/articles/2026-11-06-first-home-buyers-three-cases.md
-    draft: true,
+    // Approved by Lena 2026-11-06 after /page-launch (long excerpt and the
+    // 1670px share image kept on purpose).
+    draft: false,
     takeaways: [
       "Every first home buyer wants the same thing: a foot on the ladder. The deal that gets you there can look completely different.",
       "Before you look at properties, know what matters most to you: stability, location or extra income.",
