@@ -317,7 +317,7 @@ export const ARTICLES: Article[] = [
             title: "David and Anna: location",
             points: [
               "Deposit from savings, KiwiSaver left invested",
-              "An investment property in a more affordable region",
+              "An investment property in another area",
               "They keep renting near their son's school",
             ],
           },
@@ -404,7 +404,7 @@ export const ARTICLES: Article[] = [
         title: "The deal",
         items: [
           "Left their KiwiSaver where it was and used their savings for the deposit. For them, the point was diversification: KiwiSaver stays invested in funds, and the property becomes a second, separate asset.",
-          "Bought an investment property in a more affordable region, chosen for positive cash flow.",
+          "Bought an investment property in another area, chosen for positive cash flow.",
           "Stayed renting near the school, so nothing about daily life changed.",
           "Let the property build equity in the background.",
         ],
@@ -468,7 +468,7 @@ export const ARTICLES: Article[] = [
       { type: "h2", text: "What the three cases have in common" },
       {
         type: "p",
-        text: "On the surface, nothing. A small townhouse, an investment property in another region, a big house with a tenant downstairs. Underneath, two things.",
+        text: "On the surface, nothing. A small townhouse, an investment property in another area, a big house with a tenant downstairs. Underneath, two things.",
       },
       {
         type: "deflist",
