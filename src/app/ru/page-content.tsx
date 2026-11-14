@@ -167,7 +167,7 @@ const webinarUnlock = {
  * Read off the Russian recording's local transcript (2026-11-14, 2:02:21). Same
  * eight blocks as `/ua`; the Russian talk adds its own chapter on how the bank
  * approves the loan and splits the 8-week plan from the common mistakes.
- * Awaiting Lena's approval, as the `/ua` list had.
+ * Approved by Lena 2026-11-14.
  */
 const WEBINAR_DURATION = "2 ч 2 мин";
 

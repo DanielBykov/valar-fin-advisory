@@ -127,9 +127,14 @@ export async function POST(req: Request) {
   const enrolable = fallbackEnv !== null || Boolean(groupId) || wantsNewsletter;
 
   /*
-   * Someone who ticked the newsletter box asked for it in as many words, so it
-   * happens even when the magnet's own group does not exist yet: dropping it
-   * would silently ignore the one thing on the form they chose for themselves.
+   * The newsletter was asked for, by the tick or by the sentence under a
+   * `subscribesToNews` form's button, so it happens even when the magnet's own
+   * group does not exist yet: dropping it would ignore what they agreed to.
+   *
+   * The cost for `/ua` and `/ru`: the English welcome automation skips only
+   * members of the RU/UA groups, so a lead enrolled here without its own group
+   * gets the English welcome. That is why their group env vars must be set in
+   * Vercel before the page goes live, not after.
    */
   if (!groupId && wantsNewsletter) groups.shift();
 

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { GLOSSARY_LIVE, INSIGHTS_LIVE, publishedArticles } from "@/lib/insights";
 import { CALCULATORS_LIVE, calculatorHref, liveCalculators } from "@/lib/calculators";
 import { REFINANCE_LIVE } from "@/lib/refinance";
+import { RU_LIVE } from "@/lib/ru-live";
 
 const SITE_URL = "https://valar.co.nz";
 
@@ -70,7 +71,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/about`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     // The Ukrainian and Russian pages are meant to be found by search, unlike /start or /card.
     { url: `${SITE_URL}/ua`, lastModified, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE_URL}/ru`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    ...(RU_LIVE
+      ? [{ url: `${SITE_URL}/ru`, lastModified, changeFrequency: "monthly" as const, priority: 0.8 }]
+      : []),
     {
       url: `${SITE_URL}/first-home-ai-skill`,
       lastModified,
