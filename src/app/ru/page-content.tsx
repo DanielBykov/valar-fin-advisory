@@ -23,6 +23,7 @@ import {
   Facebook,
 } from "lucide-react";
 import heroBandImg from "../../../public/images/first-home-villa.png";
+import webinarImg from "../../../public/images/webinar-ru-cover.jpg";
 import firstHomeImg from "../../../public/images/first-home-guide.png";
 import contactImg from "../../../public/images/lena-client.webp";
 import aboutImg from "../../../public/images/lena-portrait.webp";
@@ -122,11 +123,12 @@ const GUIDE_CONTENTS = [
 ];
 
 /*
- * ⛔ Null until the Russian recording is on Cloudflare Stream, with its allowed
- * origins restricted to valar.co.nz. While it is null the form takes an email and
- * the frame keeps showing the poster, which is why `RU_LIVE` stays false.
+ * The Russian recording on Cloudflare Stream (2026-11-14), allowed origins
+ * restricted to valar.co.nz, so on localhost the frame says "not allowed on this
+ * domain". That is the lock working, the same as on `/ua`.
  */
-const WEBINAR_EMBED_URL: string | null = null;
+const WEBINAR_EMBED_URL: string | null =
+  "https://customer-mnwb9zq4xbqrb8ya.cloudflarestream.com/2309684163c581fdddb11630e4652c50/iframe?primaryColor=%23f0a500";
 
 const WEBINAR_UNLOCK_KEY = "valar.ru.webinar.unlocked";
 
@@ -162,72 +164,76 @@ const webinarUnlock = {
 };
 
 /*
- * ⚠️ These timings and the duration are the UKRAINIAN recording's, kept only as
- * a scaffold. Every line has to be re-read off the Russian recording once it
- * exists, and so do the claims in `WEBINAR_TEASER.facts`.
+ * Read off the Russian recording's local transcript (2026-11-14, 2:02:21). Same
+ * eight blocks as `/ua`; the Russian talk adds its own chapter on how the bank
+ * approves the loan and splits the 8-week plan from the common mistakes.
+ * Awaiting Lena's approval, as the `/ua` list had.
  */
-const WEBINAR_DURATION = "1 ч 54 мин";
+const WEBINAR_DURATION = "2 ч 2 мин";
 
 const WEBINAR_SECTIONS: WebinarSection[] = [
   {
     title: "Вступление",
     chapters: [
-      { at: "0:00", title: "Для кого этот вебинар" },
-      { at: "4:09", title: "Обо мне" },
-      { at: "5:47", title: "Путь к ключам и базовые термины" },
+      { at: "0:00", title: "Вступление" },
+      { at: "1:37", title: "Обо мне" },
+      { at: "3:10", title: "Для кого этот вебинар" },
+      { at: "5:04", title: "Путь к ключам и базовые термины" },
     ],
   },
   {
     title: "1. Кто и зачем покупает",
-    chapters: [{ at: "11:17", title: "Аренда или свой дом. Кто может покупать" }],
+    chapters: [{ at: "10:08", title: "Аренда или свой дом. Кто может покупать" }],
   },
   {
     title: "2. Банк, депозит и бюджет",
     chapters: [
-      { at: "14:10", title: "Как банк оценивает вас и сколько можно занять" },
-      { at: "18:17", title: "Депозит: 5%, 10–20% или 20%" },
-      { at: "22:49", title: "Откуда берётся депозит" },
-      { at: "25:15", title: "Дополнительные расходы и ваш бюджет" },
+      { at: "14:56", title: "Как банк оценивает вас и сколько можно занять" },
+      { at: "20:53", title: "Депозит: 5%, 10–20% или 20%" },
+      { at: "25:35", title: "Откуда берётся депозит" },
+      { at: "28:49", title: "Дополнительные расходы и ваш бюджет" },
+      { at: "31:38", title: "Как банк одобряет кредит" },
     ],
   },
   {
     title: "3. Ставки и стресс-тест",
     chapters: [
-      { at: "29:21", title: "Ставки: OCR, фиксированная, сплит, offset" },
-      { at: "38:09", title: "Стресс-тест: сколько брать на самом деле" },
+      { at: "35:54", title: "Ставки: OCR, фиксированная, сплит, offset" },
+      { at: "42:20", title: "Стресс-тест: сколько брать на самом деле" },
     ],
   },
   {
     title: "4. Рынок и выборы",
-    chapters: [{ at: "44:17", title: "Рынок сейчас, регионы и выборы" }],
+    chapters: [{ at: "47:05", title: "Рынок сейчас, регионы и выборы" }],
   },
   {
     title: "5. Выбор и проверка дома",
     chapters: [
-      { at: "58:12", title: "Типы недвижимости" },
-      { at: "1:03:39", title: "Состояние дома и building inspection" },
+      { at: "1:02:26", title: "Типы недвижимости" },
+      { at: "1:07:23", title: "Состояние дома и building inspection" },
     ],
   },
   {
     title: "6. Процесс покупки",
     chapters: [
-      { at: "1:06:53", title: "Ваша команда: адвайзер, юрист, инспектор" },
-      { at: "1:10:30", title: "Аукцион, переговоры, тендер" },
-      { at: "1:14:06", title: "Этапы заключения договора купли-продажи" },
+      { at: "1:09:27", title: "Ваша команда: адвайзер, юрист, инспектор" },
+      { at: "1:12:10", title: "Аукцион, переговоры, тендер" },
+      { at: "1:15:48", title: "Этапы заключения договора купли-продажи" },
     ],
   },
   {
     title: "7. Реальные кейсы",
     chapters: [
-      { at: "1:23:14", title: "Четыре реальных кейса" },
-      { at: "1:35:38", title: "Мыслить как инвестор" },
+      { at: "1:34:25", title: "Четыре реальных кейса" },
+      { at: "1:46:59", title: "Мыслить как инвестор" },
     ],
   },
   {
     title: "8. План действий и ошибки",
     chapters: [
-      { at: "1:40:16", title: "План на 8 недель и типичные ошибки" },
-      { at: "1:47:47", title: "Итоги, консультация и бонус Valári" },
+      { at: "1:48:35", title: "План на 8 недель" },
+      { at: "1:52:49", title: "Типичные ошибки" },
+      { at: "1:56:36", title: "Итоги, консультация и бонус Valári" },
     ],
   },
 ];
@@ -378,8 +384,7 @@ function RuContactForm() {
       </div>
       <div className="space-y-1.5">
         <label htmlFor="ru-contact-phone" className={label}>
-          Телефон{" "}
-          <span className="font-normal normal-case text-valar-indigo/40">(по желанию)</span>
+          Телефон <span className="font-normal normal-case text-valar-indigo/40">(по желанию)</span>
         </label>
         <input
           id="ru-contact-phone"
@@ -624,8 +629,8 @@ export default function RuContent() {
 
             <div className="space-y-4 text-[16px] leading-relaxed text-valar-indigo">
               <p>
-                Меня зовут Лина Быкова. У меня более 20 лет опыта в финансах, инвестиционном анализе,
-                оценке бизнеса и финансовом моделировании.
+                Меня зовут Лина Быкова. У меня более 20 лет опыта в финансах, инвестиционном
+                анализе, оценке бизнеса и финансовом моделировании.
               </p>
               <p>
                 В Новой Зеландии живу больше десяти лет. За это время сама прошла путь от переезда и
@@ -693,11 +698,12 @@ export default function RuContent() {
             }}
             poster={
               <>
-                {/* A stand-in until Lena's Russian title slide exists. The `/ua`
-                    cover cannot be borrowed: it is a slide in Ukrainian. */}
+                {/* The title slide of Lena's Russian deck (2026-11-14), exported
+                    from the pptx at 1920x1080. Same layout as the `/ua` cover, so
+                    the play button below still sits over the illustration. */}
                 <Image
-                  src={heroBandImg}
-                  alt="Новозеландский дом с мальвами и подсолнухами"
+                  src={webinarImg}
+                  alt="Ваш путь к первому дому в Новой Зеландии. Титульный слайд вебинара"
                   fill
                   sizes="(min-width: 768px) 60vw, 100vw"
                   placeholder="blur"
@@ -735,8 +741,8 @@ export default function RuContent() {
                     Получите доступ к вебинару
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-valar-indigo">
-                    Запись откроется сразу после отправки формы. На почту пришлю презентацию вебинара
-                    и доступ к AI-помощнику Valári.
+                    Запись откроется сразу после отправки формы. На почту пришлю презентацию
+                    вебинара и доступ к AI-помощнику Valári.
                   </p>
                 </div>
 
@@ -758,12 +764,17 @@ export default function RuContent() {
                     emailSuggestion: (fix) => <>Возможно, вы имели в виду {fix}?</>,
                     phoneLabel: "Телефон",
                     phoneOptional: "(по желанию)",
-                    subscribeLabel:
-                      "Подписаться на новости и материалы от Valar. Рассылка на английском.",
+                    subscribeLabel: null,
                     submit: "Смотреть вебинар",
                     submitting: "Отправляю…",
                     genericError: "Что-то пошло не так. Попробуйте ещё раз, пожалуйста.",
-                    privacy: (link) => <>Отправляя форму, вы соглашаетесь с {link}.</>,
+                    privacy: (link) => (
+                      <>
+                        Отправляя форму, вы соглашаетесь с {link} и получением материалов от Valar.
+                        Раз в неделю, на английском: новости рынка недвижимости и экономики. Без
+                        спама.
+                      </>
+                    ),
                     privacyLinkLabel: "политикой конфиденциальности",
                     successTitle: "Спасибо!",
                     successReady: "Запись открыта.",
@@ -879,12 +890,16 @@ export default function RuContent() {
                 emailSuggestion: (fix) => <>Возможно, вы имели в виду {fix}?</>,
                 phoneLabel: "Телефон",
                 phoneOptional: "(по желанию)",
-                subscribeLabel:
-                  "Подписаться на новости и материалы от Valar. Рассылка на английском.",
+                subscribeLabel: null,
                 submit: "Отправить мне гайд",
                 submitting: "Отправляю…",
                 genericError: "Что-то пошло не так. Попробуйте ещё раз, пожалуйста.",
-                privacy: (link) => <>Отправляя форму, вы соглашаетесь с {link}.</>,
+                privacy: (link) => (
+                  <>
+                    Отправляя форму, вы соглашаетесь с {link} и получением материалов от Valar. Раз
+                    в неделю, на английском: новости рынка недвижимости и экономики. Без спама.
+                  </>
+                ),
                 privacyLinkLabel: "политикой конфиденциальности",
                 successTitle: "Спасибо!",
                 successReady: "Ваш гайд готов.",
@@ -1086,8 +1101,8 @@ export default function RuContent() {
                 />
               </div>
               <p className="mt-3 text-[14px] leading-snug">
-                <span className="font-bold text-valar-navy">Лина Быкова</span>, Mortgage & Investment
-                Adviser
+                <span className="font-bold text-valar-navy">Лина Быкова</span>, Mortgage &
+                Investment Adviser
               </p>
             </div>
           </div>
@@ -1178,8 +1193,8 @@ export default function RuContent() {
                 licence is checked on the register, under the English spelling. */}
             Valar Financial Advisors Limited (FSP1012862) имеет лицензию Financial Advice Provider,
             выданную FMA. Финансовые консультации предоставляет Лина Быкова (Lena Bykova,
-            FSP1010055), директор и финансовый советник. Заявление о раскрытии информации (Disclosure
-            Statement): valar.co.nz/disclosure
+            FSP1010055), директор и финансовый советник. Заявление о раскрытии информации
+            (Disclosure Statement): valar.co.nz/disclosure
           </p>
         </div>
       </footer>

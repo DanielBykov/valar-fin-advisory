@@ -68,8 +68,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : []),
     { url: `${SITE_URL}/`, lastModified, changeFrequency: "monthly", priority: 1.0 },
     { url: `${SITE_URL}/about`, lastModified, changeFrequency: "monthly", priority: 0.9 },
-    // The Ukrainian page is meant to be found by search, unlike /start or /card.
+    // The Ukrainian and Russian pages are meant to be found by search, unlike /start or /card.
     { url: `${SITE_URL}/ua`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/ru`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     {
       url: `${SITE_URL}/first-home-ai-skill`,
       lastModified,

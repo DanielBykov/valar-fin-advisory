@@ -926,8 +926,8 @@ export default function UaContent() {
                   line most likely to be the reason somebody writes in. */}
               <div className="border-l-2 border-valar-amber pl-5 pt-1">
                 <p className="text-valar-navy">
-                  Мені важливо працювати з людьми довго. Якщо одного дня ваші друзі чи діти прийдуть до мене
-                  купувати свій перший дім, для мене це буде найкращою оцінкою моєї роботи.
+                  Мені важливо працювати з людьми довго. Якщо одного дня ваші друзі чи діти прийдуть
+                  до мене купувати свій перший дім, для мене це буде найкращою оцінкою моєї роботи.
                 </p>
               </div>
             </div>
@@ -1072,12 +1072,17 @@ export default function UaContent() {
                     emailSuggestion: (fix) => <>Можливо, ви мали на увазі {fix}?</>,
                     phoneLabel: "Телефон",
                     phoneOptional: "(за бажанням)",
-                    subscribeLabel:
-                      "Підписатися на новини та матеріали від Valar. Розсилка англійською.",
+                    subscribeLabel: null,
                     submit: "Дивитися вебінар",
                     submitting: "Надсилаю…",
                     genericError: "Щось пішло не так. Спробуйте ще раз, будь ласка.",
-                    privacy: (link) => <>Надсилаючи форму, ви погоджуєтесь із {link}.</>,
+                    privacy: (link) => (
+                      <>
+                        Надсилаючи форму, ви погоджуєтесь із {link} та отриманням матеріалів від
+                        Valar. Раз на тиждень, англійською: новини ринку нерухомості та економіки. Без
+                        спаму.
+                      </>
+                    ),
                     privacyLinkLabel: "політикою конфіденційності",
                     successTitle: "Дякую!",
                     successReady: "Запис відкрито.",
@@ -1223,12 +1228,16 @@ export default function UaContent() {
                 /* The newsletter is in English and the label says so. It was
                    left off entirely at first for that reason; disclosed, the
                    objection goes away and the choice belongs to the reader. */
-                subscribeLabel:
-                  "Підписатися на новини та матеріали від Valar. Розсилка англійською.",
+                subscribeLabel: null,
                 submit: "Надіслати мені гайд",
                 submitting: "Надсилаю…",
                 genericError: "Щось пішло не так. Спробуйте ще раз, будь ласка.",
-                privacy: (link) => <>Надсилаючи форму, ви погоджуєтесь із {link}.</>,
+                privacy: (link) => (
+                  <>
+                    Надсилаючи форму, ви погоджуєтесь із {link} та отриманням матеріалів від Valar.
+                    Раз на тиждень, англійською: новини ринку нерухомості та економіки. Без спаму.
+                  </>
+                ),
                 privacyLinkLabel: "політикою конфіденційності",
                 successTitle: "Дякую!",
                 successReady: "Ваш гайд готовий.",

@@ -111,9 +111,10 @@ export async function POST(req: Request) {
     groupId = process.env[fallbackEnv];
   }
 
-  // Ticking the news box also adds them to the general newsletter group.
+  // Ticking the news box, or a magnet that subscribes on submit, also adds them to the general newsletter group.
+  const wantsNewsletter = subscribe === "yes" || magnet.subscribesToNews === true;
   const groups = [groupId];
-  if (subscribe === "yes") groups.push(process.env.MAILERLITE_GROUP_ID);
+  if (wantsNewsletter) groups.push(process.env.MAILERLITE_GROUP_ID);
 
   /*
    * A magnet that opted out of the fallback and has no group of its own yet is
@@ -123,7 +124,6 @@ export async function POST(req: Request) {
    * automation, which is the thing that would have gone out in the wrong
    * language.
    */
-  const wantsNewsletter = subscribe === "yes";
   const enrolable = fallbackEnv !== null || Boolean(groupId) || wantsNewsletter;
 
   /*
@@ -327,7 +327,13 @@ export async function POST(req: Request) {
       <p><strong>Name:</strong> ${firstName}${lastName ? ` ${lastName}` : ""}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone || "—"}</p>
-      <p><strong>News opt-in:</strong> ${subscribe === "yes" ? "Yes" : "No"}</p>
+      <p><strong>News opt-in:</strong> ${
+        magnet.subscribesToNews
+          ? "Yes (by submitting the form)"
+          : subscribe === "yes"
+            ? "Yes"
+            : "No"
+      }</p>
       ${
         magnet.requiresConsent
           ? `<p><strong>Agreement:</strong> accepted ${new Date().toISOString()}</p>`
@@ -365,6 +371,7 @@ export async function POST(req: Request) {
           fields: {
             name: firstName,
             ...(lastName ? { last_name: lastName } : {}),
+            ...(phone ? { phone } : {}),
             ...(typeof source === "string" && source ? { lead_source: source } : {}),
           },
           groups,
