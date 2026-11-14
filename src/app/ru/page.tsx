@@ -9,13 +9,14 @@ export const metadata: Metadata = {
   /* Same limits as `/ua`: title under ~60 characters and description under ~155,
      where Google cuts them. Its share card is its own for the same reason too:
      the link is posted in Russian-speaking groups. */
-  title: "Как купить дом в Новой Зеландии: mortgage пошагово | Valar",
+  title: "Ипотека в Новой Зеландии | Valar",
   description:
-    "Весь путь от оффера до ключей: сколько можно занять и как банк оценивает ваш доход. Вебинар, подробный гайд и бесплатная консультация на русском.",
+    "Как купить дом в Новой Зеландии: от первого шага до ключей. Бесплатный вебинар, подробный гайд и консультация.",
   alternates: { canonical: "https://valar.co.nz/ru" },
   openGraph: {
-    title: "Недвижимость и инвестиции в Новой Зеландии | Valar",
-    description: "Вебинар, подробный гайд и AI-помощник Valári. На русском.",
+    title: "Как купить дом в Новой Зеландии | Valar",
+    description:
+      "Всё о покупке жилья и ипотеке: от первого шага до ключей. Бесплатный вебинар, пошаговый гайд и консультация финансового советника.",
     url: "https://valar.co.nz/ru",
     type: "website",
     siteName: "Valar Financial Advisors",
@@ -25,19 +26,18 @@ export const metadata: Metadata = {
         url: "/images/og-ru.jpg",
         width: 2400,
         height: 1260,
-        alt: "Как купить дом в Новой Зеландии. Пошагово. На русском.",
+        alt: "Недвижимость и инвестиции в Новой Зеландии. От покупки первого дома до инвестиций и финансовой независимости.",
       },
     ],
   },
 };
 
 /*
- * Off until Lena has corrected the copy and the Russian webinar is recorded and
- * uploaded: the form promises a recording, so publishing without one would take
- * an email and hand back nothing. Off answers 404 in production while local
- * development ignores the switch. Add the route to `sitemap.ts` when this flips.
+ * On since 2026-11-14: the recording, guide, deck and both MailerLite flows
+ * exist. Off would answer 404 in production while local development ignores the
+ * switch; the route is in `sitemap.ts` for as long as this stays on.
  */
-const RU_LIVE = false;
+const RU_LIVE = true;
 
 export default function Page() {
   if (process.env.NODE_ENV !== "development" && !RU_LIVE) notFound();

@@ -81,6 +81,13 @@ export type LeadMagnet = {
   /** Phone becomes a required field, on the form and in the API. */
   requiresPhone?: boolean;
   /**
+   * Every request also joins the general Valar newsletter group, with no
+   * opt-in box. Lena's decision for `/ua` and `/ru` (2026-11-14): she wants
+   * every one of these contacts in one list. The page must say so under the
+   * button instead, because the consent is the sentence, not a tick.
+   */
+  subscribesToNews?: boolean;
+  /**
    * The visitor must tick an agreement before the request is accepted. The API
    * refuses without it, so the tick is a record and not only a UI rule — the
    * page supplies the wording, Lena's notification records that it was given.
@@ -157,6 +164,7 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
    */
   "ua-home-buying-journey": {
     key: "ua-home-buying-journey",
+    subscribesToNews: true,
     title: "Як купити свій перший будинок?",
     description:
       "Покроковий гайд і Coaching Workbook для тих, хто купує житло вперше: від першого кроку до ключів.",
@@ -193,6 +201,7 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
    */
   "ua-first-home-webinar": {
     key: "ua-first-home-webinar",
+    subscribesToNews: true,
     title: "Вебінар: як працює іпотека в Новій Зеландії",
     description: "Запис, який можна дивитися коли завгодно, просто на цій сторінці.",
     groupEnv: "MAILERLITE_UA_WEBINAR_GROUP_ID",
@@ -209,21 +218,20 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
    */
   "ru-home-buying-journey": {
     key: "ru-home-buying-journey",
+    subscribesToNews: true,
     title: "Как купить свой первый дом?",
     description:
       "Пошаговый гайд и Coaching Workbook для тех, кто покупает жильё впервые: от первого шага до ключей.",
     groupEnv: "MAILERLITE_RU_GROUP_ID",
     groupLabel: "Russian community",
     fallbackGroupEnv: null,
-    /*
-     * No `file` until Lena's Russian PDF exists: a path here would offer a
-     * download that 404s. It goes in as
-     * "/resources/guides/first-home-buyers-guide-ru.pdf".
-     */
+    /* Lena's Russian guide, final 2026-11-14. Same no-year naming as the `/ua` file. */
+    file: "/resources/guides/first-home-buyers-guide-ru.pdf",
   },
 
   "ru-first-home-webinar": {
     key: "ru-first-home-webinar",
+    subscribesToNews: true,
     title: "Вебинар: как купить дом в Новой Зеландии",
     description:
       "От первой ипотеки до получения ключей. Разбираем весь процесс, реальные кейсы и ошибки, которых можно избежать. Смотрите в любое удобное время.",
