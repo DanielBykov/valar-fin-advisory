@@ -1225,9 +1225,10 @@ export default function UaContent() {
                 emailSuggestion: (fix) => <>Можливо, ви мали на увазі {fix}?</>,
                 phoneLabel: "Телефон",
                 phoneOptional: "(за бажанням)",
-                /* The newsletter is in English and the label says so. It was
-                   left off entirely at first for that reason; disclosed, the
-                   objection goes away and the choice belongs to the reader. */
+                /* No newsletter tick (Lena, 2026-11-14): every request joins the
+                   general list (`subscribesToNews`), so the consent is the
+                   sentence under the button, which also says the newsletter is
+                   in English. */
                 subscribeLabel: null,
                 submit: "Надіслати мені гайд",
                 submitting: "Надсилаю…",

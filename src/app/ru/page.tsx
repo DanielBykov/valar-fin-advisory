@@ -4,6 +4,7 @@ import RuContent from "./page-content";
 import { JsonLd } from "@/components/json-ld";
 import { getFaqSchema } from "@/lib/schema";
 import { RU_FAQ } from "@/lib/ru-faq";
+import { RU_LIVE } from "@/lib/ru-live";
 
 export const metadata: Metadata = {
   /* Same limits as `/ua`: title under ~60 characters and description under ~155,
@@ -31,13 +32,6 @@ export const metadata: Metadata = {
     ],
   },
 };
-
-/*
- * On since 2026-11-14: the recording, guide, deck and both MailerLite flows
- * exist. Off would answer 404 in production while local development ignores the
- * switch; the route is in `sitemap.ts` for as long as this stays on.
- */
-const RU_LIVE = true;
 
 export default function Page() {
   if (process.env.NODE_ENV !== "development" && !RU_LIVE) notFound();
