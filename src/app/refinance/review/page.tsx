@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Every visit reads its own token, so the page is never prerendered.
+export const dynamic = "force-dynamic";
+
 export default async function Page({
   searchParams,
 }: {
