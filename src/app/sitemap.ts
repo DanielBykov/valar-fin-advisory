@@ -44,12 +44,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const calculators: MetadataRoute.Sitemap = CALCULATORS_LIVE
     ? [
         { url: `${SITE_URL}/calculators`, lastModified, changeFrequency: "monthly", priority: 0.8 },
-        ...liveCalculators().map((c) => ({
-          url: `${SITE_URL}${calculatorHref(c.slug)}`,
-          lastModified,
-          changeFrequency: "monthly" as const,
-          priority: 0.7,
-        })),
+        // Refinance has its own entry below, under its own switch.
+        ...liveCalculators()
+          .filter((c) => c.slug !== "refinance")
+          .map((c) => ({
+            url: `${SITE_URL}${calculatorHref(c.slug)}`,
+            lastModified,
+            changeFrequency: "monthly" as const,
+            priority: 0.7,
+          })),
       ]
     : [];
 
@@ -72,7 +75,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // The Ukrainian and Russian pages are meant to be found by search, unlike /start or /card.
     { url: `${SITE_URL}/ua`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     ...(RU_LIVE
-      ? [{ url: `${SITE_URL}/ru`, lastModified, changeFrequency: "monthly" as const, priority: 0.8 }]
+      ? [
+          {
+            url: `${SITE_URL}/ru`,
+            lastModified,
+            changeFrequency: "monthly" as const,
+            priority: 0.8,
+          },
+        ]
       : []),
     {
       url: `${SITE_URL}/first-home-ai-skill`,

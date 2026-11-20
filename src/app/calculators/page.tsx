@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Home, Scale, Split, TrendingDown } from "lucide-react";
+import { ArrowRight, Home, RefreshCw, Scale, Split, TrendingDown } from "lucide-react";
 import {
   CALCULATORS_LIVE,
   calculatorHref,
@@ -22,6 +22,7 @@ const ICONS: Record<CalculatorIconKey, typeof Home> = {
   "trending-down": TrendingDown,
   split: Split,
   scale: Scale,
+  refresh: RefreshCw,
 };
 
 export const metadata: Metadata = {

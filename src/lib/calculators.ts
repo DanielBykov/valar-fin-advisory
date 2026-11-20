@@ -1,3 +1,5 @@
+import { REFINANCE_LIVE } from "@/lib/refinance";
+
 /**
  * The one place the /calculators section is described.
  *
@@ -17,10 +19,11 @@
  * with them.
  */
 
-export type CalculatorSlug = "what-can-i-buy" | "repayments" | "split-loan" | "rent-vs-buy";
+export type CalculatorSlug =
+  "what-can-i-buy" | "repayments" | "split-loan" | "rent-vs-buy" | "refinance";
 
 /** Named here, mapped to components on the hub — this file stays icon-free. */
-export type CalculatorIconKey = "home" | "trending-down" | "split" | "scale";
+export type CalculatorIconKey = "home" | "trending-down" | "split" | "scale" | "refresh";
 
 export type Calculator = {
   slug: CalculatorSlug;
@@ -83,6 +86,20 @@ export const CALCULATORS: Calculator[] = [
     icon: "scale",
     live: false,
   },
+  /*
+   * Listed with the calculators (2026-11-20, Lena) but lives at /refinance: it
+   * is a lead page that ads and posts link to, so the short URL is the real one.
+   * Follows the page's own switch rather than a second flag.
+   */
+  {
+    slug: "refinance",
+    title: "Refinance savings",
+    blurb:
+      "Fixed rate ending soon? See what moving your loan could save, and how much sooner it could be paid off.",
+    menuBlurb: "What switching lenders could save you",
+    icon: "refresh",
+    live: REFINANCE_LIVE,
+  },
 ];
 
 /** Calculators that may be shown to the public, in hub and menu order. */
@@ -95,7 +112,7 @@ export function getCalculator(slug: string): Calculator | undefined {
 }
 
 export function calculatorHref(slug: CalculatorSlug): string {
-  return `/calculators/${slug}`;
+  return slug === "refinance" ? "/refinance" : `/calculators/${slug}`;
 }
 
 /**
