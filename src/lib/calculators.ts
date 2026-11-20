@@ -98,7 +98,8 @@ export const CALCULATORS: Calculator[] = [
       "Fixed rate ending soon? See what moving your loan could save, and how much sooner it could be paid off.",
     menuBlurb: "What switching lenders could save you",
     icon: "refresh",
-    live: REFINANCE_LIVE,
+    // Shown in development too, so the menu and hub can be checked before launch.
+    live: REFINANCE_LIVE || process.env.NODE_ENV === "development",
   },
 ];
 
