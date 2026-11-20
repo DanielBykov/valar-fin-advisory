@@ -7,9 +7,7 @@ import { isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
  * this page's promise and that guide's subject, and the Calculators group and its
  * automation already exist.
  */
-const MAGNET = LEAD_MAGNETS["pay-your-mortgage-off-faster"];
-
-const HERO_CHIPS = ["Your new repayment", "Your finish date", "What to do before your fix ends"];
+const MAGNET = LEAD_MAGNETS["refinance-calculation"];
 
 const HELPS = [
   {
@@ -53,38 +51,48 @@ const COSTS = [
 export default function RefinanceContent() {
   return (
     <div data-cmp="RefinancePage" className="flex min-h-screen w-full flex-col bg-valar-fog">
-      <RefinanceCalculator
-        guideKey={MAGNET.key}
-        guideTitle={MAGNET.title}
-        guideReady={isReady(MAGNET)}
-        cover={MAGNET.cover}
-        intro={
-          <>
+      {/*
+       * Short on purpose (2026-11-20): the page is an offer to refinance, and the
+       * calculator below is how the visitor checks it. One button, to the form.
+       * The paragraph is a draft for Lena to rewrite.
+       */}
+      <section
+        data-cmp="RefinancePage.Hero"
+        className="relative overflow-hidden bg-valar-navy px-4 pt-36 pb-16 text-white md:px-6"
+      >
+        {/*
+         * Type and spacing match the other calculator heroes. The right side is
+         * kept free for a refinance image, which does not exist yet.
+         */}
+        <div className="relative container mx-auto max-w-6xl">
+          <div className="md:max-w-[54%]">
             <div className="mb-4 flex flex-col space-y-3">
               <div className="h-[2px] w-6 bg-valar-amber" />
               <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
                 Refinance
               </span>
             </div>
-            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-6xl">
+            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
               Pay off your mortgage sooner<span className="text-valar-amber">.</span>
             </h1>
-            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
-              Refinancing is one tool that can help. Enter four numbers to see what your repayment
-              could be, and how much sooner your loan could finish.
+            <p className="mb-7 border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+              Fixed rate ending soon, or paying more than lenders offer today? See what moving your
+              loan could save you. It takes a minute.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {HERO_CHIPS.map((chip) => (
-                <li
-                  key={chip}
-                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-                >
-                  {chip}
-                </li>
-              ))}
-            </ul>
-          </>
-        }
+            <a
+              href="#refinance-check"
+              className="inline-block rounded-lg bg-valar-amber px-6 py-3.5 text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
+            >
+              Check what you could save
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <RefinanceCalculator
+        guideKey={MAGNET.key}
+        guideTitle={MAGNET.title}
+        guideReady={isReady(MAGNET)}
         closing={
           <div className="flex flex-col justify-center gap-4 rounded-2xl bg-valar-navy p-6 md:p-8">
             <h2 className="text-2xl font-bold text-white">

@@ -18,6 +18,7 @@
 export type LeadMagnetKey =
   | "first-home-buyer-guide"
   | "pay-your-mortgage-off-faster"
+  | "refinance-calculation"
   | "split-structure-review"
   | "ua-home-buying-journey"
   | "ua-first-home-webinar"
@@ -37,7 +38,8 @@ export type GroupEnvVar =
   | "MAILERLITE_UA_WEBINAR_GROUP_ID"
   | "MAILERLITE_RU_GROUP_ID"
   | "MAILERLITE_RU_WEBINAR_GROUP_ID"
-  | "MAILERLITE_VALARI_GROUP_ID";
+  | "MAILERLITE_VALARI_GROUP_ID"
+  | "MAILERLITE_REFINANCE_GROUP_ID";
 
 export type LeadMagnet = {
   key: LeadMagnetKey;
@@ -118,6 +120,26 @@ export const LEAD_MAGNETS: Record<LeadMagnetKey, LeadMagnet> = {
    * a guide that arrives named differently from the email that promised it
    * reads like the wrong attachment.
    */
+  /*
+   * The refinance page's lead (2026-11-20): the same guide, its own MailerLite
+   * group, so refinance leads get their own follow-up. Until the env var is set
+   * on Vercel they land in Calculators rather than nowhere.
+   */
+  "refinance-calculation": {
+    key: "refinance-calculation",
+    title: "10 Ways to Pay Your Mortgage Off Faster",
+    description: "The things that actually move the number, in the order worth doing them.",
+    groupEnv: "MAILERLITE_REFINANCE_GROUP_ID",
+    fallbackGroupEnv: "MAILERLITE_CALCULATORS_GROUP_ID",
+    groupLabel: "Refinance",
+    file: "/resources/guides/pay-your-mortgage-off-faster.pdf",
+    cover: {
+      src: "/images/guides/pay-your-mortgage-off-faster.png",
+      width: 904,
+      height: 286,
+    },
+  },
+
   "pay-your-mortgage-off-faster": {
     key: "pay-your-mortgage-off-faster",
     title: "10 Ways to Pay Your Mortgage Off Faster",

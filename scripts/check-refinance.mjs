@@ -10,9 +10,11 @@
 
 import {
   CONTRIBUTION_SHARE,
+  LEGAL_FEES,
   FIX_MONTHS,
   SAMPLE_RATE,
   calculateRefinance,
+  refinanceOptions,
   daysBefore,
   describeRefinance,
   monthsBetween,
@@ -60,7 +62,7 @@ is("staying finishes on the original term", main.stayMonths, 300);
 near(
   "new repayment is the annuity on the reduced balance",
   main.newRepayment,
-  annuity(600_000 * (1 - CONTRIBUTION_SHARE), SAMPLE_RATE, 300),
+  annuity(600_000 * (1 - CONTRIBUTION_SHARE) + LEGAL_FEES, SAMPLE_RATE, 300),
 );
 
 let stayBalance = 600_000;
@@ -72,7 +74,7 @@ near(
 );
 
 // An independent run of the refinance line, paying what staying would pay.
-let b = 600_000 * (1 - CONTRIBUTION_SHARE);
+let b = 600_000 * (1 - CONTRIBUTION_SHARE) + LEGAL_FEES;
 let months = 0;
 while (b > 0) {
   months += 1;
@@ -151,6 +153,55 @@ is("hold shows no figure", holdWords.headlineIsFigure, false);
 is("hold shows no comparison", holdWords.showComparison, false);
 
 is("the reminder date is 90 days back", daysBefore("2027-07-03", 90), "2027-04-04");
+
+// Lena's worked example (2026-11-20), against figures from a separate script:
+// $600,000, 25 years left, switching now, 1.25% less $1,200 onto the loan,
+// 4.89% for a year at the new lender, then 5.5% at both banks.
+{
+  const end = new Date(`${today}T00:00:00Z`);
+  end.setUTCMonth(end.getUTCMonth() + 300);
+  const o = refinanceOptions(
+    {
+      ...base,
+      balance: 600_000,
+      repayment: 3_508,
+      frequency: "monthly",
+      fixedEnd: "",
+      loanEnd: end.toISOString().slice(0, 10),
+    },
+    today,
+  );
+  is("example is ahead", o.state, "ahead");
+  is("example term is 300 months", o.termAtSwitch, 300);
+  near("net contribution is 1.25% less legal fees", o.net, 6_300);
+  near("staying costs $3,685", o.stayRepayment, 3_684.52);
+  near("first-year repayment on the new loan $3,433", o.firstYearRepayment, 3_432.77);
+  near("later repayment on the new loan $3,639", o.laterRepayment, 3_639.22);
+  is("keeping the repayment finishes 10 months sooner", o.monthsSooner, 10);
+  near("30-year repayment from year 2 $3,366", o.longerRepayment, 3_365.57);
+  near("option 1 repays about $16,069 less in total", o.totalLess, 16_069, 2);
+  near("option 2 saves about $31,427 of interest", o.interestSaved, 31_427, 2);
+  near("option 3 repays about $103,629 more over 30 years", o.longerMore, 103_629, 2);
+  near("30-year first-year repayment $3,147", o.longerFirstYearRepayment, 3_147.32);
+}
+
+// Above 80% LVR there is no contribution, and the legal fees still land on the loan.
+{
+  const end = new Date(`${today}T00:00:00Z`);
+  end.setUTCMonth(end.getUTCMonth() + 300);
+  const loanEnd = end.toISOString().slice(0, 10);
+  const high = refinanceOptions(
+    { ...base, balance: 600_000, repayment: 3_508, fixedEnd: "", loanEnd, propertyValue: 700_000 },
+    today,
+  );
+  is("85.7% LVR is not eligible", high.contributionEligible, false);
+  near("above 80% the net is minus the legal fees", high.net, -1_200);
+  const edge = refinanceOptions(
+    { ...base, balance: 600_000, repayment: 3_508, fixedEnd: "", loanEnd, propertyValue: 750_000 },
+    today,
+  );
+  is("exactly 80% LVR is eligible", edge.contributionEligible, true);
+}
 
 if (failures) {
   console.error(`\n${failures} of ${checks} checks failed.`);
