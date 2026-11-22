@@ -32,7 +32,11 @@ const STARTING_TOTAL = 600_000;
  * The loan is the wider column and the split is the narrower one, on both rows.
  * Shared so the two can never drift apart — the alignment is the layout.
  */
-const COLUMNS = "lg:grid-cols-[1.15fr_0.85fr]";
+// grid-cols-1 is minmax(0, 1fr): without it the wide cost table pushed the
+// single phone column, and the page, past the screen edge.
+// Side by side only from xl: at lg (1024px) the split card was too narrow and
+// cut the part amounts to "$ 200,".
+const COLUMNS = "grid-cols-1 xl:grid-cols-[1.15fr_0.85fr]";
 
 /*
  * One, two and three years, at Lena's indicative fixed rates.
@@ -187,7 +191,7 @@ export default function SplitLoanCalculator({
             <h2 className="text-xs font-bold uppercase tracking-widest text-valar-indigo">
               The loan
             </h2>
-            <span className="text-xs text-valar-steel">What you are borrowing</span>
+            <span className="text-sm text-valar-steel">What you are borrowing</span>
           </div>
 
           <NumberField
@@ -218,7 +222,7 @@ export default function SplitLoanCalculator({
                   type="button"
                   onClick={() => setFrequency(f.key)}
                   aria-pressed={frequency === f.key}
-                  className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-semibold transition-colors ${
+                  className={`flex-1 rounded-lg border px-2 py-1.5 text-sm font-semibold transition-colors ${
                     frequency === f.key
                       ? "border-valar-navy bg-valar-navy text-white"
                       : "border-valar-concrete bg-white text-gray-700 hover:border-valar-amber"
@@ -230,7 +234,7 @@ export default function SplitLoanCalculator({
             </div>
           </div>
 
-          <p className="mt-auto text-xs leading-relaxed text-valar-steel">
+          <p className="mt-auto text-sm leading-relaxed text-valar-steel">
             The term sets your repayment. How long a rate is fixed for is a separate thing.
           </p>
         </div>
@@ -244,7 +248,7 @@ export default function SplitLoanCalculator({
             <h2 className="text-xs font-bold uppercase tracking-widest text-valar-amber">
               The split
             </h2>
-            <span className="text-xs text-valar-steel">
+            <span className="text-sm text-valar-steel">
               {Math.abs(unallocated) >= 1 ? (
                 <span className="font-semibold text-valar-navy">
                   {unallocated > 0
@@ -257,7 +261,7 @@ export default function SplitLoanCalculator({
             </span>
           </div>
 
-          <label className="flex items-center gap-2 text-xs text-gray-600">
+          <label className="flex items-center gap-2 text-sm text-gray-600">
             <input
               type="checkbox"
               checked={splitEqually}
@@ -327,7 +331,7 @@ export default function SplitLoanCalculator({
                   value={part.type}
                   onChange={(e) => update(i, { type: e.target.value as PartType })}
                   aria-label={`${PART_LABELS[i]} repayment type`}
-                  className="w-full rounded-lg border border-valar-concrete bg-white px-1.5 py-2 text-xs font-semibold text-valar-navy focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
+                  className="w-full rounded-lg border border-valar-concrete bg-white px-1.5 py-2 text-sm font-semibold text-valar-navy focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
                 >
                   <option value="pi">P&amp;I</option>
                   <option value="io">Interest only</option>
@@ -341,7 +345,7 @@ export default function SplitLoanCalculator({
               <button
                 type="button"
                 onClick={() => setActiveCount((n) => n + 1)}
-                className="rounded-lg border border-dashed border-valar-concrete px-3 py-1.5 text-xs font-semibold text-valar-navy transition-colors hover:border-valar-amber"
+                className="rounded-lg border border-dashed border-valar-concrete px-3 py-1.5 text-sm font-semibold text-valar-navy transition-colors hover:border-valar-amber"
               >
                 + Add a part
               </button>
@@ -350,7 +354,7 @@ export default function SplitLoanCalculator({
               <button
                 type="button"
                 onClick={() => setActiveCount((n) => n - 1)}
-                className="rounded-lg border border-valar-concrete px-3 py-1.5 text-xs font-semibold text-valar-steel transition-colors hover:text-valar-navy"
+                className="rounded-lg border border-valar-concrete px-3 py-1.5 text-sm font-semibold text-valar-steel transition-colors hover:text-valar-navy"
               >
                 Remove one
               </button>
@@ -359,7 +363,7 @@ export default function SplitLoanCalculator({
               <button
                 type="button"
                 onClick={() => setSplitEqually(true)}
-                className="rounded-lg border border-valar-concrete px-3 py-1.5 text-xs font-semibold text-valar-navy transition-colors hover:border-valar-amber"
+                className="rounded-lg border border-valar-concrete px-3 py-1.5 text-sm font-semibold text-valar-navy transition-colors hover:border-valar-amber"
               >
                 Back to equal
               </button>
@@ -372,7 +376,7 @@ export default function SplitLoanCalculator({
            * beside it — the balance simply never moves.
            */}
           {visible.some((p) => p.type === "io" && p.amount > 0) && (
-            <p className="mt-auto border-t border-gray-100 pt-3 text-[11px] leading-snug text-valar-steel">
+            <p className="mt-auto border-t border-gray-100 pt-3 text-[13px] leading-snug text-valar-steel">
               An interest-only part never reduces on its own — the balance you see at the re-fix is
               the balance you started with.
             </p>
@@ -413,7 +417,7 @@ export default function SplitLoanCalculator({
                   <div key={i} className="flex items-baseline justify-between gap-4 text-sm">
                     <span className="text-valar-lilac">
                       Part {i + 1}
-                      <span className="ml-2 text-xs text-valar-steel">
+                      <span className="ml-2 text-sm text-valar-steel">
                         fixed {part.fixedYears} yr{part.fixedYears === 1 ? "" : "s"}
                         {part.type === "io" ? " · interest only" : ""}
                       </span>
@@ -466,7 +470,7 @@ export default function SplitLoanCalculator({
               </p>
 
               <div className="mt-3 overflow-x-auto">
-                <table className="w-full min-w-[440px] text-xs">
+                <table className="w-full min-w-[440px] text-sm">
                   <thead>
                     <tr className="text-left text-valar-steel">
                       {[
@@ -506,7 +510,7 @@ export default function SplitLoanCalculator({
                     })}
                   </tbody>
                 </table>
-                <p className="mt-3 text-[11px] leading-relaxed text-valar-steel">
+                <p className="mt-3 text-[13px] leading-relaxed text-valar-steel">
                   <b className="text-valar-lilac">Interest / yr</b> is what that part costs you in
                   interest over its first twelve months — the part of the repayment that buys you
                   nothing. It is the number to compare parts on.
@@ -515,7 +519,7 @@ export default function SplitLoanCalculator({
             </div>
           )}
 
-          <p className="mt-auto pt-4 text-xs leading-relaxed text-valar-lilac">
+          <p className="mt-auto pt-4 text-sm leading-relaxed text-valar-lilac">
             This calculator models the structure, not extra repayments. To see what paying more each
             time does to the balance,{" "}
             <Link

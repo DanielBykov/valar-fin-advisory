@@ -38,20 +38,6 @@ export const metadata: Metadata = {
   },
 };
 
-/*
- * The three things worth knowing before starting, as chips rather than a
- * sentence.
- *
- * All three are checked against what the page actually does. "Free to run" is
- * the maths, which happens in the browser and asks for nothing. "Send it to
- * yourself" is the capture form, stated as the offer it is rather than denied
- * — the sentence these replaced claimed nothing here asks for your details,
- * three scrolls above the form that does. "Guide comes with it" holds because
- * every live calculator's magnet has a file behind it; if one is ever added
- * without one, this chip is the thing that stops being true.
- */
-const HERO_CHIPS = ["Free to run", "Send it to yourself", "Guide comes with it"];
-
 export default function Page() {
   // The section stays private until CALCULATORS_LIVE is flipped in
   // src/lib/calculators.ts. Always renders locally so it can be reviewed.
@@ -74,7 +60,7 @@ export default function Page() {
     <div data-cmp="CalculatorsPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
       <section
         data-cmp="CalculatorsPage.Hero"
-        className="relative overflow-hidden bg-valar-navy px-4 pt-36 pb-16 text-white md:px-6"
+        className="relative overflow-hidden bg-valar-navy px-4 pt-20 pb-6 text-white md:px-6"
       >
         {/*
          * The art carries its own navy ground, so it joins the section rather
@@ -109,28 +95,18 @@ export default function Page() {
            * is the thing that narrows.
            */}
           <div className="md:max-w-[54%]">
-            <div className="mb-4 flex flex-col space-y-3">
+            <div className="mb-2 flex flex-col space-y-2">
               <div className="h-[2px] w-6 bg-valar-amber" />
               <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
                 Calculators
               </span>
             </div>
-            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl">
               Run your own numbers<span className="text-valar-amber">.</span>
             </h1>
-            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+            <p className="border-l-2 border-valar-amber pl-4 text-base font-light leading-relaxed text-valar-lilac md:text-lg">
               Move the numbers around before anyone asks you to commit to them.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {HERO_CHIPS.map((chip) => (
-                <li
-                  key={chip}
-                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-                >
-                  {chip}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

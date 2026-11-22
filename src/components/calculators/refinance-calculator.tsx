@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import NumberField from "@/components/calculators/number-field";
 import SendCalculationForm from "@/components/calculators/send-calculation-form";
 import {
@@ -42,7 +42,7 @@ const RISE = 0.5;
 const ROLL_MS = 1400;
 
 const FIELD =
-  "w-full rounded-lg border border-valar-concrete bg-white px-2.5 py-[7px] text-sm font-semibold text-valar-navy focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30";
+  "w-full rounded-lg border border-valar-concrete bg-white px-2.5 py-[7px] text-base font-semibold text-valar-navy focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30";
 
 const money = (n: number) => `$${Math.round(n).toLocaleString("en-NZ")}`;
 
@@ -78,63 +78,101 @@ function Rolling({ to, run, format }: { to: number; run: number; format: (n: num
 }
 
 /*
- * What the savings panel shows before Calculate (2026-11-20): how a refinance
- * works, instead of an empty white box. Icons are inline so nothing new loads.
+ * Left of the form (2026-11-22, Lena): a schematic, not a lecture. The move is
+ * one picture (your bank to a new lender), then five short steps in a single
+ * column that fills the panel. No claim about break fees here: whether there
+ * is one depends on the visitor's timing, and the costs section covers it.
+ * Icons are inline so nothing new loads.
  */
 const STEPS = [
   {
-    title: "Your fixed rate ends",
-    text: "No break fee when you move at the end of the term.",
-    icon: "M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z",
+    title: "We review your loan",
+    text: "Your bank against other lenders.",
+    icon: "M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.35-4.35",
   },
   {
-    title: "A new lender repays your loan",
-    text: "Same home, new loan agreement. A lawyer handles the switch.",
+    title: "A new lender repays it",
+    text: "Your current loan is paid off and closed.",
     icon: "M3 10l9-6 9 6M5 10v10h14V10M9 20v-6h6v6",
   },
   {
-    title: "Cash contribution onto the loan",
-    text: "The lender's cashback, less legal fees, reduces what you owe.",
+    title: "You receive a cash contribution",
+    text: "From the new lender. Legal fees and other costs come out of it.",
     icon: "M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",
   },
   {
-    title: "You choose how to use it",
-    text: "A lower repayment, or the same repayment and a shorter loan.",
+    title: "The difference goes onto your loan",
+    text: "Contribution less costs: less to repay from day one.",
+    icon: "M12 5v14M5 12l7 7 7-7",
+  },
+  {
+    title: "We structure the new loan",
+    text: "A lower repayment, or a shorter loan.",
     icon: "M4 19V5M4 19h16M8 15l4-4 3 3 5-6",
   },
 ];
 
+function StepIcon({ d }: { d: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d={d} />
+    </svg>
+  );
+}
+
 function HowItWorks() {
   return (
-    <div className="mt-5">
-      <p className="mb-4 text-sm text-gray-600">
-        Enter your loan and press Calculate. Here is what refinancing does:
-      </p>
-      <ol className="grid gap-3 sm:grid-cols-2">
-        {STEPS.map((step, i) => (
-          <li
-            key={step.title}
-            className="flex gap-3 rounded-xl border border-valar-concrete bg-valar-fog p-4"
-          >
+    <div className="mt-5 flex flex-1 flex-col">
+      {/* The move itself, as one picture. */}
+      <div
+        className="flex items-center gap-3"
+        aria-label="Your loan moves from your bank to a new lender"
+      >
+        <div className="flex-1 rounded-xl border border-valar-concrete bg-valar-fog px-4 py-3 text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-valar-steel">From</p>
+          <p className="text-base font-bold text-valar-navy">Your bank</p>
+        </div>
+        <svg
+          viewBox="0 0 48 24"
+          className="h-6 w-12 shrink-0 text-valar-amber"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden
+        >
+          <path d="M2 12h42M34 4l10 8-10 8" />
+        </svg>
+        <div className="flex-1 rounded-xl border border-valar-horizon bg-valar-horizon/15 px-4 py-3 text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-valar-indigo">To</p>
+          <p className="text-base font-bold text-valar-navy">A new lender</p>
+        </div>
+      </div>
+
+      {/* One column; the steps spread to fill the panel beside the form. */}
+      <ol className="relative mt-6 flex flex-1 flex-col justify-between gap-4">
+        <span
+          aria-hidden
+          className="absolute top-5 bottom-5 left-5 w-px -translate-x-1/2 bg-valar-concrete"
+        />
+        {STEPS.map((step) => (
+          <li key={step.title} className="relative flex items-center gap-4">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-valar-navy text-valar-amber">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-              >
-                <path d={step.icon} />
-              </svg>
+              <StepIcon d={step.icon} />
             </span>
             <span>
-              <span className="block text-sm font-bold text-valar-navy">
-                {i + 1}. {step.title}
-              </span>
-              <span className="block text-sm leading-snug text-gray-600">{step.text}</span>
+              <span className="block text-base font-bold text-valar-navy">{step.title}</span>
+              <span className="block text-sm text-gray-600">{step.text}</span>
             </span>
           </li>
         ))}
@@ -218,6 +256,17 @@ export default function RefinanceCalculator({
     setShown({ key, result: refinanceOptions({ ...inputs, loanEnd, propertyValue }, today) });
     setRun((n) => n + 1);
   };
+
+  /*
+   * The answer opens below the form, often under the fold, so each Calculate
+   * brings it into view. Reduced motion jumps instead of gliding.
+   */
+  const resultRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (run === 0) return;
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    resultRef.current?.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
+  }, [run]);
   const stale = shown !== null && shown.key !== key;
   const answer = shown?.result ?? null;
   // Above 80% LVR the panel shows no figures, only the request for the address.
@@ -226,15 +275,23 @@ export default function RefinanceCalculator({
   return (
     <>
       {/*
-       * Form left, savings right (2026-11-20): the visitor watches the answer move
-       * while typing, and the two next steps sit under the answer they act on.
+       * What refinancing is on the left, the form on the right (2026-11-22,
+       * Lena). The savings open below on Calculate, full width, and only then is
+       * there anything to send: the capture button lives with the answer.
        */}
       <section
         id="refinance-check"
         data-cmp="RefinanceCalculator.Inputs"
         className="scroll-mt-28 px-4 pt-12 md:px-6"
       >
-        <div className="container mx-auto grid max-w-6xl items-stretch gap-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <div className="container mx-auto grid max-w-6xl items-stretch gap-5 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]">
+          <div className="flex flex-col rounded-2xl border border-valar-concrete bg-white p-5 md:p-7">
+            <h2 className="text-xl font-bold text-valar-navy">
+              How refinancing works<span className="text-valar-amber">.</span>
+            </h2>
+            <HowItWorks />
+          </div>
+
           <div className="rounded-2xl border border-valar-concrete bg-white p-5 text-valar-navy md:p-7">
             <h2 className="mb-5 text-xl font-bold">
               See what could change<span className="text-valar-amber">.</span>
@@ -279,26 +336,26 @@ export default function RefinanceCalculator({
                 onChange={setPropertyValue}
               />
               <label className="flex flex-col gap-1.5">
-                <span className="text-xs font-semibold text-valar-navy">Fixed rate ends</span>
+                <span className="text-sm font-semibold text-valar-navy">Fixed rate ends</span>
                 <input
                   type="date"
                   value={fixedEnd}
                   onChange={(e) => setTypedEnd(e.target.value)}
                   className={FIELD}
                 />
-                <span className="text-[11px] leading-snug text-valar-steel">
+                <span className="text-[13px] leading-snug text-valar-steel">
                   Leave blank if floating
                 </span>
               </label>
               <label className="flex flex-col gap-1.5">
-                <span className="text-xs font-semibold text-valar-navy">Loan ends</span>
+                <span className="text-sm font-semibold text-valar-navy">Loan ends</span>
                 <input
                   type="date"
                   value={loanEnd}
                   onChange={(e) => setTypedLoanEnd(e.target.value)}
                   className={FIELD}
                 />
-                <span className="text-[11px] leading-snug text-valar-steel">{loanEndHint}</span>
+                <span className="text-[13px] leading-snug text-valar-steel">{loanEndHint}</span>
               </label>
             </div>
 
@@ -310,7 +367,7 @@ export default function RefinanceCalculator({
                     type="button"
                     onClick={() => setFrequency(f.key)}
                     aria-pressed={frequency === f.key}
-                    className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-semibold transition-colors ${
+                    className={`flex-1 rounded-lg border px-2 py-1.5 text-sm font-semibold transition-colors ${
                       frequency === f.key
                         ? "border-valar-navy bg-valar-navy text-white"
                         : "border-valar-concrete bg-white text-gray-700 hover:border-valar-amber"
@@ -321,7 +378,7 @@ export default function RefinanceCalculator({
                 ))}
               </div>
               {/* One line in the narrow form column, so the wording is cut to fit. */}
-              <p className="truncate text-xs text-gray-600">
+              <p className="truncate text-sm text-gray-600">
                 Split loan? Enter totals and your average rate.
               </p>
             </div>
@@ -334,12 +391,17 @@ export default function RefinanceCalculator({
               {shown ? "Recalculate" : "Calculate my savings"}
             </button>
           </div>
+        </div>
+      </section>
 
-          <div
-            data-cmp="RefinanceCalculator.Result"
-            aria-live="polite"
-            className="flex min-h-56 flex-col rounded-2xl border border-valar-concrete bg-white p-5 md:p-7"
-          >
+      <section
+        ref={resultRef}
+        data-cmp="RefinanceCalculator.Result"
+        aria-live="polite"
+        className="scroll-mt-28 px-4 md:px-6"
+      >
+        {answer && (
+          <div className="container mx-auto mt-5 flex max-w-6xl flex-col rounded-2xl border border-valar-concrete bg-white p-5 md:p-8">
             <h2 className="text-xl font-bold text-valar-navy">
               Your savings<span className="text-valar-amber">.</span>
             </h2>
@@ -419,8 +481,6 @@ export default function RefinanceCalculator({
                   </div>
                 </div>
               </div>
-            ) : answer === null ? (
-              <HowItWorks />
             ) : (
               <p className="mt-5 text-lg leading-relaxed text-gray-600">
                 {answer.state === "behind"
@@ -436,7 +496,7 @@ export default function RefinanceCalculator({
             )}
 
             <p
-              className={`mt-4 mb-5 text-xs leading-relaxed text-gray-600 ${highLvr ? "hidden" : ""}`}
+              className={`mt-4 mb-5 text-sm leading-relaxed text-gray-600 ${highLvr ? "hidden" : ""}`}
             >
               Example rates: a new lender at {NEW_LENDER_FIRST_YEAR_RATE.toFixed(2)}% for 1 year,
               then {ONGOING_RATE.toFixed(2)}%, against {ONGOING_RATE.toFixed(2)}% at your bank.
@@ -449,34 +509,32 @@ export default function RefinanceCalculator({
              * Above 80% LVR the button is the whole answer, so an arrow points at it
              * (Lena, 2026-11-20). The bounce only runs for visitors who allow motion.
              */}
-            {highLvr && (
-              <div aria-hidden="true" className="mt-auto flex justify-center pb-3 text-valar-amber">
-                <svg
-                  viewBox="0 0 24 48"
-                  className="h-14 w-7 motion-safe:animate-bounce"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 3v40M3 34l9 9 9-9" />
-                </svg>
-              </div>
-            )}
-
-            <button
-              type="button"
-              onClick={() => {
-                if (!shown) calculate();
-                setFormOpen(true);
-              }}
-              className={`${highLvr ? "" : "mt-auto"} block w-full rounded-lg bg-valar-amber px-6 py-3.5 text-center text-[15px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover`}
-            >
-              Get your calculation
-            </button>
+            <div className="flex flex-col items-center self-stretch sm:self-start">
+              {highLvr && (
+                <div aria-hidden="true" className="flex justify-center pb-3 text-valar-amber">
+                  <svg
+                    viewBox="0 0 24 48"
+                    className="h-14 w-7 motion-safe:animate-bounce"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 3v40M3 34l9 9 9-9" />
+                  </svg>
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={() => setFormOpen(true)}
+                className="block w-full rounded-lg bg-valar-amber px-10 py-4 text-center text-base font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover sm:w-auto"
+              >
+                Get your calculation
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       {/*

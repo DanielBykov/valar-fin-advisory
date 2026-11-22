@@ -176,7 +176,7 @@ export default function RepaymentCalculator({
                       mode === "target" ? Math.ceil((result.basePayment + 0.01) / 100) * 100 : 0,
                     );
                   }}
-                  className={`rounded-md px-3 py-1 text-xs font-bold transition-colors ${
+                  className={`rounded-md px-3 py-1 text-sm font-bold transition-colors ${
                     extraMode === mode
                       ? "bg-valar-navy text-white"
                       : "text-valar-steel hover:text-valar-navy"
@@ -213,14 +213,14 @@ export default function RepaymentCalculator({
           />
           {extraMode === "target" && (
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-semibold text-valar-steel">Round up to</span>
+              <span className="text-sm font-semibold text-valar-steel">Round up to</span>
               {targets.map((target) => (
                 <button
                   key={target}
                   type="button"
                   aria-pressed={Math.round(extraValue) === target}
                   onClick={() => setExtraValue(target)}
-                  className={`rounded-full border px-3 py-1 text-xs font-bold transition-colors ${
+                  className={`rounded-full border px-3 py-1 text-sm font-bold transition-colors ${
                     Math.round(extraValue) === target
                       ? "border-valar-navy bg-valar-navy text-white"
                       : "border-valar-concrete bg-white text-valar-navy hover:border-valar-navy"
@@ -232,7 +232,7 @@ export default function RepaymentCalculator({
             </div>
           )}
           {result.overAllowance && (
-            <p className="flex items-start gap-2 rounded-lg bg-valar-amber/10 p-3 text-xs leading-relaxed text-valar-navy">
+            <p className="flex items-start gap-2 rounded-lg bg-valar-amber/10 p-3 text-sm leading-relaxed text-valar-navy">
               <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-valar-amber" />
               <span>
                 That is more than {EXTRA_CAP_PERCENT}% of the loan a year. On a <b>fixed</b> rate
@@ -271,7 +271,7 @@ export default function RepaymentCalculator({
             </span>
           </div>
           {usingExtra && (
-            <div className="flex justify-between gap-4 text-xs text-valar-lilac">
+            <div className="flex justify-between gap-4 text-sm text-valar-lilac">
               <span>{nzd(result.basePayment * result.perYear)} required</span>
               <span className="tabular-nums text-valar-amber">
                 + {nzd(result.extraPerPeriod * result.perYear)} extra
@@ -297,7 +297,7 @@ export default function RepaymentCalculator({
             <div className="w-[2px] shrink-0 bg-valar-navy" />
             <div className="flex-1 bg-valar-amber" />
           </div>
-          <div className="mt-2 flex justify-between text-xs text-valar-lilac">
+          <div className="mt-2 flex justify-between text-sm text-valar-lilac">
             <span>Amount borrowed</span>
             <span>Interest · {Math.round(result.interestShare * 100)}%</span>
           </div>
@@ -315,7 +315,7 @@ export default function RepaymentCalculator({
           </div>
         )}
 
-        <p className="mt-auto pt-6 text-xs leading-relaxed text-valar-lilac">
+        <p className="mt-auto pt-6 text-sm leading-relaxed text-valar-lilac">
           Indicative only. Assumes the rate stays fixed for the full term, which it will not — it is
           a comparison tool, not a quote.
         </p>

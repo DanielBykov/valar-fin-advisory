@@ -96,29 +96,6 @@ const ASSUMPTIONS = [
 ];
 
 /*
- * Lena's set, 2026-09-11. The first three chips are the answer panel in the
- * order it reads: the range (the maximum, then the 30/40/50% table under it),
- * what is holding the number (the income / budget / deposit line under the
- * loan), and what it costs a month. A chip is a promise, and each of these
- * points at a block that is actually on the screen.
- *
- * The older rules still stand: a chip says what the visitor GETS, not what the
- * form asks, and never names something every bank calculator also has. That is
- * why "5 questions", "About a minute" and "Quick run" stay out.
- *
- * "Send it to yourself" is word for word the chip on the other three heroes.
- *
- * "For a home you'll live in" also came out, but the scope did not: it is
- * stated in the assumptions folded away at the foot of the page.
- */
-const HERO_CHIPS = [
-  "Start from your payment",
-  "Share of your pay",
-  "Stress test at 7%",
-  "Send it to yourself",
-];
-
-/*
  * Lena's order, 2026-09-11. The budget comes first now: the page's whole point
  * is that a lender's ceiling is not your limit, so the first step is setting
  * your own. "Get pre-approved before you shop" came out — not for this card yet.
@@ -167,7 +144,7 @@ export default function WhatCanIBuyContent() {
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section
         data-cmp="WhatCanIBuyPage.Hero"
-        className="relative overflow-hidden bg-valar-navy px-4 pt-36 pb-16 text-white md:px-6"
+        className="relative overflow-hidden bg-valar-navy px-4 pt-20 pb-6 text-white md:px-6"
       >
         {/*
          * Steps climbing to a lit house — the shape of the page: how far the
@@ -194,29 +171,18 @@ export default function WhatCanIBuyContent() {
 
         <div className="relative container mx-auto max-w-6xl">
           <div className="md:max-w-[54%]">
-            <div className="mb-4 flex flex-col space-y-3">
+            <div className="mb-2 flex flex-col space-y-2">
               <div className="h-[2px] w-6 bg-valar-amber" />
               <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
                 Calculator
               </span>
             </div>
-            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl">
               How much can I borrow<span className="text-valar-amber">?</span>
             </h1>
-            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+            <p className="border-l-2 border-valar-amber pl-4 text-base font-light leading-relaxed text-valar-lilac md:text-lg">
               Start from what you&rsquo;d be comfortable paying and see the loan it carries.
             </p>
-            {/* Chips rather than a sentence — see HERO_CHIPS for why these four. */}
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {HERO_CHIPS.map((chip) => (
-                <li
-                  key={chip}
-                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-                >
-                  {chip}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
