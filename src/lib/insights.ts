@@ -19,30 +19,7 @@
  */
 export const INSIGHTS_LIVE = true;
 
-import {
-  LEGAL_FEE_OFFER_CLAWBACK_MONTHS,
-  LEGAL_FEE_OFFER_ENDS,
-  LEGAL_FEE_OFFER_LARGE,
-  legalFeeOfferOn,
-  LEGAL_FEE_OFFER_SMALL,
-  LEGAL_FEE_OFFER_THRESHOLD,
-} from "./offers";
-
-/** "$7,300". Article copy that quotes an offer computes it, so the two cannot drift. */
-const money = (n: number) => `$${n.toLocaleString("en-NZ")}`;
-
-/*
- * Checked when the article data loads. Article pages are built statically, so
- * after the end date the offer disappears at the next build or deploy, not at
- * midnight on the day.
- */
-const OFFER_ON = legalFeeOfferOn(new Date().toISOString().slice(0, 10));
-const offerEnds = new Date(`${LEGAL_FEE_OFFER_ENDS}T00:00:00Z`).toLocaleDateString("en-NZ", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  timeZone: "UTC",
-});
+import { FREE_PLAN_OFFER_LIVE } from "./offers";
 
 /**
  * Switch for /insights/glossary, on top of INSIGHTS_LIVE.
@@ -116,7 +93,7 @@ export type ArticleBlock =
       image?: string;
     }
   /**
-   * Valar's own offer, set as a bright advert with a button. `small` is the
+   * Valar's own offer, set as a pale amber card with an icon and a button. `small` is the
    * fine print under the button (who pays for it, when it is paid). Wrap the
    * block in the offer's switch from src/lib/offers.ts, so ending the offer
    * removes it from every article in one edit.
@@ -128,11 +105,11 @@ export type ArticleBlock =
       text: string;
       button: string;
       href: string;
-      small: string;
+      small?: string;
+      /** A second, outlined button beside the main one. */
+      secondary?: { button: string; href: string };
       /** A link at the end of the fine print, e.g. the disclosure. */
       smallLink?: { text: string; href: string };
-      /** The amount, set large on a navy badge beside the text. */
-      badge: { value: string; caption: string };
     }
   /** Boxed aside the reader must not miss. One or two per article, no more. */
   | { type: "callout"; label: string; text: string }
@@ -475,17 +452,16 @@ export const ARTICLES: Article[] = [
         type: "p",
         text: "On most home loans the lender pays the adviser, not you. And when you refinance with Valar, there is something extra:",
       },
-      ...(OFFER_ON
+      ...(FREE_PLAN_OFFER_LIVE
         ? [
             {
               type: "offer" as const,
               label: "Valar offer",
-              title: "We'll cover your legal fees",
-              badge: { value: money(LEGAL_FEE_OFFER_LARGE), caption: "towards your legal fees" },
-              text: `On loans of ${money(LEGAL_FEE_OFFER_THRESHOLD)} or more. ${money(LEGAL_FEE_OFFER_SMALL)} on smaller loans.`,
-              button: "Request the offer",
-              href: "/book",
-              small: `Until ${offerEnds}, on refinances arranged through Valar. Paid after settlement, out of the commission the lender pays Valar. If the loan is repaid or moved within ${LEGAL_FEE_OFFER_CLAWBACK_MONTHS} months, Valar may ask for this payment back.`,
+              title: "Free Wealth Plan when you refinance",
+              text: "Refinance with Valar and we prepare your **Wealth Management Plan** or **Retirement Plan** at no cost.",
+              button: "See what's in the plan",
+              href: "/services/wealth-management-plan",
+              secondary: { button: "Check your refinance", href: "/refinance" },
               smallLink: { text: "See our disclosure.", href: "/disclosure" },
             },
           ]

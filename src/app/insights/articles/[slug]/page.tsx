@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, FileCheck2 } from "lucide-react";
+import { ArrowLeft, TrendingUp } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
 import ShareButtons from "@/components/insights/share-buttons";
 import { JsonLd } from "@/components/json-ld";
@@ -760,48 +760,49 @@ export default async function Page({ params }: Props) {
               <aside
                 key={i}
                 data-cmp="ArticlePage.Offer"
-                // Amber on purpose: this is Valar's own offer, and it has to read
-                // as an advert, not as one more grey aside (Lena, 2026-11-20).
-                // The navy badge carries the amount, so the text beside it can
-                // stay to one line (she found the all-text version plain).
-                className="my-10 flex flex-col gap-6 rounded-xl bg-valar-amber p-7 text-valar-navy sm:flex-row sm:items-center sm:gap-8 sm:p-8"
+                // Valar's own offer. A pale amber card, not a solid one: on
+                // 2026-11-22 Lena found the full amber block too bright and too
+                // big. The amber edge and the icon keep it reading as an offer.
+                className="my-9 flex flex-col gap-4 rounded-xl border border-valar-amber/60 border-l-4 border-l-valar-amber bg-valar-amber/10 p-5 text-valar-navy sm:flex-row sm:items-start sm:gap-5 sm:p-6"
               >
-                <div className="flex shrink-0 flex-col items-center justify-center rounded-2xl bg-valar-navy px-7 py-6 text-center text-white sm:w-[190px]">
-                  <FileCheck2
-                    aria-hidden
-                    className="mb-2 h-9 w-9 text-valar-amber"
-                    strokeWidth={1.75}
-                  />
-                  <p className="text-[44px] leading-none font-bold">{block.badge.value}</p>
-                  <p className="mt-2 text-[13px] leading-snug text-valar-lilac">
-                    {block.badge.caption}
-                  </p>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-valar-navy">
+                  <TrendingUp aria-hidden className="h-6 w-6 text-valar-amber" strokeWidth={2} />
                 </div>
                 <div>
                   <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em]">
                     {block.label}
                   </p>
-                  <p className="mb-2 text-[26px] leading-tight font-bold sm:text-[30px]">
-                    {block.title}
+                  <p className="mb-1.5 text-[20px] leading-tight font-bold sm:text-[22px]">
+                    {withGlossaryLinks(block.title)}
                   </p>
-                  <p className="mb-5 text-[16px] leading-[1.6]">{withGlossaryLinks(block.text)}</p>
-                  <Link
-                    href={block.href}
-                    className="inline-flex items-center rounded-lg bg-valar-navy px-6 py-3 text-[15px] font-bold text-white transition-colors hover:bg-valar-indigo"
-                  >
-                    {block.button}
-                  </Link>
-                  <p className="mt-4 text-[11px] leading-[1.55] text-valar-navy/75">
-                    {block.small}
-                    {block.smallLink && (
-                      <>
-                        {" "}
+                  <p className="mb-4 text-[15px] leading-[1.6]">{withGlossaryLinks(block.text)}</p>
+                  <div className="flex flex-wrap gap-2.5">
+                    <Link
+                      href={block.href}
+                      className="inline-flex items-center rounded-lg bg-valar-amber px-5 py-2.5 text-[14px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
+                    >
+                      {block.button}
+                    </Link>
+                    {block.secondary && (
+                      <Link
+                        href={block.secondary.href}
+                        className="inline-flex items-center rounded-lg border border-valar-navy px-5 py-2.5 text-[14px] font-bold text-valar-navy transition-colors hover:bg-valar-navy hover:text-white"
+                      >
+                        {block.secondary.button}
+                      </Link>
+                    )}
+                  </div>
+                  {(block.small || block.smallLink) && (
+                    <p className="mt-3 text-[12px] leading-[1.55] text-valar-navy/70">
+                      {block.small}
+                      {block.small && block.smallLink && " "}
+                      {block.smallLink && (
                         <Link href={block.smallLink.href} className="underline underline-offset-2">
                           {block.smallLink.text}
                         </Link>
-                      </>
-                    )}
-                  </p>
+                      )}
+                    </p>
+                  )}
                 </div>
               </aside>
             );
@@ -960,6 +961,23 @@ const GLOSSARY_LINK = /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
  * renamed or deleted slug fails loudly rather than leaving a dead link.
  */
 function withGlossaryLinks(text: string): ReactNode {
+  // ==words== sets words on an amber highlight, for the one name an offer is
+  // about (Lena, 2026-11-22). Split on it first; bold and links work inside.
+  if (text.includes("==")) {
+    return text.split(/==(.+?)==/g).map((part, j) =>
+      j % 2 === 1 ? (
+        <mark key={j} className="rounded bg-valar-amber px-1 text-valar-navy">
+          {withBold(part)}
+        </mark>
+      ) : (
+        <span key={j}>{withBold(part)}</span>
+      ),
+    );
+  }
+  return withBold(text);
+}
+
+function withBold(text: string): ReactNode {
   // **words** sets the key words of a passage in bold, so a reader skimming
   // the deflists picks up the point of each line (Lena, 2026-11-20). Split on
   // bold first, then link the glossary terms inside each piece.

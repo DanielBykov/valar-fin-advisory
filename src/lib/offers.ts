@@ -13,7 +13,11 @@
  * Valar pays it out of the commission the lender pays Valar, and the copy that
  * advertises it says so.
  */
-export const LEGAL_FEE_OFFER_LIVE = true;
+// Off since 2026-11-22: replaced by the free plan below. BNZ's adviser code
+// says "Not receive money from customers in relation to applications or loans
+// unless authorised by BNZ in writing", which put the 24-month payback in doubt.
+// A plan moves no money either way. Kept, not deleted, in case lenders confirm.
+export const LEGAL_FEE_OFFER_LIVE = false;
 
 /** Last day the offer applies (inclusive). Copy that names a deadline reads this. */
 export const LEGAL_FEE_OFFER_ENDS = "2027-03-31";
@@ -35,3 +39,10 @@ export const LEGAL_FEE_OFFER_SMALL = 400;
  * Valar's commission, and Valar can ask for the payment back. Lena, 2026-11-20.
  */
 export const LEGAL_FEE_OFFER_CLAWBACK_MONTHS = 24;
+
+/**
+ * Clients who refinance through Valar get a Wealth Management Plan or a
+ * retirement plan at no cost, prepared after the new loan settles. Lena,
+ * 2026-11-22. Standing offer, no end date.
+ */
+export const FREE_PLAN_OFFER_LIVE = true;
