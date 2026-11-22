@@ -21,8 +21,8 @@
 
 import type { FrequencyKey } from "./split-loan";
 
-/** Off until /page-launch has passed. Local development always renders the page. */
-export const REFINANCE_LIVE = false;
+/** On since 2026-11-22 (Lena). Off hides the page, its links and the menu entry in production. */
+export const REFINANCE_LIVE = true;
 
 /*
  * PLACEHOLDERS, both of them. Lena replaces these with her own rate sheet and the
