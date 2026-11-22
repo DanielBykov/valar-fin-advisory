@@ -23,13 +23,20 @@ import {
   refinanceOptions,
 } from "@/lib/refinance";
 import type { RefinanceSnapshot } from "@/lib/refinance-report";
-import {
-  LEGAL_FEE_OFFER_LARGE,
-  LEGAL_FEE_OFFER_ENDS,
-  legalFeeOfferOn,
-  LEGAL_FEE_OFFER_SMALL,
-  LEGAL_FEE_OFFER_THRESHOLD,
-} from "@/lib/offers";
+import { FREE_PLAN_OFFER_LIVE } from "@/lib/offers";
+
+/*
+ * The offer in this email (2026-11-22, Lena): a free Wealth Management Plan or
+ * retirement plan, replacing the $800 legal-fee payback, which a lender's
+ * adviser code put in doubt (see offers.ts). Standing offer, no end date. The
+ * wording matches the refinancing article.
+ */
+const PLAN_TITLE = "A free wealth plan when you refinance";
+const PLAN_TEXT =
+  "Refinance with Valar and we prepare your <strong>Wealth Management Plan</strong> or <strong>retirement plan</strong> at no cost.";
+const PLAN_SMALL =
+  "On refinances arranged through Valar, prepared once the new loan has settled. Valar is paid a commission by the lender when your loan settles.";
+const planText = PLAN_TEXT.replace(/<[^>]+>/g, "");
 
 const NAVY = "#061634";
 const AMBER = "#E8A23A";
@@ -162,8 +169,7 @@ export function renderRefinanceEmail({
       </tr>
     </table>`;
 
-  const offerOn = legalFeeOfferOn(today);
-  const offerEnds = formatDate(LEGAL_FEE_OFFER_ENDS);
+  const offerOn = FREE_PLAN_OFFER_LIVE;
 
   if (o.state !== "low" && !o.contributionEligible) {
     return renderHighLvrEmail({
@@ -171,7 +177,6 @@ export function renderRefinanceEmail({
       lvr: o.lvr ?? 0,
       address: snapshot.address,
       offerOn,
-      offerEnds,
       signature,
       guideTitle,
       guideUrl,
@@ -263,13 +268,12 @@ export function renderRefinanceEmail({
         : ""
     }
     ${
-      // The deadline is real (offers.ts) and the line disappears after it.
       offerOn
         ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:4px 0 18px;background-color:#FDF3E1;border-left:4px solid ${AMBER};">
              <tr><td style="padding:16px 20px;">
-               <p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${NAVY};">Valar offer &middot; until ${offerEnds}</p>
-               <p style="margin:0 0 4px;font-size:20px;line-height:28px;font-weight:700;color:${NAVY};">We'll cover up to ${money(LEGAL_FEE_OFFER_LARGE)} of your legal fees</p>
-               <p style="margin:0;font-size:14px;line-height:22px;color:${BODY};">when you refinance with us. The details are below.</p>
+               <p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${NAVY};">Valar offer</p>
+               <p style="margin:0 0 4px;font-size:20px;line-height:28px;font-weight:700;color:${NAVY};">${PLAN_TITLE}</p>
+               <p style="margin:0;font-size:14px;line-height:22px;color:${BODY};">${PLAN_TEXT} The details are below.</p>
              </td></tr>
            </table>`
         : ""
@@ -323,14 +327,14 @@ export function renderRefinanceEmail({
         ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:24px;background-color:${AMBER};">
              <tr><td style="padding:22px 24px;">
                <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${NAVY};">Valar offer</p>
-               <p style="margin:0 0 8px;font-size:20px;line-height:28px;font-weight:700;color:${NAVY};">We'll cover up to ${money(LEGAL_FEE_OFFER_LARGE)} of your legal fees.</p>
-               <p style="margin:0 0 14px;font-size:14px;line-height:22px;color:${NAVY};">Refinance with Valar and we pay you back ${money(LEGAL_FEE_OFFER_LARGE)} on loans of ${money(LEGAL_FEE_OFFER_THRESHOLD)} or more, ${money(LEGAL_FEE_OFFER_SMALL)} on smaller loans. Paid after settlement. Offer ends ${offerEnds}.</p>
+               <p style="margin:0 0 8px;font-size:20px;line-height:28px;font-weight:700;color:${NAVY};">${PLAN_TITLE}.</p>
+               <p style="margin:0 0 14px;font-size:14px;line-height:22px;color:${NAVY};">${PLAN_TEXT}</p>
                <table role="presentation" cellpadding="0" cellspacing="0" border="0">
                  <tr><td style="background-color:${NAVY};">
                    <a href="${action}" style="display:inline-block;padding:12px 24px;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">${CTA_LABEL}</a>
                  </td></tr>
                </table>
-               <p style="margin:12px 0 0;font-size:11px;line-height:17px;color:${NAVY};">Valar is paid a commission by the lender when your loan settles. This payment comes out of that commission.</p>
+               <p style="margin:12px 0 0;font-size:11px;line-height:17px;color:${NAVY};">${PLAN_SMALL}</p>
              </td></tr>
            </table>`
         : ""
@@ -392,9 +396,7 @@ export function renderRefinanceEmail({
     "",
     ...letter(upTo).flatMap((para) => [para.replace(/<[^>]+>/g, ""), ""]),
     RATE_OUTLOOK ? `Why now? ${RATE_OUTLOOK}` : "",
-    offerOn
-      ? `And one more thing: until ${offerEnds}, refinance with us and we'll cover up to ${money(LEGAL_FEE_OFFER_LARGE)} of your legal fees.`
-      : "",
+    offerOn ? `And one more thing: ${planText}` : "",
     "",
     "Want to talk it through and see what you could save? Use the link below, or reply to this email, and we'll be in touch to book a session.",
     "",
@@ -422,9 +424,7 @@ export function renderRefinanceEmail({
     "Before you decide:",
     ...checks,
     "",
-    offerOn
-      ? `Valar offer: we'll cover up to ${money(LEGAL_FEE_OFFER_LARGE)} of your legal fees, paid after settlement. Valar is paid a commission by the lender when your loan settles; this payment comes out of it. Offer ends ${offerEnds}.`
-      : "",
+    offerOn ? `Valar offer: ${planText} ${PLAN_SMALL}` : "",
     guideUrl ? `${guideTitle}: ${guideUrl}` : "",
     snapshot.fixedEnd
       ? `Lena will send you a reminder about 90 days before ${formatDate(snapshot.fixedEnd)}.`
@@ -460,7 +460,6 @@ function renderHighLvrEmail({
   lvr,
   address,
   offerOn,
-  offerEnds,
   signature,
   guideTitle,
   guideUrl,
@@ -471,7 +470,6 @@ function renderHighLvrEmail({
   lvr: number;
   address?: string;
   offerOn: boolean;
-  offerEnds: string;
   signature: string;
   guideTitle: string;
   guideUrl?: string;
@@ -527,9 +525,9 @@ function renderHighLvrEmail({
       offerOn
         ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:18px 0;background-color:#FDF3E1;border-left:4px solid ${AMBER};">
              <tr><td style="padding:16px 20px;">
-               <p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${NAVY};">Valar offer &middot; until ${offerEnds}</p>
-               <p style="margin:0 0 4px;font-size:18px;line-height:26px;font-weight:700;color:${NAVY};">We'll cover up to ${money(LEGAL_FEE_OFFER_LARGE)} of your legal fees</p>
-               <p style="margin:0;font-size:13px;line-height:20px;color:${BODY};">when you refinance with us: ${money(LEGAL_FEE_OFFER_LARGE)} on loans of ${money(LEGAL_FEE_OFFER_THRESHOLD)} or more, ${money(LEGAL_FEE_OFFER_SMALL)} on smaller loans, paid after settlement. Valar is paid a commission by the lender when your loan settles; this payment comes out of it.</p>
+               <p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${NAVY};">Valar offer</p>
+               <p style="margin:0 0 4px;font-size:18px;line-height:26px;font-weight:700;color:${NAVY};">${PLAN_TITLE}</p>
+               <p style="margin:0;font-size:13px;line-height:20px;color:${BODY};">${PLAN_TEXT} ${PLAN_SMALL}</p>
              </td></tr>
            </table>`
         : ""
@@ -580,9 +578,7 @@ function renderHighLvrEmail({
       : addressUrl
         ? `Send my property address: ${addressUrl}`
         : "Reply to this email with your property address.",
-    offerOn
-      ? `Valar offer until ${offerEnds}: we'll cover up to ${money(LEGAL_FEE_OFFER_LARGE)} of your legal fees when you refinance with us.`
-      : "",
+    offerOn ? `Valar offer: ${planText}` : "",
     after ? `${after} ${insightsUrl}` : "",
     "",
     "Lena Bykova",
