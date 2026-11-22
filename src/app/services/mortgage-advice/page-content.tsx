@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { REFINANCE_LIVE } from "@/lib/refinance";
 import Image from "next/image";
 import heroImg from "../../../../public/images/mortgage-hero.webp";
 import { motion } from "framer-motion";
@@ -390,6 +391,33 @@ export default function MortgageAdviceContent() {
               </div>
             </Link>
           </motion.div>
+
+          {/*
+           * Refinance lead (2026-11-20, Lena): people here already have a mortgage
+           * question, so the refinance page is one click away. Enters with the
+           * page's own switch, so it can never link to a 404.
+           */}
+          {(REFINANCE_LIVE || process.env.NODE_ENV === "development") && (
+            <Link
+              data-cmp="MortgageAdvicePage.MortgageSolutions.RefinanceLink"
+              href="/refinance"
+              className="group mt-8 flex flex-col gap-4 rounded-sm border-l-4 border-valar-amber bg-white/5 p-6 transition-colors hover:bg-white/10 md:flex-row md:items-center md:justify-between md:p-8"
+            >
+              <div>
+                <p className="text-2xl font-bold text-white">
+                  Fixed rate ending soon<span className="text-valar-amber">?</span>
+                </p>
+                <p className="mt-1 text-valar-lilac">
+                  See what moving your loan could save you, and how much sooner it could be paid
+                  off. It takes a minute.
+                </p>
+              </div>
+              <div className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-valar-amber px-7 py-3.5 text-sm font-bold text-valar-navy transition-colors group-hover:bg-valar-amber-hover">
+                Check what you could save{" "}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          )}
         </div>
       </section>
 

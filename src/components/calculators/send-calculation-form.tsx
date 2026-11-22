@@ -31,10 +31,24 @@ export default function SendCalculationForm({
   guideReady,
   pendingNote,
   blurb,
+  askAddress = false,
+  eyebrow = "Want this in writing?",
+  heading = "I can send you these numbers",
   cover,
   source,
   figures,
 }: {
+  /**
+   * The refinance page gates its detail behind this card, so there it offers the
+   * breakdown rather than the numbers already on screen.
+   */
+  eyebrow?: string;
+  heading?: string;
+  /**
+   * The refinance lead asks for the property address, with the reason beside it:
+   * Lena checks the value herself, because visitors tend to overstate it.
+   */
+  askAddress?: boolean;
   /** Which lead magnet this is — the server resolves the MailerLite group from it. */
   guideKey?: string;
   guideTitle: string;
@@ -78,7 +92,17 @@ export default function SendCalculationForm({
       const res = await fetch("/api/guide-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, guideKey, guideTitle, source, figures }),
+        body: JSON.stringify({
+          ...data,
+          guideKey,
+          guideTitle,
+          source,
+          // The address rides inside the figures, which reach Lena only, never MailerLite.
+          figures:
+            askAddress && figures && typeof data.address === "string"
+              ? { ...figures, address: data.address }
+              : figures,
+        }),
       });
       const json = await res.json();
       if (json.success) {
@@ -153,10 +177,11 @@ export default function SendCalculationForm({
         />
       )}
       <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-valar-amber">
-        Want this in writing?
+        {eyebrow}
       </p>
       <h3 className="mb-3 text-xl font-bold text-valar-navy">
-        I can send you these numbers<span className="text-valar-amber">.</span>
+        {heading}
+        <span className="text-valar-amber">.</span>
       </h3>
       <p className="mb-5 text-sm leading-relaxed text-gray-600">
         {blurb ?? (
@@ -219,6 +244,25 @@ export default function SendCalculationForm({
             className="rounded-lg border border-valar-concrete bg-white px-3 py-2 text-sm text-valar-navy focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
           />
         </label>
+
+        {askAddress && (
+          <label className="flex flex-col gap-1.5">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-valar-steel">
+              Property address <span className="font-normal normal-case">(optional)</span>
+            </span>
+            <input
+              type="text"
+              name="address"
+              maxLength={200}
+              autoComplete="street-address"
+              className="rounded-lg border border-valar-concrete bg-white px-3 py-2 text-sm text-valar-navy focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
+            />
+            <span className="text-[11px] leading-snug text-valar-steel">
+              We check your property&apos;s value and your real LVR, and follow up if it changes
+              your numbers.
+            </span>
+          </label>
+        )}
 
         <label className="mt-1 flex items-start gap-2.5 text-xs leading-relaxed text-gray-600">
           <input

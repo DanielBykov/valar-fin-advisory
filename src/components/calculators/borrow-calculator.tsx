@@ -126,7 +126,7 @@ function Field({
         <label htmlFor={id} className="text-[15px] font-semibold text-valar-navy">
           {label}
         </label>
-        {hint && <p className="mt-0.5 text-xs leading-relaxed text-valar-steel">{hint}</p>}
+        {hint && <p className="mt-0.5 text-sm leading-relaxed text-valar-steel">{hint}</p>}
       </div>
       <div className="flex w-40 items-center rounded-lg border border-valar-concrete bg-white focus-within:border-valar-amber focus-within:ring-2 focus-within:ring-valar-amber/30">
         {prefix && <span className="pl-3 text-sm text-valar-steel">{prefix}</span>}
@@ -150,7 +150,7 @@ function Field({
           }}
           className="w-full min-w-0 bg-transparent px-2 py-2.5 text-right text-sm font-semibold tabular-nums text-valar-navy focus:outline-none"
         />
-        {suffix && <span className="whitespace-nowrap text-xs text-valar-steel">{suffix}</span>}
+        {suffix && <span className="whitespace-nowrap text-sm text-valar-steel">{suffix}</span>}
         <div className="ml-1 flex flex-col border-l border-valar-concrete">
           <button
             type="button"
@@ -184,7 +184,8 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function ShareScale({ active }: { active: string }) {
   return (
-    <div className="grid grid-cols-4 gap-1.5">
+    // Two rows on a phone: four labels across do not fit at 375px.
+    <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
       {SHARE_SCALE.map((s) => {
         const on = s.label === active;
         return (
@@ -256,7 +257,7 @@ function YearChart({ years }: { years: YearSplit[] }) {
     <div className="flex flex-1 flex-col rounded-xl p-4 md:p-5" style={{ background: SURFACE }}>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-semibold text-white">Where each year&rsquo;s payments go</p>
-        <div className="flex items-center gap-4 text-xs text-valar-lilac">
+        <div className="flex items-center gap-4 text-sm text-valar-lilac">
           <span className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-sm" style={{ background: PRINCIPAL }} />
             Principal
@@ -267,7 +268,7 @@ function YearChart({ years }: { years: YearSplit[] }) {
           </span>
         </div>
       </div>
-      <p className="mb-2 h-4 text-xs tabular-nums text-valar-lilac">
+      <p className="mb-2 h-4 text-sm tabular-nums text-valar-lilac">
         {hovered
           ? `Year ${hovered.year}: ${money(hovered.principal)} principal, ${money(hovered.interest)} interest`
           : ""}
@@ -515,7 +516,7 @@ export default function BorrowCalculator({
                     <dt className="text-[11px] font-bold uppercase tracking-wider text-valar-steel">
                       Total interest
                     </dt>
-                    <dd className="mt-1 text-lg font-bold tabular-nums text-white">
+                    <dd className="mt-1 text-base font-bold tabular-nums text-white sm:text-lg">
                       {money(result.totalInterest)}
                     </dd>
                   </div>
@@ -523,7 +524,7 @@ export default function BorrowCalculator({
                     <dt className="text-[11px] font-bold uppercase tracking-wider text-valar-steel">
                       Total repaid
                     </dt>
-                    <dd className="mt-1 text-lg font-bold tabular-nums text-white">
+                    <dd className="mt-1 text-base font-bold tabular-nums text-white sm:text-lg">
                       {money(result.totalRepaid)}
                     </dd>
                   </div>
@@ -531,7 +532,9 @@ export default function BorrowCalculator({
                     <dt className="text-[11px] font-bold uppercase tracking-wider text-valar-steel">
                       Debt-free by
                     </dt>
-                    <dd className="mt-1 text-lg font-bold tabular-nums text-white">{debtFree}</dd>
+                    <dd className="mt-1 text-base font-bold tabular-nums text-white sm:text-lg">
+                      {debtFree}
+                    </dd>
                   </div>
                 </dl>
                 {/*
@@ -638,7 +641,7 @@ export default function BorrowCalculator({
                   the bigger the share that can go to a mortgage: food, power and basics don&rsquo;t
                   rise with pay. A bank may lend you more, but you don&rsquo;t have to take it.
                 </p>
-                <p className="text-xs leading-relaxed text-valar-steel">
+                <p className="text-sm leading-relaxed text-valar-steel">
                   Indicative only. What you can actually borrow is confirmed by a lender after a
                   full application.
                 </p>

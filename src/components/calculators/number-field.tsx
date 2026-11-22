@@ -12,6 +12,9 @@ import { ChevronDown, ChevronUp } from "lucide-react";
  * back to the minimum, which made the amounts effectively untypeable. Same
  * behaviour in both places now, from here.
  *
+ * Type sizes raised one step on 2026-11-22 (Lena: too small on a second
+ * screen): labels 14/16px, figures 16px, hints 13/14px, for every calculator.
+ *
  * Two shapes:
  *   slider + label beside the box   — a page-level figure you scrub (loan, term)
  *   stacked, no slider              — one cell of a grid where a row is a part
@@ -178,8 +181,8 @@ export default function NumberField({
       }}
       className={
         stacked
-          ? "w-full bg-transparent px-2 py-2 text-right text-sm font-semibold tabular-nums text-valar-navy focus:outline-none"
-          : "w-32 rounded-lg border border-valar-concrete bg-white px-3 py-1.5 text-right text-sm font-semibold tabular-nums focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
+          ? "w-full bg-transparent px-2 py-2 text-right text-base font-semibold tabular-nums text-valar-navy focus:outline-none"
+          : "w-36 rounded-lg border border-valar-concrete bg-white px-3 py-1.5 text-right text-base font-semibold tabular-nums focus:border-valar-amber focus:outline-none focus:ring-2 focus:ring-valar-amber/30"
       }
       aria-label={label}
     />
@@ -193,16 +196,16 @@ export default function NumberField({
 
     return (
       <div data-cmp={cmp} className="flex flex-col gap-1.5">
-        <label className={hideLabel ? "sr-only" : "text-xs font-semibold text-valar-navy"}>
+        <label className={hideLabel ? "sr-only" : "text-sm font-semibold text-valar-navy"}>
           {label}
         </label>
         <div className="flex items-center rounded-lg border border-valar-concrete bg-white focus-within:border-valar-amber focus-within:ring-2 focus-within:ring-valar-amber/30">
-          {prefix && <span className="pl-2.5 text-sm text-valar-steel">{prefix}</span>}
+          {prefix && <span className="pl-2.5 text-base text-valar-steel">{prefix}</span>}
           {input}
-          {suffix && <span className="pr-2.5 text-sm text-valar-steel">{suffix}</span>}
+          {suffix && <span className="pr-2.5 text-base text-valar-steel">{suffix}</span>}
           {stepperEl(true)}
         </div>
-        {hint && <p className="text-[11px] leading-snug text-valar-steel">{hint}</p>}
+        {hint && <p className="text-[13px] leading-snug text-valar-steel">{hint}</p>}
       </div>
     );
   }
@@ -210,14 +213,14 @@ export default function NumberField({
   return (
     <div data-cmp={cmp} className="flex flex-col gap-2">
       <div className="flex items-baseline justify-between gap-3">
-        <label className="text-sm font-semibold text-valar-navy">{label}</label>
+        <label className="text-base font-semibold text-valar-navy">{label}</label>
         <div className="flex items-center gap-1 text-valar-navy">
           {/*
            * The unit sits in a fixed-width slot to the LEFT of the box so that
            * every input in a column starts and ends on the same line — a
            * trailing "%" or "yrs" pushed its box out of step with the one above.
            */}
-          <span className="w-7 shrink-0 text-right text-sm text-valar-steel">{unit}</span>
+          <span className="w-7 shrink-0 text-right text-base text-valar-steel">{unit}</span>
           {input}
           {stepperEl(false)}
         </div>
@@ -237,7 +240,7 @@ export default function NumberField({
           aria-label={`${label} slider`}
         />
       )}
-      {hint && <p className="text-xs leading-relaxed text-valar-steel">{hint}</p>}
+      {hint && <p className="text-sm leading-relaxed text-valar-steel">{hint}</p>}
     </div>
   );
 }

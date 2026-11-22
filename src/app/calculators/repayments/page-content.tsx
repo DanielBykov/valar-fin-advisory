@@ -10,35 +10,12 @@ import { isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
  */
 const MAGNET = LEAD_MAGNETS["pay-your-mortgage-off-faster"];
 
-/*
- * What this calculator does that a bank's does not, as chips rather than a
- * third clause.
- *
- * Two rules learned the hard way. They must not restate the line above them —
- * "see what extra repayments save" sat directly under "see what it saves" and
- * read as a stutter. And they must not spend a slot on something every
- * calculator has: "weekly, fortnightly or monthly" is table stakes, not a
- * reason to use this one.
- *
- * Third rule, Lena's: name the BENEFIT, not the control. "Round up to a whole
- * payment" describes a field; "Round up and finish sooner" says what pressing
- * it buys. Same feature, and only the second one is a reason.
- *
- * Each is still a thing actually on the page: the "Paid off in" headline on the
- * chart card, the round-up mode on the extra control, and the capture form.
- */
-const HERO_CHIPS = [
-  "Check when you're mortgage-free",
-  "Round up and finish sooner",
-  "Send it to yourself",
-];
-
 export default function RepaymentsContent() {
   return (
     <div data-cmp="RepaymentsPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
       <section
         data-cmp="RepaymentsPage.Hero"
-        className="relative overflow-hidden bg-valar-navy px-4 pt-36 pb-16 text-white md:px-6"
+        className="relative overflow-hidden bg-valar-navy px-4 pt-20 pb-6 text-white md:px-6"
       >
         {/*
          * Same treatment as the calculators hub: the art carries its own navy
@@ -72,28 +49,18 @@ export default function RepaymentsContent() {
           {/* The copy column is sized, not the type — the right half is spoken
               for by the art. */}
           <div className="md:max-w-[54%]">
-            <div className="mb-4 flex flex-col space-y-3">
+            <div className="mb-2 flex flex-col space-y-2">
               <div className="h-[2px] w-6 bg-valar-amber" />
               <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
                 Calculator
               </span>
             </div>
-            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl">
               Mortgage repayments<span className="text-valar-amber">.</span>
             </h1>
-            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+            <p className="border-l-2 border-valar-amber pl-4 text-base font-light leading-relaxed text-valar-lilac md:text-lg">
               Set the loan, the rate and the term. Then add your extra and see what it saves.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {HERO_CHIPS.map((chip) => (
-                <li
-                  key={chip}
-                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-                >
-                  {chip}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

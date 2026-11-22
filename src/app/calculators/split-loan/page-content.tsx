@@ -41,30 +41,13 @@ const WHY_SPLIT = [
   },
 ];
 
-/*
- * Three outputs, benefit-first, by the rules the repayments hero settled: they
- * must not restate the line above them, must not name something every bank
- * calculator has, and must say what the visitor gets rather than which control
- * produces it.
- *
- * The line carries the principle — splitting is risk spreading, not rate
- * shopping — so the chips carry what the page hands back for it.
- *
- * "When your first re-fix lands" was here and came out: Lena's read is that a
- * date is not what anyone opens this page for. The two figures they do open it
- * for are the blended rate across the whole structure and what each part costs
- * on its own. Both are real — the "Weighted average rate" tile, and the Payment
- * / Interest per year columns in the per-part table.
- */
-const HERO_CHIPS = ["Your combined rate", "Payments for each part", "Send it to yourself"];
-
 export default function SplitLoanContent() {
   return (
     <div data-cmp="SplitLoanPage" className="flex min-h-screen w-full flex-col bg-valar-fog">
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section
         data-cmp="SplitLoanPage.Hero"
-        className="relative overflow-hidden bg-valar-navy px-4 pt-32 pb-12 text-white md:px-6"
+        className="relative overflow-hidden bg-valar-navy px-4 pt-20 pb-6 text-white md:px-6"
       >
         {/*
          * One node branching into three lit houses. Of the three hero images
@@ -91,29 +74,19 @@ export default function SplitLoanContent() {
 
         <div className="relative container mx-auto max-w-6xl">
           <div className="md:max-w-[54%]">
-            <div className="mb-4 flex flex-col space-y-3">
+            <div className="mb-2 flex flex-col space-y-2">
               <div className="h-[2px] w-6 bg-valar-amber" />
               <span className="text-xs font-bold uppercase tracking-widest text-valar-steel">
                 Calculator
               </span>
             </div>
-            <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl">
               Split home loan<span className="text-valar-amber">.</span>
             </h1>
-            <p className="border-l-2 border-valar-amber pl-4 text-lg font-light leading-relaxed text-valar-lilac">
+            <p className="border-l-2 border-valar-amber pl-4 text-base font-light leading-relaxed text-valar-lilac md:text-lg">
               Splitting isn&rsquo;t about chasing the best rate. It&rsquo;s about spreading the
               risk.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {HERO_CHIPS.map((chip) => (
-                <li
-                  key={chip}
-                  className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white"
-                >
-                  {chip}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

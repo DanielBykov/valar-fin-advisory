@@ -10,10 +10,27 @@
 import { PER_YEAR, RISE_OPTIONS, type RefinanceInputs } from "./refinance";
 import type { FrequencyKey } from "./split-loan";
 
-export type RefinanceSnapshot = RefinanceInputs & { kind: "refinance" };
+/*
+ * Property value and loan end travel for Lena's copy of the lead only (LVR, and
+ * whether the visitor pays above the minimum). They do not change the answer.
+ */
+export type RefinanceSnapshot = RefinanceInputs & {
+  kind: "refinance";
+  propertyValue?: number;
+  loanEnd?: string;
+  address?: string;
+};
+
+/*
+ * The one free-text field that reaches an email. Markup characters are dropped
+ * rather than escaped: nothing in a street address needs them.
+ */
+const cleanAddress = (v: unknown) =>
+  typeof v === "string" ? v.replace(/[<>&"'`]/g, "").trim().slice(0, 200) : "";
 
 const LIMITS = {
   balance: { min: 10_000, max: 5_000_000 },
+  propertyValue: { min: 50_000, max: 20_000_000 },
   rate: { min: 1, max: 15 },
   repayment: { min: 50, max: 100_000 },
 } as const;
@@ -38,6 +55,7 @@ export function parseRefinanceSnapshot(raw: unknown): RefinanceSnapshot | null {
   const rate = toNumber(r.rate);
   const repayment = toNumber(r.repayment);
   if (balance === null || rate === null || repayment === null) return null;
+  const propertyValue = toNumber(r.propertyValue);
 
   return {
     kind: "refinance",
@@ -47,6 +65,11 @@ export function parseRefinanceSnapshot(raw: unknown): RefinanceSnapshot | null {
     frequency: isFrequency(r.frequency) ? r.frequency : "monthly",
     fixedEnd: isIsoDate(r.fixedEnd) ? r.fixedEnd : "",
     rise: RISE_OPTIONS.some((o) => o.value === r.rise) ? (r.rise as number) : 0,
+    ...(propertyValue !== null && {
+      propertyValue: clamp(propertyValue, LIMITS.propertyValue.min, LIMITS.propertyValue.max),
+    }),
+    ...(isIsoDate(r.loanEnd) && { loanEnd: r.loanEnd }),
+    ...(cleanAddress(r.address) && { address: cleanAddress(r.address) }),
   };
 }
 

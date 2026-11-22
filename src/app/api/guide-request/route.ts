@@ -15,7 +15,15 @@ import { calculateBorrow } from "@/lib/borrow-from-payment";
 import { renderBorrowEmail } from "@/lib/emails/borrow-calculation";
 import { getLeadMagnet, isReady, LEAD_MAGNETS } from "@/lib/lead-magnets";
 import { parseRefinanceSnapshot } from "@/lib/refinance-report";
-import { calculateRefinance, daysBefore, describeRefinance, formatDate } from "@/lib/refinance";
+import { sealReviewRequest } from "@/lib/refinance-link";
+import {
+  daysBefore,
+  formatDate,
+  formatDuration,
+  monthsBetween,
+  refinanceOptions,
+  requiredRepayment,
+} from "@/lib/refinance";
 import { renderRefinanceEmail } from "@/lib/emails/refinance-calculation";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -164,7 +172,7 @@ export async function POST(req: Request) {
   const borrowResult = borrowPay ? calculateBorrow(borrowPay) : null;
   const today = new Date().toISOString().slice(0, 10);
   if (refinance) {
-    const words = describeRefinance(calculateRefinance(refinance, today), refinance);
+    const o = refinanceOptions(refinance, today);
     /*
      * The date is the most useful thing in this lead, and the page promises a
      * reminder that Lena sets by hand, so what she has to do comes first.
@@ -181,8 +189,46 @@ export async function POST(req: Request) {
         ${nzd(refinance.balance)} at ${refinance.rate.toFixed(2)}%,
         ${nzd(refinance.repayment)} ${refinance.frequency}.
       </p>
-      <p>The page told them: ${words.label}: <strong>${words.headline} ${words.headlineUnit ?? ""}</strong></p>
-      <p>${words.sub}</p>`;
+      ${refinance.address ? `<p>Property: ${refinance.address}</p>` : ""}
+      ${
+        refinance.propertyValue
+          ? (() => {
+              // Visitors tend to overstate value, so the band just under 80% gets a flag too.
+              const lvr = (refinance.balance / refinance.propertyValue) * 100;
+              const flag =
+                lvr > 80
+                  ? refinance.address
+                    ? " <strong>Above 80%: no figures sent. They were told you will check the property value and reply within one business day.</strong>"
+                    : " <strong>Above 80%: no figures sent, no address given. They were asked to reply with their address.</strong>"
+                  : lvr >= 75
+                    ? " <strong>On the edge of 80%: check the value before relying on the contribution.</strong>"
+                    : "";
+              return `<p>Property value (their estimate) ${nzd(refinance.propertyValue)}, LVR ${Math.round(lvr)}%.${flag}</p>`;
+            })()
+          : ""
+      }
+      ${(() => {
+        if (!refinance.loanEnd) return "";
+        const min = requiredRepayment(
+          refinance.balance,
+          refinance.rate,
+          monthsBetween(today, refinance.loanEnd),
+          refinance.frequency,
+        );
+        const gap =
+          min === null
+            ? ""
+            : ` Minimum for that date about ${nzd(Math.round(min))}, they entered ${nzd(refinance.repayment)}.`;
+        return `<p>Loan ends ${formatDate(refinance.loanEnd)}.${gap}</p>`;
+      })()}
+      ${
+        o.state === "ahead"
+          ? `<p>The page and their email showed: <strong>save up to ${nzd(Math.round(o.interestSaved))}</strong>.</p>
+             <p>Pay less each month: ${nzd(Math.round(o.firstYearRepayment))}, then ${nzd(Math.round(o.laterRepayment))} (staying ${nzd(Math.round(o.stayRepayment))}), ${nzd(Math.round(o.totalLess))} less over the loan.<br>
+             Pay it off sooner: ${formatDuration(o.monthsSooner)} sooner, ${nzd(Math.round(o.interestSaved))} less interest.<br>
+             30 years: ${nzd(Math.round(o.longerFirstYearRepayment))}, then ${nzd(Math.round(o.longerRepayment))}, ${nzd(Math.round(o.longerMore))} more over the loan.</p>`
+          : `<p>The page showed no saving (${o.state}).</p>`
+      }`;
   } else if (borrowPay && borrowResult) {
     const per = { weekly: "wk", fortnightly: "fn", monthly: "mo" }[borrowPay.frequency];
     const pct = (n: number) => `${Math.round(n * 100)}%`;
@@ -405,7 +451,24 @@ export async function POST(req: Request) {
   };
 
   const mail = refinance
-    ? renderRefinanceEmail({ ...common, snapshot: refinance, today })
+    ? renderRefinanceEmail({
+        ...common,
+        snapshot: refinance,
+        today,
+        // The one-click "Let's review my mortgage" link. Null without a key: the
+        // email then falls back to a prefilled reply.
+        reviewUrl: (() => {
+          const token = sealReviewRequest({
+            firstName: String(firstName),
+            lastName: typeof lastName === "string" && lastName ? lastName : undefined,
+            email: String(email),
+            phone: typeof phone === "string" && phone ? phone : undefined,
+            snapshot: refinance,
+            issued: today,
+          });
+          return token ? `${baseUrl}/refinance/review?t=${token}` : undefined;
+        })(),
+      })
     : borrowPay
       ? renderBorrowEmail({ ...common, snapshot: borrowPay })
       : borrowing

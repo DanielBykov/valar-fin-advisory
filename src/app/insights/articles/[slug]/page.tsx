@@ -3,8 +3,9 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, TrendingUp } from "lucide-react";
 import ArticleCard from "@/components/insights/article-card";
+import ShareButtons from "@/components/insights/share-buttons";
 import { JsonLd } from "@/components/json-ld";
 import { glossaryEntries, glossarySlug } from "@/lib/glossary";
 import {
@@ -39,13 +40,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       url: path,
       title: article.title,
-      description: article.excerpt,
+      // Facebook cuts its line at about 70 characters, so an article can give
+      // a shorter one for shares; search keeps the full excerpt.
+      description: article.shareDescription ?? article.excerpt,
       // The article's own image when it has one, so a shared link previews the
       // article rather than the generic site card.
       locale: "en_NZ",
       images: [
         article.image
-          ? { url: article.image.src, alt: article.image.alt }
+          ? {
+              url: article.image.src,
+              alt: article.image.alt,
+              width: article.image.width,
+              height: article.image.height,
+            }
           : { url: "/opengraph.jpg" },
       ],
       publishedTime: article.published,
@@ -320,7 +328,7 @@ export default async function Page({ params }: Props) {
                 data-cmp="ArticlePage.Bottomline"
                 // The slide's own line: what a skimming reader should take from the
                 // section, so it is the loudest thing in it.
-                className="my-8 rounded-r-xl border-l-4 border-valar-amber bg-valar-fog px-6 py-5 text-[20px] leading-[1.4] font-semibold text-balance text-valar-navy md:text-[22px]"
+                className="my-8 rounded-r-xl border-l-4 border-valar-amber bg-valar-fog px-6 py-5 text-[20px] leading-[1.4] font-semibold text-pretty text-valar-navy md:text-[22px]"
               >
                 {withGlossaryLinks(block.text)}
               </p>
@@ -472,7 +480,8 @@ export default async function Page({ params }: Props) {
                 ))}
               </dl>
             );
-          if (block.type === "cta") return <StrategyCallCta key={i} className="my-10" />;
+          if (block.type === "cta")
+            return <StrategyCallCta key={i} className="my-10" copy={article.cta} />;
           if (block.type === "stats")
             return (
               <figure key={i} data-cmp="ArticlePage.Stats" className="my-8">
@@ -746,6 +755,57 @@ export default async function Page({ params }: Props) {
                 </p>
               </aside>
             );
+          if (block.type === "offer")
+            return (
+              <aside
+                key={i}
+                data-cmp="ArticlePage.Offer"
+                // Valar's own offer. A pale amber card, not a solid one: on
+                // 2026-11-22 Lena found the full amber block too bright and too
+                // big. The amber edge and the icon keep it reading as an offer.
+                className="my-9 flex flex-col gap-4 rounded-xl border border-valar-amber/60 border-l-4 border-l-valar-amber bg-valar-amber/10 p-5 text-valar-navy sm:flex-row sm:items-start sm:gap-5 sm:p-6"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-valar-navy">
+                  <TrendingUp aria-hidden className="h-6 w-6 text-valar-amber" strokeWidth={2} />
+                </div>
+                <div>
+                  <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em]">
+                    {block.label}
+                  </p>
+                  <p className="mb-1.5 text-[20px] leading-tight font-bold sm:text-[22px]">
+                    {withGlossaryLinks(block.title)}
+                  </p>
+                  <p className="mb-4 text-[15px] leading-[1.6]">{withGlossaryLinks(block.text)}</p>
+                  <div className="flex flex-wrap gap-2.5">
+                    <Link
+                      href={block.href}
+                      className="inline-flex items-center rounded-lg bg-valar-amber px-5 py-2.5 text-[14px] font-bold text-valar-navy transition-colors hover:bg-valar-amber-hover"
+                    >
+                      {block.button}
+                    </Link>
+                    {block.secondary && (
+                      <Link
+                        href={block.secondary.href}
+                        className="inline-flex items-center rounded-lg border border-valar-navy px-5 py-2.5 text-[14px] font-bold text-valar-navy transition-colors hover:bg-valar-navy hover:text-white"
+                      >
+                        {block.secondary.button}
+                      </Link>
+                    )}
+                  </div>
+                  {(block.small || block.smallLink) && (
+                    <p className="mt-3 text-[12px] leading-[1.55] text-valar-navy/70">
+                      {block.small}
+                      {block.small && block.smallLink && " "}
+                      {block.smallLink && (
+                        <Link href={block.smallLink.href} className="underline underline-offset-2">
+                          {block.smallLink.text}
+                        </Link>
+                      )}
+                    </p>
+                  )}
+                </div>
+              </aside>
+            );
           if (block.type === "pull")
             return (
               <p
@@ -812,8 +872,16 @@ export default async function Page({ params }: Props) {
           return null;
         })}
 
+        <ShareButtons url={`${SITE_URL}/insights/articles/${article.slug}`} title={article.title} />
+
+        {!article.body.some((b) => b.type === "cta") && (
+          <StrategyCallCta className="mb-4" copy={article.cta} />
+        )}
+
         {/* Standing disclosure. Lives in the template so every article carries it
-            automatically and the wording can never drift between articles. */}
+            automatically and the wording can never drift between articles.
+            Under the call box rather than above it (Lena, 2026-11-20): the box
+            is the next step, the disclosure is the small print. */}
         <aside
           data-cmp="ArticlePage.Disclaimer"
           className="my-9 border-t border-valar-concrete pt-5 text-[13px] leading-[1.65] text-valar-steel"
@@ -826,8 +894,6 @@ export default async function Page({ params }: Props) {
           </Link>{" "}
           or speak to a licensed financial adviser.
         </aside>
-
-        {!article.body.some((b) => b.type === "cta") && <StrategyCallCta className="mb-4" />}
       </article>
 
       {/* Related */}
@@ -848,16 +914,25 @@ export default async function Page({ params }: Props) {
 }
 
 /** One component for both placements, so the wording can't drift between them. */
-function StrategyCallCta({ className }: { className: string }) {
+function StrategyCallCta({
+  className,
+  copy,
+}: {
+  className: string;
+  /** An article's own heading and line for the box; the button stays the same. */
+  copy?: { title: string; text: string };
+}) {
   return (
     <div
       data-cmp="ArticlePage.Cta"
       className={`rounded-xl bg-valar-navy p-8 text-center text-valar-lilac ${className}`}
     >
-      <h2 className="mb-2 text-2xl font-bold text-white">Want this run on your actual numbers?</h2>
+      <h2 className="mb-2 text-2xl font-bold text-white">
+        {copy?.title ?? "Want this run on your actual numbers?"}
+      </h2>
       <p className="mx-auto mb-6 max-w-[34rem] text-[15px]">
-        A strategy call is thirty minutes and costs nothing. Bring your income, your deposit and
-        your questions.
+        {copy?.text ??
+          "A strategy call is thirty minutes and costs nothing. Bring your income, your deposit and your questions."}
       </p>
       <Link
         href="/book"
@@ -886,6 +961,41 @@ const GLOSSARY_LINK = /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
  * renamed or deleted slug fails loudly rather than leaving a dead link.
  */
 function withGlossaryLinks(text: string): ReactNode {
+  // ==words== sets words on an amber highlight, for the one name an offer is
+  // about (Lena, 2026-11-22). Split on it first; bold and links work inside.
+  if (text.includes("==")) {
+    return text.split(/==(.+?)==/g).map((part, j) =>
+      j % 2 === 1 ? (
+        <mark key={j} className="rounded bg-valar-amber px-1 text-valar-navy">
+          {withBold(part)}
+        </mark>
+      ) : (
+        <span key={j}>{withBold(part)}</span>
+      ),
+    );
+  }
+  return withBold(text);
+}
+
+function withBold(text: string): ReactNode {
+  // **words** sets the key words of a passage in bold, so a reader skimming
+  // the deflists picks up the point of each line (Lena, 2026-11-20). Split on
+  // bold first, then link the glossary terms inside each piece.
+  if (text.includes("**")) {
+    return text.split(/\*\*(.+?)\*\*/g).map((part, j) =>
+      j % 2 === 1 ? (
+        <strong key={j} className="font-bold text-valar-navy">
+          {glossaryLinks(part)}
+        </strong>
+      ) : (
+        <span key={j}>{glossaryLinks(part)}</span>
+      ),
+    );
+  }
+  return glossaryLinks(text);
+}
+
+function glossaryLinks(text: string): ReactNode {
   if (!text.includes("[[")) return text;
   const out: ReactNode[] = [];
   let last = 0;

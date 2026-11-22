@@ -19,6 +19,8 @@
  */
 export const INSIGHTS_LIVE = true;
 
+import { FREE_PLAN_OFFER_LIVE } from "./offers";
+
 /**
  * Switch for /insights/glossary, on top of INSIGHTS_LIVE.
  * false → the glossary 404s in production, stays out of the sitemap and
@@ -89,6 +91,25 @@ export type ArticleBlock =
       button: string;
       href: string;
       image?: string;
+    }
+  /**
+   * Valar's own offer, set as a pale amber card with an icon and a button. `small` is the
+   * fine print under the button (who pays for it, when it is paid). Wrap the
+   * block in the offer's switch from src/lib/offers.ts, so ending the offer
+   * removes it from every article in one edit.
+   */
+  | {
+      type: "offer";
+      label: string;
+      title: string;
+      text: string;
+      button: string;
+      href: string;
+      small?: string;
+      /** A second, outlined button beside the main one. */
+      secondary?: { button: string; href: string };
+      /** A link at the end of the fine print, e.g. the disclosure. */
+      smallLink?: { text: string; href: string };
     }
   /** Boxed aside the reader must not miss. One or two per article, no more. */
   | { type: "callout"; label: string; text: string }
@@ -228,7 +249,10 @@ export type Article = {
   /** Small topic chips shown on the article page. Display only — filtering uses `tag`. */
   topics?: string[];
   /** Thumbnail for the article card on /insights and in Related reading. */
-  image?: { src: string; alt: string };
+  /** `width`/`height` go into the og:image tags, which Facebook and LinkedIn read. */
+  image?: { src: string; alt: string; width?: number; height?: number };
+  /** Shorter line for Facebook/LinkedIn shares (they cut at ~70 characters). Search uses `excerpt`. */
+  shareDescription?: string;
   /**
    * Break the page heading onto a second line after the first ": ". Display
    * only: the title in search results and link previews stays one line.
@@ -240,6 +264,11 @@ export type Article = {
    * narrow heading and text above full-width cards reads as misaligned.
    */
   wide?: boolean;
+  /**
+   * The article's own heading and line for the strategy-call box, where the
+   * standard "your actual numbers" wording doesn't fit the subject.
+   */
+  cta?: { title: string; text: string };
   readingMinutes: number;
   draft: boolean;
   body: ArticleBlock[];
@@ -252,6 +281,293 @@ export type Article = {
  * the public site until Lena writes the body and flips the flag.
  */
 export const ARTICLES: Article[] = [
+  {
+    slug: "mortgage-refinancing-nz",
+    title: "How Refinancing Your Mortgage Can Save You Money",
+    excerpt:
+      "Review your mortgage: what refinancing costs, how the move works, and how a cash contribution can lower your repayment or shorten your loan.",
+    tag: "guides",
+    published: "2026-11-20",
+    topics: ["Refinancing", "Cash contribution", "Break fee", "Loan structure"],
+    shareDescription: "Review your mortgage: refinance to optimise it and pay it off faster.",
+    image: {
+      src: "/images/mortgage-refinancing.jpg",
+      width: 1672,
+      height: 875,
+      alt: "A couple at a kitchen table in a New Zealand home, comparing two loan documents side by side, with a laptop open and hills outside the window",
+    },
+    cta: {
+      title: "Want to put your mortgage to the test?",
+      text: "A strategy call is thirty minutes and costs nothing. Bring your loan details, and we'll check whether refinancing would leave you ahead.",
+    },
+    readingMinutes: 6,
+    // Goes live together with /refinance (REFINANCE_LIVE), which the banner links to.
+    draft: true,
+    body: [
+      {
+        type: "lede",
+        text: "Your mortgage is probably your biggest financial commitment.",
+      },
+      {
+        type: "bottomline",
+        text: "When did you last check it still works for you?",
+      },
+      {
+        type: "p",
+        text: "Many homeowners stay with the same bank for years, simply refixing their interest rate when the current term expires. It's convenient, but it doesn't necessarily mean they're getting the best deal.",
+      },
+      {
+        type: "p",
+        text: "Refinancing could be an opportunity to improve your interest rate, reduce your repayments, access additional funds or restructure your mortgage to better suit your financial goals.",
+      },
+
+      { type: "h2", text: "What is mortgage refinancing?" },
+      {
+        type: "p",
+        text: "Mortgage [[refinancing]] means **replacing your existing home loan with a new loan**, usually from a different bank or lender. The new lender pays off your existing mortgage, and you start making repayments under the new loan agreement.",
+      },
+      {
+        type: "p",
+        text: "You don't need to sell your property or move house. You simply change how your mortgage is financed.",
+      },
+      {
+        type: "tracks",
+        items: [
+          {
+            title: "Refixing",
+            text: "Choosing a new fixed interest rate with your existing lender when your current fixed term expires.",
+          },
+          {
+            title: "Refinancing",
+            text: "Moving your mortgage to another lender, with a new loan agreement.",
+          },
+        ],
+      },
+      {
+        type: "p",
+        text: "Both options are worth comparing before making a decision.",
+      },
+
+      { type: "h2", text: "How refinancing looks" },
+      {
+        type: "figure",
+        src: "/images/insights/refinance-how-it-works.svg",
+        alt: "Diagram of a refinance: your current lender's loan is repaid; the move brings a cash contribution from the new lender, against legal fees, clawback and break fee; the contribution goes onto the new loan.",
+      },
+      {
+        type: "p",
+        text: "Your current loan is repaid and closed. The new lender can pay you a **cash contribution**, which can go straight onto the loan. Against it sit the costs of the move: **legal fees**, and sometimes a **clawback** or a **break fee**.",
+      },
+
+      { type: "h2", text: "Why do homeowners refinance?" },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "1. A better interest rate",
+            text: "Even a small difference in rates adds up over time, **particularly on a large mortgage**.",
+          },
+          {
+            term: "2. A cash contribution",
+            text: "Some lenders pay new customers a [[cash contribution|Cash contribution]], **usually 0.8% to 1.25% of the loan**.",
+          },
+          {
+            term: "3. Better cash flow",
+            text: "A different structure or term can **lower your regular repayments** and give your budget more room.",
+          },
+          {
+            term: "4. A loan that fits your life now",
+            text: "Your circumstances have changed since you first borrowed. **The loan can change with them.**",
+          },
+        ],
+      },
+
+      { type: "h2", text: "Count the costs first" },
+      {
+        type: "p",
+        text: "Moving a mortgage is not free. Before comparing offers, **add up what leaving would cost you**.",
+      },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "Break fee",
+            text: "Charged if you leave **during a fixed term** and rates have fallen since you fixed. **At the end of the term there is none.** See [[break fee]].",
+          },
+          {
+            term: "Clawback",
+            text: "If your current lender paid you a cash contribution, it can **take it back** if you leave **within its minimum period**. See [[clawback]].",
+          },
+          {
+            term: "Legal and discharge fees",
+            text: "A lawyer handles the switch, and your lender charges to discharge the mortgage. Legal fees are **usually $800 to $1,500**.",
+          },
+          {
+            term: "The new lender's conditions",
+            text: "A new contribution comes with **its own minimum period**. Move the loan again before it ends, and the clawback applies again.",
+          },
+          {
+            term: "A new assessment",
+            text: "The new lender checks your income, expenses and property **under today's lending rules**, and may ask for a valuation.",
+          },
+        ],
+      },
+      {
+        type: "callout",
+        label: "The other side of the ledger",
+        text: "A new lender's **cash contribution can cover the switching costs**. What is left, put onto the loan, **reduces what you owe**.",
+      },
+
+      { type: "h2", text: "What you can change when you refinance" },
+      {
+        type: "p",
+        text: "A refinance is also the moment to reshape the loan. Depending on your situation, you can:",
+      },
+      {
+        type: "list",
+        items: [
+          "**Reduce the loan**: put the cash contribution onto the mortgage.",
+          "**Increase the loan**: borrow against your [[equity]] for renovations or to consolidate debt, if you meet the lending criteria.",
+          "**Shorten the term**: keep your repayment and finish sooner.",
+          "**Lower your repayment**: spread the loan over a longer term, at the cost of more interest over time.",
+          "**Restructure**: split across fixed terms, add an [[offset account]] or [[revolving credit]].",
+        ],
+      },
+
+      { type: "h2", text: "How a mortgage adviser helps" },
+      {
+        type: "p",
+        text: "An adviser helps you **put all of this together**: what leaving costs, what each lender pays, and which structure fits what you need the loan to do.",
+      },
+      {
+        type: "list",
+        items: [
+          "**Compares lenders on the whole picture**: rate, cash contribution, clawback terms and how each lender would assess you.",
+          "**Checks before you apply**: the break fee quote, the clawback dates on your current loan, and whether your [[LVR|Loan-to-value ratio (LVR)]] fits the new lender's criteria.",
+          "**Structures the new loan**: term, repayment, splits, offset or revolving credit.",
+          "**Handles the switch**: the application, the lawyers and the settlement date, so the new loan starts on the day the old one is repaid.",
+        ],
+      },
+      {
+        type: "p",
+        text: "On most home loans the lender pays the adviser, not you. And when you refinance with Valar, there is something extra:",
+      },
+      ...(FREE_PLAN_OFFER_LIVE
+        ? [
+            {
+              type: "offer" as const,
+              label: "Valar offer",
+              title: "Free Wealth Plan when you refinance",
+              text: "Refinance with Valar and we prepare your **Wealth Management Plan** or **Retirement Plan** at no cost.",
+              button: "See what's in the plan",
+              href: "/services/wealth-management-plan",
+              secondary: { button: "Check your refinance", href: "/refinance" },
+              smallLink: { text: "See our disclosure.", href: "/disclosure" },
+            },
+          ]
+        : []),
+      {
+        type: "p",
+        text: "Here is how a refinance can look in practice.",
+      },
+
+      { type: "h2", text: "A worked example" },
+      {
+        type: "p",
+        text: "Sarah and Tom's fixed term ends in December. Here is where their loan stands.",
+      },
+      {
+        type: "stats",
+        items: [
+          { label: "Left to repay", value: "$600,000" },
+          { label: "Remaining term", value: "25 years" },
+          { label: "Current rate", value: "4.79%", note: "Fixed, ends in December" },
+          { label: "New rate", value: "5%", note: "1 year, both banks" },
+        ],
+      },
+      {
+        type: "p",
+        text: "**Compare the rate on offer when the term ends, not the rate you have now.** Their 4.79% ends in December either way. With equal rates, staying looks like the easy choice. But the new lender also pays a 1% cash contribution, and at the end of the fixed term there is no break fee and no clawback.",
+      },
+      {
+        type: "table",
+        caption: "Refinancing at the end of the fixed term",
+        headers: ["", "Amount"],
+        rows: [
+          ["Cash contribution (1%)", "+$6,000"],
+          ["Break fee", "$0"],
+          ["Clawback", "$0"],
+          ["Legal fees (approximate)", "−$1,200"],
+          ["Left to put against the loan", "+$4,800"],
+        ],
+      },
+      {
+        type: "bottomline",
+        text: "$4,800 is what this refinance earns Sarah and Tom. Put against the loan, it means they owe $595,200 instead of $600,000.",
+      },
+      {
+        type: "p",
+        text: "How they use it depends on their situation and what they want the loan to do. Here are three ways:",
+      },
+      {
+        type: "deflist",
+        items: [
+          {
+            term: "Option 1. Same term, lower repayment",
+            text: "Keep 25 years. The repayment dips slightly, from $3,508 to $3,479 a month, but over the life of the loan they repay **about $8,400 less in total**.",
+          },
+          {
+            term: "Option 2. Same repayment, shorter loan",
+            text: "They keep paying $3,508 a month. The loan is repaid in **24 years and 8 months**, about **4 months sooner**, and they repay **about $16,600 less** in total.",
+          },
+          {
+            term: "Option 3. Longer term, more room in the budget",
+            text: "Refinance over 30 years. The repayment drops to $3,195 a month: they pay **$313 less every month**, about **$3,750 less a year**. But the total they repay over the life of the loan is about $98,000 more. Option 3 is useful when cash flow needs easing, but the loan runs for longer.",
+          },
+        ],
+      },
+      {
+        type: "figure",
+        src: "/images/insights/refinance-monthly-repayments.svg",
+        alt: "Monthly repayment for each option on a $600,000 loan at 5%: staying $3,508 over 25 years; option 1 $3,479 over 25 years; option 2 $3,508 over 24 years and 8 months; option 3 $3,195 over 30 years, $313 a month less. Each refinance option starts from a $595,200 loan.",
+        caption:
+          "Illustration only. Assumes 5% for the whole term at both lenders, monthly repayments, a 1% contribution and $1,200 legal fees. Your own figures depend on your loan, your lenders' terms and the rates on the day.",
+      },
+      {
+        type: "p",
+        text: "Option 2 saves the most. Option 3 helps the monthly budget and costs the most over time. **Decide what you need your loan to do before you switch, not after.**",
+      },
+      {
+        type: "banner",
+        label: "Refinance calculator",
+        title: "Check your own numbers",
+        text: "Put in your loan, your rate and the time left on your fix, and see whether moving would leave you ahead.",
+        button: "Open the calculator",
+        href: "/refinance",
+      },
+
+      { type: "h2", text: "Is refinancing always worth it?" },
+      {
+        type: "p",
+        text: "Not necessarily. Moving may involve legal fees, early repayment costs or repaying a previous cashback. And a lower monthly repayment doesn't automatically mean a cheaper mortgage: a longer term can reduce repayments while increasing the total interest paid.",
+      },
+      {
+        type: "p",
+        text: "The important question is not simply whether another bank offers a lower rate.",
+      },
+      {
+        type: "pull",
+        text: "It's whether refinancing leaves you financially better off overall.",
+      },
+    ],
+    takeaways: [
+      "Refinancing moves your mortgage to a new lender. Refixing stays with the one you have.",
+      "Compare the rate each lender offers when your fixed term ends, not the rate you have now.",
+      "Count the costs first: break fee, clawback of an earlier contribution, and legal fees.",
+      "A new lender's cash contribution can cover the switching costs and, put onto the loan, reduce what you owe.",
+      "Use the refinance to reshape the loan: a lower repayment, a shorter term or more room in the budget.",
+    ],
+  },
   {
     slug: "first-home-buyers-three-cases",
     title: "First Home Buyers: Three Different Cases",
