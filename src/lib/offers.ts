@@ -13,10 +13,10 @@
  * Valar pays it out of the commission the lender pays Valar, and the copy that
  * advertises it says so.
  */
-// Off since 2026-11-22: replaced by the free plan below. BNZ's adviser code
-// says "Not receive money from customers in relation to applications or loans
-// unless authorised by BNZ in writing", which put the 24-month payback in doubt.
-// A plan moves no money either way. Kept, not deleted, in case lenders confirm.
+// Off since 2026-11-22: replaced by the free plan below. A lender's adviser
+// terms restrict taking money from customers, which put the 24-month payback
+// in doubt. A plan moves no money either way. Kept, not deleted, in case
+// lenders confirm in writing.
 export const LEGAL_FEE_OFFER_LIVE = false;
 
 /** Last day the offer applies (inclusive). Copy that names a deadline reads this. */
