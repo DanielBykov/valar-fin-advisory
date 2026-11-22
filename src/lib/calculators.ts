@@ -93,7 +93,7 @@ export const CALCULATORS: Calculator[] = [
    */
   {
     slug: "refinance",
-    title: "Refinance savings",
+    title: "Mortgage refinance",
     blurb:
       "Fixed rate ending soon? See what moving your loan could save, and how much sooner it could be paid off.",
     menuBlurb: "What switching lenders could save you",

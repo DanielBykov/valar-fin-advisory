@@ -287,7 +287,7 @@ export const ARTICLES: Article[] = [
     excerpt:
       "Review your mortgage: what refinancing costs, how the move works, and how a cash contribution can lower your repayment or shorten your loan.",
     tag: "guides",
-    published: "2026-11-20",
+    published: "2026-11-22",
     topics: ["Refinancing", "Cash contribution", "Break fee", "Loan structure"],
     shareDescription: "Review your mortgage: refinance to optimise it and pay it off faster.",
     image: {
@@ -301,8 +301,7 @@ export const ARTICLES: Article[] = [
       text: "A strategy call is thirty minutes and costs nothing. Bring your loan details, and we'll check whether refinancing would leave you ahead.",
     },
     readingMinutes: 6,
-    // Goes live together with /refinance (REFINANCE_LIVE), which the banner links to.
-    draft: true,
+    draft: false,
     body: [
       {
         type: "lede",
