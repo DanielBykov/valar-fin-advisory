@@ -499,10 +499,9 @@ export default function RefinanceCalculator({
               className={`mt-4 mb-5 text-sm leading-relaxed text-gray-600 ${highLvr ? "hidden" : ""}`}
             >
               Example rates: a new lender at {NEW_LENDER_FIRST_YEAR_RATE.toFixed(2)}% for 1 year,
-              then {ONGOING_RATE.toFixed(2)}%, against {ONGOING_RATE.toFixed(2)}% at your bank.
-              Switching when your fixed rate ends, so no break fee. A{" "}
+              then {ONGOING_RATE.toFixed(2)}%, against {ONGOING_RATE.toFixed(2)}% at your bank. A{" "}
               {(CONTRIBUTION_SHARE * 100).toFixed(2)}% cash contribution, less about{" "}
-              {money(LEGAL_FEES)} in legal fees, goes onto the loan.
+              {money(LEGAL_FEES)} in legal fees, goes onto the loan. Break fees are not included.
             </p>
 
             {/*

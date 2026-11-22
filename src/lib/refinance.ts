@@ -455,7 +455,7 @@ export function describeRefinance(result: RefinanceResult, input: RefinanceInput
 
 /** The small print that makes the headline figure honest. Page and email use the same words. */
 export function assumptionsLine(): string {
-  return `Example rates: a new lender at ${NEW_LENDER_FIRST_YEAR_RATE.toFixed(2)}% for 1 year, then ${ONGOING_RATE.toFixed(2)}%, against ${ONGOING_RATE.toFixed(2)}% at your current bank when your fixed rate ends. Assumes you switch when your fixed rate ends, so no break fee, and a lender contribution of ${(CONTRIBUTION_SHARE * 100).toFixed(2)}% of the loan, less about $${LEGAL_FEES.toLocaleString("en-NZ")} in legal fees, paid onto the mortgage. The contribution is repayable if you leave within the clawback period. The rates are examples, not an offer.`;
+  return `Example rates: a new lender at ${NEW_LENDER_FIRST_YEAR_RATE.toFixed(2)}% for 1 year, then ${ONGOING_RATE.toFixed(2)}%, against ${ONGOING_RATE.toFixed(2)}% at your current bank when your fixed rate ends. Assumes a lender contribution of ${(CONTRIBUTION_SHARE * 100).toFixed(2)}% of the loan, less about $${LEGAL_FEES.toLocaleString("en-NZ")} in legal fees, paid onto the mortgage. Break fees are not included. The contribution is repayable if you leave within the clawback period. The rates are examples, not an offer.`;
 }
 
 /** Longest message the refinance review page accepts; the page and the API share it. */
